@@ -1,0 +1,47 @@
+{
+  "name": "@stefan-florescu/icons",
+  "version": "0.0.0",
+  "description": "Icon layer over lucide.dev with design-system defaults (size, stroke, a11y).",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stefan-florescu/global-design-system.git",
+    "directory": "packages/icons"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts --clean --external react",
+    "clean": "rm -rf dist .turbo",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "lucide-react": "^1.52.0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@stefan-florescu/eslint-config": "workspace:*",
+    "@stefan-florescu/typescript-config": "workspace:*",
+    "@types/react": "^19.2.0",
+    "eslint": "^9.39.0",
+    "react": "^19.2.0",
+    "tsup": "^8.5.1",
+    "typescript": "~5.9.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

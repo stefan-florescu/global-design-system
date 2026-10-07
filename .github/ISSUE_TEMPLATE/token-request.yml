@@ -1,0 +1,24 @@
+name: Token change request
+description: Add or change a design token.
+labels: ["tokens"]
+body:
+  - type: dropdown
+    id: layer
+    attributes:
+      label: Layer
+      options: [Primitive, Semantic, Component, Theme]
+    validations:
+      required: true
+  - type: input
+    id: token
+    attributes:
+      label: Token path
+      placeholder: color.action.primary.background
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale & affected components
+    validations:
+      required: true

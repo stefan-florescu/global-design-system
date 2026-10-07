@@ -1,0 +1,7 @@
+# Default owner for everything
+*                         @stefan-florescu
+
+# Tokens and themes are design decisions — always need design review
+/packages/tokens/         @stefan-florescu
+/packages/themes/         @stefan-florescu
+/docs/decisions/          @stefan-florescu

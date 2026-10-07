@@ -1,0 +1,10 @@
+/*
+ * @stefan-florescu/ui/styles.css — import once in a consuming app's global CSS
+ * (after `@import "tailwindcss";`). Brings tokens, themes and the Tailwind preset,
+ * and tells Tailwind to scan the compiled components for class names.
+ */
+@import "@stefan-florescu/tokens/css";
+@import "@stefan-florescu/themes/css";
+@import "@stefan-florescu/tailwind-config";
+
+@source "../dist";

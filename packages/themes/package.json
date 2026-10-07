@@ -1,0 +1,45 @@
+{
+  "name": "@stefan-florescu/themes",
+  "version": "0.0.0",
+  "description": "Theme layer (light, dark, brand, high-contrast) mapping semantic tokens per [data-theme].",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stefan-florescu/global-design-system.git",
+    "directory": "packages/themes"
+  },
+  "exports": {
+    "./css": "./build/css/themes.css",
+    "./light.css": "./build/css/light.css",
+    "./dark.css": "./build/css/dark.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "build",
+    "src"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "clean": "rm -rf build .turbo",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@stefan-florescu/tokens": "workspace:*"
+  },
+  "devDependencies": {
+    "@stefan-florescu/eslint-config": "workspace:*",
+    "@stefan-florescu/typescript-config": "workspace:*",
+    "@types/node": "^22.18.0",
+    "eslint": "^9.39.0",
+    "style-dictionary": "^5.6.0",
+    "typescript": "~5.9.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

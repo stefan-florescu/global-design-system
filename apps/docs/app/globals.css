@@ -1,0 +1,4 @@
+@import "tailwindcss";
+@import "@stefan-florescu/ui/styles.css";
+
+/* Docs-site chrome only. Never define design decisions here — they belong in tokens. */

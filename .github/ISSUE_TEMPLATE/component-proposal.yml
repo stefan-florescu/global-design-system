@@ -1,0 +1,39 @@
+name: Component proposal (RFC)
+description: Propose a new component or pattern for the design system.
+labels: ["rfc", "component"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Component name
+      placeholder: e.g. Combobox
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem & use cases
+      description: Which product problems does it solve? Link at least two real use cases.
+    validations:
+      required: true
+  - type: textarea
+    id: anatomy
+    attributes:
+      label: Anatomy, variants & states
+  - type: textarea
+    id: a11y
+    attributes:
+      label: Accessibility
+      description: WAI-ARIA pattern, keyboard map, screen-reader expectations.
+    validations:
+      required: true
+  - type: textarea
+    id: api
+    attributes:
+      label: Proposed API (props)
+      render: tsx
+  - type: textarea
+    id: prior-art
+    attributes:
+      label: Prior art
+      description: Radix, React Aria, shadcn/ui, Material, Carbon, Polaris…

@@ -1,0 +1,22 @@
+/*
+ * @stefan-florescu/tailwind-config — shared Tailwind CSS v4 preset.
+ *
+ * This is the ONLY place where design tokens are mapped into Tailwind's theme.
+ * Tailwind v4 is configured in CSS (no tailwind.config.js).
+ *
+ * Wiring (filled in during Phase A — Foundations):
+ *   1. @stefan-florescu/tokens  → emits CSS custom properties (--sds-*)
+ *   2. @stefan-florescu/themes  → re-assigns semantic vars per [data-theme]
+ *   3. this file                → exposes semantic vars as Tailwind utilities via @theme inline
+ *
+ * Example of the target shape (do not enable until tokens exist):
+ *
+ *   @theme inline {
+ *     --color-background: var(--sds-color-background-default);
+ *     --color-foreground: var(--sds-color-text-default);
+ *     --radius-md:        var(--sds-radius-md);
+ *   }
+ */
+
+/* Class-based + attribute-based dark mode, so themes can be forced per subtree. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));

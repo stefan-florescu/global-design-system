@@ -1,0 +1,23 @@
+name: Bug report
+description: Something in a component, token or the docs is broken.
+labels: ["bug"]
+body:
+  - type: input
+    id: package
+    attributes:
+      label: Package & version
+      placeholder: "@stefan-florescu/ui@1.2.0"
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs actual
+    validations:
+      required: true

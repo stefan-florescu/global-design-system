@@ -1,0 +1,4 @@
+{
+  "extends": "@stefan-florescu/typescript-config/vite-app.json",
+  "include": [".storybook/**/*.ts", "src/**/*.ts", "src/**/*.tsx"]
+}

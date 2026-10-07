@@ -1,0 +1,33 @@
+# dependencies
+node_modules
+.pnpm-store
+
+# builds
+dist
+build
+.next
+out
+storybook-static
+*.tsbuildinfo
+next-env.d.ts
+
+# generated tokens / themes (rebuilt by Style Dictionary)
+packages/tokens/build
+packages/themes/build
+
+# turbo / vercel
+.turbo
+.vercel
+
+# testing
+coverage
+
+# env
+.env
+.env*.local
+
+# misc
+.DS_Store
+*.log
+*.pem
+.idea

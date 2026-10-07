@@ -1,0 +1,10 @@
+node_modules
+dist
+.next
+.turbo
+storybook-static
+coverage
+pnpm-lock.yaml
+packages/tokens/build
+packages/themes/build
+CHANGELOG.md
