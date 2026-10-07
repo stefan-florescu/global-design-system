@@ -14,5 +14,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@stefan-florescu/docs", "@stefan-florescu/storybook"]
+  "ignore": ["@stefan-florescu/storybook"]
 }

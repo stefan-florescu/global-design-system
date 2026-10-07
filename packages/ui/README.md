@@ -23,7 +23,7 @@ src/components/button/
 ├── button.variants.ts    # CVA definition — the only place classes live
 ├── button.test.tsx       # Vitest + Testing Library (behaviour + a11y)
 ├── button.stories.tsx    # Storybook stories (rendered by apps/storybook)
-├── button.mdx            # usage docs (rendered by apps/docs)
+├── button.mdx            # usage docs (rendered by Storybook)
 ├── button.meta.json      # machine-readable metadata for AI agents & docs
 └── index.ts              # public exports
 ```

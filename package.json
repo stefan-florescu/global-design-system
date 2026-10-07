@@ -10,7 +10,6 @@
   },
   "scripts": {
     "dev": "turbo run dev",
-    "dev:docs": "turbo run dev --filter=@stefan-florescu/docs...",
     "dev:storybook": "turbo run dev --filter=@stefan-florescu/storybook...",
     "build": "turbo run build",
     "build:packages": "turbo run build --filter=./packages/*",

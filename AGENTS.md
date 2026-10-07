@@ -15,7 +15,6 @@ A token-driven, accessible, multi-theme React design system in a pnpm + Turborep
 | `packages/ui`       | `@stefan-florescu/ui`                  | React 19 components (Tailwind v4 + CVA)             |
 | `packages/icons`    | `@stefan-florescu/icons`               | Governed wrapper over `lucide-react`                |
 | `packages/config/*` | `@stefan-florescu/*-config`            | Shared TS / ESLint / Tailwind presets               |
-| `apps/docs`         | `@stefan-florescu/docs` (private)      | Next.js 15 documentation site                       |
 | `apps/storybook`    | `@stefan-florescu/storybook` (private) | Component workbench                                 |
 
 Dependency direction is strictly **tokens → themes → ui → apps**. Never import "upward".
@@ -24,8 +23,7 @@ Dependency direction is strictly **tokens → themes → ui → apps**. Never im
 
 ```bash
 pnpm install            # Node >= 22, pnpm 10
-pnpm dev                # all apps
-pnpm dev:docs           # http://localhost:3000
+pnpm dev                # Storybook + package watchers
 pnpm dev:storybook      # http://localhost:6006
 pnpm build | lint | typecheck | test | format
 pnpm --filter @stefan-florescu/ui test
