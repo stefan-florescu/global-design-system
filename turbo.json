@@ -2,12 +2,12 @@
   "$schema": "https://turborepo.com/schema.json",
   "ui": "tui",
   "globalDependencies": ["tsconfig.json", ".env"],
-  "globalEnv": ["NODE_ENV", "VERCEL_ENV", "NEXT_PUBLIC_SITE_URL", "NEXT_PUBLIC_STORYBOOK_URL"],
+  "globalEnv": ["NODE_ENV", "VERCEL_ENV"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", "!**/*.stories.{ts,tsx,mdx}", "!**/*.test.{ts,tsx}"],
-      "outputs": ["dist/**", "build/**", ".next/**", "!.next/cache/**", "storybook-static/**"]
+      "outputs": ["dist/**", "build/**", "storybook-static/**"]
     },
     "dev": {
       "dependsOn": ["^build"],

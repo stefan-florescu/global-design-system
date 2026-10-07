@@ -1,5 +1,8 @@
 # 06 · Documentation Architecture
 
+> **Current state:** the Next.js docs site is deferred. Storybook (`apps/storybook`) is the only
+> documentation surface for now; the structure below is the target once `apps/docs` is added back.
+
 ## 6.1 Two surfaces, one source
 
 | Surface       | App              | Audience                     | Content                                                         |

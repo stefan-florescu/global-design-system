@@ -9,10 +9,9 @@ Token-driven · component-based · accessible by default · multi-theme · AI-fr
 | `@stefan-florescu/ui`     | React 19 components — Tailwind CSS v4 + CVA       |
 | `@stefan-florescu/icons`  | Governed lucide.dev icon layer                    |
 
-| App              | Stack                 | Local                 |
-| ---------------- | --------------------- | --------------------- |
-| `apps/docs`      | Next.js 15 · React 19 | http://localhost:3000 |
-| `apps/storybook` | Storybook 10 · Vite   | http://localhost:6006 |
+| App              | Stack               | Local                 |
+| ---------------- | ------------------- | --------------------- |
+| `apps/storybook` | Storybook 10 · Vite | http://localhost:6006 |
 
 ## Quick start
 

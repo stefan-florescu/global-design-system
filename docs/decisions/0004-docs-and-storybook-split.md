@@ -1,6 +1,6 @@
 # 0004 · Separate docs site (Next.js) and Storybook workbench
 
-- **Status:** Accepted
+- **Status:** Accepted — docs site deferred (2026-10-07)
 - **Date:** 2026-10-07
 
 ## Context
@@ -16,3 +16,8 @@ for the workbench. Both consume stories/MDX/metadata colocated in `packages/ui`.
 ## Consequences
 
 Two deploys to maintain, but each tool does what it is best at and neither drifts from code.
+
+## Update 2026-10-07
+
+`apps/docs` was removed to focus on a single surface. Storybook hosts foundations and usage docs
+as MDX until the guidance outgrows it; the split above remains the target architecture.

@@ -16,10 +16,10 @@
 git clone git@github.com:stefan-florescu/global-design-system.git
 cd global-design-system
 corepack enable && pnpm install     # also installs husky git hooks
-pnpm dev                            # docs :3000 + storybook :6006
+pnpm dev                            # storybook :6006
 ```
 
-Useful: `pnpm dev:docs`, `pnpm dev:storybook`, `pnpm build`, `pnpm --filter @stefan-florescu/ui test:watch`.
+Useful: `pnpm dev:storybook`, `pnpm build`, `pnpm --filter @stefan-florescu/ui test:watch`.
 VS Code extensions are recommended in `.vscode/extensions.json`.
 
 ## 8.2 Cloud development
@@ -63,26 +63,26 @@ Consumers of GitHub Packages add to their `.npmrc`:
 //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
 ```
 
-## 8.5 Vercel — two projects from one repo
+## 8.5 Vercel — Storybook project
 
-Import the GitHub repo **twice** in Vercel (New Project → Import → same repo):
+One Vercel project, linked to this GitHub repo:
 
-| Setting                                | Docs project                                                                                        | Storybook project                                      |
-| -------------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
-| Project name                           | `sds-docs`                                                                                          | `sds-storybook`                                        |
-| Root Directory                         | `apps/docs`                                                                                         | `apps/storybook`                                       |
-| Framework preset                       | Next.js                                                                                             | Other                                                  |
-| Build / Output                         | from `apps/docs/vercel.json`                                                                        | from `apps/storybook/vercel.json` (`storybook-static`) |
-| Node.js version                        | 22.x                                                                                                | 22.x                                                   |
-| "Include files outside root directory" | ✅ enabled (default for monorepos)                                                                  | ✅ enabled                                             |
-| Ignored build step                     | `npx turbo-ignore` (in `vercel.json`) — skips deploys when the app's dependency graph didn't change |
-| Domains (suggested)                    | `design.<your-domain>`                                                                              | `storybook.<your-domain>`                              |
+| Setting                              | Value                                                                                    |
+| ------------------------------------ | ---------------------------------------------------------------------------------------- |
+| Project name                         | `sds-storybook`                                                                          |
+| Root Directory                       | `apps/storybook`                                                                         |
+| Framework preset                     | Storybook                                                                                |
+| Build / Output                       | from `apps/storybook/vercel.json` (`storybook-static`)                                   |
+| Node.js version                      | 22.x                                                                                     |
+| Include files outside root directory | ✅ enabled (default for monorepos)                                                       |
+| Ignored build step                   | `npx turbo-ignore` (in `vercel.json`) — skips deploys when nothing it depends on changed |
+| Production branch                    | `main`                                                                                   |
 
-Environment variables (both projects, all environments):
-`NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_STORYBOOK_URL` (so docs can link to Storybook and vice-versa).
-
-Every PR then gets two preview URLs posted by the Vercel bot; `main` deploys to production.
+Every PR gets a preview URL from the Vercel bot; `main` deploys to production.
 Enable **Vercel Remote Cache** (Team → Settings → Remote Caching) and reuse it in CI via `TURBO_TOKEN`.
+
+A Next.js docs site (`apps/docs`) is deferred — see ADR 0004. When it returns it becomes a second
+Vercel project with root `apps/docs`.
 
 ## 8.6 Release flow
 
