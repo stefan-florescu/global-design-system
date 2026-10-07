@@ -71,7 +71,7 @@ One Vercel project, linked to this GitHub repo:
 | ------------------------------------ | ---------------------------------------------------------------------------------------- |
 | Project name                         | `sds-storybook`                                                                          |
 | Root Directory                       | `apps/storybook`                                                                         |
-| Framework preset                     | Storybook                                                                                |
+| Framework preset                     | Other                                                                                    |
 | Build / Output                       | from `apps/storybook/vercel.json` (`storybook-static`)                                   |
 | Node.js version                      | 22.x                                                                                     |
 | Include files outside root directory | ✅ enabled (default for monorepos)                                                       |
