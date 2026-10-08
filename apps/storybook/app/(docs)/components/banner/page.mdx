@@ -1,0 +1,87 @@
+export const metadata = {
+  title: "Banner",
+  description:
+    "A site-wide message pinned to the top or bottom of the page: an announcement, a call to action or a notice.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="banner-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Banner } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Banner dismissible>New: dark mode is here.</Banner>
+```
+
+The examples render inside a frame that stands in for the browser window. In your app, the banner
+is fixed to the viewport.
+
+<Callout title="Layering">
+  `Banner` sits on the `z.fixed` layer (`z-fixed`), above sticky headers and below overlays, dialogs
+  and toasts. See [Spacing & layout](/foundation/spacing-and-layout#layering).
+</Callout>
+
+## Examples
+
+### Sticky banner
+
+By default the banner is fixed to the top of the viewport. Add `dismissible` to let people close
+it.
+
+<ComponentPreview name="banner-demo" />
+
+### Bottom banner
+
+Set `position="bottom"` to pin it to the bottom instead.
+
+<ComponentPreview name="banner-bottom" />
+
+### Marketing CTA banner
+
+Add `floating` for a card inset from the edges, with a border and shadow.
+
+<ComponentPreview name="banner-cta" />
+
+### Informational banner
+
+Combine a heading, a description and actions.
+
+<ComponentPreview name="banner-informational" />
+
+### Position
+
+`position="static"` places the banner in the normal page flow, for example at the top of a
+layout that already scrolls.
+
+## Accessibility
+
+- The banner is a `<section>` labelled "Announcement", so it is listed as a region landmark.
+  Pass `aria-label` to describe it better, for example "Cookie notice".
+- It is not a live region: content that is on the page when it loads isn't announced. Use
+  `Alert` for messages that react to what the user just did.
+- The close button is a native `<button>` named "Close banner" (change it with `dismissLabel`).
+  Use `onDismiss` to remember the choice so the banner doesn't return on every page.
+- A fixed banner covers part of the page. Add matching padding to your layout so no content is
+  hidden behind it.
+
+## API Reference
+
+| Prop           | Type                            | Default          |
+| -------------- | ------------------------------- | ---------------- |
+| `position`     | `"top" \| "bottom" \| "static"` | `"top"`          |
+| `floating`     | `boolean`                       | `false`          |
+| `dismissible`  | `boolean`                       | `false`          |
+| `dismissLabel` | `string`                        | `"Close banner"` |
+| `onDismiss`    | `() => void`                    | —                |
+| `aria-label`   | `string`                        | `"Announcement"` |
+
+All other `<section>` attributes are forwarded, including `ref` and `className`.

@@ -37,7 +37,7 @@ export const sidebarNav: NavSection[] = [
       },
       {
         title: "Spacing & layout",
-        description: "The 4px spacing scale, layout grid, breakpoints and containers.",
+        description: "The 4px spacing scale, layout grid, breakpoints, containers and layers.",
         href: "/foundation/spacing-and-layout",
       },
       {
@@ -54,6 +54,37 @@ export const sidebarNav: NavSection[] = [
         title: "Accordion",
         description: "Stacked headings that each reveal a section of content.",
         href: "/components/accordion",
+      },
+      {
+        title: "Alert",
+        description: "Short, important messages: information, success, warnings and errors.",
+        href: "/components/alert",
+      },
+      {
+        title: "Avatar",
+        description:
+          "Images, initials or placeholders that represent people, with presence status.",
+        href: "/components/avatar",
+      },
+      {
+        title: "Badge",
+        description: "Small labels for statuses, counts and categories, including removable chips.",
+        href: "/components/badge",
+      },
+      {
+        title: "Banner",
+        description: "Site-wide announcements pinned to the top or bottom of the page.",
+        href: "/components/banner",
+      },
+      {
+        title: "Bottom Navigation",
+        description: "A bar of top-level destinations at the bottom of mobile screens.",
+        href: "/components/bottom-navigation",
+      },
+      {
+        title: "Breadcrumb",
+        description: "Shows where the current page sits in the site hierarchy.",
+        href: "/components/breadcrumb",
       },
       {
         title: "Button",

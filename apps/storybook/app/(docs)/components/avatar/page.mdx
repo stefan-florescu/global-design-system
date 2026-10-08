@@ -1,0 +1,121 @@
+export const metadata = {
+  title: "Avatar",
+  description:
+    "An image, initials or placeholder icon that represents a person or entity, with an optional presence status.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="avatar-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Avatar, AvatarGroup, AvatarGroupCounter } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Avatar src="/team/ana.jpg" alt="Ana Popescu" />
+```
+
+## Examples
+
+### Default
+
+Avatars are circles by default. Set `shape="square"` for rounded squares.
+
+<ComponentPreview name="avatar-demo" />
+
+### Bordered
+
+Add `bordered` for a ring around the avatar.
+
+<ComponentPreview name="avatar-bordered" />
+
+### Placeholder icon
+
+Without `src` or `initials`, the avatar shows a person icon on the `muted` surface.
+
+<ComponentPreview name="avatar-placeholder" />
+
+### Placeholder initials
+
+Pass `initials` to show one or two letters instead of an image.
+
+<ComponentPreview name="avatar-initials" />
+
+### Dot indicator
+
+Set `status` to `online`, `away`, `busy` or `offline`, and `statusPosition` to `top-right` or
+`bottom-right`. Screen readers announce the status as text.
+
+<ComponentPreview name="avatar-status" />
+
+<Callout title="Don't rely on colour alone">
+  The dot's colour is not enough for people who can't tell the colours apart. Where the status
+  matters, also show it as visible text next to the avatar.
+</Callout>
+
+### Stacked
+
+Wrap avatars in `AvatarGroup` and add `stacked` to each, so it is outlined against the next.
+End the group with `AvatarGroupCounter` to show how many more there are.
+
+<ComponentPreview name="avatar-stacked" />
+
+### Avatar text
+
+Pair the avatar with a name and details. When the name is visible, give the avatar an empty `alt`
+so it isn't read twice.
+
+<ComponentPreview name="avatar-text" />
+
+### Sizes
+
+Five sizes from `xs` (24px) to `xl` (144px). `md` (40px) is the default.
+
+<ComponentPreview name="avatar-sizes" />
+
+## Accessibility
+
+- With `src`, the avatar renders an `<img>` with your `alt`. Initials and the placeholder are
+  exposed as `role="img"` with the same name.
+- Leave `alt` out (or empty) when the person's name is already shown next to the avatar; the
+  avatar is then decorative and hidden from assistive technology.
+- The status dot includes visually hidden text ("Online", "Busy"…), which you can change with
+  `statusLabel`.
+- `AvatarGroupCounter` becomes a link when you pass `href`. Give it an `aria-label` such as
+  "99 more people".
+
+## API Reference
+
+### Avatar
+
+| Prop             | Type                                        | Default          |
+| ---------------- | ------------------------------------------- | ---------------- |
+| `src`            | `string`                                    | —                |
+| `alt`            | `string`                                    | —                |
+| `initials`       | `string`                                    | —                |
+| `size`           | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`      | `"md"`           |
+| `shape`          | `"circle" \| "square"`                      | `"circle"`       |
+| `bordered`       | `boolean`                                   | `false`          |
+| `stacked`        | `boolean`                                   | `false`          |
+| `status`         | `"online" \| "away" \| "busy" \| "offline"` | —                |
+| `statusPosition` | `"top-right" \| "bottom-right"`             | `"bottom-right"` |
+| `statusLabel`    | `string`                                    | Status name      |
+
+### AvatarGroup
+
+Accepts all `<div>` attributes.
+
+### AvatarGroupCounter
+
+| Prop   | Type     | Default |
+| ------ | -------- | ------- |
+| `href` | `string` | —       |
+
+All parts forward native attributes, including `ref` and `className`.

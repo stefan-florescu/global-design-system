@@ -1,0 +1,94 @@
+export const metadata = {
+  title: "Bottom Navigation",
+  description:
+    "A bar of top-level destinations fixed to the bottom of the screen, for mobile layouts.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="bottom-navigation-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { BottomNavigation, BottomNavigationItem } from "@stefan-florescu/ui";
+```
+
+```tsx
+<BottomNavigation>
+  <BottomNavigationItem href="/" icon={<House aria-hidden />} active>
+    Home
+  </BottomNavigationItem>
+  <BottomNavigationItem href="/settings" icon={<Settings aria-hidden />}>
+    Settings
+  </BottomNavigationItem>
+</BottomNavigation>
+```
+
+The examples render inside a frame that stands in for a phone screen. In your app, the bar is
+fixed to the bottom of the viewport.
+
+<Callout title="Layering">
+  `BottomNavigation` sits on the `z.fixed` layer (`z-fixed`), above sticky headers and below
+  overlays, dialogs and toasts. See [Spacing & layout](/foundation/spacing-and-layout#layering).
+</Callout>
+
+## Examples
+
+### Default
+
+Items are links when they have `href`, and buttons otherwise. Mark the current page with `active`.
+
+<ComponentPreview name="bottom-navigation-demo" />
+
+### Menu items with border
+
+Add `bordered` to separate the items with dividers.
+
+<ComponentPreview name="bottom-navigation-bordered" />
+
+### Application bar
+
+Add `floating` for a rounded bar inset from the edges. Use `hideLabel` to show only icons (the
+label stays available to screen readers) and put a primary action in the middle.
+
+<ComponentPreview name="bottom-navigation-app-bar" />
+
+## Accessibility
+
+- Renders a `<nav>` landmark named "Bottom navigation" (change it with `aria-label`) containing a
+  list, so screen readers announce how many destinations there are.
+- The current page has `aria-current="page"`, which screen readers announce. Visually it is shown
+  by the brand text colour; if that is the only cue in your design, add another one, such as a
+  filled icon.
+- `hideLabel` keeps the label as visually hidden text; every item always has a name.
+- Each item fills its share of the 64px-high bar, well above the 24×24px minimum target size.
+- A fixed bar covers the bottom of the page. Add matching padding to your layout so no content is
+  hidden behind it.
+
+## API Reference
+
+### BottomNavigation
+
+| Prop         | Type                  | Default               |
+| ------------ | --------------------- | --------------------- |
+| `position`   | `"fixed" \| "static"` | `"fixed"`             |
+| `floating`   | `boolean`             | `false`               |
+| `bordered`   | `boolean`             | `false`               |
+| `aria-label` | `string`              | `"Bottom navigation"` |
+
+### BottomNavigationItem
+
+| Prop        | Type        | Default |
+| ----------- | ----------- | ------- |
+| `href`      | `string`    | —       |
+| `icon`      | `ReactNode` | —       |
+| `active`    | `boolean`   | `false` |
+| `hideLabel` | `boolean`   | `false` |
+
+Items render an `<a>` with `href`, otherwise a `<button>`, and forward the matching native
+attributes.

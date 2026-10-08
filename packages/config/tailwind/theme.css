@@ -104,4 +104,17 @@
   --shadow-sm: var(--sds-shadow-sm);
   --shadow-md: var(--sds-shadow-md);
   --shadow-lg: var(--sds-shadow-lg);
+
+  /* Layers — z-base, z-sticky, z-fixed, z-overlay, z-modal… */
+  --z-index-base: var(--sds-z-base);
+  --z-index-raised: var(--sds-z-raised);
+  --z-index-dropdown: var(--sds-z-dropdown);
+  --z-index-sticky: var(--sds-z-sticky);
+  --z-index-fixed: var(--sds-z-fixed);
+  --z-index-overlay: var(--sds-z-overlay);
+  --z-index-modal: var(--sds-z-modal);
+  --z-index-popover: var(--sds-z-popover);
+  --z-index-toast: var(--sds-z-toast);
+  --z-index-tooltip: var(--sds-z-tooltip);
+  --z-index-skip-link: var(--sds-z-skip-link);
 }

@@ -7,7 +7,7 @@ import { H2, H3 } from "@/components/heading";
 import { PageHeader } from "@/components/page-header";
 
 const DESCRIPTION =
-  "One 4px grid underneath everything. The spacing scale sets the distance between any two elements; the layout grid, breakpoints and containers decide where those elements sit on the page.";
+  "One 4px grid underneath everything. The spacing scale sets the distance between any two elements; the layout grid, breakpoints and containers decide where those elements sit on the page, and layers decide what sits on top.";
 
 export const metadata: Metadata = { title: "Spacing & layout", description: DESCRIPTION };
 
@@ -1292,6 +1292,161 @@ export default function SpacingAndLayoutPage() {
   max-width: var(--content-max);
 }`}
       />{" "}
+      <H2 id="layering">Layering</H2>
+      <p>
+        Elements that overlap the page — sticky headers, fixed bars, dropdowns, dialogs, toasts —
+        take their <code>z-index</code> from a named layer, never a raw number. Each layer sits
+        above the ones before it, and the gaps leave room to add layers later without renumbering.
+      </p>
+      <div className="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Token</th>
+              <th scope="col">Value</th>
+              <th scope="col">Tailwind</th>
+              <th scope="col">When to use it</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <code>--sds-z-base</code>
+              </td>
+              <td className="cell-type">0</td>
+              <td>
+                <code>z-base</code>
+              </td>
+              <td className="cell-muted">Default stacking: the normal page flow.</td>
+            </tr>
+            <tr>
+              <td>
+                <code>--sds-z-raised</code>
+              </td>
+              <td className="cell-type">10</td>
+              <td>
+                <code>z-raised</code>
+              </td>
+              <td className="cell-muted">
+                Lifts an element above its siblings, such as the focused item in a button group.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code>--sds-z-dropdown</code>
+              </td>
+              <td className="cell-type">1000</td>
+              <td>
+                <code>z-dropdown</code>
+              </td>
+              <td className="cell-muted">Menus and listboxes anchored to a control.</td>
+            </tr>
+            <tr>
+              <td>
+                <code>--sds-z-sticky</code>
+              </td>
+              <td className="cell-type">1100</td>
+              <td>
+                <code>z-sticky</code>
+              </td>
+              <td className="cell-muted">Sticky headers and toolbars, like this site's header.</td>
+            </tr>
+            <tr>
+              <td>
+                <code>--sds-z-fixed</code>
+              </td>
+              <td className="cell-type">1200</td>
+              <td>
+                <code>z-fixed</code>
+              </td>
+              <td className="cell-muted">
+                Bars fixed to the viewport: Banner and Bottom Navigation.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code>--sds-z-overlay</code>
+              </td>
+              <td className="cell-type">1300</td>
+              <td>
+                <code>z-overlay</code>
+              </td>
+              <td className="cell-muted">Backdrops that dim the page behind a drawer or dialog.</td>
+            </tr>
+            <tr>
+              <td>
+                <code>--sds-z-modal</code>
+              </td>
+              <td className="cell-type">1400</td>
+              <td>
+                <code>z-modal</code>
+              </td>
+              <td className="cell-muted">Dialogs and drawers.</td>
+            </tr>
+            <tr>
+              <td>
+                <code>--sds-z-popover</code>
+              </td>
+              <td className="cell-type">1500</td>
+              <td>
+                <code>z-popover</code>
+              </td>
+              <td className="cell-muted">Popovers, which can open from inside a dialog.</td>
+            </tr>
+            <tr>
+              <td>
+                <code>--sds-z-toast</code>
+              </td>
+              <td className="cell-type">1600</td>
+              <td>
+                <code>z-toast</code>
+              </td>
+              <td className="cell-muted">
+                Toast notifications, above dialogs so they are never hidden.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code>--sds-z-tooltip</code>
+              </td>
+              <td className="cell-type">1700</td>
+              <td>
+                <code>z-tooltip</code>
+              </td>
+              <td className="cell-muted">Tooltips, which can describe anything below them.</td>
+            </tr>
+            <tr>
+              <td>
+                <code>--sds-z-skip-link</code>
+              </td>
+              <td className="cell-type">1800</td>
+              <td>
+                <code>z-skip-link</code>
+              </td>
+              <td className="cell-muted">
+                The skip link, which must be visible above everything when focused.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        A layer only competes with elements in the same stacking context. A parent with a
+        <code>transform</code>, <code>filter</code> or its own <code>z-index</code> starts a new
+        context, so a modal inside it can't rise above the page around it — render overlays near the
+        end of <code>&lt;body&gt;</code>, or use the native <code>&lt;dialog&gt;</code>, which opens
+        in the browser's top layer.
+      </p>{" "}
+      <CodeBlock
+        filename="layers.tsx"
+        lang="tsx"
+        code={`<header className="sticky top-0 z-sticky">…</header>
+
+/* In CSS */
+.drawer-backdrop {
+  z-index: var(--sds-z-overlay);
+}`}
+      />{" "}
       <H2 id="accessibility">Accessibility</H2>
       <ul>
         <li>
@@ -1338,6 +1493,10 @@ export default function SpacingAndLayoutPage() {
           <strong>Unreleased</strong> — 4px spacing scale with 36 steps (including half-steps and{" "}
           <code>--sds-space-px</code>), the 4/8/12-column grid, five breakpoints and the container
           scale as <code>@stefan-florescu/tokens</code>.
+        </li>
+        <li>
+          <strong>Unreleased</strong> — Layer tokens (<code>--sds-z-*</code>) and the matching{" "}
+          <code>z-*</code> utilities, from <code>z-base</code> to <code>z-skip-link</code>.
         </li>
       </ul>
     </>

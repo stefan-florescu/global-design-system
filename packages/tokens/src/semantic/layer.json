@@ -1,0 +1,50 @@
+{
+  "z": {
+    "$type": "number",
+    "$description": "Stacking order. Use these instead of raw z-index values; each layer sits above the ones before it.",
+    "base": {
+      "$value": 0,
+      "$description": "Default stacking: the normal page flow."
+    },
+    "raised": {
+      "$value": 10,
+      "$description": "Lifts an element above its siblings, such as the focused item in a button group."
+    },
+    "dropdown": {
+      "$value": 1000,
+      "$description": "Menus and listboxes anchored to a control."
+    },
+    "sticky": {
+      "$value": 1100,
+      "$description": "Sticky headers and toolbars that scroll with the page until they pin."
+    },
+    "fixed": {
+      "$value": 1200,
+      "$description": "Bars fixed to the viewport: banners and bottom navigation."
+    },
+    "overlay": {
+      "$value": 1300,
+      "$description": "Backdrops that dim the page behind a drawer or dialog."
+    },
+    "modal": {
+      "$value": 1400,
+      "$description": "Dialogs and drawers."
+    },
+    "popover": {
+      "$value": 1500,
+      "$description": "Popovers, which can open from inside a dialog."
+    },
+    "toast": {
+      "$value": 1600,
+      "$description": "Toast notifications, above dialogs so they are never hidden."
+    },
+    "tooltip": {
+      "$value": 1700,
+      "$description": "Tooltips, which can describe anything below them."
+    },
+    "skip-link": {
+      "$value": 1800,
+      "$description": "The skip link, which must be visible above everything when focused."
+    }
+  }
+}
