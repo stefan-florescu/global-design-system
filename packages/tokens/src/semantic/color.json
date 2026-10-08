@@ -1,0 +1,437 @@
+{
+  "color": {
+    "$type": "color",
+    "background": {
+      "$value": "{color.white}",
+      "$description": "The page canvas. Everything else sits on top of it.",
+      "$extensions": {
+        "sds": {
+          "group": "Surfaces"
+        }
+      }
+    },
+    "card": {
+      "$value": "{color.white}",
+      "$description": "Raised containers: cards, preview stages, panels.",
+      "$extensions": {
+        "sds": {
+          "group": "Surfaces"
+        }
+      }
+    },
+    "popover": {
+      "$value": "{color.white}",
+      "$description": "Floating surfaces: menus, dialogs, the command palette.",
+      "$extensions": {
+        "sds": {
+          "group": "Surfaces"
+        }
+      }
+    },
+    "muted": {
+      "$value": "{color.gray.100}",
+      "$description": "Recessed fills: table headers, tab bars, code chrome.",
+      "$extensions": {
+        "sds": {
+          "group": "Surfaces"
+        }
+      }
+    },
+    "accent": {
+      "$value": "{color.gray.100}",
+      "$description": "Hover and selected background for rows, nav items and menu items.",
+      "$extensions": {
+        "sds": {
+          "group": "Surfaces"
+        }
+      }
+    },
+    "overlay": {
+      "$value": "color-mix(in srgb, {color.gray.900} 60%, transparent)",
+      "$description": "Scrim behind a dialog or the mobile drawer.",
+      "$extensions": {
+        "sds": {
+          "group": "Surfaces"
+        }
+      }
+    },
+    "foreground": {
+      "$value": "{color.gray.900}",
+      "$description": "Body copy and headings on --sds-color-background.",
+      "$extensions": {
+        "sds": {
+          "group": "Text"
+        }
+      }
+    },
+    "card-foreground": {
+      "$value": "{color.gray.900}",
+      "$description": "Text on a card. Keep it in sync with --sds-color-foreground.",
+      "$extensions": {
+        "sds": {
+          "group": "Text"
+        }
+      }
+    },
+    "popover-foreground": {
+      "$value": "{color.gray.900}",
+      "$description": "Text on a floating surface.",
+      "$extensions": {
+        "sds": {
+          "group": "Text"
+        }
+      }
+    },
+    "muted-foreground": {
+      "$value": "{color.gray.600}",
+      "$description": "Secondary text: captions, metadata, placeholders, helper text. gray-500 would only reach 4.4:1 on --sds-color-muted.",
+      "$extensions": {
+        "sds": {
+          "group": "Text"
+        }
+      }
+    },
+    "accent-foreground": {
+      "$value": "{color.gray.900}",
+      "$description": "Text on a hovered or selected row.",
+      "$extensions": {
+        "sds": {
+          "group": "Text"
+        }
+      }
+    },
+    "border": {
+      "$value": "{color.gray.200}",
+      "$description": "Decorative hairlines: dividers, card outlines, table rules. Never the only cue for a control.",
+      "$extensions": {
+        "sds": {
+          "group": "Borders & focus"
+        }
+      }
+    },
+    "input": {
+      "$value": "{color.gray.500}",
+      "$description": "Border of form controls. Holds at gray-500 in both themes because a control boundary must clear 3:1 against its surface.",
+      "$extensions": {
+        "sds": {
+          "group": "Borders & focus"
+        }
+      }
+    },
+    "ring": {
+      "$value": "{color.blue.600}",
+      "$description": "Focus ring. Restyle it if you must, but never remove it.",
+      "$extensions": {
+        "sds": {
+          "group": "Borders & focus"
+        }
+      }
+    },
+    "primary": {
+      "$value": "{color.gray.900}",
+      "$description": "Highest-emphasis action. One per view.",
+      "$extensions": {
+        "sds": {
+          "group": "Actions"
+        }
+      }
+    },
+    "primary-foreground": {
+      "$value": "{color.white}",
+      "$description": "Label on a primary action.",
+      "$extensions": {
+        "sds": {
+          "group": "Actions"
+        }
+      }
+    },
+    "secondary": {
+      "$value": "{color.gray.100}",
+      "$description": "Supporting action sitting next to a primary one.",
+      "$extensions": {
+        "sds": {
+          "group": "Actions"
+        }
+      }
+    },
+    "secondary-foreground": {
+      "$value": "{color.gray.900}",
+      "$description": "Label on a secondary action.",
+      "$extensions": {
+        "sds": {
+          "group": "Actions"
+        }
+      }
+    },
+    "brand": {
+      "$value": "{color.blue.700}",
+      "$description": "Brand accent: links, active nav, selected states. Point --sds-color-primary at this to make the whole system branded.",
+      "$extensions": {
+        "sds": {
+          "group": "Actions"
+        }
+      }
+    },
+    "brand-foreground": {
+      "$value": "{color.white}",
+      "$description": "Label on a filled brand surface.",
+      "$extensions": {
+        "sds": {
+          "group": "Actions"
+        }
+      }
+    },
+    "brand-subtle": {
+      "$value": "{color.blue.50}",
+      "$description": "Tinted brand background for chips and banners.",
+      "$extensions": {
+        "sds": {
+          "group": "Actions"
+        }
+      }
+    },
+    "brand-subtle-foreground": {
+      "$value": "{color.blue.700}",
+      "$description": "Text and icons on --sds-color-brand-subtle.",
+      "$extensions": {
+        "sds": {
+          "group": "Actions"
+        }
+      }
+    },
+    "success": {
+      "$value": "{color.green.600}",
+      "$description": "Filled confirmation: success badges, completed steps.",
+      "$extensions": {
+        "sds": {
+          "group": "Status"
+        }
+      }
+    },
+    "success-foreground": {
+      "$value": "{color.white}",
+      "$description": "Label on --sds-color-success.",
+      "$extensions": {
+        "sds": {
+          "group": "Status"
+        }
+      }
+    },
+    "success-subtle": {
+      "$value": "{color.green.50}",
+      "$description": "Background of a success banner or toast.",
+      "$extensions": {
+        "sds": {
+          "group": "Status"
+        }
+      }
+    },
+    "success-subtle-foreground": {
+      "$value": "{color.green.700}",
+      "$description": "Text on --sds-color-success-subtle.",
+      "$extensions": {
+        "sds": {
+          "group": "Status"
+        }
+      }
+    },
+    "warning": {
+      "$value": "{color.yellow.400}",
+      "$description": "Filled caution. Carries dark text: every step that still reads as yellow (300\u2013500) falls below 4.5:1 against white.",
+      "$extensions": {
+        "sds": {
+          "group": "Status"
+        }
+      }
+    },
+    "warning-foreground": {
+      "$value": "{color.gray.900}",
+      "$description": "Label on --sds-color-warning.",
+      "$extensions": {
+        "sds": {
+          "group": "Status"
+        }
+      }
+    },
+    "warning-subtle": {
+      "$value": "{color.yellow.50}",
+      "$description": "Background of a warning banner.",
+      "$extensions": {
+        "sds": {
+          "group": "Status"
+        }
+      }
+    },
+    "warning-subtle-foreground": {
+      "$value": "{color.yellow.700}",
+      "$description": "Text on --sds-color-warning-subtle.",
+      "$extensions": {
+        "sds": {
+          "group": "Status"
+        }
+      }
+    },
+    "destructive": {
+      "$value": "{color.red.600}",
+      "$description": "Irreversible actions: delete, revoke, disconnect.",
+      "$extensions": {
+        "sds": {
+          "group": "Status"
+        }
+      }
+    },
+    "destructive-foreground": {
+      "$value": "{color.white}",
+      "$description": "Label on --sds-color-destructive.",
+      "$extensions": {
+        "sds": {
+          "group": "Status"
+        }
+      }
+    },
+    "destructive-subtle": {
+      "$value": "{color.red.50}",
+      "$description": "Background of an error banner or invalid field.",
+      "$extensions": {
+        "sds": {
+          "group": "Status"
+        }
+      }
+    },
+    "destructive-subtle-foreground": {
+      "$value": "{color.red.700}",
+      "$description": "Text on --sds-color-destructive-subtle.",
+      "$extensions": {
+        "sds": {
+          "group": "Status"
+        }
+      }
+    },
+    "info": {
+      "$value": "{color.blue.600}",
+      "$description": "Neutral information: badges, type annotations, inline hints.",
+      "$extensions": {
+        "sds": {
+          "group": "Status"
+        }
+      }
+    },
+    "info-foreground": {
+      "$value": "{color.white}",
+      "$description": "Label on --sds-color-info.",
+      "$extensions": {
+        "sds": {
+          "group": "Status"
+        }
+      }
+    },
+    "info-subtle": {
+      "$value": "{color.blue.50}",
+      "$description": "Background of an informational callout.",
+      "$extensions": {
+        "sds": {
+          "group": "Status"
+        }
+      }
+    },
+    "info-subtle-foreground": {
+      "$value": "{color.blue.700}",
+      "$description": "Text on --sds-color-info-subtle.",
+      "$extensions": {
+        "sds": {
+          "group": "Status"
+        }
+      }
+    },
+    "code-bg": {
+      "$value": "{color.gray.900}",
+      "$description": "Code block background. Stays dark in both themes on purpose.",
+      "$extensions": {
+        "sds": {
+          "group": "Code surface"
+        }
+      }
+    },
+    "code-foreground": {
+      "$value": "{color.gray.200}",
+      "$description": "Default code text.",
+      "$extensions": {
+        "sds": {
+          "group": "Code surface"
+        }
+      }
+    },
+    "code-border": {
+      "$value": "color-mix(in srgb, {color.white} 8%, transparent)",
+      "$description": "Divider inside the code block header.",
+      "$extensions": {
+        "sds": {
+          "group": "Code surface"
+        }
+      }
+    },
+    "code-muted": {
+      "$value": "{color.gray.400}",
+      "$description": "Filenames and the terminal prompt.",
+      "$extensions": {
+        "sds": {
+          "group": "Code surface"
+        }
+      }
+    },
+    "syntax-tag": {
+      "$value": "{color.pink.400}",
+      "$description": "Tags and element names.",
+      "$extensions": {
+        "sds": {
+          "group": "Code surface"
+        }
+      }
+    },
+    "syntax-attr": {
+      "$value": "{color.yellow.300}",
+      "$description": "Attributes and property names.",
+      "$extensions": {
+        "sds": {
+          "group": "Code surface"
+        }
+      }
+    },
+    "syntax-string": {
+      "$value": "{color.green.300}",
+      "$description": "Strings and values.",
+      "$extensions": {
+        "sds": {
+          "group": "Code surface"
+        }
+      }
+    },
+    "syntax-keyword": {
+      "$value": "{color.purple.300}",
+      "$description": "Keywords and at-rules.",
+      "$extensions": {
+        "sds": {
+          "group": "Code surface"
+        }
+      }
+    },
+    "syntax-fn": {
+      "$value": "{color.blue.300}",
+      "$description": "Functions and selectors.",
+      "$extensions": {
+        "sds": {
+          "group": "Code surface"
+        }
+      }
+    },
+    "syntax-comment": {
+      "$value": "{color.gray.400}",
+      "$description": "Comments.",
+      "$extensions": {
+        "sds": {
+          "group": "Code surface"
+        }
+      }
+    }
+  }
+}

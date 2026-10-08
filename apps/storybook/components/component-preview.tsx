@@ -2,9 +2,9 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 
 import { demos, type DemoName } from "@/registry";
-import { cn } from "@/lib/utils";
 
 import { CodeBlock } from "./code-block";
+import { CopyButton } from "./copy-button";
 import { Tabs } from "./tabs";
 
 /** Docs-only placeholder imports are shown to readers as the real package import. */
@@ -13,17 +13,15 @@ const PUBLIC_IMPORTS: [string, string][] = [
 ];
 
 /**
- * shadcn-style Preview / Code tabs. The code tab shows the demo's real source file,
- * so examples can never drift from what is rendered.
+ * Preview / Code tabs. The code tab shows the demo's real source file, so examples can
+ * never drift from what is rendered.
  */
 export async function ComponentPreview({
   name,
-  align = "center",
-  className,
+  stack = false,
 }: {
   name: DemoName;
-  align?: "center" | "start";
-  className?: string;
+  stack?: boolean;
 }) {
   const Demo = demos[name];
   const file = path.join(process.cwd(), "registry", "demos", `${name}.tsx`);
@@ -33,18 +31,15 @@ export async function ComponentPreview({
   return (
     <Tabs
       label="Example"
-      className={cn("my-6", className)}
       items={[
         {
           value: "preview",
           label: "Preview",
           content: (
-            <div
-              className={cn(
-                "mt-4 flex min-h-[320px] w-full flex-wrap gap-3 rounded-lg border p-10",
-                align === "center" ? "items-center justify-center" : "items-start justify-start",
-              )}
-            >
+            <div className={stack ? "preview preview--stack" : "preview"}>
+              <div className="preview__toolbar">
+                <CopyButton value={source.trim()} subtle />
+              </div>
               <Demo />
             </div>
           ),
@@ -52,7 +47,7 @@ export async function ComponentPreview({
         {
           value: "code",
           label: "Code",
-          content: <CodeBlock code={source} className="mt-4" />,
+          content: <CodeBlock code={source} filename={`${name}.tsx`} />,
         },
       ]}
     />

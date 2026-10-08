@@ -91,21 +91,21 @@ Rules:
 
 ## 1.4 Naming conventions
 
-| Thing                   | Convention                                | Example                                                                     |
-| ----------------------- | ----------------------------------------- | --------------------------------------------------------------------------- |
-| npm scope               | `@stefan-florescu/*`                      | `@stefan-florescu/ui` (matches GitHub owner → required for GitHub Packages) |
-| Package folders         | `kebab-case`, singular noun               | `packages/tokens`, `packages/icons`                                         |
-| Component folders/files | `kebab-case`                              | `components/date-picker/date-picker.tsx`                                    |
-| Component exports       | `PascalCase`, named only                  | `export function DatePicker`                                                |
-| Sub-components          | Parent prefix                             | `DialogTrigger`, `DialogContent`                                            |
-| Hooks                   | `use` + `PascalCase`                      | `useControllableState`                                                      |
-| Props                   | `camelCase`; booleans as adjectives       | `disabled`, `invalid`, `fullWidth`                                          |
-| Variant props           | `variant`, `size`, `tone`                 | `size: "sm" \| "md" \| "lg"`                                                |
-| Tokens (JSON path)      | `category.concept.property.variant.state` | `color.action.primary.background.hover`                                     |
-| Tokens (CSS)            | `--sds-` + kebab path                     | `--sds-color-action-primary-background-hover`                               |
-| Theme names             | lowercase                                 | `light`, `dark`, `high-contrast`, `brand-x`                                 |
-| Branches                | `type/short-desc`                         | `feat/button`, `fix/dialog-focus-trap`                                      |
-| Commits / PR titles     | Conventional Commits + scope              | `feat(ui): add Button`                                                      |
-| ADRs                    | `NNNN-kebab-title.md`                     | `0003-dtcg-token-format.md`                                                 |
+| Thing                   | Convention                          | Example                                                                     |
+| ----------------------- | ----------------------------------- | --------------------------------------------------------------------------- |
+| npm scope               | `@stefan-florescu/*`                | `@stefan-florescu/ui` (matches GitHub owner → required for GitHub Packages) |
+| Package folders         | `kebab-case`, singular noun         | `packages/tokens`, `packages/icons`                                         |
+| Component folders/files | `kebab-case`                        | `components/date-picker/date-picker.tsx`                                    |
+| Component exports       | `PascalCase`, named only            | `export function DatePicker`                                                |
+| Sub-components          | Parent prefix                       | `DialogTrigger`, `DialogContent`                                            |
+| Hooks                   | `use` + `PascalCase`                | `useControllableState`                                                      |
+| Props                   | `camelCase`; booleans as adjectives | `disabled`, `invalid`, `fullWidth`                                          |
+| Variant props           | `variant`, `size`, `tone`           | `size: "sm" \| "md" \| "lg"`                                                |
+| Tokens (JSON path)      | `category.name` / `category.step`   | `color.muted-foreground`, `color.blue.700`, `space.6`                       |
+| Tokens (CSS)            | `--sds-` + kebab path               | `--sds-color-muted-foreground`, `--sds-space-6`                             |
+| Theme names             | lowercase                           | `light`, `dark`, `high-contrast`, `brand-x`                                 |
+| Branches                | `type/short-desc`                   | `feat/button`, `fix/dialog-focus-trap`                                      |
+| Commits / PR titles     | Conventional Commits + scope        | `feat(ui): add Button`                                                      |
+| ADRs                    | `NNNN-kebab-title.md`               | `0003-dtcg-token-format.md`                                                 |
 
 `sds` (**S**tefan **D**esign **S**ystem) is the CSS namespace for tokens and any global classes/data attributes.

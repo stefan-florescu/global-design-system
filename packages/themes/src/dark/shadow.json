@@ -1,0 +1,7 @@
+{
+  "shadow": {
+    "lg": {
+      "$value": "0 10px 30px -5px rgb(0 0 0 / 0.5), 0 4px 10px -6px rgb(0 0 0 / 0.4)"
+    }
+  }
+}

@@ -12,6 +12,8 @@
 
 ## Checklist
 
+- [ ] Follows the design principles in `docs/principles.md` (consistency, accessibility, scalability, DX, performance), or the PR explains the trade-off
+
 - [ ] Changeset added (`pnpm changeset`) for any published package change
 - [ ] Uses semantic tokens only — no hard-coded colours, sizes or shadows
 - [ ] Keyboard and screen-reader behaviour verified; no accessibility lint errors

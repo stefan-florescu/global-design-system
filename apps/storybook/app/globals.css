@@ -1,132 +1,25 @@
 @import "tailwindcss";
 @import "@stefan-florescu/ui/styles.css";
+@import "./docs.css";
 
 /*
- * Site chrome palette (interim).
- *
- * The design-system tokens don't exist yet (Phase A). Until they do, the docs site
- * defines its own neutral palette using the SAME semantic names the system will
- * expose (background, foreground, muted, border, primary…). When
- * @stefan-florescu/tokens + themes ship these, delete this block and the site
- * picks up the real tokens with no markup changes.
+ * Every colour, size and font on this site comes from @stefan-florescu/tokens via
+ * @stefan-florescu/ui/styles.css. docs.css holds the documentation layout and page styles;
+ * Tailwind utilities (used by the header) map to the same tokens.
  */
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.5 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --surface: oklch(0.985 0 0);
-  color-scheme: light;
-}
-
-[data-theme="dark"] {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.72 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --surface: oklch(0.18 0 0);
-  color-scheme: dark;
-}
-
-@theme inline {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
-
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-surface: var(--surface);
-
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-}
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
-  }
-  html {
-    scroll-padding-top: 5rem;
-  }
-  body {
-    @apply bg-background text-foreground font-sans antialiased;
-    font-feature-settings:
-      "rlig" 1,
-      "calt" 1;
-  }
-  ::selection {
-    @apply bg-foreground/15;
+    @apply border-border;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
+/* Shiki output: the theme sets colours as token variables; the code block owns the surface. */
+.code-block .shiki {
+  background: transparent !important;
 }
 
-/* Shiki dual-theme code highlighting (light by default, dark under [data-theme="dark"]). */
-.shiki,
-.shiki span {
-  color: var(--shiki-light);
-  background-color: transparent !important;
-}
-[data-theme="dark"] .shiki,
-[data-theme="dark"] .shiki span {
-  color: var(--shiki-dark);
-}
-
-/* Native <dialog> backdrop for search & mobile nav. */
+/* Native <dialog> backdrop for search and the mobile menu. */
 dialog::backdrop {
-  background: oklch(0 0 0 / 50%);
-  backdrop-filter: blur(2px);
+  background: var(--sds-color-overlay);
 }

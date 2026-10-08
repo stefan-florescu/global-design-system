@@ -8,3 +8,13 @@
 @import "@stefan-florescu/tailwind-config";
 
 @source "../dist";
+
+/*
+ * Icons (lucide) are drawn in a 24×24 box with a 1.5 stroke. Rendering an icon smaller
+ * scales the stroke with it — 1.5 at 24px is 1px at 16px — so icons never out-weigh text.
+ */
+@layer base {
+  svg.lucide {
+    stroke-width: var(--sds-icon-stroke);
+  }
+}

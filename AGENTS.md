@@ -19,6 +19,15 @@ A token-driven, accessible, multi-theme React design system in a pnpm + Turborep
 
 Dependency direction is strictly **tokens → themes → ui → apps**. Never import "upward".
 
+## Design principles
+
+Every change — code, tokens, docs or tooling — must follow [`docs/principles.md`](docs/principles.md):
+**Consistency · Accessibility · Scalability · Developer experience · Performance**.
+Read it before starting work. Accessibility is never traded away; when other principles
+conflict, favour end users (consistency, performance) over builders (scalability, DX), and record
+significant trade-offs as an ADR. Run the "Applying the principles" checklist before finishing.
+`docs/principles.md` is internal guidance for contributors and agents — never publish it on the docs site.
+
 ## Commands
 
 ```bash
@@ -48,6 +57,7 @@ Before declaring work done, run `pnpm lint && pnpm typecheck && pnpm test && pnp
 7. **React 19**: pass `ref` as a prop (no `forwardRef`), function components only,
    no default exports from component files.
 8. **Do not create tokens or components unless the task explicitly asks for it.**
+9. **Do not add pages to the docs site (`apps/storybook`) unless the task explicitly asks for it.**
 
 ## Component file contract
 
@@ -69,7 +79,8 @@ apps/storybook/                # the docs website ("storybook" is just the folde
 ## Naming
 
 - Files & folders: `kebab-case`. Components & types: `PascalCase`. Props & hooks: `camelCase`.
-- Tokens: dot paths in JSON (`color.action.primary.background`), CSS vars `--sds-color-action-primary-background`.
+- Tokens: dot paths in JSON (`color.muted-foreground`, `space.6`), CSS vars `--sds-color-muted-foreground`,
+  `--sds-space-6`; Tailwind utilities use the semantic name (`text-muted-foreground`, `bg-brand`).
 - Variants: `variant` (visual intent), `size` (`sm | md | lg`), booleans as adjectives (`disabled`, `invalid`).
 - Commits: Conventional Commits with a package scope, e.g. `feat(ui): add Button`.
 

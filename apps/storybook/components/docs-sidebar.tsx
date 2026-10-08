@@ -1,47 +1,58 @@
 "use client";
 
+import { ChevronDown } from "@stefan-florescu/icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
-import { sidebarNav } from "@/lib/navigation";
-import { cn } from "@/lib/utils";
+import { sidebarNav, type NavSection } from "@/lib/navigation";
 
-export function DocsSidebar({ onNavigate }: { onNavigate?: () => void }) {
+function SidebarSection({ section, onNavigate }: { section: NavSection; onNavigate?: () => void }) {
   const pathname = usePathname();
+  const [expanded, setExpanded] = useState(true);
 
   return (
-    <nav aria-label="Documentation" className="flex flex-col gap-6">
+    <div className="sidebar__section">
+      <button
+        className="sidebar__heading"
+        type="button"
+        aria-expanded={expanded}
+        onClick={() => setExpanded((value) => !value)}
+      >
+        <span>{section.title}</span>
+        <ChevronDown aria-hidden className="sidebar__heading-chevron" size={14} />
+      </button>
+      <ul className="sidebar__list">
+        {section.items.map((item) => (
+          <li key={item.href}>
+            <Link
+              className="sidebar__link"
+              href={item.href}
+              onClick={onNavigate}
+              aria-current={pathname === item.href ? "page" : undefined}
+            >
+              <span>{item.title}</span>
+              {item.label ? (
+                <span
+                  className={`sidebar__tag sidebar__tag--${item.label === "New" ? "new" : "wip"}`}
+                >
+                  {item.label}
+                </span>
+              ) : null}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/** Collapsible navigation sections with a guide rail and active indicator. */
+export function DocsSidebar({ onNavigate }: { onNavigate?: () => void }) {
+  return (
+    <nav aria-label="Documentation">
       {sidebarNav.map((section) => (
-        <div key={section.title} className="flex flex-col gap-1">
-          <h2 className="text-muted-foreground px-2 pb-1 text-xs font-medium">{section.title}</h2>
-          <ul className="flex flex-col gap-0.5">
-            {section.items.map((item) => {
-              const isActive = pathname === item.href;
-              return (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    onClick={onNavigate}
-                    aria-current={isActive ? "page" : undefined}
-                    className={cn(
-                      "focus-visible:ring-ring/50 flex h-8 items-center gap-2 rounded-md px-2 text-sm transition-colors focus-visible:ring-[3px] focus-visible:outline-none",
-                      isActive
-                        ? "bg-accent text-accent-foreground font-medium"
-                        : "text-foreground/80 hover:bg-accent/60 hover:text-foreground",
-                    )}
-                  >
-                    {item.title}
-                    {item.label ? (
-                      <span className="bg-muted text-muted-foreground ml-auto rounded-sm px-1.5 py-px text-[10px] font-medium">
-                        {item.label}
-                      </span>
-                    ) : null}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+        <SidebarSection key={section.title} section={section} onNavigate={onNavigate} />
       ))}
     </nav>
   );

@@ -7,10 +7,10 @@ import { ThemeToggle } from "./theme-toggle";
 export function SiteHeader() {
   return (
     <header className="bg-background/85 supports-[backdrop-filter]:bg-background/70 sticky top-0 z-40 w-full border-b backdrop-blur">
-      <div className="mx-auto flex h-14 max-w-[88rem] items-center gap-2 px-4 md:gap-4 md:px-6">
-        <MobileNav className="md:hidden" />
+      <div className="page-container flex h-14 items-center gap-2 md:gap-4">
+        <MobileNav className="lg:hidden" />
         <Logo />
-        <MainNav className="ml-2 hidden md:flex" />
+        <MainNav className="ml-2 hidden lg:flex" />
         <div className="ml-auto flex items-center gap-1 md:gap-2">
           <SearchCommand />
           <ThemeToggle />

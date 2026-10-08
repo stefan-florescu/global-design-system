@@ -1,69 +1,77 @@
 /**
  * Theme build for @stefan-florescu/themes.
  *
- * Each folder in src/<theme>/ holds DTCG JSON that RE-ASSIGNS semantic tokens
- * (never primitives, never component tokens) for that theme. Primitives are
- * loaded from @stefan-florescu/tokens as `include` so references resolve, but
- * only the theme's own tokens are emitted.
+ * Outputs:
+ *   build/css/<theme>.css      semantic tokens for one theme (light → :root)
+ *   build/css/themes.css       all themes bundled
+ *   build/json/themes.json     every semantic token with its value per theme (docs, AI)
+ *   build/json/contrast.json   WCAG contrast results for the checked pairings
  *
- *   light → :root, [data-theme="light"]   (default)
- *   dark  → [data-theme="dark"]
- *
- * Output: build/css/<theme>.css and build/css/themes.css (all themes bundled).
+ * The build fails if any checked pairing misses its WCAG minimum in any theme.
  */
-import { readdir, mkdir, writeFile, readFile } from "node:fs/promises";
-import { createRequire } from "node:module";
-import path from "node:path";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 
-import StyleDictionary from "style-dictionary";
+import { checkPairs } from "./contrast.mjs";
+import { SELECTORS, listThemes, resolveTheme, themeDictionary } from "./resolve.mjs";
 
-const PREFIX = "sds";
-const SELECTORS = {
-  light: ':root, [data-theme="light"]',
-  dark: '[data-theme="dark"]',
-};
-
-const require = createRequire(import.meta.url);
-const tokensRoot = path.dirname(require.resolve("@stefan-florescu/tokens/package.json"));
-
-const themes = (await readdir("src", { withFileTypes: true }))
-  .filter((d) => d.isDirectory())
-  .map((d) => d.name);
-
+const themes = await listThemes();
 await mkdir("build/css", { recursive: true });
+await mkdir("build/json", { recursive: true });
 
+const resolved = {};
 for (const theme of themes) {
   const selector = SELECTORS[theme] ?? `[data-theme="${theme}"]`;
-  const sd = new StyleDictionary({
-    include: [`${tokensRoot}/src/primitive/**/*.json`],
-    source: [`src/${theme}/**/*.json`],
-    usesDtcg: true,
-    log: { verbosity: "default", warnings: "warn" },
-    platforms: {
-      css: {
-        transformGroup: "css",
-        prefix: PREFIX,
-        buildPath: "build/css/",
-        files: [
-          {
-            destination: `${theme}.css`,
-            format: "css/variables",
-            filter: (token) => token.isSource,
-            options: { outputReferences: true, selector },
-          },
-        ],
-      },
+  await themeDictionary(theme, [
+    {
+      destination: `${theme}.css`,
+      format: "css/variables",
+      filter: (token) => token.isSource,
+      options: { outputReferences: true, selector },
     },
-  });
-
-  const { allTokens } = await sd.getPlatformTokens("css");
-  if (allTokens.some((t) => t.isSource)) {
-    await sd.buildAllPlatforms();
-  } else {
-    console.warn(`[themes] "${theme}" has no tokens yet — emitting empty placeholder.`);
-    await writeFile(`build/css/${theme}.css`, `${selector} {}\n`);
-  }
+  ]).buildAllPlatforms();
+  resolved[theme] = await resolveTheme(theme);
 }
 
-const bundle = await Promise.all(themes.map((t) => readFile(`build/css/${t}.css`, "utf8")));
+const bundle = await Promise.all(themes.map((theme) => readFile(`build/css/${theme}.css`, "utf8")));
 await writeFile("build/css/themes.css", bundle.join("\n"));
+
+// One row per semantic token with its reference and value in every theme. Descriptions
+// live on the semantic defaults; theme overrides don't repeat them.
+const describe = (path) =>
+  themes.map((theme) => resolved[theme].find((t) => t.path === path)?.description).find(Boolean);
+const tokens = resolved[themes[0]].map((token) => ({
+  path: token.path,
+  name: token.name,
+  description: describe(token.path),
+  group: token.group,
+  themes: Object.fromEntries(
+    themes.map((theme) => {
+      const match = resolved[theme].find((t) => t.path === token.path);
+      return [theme, { ref: match?.ref, value: match?.value }];
+    }),
+  ),
+}));
+await writeFile("build/json/themes.json", JSON.stringify({ themes, tokens }, null, 2) + "\n");
+
+const report = checkPairs(
+  Object.fromEntries(
+    themes.map((theme) => [theme, new Map(resolved[theme].map((t) => [t.path, t.value]))]),
+  ),
+);
+await writeFile("build/json/contrast.json", JSON.stringify(report, null, 2) + "\n");
+
+const failures = report.flatMap((pair) =>
+  Object.entries(pair.results)
+    .filter(([, result]) => !result.pass)
+    .map(
+      ([theme, result]) =>
+        `${theme}: ${pair.foreground} on ${pair.background} = ${result.ratio}:1 (needs ${pair.minimum}:1)`,
+    ),
+);
+if (failures.length) {
+  console.error(`[themes] Contrast check failed:\n  ${failures.join("\n  ")}`);
+  process.exit(1);
+}
+console.log(
+  `[themes] ${themes.join(", ")} built · ${report.length} contrast pairings pass in every theme.`,
+);

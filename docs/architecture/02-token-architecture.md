@@ -68,37 +68,23 @@ Raw, context-free values. Named by _what they are_.
 
 ### Semantic tokens — `src/semantic/`
 
-Named by _what they're for_. Every one needs a `$description`.
+Named by _what they're for_. Every colour token has a `$description` and a docs group
+(`$extensions.sds.group`). The theme-independent scales — spacing, radius, border width,
+typography, elevation, icons, breakpoints, containers — also live here: components use them
+directly.
 
 ```json
 {
   "color": {
     "$type": "color",
     "background": {
-      "default": { "$value": "{color.neutral.0}", "$description": "App canvas" },
-      "subtle": { "$value": "{color.neutral.50}", "$description": "Secondary surfaces, wells" }
+      "$value": "{color.white}",
+      "$description": "The page canvas. Everything else sits on top of it.",
+      "$extensions": { "sds": { "group": "Surfaces" } }
     },
-    "text": {
-      "default": {
-        "$value": "{color.neutral.900}",
-        "$description": "Body copy, ≥ 7:1 on background.default"
-      }
-    },
-    "action": {
-      "primary": {
-        "background": {
-          "default": { "$value": "{color.blue.600}" },
-          "hover": { "$value": "{color.blue.700}" }
-        },
-        "foreground": { "$value": "{color.neutral.0}" }
-      }
-    },
-    "border": { "focus": { "$value": "{color.blue.500}", "$description": "Focus ring, ≥ 3:1" } }
-  },
-  "space": {
-    "$type": "dimension",
-    "inset": { "md": { "$value": "{dimension.400}" } },
-    "stack": { "sm": { "$value": "{dimension.200}" } }
+    "muted-foreground": { "$value": "{color.gray.600}" },
+    "brand": { "$value": "{color.blue.700}" },
+    "overlay": { "$value": "color-mix(in srgb, {color.gray.900} 60%, transparent)" }
   }
 }
 ```
@@ -113,7 +99,7 @@ directly via Tailwind.
 {
   "button": {
     "primary": {
-      "background": { "$type": "color", "$value": "{color.action.primary.background.default}" }
+      "background": { "$type": "color", "$value": "{color.background.brand}" }
     },
     "radius": { "$type": "dimension", "$value": "{radius.md}" },
     "height": {
@@ -126,16 +112,16 @@ directly via Tailwind.
 ### Theme tokens — `packages/themes/src/<theme>/`
 
 A theme re-points **semantic** tokens. Nothing else changes; components are theme-unaware.
+The light theme is the semantic defaults; `src/light/` only holds deviations from them.
 
 ```json
 // packages/themes/src/dark/color.json
 {
   "color": {
-    "background": { "default": { "$type": "color", "$value": "{color.neutral.950}" } },
-    "text": { "default": { "$type": "color", "$value": "{color.neutral.50}" } },
-    "action": {
-      "primary": { "background": { "default": { "$type": "color", "$value": "{color.blue.500}" } } }
-    }
+    "$type": "color",
+    "background": { "$value": "{color.gray.900}" },
+    "foreground": { "$value": "{color.gray.50}" },
+    "brand": { "$value": "{color.blue.600}" }
   }
 }
 ```
@@ -143,8 +129,8 @@ A theme re-points **semantic** tokens. Nothing else changes; components are them
 Emits:
 
 ```css
-:root, [data-theme="light"] { --sds-color-background-default: var(--sds-color-neutral-0); … }
-[data-theme="dark"]          { --sds-color-background-default: var(--sds-color-neutral-950); … }
+:root, [data-theme="light"] { --sds-color-background: var(--sds-color-white); … }
+[data-theme="dark"]          { --sds-color-background: var(--sds-color-gray-900); … }
 ```
 
 Theme axes planned (each orthogonal, combinable through separate data attributes):
@@ -161,16 +147,17 @@ Theme axes planned (each orthogonal, combinable through separate data attributes
 
 ```css
 @theme inline {
-  --color-background: var(--sds-color-background-default);
-  --color-foreground: var(--sds-color-text-default);
-  --color-primary: var(--sds-color-action-primary-background-default);
-  --radius-md: var(--sds-radius-md);
-  --shadow-sm: var(--sds-elevation-1);
+  --color-background: var(--sds-color-background); /* bg-background */
+  --color-muted-foreground: var(--sds-color-muted-foreground); /* text-muted-foreground */
+  --color-border: var(--sds-color-border); /* border-border */
+  --radius-md: var(--sds-radius-md); /* rounded-md */
+  --font-sans: var(--sds-font-sans); /* font-sans */
 }
 ```
 
-`inline` keeps the `var()` reference live so theme switching needs no rebuild. Tailwind's
-default palette is reset (`--color-*: initial;`) so only system colours are available.
+`inline` keeps the `var()` reference live so theme switching needs no rebuild. Only semantic
+colours are mapped — colour primitives are not exposed as utilities. Spacing needs no mapping:
+Tailwind's `--spacing` base is set to `--sds-space-1` (4px), so `p-6` is `--sds-space-6`.
 
 ## 2.4 Token categories
 
@@ -184,7 +171,7 @@ default palette is reset (`--color-*: initial;`) so only system colours are avai
    Component tokens reference semantic tokens only.
 2. Components use semantic (or their own component) tokens. Lint rule planned to forbid
    primitive Tailwind classes and arbitrary values (`bg-[#…]`).
-3. Colours authored in **OKLCH** for perceptual uniformity; Style Dictionary emits hex fallbacks
-   if needed.
+3. Colour primitives are the Flowbite hex palette (50–900); semantic tokens may use `color-mix()`
+   with references for translucent values (e.g. `overlay`).
 4. Removing or renaming a semantic token is a **breaking change** (major).
 5. Token changes require the `token-request` issue template and design review (CODEOWNERS).

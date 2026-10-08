@@ -7,6 +7,8 @@ export type NavItem = {
   href: string;
   /** Optional status label shown next to the item. */
   label?: "New" | "Soon";
+  /** One line shown on overview cards. */
+  description?: string;
 };
 
 export type NavSection = {
@@ -23,15 +25,37 @@ export const sidebarNav: NavSection[] = [
   {
     title: "Foundation",
     items: [
-      { title: "Color", href: "/foundation/color" },
-      { title: "Typography", href: "/foundation/typography" },
-      { title: "Spacing & Layout", href: "/foundation/spacing-and-layout" },
-      { title: "Border & Radius", href: "/foundation/border-and-radius" },
+      {
+        title: "Color",
+        description: "Primitive scales and the semantic colour layer for light and dark.",
+        href: "/foundation/color",
+      },
+      {
+        title: "Typography",
+        description: "Families, the type scale and the size–leading–tracking pairs.",
+        href: "/foundation/typography",
+      },
+      {
+        title: "Spacing & layout",
+        description: "The 4px spacing scale, layout grid, breakpoints and containers.",
+        href: "/foundation/spacing-and-layout",
+      },
+      {
+        title: "Border & radius",
+        description: "Border widths, styles and the radius scale.",
+        href: "/foundation/border-and-radius",
+      },
     ],
   },
   {
     title: "Components",
-    items: [{ title: "Button", href: "/components/button" }],
+    items: [
+      {
+        title: "Button",
+        description: "Displays a button or a component that looks like a button.",
+        href: "/components/button",
+      },
+    ],
   },
 ];
 

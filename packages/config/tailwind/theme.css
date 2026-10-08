@@ -1,22 +1,107 @@
 /*
  * @stefan-florescu/tailwind-config — shared Tailwind CSS v4 preset.
  *
- * This is the ONLY place where design tokens are mapped into Tailwind's theme.
- * Tailwind v4 is configured in CSS (no tailwind.config.js).
+ * The ONLY place where design tokens are mapped to Tailwind utilities.
+ *   1. @stefan-florescu/tokens  → CSS custom properties (--sds-*)
+ *   2. @stefan-florescu/themes  → re-assigns semantic tokens per [data-theme]
+ *   3. this file                → exposes SEMANTIC tokens as utilities via @theme inline
  *
- * Wiring (filled in during Phase A — Foundations):
- *   1. @stefan-florescu/tokens  → emits CSS custom properties (--sds-*)
- *   2. @stefan-florescu/themes  → re-assigns semantic vars per [data-theme]
- *   3. this file                → exposes semantic vars as Tailwind utilities via @theme inline
- *
- * Example of the target shape (do not enable until tokens exist):
- *
- *   @theme inline {
- *     --color-background: var(--sds-color-background-default);
- *     --color-foreground: var(--sds-color-text-default);
- *     --radius-md:        var(--sds-radius-md);
- *   }
+ * Colour primitives (e.g. --sds-color-blue-700) are intentionally not exposed: components
+ * use semantic utilities only (bg-background, text-muted-foreground, border-border,
+ * ring-ring, bg-brand…). `inline` keeps the var() live, so theme switching needs no rebuild.
+ * Leading needs no mapping: Tailwind's leading-6 is already 6 × 4px, like --sds-leading-6.
  */
 
-/* Class-based + attribute-based dark mode, so themes can be forced per subtree. */
+/* Attribute-based dark mode, so themes can be forced per subtree. */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme inline {
+  /* Semantic colours → bg-*, text-*, border-*, ring-*, fill-*… */
+  --color-background: var(--sds-color-background);
+  --color-card: var(--sds-color-card);
+  --color-popover: var(--sds-color-popover);
+  --color-muted: var(--sds-color-muted);
+  --color-accent: var(--sds-color-accent);
+  --color-overlay: var(--sds-color-overlay);
+  --color-foreground: var(--sds-color-foreground);
+  --color-card-foreground: var(--sds-color-card-foreground);
+  --color-popover-foreground: var(--sds-color-popover-foreground);
+  --color-muted-foreground: var(--sds-color-muted-foreground);
+  --color-accent-foreground: var(--sds-color-accent-foreground);
+  --color-border: var(--sds-color-border);
+  --color-input: var(--sds-color-input);
+  --color-ring: var(--sds-color-ring);
+  --color-primary: var(--sds-color-primary);
+  --color-primary-foreground: var(--sds-color-primary-foreground);
+  --color-secondary: var(--sds-color-secondary);
+  --color-secondary-foreground: var(--sds-color-secondary-foreground);
+  --color-brand: var(--sds-color-brand);
+  --color-brand-foreground: var(--sds-color-brand-foreground);
+  --color-brand-subtle: var(--sds-color-brand-subtle);
+  --color-brand-subtle-foreground: var(--sds-color-brand-subtle-foreground);
+  --color-success: var(--sds-color-success);
+  --color-success-foreground: var(--sds-color-success-foreground);
+  --color-success-subtle: var(--sds-color-success-subtle);
+  --color-success-subtle-foreground: var(--sds-color-success-subtle-foreground);
+  --color-warning: var(--sds-color-warning);
+  --color-warning-foreground: var(--sds-color-warning-foreground);
+  --color-warning-subtle: var(--sds-color-warning-subtle);
+  --color-warning-subtle-foreground: var(--sds-color-warning-subtle-foreground);
+  --color-destructive: var(--sds-color-destructive);
+  --color-destructive-foreground: var(--sds-color-destructive-foreground);
+  --color-destructive-subtle: var(--sds-color-destructive-subtle);
+  --color-destructive-subtle-foreground: var(--sds-color-destructive-subtle-foreground);
+  --color-info: var(--sds-color-info);
+  --color-info-foreground: var(--sds-color-info-foreground);
+  --color-info-subtle: var(--sds-color-info-subtle);
+  --color-info-subtle-foreground: var(--sds-color-info-subtle-foreground);
+  --color-code-bg: var(--sds-color-code-bg);
+  --color-code-foreground: var(--sds-color-code-foreground);
+  --color-code-border: var(--sds-color-code-border);
+  --color-code-muted: var(--sds-color-code-muted);
+  --color-syntax-tag: var(--sds-color-syntax-tag);
+  --color-syntax-attr: var(--sds-color-syntax-attr);
+  --color-syntax-string: var(--sds-color-syntax-string);
+  --color-syntax-keyword: var(--sds-color-syntax-keyword);
+  --color-syntax-fn: var(--sds-color-syntax-fn);
+  --color-syntax-comment: var(--sds-color-syntax-comment);
+
+  /* Typography */
+  --font-sans: var(--sds-font-sans);
+  --font-serif: var(--sds-font-serif);
+  --font-mono: var(--sds-font-mono);
+  --text-xs: var(--sds-text-xs);
+  --text-sm: var(--sds-text-sm);
+  --text-base: var(--sds-text-base);
+  --text-lg: var(--sds-text-lg);
+  --text-xl: var(--sds-text-xl);
+  --text-2xl: var(--sds-text-2xl);
+  --text-3xl: var(--sds-text-3xl);
+  --text-4xl: var(--sds-text-4xl);
+  --text-5xl: var(--sds-text-5xl);
+  --text-6xl: var(--sds-text-6xl);
+  --text-7xl: var(--sds-text-7xl);
+  --text-8xl: var(--sds-text-8xl);
+  --text-9xl: var(--sds-text-9xl);
+  --tracking-tighter: var(--sds-tracking-tighter);
+  --tracking-tight: var(--sds-tracking-tight);
+  --tracking-normal: var(--sds-tracking-normal);
+  --tracking-wide: var(--sds-tracking-wide);
+  --tracking-wider: var(--sds-tracking-wider);
+  --tracking-widest: var(--sds-tracking-widest);
+
+  /* Spacing — Tailwind multiplies this 4px base (p-6 = 24px = --sds-space-6) */
+  --spacing: var(--sds-space-1);
+
+  /* Radius & elevation */
+  --radius-xs: var(--sds-radius-xs);
+  --radius-sm: var(--sds-radius-sm);
+  --radius-md: var(--sds-radius-md);
+  --radius-lg: var(--sds-radius-lg);
+  --radius-xl: var(--sds-radius-xl);
+  --radius-2xl: var(--sds-radius-2xl);
+  --radius-3xl: var(--sds-radius-3xl);
+  --shadow-sm: var(--sds-shadow-sm);
+  --shadow-md: var(--sds-shadow-md);
+  --shadow-lg: var(--sds-shadow-lg);
+}

@@ -1,10 +1,27 @@
+import { CircleAlert, CircleCheck, Info, TriangleAlert } from "@stefan-florescu/icons";
 import type { ReactNode } from "react";
 
-export function Callout({ title, children }: { title?: string; children: ReactNode }) {
+const ICONS = { info: Info, success: CircleCheck, warning: TriangleAlert, danger: CircleAlert };
+
+export function Callout({
+  title,
+  variant = "info",
+  children,
+}: {
+  title?: string;
+  variant?: keyof typeof ICONS;
+  children: ReactNode;
+}) {
+  const Icon = ICONS[variant];
   return (
-    <div className="bg-surface my-6 rounded-lg border px-4 py-3 text-sm">
-      {title ? <p className="font-medium">{title}</p> : null}
-      <div className="text-muted-foreground [&_p]:my-1 [&_p]:leading-6">{children}</div>
+    <div className={`callout callout--${variant}`}>
+      <span className="callout__icon" aria-hidden>
+        <Icon size={18} />
+      </span>
+      <div className="callout__body">
+        {title ? <p className="callout__title">{title}</p> : null}
+        {children}
+      </div>
     </div>
   );
 }

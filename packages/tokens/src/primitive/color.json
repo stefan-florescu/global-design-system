@@ -1,0 +1,275 @@
+{
+  "color": {
+    "$type": "color",
+    "white": {
+      "$value": "#FFFFFF"
+    },
+    "black": {
+      "$value": "#000000"
+    },
+    "gray": {
+      "$description": "Every surface, border and text color in the system. The neutral scale does the most work \u2014 reach for a hue only when it carries meaning.",
+      "50": {
+        "$value": "#F9FAFB"
+      },
+      "100": {
+        "$value": "#F3F4F6"
+      },
+      "200": {
+        "$value": "#E5E7EB"
+      },
+      "300": {
+        "$value": "#D1D5DB"
+      },
+      "400": {
+        "$value": "#9CA3AF"
+      },
+      "500": {
+        "$value": "#6B7280"
+      },
+      "600": {
+        "$value": "#4B5563"
+      },
+      "700": {
+        "$value": "#374151"
+      },
+      "800": {
+        "$value": "#1F2937"
+      },
+      "900": {
+        "$value": "#111827"
+      }
+    },
+    "red": {
+      "$description": "Destructive actions and errors. Always pair with a label that names the consequence.",
+      "50": {
+        "$value": "#FDF2F2"
+      },
+      "100": {
+        "$value": "#FDE8E8"
+      },
+      "200": {
+        "$value": "#FBD5D5"
+      },
+      "300": {
+        "$value": "#F8B4B4"
+      },
+      "400": {
+        "$value": "#F98080"
+      },
+      "500": {
+        "$value": "#F05252"
+      },
+      "600": {
+        "$value": "#E02424"
+      },
+      "700": {
+        "$value": "#C81E1E"
+      },
+      "800": {
+        "$value": "#9B1C1C"
+      },
+      "900": {
+        "$value": "#771D1D"
+      }
+    },
+    "yellow": {
+      "$description": "Caution, pending states and warnings. Needs dark text at every step \u2014 see the note below.",
+      "50": {
+        "$value": "#FDFDEA"
+      },
+      "100": {
+        "$value": "#FDF6B2"
+      },
+      "200": {
+        "$value": "#FCE96A"
+      },
+      "300": {
+        "$value": "#FACA15"
+      },
+      "400": {
+        "$value": "#E3A008"
+      },
+      "500": {
+        "$value": "#C27803"
+      },
+      "600": {
+        "$value": "#9F580A"
+      },
+      "700": {
+        "$value": "#8E4B10"
+      },
+      "800": {
+        "$value": "#723B13"
+      },
+      "900": {
+        "$value": "#633112"
+      }
+    },
+    "green": {
+      "$description": "Success, confirmation and positive deltas.",
+      "50": {
+        "$value": "#F3FAF7"
+      },
+      "100": {
+        "$value": "#DEF7EC"
+      },
+      "200": {
+        "$value": "#BCF0DA"
+      },
+      "300": {
+        "$value": "#84E1BC"
+      },
+      "400": {
+        "$value": "#31C48D"
+      },
+      "500": {
+        "$value": "#0E9F6E"
+      },
+      "600": {
+        "$value": "#057A55"
+      },
+      "700": {
+        "$value": "#046C4E"
+      },
+      "800": {
+        "$value": "#03543F"
+      },
+      "900": {
+        "$value": "#014737"
+      }
+    },
+    "blue": {
+      "$description": "The brand hue: links, focus rings, selected states and informational messages.",
+      "50": {
+        "$value": "#EBF5FF"
+      },
+      "100": {
+        "$value": "#E1EFFE"
+      },
+      "200": {
+        "$value": "#C3DDFD"
+      },
+      "300": {
+        "$value": "#A4CAFE"
+      },
+      "400": {
+        "$value": "#76A9FA"
+      },
+      "500": {
+        "$value": "#3F83F8"
+      },
+      "600": {
+        "$value": "#1C64F2"
+      },
+      "700": {
+        "$value": "#1A56DB"
+      },
+      "800": {
+        "$value": "#1E429F"
+      },
+      "900": {
+        "$value": "#233876"
+      }
+    },
+    "indigo": {
+      "$description": "Secondary brand accent for charts, illustrations and gradients.",
+      "50": {
+        "$value": "#F0F5FF"
+      },
+      "100": {
+        "$value": "#E5EDFF"
+      },
+      "200": {
+        "$value": "#CDDBFE"
+      },
+      "300": {
+        "$value": "#B4C6FC"
+      },
+      "400": {
+        "$value": "#8DA2FB"
+      },
+      "500": {
+        "$value": "#6875F5"
+      },
+      "600": {
+        "$value": "#5850EC"
+      },
+      "700": {
+        "$value": "#5145CD"
+      },
+      "800": {
+        "$value": "#42389D"
+      },
+      "900": {
+        "$value": "#362F78"
+      }
+    },
+    "purple": {
+      "$description": "Decorative accent and AI / beta surfaces.",
+      "50": {
+        "$value": "#F6F5FF"
+      },
+      "100": {
+        "$value": "#EDEBFE"
+      },
+      "200": {
+        "$value": "#DCD7FE"
+      },
+      "300": {
+        "$value": "#CABFFD"
+      },
+      "400": {
+        "$value": "#AC94FA"
+      },
+      "500": {
+        "$value": "#9061F9"
+      },
+      "600": {
+        "$value": "#7E3AF2"
+      },
+      "700": {
+        "$value": "#6C2BD9"
+      },
+      "800": {
+        "$value": "#5521B5"
+      },
+      "900": {
+        "$value": "#4A1D96"
+      }
+    },
+    "pink": {
+      "$description": "Decorative accent. Also the syntax color for tags in code blocks.",
+      "50": {
+        "$value": "#FDF2F8"
+      },
+      "100": {
+        "$value": "#FCE8F3"
+      },
+      "200": {
+        "$value": "#FAD1E8"
+      },
+      "300": {
+        "$value": "#F8B4D9"
+      },
+      "400": {
+        "$value": "#F17EB8"
+      },
+      "500": {
+        "$value": "#E74694"
+      },
+      "600": {
+        "$value": "#D61F69"
+      },
+      "700": {
+        "$value": "#BF125D"
+      },
+      "800": {
+        "$value": "#99154B"
+      },
+      "900": {
+        "$value": "#751A3D"
+      }
+    }
+  }
+}

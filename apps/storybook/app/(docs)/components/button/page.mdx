@@ -3,7 +3,11 @@ export const metadata = {
   description: "Displays a button or a component that looks like a button.",
 };
 
-<PageHeader {...metadata} section="Components" status="planned" />
+<PageHeader
+  {...metadata}
+  section="Components"
+  badges={[{ label: "Planned", variant: "outline" }]}
+/>
 
 <ComponentPreview name="button-demo" />
 
