@@ -1,0 +1,29 @@
+export const metadata = {
+  title: "Border & Radius",
+  description: "Border widths and the corner radius scale.",
+};
+
+<PageHeader {...metadata} section="Foundation" status="planned" />
+
+<Callout title="Coming in Phase A">
+  Border and radius tokens are being defined. This page will show live radius samples.
+</Callout>
+
+## Border width
+
+`0`, `1px` (default), `2px` (emphasis and focus).
+
+## Radius scale
+
+| Token  | Value  | Use                       |
+| ------ | ------ | ------------------------- |
+| `xs`   | 2px    | Checkbox, tags            |
+| `sm`   | 4px    | Compact inputs            |
+| `md`   | 6px    | Buttons, inputs (default) |
+| `lg`   | 8px    | Cards, popovers           |
+| `xl`   | 12px   | Dialogs, sheets           |
+| `full` | 9999px | Pills, avatars            |
+
+## Usage
+
+Nested elements use a smaller radius than their container so corners look concentric.

@@ -22,10 +22,11 @@ src/components/button/
 ├── button.tsx            # implementation (forwards ref via React 19 `ref` prop)
 ├── button.variants.ts    # CVA definition — the only place classes live
 ├── button.test.tsx       # Vitest + Testing Library (behaviour + a11y)
-├── button.stories.tsx    # Storybook stories (rendered by apps/storybook)
-├── button.mdx            # usage docs (rendered by Storybook)
 ├── button.meta.json      # machine-readable metadata for AI agents & docs
 └── index.ts              # public exports
 ```
+
+Docs live in the website app: live examples in `apps/storybook/registry/demos/button-*.tsx` and the
+page in `apps/storybook/app/(docs)/components/button/page.mdx`.
 
 > Status: **scaffold only** — no components yet. See `docs/architecture/05-component-roadmap.md`.

@@ -1,18 +1,18 @@
 # 06 · Documentation Architecture
 
-> **Current state:** the Next.js docs site is deferred. Storybook (`apps/storybook`) is the only
-> documentation surface for now; the structure below is the target once `apps/docs` is added back.
+> **Current state:** the docs site lives in `apps/storybook` (the folder keeps that name; it is a
+> Next.js site, not the Storybook tool — see ADR 0006). It has the Foundation, Components and
+> Changelog sections; the remaining sections below are added as content exists.
 
-## 6.1 Two surfaces, one source
+## 6.1 One surface
 
-| Surface       | App              | Audience                     | Content                                                         |
-| ------------- | ---------------- | ---------------------------- | --------------------------------------------------------------- |
-| **Docs site** | `apps/docs`      | Designers, PMs, engineers    | Guidance: when/why/how, live examples, props, patterns          |
-| **Storybook** | `apps/storybook` | Engineers, QA, design review | Workbench: every state, controls, a11y panel, interaction tests |
+| Surface       | App              | Audience                          | Content                                                   |
+| ------------- | ---------------- | --------------------------------- | --------------------------------------------------------- |
+| **Docs site** | `apps/storybook` | Designers, PMs, engineers, agents | Guidance, live examples (Preview / Code), props, patterns |
 
-Both read from the same sources in `packages/ui` (stories, `.mdx`, `.meta.json`, TSDoc), so
-docs can never drift from code. The docs site embeds live examples (shadcn-style "Preview / Code" tabs)
-rendered from the real package.
+Live examples are real source files (`registry/demos/*.tsx`) rendered from the published package,
+and the Code tab shows exactly that source, so docs cannot drift from code. Props tables and token
+tables will be generated from TypeScript types and `@stefan-florescu/tokens`.
 
 ## 6.2 Information architecture (docs site)
 
@@ -49,7 +49,7 @@ Usage do/don't · Accessibility · Tailwind usage · Related.
 
 **Component page:**
 
-1. Header — name, one-line description, status badge, links (Storybook, source, Figma)
+1. Header — name, one-line description, status badge, links (source, Figma)
 2. Preview — live example with code tab
 3. Usage — when to use / when not to use / alternatives
 4. Anatomy — labelled diagram

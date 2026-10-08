@@ -1,0 +1,97 @@
+export const metadata = {
+  title: "Button",
+  description: "Displays a button or a component that looks like a button.",
+};
+
+<PageHeader {...metadata} section="Components" status="planned" />
+
+<ComponentPreview name="button-demo" />
+
+<Callout title="Template preview">
+  This page is the reference template for every component page. The examples use a docs-only
+  placeholder until `Button` ships in `@stefan-florescu/ui` (Phase B).
+</Callout>
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+Then import the styles once in your global CSS, after Tailwind:
+
+```css
+@import "tailwindcss";
+@import "@stefan-florescu/ui/styles.css";
+```
+
+## Usage
+
+```tsx
+import { Button } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Button variant="outline">Button</Button>
+```
+
+## Examples
+
+### Primary
+
+<ComponentPreview name="button-demo" />
+
+### Secondary
+
+<ComponentPreview name="button-secondary" />
+
+### Destructive
+
+<ComponentPreview name="button-destructive" />
+
+### Outline
+
+<ComponentPreview name="button-outline" />
+
+### Ghost
+
+<ComponentPreview name="button-ghost" />
+
+### Link
+
+<ComponentPreview name="button-link" />
+
+### Icon
+
+<ComponentPreview name="button-icon" />
+
+### With Icon
+
+<ComponentPreview name="button-with-icon" />
+
+### Loading
+
+<ComponentPreview name="button-loading" />
+
+### Sizes
+
+<ComponentPreview name="button-sizes" />
+
+## Accessibility
+
+- Renders a native `<button>` with `type="button"` by default, so it never submits a form by accident.
+- Reachable with <kbd>Tab</kbd>; activates with <kbd>Enter</kbd> and <kbd>Space</kbd>.
+- A visible focus ring appears on keyboard focus only (`:focus-visible`).
+- Icon-only buttons **must** have an `aria-label`. Decorative icons are `aria-hidden`.
+- While loading, set `disabled` and `aria-busy="true"` and keep a text label.
+- Pattern: [WAI-ARIA Button](https://www.w3.org/WAI/ARIA/apg/patterns/button/).
+
+## API Reference
+
+| Prop        | Type                                                                          | Default     |
+| ----------- | ----------------------------------------------------------------------------- | ----------- |
+| `variant`   | `"primary" \| "secondary" \| "destructive" \| "outline" \| "ghost" \| "link"` | `"primary"` |
+| `size`      | `"sm" \| "md" \| "lg" \| "icon"`                                              | `"md"`      |
+| `type`      | `"button" \| "submit" \| "reset"`                                             | `"button"`  |
+| `disabled`  | `boolean`                                                                     | `false`     |
+| `className` | `string`                                                                      | —           |
+
+All other native `<button>` attributes are forwarded, including `ref`.

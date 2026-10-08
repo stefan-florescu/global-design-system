@@ -15,7 +15,7 @@ A token-driven, accessible, multi-theme React design system in a pnpm + Turborep
 | `packages/ui`       | `@stefan-florescu/ui`                  | React 19 components (Tailwind v4 + CVA)             |
 | `packages/icons`    | `@stefan-florescu/icons`               | Governed wrapper over `lucide-react`                |
 | `packages/config/*` | `@stefan-florescu/*-config`            | Shared TS / ESLint / Tailwind presets               |
-| `apps/storybook`    | `@stefan-florescu/storybook` (private) | Component workbench                                 |
+| `apps/storybook`    | `@stefan-florescu/storybook` (private) | Docs website (Next.js 15, MDX, shadcn-style)        |
 
 Dependency direction is strictly **tokens → themes → ui → apps**. Never import "upward".
 
@@ -23,8 +23,8 @@ Dependency direction is strictly **tokens → themes → ui → apps**. Never im
 
 ```bash
 pnpm install            # Node >= 22, pnpm 10
-pnpm dev                # Storybook + package watchers
-pnpm dev:storybook      # http://localhost:6006
+pnpm dev                # docs site + package watchers
+pnpm dev:storybook      # docs site only, http://localhost:3000
 pnpm build | lint | typecheck | test | format
 pnpm --filter @stefan-florescu/ui test
 pnpm changeset          # required for any change to a published package
@@ -40,7 +40,7 @@ Before declaring work done, run `pnpm lint && pnpm typecheck && pnpm test && pnp
 2. **Components consume semantic or component tokens, never primitives.**
 3. **Accessible by default.** Follow the WAI-ARIA Authoring Practices pattern for the
    component; full keyboard support; visible `:focus-visible`; WCAG 2.2 AA contrast;
-   respect `prefers-reduced-motion`. Storybook a11y violations are errors.
+   respect `prefers-reduced-motion`. `jsx-a11y` (strict) lint errors fail CI.
 4. **Styling lives in CVA.** All classes go in `<name>.variants.ts`; components merge
    consumer `className` with `cn()` from `src/lib/cn.ts`.
 5. **Icons** come from `@stefan-florescu/icons`, never `lucide-react` directly.
@@ -56,10 +56,14 @@ packages/ui/src/components/<kebab-name>/
 ├── <kebab-name>.tsx           # PascalCase export, named only
 ├── <kebab-name>.variants.ts   # cva() definition + VariantProps type
 ├── <kebab-name>.test.tsx      # behaviour + a11y (Testing Library, role queries)
-├── <kebab-name>.stories.tsx   # title: "Components/<PascalName>"
-├── <kebab-name>.mdx           # usage docs
 ├── <kebab-name>.meta.json     # machine-readable metadata (see docs/architecture/07-ai-readiness.md)
 └── index.ts
+
+apps/storybook/                # the docs website ("storybook" is just the folder name)
+├── registry/demos/<kebab-name>-<example>.tsx      # live examples (also shown as code)
+├── registry/index.ts                              # register each demo
+├── app/(docs)/components/<kebab-name>/page.mdx    # the docs page (copy components/button)
+└── lib/navigation.ts                              # add the page to the sidebar
 ```
 
 ## Naming

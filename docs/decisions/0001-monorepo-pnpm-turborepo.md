@@ -5,7 +5,7 @@
 
 ## Context
 
-Tokens, themes, components, icons, docs and Storybook evolve together and must release in lockstep.
+Tokens, themes, components, icons and the docs site evolve together and must release in lockstep.
 
 ## Decision
 

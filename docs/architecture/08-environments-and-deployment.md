@@ -1,13 +1,13 @@
 # 08 · Environments & Deployment
 
-| Environment | Where                              | Purpose                                 |
-| ----------- | ---------------------------------- | --------------------------------------- |
-| Local       | Your machine                       | Day-to-day development                  |
-| Cloud dev   | Claude Code on the web, Codespaces | Develop from anywhere, AI agents        |
-| CI          | GitHub Actions                     | Verify every PR, release on `main`      |
-| Preview     | Vercel (per PR / branch)           | Review docs + Storybook for each change |
-| Production  | Vercel (`main`)                    | Public docs + Storybook                 |
-| Registry    | npmjs.com + GitHub Packages        | Consumable packages                     |
+| Environment | Where                              | Purpose                              |
+| ----------- | ---------------------------------- | ------------------------------------ |
+| Local       | Your machine                       | Day-to-day development               |
+| Cloud dev   | Claude Code on the web, Codespaces | Develop from anywhere, AI agents     |
+| CI          | GitHub Actions                     | Verify every PR, release on `main`   |
+| Preview     | Vercel (per PR / branch)           | Review the docs site for each change |
+| Production  | Vercel (`main`)                    | Public docs site                     |
+| Registry    | npmjs.com + GitHub Packages        | Consumable packages                  |
 
 ## 8.1 Local
 
@@ -16,7 +16,7 @@
 git clone git@github.com:stefan-florescu/global-design-system.git
 cd global-design-system
 corepack enable && pnpm install     # also installs husky git hooks
-pnpm dev                            # storybook :6006
+pnpm dev                            # docs site :3000
 ```
 
 Useful: `pnpm dev:storybook`, `pnpm build`, `pnpm --filter @stefan-florescu/ui test:watch`.
@@ -63,7 +63,7 @@ Consumers of GitHub Packages add to their `.npmrc`:
 //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
 ```
 
-## 8.5 Vercel — Storybook project
+## 8.5 Vercel — docs site project
 
 One Vercel project, linked to this GitHub repo:
 
@@ -71,8 +71,8 @@ One Vercel project, linked to this GitHub repo:
 | ------------------------------------ | ---------------------------------------------------------------------------------------- |
 | Project name                         | `sds-storybook`                                                                          |
 | Root Directory                       | `apps/storybook`                                                                         |
-| Framework preset                     | Other                                                                                    |
-| Build / Output                       | from `apps/storybook/vercel.json` (`storybook-static`)                                   |
+| Framework                            | Next.js (set by `apps/storybook/vercel.json`, overrides the dashboard preset)            |
+| Build                                | from `apps/storybook/vercel.json` (output `.next`)                                       |
 | Node.js version                      | 22.x                                                                                     |
 | Include files outside root directory | ✅ enabled (default for monorepos)                                                       |
 | Ignored build step                   | `npx turbo-ignore` (in `vercel.json`) — skips deploys when nothing it depends on changed |
@@ -80,9 +80,6 @@ One Vercel project, linked to this GitHub repo:
 
 Every PR gets a preview URL from the Vercel bot; `main` deploys to production.
 Enable **Vercel Remote Cache** (Team → Settings → Remote Caching) and reuse it in CI via `TURBO_TOKEN`.
-
-A Next.js docs site (`apps/docs`) is deferred — see ADR 0004. When it returns it becomes a second
-Vercel project with root `apps/docs`.
 
 ## 8.6 Release flow
 

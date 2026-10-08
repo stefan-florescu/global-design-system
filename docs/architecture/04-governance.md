@@ -13,7 +13,7 @@ Idea ─► Issue (RFC / token request / bug) ─► Triage ─► Design ─►
    `pnpm lint && pnpm typecheck && pnpm test && pnpm build`.
 5. **Changeset**: `pnpm changeset` for any change to `ui`, `tokens`, `themes`, `icons`.
 6. **PR** with the template checklist; title in Conventional Commits (`feat(ui): add Button`).
-7. **Checks** (all required): CI verify, PR title, changeset, Vercel previews (docs + storybook).
+7. **Checks** (all required): CI verify, PR title, changeset, Vercel preview of the docs site.
 8. **Review**: CODEOWNERS approval; design review for anything visual.
 9. **Squash-merge** to `main`. Changesets opens/updates the _Version Packages_ PR.
 10. **Release** by merging the Version Packages PR → npm + GitHub Packages + changelog.
@@ -24,13 +24,13 @@ require PR, 1 approval, required checks (`Lint · Typecheck · Test · Build`, `
 
 ## 4.2 Component approval process
 
-Components move through explicit **maturity stages**, shown as a badge in docs and Storybook
+Components move through explicit **maturity stages**, shown as a badge on the docs site
 (`tags: ["experimental"]` etc.) and recorded in `<name>.meta.json`:
 
 | Stage            | Meaning                                   | Gate to enter                                                            |
 | ---------------- | ----------------------------------------- | ------------------------------------------------------------------------ |
 | **Proposed**     | RFC open                                  | Problem, ≥2 use cases, a11y pattern identified                           |
-| **Experimental** | Shipped, API may change in minor releases | Design spec in Figma, stories, basic tests, a11y panel clean             |
+| **Experimental** | Shipped, API may change in minor releases | Design spec in Figma, docs demos, basic tests, no a11y lint errors       |
 | **Beta**         | Used in ≥1 real product, API stabilising  | Full keyboard/SR testing, both themes, docs page, `meta.json` complete   |
 | **Stable**       | Semver-protected                          | 2 weeks in beta without API change, visual regression baseline, sign-off |
 | **Deprecated**   | Will be removed in next major             | Replacement documented, console warning in dev, codemod if feasible      |
@@ -40,7 +40,7 @@ Components move through explicit **maturity stages**, shown as a badge in docs a
 - [ ] Uses semantic/component tokens only; works in light & dark
 - [ ] WAI-ARIA pattern implemented; keyboard map documented; tested with VoiceOver + NVDA
 - [ ] Unit + interaction tests; axe clean; visual regression baseline
-- [ ] Stories: default, every variant, every state, composition, RTL
+- [ ] Docs demos: default, every variant, every state, composition, RTL
 - [ ] Docs page: overview, usage do/don't, props table, a11y, content guidance
 - [ ] `meta.json` complete; exported from `src/index.ts`; changeset added
 

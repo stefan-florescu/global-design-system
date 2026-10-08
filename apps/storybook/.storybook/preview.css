@@ -1,5 +1,0 @@
-@import "tailwindcss";
-@import "@stefan-florescu/ui/styles.css";
-
-/* Scan component sources directly so stories reflect edits without rebuilding ui. */
-@source "../../../packages/ui/src";

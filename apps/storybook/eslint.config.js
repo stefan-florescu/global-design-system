@@ -1,3 +1,3 @@
-import { reactConfig } from "@stefan-florescu/eslint-config/react";
+import { nextConfig } from "@stefan-florescu/eslint-config/next";
 
-export default [...reactConfig, { ignores: ["storybook-static/**"] }];
+export default [...nextConfig, { ignores: [".next/**", "next-env.d.ts"] }];

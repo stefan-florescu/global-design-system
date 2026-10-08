@@ -25,9 +25,11 @@ Principles:
 ```
 global-design-system/                 # "stefan-design-system"
 ├── apps/
-│   └── storybook/                    # Storybook 10 workbench → Vercel (static)
-│       ├── .storybook/               # main.ts, preview.ts, preview.css
-│       ├── src/                      # Storybook-only MDX (intro, token playgrounds)
+│   └── storybook/                    # Docs website (Next.js 15, MDX, shadcn-style) → Vercel
+│       │                             #   ("storybook" is only the folder/package name)
+│       ├── app/(docs)/               # Foundation, Components, Changelog pages (MDX)
+│       ├── components/               # Site chrome: header, search, theme toggle, TOC
+│       ├── registry/demos/           # Live examples rendered by <ComponentPreview>
 │       └── vercel.json
 │
 ├── packages/
@@ -57,16 +59,15 @@ global-design-system/                 # "stefan-design-system"
 
 ### Packages to add later (when they earn their place)
 
-| Package                                 | When                                                                   |
-| --------------------------------------- | ---------------------------------------------------------------------- |
-| `packages/hooks`                        | When ≥3 non-UI hooks exist (`useControllableState`, …)                 |
-| `packages/patterns`                     | Phase D — composed, opinionated building blocks                        |
-| `packages/templates` / `apps/templates` | Phase E — full page templates / starter apps                           |
-| `packages/figma-sync`                   | When syncing Figma Variables ⇄ tokens (Tokens Studio / REST)           |
-| `packages/mcp` (or `apps/mcp`)          | AI phase — MCP server exposing tokens & component metadata             |
-| `packages/codemods`                     | First breaking major — automated migrations                            |
-| `apps/docs`                             | When guidance outgrows Storybook — Next.js 15 docs site (see ADR 0004) |
-| `apps/playground`                       | Optional — sandbox to compose components in a real Next app            |
+| Package                                 | When                                                         |
+| --------------------------------------- | ------------------------------------------------------------ |
+| `packages/hooks`                        | When ≥3 non-UI hooks exist (`useControllableState`, …)       |
+| `packages/patterns`                     | Phase D — composed, opinionated building blocks              |
+| `packages/templates` / `apps/templates` | Phase E — full page templates / starter apps                 |
+| `packages/figma-sync`                   | When syncing Figma Variables ⇄ tokens (Tokens Studio / REST) |
+| `packages/mcp` (or `apps/mcp`)          | AI phase — MCP server exposing tokens & component metadata   |
+| `packages/codemods`                     | First breaking major — automated migrations                  |
+| `apps/playground`                       | Optional — sandbox to compose components in a real Next app  |
 
 ## 1.3 Package structure
 
@@ -103,7 +104,6 @@ Rules:
 | Tokens (JSON path)      | `category.concept.property.variant.state` | `color.action.primary.background.hover`                                     |
 | Tokens (CSS)            | `--sds-` + kebab path                     | `--sds-color-action-primary-background-hover`                               |
 | Theme names             | lowercase                                 | `light`, `dark`, `high-contrast`, `brand-x`                                 |
-| Stories                 | `Category/Name`                           | `Components/Button`, `Foundations/Color`                                    |
 | Branches                | `type/short-desc`                         | `feat/button`, `fix/dialog-focus-trap`                                      |
 | Commits / PR titles     | Conventional Commits + scope              | `feat(ui): add Button`                                                      |
 | ADRs                    | `NNNN-kebab-title.md`                     | `0003-dtcg-token-format.md`                                                 |
