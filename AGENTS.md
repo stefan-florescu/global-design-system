@@ -19,6 +19,16 @@ A token-driven, accessible, multi-theme React design system in a pnpm + Turborep
 
 Dependency direction is strictly **tokens → themes → ui → apps**. Never import "upward".
 
+### Where files go
+
+- **`packages/`** is the design system, reused by every project: tokens, themes, icons, shared
+  config and **all components**. Every new component — including generic UI such as badges,
+  alerts, tabs or cards — is created in `packages/ui`, following the component file contract below.
+- **`apps/`** holds projects that **consume** the packages. Apps never define their own
+  design-system components or design values.
+- `apps/storybook` (the docs website) keeps only website-specific code: header, navigation,
+  table of contents, pager, search, page layouts, docs pages and live demos.
+
 ## Design principles
 
 Every change — code, tokens, docs or tooling — must follow [`docs/principles.md`](docs/principles.md):
