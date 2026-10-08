@@ -87,7 +87,8 @@ Rules:
 - **ESM only**, explicit `exports` map, no deep imports beyond what's exported.
 - `sideEffects` lists CSS only so bundlers tree-shake JS.
 - `react` / `react-dom` are **peer** dependencies of `ui` and `icons`.
-- `ui` output is prefixed with `"use client"` so it works inside RSC apps.
+- `ui` is built one file per module: interactive components keep their own `"use client"`
+  directive, and server-safe exports (`cn`, `Button`) stay usable in React Server Components.
 
 ## 1.4 Naming conventions
 

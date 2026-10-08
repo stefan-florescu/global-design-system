@@ -29,6 +29,21 @@ Dependency direction is strictly **tokens → themes → ui → apps**. Never im
 - `apps/storybook` (the docs website) keeps only website-specific code: header, navigation,
   table of contents, pager, search, page layouts, docs pages and live demos.
 
+### Creating a component
+
+- **A request for a new component always means both** the component in `packages/ui` **and** its
+  docs page in `apps/storybook` (page, demos, registry entry and sidebar entry). See the file
+  contract below.
+- **Flowbite is the reference.** Unless the task says otherwise, model the component's anatomy,
+  options and docs examples on `https://flowbite.com/docs/components/<name>/` (and the matching
+  `flowbite-react` component for the React API). Mirror its example sections on the docs page.
+- **Translate, don't copy.** Map Flowbite's colours, sizes and radii to our semantic tokens, keep
+  our prop conventions (`variant`, `size`, adjective booleans), and drop examples we have no tokens
+  for (gradients, coloured shadows, brand logos). Accessibility follows WAI-ARIA, even where
+  Flowbite does less.
+- Interactive components start with `"use client"`; server-safe ones must not. The ui build emits one
+  file per module, so the directive is kept.
+
 ## Design principles
 
 Every change — code, tokens, docs or tooling — must follow [`docs/principles.md`](docs/principles.md):
@@ -68,6 +83,7 @@ Before declaring work done, run `pnpm lint && pnpm typecheck && pnpm test && pnp
    no default exports from component files.
 8. **Do not create tokens or components unless the task explicitly asks for it.**
 9. **Do not add pages to the docs site (`apps/storybook`) unless the task explicitly asks for it.**
+   A request for a new component counts as asking for its docs page.
 
 ## Component file contract
 

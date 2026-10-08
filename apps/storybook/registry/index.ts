@@ -1,5 +1,12 @@
 import type { ComponentType } from "react";
 
+import AccordionBrand from "./demos/accordion-brand";
+import AccordionCollapsed from "./demos/accordion-collapsed";
+import AccordionDemo from "./demos/accordion-demo";
+import AccordionFlush from "./demos/accordion-flush";
+import AccordionIcon from "./demos/accordion-icon";
+import AccordionMultiple from "./demos/accordion-multiple";
+import AccordionNested from "./demos/accordion-nested";
 import ButtonAsLink from "./demos/button-as-link";
 import ButtonDemo from "./demos/button-demo";
 import ButtonDisabled from "./demos/button-disabled";
@@ -19,6 +26,13 @@ import ButtonWithLabel from "./demos/button-with-label";
  * file's source is what <ComponentPreview name="…" /> shows in its Code tab.
  */
 export const demos = {
+  "accordion-brand": AccordionBrand,
+  "accordion-collapsed": AccordionCollapsed,
+  "accordion-demo": AccordionDemo,
+  "accordion-flush": AccordionFlush,
+  "accordion-icon": AccordionIcon,
+  "accordion-multiple": AccordionMultiple,
+  "accordion-nested": AccordionNested,
   "button-as-link": ButtonAsLink,
   "button-demo": ButtonDemo,
   "button-disabled": ButtonDisabled,

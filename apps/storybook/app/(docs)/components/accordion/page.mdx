@@ -1,0 +1,139 @@
+export const metadata = {
+  title: "Accordion",
+  description:
+    "A vertically stacked set of headings that each reveal a section of content when expanded.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="accordion-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+Then import the styles once in your global CSS, after Tailwind:
+
+```css
+@import "tailwindcss";
+@import "@stefan-florescu/ui/styles.css";
+```
+
+## Usage
+
+```tsx
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Accordion defaultValue={["item-1"]}>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Is it accessible?</AccordionTrigger>
+    <AccordionContent>Yes. It follows the WAI-ARIA Accordion pattern.</AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+`Accordion` is a client component. You can render it from a Server Component; only its own
+JavaScript ships to the browser.
+
+## Examples
+
+### Default
+
+Opening an item closes the one that was open. Pressing an open item's title closes it. Open the
+first item on load with `defaultValue`.
+
+<ComponentPreview name="accordion-demo" />
+
+### Always open
+
+Add `multiple` to keep several items open at once.
+
+<ComponentPreview name="accordion-multiple" />
+
+### Collapse all
+
+Leave out `defaultValue` to start with every item closed.
+
+<ComponentPreview name="accordion-collapsed" />
+
+### Color options
+
+Set `variant="brand"` to colour the open title with the `brand-subtle` surface and
+`brand-subtle-foreground` text instead of the neutral `muted` surface.
+
+<ComponentPreview name="accordion-brand" />
+
+### Flush
+
+Add `flush` to remove the outer border, radius and side padding, leaving only dividers. Use it
+inside cards and narrow columns.
+
+<ComponentPreview name="accordion-flush" />
+
+### Icon accordion
+
+Put an icon before the title text. The chevron stays at the end and turns when the item opens.
+
+<ComponentPreview name="accordion-icon" />
+
+### Nesting
+
+An accordion can sit inside another item's content. Lower the nested titles' `headingLevel` so the
+page outline stays correct. Arrow keys move only between titles of the same accordion.
+
+<ComponentPreview name="accordion-nested" />
+
+## Accessibility
+
+- Follows the [WAI-ARIA Accordion pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/).
+- Each title is a native `<button>` inside a heading (`<h3>` by default; set `headingLevel` to
+  match your page outline).
+- The button has `aria-expanded` and `aria-controls`. The panel is a `region` labelled by its
+  title, and is `hidden` while closed, so it is skipped by keyboard and screen readers.
+- A 2px `ring` focus ring appears inside the title on keyboard focus.
+- The chevron is decorative (`aria-hidden`), and its rotation stops when the user prefers reduced
+  motion.
+- Text and surface pairs (`muted-foreground`, `muted`, `brand-subtle`) pass WCAG 2.2 AA in both
+  themes.
+
+| Key                                 | Action                                             |
+| ----------------------------------- | -------------------------------------------------- |
+| <kbd>Tab</kbd>                      | Moves focus to the next focusable element          |
+| <kbd>Enter</kbd> / <kbd>Space</kbd> | Opens or closes the focused item                   |
+| <kbd>↓</kbd> / <kbd>↑</kbd>         | Moves focus to the next / previous title, wrapping |
+| <kbd>Home</kbd> / <kbd>End</kbd>    | Moves focus to the first / last title              |
+
+## API Reference
+
+### Accordion
+
+| Prop            | Type                        | Default     |
+| --------------- | --------------------------- | ----------- |
+| `multiple`      | `boolean`                   | `false`     |
+| `defaultValue`  | `string[]`                  | `[]`        |
+| `value`         | `string[]` (controlled)     | —           |
+| `onValueChange` | `(value: string[]) => void` | —           |
+| `variant`       | `"neutral" \| "brand"`      | `"neutral"` |
+| `flush`         | `boolean`                   | `false`     |
+| `className`     | `string`                    | —           |
+
+### AccordionItem
+
+| Prop       | Type                | Default |
+| ---------- | ------------------- | ------- |
+| `value`    | `string` (required) | —       |
+| `disabled` | `boolean`           | `false` |
+
+### AccordionTrigger
+
+| Prop           | Type                    | Default |
+| -------------- | ----------------------- | ------- |
+| `headingLevel` | `2 \| 3 \| 4 \| 5 \| 6` | `3`     |
+
+### AccordionContent
+
+Accepts all `<div>` attributes.
+
+All components forward their remaining native attributes, including `ref` and `className`.
