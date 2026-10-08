@@ -26,6 +26,7 @@ Every change — code, tokens, docs or tooling — must follow [`docs/principles
 Read it before starting work. Accessibility is never traded away; when other principles
 conflict, favour end users (consistency, performance) over builders (scalability, DX), and record
 significant trade-offs as an ADR. Run the "Applying the principles" checklist before finishing.
+`docs/principles.md` is internal guidance for contributors and agents — never publish it on the docs site.
 
 ## Commands
 
@@ -56,6 +57,7 @@ Before declaring work done, run `pnpm lint && pnpm typecheck && pnpm test && pnp
 7. **React 19**: pass `ref` as a prop (no `forwardRef`), function components only,
    no default exports from component files.
 8. **Do not create tokens or components unless the task explicitly asks for it.**
+9. **Do not add pages to the docs site (`apps/storybook`) unless the task explicitly asks for it.**
 
 ## Component file contract
 
