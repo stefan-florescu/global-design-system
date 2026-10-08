@@ -20,7 +20,7 @@ point to validate in Figma before implementation.
   `-subtle-foreground`) and Code surface (`code-*`, `syntax-*`). `--sds-color-{name}`; Tailwind
   `bg-{name}`, `text-{name}`, `border-{name}`, `ring-{name}`.
 - **Themes:** light = semantic defaults; dark re-points 29 colour tokens and `shadow-lg`.
-- **Accessibility:** 29 pairings (text ≥ 4.5:1, `input`, `ring`, `brand` fill ≥ 3:1) are checked in
+- **Accessibility:** 34 pairings (text ≥ 4.5:1, `input`, `ring`, `brand` fill ≥ 3:1) are checked in
   both themes on every themes build; the build fails on a regression.
 
 ## 3.2 Typography system

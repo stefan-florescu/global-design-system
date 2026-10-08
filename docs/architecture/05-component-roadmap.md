@@ -28,7 +28,7 @@ Monorepo, tooling, CI/CD, Vercel projects, docs site, AI instructions.
 
 | Component                           | Priority | Notes                                   |
 | ----------------------------------- | -------- | --------------------------------------- |
-| Button, IconButton                  | P0       | Reference implementation for all others |
+| Button (incl. icon-only)            | P0       | Reference implementation for all others |
 | Link                                | P0       |                                         |
 | Text, Heading                       | P0       | Typography primitives                   |
 | Stack, Inline, Box, Container, Grid | P0       | Layout primitives                       |
