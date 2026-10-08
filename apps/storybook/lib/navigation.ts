@@ -51,6 +51,11 @@ export const sidebarNav: NavSection[] = [
     title: "Components",
     items: [
       {
+        title: "Accordion",
+        description: "Stacked headings that each reveal a section of content.",
+        href: "/components/accordion",
+      },
+      {
         title: "Button",
         description: "Displays a button or a component that looks like a button.",
         href: "/components/button",

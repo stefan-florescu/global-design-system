@@ -1,0 +1,54 @@
+{
+  "name": "Accordion",
+  "status": "beta",
+  "description": "A vertically stacked set of headings that each reveal a section of content when expanded.",
+  "category": "disclosure",
+  "import": "import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/accordion/",
+  "client": true,
+  "props": "generated",
+  "parts": ["Accordion", "AccordionItem", "AccordionTrigger", "AccordionContent"],
+  "variants": {
+    "variant": ["neutral", "brand"],
+    "flush": [true, false],
+    "multiple": [true, false]
+  },
+  "defaults": {
+    "variant": "neutral",
+    "flush": false,
+    "multiple": false,
+    "headingLevel": 3
+  },
+  "tokens": [
+    "color.border",
+    "color.muted",
+    "color.muted-foreground",
+    "color.foreground",
+    "color.accent",
+    "color.accent-foreground",
+    "color.brand-subtle",
+    "color.brand-subtle-foreground",
+    "color.ring",
+    "radius.lg",
+    "text.sm",
+    "font.medium"
+  ],
+  "useWhen": [
+    "Showing FAQs or long, optional detail in a compact space",
+    "Letting people scan section titles and open only what they need"
+  ],
+  "avoidWhen": [
+    "Content everyone needs to read: show it directly",
+    "Switching between views of equal weight: use tabs"
+  ],
+  "related": ["Button"],
+  "examples": [
+    "apps/storybook/registry/demos/accordion-demo.tsx",
+    "apps/storybook/registry/demos/accordion-multiple.tsx",
+    "apps/storybook/registry/demos/accordion-collapsed.tsx",
+    "apps/storybook/registry/demos/accordion-brand.tsx",
+    "apps/storybook/registry/demos/accordion-flush.tsx",
+    "apps/storybook/registry/demos/accordion-icon.tsx",
+    "apps/storybook/registry/demos/accordion-nested.tsx"
+  ]
+}
