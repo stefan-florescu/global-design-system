@@ -3,18 +3,9 @@ export const metadata = {
   description: "Displays a button or a component that looks like a button.",
 };
 
-<PageHeader
-  {...metadata}
-  section="Components"
-  badges={[{ label: "Planned", variant: "outline" }]}
-/>
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
 
 <ComponentPreview name="button-demo" />
-
-<Callout title="Template preview">
-  This page is the reference template for every component page. The examples use a docs-only
-  placeholder until `Button` ships in `@stefan-florescu/ui` (Phase B).
-</Callout>
 
 ## Installation
 
@@ -34,68 +25,162 @@ import { Button } from "@stefan-florescu/ui";
 ```
 
 ```tsx
-<Button variant="outline">Button</Button>
+<Button>Get started</Button>
 ```
 
 ## Examples
 
-### Primary
+### Default
 
-<ComponentPreview name="button-demo" />
+Choose the variant by the intent of the action, not by the colour you want. Each variant reads
+its fill and label from the semantic colour tokens, so it follows the active theme.
 
-### Secondary
+<ComponentPreview name="button-variants" />
 
-<ComponentPreview name="button-secondary" />
+| Variant       | Tokens                                   | Use it for                                                 |
+| ------------- | ---------------------------------------- | ---------------------------------------------------------- |
+| `brand`       | `brand` · `brand-foreground`             | The main call to action. The default; use one per view.    |
+| `primary`     | `primary` · `primary-foreground`         | A high-emphasis neutral action, such as Save in a toolbar. |
+| `secondary`   | `secondary` · `secondary-foreground`     | A supporting action next to a primary one.                 |
+| `outline`     | `border` · `background` · `foreground`   | A low-emphasis alternative, such as Cancel.                |
+| `ghost`       | `accent` · `accent-foreground` on hover  | Toolbars, menus and dense layouts where a fill adds noise. |
+| `success`     | `success` · `success-foreground`         | Confirming a positive outcome, such as Approve or Publish. |
+| `warning`     | `warning` · `warning-foreground`         | An action that needs care but can be undone.               |
+| `destructive` | `destructive` · `destructive-foreground` | Irreversible actions: delete, revoke, disconnect.          |
+| `info`        | `info` · `info-foreground`               | A neutral, informational action, such as View details.     |
+| `link`        | `primary`                                | An action that should read as inline text.                 |
 
-### Destructive
+### Pills
 
-<ComponentPreview name="button-destructive" />
+Add `pill` to round the ends with `radius.full`.
+
+<ComponentPreview name="button-pill" />
 
 ### Outline
 
+Add `outline` to draw a filled intent as an outline: a transparent fill, with a border and label in
+the intent's `-subtle-foreground` colour and its `-subtle` surface on hover. Those pairings pass
+WCAG 2.2 AA in both themes. `outline` applies to `brand`, `primary`, `success`, `warning`,
+`destructive` and `info`.
+
 <ComponentPreview name="button-outline" />
-
-### Ghost
-
-<ComponentPreview name="button-ghost" />
-
-### Link
-
-<ComponentPreview name="button-link" />
-
-### Icon
-
-<ComponentPreview name="button-icon" />
-
-### With Icon
-
-<ComponentPreview name="button-with-icon" />
-
-### Loading
-
-<ComponentPreview name="button-loading" />
 
 ### Sizes
 
+Five sizes on the 4px spacing scale, from `xs` (32px) to `xl` (52px). `md` is the default.
+
 <ComponentPreview name="button-sizes" />
+
+| Size | Height | Padding (inline) | Text   | Icon |
+| ---- | ------ | ---------------- | ------ | ---- |
+| `xs` | 32px   | `space.3`        | `xs`   | 14px |
+| `sm` | 36px   | `space.3`        | `sm`   | 16px |
+| `md` | 40px   | `space.5`        | `sm`   | 16px |
+| `lg` | 48px   | `space.5`        | `base` | 20px |
+| `xl` | 52px   | `space.6`        | `base` | 20px |
+
+### Sizes with icon
+
+Icons scale with the button size and keep the 1.5 stroke.
+
+<ComponentPreview name="button-sizes-with-icon" />
+
+### With icon
+
+Put an icon before the label to clarify the action, or after it to show direction. Icons are
+decorative here, so mark them `aria-hidden`.
+
+<ComponentPreview name="button-with-icon" />
+
+### With label
+
+Show a count inside the button. Give the button an `aria-label` that starts with the visible text
+and says what the number means.
+
+<ComponentPreview name="button-with-label" />
+
+### Icon buttons
+
+Add `iconOnly` for a square button. An icon-only button has no visible text, so it **must** have
+an `aria-label`.
+
+<ComponentPreview name="button-icon" />
+
+### Loading
+
+`loading` shows a spinner, disables the button and sets `aria-busy`. Keep the label so screen
+readers still announce what is happening. The spinner stops when the user prefers reduced motion.
+
+<ComponentPreview name="button-loading" />
+
+### Disabled
+
+<ComponentPreview name="button-disabled" />
+
+<Callout title="Prefer explaining over disabling" variant="warning">
+  A disabled button cannot be focused and gives no reason why it is unavailable. When you can, keep
+  the button enabled and explain what is missing when it is pressed.
+</Callout>
+
+### Full width
+
+Add `fullWidth` to fill the container, for example in narrow forms and on mobile.
+
+<ComponentPreview name="button-full-width" />
+
+### As a link
+
+Use a link for navigation and a button for actions. If a link must look like a button, style the
+`<a>` with `buttonVariants()`. It takes the same options as `Button`.
+
+<ComponentPreview name="button-as-link" />
 
 ## Accessibility
 
-- Renders a native `<button>` with `type="button"` by default, so it never submits a form by accident.
+- Renders a native `<button>`. The default `type="button"` means it never submits a form by accident.
 - Reachable with <kbd>Tab</kbd>; activates with <kbd>Enter</kbd> and <kbd>Space</kbd>.
-- A visible focus ring appears on keyboard focus only (`:focus-visible`).
+- A 2px `ring` focus ring, offset from the button, appears on keyboard focus (`:focus-visible`) and
+  clears 3:1 against the background in both themes.
+- Every label and fill pairing is checked against WCAG 2.2 AA in light and dark on each token
+  build.
 - Icon-only buttons **must** have an `aria-label`. Decorative icons are `aria-hidden`.
-- While loading, set `disabled` and `aria-busy="true"` and keep a text label.
+- While loading, the button is disabled and `aria-busy="true"`; the spinner is hidden from
+  assistive technology.
+- Transitions and the spinner respect `prefers-reduced-motion`.
+- The smallest size (`xs`, 32px) meets the WCAG 2.5.8 minimum target size of 24×24px.
 - Pattern: [WAI-ARIA Button](https://www.w3.org/WAI/ARIA/apg/patterns/button/).
+
+| Key              | Action                    |
+| ---------------- | ------------------------- |
+| <kbd>Tab</kbd>   | Moves focus to the button |
+| <kbd>Enter</kbd> | Activates the button      |
+| <kbd>Space</kbd> | Activates the button      |
 
 ## API Reference
 
-| Prop        | Type                                                                          | Default     |
-| ----------- | ----------------------------------------------------------------------------- | ----------- |
-| `variant`   | `"primary" \| "secondary" \| "destructive" \| "outline" \| "ghost" \| "link"` | `"primary"` |
-| `size`      | `"sm" \| "md" \| "lg" \| "icon"`                                              | `"md"`      |
-| `type`      | `"button" \| "submit" \| "reset"`                                             | `"button"`  |
-| `disabled`  | `boolean`                                                                     | `false`     |
-| `className` | `string`                                                                      | —           |
+### Button
+
+| Prop        | Type                                                                                                                         | Default    |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| `variant`   | `"brand" \| "primary" \| "secondary" \| "outline" \| "ghost" \| "success" \| "warning" \| "destructive" \| "info" \| "link"` | `"brand"`  |
+| `outline`   | `boolean`. Only with `brand`, `primary`, `success`, `warning`, `destructive` and `info`.                                     | `false`    |
+| `size`      | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`                                                                                       | `"md"`     |
+| `pill`      | `boolean`                                                                                                                    | `false`    |
+| `iconOnly`  | `boolean`. Requires `aria-label`.                                                                                            | `false`    |
+| `fullWidth` | `boolean`                                                                                                                    | `false`    |
+| `loading`   | `boolean`                                                                                                                    | `false`    |
+| `disabled`  | `boolean`                                                                                                                    | `false`    |
+| `type`      | `"button" \| "submit" \| "reset"`                                                                                            | `"button"` |
+| `className` | `string`. Merged with `cn()`; your classes win.                                                                              | —          |
 
 All other native `<button>` attributes are forwarded, including `ref`.
+
+### buttonVariants
+
+```tsx
+buttonVariants(options?: {
+  variant?, outline?, size?, pill?, iconOnly?, fullWidth?, className?
+}): string
+```
+
+Returns the button's class names, so you can style another element, such as a link, as a button.

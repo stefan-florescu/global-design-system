@@ -7,11 +7,6 @@ import { CodeBlock } from "./code-block";
 import { CopyButton } from "./copy-button";
 import { Tabs } from "./tabs";
 
-/** Docs-only placeholder imports are shown to readers as the real package import. */
-const PUBLIC_IMPORTS: [string, string][] = [
-  ["@/registry/placeholder/button", "@stefan-florescu/ui"],
-];
-
 /**
  * Preview / Code tabs. The code tab shows the demo's real source file, so examples can
  * never drift from what is rendered.
@@ -25,8 +20,7 @@ export async function ComponentPreview({
 }) {
   const Demo = demos[name];
   const file = path.join(process.cwd(), "registry", "demos", `${name}.tsx`);
-  let source = await fs.readFile(file, "utf8");
-  for (const [from, to] of PUBLIC_IMPORTS) source = source.replaceAll(from, to);
+  const source = await fs.readFile(file, "utf8");
 
   return (
     <Tabs

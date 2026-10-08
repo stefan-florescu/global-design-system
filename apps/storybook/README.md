@@ -9,15 +9,14 @@ pnpm dev:storybook   # http://localhost:3000
 
 ## Structure
 
-| Path                     | What                                                              |
-| ------------------------ | ----------------------------------------------------------------- |
-| `app/(docs)/**/page.mdx` | Documentation pages (Foundation, Components, Changelog)           |
-| `app/(docs)/layout.tsx`  | Sidebar · content · "On this page" layout                         |
-| `lib/navigation.ts`      | Single source for the top menu, sidebar, search and pager         |
-| `components/`            | Site chrome (header, search, theme toggle, TOC, code blocks…)     |
-| `registry/demos/*.tsx`   | Live examples used by `<ComponentPreview name="…" />`             |
-| `registry/placeholder/`  | Docs-only stand-ins until the real components ship — delete later |
-| `mdx-components.tsx`     | Typography and components available in every MDX page             |
+| Path                     | What                                                          |
+| ------------------------ | ------------------------------------------------------------- |
+| `app/(docs)/**/page.mdx` | Documentation pages (Foundation, Components, Changelog)       |
+| `app/(docs)/layout.tsx`  | Sidebar · content · "On this page" layout                     |
+| `lib/navigation.ts`      | Single source for the top menu, sidebar, search and pager     |
+| `components/`            | Site chrome (header, search, theme toggle, TOC, code blocks…) |
+| `registry/demos/*.tsx`   | Live examples used by `<ComponentPreview name="…" />`         |
+| `mdx-components.tsx`     | Typography and components available in every MDX page         |
 
 ## Adding a page
 

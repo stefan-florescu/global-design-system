@@ -30,6 +30,10 @@ export const PAIRS = [
   ...["brand", "success", "warning", "destructive", "info"].map((name) =>
     pair(`${name}-subtle-foreground`, `${name}-subtle`),
   ),
+  // Outline button labels sit on the page background
+  ...["brand", "success", "warning", "destructive", "info"].map((name) =>
+    pair(`${name}-subtle-foreground`, "background"),
+  ),
   // Code surface
   pair("code-foreground", "code-bg"),
   ...["tag", "attr", "string", "keyword", "fn", "comment"].map((name) =>
