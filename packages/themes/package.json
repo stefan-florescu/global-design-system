@@ -16,6 +16,8 @@
     "./css": "./build/css/themes.css",
     "./light.css": "./build/css/light.css",
     "./dark.css": "./build/css/dark.css",
+    "./json": "./build/json/themes.json",
+    "./contrast.json": "./build/json/contrast.json",
     "./package.json": "./package.json"
   },
   "files": [

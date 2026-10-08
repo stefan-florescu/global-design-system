@@ -5,34 +5,31 @@ point to validate in Figma before implementation.
 
 ## 3.1 Color system
 
-**Model:** OKLCH primitives → semantic roles → themes.
+> **Status: implemented** — `packages/tokens/src/primitive/color.json`,
+> `packages/tokens/src/semantic/color.json`, `packages/themes/src/dark/color.json`.
+> Documented on the docs site at `/foundation/color`.
 
-**Primitive palettes** (11 steps each: 50, 100, 200 … 900, 950):
+**Model:** OKLCH primitives → semantic tokens → themes (light = semantic defaults, dark = overrides).
 
-| Palette   | Role                                         |
-| --------- | -------------------------------------------- |
-| `neutral` | Text, surfaces, borders (slightly cool grey) |
-| `brand`   | Primary identity colour (to be chosen)       |
-| `blue`    | Info, links, focus                           |
-| `green`   | Success                                      |
-| `amber`   | Warning                                      |
-| `red`     | Danger / error                               |
-| `violet`  | Accent / AI features                         |
+**Primitive palettes** — the 22 Tailwind CSS v4 default palettes (as used by Flowbite), 11 steps
+each (`50`…`950`), plus `white` and `black`:
+`slate`, `gray`, `zinc`, `neutral`, `stone`, `red`, `orange`, `amber`, `yellow`, `lime`, `green`,
+`emerald`, `teal`, `cyan`, `sky`, `blue`, `indigo`, `violet`, `purple`, `fuchsia`, `pink`, `rose`.
 
-**Semantic roles:**
+**Semantic tokens** (34, modelled on Flowbite's text / background / border roles):
 
-| Group        | Tokens                                                                                                       |
-| ------------ | ------------------------------------------------------------------------------------------------------------ |
-| `background` | `default`, `subtle`, `muted`, `inverse`, `overlay`                                                           |
-| `surface`    | `default`, `raised`, `sunken`, `overlay`                                                                     |
-| `text`       | `default`, `muted`, `subtle`, `inverse`, `disabled`, `link`, `on-action`                                     |
-| `border`     | `default`, `subtle`, `strong`, `focus`, `invalid`                                                            |
-| `action`     | `primary`, `secondary`, `ghost`, `danger` × `background/foreground/border` × `default/hover/active/disabled` |
-| `feedback`   | `info`, `success`, `warning`, `danger` × `background/foreground/border/icon`                                 |
+| Group        | Tokens                                                                                                                                                                                | Tailwind   |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| `text`       | `heading`, `body`, `body-subtle`, `brand`, `brand-strong`, `on-brand`, `success`, `danger`, `warning`, `disabled`                                                                     | `text-*`   |
+| `background` | `default`, `subtle`, `muted`, `emphasis`, `inverse`, `brand`, `brand-strong`, `brand-soft`, `success`, `success-soft`, `danger`, `danger-soft`, `warning`, `warning-soft`, `disabled` | `bg-*`     |
+| `border`     | `subtle`, `default`, `strong`, `control`, `focus`, `brand`, `success`, `danger`, `warning`                                                                                            | `border-*` |
 
-**Accessibility targets:** body text ≥ 7:1 (AAA where feasible), other text ≥ 4.5:1,
-UI components & focus indicators ≥ 3:1 (WCAG 2.2 SC 1.4.11, 2.4.13). Contrast will be
-asserted automatically in the token build.
+Brand = `blue`, neutral = `gray`, success = `emerald`, danger = `rose`, warning = `orange`.
+`border.control` (gray-500) is an addition to Flowbite's set so form-control boundaries meet 3:1.
+
+**Accessibility:** text ≥ 4.5:1, focus indicators and control boundaries ≥ 3:1 (WCAG 2.2
+SC 1.4.3, 1.4.11). 27 pairings are checked on every `@stefan-florescu/themes` build, in every
+theme; the build fails on any regression. Results: `@stefan-florescu/themes/contrast.json`.
 
 ## 3.2 Typography system
 

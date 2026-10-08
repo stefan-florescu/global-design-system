@@ -15,4 +15,11 @@ pnpm --filter @stefan-florescu/tokens build
 
 Outputs `build/css/variables.css`, `build/js/tokens.js`, `build/json/tokens.json`.
 
-> Status: **scaffold only** — no tokens authored yet. See `docs/architecture/02-token-architecture.md`.
+## Status
+
+| Category | Primitive                               | Semantic                                |
+| -------- | --------------------------------------- | --------------------------------------- |
+| Color    | ✅ 22 palettes × 11 steps + white/black | ✅ 34 tokens (text, background, border) |
+| Others   | planned (Phase A)                       | planned                                 |
+
+See `docs/architecture/02-token-architecture.md` and the Color page on the docs site.

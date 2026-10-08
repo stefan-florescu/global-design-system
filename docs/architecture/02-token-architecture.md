@@ -74,26 +74,30 @@ Named by _what they're for_. Every one needs a `$description`.
 {
   "color": {
     "$type": "color",
-    "background": {
-      "default": { "$value": "{color.neutral.0}", "$description": "App canvas" },
-      "subtle": { "$value": "{color.neutral.50}", "$description": "Secondary surfaces, wells" }
-    },
     "text": {
-      "default": {
-        "$value": "{color.neutral.900}",
-        "$description": "Body copy, ≥ 7:1 on background.default"
+      "heading": {
+        "$value": "{color.gray.900}",
+        "$description": "Headings and high-emphasis text."
+      },
+      "body": { "$value": "{color.gray.600}", "$description": "Default body copy." }
+    },
+    "background": {
+      "default": { "$value": "{color.white}", "$description": "Page and app canvas." },
+      "brand": {
+        "$value": "{color.blue.700}",
+        "$description": "Primary actions and selected states."
+      },
+      "brand-strong": {
+        "$value": "{color.blue.800}",
+        "$description": "Hover and pressed states of brand backgrounds."
       }
     },
-    "action": {
-      "primary": {
-        "background": {
-          "default": { "$value": "{color.blue.600}" },
-          "hover": { "$value": "{color.blue.700}" }
-        },
-        "foreground": { "$value": "{color.neutral.0}" }
+    "border": {
+      "focus": {
+        "$value": "{color.blue.600}",
+        "$description": "Focus rings and outlines — meets 3:1."
       }
-    },
-    "border": { "focus": { "$value": "{color.blue.500}", "$description": "Focus ring, ≥ 3:1" } }
+    }
   },
   "space": {
     "$type": "dimension",
@@ -113,7 +117,7 @@ directly via Tailwind.
 {
   "button": {
     "primary": {
-      "background": { "$type": "color", "$value": "{color.action.primary.background.default}" }
+      "background": { "$type": "color", "$value": "{color.background.brand}" }
     },
     "radius": { "$type": "dimension", "$value": "{radius.md}" },
     "height": {
@@ -126,15 +130,17 @@ directly via Tailwind.
 ### Theme tokens — `packages/themes/src/<theme>/`
 
 A theme re-points **semantic** tokens. Nothing else changes; components are theme-unaware.
+The light theme is the semantic defaults; `src/light/` only holds deviations from them.
 
 ```json
 // packages/themes/src/dark/color.json
 {
   "color": {
-    "background": { "default": { "$type": "color", "$value": "{color.neutral.950}" } },
-    "text": { "default": { "$type": "color", "$value": "{color.neutral.50}" } },
-    "action": {
-      "primary": { "background": { "default": { "$type": "color", "$value": "{color.blue.500}" } } }
+    "$type": "color",
+    "text": { "heading": { "$value": "{color.white}" } },
+    "background": {
+      "default": { "$value": "{color.gray.950}" },
+      "brand": { "$value": "{color.blue.600}" }
     }
   }
 }
@@ -143,8 +149,8 @@ A theme re-points **semantic** tokens. Nothing else changes; components are them
 Emits:
 
 ```css
-:root, [data-theme="light"] { --sds-color-background-default: var(--sds-color-neutral-0); … }
-[data-theme="dark"]          { --sds-color-background-default: var(--sds-color-neutral-950); … }
+:root, [data-theme="light"] { --sds-color-background-default: var(--sds-color-white); … }
+[data-theme="dark"]          { --sds-color-background-default: var(--sds-color-gray-950); … }
 ```
 
 Theme axes planned (each orthogonal, combinable through separate data attributes):
@@ -161,16 +167,18 @@ Theme axes planned (each orthogonal, combinable through separate data attributes
 
 ```css
 @theme inline {
-  --color-background: var(--sds-color-background-default);
-  --color-foreground: var(--sds-color-text-default);
-  --color-primary: var(--sds-color-action-primary-background-default);
-  --radius-md: var(--sds-radius-md);
-  --shadow-sm: var(--sds-elevation-1);
+  --text-color-heading: var(--sds-color-text-heading); /* text-heading */
+  --background-color-brand: var(--sds-color-background-brand); /* bg-brand */
+  --border-color-default: var(--sds-color-border-default); /* border-default */
+  --ring-color-focus: var(--sds-color-border-focus); /* ring-focus */
 }
 ```
 
-`inline` keeps the `var()` reference live so theme switching needs no rebuild. Tailwind's
-default palette is reset (`--color-*: initial;`) so only system colours are available.
+`inline` keeps the `var()` reference live so theme switching needs no rebuild. Type-specific
+namespaces (`--text-color-*`, `--background-color-*`, `--border-color-*`) mean `text-heading`
+exists but `bg-heading` does not. Only semantic tokens are mapped — primitives are not exposed as
+utilities. Resetting Tailwind's default palette (`--color-*: initial;`) is planned once the docs
+site no longer relies on it.
 
 ## 2.4 Token categories
 

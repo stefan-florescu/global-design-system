@@ -1,22 +1,59 @@
 /*
  * @stefan-florescu/tailwind-config — shared Tailwind CSS v4 preset.
  *
- * This is the ONLY place where design tokens are mapped into Tailwind's theme.
- * Tailwind v4 is configured in CSS (no tailwind.config.js).
+ * The ONLY place where design tokens are mapped to Tailwind utilities.
+ *   1. @stefan-florescu/tokens  → CSS custom properties (--sds-*)
+ *   2. @stefan-florescu/themes  → re-assigns semantic tokens per [data-theme]
+ *   3. this file                → exposes SEMANTIC tokens as utilities via @theme inline
  *
- * Wiring (filled in during Phase A — Foundations):
- *   1. @stefan-florescu/tokens  → emits CSS custom properties (--sds-*)
- *   2. @stefan-florescu/themes  → re-assigns semantic vars per [data-theme]
- *   3. this file                → exposes semantic vars as Tailwind utilities via @theme inline
- *
- * Example of the target shape (do not enable until tokens exist):
- *
- *   @theme inline {
- *     --color-background: var(--sds-color-background-default);
- *     --color-foreground: var(--sds-color-text-default);
- *     --radius-md:        var(--sds-radius-md);
- *   }
+ * Primitives (e.g. --sds-color-blue-700) are intentionally not exposed: components
+ * use semantic utilities only. `inline` keeps the var() live, so theme switching needs
+ * no rebuild. Utilities use type-specific namespaces, so `text-heading` exists but
+ * `bg-heading` does not.
  */
 
 /* Class-based + attribute-based dark mode, so themes can be forced per subtree. */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme inline {
+  /* text → text-* */
+  --text-color-heading: var(--sds-color-text-heading);
+  --text-color-body: var(--sds-color-text-body);
+  --text-color-body-subtle: var(--sds-color-text-body-subtle);
+  --text-color-brand: var(--sds-color-text-brand);
+  --text-color-brand-strong: var(--sds-color-text-brand-strong);
+  --text-color-on-brand: var(--sds-color-text-on-brand);
+  --text-color-success: var(--sds-color-text-success);
+  --text-color-danger: var(--sds-color-text-danger);
+  --text-color-warning: var(--sds-color-text-warning);
+  --text-color-disabled: var(--sds-color-text-disabled);
+  /* background → bg-* */
+  --background-color-default: var(--sds-color-background-default);
+  --background-color-subtle: var(--sds-color-background-subtle);
+  --background-color-muted: var(--sds-color-background-muted);
+  --background-color-emphasis: var(--sds-color-background-emphasis);
+  --background-color-inverse: var(--sds-color-background-inverse);
+  --background-color-brand: var(--sds-color-background-brand);
+  --background-color-brand-strong: var(--sds-color-background-brand-strong);
+  --background-color-brand-soft: var(--sds-color-background-brand-soft);
+  --background-color-success: var(--sds-color-background-success);
+  --background-color-success-soft: var(--sds-color-background-success-soft);
+  --background-color-danger: var(--sds-color-background-danger);
+  --background-color-danger-soft: var(--sds-color-background-danger-soft);
+  --background-color-warning: var(--sds-color-background-warning);
+  --background-color-warning-soft: var(--sds-color-background-warning-soft);
+  --background-color-disabled: var(--sds-color-background-disabled);
+  /* border → border-* */
+  --border-color-subtle: var(--sds-color-border-subtle);
+  --border-color-default: var(--sds-color-border-default);
+  --border-color-strong: var(--sds-color-border-strong);
+  --border-color-control: var(--sds-color-border-control);
+  --border-color-focus: var(--sds-color-border-focus);
+  --border-color-brand: var(--sds-color-border-brand);
+  --border-color-success: var(--sds-color-border-success);
+  --border-color-danger: var(--sds-color-border-danger);
+  --border-color-warning: var(--sds-color-border-warning);
+  /* focus → ring-focus / outline-focus */
+  --ring-color-focus: var(--sds-color-border-focus);
+  --outline-color-focus: var(--sds-color-border-focus);
+}

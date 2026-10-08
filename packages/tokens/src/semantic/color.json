@@ -1,0 +1,147 @@
+{
+  "color": {
+    "$type": "color",
+    "text": {
+      "heading": {
+        "$value": "{color.gray.900}",
+        "$description": "Headings and high-emphasis text."
+      },
+      "body": {
+        "$value": "{color.gray.600}",
+        "$description": "Default body copy."
+      },
+      "body-subtle": {
+        "$value": "{color.gray.500}",
+        "$description": "Secondary text: captions, helper text, metadata."
+      },
+      "brand": {
+        "$value": "{color.blue.700}",
+        "$description": "Brand-coloured text and links."
+      },
+      "brand-strong": {
+        "$value": "{color.blue.900}",
+        "$description": "Brand text on brand-soft backgrounds; link hover."
+      },
+      "on-brand": {
+        "$value": "{color.white}",
+        "$description": "Text and icons on brand, success and danger backgrounds."
+      },
+      "success": {
+        "$value": "{color.emerald.700}",
+        "$description": "Success messages and positive values."
+      },
+      "danger": {
+        "$value": "{color.rose.700}",
+        "$description": "Errors, destructive actions and negative values."
+      },
+      "warning": {
+        "$value": "{color.orange.800}",
+        "$description": "Warnings that need attention."
+      },
+      "disabled": {
+        "$value": "{color.gray.400}",
+        "$description": "Disabled text. Exempt from contrast requirements."
+      }
+    },
+    "background": {
+      "default": {
+        "$value": "{color.white}",
+        "$description": "Page and app canvas."
+      },
+      "subtle": {
+        "$value": "{color.gray.50}",
+        "$description": "Secondary surfaces: sidebars, wells, table stripes."
+      },
+      "muted": {
+        "$value": "{color.gray.100}",
+        "$description": "Hover states on neutral surfaces, code blocks, chips."
+      },
+      "emphasis": {
+        "$value": "{color.gray.200}",
+        "$description": "Pressed or selected neutral surfaces."
+      },
+      "inverse": {
+        "$value": "{color.gray.800}",
+        "$description": "High-contrast surfaces such as tooltips."
+      },
+      "brand": {
+        "$value": "{color.blue.700}",
+        "$description": "Primary actions and selected states."
+      },
+      "brand-strong": {
+        "$value": "{color.blue.800}",
+        "$description": "Hover and pressed states of brand backgrounds."
+      },
+      "brand-soft": {
+        "$value": "{color.blue.50}",
+        "$description": "Tinted brand surfaces: badges, highlights, info alerts."
+      },
+      "success": {
+        "$value": "{color.emerald.700}",
+        "$description": "Solid success indicators."
+      },
+      "success-soft": {
+        "$value": "{color.emerald.50}",
+        "$description": "Success alerts and badges."
+      },
+      "danger": {
+        "$value": "{color.rose.700}",
+        "$description": "Destructive actions and solid error indicators."
+      },
+      "danger-soft": {
+        "$value": "{color.rose.50}",
+        "$description": "Error alerts and badges."
+      },
+      "warning": {
+        "$value": "{color.orange.500}",
+        "$description": "Solid warning indicators (pair with dark text)."
+      },
+      "warning-soft": {
+        "$value": "{color.orange.50}",
+        "$description": "Warning alerts and badges."
+      },
+      "disabled": {
+        "$value": "{color.gray.100}",
+        "$description": "Disabled controls."
+      }
+    },
+    "border": {
+      "subtle": {
+        "$value": "{color.gray.100}",
+        "$description": "Low-emphasis dividers inside surfaces."
+      },
+      "default": {
+        "$value": "{color.gray.200}",
+        "$description": "Default borders for cards, tables and dividers."
+      },
+      "strong": {
+        "$value": "{color.gray.300}",
+        "$description": "Emphasised borders between surfaces."
+      },
+      "control": {
+        "$value": "{color.gray.500}",
+        "$description": "Boundaries of form controls (inputs, checkboxes) — meets 3:1."
+      },
+      "focus": {
+        "$value": "{color.blue.600}",
+        "$description": "Focus rings and outlines — meets 3:1."
+      },
+      "brand": {
+        "$value": "{color.blue.200}",
+        "$description": "Borders of brand-soft surfaces."
+      },
+      "success": {
+        "$value": "{color.emerald.200}",
+        "$description": "Borders of success-soft surfaces."
+      },
+      "danger": {
+        "$value": "{color.rose.200}",
+        "$description": "Borders of danger-soft surfaces and invalid fields."
+      },
+      "warning": {
+        "$value": "{color.orange.200}",
+        "$description": "Borders of warning-soft surfaces."
+      }
+    }
+  }
+}

@@ -5,6 +5,9 @@ import type { ComponentProps, ReactElement } from "react";
 import { Callout } from "@/components/callout";
 import { CodeBlock } from "@/components/code-block";
 import { ComponentPreview } from "@/components/component-preview";
+import { ColorPalette } from "@/components/foundation/color-palette";
+import { ContrastTable } from "@/components/foundation/contrast-table";
+import { SemanticColorTable } from "@/components/foundation/semantic-color-table";
 import { InstallCommand } from "@/components/install-command";
 import { PageHeader } from "@/components/page-header";
 import { cn } from "@/lib/utils";
@@ -96,9 +99,12 @@ const components: MDXComponents = {
     return <CodeBlock code={String(code.props.children ?? "")} lang={lang} className="my-6" />;
   },
   Callout,
+  ColorPalette,
   ComponentPreview,
+  ContrastTable,
   InstallCommand,
   PageHeader,
+  SemanticColorTable,
 };
 
 export function useMDXComponents(): MDXComponents {

@@ -1,0 +1,113 @@
+{
+  "color": {
+    "$type": "color",
+    "text": {
+      "heading": {
+        "$value": "{color.white}"
+      },
+      "body": {
+        "$value": "{color.gray.400}"
+      },
+      "body-subtle": {
+        "$value": "{color.gray.400}"
+      },
+      "brand": {
+        "$value": "{color.blue.500}"
+      },
+      "brand-strong": {
+        "$value": "{color.blue.400}"
+      },
+      "on-brand": {
+        "$value": "{color.white}"
+      },
+      "success": {
+        "$value": "{color.emerald.500}"
+      },
+      "danger": {
+        "$value": "{color.rose.400}"
+      },
+      "warning": {
+        "$value": "{color.orange.300}"
+      },
+      "disabled": {
+        "$value": "{color.gray.600}"
+      }
+    },
+    "background": {
+      "default": {
+        "$value": "{color.gray.950}"
+      },
+      "subtle": {
+        "$value": "{color.gray.900}"
+      },
+      "muted": {
+        "$value": "{color.gray.800}"
+      },
+      "emphasis": {
+        "$value": "{color.gray.700}"
+      },
+      "inverse": {
+        "$value": "{color.gray.700}"
+      },
+      "brand": {
+        "$value": "{color.blue.600}"
+      },
+      "brand-strong": {
+        "$value": "{color.blue.700}"
+      },
+      "brand-soft": {
+        "$value": "{color.blue.950}"
+      },
+      "success": {
+        "$value": "{color.emerald.700}"
+      },
+      "success-soft": {
+        "$value": "{color.emerald.950}"
+      },
+      "danger": {
+        "$value": "{color.rose.700}"
+      },
+      "danger-soft": {
+        "$value": "{color.rose.950}"
+      },
+      "warning": {
+        "$value": "{color.orange.600}"
+      },
+      "warning-soft": {
+        "$value": "{color.orange.950}"
+      },
+      "disabled": {
+        "$value": "{color.gray.800}"
+      }
+    },
+    "border": {
+      "subtle": {
+        "$value": "{color.gray.900}"
+      },
+      "default": {
+        "$value": "{color.gray.800}"
+      },
+      "strong": {
+        "$value": "{color.gray.700}"
+      },
+      "control": {
+        "$value": "{color.gray.500}"
+      },
+      "focus": {
+        "$value": "{color.blue.500}"
+      },
+      "brand": {
+        "$value": "{color.blue.900}"
+      },
+      "success": {
+        "$value": "{color.emerald.900}"
+      },
+      "danger": {
+        "$value": "{color.rose.900}"
+      },
+      "warning": {
+        "$value": "{color.orange.900}"
+      }
+    }
+  }
+}
