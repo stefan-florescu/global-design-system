@@ -1,12 +1,17 @@
+import { useId } from "react";
+
 import { Clipboard, Input, Label } from "@stefan-florescu/ui";
 
 export default function ClipboardText() {
+  // Unique ids, so the example can appear more than once on a page.
+  const id = useId();
+
   return (
     <div className="grid w-full max-w-md gap-2">
-      <Label htmlFor="invite-link">Invite link</Label>
+      <Label htmlFor={`${id}-invite-link`}>Invite link</Label>
       <div className="relative">
         <Input
-          id="invite-link"
+          id={`${id}-invite-link`}
           readOnly
           value="https://design.example.com/invite/7f3k"
           className="pe-28 font-mono"

@@ -1,12 +1,17 @@
+import { useId } from "react";
+
 import { Clipboard, Input, Label } from "@stefan-florescu/ui";
 
 export default function ClipboardIcon() {
+  // Unique ids, so the example can appear more than once on a page.
+  const id = useId();
+
   return (
     <div className="grid w-full max-w-md gap-2">
-      <Label htmlFor="install-icon">Install command</Label>
+      <Label htmlFor={`${id}-install-icon`}>Install command</Label>
       <div className="relative">
         <Input
-          id="install-icon"
+          id={`${id}-install-icon`}
           readOnly
           value="npm install @stefan-florescu/ui"
           className="pe-12 font-mono"

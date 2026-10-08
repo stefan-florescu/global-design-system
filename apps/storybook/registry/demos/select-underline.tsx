@@ -1,11 +1,16 @@
+import { useId } from "react";
+
 import { Label, Select } from "@stefan-florescu/ui";
 
 export default function SelectUnderline() {
+  // Unique ids, so the example can appear more than once on a page.
+  const id = useId();
+
   return (
     <div className="grid w-full max-w-sm gap-6">
       <div className="grid gap-2">
-        <Label htmlFor="country-underline">Country</Label>
-        <Select id="country-underline" variant="underline" defaultValue="">
+        <Label htmlFor={`${id}-country-underline`}>Country</Label>
+        <Select id={`${id}-country-underline`} variant="underline" defaultValue="">
           <option value="">Choose a country</option>
           <option value="us">United States</option>
           <option value="ca">Canada</option>

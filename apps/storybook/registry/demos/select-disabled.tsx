@@ -1,11 +1,16 @@
+import { useId } from "react";
+
 import { Label, Select } from "@stefan-florescu/ui";
 
 export default function SelectDisabled() {
+  // Unique ids, so the example can appear more than once on a page.
+  const id = useId();
+
   return (
     <div className="grid w-full max-w-sm gap-6">
       <div className="grid gap-2">
-        <Label htmlFor="country-disabled">Country</Label>
-        <Select id="country-disabled" disabled defaultValue="">
+        <Label htmlFor={`${id}-country-disabled`}>Country</Label>
+        <Select id={`${id}-country-disabled`} disabled defaultValue="">
           <option value="">Choose a country</option>
           <option value="us">United States</option>
           <option value="ca">Canada</option>

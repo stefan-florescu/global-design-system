@@ -1,6 +1,11 @@
+import { useId } from "react";
+
 import { Banner, Button, Input, Label } from "@stefan-florescu/ui";
 
 export default function BannerNewsletter() {
+  // Unique ids, so the example can appear more than once on a page.
+  const id = useId();
+
   return (
     <div className="border-border bg-background relative h-60 w-full transform-gpu overflow-hidden rounded-lg border">
       {/* The frame stands in for the browser window, so the fixed banner stays inside it. */}
@@ -9,11 +14,11 @@ export default function BannerNewsletter() {
           <p className="m-0 flex-1 text-sm">
             Get design-system updates in your inbox, once a month.
           </p>
-          <Label htmlFor="newsletter-email" className="sr-only">
+          <Label htmlFor={`${id}-newsletter-email`} className="sr-only">
             Email address
           </Label>
           <Input
-            id="newsletter-email"
+            id={`${id}-newsletter-email`}
             type="email"
             autoComplete="email"
             placeholder="ana@example.com"

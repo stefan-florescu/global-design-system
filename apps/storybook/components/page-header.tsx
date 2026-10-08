@@ -34,7 +34,7 @@ export function PageHeader({
         </span>
       </nav>
       <header className="page-header">
-        <h1 className="page-header__title" id={id ?? title.toLowerCase().replace(/\W+/g, "-")}>
+        <h1 className="page-header__title" id={id}>
           {title}
         </h1>
         {description ? <p className="page-header__lead">{description}</p> : null}
