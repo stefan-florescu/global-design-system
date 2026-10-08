@@ -19,6 +19,14 @@ A token-driven, accessible, multi-theme React design system in a pnpm + Turborep
 
 Dependency direction is strictly **tokens → themes → ui → apps**. Never import "upward".
 
+## Design principles
+
+Every change — code, tokens, docs or tooling — must follow [`docs/principles.md`](docs/principles.md):
+**Consistency · Accessibility · Scalability · Developer experience · Performance**.
+Read it before starting work. Accessibility is never traded away; when other principles
+conflict, favour end users (consistency, performance) over builders (scalability, DX), and record
+significant trade-offs as an ADR. Run the "Applying the principles" checklist before finishing.
+
 ## Commands
 
 ```bash

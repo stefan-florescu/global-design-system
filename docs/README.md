@@ -16,6 +16,9 @@ This folder is the architectural source of truth. It is written for designers, e
 
 Architecture Decision Records live in [`decisions/`](decisions/).
 
+**Start with the [Design Principles](principles.md)** — Consistency, Accessibility, Scalability,
+Developer experience and Performance. Every decision in this plan is measured against them.
+
 ## Status
 
 **Phase 0 — Environment & architecture: ✅ scaffolded.**
