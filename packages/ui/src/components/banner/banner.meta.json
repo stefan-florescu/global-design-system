@@ -22,6 +22,7 @@
     "color.accent",
     "color.accent-foreground",
     "color.ring",
+    "z.fixed",
     "radius.lg",
     "shadow.md",
     "text.sm"

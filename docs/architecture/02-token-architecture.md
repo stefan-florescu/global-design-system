@@ -70,7 +70,7 @@ Raw, context-free values. Named by _what they are_.
 
 Named by _what they're for_. Every colour token has a `$description` and a docs group
 (`$extensions.sds.group`). The theme-independent scales — spacing, radius, border width,
-typography, elevation, icons, breakpoints, containers — also live here: components use them
+typography, elevation, layers (`z.*`), icons, breakpoints, containers — also live here: components use them
 directly.
 
 ```json

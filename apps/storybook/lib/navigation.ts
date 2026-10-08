@@ -37,7 +37,7 @@ export const sidebarNav: NavSection[] = [
       },
       {
         title: "Spacing & layout",
-        description: "The 4px spacing scale, layout grid, breakpoints and containers.",
+        description: "The 4px spacing scale, layout grid, breakpoints, containers and layers.",
         href: "/foundation/spacing-and-layout",
       },
       {

@@ -21,6 +21,7 @@
     "color.accent",
     "color.brand-subtle-foreground",
     "color.ring",
+    "z.fixed",
     "radius.full",
     "shadow.md",
     "text.sm"

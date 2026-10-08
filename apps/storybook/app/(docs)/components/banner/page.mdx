@@ -25,9 +25,9 @@ import { Banner } from "@stefan-florescu/ui";
 The examples render inside a frame that stands in for the browser window. In your app, the banner
 is fixed to the viewport.
 
-<Callout title="Layering" variant="warning">
-  The design system has no z-index tokens yet, so `Banner` sets none. If it must sit above other
-  positioned content, add a z-index from your app's layer scale with `className`.
+<Callout title="Layering">
+  `Banner` sits on the `z.fixed` layer (`z-fixed`), above sticky headers and below overlays, dialogs
+  and toasts. See [Spacing & layout](/foundation/spacing-and-layout#layering).
 </Callout>
 
 ## Examples

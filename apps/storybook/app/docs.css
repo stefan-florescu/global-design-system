@@ -154,7 +154,7 @@
     position: fixed;
     top: 0.5rem;
     left: 0.5rem;
-    z-index: 100;
+    z-index: var(--sds-z-skip-link);
     padding: 0.5rem 0.875rem;
     font-size: 0.875rem;
     font-weight: 500;
@@ -333,7 +333,7 @@
   .backdrop {
     position: fixed;
     inset: 0;
-    z-index: 45;
+    z-index: var(--sds-z-overlay);
     display: none;
     background: var(--sds-color-overlay);
   }

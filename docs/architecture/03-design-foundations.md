@@ -45,6 +45,10 @@ Inter (sans, self-hosted variable font, weights 300–800 + italic), Georgia (se
 `--sds-shadow-sm`, `md`, `lg` (dark theme strengthens `lg`). Icons: `--sds-icon-sm/md/lg/xl`
 (16/20/24/32px) and `--sds-icon-stroke` 1.5.
 
+Layers (`src/semantic/layer.json`): `--sds-z-base` 0, `raised` 10, `dropdown` 1000, `sticky` 1100,
+`fixed` 1200, `overlay` 1300, `modal` 1400, `popover` 1500, `toast` 1600, `tooltip` 1700,
+`skip-link` 1800, exposed as `z-*` utilities. Components never use raw `z-index` values (ADR 0008).
+
 ## 3.6 Grid system
 
 Fluid grid: 4 columns (base), 8 from `md`, 12 from `lg`; gutters and margins step 16 → 24 → 32px.

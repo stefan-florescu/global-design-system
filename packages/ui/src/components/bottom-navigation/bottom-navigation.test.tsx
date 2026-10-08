@@ -54,6 +54,15 @@ describe("BottomNavigation", () => {
     expect(screen.getByText("Profile")).toHaveClass("sr-only");
   });
 
+  it("sits on the fixed layer", () => {
+    render(
+      <BottomNavigation>
+        <BottomNavigationItem href="/">Home</BottomNavigationItem>
+      </BottomNavigation>,
+    );
+    expect(screen.getByRole("navigation")).toHaveClass("fixed", "z-fixed");
+  });
+
   it("applies bordered and floating styles", () => {
     render(
       <BottomNavigation floating bordered>
