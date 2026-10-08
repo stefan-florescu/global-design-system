@@ -1,0 +1,87 @@
+export const metadata = {
+  title: "Carousel",
+  description: "Cycles through a set of slides, such as images or featured content, one at a time.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="carousel-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Carousel } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Carousel aria-label="Featured trips">
+  <img src="/trips/alps.jpg" alt="The Alps at sunrise" />
+  <img src="/trips/coast.jpg" alt="A rocky coastline" />
+</Carousel>
+```
+
+Each child is one slide. `Carousel` is a client component.
+
+## Examples
+
+### Default slider
+
+Add `autoPlay` to move to the next slide every `interval` milliseconds (5000 by default). A pause
+button appears in the corner. Rotation pauses while the pointer is over the carousel, and stops
+when keyboard focus enters it until the user starts it again.
+
+<ComponentPreview name="carousel-demo" />
+
+### Static slider
+
+Without `autoPlay`, slides change only when the user asks.
+
+<ComponentPreview name="carousel-static" />
+
+### Controls
+
+Set `indicators={false}` to show only the previous and next buttons.
+
+<ComponentPreview name="carousel-controls" />
+
+### Indicators
+
+Set `controls={false}` to show only the slide indicators.
+
+<ComponentPreview name="carousel-indicators" />
+
+<Callout title="Use carousels sparingly">
+  Most people never get past the first slide. Put the most important content first, and don't hide
+  anything essential in a carousel.
+</Callout>
+
+## Accessibility
+
+- Follows the [WAI-ARIA Carousel pattern](https://www.w3.org/WAI/ARIA/apg/patterns/carousel/): a
+  region with `aria-roledescription="carousel"` and your `aria-label`, and slides announced as
+  "slide, 2 of 5".
+- Hidden slides are `inert`, so their links and buttons can't receive focus.
+- Slide changes are announced politely, except while the carousel rotates on its own.
+- Automatic rotation always has a pause button, pauses on hover, stops on keyboard focus, and never
+  starts when the user prefers reduced motion. The slide transition is also turned off for them.
+- Previous, next and indicator buttons have names ("Next slide", "Go to slide 3"), and the current
+  indicator has `aria-current`. Each indicator is a 24px target.
+- Give every image slide meaningful `alt` text.
+
+## API Reference
+
+| Prop            | Type                      | Default      |
+| --------------- | ------------------------- | ------------ |
+| `autoPlay`      | `boolean`                 | `false`      |
+| `interval`      | `number` (ms)             | `5000`       |
+| `controls`      | `boolean`                 | `true`       |
+| `indicators`    | `boolean`                 | `true`       |
+| `defaultIndex`  | `number`                  | `0`          |
+| `onSlideChange` | `(index: number) => void` | —            |
+| `aria-label`    | `string`                  | `"Carousel"` |
+
+All other `<section>` attributes are forwarded, including `ref` and `className`.

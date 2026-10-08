@@ -1,0 +1,103 @@
+export const metadata = {
+  title: "Card",
+  description: "A surface that groups related content and actions about a single subject.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="card-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Card, CardDescription, CardTitle } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Card>
+  <CardTitle>Release notes</CardTitle>
+  <CardDescription>What changed this week.</CardDescription>
+</Card>
+```
+
+## Examples
+
+### Default card
+
+Pass `href` to make the whole card a link. It gets the `accent` hover surface and a focus ring.
+
+<ComponentPreview name="card-demo" />
+
+### Card with action button
+
+Without `href`, put actions inside the card. Don't combine both: a link can't contain buttons.
+
+<ComponentPreview name="card-cta" />
+
+### Card with image
+
+Pass `imgSrc` (and `imgAlt` when the image carries meaning) to show an image above the content.
+
+<ComponentPreview name="card-image" />
+
+### Horizontal card
+
+Add `horizontal` to place the image on the left from the `md` breakpoint.
+
+<ComponentPreview name="card-horizontal" />
+
+### User profile card
+
+<ComponentPreview name="card-profile" />
+
+### E-commerce card
+
+The star rating is one image named "Rated 4 out of 5"; the stars themselves are hidden from
+assistive technology.
+
+<ComponentPreview name="card-ecommerce" />
+
+### Card with list
+
+<ComponentPreview name="card-list" />
+
+### Pricing card
+
+Features that aren't included say so in visually hidden text, so the meaning doesn't depend on the
+strikethrough or the icon.
+
+<ComponentPreview name="card-pricing" />
+
+## Accessibility
+
+- A card is a plain container. Give it a heading with `CardTitle` (an `<h3>` by default; set
+  `headingLevel` to match your page outline) so screen-reader users can jump between cards.
+- With `href`, the whole card is one link whose name is all of its text. Keep link cards short,
+  and don't put buttons or other links inside them.
+- Images are decorative unless you pass `imgAlt`.
+- Card text uses `card-foreground` and `muted-foreground` on the `card` surface, which pass WCAG
+  2.2 AA in both themes.
+
+## API Reference
+
+### Card
+
+| Prop         | Type      | Default |
+| ------------ | --------- | ------- |
+| `href`       | `string`  | —       |
+| `horizontal` | `boolean` | `false` |
+| `imgSrc`     | `string`  | —       |
+| `imgAlt`     | `string`  | `""`    |
+
+### CardTitle
+
+| Prop           | Type                    | Default |
+| -------------- | ----------------------- | ------- |
+| `headingLevel` | `2 \| 3 \| 4 \| 5 \| 6` | `3`     |
+
+`CardDescription` renders a `<p>`. All parts forward native attributes, including `ref` and
+`className`.

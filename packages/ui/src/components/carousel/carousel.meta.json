@@ -1,0 +1,36 @@
+{
+  "name": "Carousel",
+  "status": "beta",
+  "description": "Cycles through a set of slides, such as images or featured content, one at a time.",
+  "category": "data-display",
+  "import": "import { Carousel } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/carousel/",
+  "client": true,
+  "props": "generated",
+  "variants": {
+    "autoPlay": [true, false],
+    "controls": [true, false],
+    "indicators": [true, false]
+  },
+  "defaults": { "autoPlay": false, "interval": 5000, "controls": true, "indicators": true },
+  "tokens": [
+    "color.background",
+    "color.foreground",
+    "color.ring",
+    "radius.lg",
+    "radius.full",
+    "shadow.sm"
+  ],
+  "useWhen": ["Showcasing several images or highlights in limited space"],
+  "avoidWhen": [
+    "Content everyone must see: most people never get past the first slide",
+    "Navigation or critical actions"
+  ],
+  "related": ["Card"],
+  "examples": [
+    "apps/storybook/registry/demos/carousel-demo.tsx",
+    "apps/storybook/registry/demos/carousel-static.tsx",
+    "apps/storybook/registry/demos/carousel-controls.tsx",
+    "apps/storybook/registry/demos/carousel-indicators.tsx"
+  ]
+}

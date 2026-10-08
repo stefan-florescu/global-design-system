@@ -1,0 +1,91 @@
+export const metadata = {
+  title: "Chat Bubble",
+  description: "One message in a conversation: avatar, sender, time, content and delivery status.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="chat-bubble-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Avatar, ChatBubble } from "@stefan-florescu/ui";
+```
+
+```tsx
+<ChatBubble
+  avatar={<Avatar src="/team/ana.jpg" alt="" size="sm" />}
+  name="Ana Popescu"
+  time="11:46"
+  dateTime="2026-10-08T11:46"
+  status="Delivered"
+>
+  The new tokens are live.
+</ChatBubble>
+```
+
+## Examples
+
+### Default chat bubble
+
+The message sits on the `muted` surface. The corner next to the avatar stays square.
+
+<ComponentPreview name="chat-bubble-demo" />
+
+### File attachment
+
+Any content can go inside the bubble, such as a file with a download button.
+
+<ComponentPreview name="chat-bubble-file" />
+
+### Image attachment
+
+<ComponentPreview name="chat-bubble-image" />
+
+### Outline chat bubble
+
+Set `variant="outline"` for a bordered bubble on the page background.
+
+<ComponentPreview name="chat-bubble-outline" />
+
+### Clean chat bubble
+
+Set `variant="clean"` to drop the surface and padding, for dense threads.
+
+<ComponentPreview name="chat-bubble-clean" />
+
+### Conversation
+
+Set `align="end"` for messages the user sent. Wrap the conversation in a container with
+`role="log"` and an `aria-label`, so screen readers announce new messages as they arrive.
+
+<ComponentPreview name="chat-bubble-conversation" />
+
+## Accessibility
+
+- Put conversations in a `role="log"` container with a name, such as "Chat with Ana Popescu". New
+  messages added to the end are announced politely.
+- The time renders a `<time>` element; pass `dateTime` so it has a machine-readable value.
+- When the sender's name is shown, give the avatar an empty `alt` so the name isn't read twice.
+- Text uses `foreground` and `muted-foreground` on `muted` or `background`, pairings that pass WCAG
+  2.2 AA in both themes.
+- Name icon-only actions inside a bubble, such as "Download Design tokens guide".
+
+## API Reference
+
+| Prop       | Type                                | Default     |
+| ---------- | ----------------------------------- | ----------- |
+| `avatar`   | `ReactNode`                         | —           |
+| `name`     | `ReactNode`                         | —           |
+| `time`     | `string`                            | —           |
+| `dateTime` | `string`                            | —           |
+| `status`   | `ReactNode`                         | —           |
+| `variant`  | `"default" \| "outline" \| "clean"` | `"default"` |
+| `align`    | `"start" \| "end"`                  | `"start"`   |
+
+All other `<div>` attributes are forwarded, including `ref` and `className`.

@@ -12,12 +12,11 @@
  */
 export type { LucideIcon, LucideProps } from "lucide-react";
 
-export { Clock, House, Megaphone, Settings, User, Wallet } from "lucide-react";
-
 export {
   ArrowRight,
   ArrowUp,
   ArrowUpRight,
+  Calendar,
   Check,
   ChevronDown,
   ChevronLeft,
@@ -25,20 +24,30 @@ export {
   CircleAlert,
   CircleCheck,
   CircleX,
+  Clock,
   Copy,
   CornerDownLeft,
+  Download,
   FileText,
   GitBranch,
+  House,
   Info,
   Link,
   LoaderCircle,
   Mail,
+  Megaphone,
   Menu,
   Moon,
+  Pause,
+  Play,
   Plus,
   Search,
+  Settings,
   SquarePen,
+  Star,
   Sun,
   TriangleAlert,
+  User,
+  Wallet,
   X,
 } from "lucide-react";

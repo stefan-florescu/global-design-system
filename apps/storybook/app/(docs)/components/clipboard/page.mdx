@@ -1,0 +1,74 @@
+export const metadata = {
+  title: "Clipboard",
+  description:
+    "A button that copies a value to the clipboard and confirms it visually and to screen readers.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="clipboard-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Clipboard } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Clipboard value="npm install @stefan-florescu/ui" />
+```
+
+`Clipboard` is a client component built on `Button`, so it accepts the same `variant`, `size`,
+`pill` and `iconOnly` options.
+
+## Examples
+
+### Copy to clipboard
+
+Place the button next to the value it copies. After copying, the button shows a check icon and
+"Copied!" for two seconds (`resetAfter`).
+
+<ComponentPreview name="clipboard-demo" />
+
+### Input with copy button
+
+Set `iconOnly` for a compact button inside the field. Its `label` becomes the accessible name, so
+say what it copies.
+
+<ComponentPreview name="clipboard-icon" />
+
+### Copy button with text
+
+<ComponentPreview name="clipboard-text" />
+
+### Card with API keys
+
+<ComponentPreview name="clipboard-card" />
+
+## Accessibility
+
+- A native `<button>`. Its name is `label` ("Copy" by default) and changes to `copiedLabel` after
+  copying.
+- The confirmation is also sent to a polite `role="status"` live region, so screen-reader users
+  hear "Copied!" without moving focus.
+- Make the name specific when there are several copy buttons ("Copy API key"), or point to the
+  value with `aria-describedby`.
+- The check icon isn't the only confirmation: the text changes too.
+- Copying needs a secure context (HTTPS or localhost). If the browser refuses, the button stays in
+  its normal state.
+
+## API Reference
+
+| Prop          | Type                      | Default     |
+| ------------- | ------------------------- | ----------- |
+| `value`       | `string` (required)       | —           |
+| `label`       | `string`                  | `"Copy"`    |
+| `copiedLabel` | `string`                  | `"Copied!"` |
+| `resetAfter`  | `number` (ms)             | `2000`      |
+| `onCopy`      | `(value: string) => void` | —           |
+
+Accepts every `Button` prop except `children`, including `variant`, `size` and `iconOnly`.

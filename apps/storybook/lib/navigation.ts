@@ -91,6 +91,36 @@ export const sidebarNav: NavSection[] = [
         description: "Displays a button or a component that looks like a button.",
         href: "/components/button",
       },
+      {
+        title: "Button Group",
+        description: "Joins related buttons or links into a single control.",
+        href: "/components/button-group",
+      },
+      {
+        title: "Card",
+        description: "A surface that groups content and actions about one subject.",
+        href: "/components/card",
+      },
+      {
+        title: "Carousel",
+        description: "Cycles through slides of images or featured content.",
+        href: "/components/carousel",
+      },
+      {
+        title: "Chat Bubble",
+        description: "One message in a conversation, with sender, time and status.",
+        href: "/components/chat-bubble",
+      },
+      {
+        title: "Clipboard",
+        description: "A button that copies a value and confirms it.",
+        href: "/components/clipboard",
+      },
+      {
+        title: "Datepicker",
+        description: "Pick a day or a range from a calendar, inline or in a popover.",
+        href: "/components/datepicker",
+      },
     ],
   },
 ];

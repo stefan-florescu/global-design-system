@@ -1,0 +1,60 @@
+{
+  "name": "Datepicker",
+  "status": "beta",
+  "description": "Pick a day from a calendar: inline (Calendar) or in a popover opened from a button (Datepicker). Calendar also supports date ranges.",
+  "category": "forms",
+  "import": "import { Calendar, Datepicker } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/datepicker-dialog/",
+  "client": true,
+  "props": "generated",
+  "parts": ["Datepicker", "Calendar"],
+  "variants": {
+    "mode": ["single", "range"],
+    "autoHide": [true, false],
+    "showTodayButton": [true, false],
+    "showClearButton": [true, false]
+  },
+  "defaults": {
+    "mode": "single",
+    "weekStartsOn": 0,
+    "autoHide": true,
+    "label": "Date",
+    "placeholder": "Select date"
+  },
+  "tokens": [
+    "color.popover",
+    "color.popover-foreground",
+    "color.foreground",
+    "color.muted-foreground",
+    "color.accent",
+    "color.accent-foreground",
+    "color.brand",
+    "color.brand-foreground",
+    "color.brand-subtle",
+    "color.brand-subtle-foreground",
+    "color.border",
+    "color.ring",
+    "radius.lg",
+    "shadow.sm",
+    "shadow.lg",
+    "z.popover"
+  ],
+  "useWhen": [
+    "Choosing a day close to today, where the weekday matters",
+    "Choosing a range of days, such as a stay"
+  ],
+  "avoidWhen": [
+    "Dates far in the past, such as a birth date: use separate day, month and year fields"
+  ],
+  "related": ["Button"],
+  "examples": [
+    "apps/storybook/registry/demos/datepicker-demo.tsx",
+    "apps/storybook/registry/demos/datepicker-inline.tsx",
+    "apps/storybook/registry/demos/datepicker-range.tsx",
+    "apps/storybook/registry/demos/datepicker-buttons.tsx",
+    "apps/storybook/registry/demos/datepicker-title.tsx",
+    "apps/storybook/registry/demos/datepicker-min-max.tsx",
+    "apps/storybook/registry/demos/datepicker-week-start.tsx",
+    "apps/storybook/registry/demos/datepicker-disabled-days.tsx"
+  ]
+}

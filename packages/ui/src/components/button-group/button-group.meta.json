@@ -1,0 +1,26 @@
+{
+  "name": "ButtonGroup",
+  "status": "beta",
+  "description": "Joins related buttons or links into a single control.",
+  "category": "actions",
+  "import": "import { Button, ButtonGroup } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/button/",
+  "client": false,
+  "props": "generated",
+  "variants": { "pill": [true, false] },
+  "defaults": { "pill": false },
+  "tokens": ["radius.lg", "radius.full", "z.raised"],
+  "useWhen": [
+    "Two to five related actions on the same object",
+    "Switching between related views with links"
+  ],
+  "avoidWhen": ["Choosing one option from a set: use a radio group or tabs", "Unrelated actions"],
+  "related": ["Button"],
+  "examples": [
+    "apps/storybook/registry/demos/button-group-demo.tsx",
+    "apps/storybook/registry/demos/button-group-links.tsx",
+    "apps/storybook/registry/demos/button-group-icons.tsx",
+    "apps/storybook/registry/demos/button-group-outline.tsx",
+    "apps/storybook/registry/demos/button-group-outline-icons.tsx"
+  ]
+}
