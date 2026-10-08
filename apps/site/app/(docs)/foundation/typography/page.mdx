@@ -1,0 +1,30 @@
+export const metadata = {
+  title: "Typography",
+  description: "Typefaces, the type scale and composite text styles.",
+};
+
+<PageHeader {...metadata} section="Foundation" status="planned" />
+
+<Callout title="Coming in Phase A">
+  Typography tokens are being defined. This page will render a live type specimen.
+</Callout>
+
+## Typefaces
+
+- **Sans** for interface text.
+- **Mono** for code and tabular figures.
+
+## Type scale
+
+A modular scale (≈ 1.2) from `label-sm` (12px) to `display-lg` (48px), defined in `rem`.
+
+| Style        | Size / Line height | Weight |
+| ------------ | ------------------ | ------ |
+| `heading-xl` | 32 / 40            | 600    |
+| `heading-lg` | 24 / 32            | 600    |
+| `body-md`    | 16 / 24            | 400    |
+| `label-md`   | 14 / 20            | 500    |
+
+## Usage
+
+Use composite text styles (`text-heading-lg`) rather than setting size, weight and line height separately.

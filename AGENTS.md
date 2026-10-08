@@ -15,6 +15,7 @@ A token-driven, accessible, multi-theme React design system in a pnpm + Turborep
 | `packages/ui`       | `@stefan-florescu/ui`                  | React 19 components (Tailwind v4 + CVA)             |
 | `packages/icons`    | `@stefan-florescu/icons`               | Governed wrapper over `lucide-react`                |
 | `packages/config/*` | `@stefan-florescu/*-config`            | Shared TS / ESLint / Tailwind presets               |
+| `apps/site`         | `@stefan-florescu/site` (private)      | Public docs website (Next.js 15, MDX, shadcn-style) |
 | `apps/storybook`    | `@stefan-florescu/storybook` (private) | Component workbench                                 |
 
 Dependency direction is strictly **tokens → themes → ui → apps**. Never import "upward".
@@ -23,7 +24,8 @@ Dependency direction is strictly **tokens → themes → ui → apps**. Never im
 
 ```bash
 pnpm install            # Node >= 22, pnpm 10
-pnpm dev                # Storybook + package watchers
+pnpm dev                # docs site + Storybook + package watchers
+pnpm dev:site           # http://localhost:3000
 pnpm dev:storybook      # http://localhost:6006
 pnpm build | lint | typecheck | test | format
 pnpm --filter @stefan-florescu/ui test
@@ -57,7 +59,7 @@ packages/ui/src/components/<kebab-name>/
 ├── <kebab-name>.variants.ts   # cva() definition + VariantProps type
 ├── <kebab-name>.test.tsx      # behaviour + a11y (Testing Library, role queries)
 ├── <kebab-name>.stories.tsx   # title: "Components/<PascalName>"
-├── <kebab-name>.mdx           # usage docs
+├── <kebab-name>.mdx           # Storybook usage notes (public docs page lives in apps/site)
 ├── <kebab-name>.meta.json     # machine-readable metadata (see docs/architecture/07-ai-readiness.md)
 └── index.ts
 ```

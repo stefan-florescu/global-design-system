@@ -1,0 +1,39 @@
+export const metadata = {
+  title: "Color",
+  description: "OKLCH colour palettes, semantic roles and how they map to light and dark themes.",
+};
+
+<PageHeader {...metadata} section="Foundation" status="planned" />
+
+<Callout title="Coming in Phase A">
+  Colour tokens are being defined. This page will render live swatches straight from
+  `@stefan-florescu/tokens`.
+</Callout>
+
+## Principles
+
+- Colours are authored in **OKLCH** for perceptually even steps.
+- Components use **semantic** roles (`background`, `text`, `action`…), never raw palette steps.
+- Every pairing meets **WCAG 2.2 AA**; body text targets 7:1.
+
+## Palettes
+
+Primitive palettes with 11 steps (50–950): `neutral`, `brand`, `blue`, `green`, `amber`, `red`, `violet`.
+
+## Semantic roles
+
+| Group        | Tokens                                                      |
+| ------------ | ----------------------------------------------------------- |
+| `background` | `default`, `subtle`, `muted`, `inverse`, `overlay`          |
+| `text`       | `default`, `muted`, `subtle`, `inverse`, `disabled`, `link` |
+| `border`     | `default`, `subtle`, `strong`, `focus`, `invalid`           |
+| `action`     | `primary`, `secondary`, `ghost`, `danger`                   |
+| `feedback`   | `info`, `success`, `warning`, `danger`                      |
+
+## Themes
+
+Light and dark re-assign semantic roles via `data-theme`; components never change.
+
+## Accessibility
+
+Contrast is checked automatically when tokens are built.

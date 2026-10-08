@@ -1,13 +1,13 @@
 # 06 · Documentation Architecture
 
-> **Current state:** the Next.js docs site is deferred. Storybook (`apps/storybook`) is the only
-> documentation surface for now; the structure below is the target once `apps/docs` is added back.
+> **Current state:** the docs site lives in `apps/site` (see ADR 0006). It currently has the
+> Foundation, Components and Changelog sections; the remaining sections below are added as content exists.
 
 ## 6.1 Two surfaces, one source
 
 | Surface       | App              | Audience                     | Content                                                         |
 | ------------- | ---------------- | ---------------------------- | --------------------------------------------------------------- |
-| **Docs site** | `apps/docs`      | Designers, PMs, engineers    | Guidance: when/why/how, live examples, props, patterns          |
+| **Docs site** | `apps/site`      | Designers, PMs, engineers    | Guidance: when/why/how, live examples, props, patterns          |
 | **Storybook** | `apps/storybook` | Engineers, QA, design review | Workbench: every state, controls, a11y panel, interaction tests |
 
 Both read from the same sources in `packages/ui` (stories, `.mdx`, `.meta.json`, TSDoc), so

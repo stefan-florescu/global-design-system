@@ -25,6 +25,10 @@ Principles:
 ```
 global-design-system/                 # "stefan-design-system"
 ├── apps/
+│   ├── site/                         # Next.js 15 docs website (shadcn-style, MDX) → Vercel
+│   │   ├── app/(docs)/               # Foundation, Components, Changelog pages (MDX)
+│   │   ├── components/               # Site chrome: header, search, theme toggle, TOC
+│   │   └── registry/demos/           # Live examples rendered by <ComponentPreview>
 │   └── storybook/                    # Storybook 10 workbench → Vercel (static)
 │       ├── .storybook/               # main.ts, preview.ts, preview.css
 │       ├── src/                      # Storybook-only MDX (intro, token playgrounds)
@@ -57,16 +61,15 @@ global-design-system/                 # "stefan-design-system"
 
 ### Packages to add later (when they earn their place)
 
-| Package                                 | When                                                                   |
-| --------------------------------------- | ---------------------------------------------------------------------- |
-| `packages/hooks`                        | When ≥3 non-UI hooks exist (`useControllableState`, …)                 |
-| `packages/patterns`                     | Phase D — composed, opinionated building blocks                        |
-| `packages/templates` / `apps/templates` | Phase E — full page templates / starter apps                           |
-| `packages/figma-sync`                   | When syncing Figma Variables ⇄ tokens (Tokens Studio / REST)           |
-| `packages/mcp` (or `apps/mcp`)          | AI phase — MCP server exposing tokens & component metadata             |
-| `packages/codemods`                     | First breaking major — automated migrations                            |
-| `apps/docs`                             | When guidance outgrows Storybook — Next.js 15 docs site (see ADR 0004) |
-| `apps/playground`                       | Optional — sandbox to compose components in a real Next app            |
+| Package                                 | When                                                         |
+| --------------------------------------- | ------------------------------------------------------------ |
+| `packages/hooks`                        | When ≥3 non-UI hooks exist (`useControllableState`, …)       |
+| `packages/patterns`                     | Phase D — composed, opinionated building blocks              |
+| `packages/templates` / `apps/templates` | Phase E — full page templates / starter apps                 |
+| `packages/figma-sync`                   | When syncing Figma Variables ⇄ tokens (Tokens Studio / REST) |
+| `packages/mcp` (or `apps/mcp`)          | AI phase — MCP server exposing tokens & component metadata   |
+| `packages/codemods`                     | First breaking major — automated migrations                  |
+| `apps/playground`                       | Optional — sandbox to compose components in a real Next app  |
 
 ## 1.3 Package structure
 

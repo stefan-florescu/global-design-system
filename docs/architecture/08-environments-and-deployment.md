@@ -63,9 +63,20 @@ Consumers of GitHub Packages add to their `.npmrc`:
 //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
 ```
 
-## 8.5 Vercel — Storybook project
+## 8.5 Vercel — two projects
 
-One Vercel project, linked to this GitHub repo:
+Two Vercel projects are linked to this GitHub repo: the public docs site and the Storybook workbench.
+
+| Setting           | Docs site                    |
+| ----------------- | ---------------------------- |
+| Project name      | `sds-site`                   |
+| Root Directory    | `apps/site`                  |
+| Framework preset  | Next.js                      |
+| Build             | from `apps/site/vercel.json` |
+| Node.js version   | 22.x                         |
+| Production branch | `main`                       |
+
+Storybook:
 
 | Setting                              | Value                                                                                    |
 | ------------------------------------ | ---------------------------------------------------------------------------------------- |
@@ -80,9 +91,6 @@ One Vercel project, linked to this GitHub repo:
 
 Every PR gets a preview URL from the Vercel bot; `main` deploys to production.
 Enable **Vercel Remote Cache** (Team → Settings → Remote Caching) and reuse it in CI via `TURBO_TOKEN`.
-
-A Next.js docs site (`apps/docs`) is deferred — see ADR 0004. When it returns it becomes a second
-Vercel project with root `apps/docs`.
 
 ## 8.6 Release flow
 

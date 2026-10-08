@@ -11,6 +11,7 @@ Token-driven · component-based · accessible by default · multi-theme · AI-fr
 
 | App              | Stack               | Local                 |
 | ---------------- | ------------------- | --------------------- |
+| `apps/site`      | Next.js 15 · MDX    | http://localhost:3000 |
 | `apps/storybook` | Storybook 10 · Vite | http://localhost:6006 |
 
 ## Quick start
@@ -23,7 +24,7 @@ pnpm dev
 
 | Command          | Does                                         |
 | ---------------- | -------------------------------------------- |
-| `pnpm dev`       | Run docs + Storybook                         |
+| `pnpm dev`       | Run the docs site + Storybook                |
 | `pnpm build`     | Build every package and app (Turborepo)      |
 | `pnpm lint`      | ESLint (incl. jsx-a11y strict)               |
 | `pnpm typecheck` | TypeScript strict                            |
