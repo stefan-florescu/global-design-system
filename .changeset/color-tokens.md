@@ -3,4 +3,4 @@
 "@stefan-florescu/themes": minor
 ---
 
-Add the color foundation: 22 primitive OKLCH palettes (Tailwind v4 defaults) and 34 semantic color tokens for text, backgrounds and borders, with light and dark themes. The themes build now exports `themes.json` and `contrast.json` and fails when a checked color pairing misses WCAG 2.2 AA in any theme.
+Add the foundation tokens: 8 primitive colour scales (80 Flowbite hex values) and 48 semantic colour tokens with light and dark themes, plus typography, a 4px spacing scale, border widths, radius, elevation, icon sizes, breakpoints and containers. The themes build exports `themes.json` and `contrast.json` and fails when a checked colour pairing misses WCAG 2.2 AA in any theme. Source DTCG files are exported as `@stefan-florescu/tokens/src/*`.

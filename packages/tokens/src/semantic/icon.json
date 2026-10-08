@@ -1,0 +1,22 @@
+{
+  "icon": {
+    "$type": "dimension",
+    "sm": {
+      "$value": "1rem"
+    },
+    "md": {
+      "$value": "1.25rem"
+    },
+    "lg": {
+      "$value": "1.5rem"
+    },
+    "xl": {
+      "$value": "2rem"
+    },
+    "stroke": {
+      "$type": "number",
+      "$value": 1.5,
+      "$description": "Stroke width in the 24px drawing box; scales with the rendered size."
+    }
+  }
+}

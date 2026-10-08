@@ -1,51 +1,53 @@
 import { ChevronRight } from "@stefan-florescu/icons";
+import type { ReactNode } from "react";
 
-type Status = "planned" | "experimental" | "beta" | "stable";
+import { Badge, type BadgeVariant } from "./badge";
 
-const statusLabel: Record<Status, string> = {
-  planned: "Planned",
-  experimental: "Experimental",
-  beta: "Beta",
-  stable: "Stable",
-};
+export type PageBadge = { label: string; variant?: BadgeVariant };
 
 export function PageHeader({
   title,
   description,
   section,
-  status,
+  badges = [],
+  id,
 }: {
   title: string;
-  description?: string;
+  description?: ReactNode;
   section?: string;
-  status?: Status;
+  badges?: PageBadge[];
+  id?: string;
 }) {
   return (
-    <div className="mb-8 flex flex-col gap-2">
-      {section ? (
-        <nav aria-label="Breadcrumb">
-          <ol className="text-muted-foreground flex items-center gap-1.5 text-sm">
-            <li>Docs</li>
-            <ChevronRight aria-hidden className="size-3.5" />
-            <li>{section}</li>
-            <ChevronRight aria-hidden className="size-3.5" />
-            <li aria-current="page" className="text-foreground font-medium">
-              {title}
-            </li>
-          </ol>
-        </nav>
-      ) : null}
-      <div className="flex flex-wrap items-center gap-3">
-        <h1 className="scroll-m-20 text-3xl font-semibold tracking-tight">{title}</h1>
-        {status ? (
-          <span className="text-muted-foreground rounded-full border px-2 py-0.5 text-xs font-medium">
-            {statusLabel[status]}
-          </span>
+    <>
+      <nav className="breadcrumb" aria-label="Breadcrumb">
+        <span>Docs</span>
+        {section ? (
+          <>
+            <ChevronRight aria-hidden size={14} />
+            <span>{section}</span>
+          </>
         ) : null}
-      </div>
-      {description ? (
-        <p className="text-muted-foreground text-base text-balance">{description}</p>
-      ) : null}
-    </div>
+        <ChevronRight aria-hidden size={14} />
+        <span className="breadcrumb__current" aria-current="page">
+          {title}
+        </span>
+      </nav>
+      <header className="page-header">
+        <h1 className="page-header__title" id={id ?? title.toLowerCase().replace(/\W+/g, "-")}>
+          {title}
+        </h1>
+        {description ? <p className="page-header__lead">{description}</p> : null}
+        {badges.length ? (
+          <div className="page-header__meta">
+            {badges.map((badge) => (
+              <Badge key={badge.label} variant={badge.variant}>
+                {badge.label}
+              </Badge>
+            ))}
+          </div>
+        ) : null}
+      </header>
+    </>
   );
 }

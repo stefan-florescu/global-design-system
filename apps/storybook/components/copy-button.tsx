@@ -3,38 +3,29 @@
 import { Check, Copy } from "@stefan-florescu/icons";
 import { useEffect, useState } from "react";
 
-import { cn } from "@/lib/utils";
-
-export function CopyButton({ value, className }: { value: string; className?: string }) {
+/** Copy-to-clipboard button. `subtle` is the variant for light surfaces (preview toolbar). */
+export function CopyButton({ value, subtle = false }: { value: string; subtle?: boolean }) {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (!copied) return;
-    const timeout = setTimeout(() => setCopied(false), 2000);
+    const timeout = setTimeout(() => setCopied(false), 1600);
     return () => clearTimeout(timeout);
   }, [copied]);
 
   return (
     <button
+      className={subtle ? "copy-button copy-button--subtle" : "copy-button"}
       type="button"
+      aria-label={copied ? "Copied" : "Copy code"}
+      data-copied={copied || undefined}
       onClick={async () => {
         await navigator.clipboard.writeText(value);
         setCopied(true);
       }}
-      className={cn(
-        "text-muted-foreground hover:bg-accent hover:text-foreground focus-visible:ring-ring/50 inline-flex size-7 items-center justify-center rounded-md transition-colors focus-visible:ring-[3px] focus-visible:outline-none",
-        className,
-      )}
     >
-      {copied ? (
-        <Check aria-hidden className="size-3.5" />
-      ) : (
-        <Copy aria-hidden className="size-3.5" />
-      )}
-      <span className="sr-only">{copied ? "Copied" : "Copy code"}</span>
-      <span aria-live="polite" className="sr-only">
-        {copied ? "Code copied to clipboard" : ""}
-      </span>
+      <Copy aria-hidden className="icon-copy" size={16} />
+      <Check aria-hidden className="icon-check" size={16} />
     </button>
   );
 }

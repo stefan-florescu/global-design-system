@@ -5,31 +5,28 @@ import { DocsSidebar } from "@/components/docs-sidebar";
 import { TableOfContents } from "@/components/table-of-contents";
 
 /**
- * Three-column docs layout:
- *   sidebar (md+)  ·  page content  ·  "On this page" anchors (xl+)
+ * Three-column docs layout: navigation · page content · "On this page".
+ * Markup and classes follow the documentation template (see app/docs.css).
  */
 export default function DocsLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="mx-auto w-full max-w-[88rem] flex-1 px-4 md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 md:px-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
-      <aside className="sticky top-14 hidden h-[calc(100dvh-3.5rem)] overflow-y-auto border-r py-6 pr-4 md:block">
-        <DocsSidebar />
-      </aside>
+    <div className="page-container">
+      <div className="layout">
+        <aside className="sidebar" aria-label="Documentation navigation">
+          <DocsSidebar />
+        </aside>
 
-      <main
-        id="main-content"
-        tabIndex={-1}
-        className="relative py-6 outline-none lg:py-8 xl:grid xl:grid-cols-[minmax(0,1fr)_200px] xl:gap-10"
-      >
-        <div data-docs-content className="mx-auto w-full max-w-3xl min-w-0">
-          {children}
+        <main className="main" id="main-content" tabIndex={-1}>
+          <article className="content prose" data-docs-content>
+            {children}
+          </article>
           <DocsPager />
-        </div>
-        <div className="hidden xl:block">
-          <div className="sticky top-20 max-h-[calc(100dvh-6rem)] overflow-y-auto">
-            <TableOfContents />
-          </div>
-        </div>
-      </main>
+        </main>
+
+        <aside className="toc" aria-label="On this page">
+          <TableOfContents />
+        </aside>
+      </div>
     </div>
   );
 }

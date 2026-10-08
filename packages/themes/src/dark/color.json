@@ -1,113 +1,92 @@
 {
   "color": {
     "$type": "color",
-    "text": {
-      "heading": {
-        "$value": "{color.white}"
-      },
-      "body": {
-        "$value": "{color.gray.400}"
-      },
-      "body-subtle": {
-        "$value": "{color.gray.400}"
-      },
-      "brand": {
-        "$value": "{color.blue.500}"
-      },
-      "brand-strong": {
-        "$value": "{color.blue.400}"
-      },
-      "on-brand": {
-        "$value": "{color.white}"
-      },
-      "success": {
-        "$value": "{color.emerald.500}"
-      },
-      "danger": {
-        "$value": "{color.rose.400}"
-      },
-      "warning": {
-        "$value": "{color.orange.300}"
-      },
-      "disabled": {
-        "$value": "{color.gray.600}"
-      }
-    },
     "background": {
-      "default": {
-        "$value": "{color.gray.950}"
-      },
-      "subtle": {
-        "$value": "{color.gray.900}"
-      },
-      "muted": {
-        "$value": "{color.gray.800}"
-      },
-      "emphasis": {
-        "$value": "{color.gray.700}"
-      },
-      "inverse": {
-        "$value": "{color.gray.700}"
-      },
-      "brand": {
-        "$value": "{color.blue.600}"
-      },
-      "brand-strong": {
-        "$value": "{color.blue.700}"
-      },
-      "brand-soft": {
-        "$value": "{color.blue.950}"
-      },
-      "success": {
-        "$value": "{color.emerald.700}"
-      },
-      "success-soft": {
-        "$value": "{color.emerald.950}"
-      },
-      "danger": {
-        "$value": "{color.rose.700}"
-      },
-      "danger-soft": {
-        "$value": "{color.rose.950}"
-      },
-      "warning": {
-        "$value": "{color.orange.600}"
-      },
-      "warning-soft": {
-        "$value": "{color.orange.950}"
-      },
-      "disabled": {
-        "$value": "{color.gray.800}"
-      }
+      "$value": "{color.gray.900}"
+    },
+    "card": {
+      "$value": "{color.gray.800}"
+    },
+    "popover": {
+      "$value": "{color.gray.800}"
+    },
+    "muted": {
+      "$value": "{color.gray.800}"
+    },
+    "accent": {
+      "$value": "{color.gray.800}"
+    },
+    "overlay": {
+      "$value": "color-mix(in srgb, {color.black} 70%, transparent)"
+    },
+    "foreground": {
+      "$value": "{color.gray.50}"
+    },
+    "card-foreground": {
+      "$value": "{color.gray.50}"
+    },
+    "popover-foreground": {
+      "$value": "{color.gray.50}"
+    },
+    "muted-foreground": {
+      "$value": "{color.gray.400}"
+    },
+    "accent-foreground": {
+      "$value": "{color.gray.50}"
     },
     "border": {
-      "subtle": {
-        "$value": "{color.gray.900}"
-      },
-      "default": {
-        "$value": "{color.gray.800}"
-      },
-      "strong": {
-        "$value": "{color.gray.700}"
-      },
-      "control": {
-        "$value": "{color.gray.500}"
-      },
-      "focus": {
-        "$value": "{color.blue.500}"
-      },
-      "brand": {
-        "$value": "{color.blue.900}"
-      },
-      "success": {
-        "$value": "{color.emerald.900}"
-      },
-      "danger": {
-        "$value": "{color.rose.900}"
-      },
-      "warning": {
-        "$value": "{color.orange.900}"
-      }
+      "$value": "{color.gray.700}"
+    },
+    "ring": {
+      "$value": "{color.blue.500}"
+    },
+    "primary": {
+      "$value": "{color.white}"
+    },
+    "primary-foreground": {
+      "$value": "{color.gray.900}"
+    },
+    "secondary": {
+      "$value": "{color.gray.800}"
+    },
+    "secondary-foreground": {
+      "$value": "{color.gray.50}"
+    },
+    "brand": {
+      "$value": "{color.blue.600}"
+    },
+    "brand-subtle": {
+      "$value": "{color.blue.900}"
+    },
+    "brand-subtle-foreground": {
+      "$value": "{color.blue.300}"
+    },
+    "success-subtle": {
+      "$value": "{color.green.900}"
+    },
+    "success-subtle-foreground": {
+      "$value": "{color.green.300}"
+    },
+    "warning-subtle": {
+      "$value": "{color.yellow.900}"
+    },
+    "warning-subtle-foreground": {
+      "$value": "{color.yellow.300}"
+    },
+    "destructive-subtle": {
+      "$value": "{color.red.900}"
+    },
+    "destructive-subtle-foreground": {
+      "$value": "{color.red.300}"
+    },
+    "info-subtle": {
+      "$value": "{color.blue.900}"
+    },
+    "info-subtle-foreground": {
+      "$value": "{color.blue.300}"
+    },
+    "code-bg": {
+      "$value": "{color.gray.800}"
     }
   }
 }

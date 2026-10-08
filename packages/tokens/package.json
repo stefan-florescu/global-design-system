@@ -1,7 +1,7 @@
 {
   "name": "@stefan-florescu/tokens",
   "version": "0.0.0",
-  "description": "Design tokens (primitive → semantic → component) built with Style Dictionary.",
+  "description": "Design tokens (primitive \u2192 semantic \u2192 component) built with Style Dictionary.",
   "license": "MIT",
   "type": "module",
   "sideEffects": [
@@ -19,6 +19,7 @@
     },
     "./css": "./build/css/variables.css",
     "./json": "./build/json/tokens.json",
+    "./src/*": "./src/*",
     "./package.json": "./package.json"
   },
   "files": [

@@ -68,41 +68,23 @@ Raw, context-free values. Named by _what they are_.
 
 ### Semantic tokens — `src/semantic/`
 
-Named by _what they're for_. Every one needs a `$description`.
+Named by _what they're for_. Every colour token has a `$description` and a docs group
+(`$extensions.sds.group`). The theme-independent scales — spacing, radius, border width,
+typography, elevation, icons, breakpoints, containers — also live here: components use them
+directly.
 
 ```json
 {
   "color": {
     "$type": "color",
-    "text": {
-      "heading": {
-        "$value": "{color.gray.900}",
-        "$description": "Headings and high-emphasis text."
-      },
-      "body": { "$value": "{color.gray.600}", "$description": "Default body copy." }
-    },
     "background": {
-      "default": { "$value": "{color.white}", "$description": "Page and app canvas." },
-      "brand": {
-        "$value": "{color.blue.700}",
-        "$description": "Primary actions and selected states."
-      },
-      "brand-strong": {
-        "$value": "{color.blue.800}",
-        "$description": "Hover and pressed states of brand backgrounds."
-      }
+      "$value": "{color.white}",
+      "$description": "The page canvas. Everything else sits on top of it.",
+      "$extensions": { "sds": { "group": "Surfaces" } }
     },
-    "border": {
-      "focus": {
-        "$value": "{color.blue.600}",
-        "$description": "Focus rings and outlines — meets 3:1."
-      }
-    }
-  },
-  "space": {
-    "$type": "dimension",
-    "inset": { "md": { "$value": "{dimension.400}" } },
-    "stack": { "sm": { "$value": "{dimension.200}" } }
+    "muted-foreground": { "$value": "{color.gray.600}" },
+    "brand": { "$value": "{color.blue.700}" },
+    "overlay": { "$value": "color-mix(in srgb, {color.gray.900} 60%, transparent)" }
   }
 }
 ```
@@ -137,11 +119,9 @@ The light theme is the semantic defaults; `src/light/` only holds deviations fro
 {
   "color": {
     "$type": "color",
-    "text": { "heading": { "$value": "{color.white}" } },
-    "background": {
-      "default": { "$value": "{color.gray.950}" },
-      "brand": { "$value": "{color.blue.600}" }
-    }
+    "background": { "$value": "{color.gray.900}" },
+    "foreground": { "$value": "{color.gray.50}" },
+    "brand": { "$value": "{color.blue.600}" }
   }
 }
 ```
@@ -149,8 +129,8 @@ The light theme is the semantic defaults; `src/light/` only holds deviations fro
 Emits:
 
 ```css
-:root, [data-theme="light"] { --sds-color-background-default: var(--sds-color-white); … }
-[data-theme="dark"]          { --sds-color-background-default: var(--sds-color-gray-950); … }
+:root, [data-theme="light"] { --sds-color-background: var(--sds-color-white); … }
+[data-theme="dark"]          { --sds-color-background: var(--sds-color-gray-900); … }
 ```
 
 Theme axes planned (each orthogonal, combinable through separate data attributes):
@@ -167,18 +147,17 @@ Theme axes planned (each orthogonal, combinable through separate data attributes
 
 ```css
 @theme inline {
-  --text-color-heading: var(--sds-color-text-heading); /* text-heading */
-  --background-color-brand: var(--sds-color-background-brand); /* bg-brand */
-  --border-color-default: var(--sds-color-border-default); /* border-default */
-  --ring-color-focus: var(--sds-color-border-focus); /* ring-focus */
+  --color-background: var(--sds-color-background); /* bg-background */
+  --color-muted-foreground: var(--sds-color-muted-foreground); /* text-muted-foreground */
+  --color-border: var(--sds-color-border); /* border-border */
+  --radius-md: var(--sds-radius-md); /* rounded-md */
+  --font-sans: var(--sds-font-sans); /* font-sans */
 }
 ```
 
-`inline` keeps the `var()` reference live so theme switching needs no rebuild. Type-specific
-namespaces (`--text-color-*`, `--background-color-*`, `--border-color-*`) mean `text-heading`
-exists but `bg-heading` does not. Only semantic tokens are mapped — primitives are not exposed as
-utilities. Resetting Tailwind's default palette (`--color-*: initial;`) is planned once the docs
-site no longer relies on it.
+`inline` keeps the `var()` reference live so theme switching needs no rebuild. Only semantic
+colours are mapped — colour primitives are not exposed as utilities. Spacing needs no mapping:
+Tailwind's `--spacing` base is set to `--sds-space-1` (4px), so `p-6` is `--sds-space-6`.
 
 ## 2.4 Token categories
 
@@ -192,7 +171,7 @@ site no longer relies on it.
    Component tokens reference semantic tokens only.
 2. Components use semantic (or their own component) tokens. Lint rule planned to forbid
    primitive Tailwind classes and arbitrary values (`bg-[#…]`).
-3. Colours authored in **OKLCH** for perceptual uniformity; Style Dictionary emits hex fallbacks
-   if needed.
+3. Colour primitives are the Flowbite hex palette (50–900); semantic tokens may use `color-mix()`
+   with references for translucent values (e.g. `overlay`).
 4. Removing or renaming a semantic token is a **breaking change** (major).
 5. Token changes require the `token-request` issue template and design review (CODEOWNERS).

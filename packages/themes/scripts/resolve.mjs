@@ -13,6 +13,9 @@ import StyleDictionary from "style-dictionary";
 
 export const PREFIX = "sds";
 
+/** Semantic token files that themes may re-assign. */
+export const THEMABLE = ["color.json", "shadow.json"];
+
 /** CSS selector per theme; unknown themes get [data-theme="<name>"]. */
 export const SELECTORS = {
   light: ':root, [data-theme="light"]',
@@ -34,7 +37,11 @@ export async function listThemes() {
 export function themeDictionary(theme, files = []) {
   return new StyleDictionary({
     include: [`${tokensRoot}/src/primitive/**/*.json`],
-    source: [`${tokensRoot}/src/semantic/**/*.json`, `src/${theme}/**/*.json`],
+    // Only colour and elevation are themable; spacing, radius, typography… are theme-independent.
+    source: [
+      ...THEMABLE.map((file) => `${tokensRoot}/src/semantic/${file}`),
+      `src/${theme}/**/*.json`,
+    ],
     usesDtcg: true,
     // Theme overrides intentionally redefine semantic tokens, so collisions are expected.
     log: { verbosity: "default", warnings: "disabled" },
@@ -49,7 +56,7 @@ export function themeDictionary(theme, files = []) {
   });
 }
 
-/** Resolved semantic tokens for a theme: [{ path, name, ref, value, description }]. */
+/** Resolved semantic tokens for a theme: [{ path, name, ref, value, description, group }]. */
 export async function resolveTheme(theme) {
   const { allTokens } = await themeDictionary(theme).getPlatformTokens("css");
   return allTokens
@@ -57,9 +64,10 @@ export async function resolveTheme(theme) {
     .map((token) => ({
       path: token.path.join("."),
       name: `--${token.name}`,
-      // "{color.gray.900}" → "gray.900"
-      ref: String(token.original.$value).replace(/^\{color\.|\}$/g, ""),
+      // Original value with references, e.g. "{color.gray.900}" or "color-mix(… {color.gray.900} 60% …)"
+      ref: String(token.original.$value),
       value: token.$value,
       description: token.$description ?? token.original.$description,
+      group: token.$extensions?.sds?.group ?? token.original.$extensions?.sds?.group,
     }));
 }

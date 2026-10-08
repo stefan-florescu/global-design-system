@@ -12,18 +12,10 @@ export function InstallCommand({ packages }: { packages: string }) {
   return (
     <Tabs
       label="Package manager"
-      variant="pill"
-      className="bg-surface my-6 rounded-lg border p-2"
       items={managers.map((manager) => ({
         value: manager.value,
         label: manager.value,
-        content: (
-          <CodeBlock
-            code={manager.command(packages)}
-            lang="bash"
-            className="mt-2 border-0 bg-transparent"
-          />
-        ),
+        content: <CodeBlock code={manager.command(packages)} lang="bash" filename="Terminal" />,
       }))}
     />
   );

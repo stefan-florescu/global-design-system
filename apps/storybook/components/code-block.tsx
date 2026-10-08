@@ -1,37 +1,30 @@
 import { highlight } from "@/lib/highlight";
-import { cn } from "@/lib/utils";
 
 import { CopyButton } from "./copy-button";
 
-/** Server-rendered, syntax-highlighted code with a copy button. */
+/** Server-rendered, syntax-highlighted code with a filename header and a copy button. */
 export async function CodeBlock({
   code,
   lang = "tsx",
-  title,
+  filename,
   className,
 }: {
   code: string;
   lang?: string;
-  title?: string;
+  filename?: string;
   className?: string;
 }) {
-  const html = await highlight(code, lang);
+  const source = code.replace(/^\n+|\s+$/g, "");
+  const html = await highlight(source, lang);
 
   return (
-    <figure
-      className={cn("group bg-surface relative overflow-hidden rounded-lg border", className)}
-    >
-      {title ? (
-        <figcaption className="text-muted-foreground border-b px-4 py-2 font-mono text-xs">
-          {title}
-        </figcaption>
-      ) : null}
-      <CopyButton value={code.trimEnd()} className="bg-surface absolute top-2 right-2 z-10" />
-      <div
-        className="overflow-x-auto py-4 pr-12 pl-4 font-mono text-[13px] leading-6 [&_pre]:outline-none"
-        // Shiki output is generated at build time from our own source files.
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
-    </figure>
+    <div className={className ? `code-block ${className}` : "code-block"}>
+      <div className="code-block__header">
+        <span className="code-block__filename">{filename ?? lang}</span>
+        <CopyButton value={source} />
+      </div>
+      {/* Shiki output is generated at build time from our own source files. */}
+      <div dangerouslySetInnerHTML={{ __html: html }} />
+    </div>
   );
 }

@@ -2,29 +2,17 @@
 
 import { useId, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 
-import { cn } from "@/lib/utils";
-
 export type TabItem = { value: string; label: string; content: ReactNode };
 
 /** WAI-ARIA tabs with automatic activation and roving focus (←/→/Home/End). */
-export function Tabs({
-  items,
-  label,
-  variant = "underline",
-  className,
-}: {
-  items: TabItem[];
-  label: string;
-  variant?: "underline" | "pill";
-  className?: string;
-}) {
+export function Tabs({ items, label }: { items: TabItem[]; label: string }) {
   const id = useId();
   const [active, setActive] = useState(items[0]?.value);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const onKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
     const last = items.length - 1;
-    const nextIndex =
+    const next =
       event.key === "ArrowRight"
         ? (index + 1) % items.length
         : event.key === "ArrowLeft"
@@ -34,19 +22,15 @@ export function Tabs({
             : event.key === "End"
               ? last
               : undefined;
-    if (nextIndex === undefined) return;
+    if (next === undefined) return;
     event.preventDefault();
-    setActive(items[nextIndex]?.value);
-    tabRefs.current[nextIndex]?.focus();
+    setActive(items[next]?.value);
+    tabRefs.current[next]?.focus();
   };
 
   return (
-    <div className={className}>
-      <div
-        role="tablist"
-        aria-label={label}
-        className={cn("flex items-center", variant === "underline" ? "gap-4 border-b" : "gap-1")}
-      >
+    <div className="tabs">
+      <div className="tabs__list" role="tablist" aria-label={label}>
         {items.map((item, index) => {
           const selected = item.value === active;
           return (
@@ -55,6 +39,7 @@ export function Tabs({
               ref={(el) => {
                 tabRefs.current[index] = el;
               }}
+              className="tabs__trigger"
               type="button"
               role="tab"
               id={`${id}-tab-${item.value}`}
@@ -63,22 +48,6 @@ export function Tabs({
               tabIndex={selected ? 0 : -1}
               onClick={() => setActive(item.value)}
               onKeyDown={(event) => onKeyDown(event, index)}
-              className={cn(
-                "focus-visible:ring-ring/50 text-sm font-medium transition-colors focus-visible:ring-[3px] focus-visible:outline-none",
-                variant === "underline"
-                  ? cn(
-                      "-mb-px border-b-2 px-1 pt-1 pb-2.5",
-                      selected
-                        ? "border-foreground text-foreground"
-                        : "text-muted-foreground hover:text-foreground border-transparent",
-                    )
-                  : cn(
-                      "rounded-md px-2.5 py-1 font-mono text-xs",
-                      selected
-                        ? "bg-accent text-foreground"
-                        : "text-muted-foreground hover:text-foreground",
-                    ),
-              )}
             >
               {item.label}
             </button>
@@ -88,13 +57,11 @@ export function Tabs({
       {items.map((item) => (
         <div
           key={item.value}
+          className="tabs__panel"
           role="tabpanel"
           id={`${id}-panel-${item.value}`}
           aria-labelledby={`${id}-tab-${item.value}`}
           hidden={item.value !== active}
-          className="focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:outline-none"
-          // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- APG: panels are focusable when they have no focusable content
-          tabIndex={0}
         >
           {item.content}
         </div>

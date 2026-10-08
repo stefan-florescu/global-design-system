@@ -106,7 +106,7 @@ export function SearchCommand() {
         type="button"
         onClick={open}
         aria-keyshortcuts="Meta+K Control+K"
-        className="text-muted-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring/50 sm:bg-surface inline-flex h-9 items-center gap-2 rounded-md text-sm transition-colors focus-visible:ring-[3px] focus-visible:outline-none max-sm:w-9 max-sm:justify-center sm:w-56 sm:border sm:px-3 sm:shadow-xs lg:w-64"
+        className="text-muted-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring/50 sm:bg-muted/50 sm:border-border inline-flex h-9 items-center gap-2 rounded-md text-sm transition-colors focus-visible:ring-[3px] focus-visible:outline-none max-sm:w-9 max-sm:justify-center sm:w-56 sm:border sm:px-3 lg:w-64"
       >
         <Search aria-hidden className="size-4 shrink-0 sm:hidden" />
         <span className="hidden sm:inline">Search components…</span>

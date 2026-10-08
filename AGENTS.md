@@ -79,7 +79,8 @@ apps/storybook/                # the docs website ("storybook" is just the folde
 ## Naming
 
 - Files & folders: `kebab-case`. Components & types: `PascalCase`. Props & hooks: `camelCase`.
-- Tokens: dot paths in JSON (`color.action.primary.background`), CSS vars `--sds-color-action-primary-background`.
+- Tokens: dot paths in JSON (`color.muted-foreground`, `space.6`), CSS vars `--sds-color-muted-foreground`,
+  `--sds-space-6`; Tailwind utilities use the semantic name (`text-muted-foreground`, `bg-brand`).
 - Variants: `variant` (visual intent), `size` (`sm | md | lg`), booleans as adjectives (`disabled`, `invalid`).
 - Commits: Conventional Commits with a package scope, e.g. `feat(ui): add Button`.
 

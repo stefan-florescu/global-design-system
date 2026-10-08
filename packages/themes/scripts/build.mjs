@@ -43,6 +43,7 @@ const tokens = resolved[themes[0]].map((token) => ({
   path: token.path,
   name: token.name,
   description: describe(token.path),
+  group: token.group,
   themes: Object.fromEntries(
     themes.map((theme) => {
       const match = resolved[theme].find((t) => t.path === token.path);

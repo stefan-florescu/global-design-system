@@ -6,9 +6,6 @@ import { usePathname } from "next/navigation";
 
 import { docsPages } from "@/lib/navigation";
 
-const linkClass =
-  "inline-flex h-9 items-center gap-1.5 rounded-md border bg-surface px-3 text-sm font-medium shadow-xs transition-colors hover:bg-accent focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none";
-
 export function DocsPager() {
   const pathname = usePathname();
   const index = docsPages.findIndex((page) => page.href === pathname);
@@ -18,19 +15,21 @@ export function DocsPager() {
   const next = docsPages[index + 1];
 
   return (
-    <nav aria-label="Pagination" className="mt-16 flex items-center justify-between border-t pt-6">
+    <nav className="pager" aria-label="Pagination">
       {prev ? (
-        <Link href={prev.href} className={linkClass}>
-          <ChevronLeft aria-hidden className="size-4" />
-          {prev.title}
+        <Link className="pager__link" href={prev.href}>
+          <span className="pager__dir">
+            <ChevronLeft aria-hidden size={14} /> Previous
+          </span>
+          <span className="pager__title">{prev.title}</span>
         </Link>
-      ) : (
-        <span />
-      )}
+      ) : null}
       {next ? (
-        <Link href={next.href} className={linkClass}>
-          {next.title}
-          <ChevronRight aria-hidden className="size-4" />
+        <Link className="pager__link pager__link--next" href={next.href}>
+          <span className="pager__dir">
+            Next <ChevronRight aria-hidden size={14} />
+          </span>
+          <span className="pager__title">{next.title}</span>
         </Link>
       ) : null}
     </nav>

@@ -3,24 +3,41 @@
  * Colours are OKLCH (or hex); converted to sRGB for relative luminance.
  */
 
-/** Pairings every theme must satisfy: [foreground, background, minimum ratio, label]. */
+/** Pairings every theme must satisfy: [foreground, background, minimum ratio, kind]. */
+const TEXT = 4.5;
+const NON_TEXT = 3;
+const pair = (fg, bg, min = TEXT) => [
+  `color.${fg}`,
+  `color.${bg}`,
+  min,
+  min === TEXT ? "Text" : "Non-text",
+];
+
 export const PAIRS = [
-  ...["heading", "body", "body-subtle", "brand", "success", "danger", "warning"].flatMap((fg) =>
-    ["default", "subtle"].map((bg) => [`text.${fg}`, `background.${bg}`, 4.5, "Text"]),
+  // Text on its own surface
+  pair("foreground", "background"),
+  pair("card-foreground", "card"),
+  pair("popover-foreground", "popover"),
+  pair("accent-foreground", "accent"),
+  pair("muted-foreground", "background"),
+  pair("muted-foreground", "muted"),
+  pair("muted-foreground", "card"),
+  pair("brand", "background", NON_TEXT), // a fill and indicator colour, never body text
+  // Labels on filled and subtle pairs
+  ...["primary", "secondary", "brand", "success", "warning", "destructive", "info"].map((name) =>
+    pair(`${name}-foreground`, name),
   ),
-  ["text.brand-strong", "background.brand-soft", 4.5, "Text"],
-  ["text.success", "background.success-soft", 4.5, "Text"],
-  ["text.danger", "background.danger-soft", 4.5, "Text"],
-  ["text.warning", "background.warning-soft", 4.5, "Text"],
-  ["text.on-brand", "background.brand", 4.5, "Text"],
-  ["text.on-brand", "background.brand-strong", 4.5, "Text"],
-  ["text.on-brand", "background.success", 4.5, "Text"],
-  ["text.on-brand", "background.danger", 4.5, "Text"],
-  ["text.on-brand", "background.inverse", 4.5, "Text"],
-  ["border.focus", "background.default", 3, "Non-text"],
-  ["border.focus", "background.subtle", 3, "Non-text"],
-  ["border.control", "background.default", 3, "Non-text"],
-  ["border.control", "background.subtle", 3, "Non-text"],
+  ...["brand", "success", "warning", "destructive", "info"].map((name) =>
+    pair(`${name}-subtle-foreground`, `${name}-subtle`),
+  ),
+  // Code surface
+  pair("code-foreground", "code-bg"),
+  ...["tag", "attr", "string", "keyword", "fn", "comment"].map((name) =>
+    pair(`syntax-${name}`, "code-bg"),
+  ),
+  // Control boundaries and focus indicators
+  pair("input", "background", NON_TEXT),
+  pair("ring", "background", NON_TEXT),
 ];
 
 function oklchToLinearRgb(l, c, h) {
@@ -62,10 +79,16 @@ export function checkPairs(themes) {
   return PAIRS.map(([fg, bg, min, kind]) => {
     const results = Object.fromEntries(
       Object.entries(themes).map(([theme, values]) => {
-        const ratio = contrast(values.get(`color.${fg}`), values.get(`color.${bg}`));
+        const ratio = contrast(values.get(fg), values.get(bg));
         return [theme, { ratio: Math.round(ratio * 100) / 100, pass: ratio >= min }];
       }),
     );
-    return { foreground: fg, background: bg, minimum: min, kind, results };
+    return {
+      foreground: fg.replace(/^color\./, ""),
+      background: bg.replace(/^color\./, ""),
+      minimum: min,
+      kind,
+      results,
+    };
   });
 }
