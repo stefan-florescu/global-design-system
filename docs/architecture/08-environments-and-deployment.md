@@ -72,7 +72,7 @@ One Vercel project, linked to this GitHub repo:
 | Project name                         | `sds-storybook`                                                                          |
 | Root Directory                       | `apps/storybook`                                                                         |
 | Framework                            | Next.js (set by `apps/storybook/vercel.json`, overrides the dashboard preset)            |
-| Build                                | from `apps/storybook/vercel.json`                                                        |
+| Build                                | from `apps/storybook/vercel.json` (output `.next`)                                       |
 | Node.js version                      | 22.x                                                                                     |
 | Include files outside root directory | ✅ enabled (default for monorepos)                                                       |
 | Ignored build step                   | `npx turbo-ignore` (in `vercel.json`) — skips deploys when nothing it depends on changed |
