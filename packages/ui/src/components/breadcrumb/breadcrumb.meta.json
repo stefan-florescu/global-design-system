@@ -1,0 +1,31 @@
+{
+  "name": "Breadcrumb",
+  "status": "beta",
+  "description": "Shows where the current page sits in the site hierarchy, with links back to each level.",
+  "category": "navigation",
+  "import": "import { Breadcrumb, BreadcrumbItem } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/",
+  "client": false,
+  "props": "generated",
+  "parts": ["Breadcrumb", "BreadcrumbItem"],
+  "variants": { "variant": ["default", "solid"] },
+  "defaults": { "variant": "default" },
+  "tokens": [
+    "color.foreground",
+    "color.muted-foreground",
+    "color.brand-subtle-foreground",
+    "color.muted",
+    "color.border",
+    "color.ring",
+    "radius.lg",
+    "text.sm",
+    "font.medium"
+  ],
+  "useWhen": ["Pages nested two or more levels deep"],
+  "avoidWhen": ["Flat sites with one level", "Showing steps of a process: use a stepper"],
+  "related": ["BottomNavigation"],
+  "examples": [
+    "apps/storybook/registry/demos/breadcrumb-demo.tsx",
+    "apps/storybook/registry/demos/breadcrumb-solid.tsx"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "name": "Avatar",
+  "status": "beta",
+  "description": "An image, initials or placeholder icon that represents a person or entity, with optional presence status.",
+  "category": "data-display",
+  "import": "import { Avatar, AvatarGroup, AvatarGroupCounter } from \"@stefan-florescu/ui\";",
+  "ariaPattern": null,
+  "client": false,
+  "props": "generated",
+  "parts": ["Avatar", "AvatarGroup", "AvatarGroupCounter"],
+  "variants": {
+    "size": ["xs", "sm", "md", "lg", "xl"],
+    "shape": ["circle", "square"],
+    "bordered": [true, false],
+    "stacked": [true, false],
+    "status": ["online", "away", "busy", "offline"],
+    "statusPosition": ["top-right", "bottom-right"]
+  },
+  "defaults": { "size": "md", "shape": "circle", "statusPosition": "bottom-right" },
+  "tokens": [
+    "color.muted",
+    "color.muted-foreground",
+    "color.border",
+    "color.background",
+    "color.primary",
+    "color.primary-foreground",
+    "color.success",
+    "color.warning",
+    "color.destructive",
+    "radius.full",
+    "radius.md"
+  ],
+  "useWhen": ["Showing who authored, owns or is assigned to something", "Showing who is online"],
+  "avoidWhen": ["Decorative illustrations: use an image"],
+  "related": ["Badge"],
+  "examples": [
+    "apps/storybook/registry/demos/avatar-demo.tsx",
+    "apps/storybook/registry/demos/avatar-bordered.tsx",
+    "apps/storybook/registry/demos/avatar-placeholder.tsx",
+    "apps/storybook/registry/demos/avatar-initials.tsx",
+    "apps/storybook/registry/demos/avatar-status.tsx",
+    "apps/storybook/registry/demos/avatar-stacked.tsx",
+    "apps/storybook/registry/demos/avatar-text.tsx",
+    "apps/storybook/registry/demos/avatar-sizes.tsx"
+  ]
+}

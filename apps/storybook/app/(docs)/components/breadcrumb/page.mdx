@@ -1,0 +1,69 @@
+export const metadata = {
+  title: "Breadcrumb",
+  description:
+    "Shows where the current page sits in the site hierarchy, with links back to each level.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="breadcrumb-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Breadcrumb, BreadcrumbItem } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Breadcrumb>
+  <BreadcrumbItem href="/">Home</BreadcrumbItem>
+  <BreadcrumbItem href="/projects">Projects</BreadcrumbItem>
+  <BreadcrumbItem>Design system</BreadcrumbItem>
+</Breadcrumb>
+```
+
+## Examples
+
+### Default
+
+Give every level an `href` except the last one, which marks the current page. Add `icon` to show
+an icon before a label.
+
+<ComponentPreview name="breadcrumb-demo" />
+
+### Solid background
+
+Set `variant="solid"` to place the trail on the `muted` surface with a border.
+
+<ComponentPreview name="breadcrumb-solid" />
+
+## Accessibility
+
+- Renders a `<nav>` landmark named "Breadcrumb" (change it with `aria-label`) containing an
+  ordered list, as in the WAI-ARIA Breadcrumb pattern.
+- The last item, without `href`, has `aria-current="page"` and is not a link.
+- Chevron separators and icons are decorative and hidden from assistive technology.
+- Links show a focus ring on keyboard focus.
+- Pattern: [WAI-ARIA Breadcrumb](https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/).
+
+## API Reference
+
+### Breadcrumb
+
+| Prop         | Type                   | Default        |
+| ------------ | ---------------------- | -------------- |
+| `variant`    | `"default" \| "solid"` | `"default"`    |
+| `aria-label` | `string`               | `"Breadcrumb"` |
+
+### BreadcrumbItem
+
+| Prop   | Type        | Default |
+| ------ | ----------- | ------- |
+| `href` | `string`    | —       |
+| `icon` | `ReactNode` | —       |
+
+All parts forward native attributes, including `ref` and `className`.

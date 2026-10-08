@@ -1,0 +1,36 @@
+{
+  "name": "BottomNavigation",
+  "status": "beta",
+  "description": "A bar of top-level destinations fixed to the bottom of the screen, for mobile layouts.",
+  "category": "navigation",
+  "import": "import { BottomNavigation, BottomNavigationItem } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/navigation.html",
+  "client": false,
+  "props": "generated",
+  "parts": ["BottomNavigation", "BottomNavigationItem"],
+  "variants": {
+    "position": ["fixed", "static"],
+    "floating": [true, false],
+    "bordered": [true, false]
+  },
+  "defaults": { "position": "fixed", "floating": false, "bordered": false },
+  "tokens": [
+    "color.background",
+    "color.border",
+    "color.muted-foreground",
+    "color.accent",
+    "color.brand-subtle-foreground",
+    "color.ring",
+    "radius.full",
+    "shadow.md",
+    "text.sm"
+  ],
+  "useWhen": ["Three to five top-level destinations on small screens"],
+  "avoidWhen": ["Desktop layouts: use a header or sidebar", "More than five destinations"],
+  "related": ["Breadcrumb", "Button"],
+  "examples": [
+    "apps/storybook/registry/demos/bottom-navigation-demo.tsx",
+    "apps/storybook/registry/demos/bottom-navigation-bordered.tsx",
+    "apps/storybook/registry/demos/bottom-navigation-app-bar.tsx"
+  ]
+}

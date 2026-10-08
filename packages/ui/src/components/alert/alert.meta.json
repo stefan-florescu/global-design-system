@@ -1,0 +1,48 @@
+{
+  "name": "Alert",
+  "status": "beta",
+  "description": "A short, important message about the current page or task: information, success, a warning or an error.",
+  "category": "feedback",
+  "import": "import { Alert, AlertDescription, AlertTitle } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/alert/",
+  "client": true,
+  "props": "generated",
+  "parts": ["Alert", "AlertTitle", "AlertDescription"],
+  "variants": {
+    "variant": ["info", "success", "warning", "destructive", "neutral"],
+    "bordered": [true, false],
+    "accentBorder": [true, false],
+    "dismissible": [true, false]
+  },
+  "defaults": { "variant": "info" },
+  "tokens": [
+    "color.info-subtle",
+    "color.info-subtle-foreground",
+    "color.success-subtle",
+    "color.success-subtle-foreground",
+    "color.warning-subtle",
+    "color.warning-subtle-foreground",
+    "color.destructive-subtle",
+    "color.destructive-subtle-foreground",
+    "color.muted",
+    "color.foreground",
+    "color.ring",
+    "radius.lg",
+    "text.sm"
+  ],
+  "useWhen": [
+    "Confirming the result of an action on the page",
+    "Warning about a problem the user should fix before continuing"
+  ],
+  "avoidWhen": ["Site-wide announcements: use Banner", "Short labels or counts: use Badge"],
+  "related": ["Banner", "Badge"],
+  "examples": [
+    "apps/storybook/registry/demos/alert-demo.tsx",
+    "apps/storybook/registry/demos/alert-icon.tsx",
+    "apps/storybook/registry/demos/alert-list.tsx",
+    "apps/storybook/registry/demos/alert-bordered.tsx",
+    "apps/storybook/registry/demos/alert-dismissible.tsx",
+    "apps/storybook/registry/demos/alert-accent-border.tsx",
+    "apps/storybook/registry/demos/alert-additional-content.tsx"
+  ]
+}

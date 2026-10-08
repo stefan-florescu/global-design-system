@@ -12,6 +12,8 @@
  */
 export type { LucideIcon, LucideProps } from "lucide-react";
 
+export { Clock, House, Megaphone, Settings, User, Wallet } from "lucide-react";
+
 export {
   ArrowRight,
   ArrowUp,

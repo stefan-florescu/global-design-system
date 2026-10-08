@@ -1,0 +1,108 @@
+export const metadata = {
+  title: "Badge",
+  description:
+    "A small label for a status, count or category. It can also be a link or a removable chip.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="badge-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Badge } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Badge variant="success">Published</Badge>
+```
+
+## Examples
+
+### Default
+
+Each variant uses its intent's `-subtle` surface and `-subtle-foreground` text; `neutral` uses
+`secondary`. All pairings pass WCAG 2.2 AA in both themes.
+
+<ComponentPreview name="badge-demo" />
+
+### Large badges
+
+Set `size="lg"` for larger text.
+
+<ComponentPreview name="badge-large" />
+
+### Bordered
+
+Add `bordered` for a border in the badge's colour.
+
+<ComponentPreview name="badge-bordered" />
+
+### Pills
+
+Add `pill` to round the ends.
+
+<ComponentPreview name="badge-pill" />
+
+### Badges as links
+
+Pass `href` to render the badge as a link.
+
+<ComponentPreview name="badge-link" />
+
+### Badges with icon
+
+Put an icon before the label. Mark it `aria-hidden`; the text carries the meaning.
+
+<ComponentPreview name="badge-icon" />
+
+### Notification badge
+
+Position a badge on another element to show a count. Hide the badge itself from assistive
+technology and put the count in the button's accessible name.
+
+<ComponentPreview name="badge-notification" />
+
+### Badge with icon only
+
+Add `iconOnly` for a round badge with just an icon. Include visually hidden text so it has a name.
+
+<ComponentPreview name="badge-icon-only" />
+
+### Dismissible badges
+
+Pass `onDismiss` to add a remove button, for example for filter chips. Remove the badge from
+your state when it is called. This example needs a client component for the state.
+
+<ComponentPreview name="badge-dismissible" />
+
+## Accessibility
+
+- A badge is plain text in a `<span>` (or an `<a>` with `href`). Its content is its label, so
+  write labels that make sense on their own.
+- Don't rely on colour alone: "Failed" in a destructive badge is clear; a red badge without text
+  is not.
+- The remove button is a native `<button>` named "Remove". Use `dismissLabel` to say what is
+  removed, such as "Remove React".
+- Links and remove buttons show a focus ring on keyboard focus.
+
+## API Reference
+
+| Prop           | Type                                                                        | Default    |
+| -------------- | --------------------------------------------------------------------------- | ---------- |
+| `variant`      | `"brand" \| "neutral" \| "info" \| "success" \| "warning" \| "destructive"` | `"brand"`  |
+| `size`         | `"sm" \| "lg"`                                                              | `"sm"`     |
+| `bordered`     | `boolean`                                                                   | `false`    |
+| `pill`         | `boolean`                                                                   | `false`    |
+| `iconOnly`     | `boolean`                                                                   | `false`    |
+| `href`         | `string`                                                                    | —          |
+| `onDismiss`    | `() => void`                                                                | —          |
+| `dismissLabel` | `string`                                                                    | `"Remove"` |
+
+All other native attributes are forwarded. `badgeVariants()` returns the class names for custom
+elements.

@@ -1,0 +1,41 @@
+{
+  "name": "Banner",
+  "status": "beta",
+  "description": "A site-wide message pinned to the top or bottom of the page: an announcement, a call to action or a notice.",
+  "category": "feedback",
+  "import": "import { Banner } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/",
+  "client": true,
+  "props": "generated",
+  "variants": {
+    "position": ["top", "bottom", "static"],
+    "floating": [true, false],
+    "dismissible": [true, false]
+  },
+  "defaults": { "position": "top", "floating": false },
+  "tokens": [
+    "color.muted",
+    "color.background",
+    "color.foreground",
+    "color.muted-foreground",
+    "color.border",
+    "color.accent",
+    "color.accent-foreground",
+    "color.ring",
+    "radius.lg",
+    "shadow.md",
+    "text.sm"
+  ],
+  "useWhen": [
+    "Announcing something that affects the whole site",
+    "A dismissible call to action or notice"
+  ],
+  "avoidWhen": ["Feedback about the current task: use Alert"],
+  "related": ["Alert"],
+  "examples": [
+    "apps/storybook/registry/demos/banner-demo.tsx",
+    "apps/storybook/registry/demos/banner-bottom.tsx",
+    "apps/storybook/registry/demos/banner-cta.tsx",
+    "apps/storybook/registry/demos/banner-informational.tsx"
+  ]
+}

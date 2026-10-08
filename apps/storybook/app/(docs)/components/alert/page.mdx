@@ -1,0 +1,110 @@
+export const metadata = {
+  title: "Alert",
+  description:
+    "A short, important message about the current page or task: information, success, a warning or an error.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="alert-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Alert, AlertDescription, AlertTitle } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Alert variant="success">
+  <AlertTitle>Changes saved</AlertTitle>
+  <AlertDescription>Your profile is up to date.</AlertDescription>
+</Alert>
+```
+
+## Examples
+
+### Default
+
+Choose the variant by meaning. Each one uses its intent's `-subtle` surface and
+`-subtle-foreground` text, a pairing checked for WCAG 2.2 AA in both themes.
+
+<ComponentPreview name="alert-demo" />
+
+| Variant       | Use it for                                          |
+| ------------- | --------------------------------------------------- |
+| `info`        | Neutral information or a tip. The default.          |
+| `success`     | Confirming that an action worked.                   |
+| `warning`     | Something that needs attention but is not blocking. |
+| `destructive` | An error or a failed action the user must fix.      |
+| `neutral`     | A low-emphasis note without a status.               |
+
+### Alerts with icon
+
+Pass `icon` to show an icon before the message. Colour alone never carries the meaning, so the
+text should say what happened.
+
+<ComponentPreview name="alert-icon" />
+
+### List
+
+Use `AlertTitle` and `AlertDescription` to structure longer content, such as a list.
+
+<ComponentPreview name="alert-list" />
+
+### Bordered
+
+Add `bordered` for a border in the intent's colour.
+
+<ComponentPreview name="alert-bordered" />
+
+### Dismissing
+
+Add `dismissible` to show a close button. The alert hides itself, and `onDismiss` lets you react,
+for example to remember the choice.
+
+<ComponentPreview name="alert-dismissible" />
+
+### Border accent
+
+Add `accentBorder` for a thick top border instead of rounded corners.
+
+<ComponentPreview name="alert-accent-border" />
+
+### Additional content
+
+Combine a title, description and actions.
+
+<ComponentPreview name="alert-additional-content" />
+
+## Accessibility
+
+- `destructive` and `warning` alerts have `role="alert"`, so screen readers announce them as soon
+  as they appear. The other variants use the polite `role="status"`. Pass `role` to override,
+  for example `role="note"` for static content.
+- Render an alert when its message becomes relevant. Content inside a live region that is already
+  on the page when it loads may not be announced.
+- Icons are decorative and hidden from assistive technology; the text carries the meaning.
+- The close button is a native `<button>` named "Dismiss" (change it with `dismissLabel`), with a
+  visible focus ring.
+- Pattern: [WAI-ARIA Alert](https://www.w3.org/WAI/ARIA/apg/patterns/alert/).
+
+## API Reference
+
+### Alert
+
+| Prop           | Type                                                             | Default     |
+| -------------- | ---------------------------------------------------------------- | ----------- |
+| `variant`      | `"info" \| "success" \| "warning" \| "destructive" \| "neutral"` | `"info"`    |
+| `icon`         | `ReactNode`                                                      | —           |
+| `bordered`     | `boolean`                                                        | `false`     |
+| `accentBorder` | `boolean`                                                        | `false`     |
+| `dismissible`  | `boolean`                                                        | `false`     |
+| `dismissLabel` | `string`                                                         | `"Dismiss"` |
+| `onDismiss`    | `() => void`                                                     | —           |
+
+`AlertTitle` renders a `<p>` and `AlertDescription` a `<div>`. All parts forward native attributes,
+including `ref` and `className`.
