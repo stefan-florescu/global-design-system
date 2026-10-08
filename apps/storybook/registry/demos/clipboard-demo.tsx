@@ -1,15 +1,18 @@
-import { Clipboard } from "@stefan-florescu/ui";
+import { Clipboard, Input, Label } from "@stefan-florescu/ui";
 
 export default function ClipboardDemo() {
   return (
-    <div className="flex w-full max-w-md items-center gap-2">
-      <span
-        id="install-command"
-        className="border-border bg-muted min-w-0 flex-1 truncate rounded-lg border px-3 py-2 font-mono text-sm"
-      >
-        npm install @stefan-florescu/ui
-      </span>
-      <Clipboard value="npm install @stefan-florescu/ui" aria-describedby="install-command" />
+    <div className="grid w-full max-w-md gap-2">
+      <Label htmlFor="install-command">Install command</Label>
+      <div className="flex items-center gap-2">
+        <Input
+          id="install-command"
+          readOnly
+          value="npm install @stefan-florescu/ui"
+          className="font-mono"
+        />
+        <Clipboard value="npm install @stefan-florescu/ui" label="Copy" copiedLabel="Copied!" />
+      </div>
     </div>
   );
 }

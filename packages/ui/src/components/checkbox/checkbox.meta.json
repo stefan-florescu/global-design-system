@@ -1,0 +1,28 @@
+{
+  "name": "Checkbox",
+  "status": "beta",
+  "description": "A native checkbox with label, description and a bordered card style.",
+  "category": "forms",
+  "import": "import { Checkbox } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/",
+  "client": false,
+  "props": "generated",
+  "variants": {
+    "bordered": [true, false],
+    "invalid": [true, false]
+  },
+  "tokens": [
+    "color.brand",
+    "color.brand-subtle",
+    "color.border",
+    "color.foreground",
+    "color.muted-foreground",
+    "color.ring",
+    "color.destructive",
+    "radius.lg"
+  ],
+  "useWhen": ["Independent yes/no choices, or picking several options"],
+  "avoidWhen": [],
+  "related": ["Label", "HelperText"],
+  "docs": "apps/storybook/app/(docs)/forms/checkbox/page.mdx"
+}

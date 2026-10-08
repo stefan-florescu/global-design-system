@@ -1,0 +1,90 @@
+export const metadata = {
+  title: "Radio",
+  description: "A native radio button with a label, a description and a bordered card style.",
+};
+
+<PageHeader {...metadata} section="Forms" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="radio-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Fieldset, Radio } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Fieldset legend="Plan">
+  <Radio name="plan" value="free" label="Free" defaultChecked />
+  <Radio name="plan" value="pro" label="Pro" />
+</Fieldset>
+```
+
+## Examples
+
+### Default radio
+
+Give radios in a group the same `name` and wrap them in a `Fieldset`.
+
+<ComponentPreview name="radio-demo" />
+
+### Disabled state
+
+<ComponentPreview name="radio-disabled" />
+
+### Helper text
+
+<ComponentPreview name="radio-helper" />
+
+### Bordered
+
+<ComponentPreview name="radio-bordered" />
+
+### Radio list group
+
+<ComponentPreview name="radio-list" />
+
+### Inline layout
+
+<ComponentPreview name="radio-inline" />
+
+### Advanced layout
+
+Bordered radios with descriptions work as selectable cards.
+
+<ComponentPreview name="radio-cards" />
+
+## Accessibility
+
+- Native radios: <kbd>Tab</kbd> moves into the group, arrow keys move the selection, as in the
+  WAI-ARIA radio group pattern.
+- The `Fieldset` legend names the group; every radio has its own label.
+- Pre-select a sensible default where one exists, so the group always has a value.
+
+## API Reference
+
+### Radio
+
+| Prop          | Type        | Default |
+| ------------- | ----------- | ------- |
+| `label`       | `ReactNode` | —       |
+| `description` | `ReactNode` | —       |
+| `bordered`    | `boolean`   | `false` |
+| `invalid`     | `boolean`   | `false` |
+
+All other `<input>` attributes are forwarded, such as `name`, `value` and `defaultChecked`.
+
+### Fieldset
+
+| Prop          | Type                         | Default      |
+| ------------- | ---------------------------- | ------------ |
+| `legend`      | `ReactNode` (required)       | —            |
+| `hideLegend`  | `boolean`                    | `false`      |
+| `orientation` | `"vertical" \| "horizontal"` | `"vertical"` |
+
+`className` styles the `<fieldset>`; `contentClassName` styles the element that lays out the
+controls, for example a grid.

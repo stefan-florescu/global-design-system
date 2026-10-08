@@ -1,0 +1,78 @@
+export const metadata = {
+  title: "Select",
+  description: "A native select styled as a field, with list, underline and size options.",
+};
+
+<PageHeader {...metadata} section="Forms" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="select-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Label, Select } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Label htmlFor="country">Country</Label>
+<Select id="country" defaultValue="">
+  <option value="">Choose a country</option>
+  <option value="ro">Romania</option>
+</Select>
+```
+
+## Examples
+
+### Default select
+
+A native `<select>` with a chevron. Start with an empty option when there is no sensible default.
+
+<ComponentPreview name="select-demo" />
+
+### Multiple options
+
+`multiple` shows a list where people can pick several options.
+
+<ComponentPreview name="select-multiple" />
+
+### Size attribute
+
+`htmlSize` shows several options at once as a list (the native `size` attribute).
+
+<ComponentPreview name="select-size" />
+
+### Disabled state
+
+<ComponentPreview name="select-disabled" />
+
+### Underline select
+
+`variant="underline"` keeps only the bottom border.
+
+<ComponentPreview name="select-underline" />
+
+### Select sizes
+
+<ComponentPreview name="select-sizes" />
+
+## Accessibility
+
+- A native `<select>`, so keyboard, screen-reader and mobile pickers work as people expect.
+- Give it a `Label`. The chevron is decorative.
+- Multiple selection is hard to discover; for a few options, prefer checkboxes.
+
+## API Reference
+
+| Prop       | Type                       | Default     |
+| ---------- | -------------------------- | ----------- |
+| `variant`  | `"default" \| "underline"` | `"default"` |
+| `htmlSize` | `number`                   | —           |
+| `size`     | `"sm" \| "md" \| "lg"`     | `"md"`      |
+| `invalid`  | `boolean`                  | `false`     |
+| `valid`    | `boolean`                  | `false`     |
+
+All other `<select>` attributes are forwarded.

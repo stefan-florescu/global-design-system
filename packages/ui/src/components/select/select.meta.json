@@ -1,0 +1,29 @@
+{
+  "name": "Select",
+  "status": "beta",
+  "description": "A native select styled as a field, with sizes, list and underline styles.",
+  "category": "forms",
+  "import": "import { Select } from \"@stefan-florescu/ui\";",
+  "ariaPattern": null,
+  "client": false,
+  "props": "generated",
+  "variants": {
+    "size": ["sm", "md", "lg"],
+    "variant": ["default", "underline"]
+  },
+  "tokens": [
+    "color.input",
+    "color.background",
+    "color.foreground",
+    "color.muted",
+    "color.muted-foreground",
+    "color.ring",
+    "color.destructive",
+    "color.success",
+    "radius.lg"
+  ],
+  "useWhen": ["Choosing one option from five or more"],
+  "avoidWhen": [],
+  "related": ["Label", "HelperText"],
+  "docs": "apps/storybook/app/(docs)/forms/select/page.mdx"
+}

@@ -1,0 +1,70 @@
+export const metadata = {
+  title: "Textarea",
+  description: "A multi-line text field for longer answers, comments and messages.",
+};
+
+<PageHeader {...metadata} section="Forms" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="textarea-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Label, Textarea } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Label htmlFor="message">Your message</Label>
+<Textarea id="message" rows={4} />
+```
+
+## Examples
+
+### Default textarea
+
+Four rows by default; people can resize it vertically.
+
+<ComponentPreview name="textarea-demo" />
+
+### Comment box
+
+Put a toolbar under the field and move the focus ring to the container.
+
+<ComponentPreview name="textarea-comment" />
+
+### Chatroom input
+
+A one-row field with a send button.
+
+<ComponentPreview name="textarea-chat" />
+
+### Validation
+
+<ComponentPreview name="textarea-validation" />
+
+### Disabled
+
+<ComponentPreview name="textarea-disabled" />
+
+## Accessibility
+
+- Every field needs a visible `Label` whose `htmlFor` matches the field's `id`. Placeholders are
+  hints, not labels.
+- Link helper and error text with `aria-describedby` so it is read with the field.
+- `invalid` sets `aria-invalid="true"` and a red border; always say what is wrong in text too.
+- The border uses the `input` token, which clears 3:1 against the page in both themes, and focus
+  adds a `ring`-coloured border and ring.
+- Name icon-only buttons next to the field, such as "Send message".
+
+## API Reference
+
+| Prop      | Type                   | Default |
+| --------- | ---------------------- | ------- |
+| `rows`    | `number`               | `4`     |
+| `size`    | `"sm" \| "md" \| "lg"` | `"md"`  |
+| `invalid` | `boolean`              | `false` |
+| `valid`   | `boolean`              | `false` |

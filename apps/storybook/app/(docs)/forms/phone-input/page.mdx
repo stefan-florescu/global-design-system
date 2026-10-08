@@ -1,0 +1,67 @@
+export const metadata = {
+  title: "Phone Input",
+  description: "A country-code select joined to a phone number field.",
+};
+
+<PageHeader {...metadata} section="Forms" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="phone-input-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Label, PhoneInput } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Label htmlFor="phone">Phone number</Label>
+<PhoneInput id="phone" name="phone" countryName="country" defaultCountry="RO" />
+```
+
+## Examples
+
+### Default phone input
+
+The country select and the number field share one border.
+
+<ComponentPreview name="phone-input-demo" />
+
+### Helper text
+
+<ComponentPreview name="phone-input-helper" />
+
+### Validation
+
+`invalid` marks both parts.
+
+<ComponentPreview name="phone-input-validation" />
+
+### Sizes
+
+<ComponentPreview name="phone-input-sizes" />
+
+## Accessibility
+
+- The number field is `type="tel"` with `autoComplete="tel-national"`, so phones show a dial
+  pad and browsers can fill it in.
+- The country select has its own name, "Country code" (change it with `countryLabel`), and each
+  option is read with the full country name.
+- Submit both values: `name` for the number and `countryName` for the country.
+
+## API Reference
+
+| Prop             | Type                   | Default                 |
+| ---------------- | ---------------------- | ----------------------- |
+| `countries`      | `PhoneCountry[]`       | `defaultPhoneCountries` |
+| `defaultCountry` | `string`               | First country           |
+| `countryName`    | `string`               | —                       |
+| `countryLabel`   | `string`               | `"Country code"`        |
+| `size`           | `"sm" \| "md" \| "lg"` | `"md"`                  |
+| `invalid`        | `boolean`              | `false`                 |
+| `valid`          | `boolean`              | `false`                 |
+
+`PhoneCountry` is `{ code, dialCode, name }`. Other props go to the number field.

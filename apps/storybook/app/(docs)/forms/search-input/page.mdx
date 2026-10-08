@@ -1,0 +1,70 @@
+export const metadata = {
+  title: "Search Input",
+  description: "A search field with an icon and an optional submit button inside it.",
+};
+
+<PageHeader {...metadata} section="Forms" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="search-input-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Label, SearchInput } from "@stefan-florescu/ui";
+```
+
+```tsx
+<form role="search">
+  <Label htmlFor="q" className="sr-only">
+    Search
+  </Label>
+  <SearchInput id="q" submitLabel="Search" />
+</form>
+```
+
+## Examples
+
+### Search bar
+
+Pass `submitLabel` to put a submit button inside the field.
+
+<ComponentPreview name="search-input-demo" />
+
+### Simple search
+
+Without `submitLabel`, people submit with Enter.
+
+<ComponentPreview name="search-input-simple" />
+
+### Search with category
+
+Combine it with a `Select` to narrow the search.
+
+<ComponentPreview name="search-input-category" />
+
+### Sizes
+
+<ComponentPreview name="search-input-sizes" />
+
+## Accessibility
+
+- Renders `type="search"`, announced as a search box. Wrap it in `<form role="search">` so it is
+  listed as a search landmark.
+- Give it a `Label`; a visually hidden one (`className="sr-only"`) is fine when the icon and
+  button make the purpose obvious.
+- The search icon is decorative and hidden from assistive technology.
+
+## API Reference
+
+| Prop          | Type                   | Default |
+| ------------- | ---------------------- | ------- |
+| `submitLabel` | `string`               | —       |
+| `size`        | `"sm" \| "md" \| "lg"` | `"md"`  |
+| `invalid`     | `boolean`              | `false` |
+| `valid`       | `boolean`              | `false` |
+
+Also accepts every `Input` prop except `type` and `startIcon`.

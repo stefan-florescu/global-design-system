@@ -1,0 +1,63 @@
+export const metadata = {
+  title: "Toggle",
+  description: "An on/off switch for settings that take effect immediately.",
+};
+
+<PageHeader {...metadata} section="Forms" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="toggle-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Toggle } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Toggle name="notifications" label="Notifications" defaultChecked />
+```
+
+## Examples
+
+### Default toggle
+
+<ComponentPreview name="toggle-demo" />
+
+### Checked state
+
+<ComponentPreview name="toggle-checked" />
+
+### Disabled state
+
+<ComponentPreview name="toggle-disabled" />
+
+### Sizes
+
+<ComponentPreview name="toggle-sizes" />
+
+### With description
+
+<ComponentPreview name="toggle-description" />
+
+## Accessibility
+
+- A native checkbox with `role="switch"`: screen readers announce "switch, on/off", <kbd>Space</kbd>
+  toggles it, and it submits with forms like a checkbox.
+- The off track uses the `input` colour and the on track `brand`, both 3:1 against the page; the
+  knob position shows the state without relying on colour.
+- Use a toggle for settings that apply at once. For choices confirmed by a submit button, use a
+  checkbox.
+
+## API Reference
+
+| Prop          | Type                   | Default |
+| ------------- | ---------------------- | ------- |
+| `label`       | `ReactNode`            | —       |
+| `description` | `ReactNode`            | —       |
+| `size`        | `"sm" \| "md" \| "lg"` | `"md"`  |
+
+All other `<input>` attributes are forwarded, such as `name`, `checked` and `defaultChecked`.

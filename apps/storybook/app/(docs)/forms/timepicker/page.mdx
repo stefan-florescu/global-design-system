@@ -1,0 +1,66 @@
+export const metadata = {
+  title: "Timepicker",
+  description: "A native time field with a clock icon, limits and steps.",
+};
+
+<PageHeader {...metadata} section="Forms" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="timepicker-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Label, Timepicker } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Label htmlFor="start">Start time</Label>
+<Timepicker id="start" min="09:00" max="18:00" step={1800} />
+```
+
+## Examples
+
+### Default timepicker
+
+The browser formats the time for the user's locale and supplies the picker.
+
+<ComponentPreview name="timepicker-demo" />
+
+### Time range
+
+Use two timepickers for a start and an end.
+
+<ComponentPreview name="timepicker-range" />
+
+### Min and max
+
+`min`, `max` and `step` (in seconds) limit the choices.
+
+<ComponentPreview name="timepicker-min-max" />
+
+### Time slots
+
+For a few fixed times, bordered radios in a `Fieldset` are faster to pick.
+
+<ComponentPreview name="timepicker-slots" />
+
+## Accessibility
+
+- A native `type="time"` field, so each part (hours, minutes) is reachable with the keyboard and
+  read correctly by screen readers.
+- The submitted value is always 24-hour `HH:mm`, whatever the display format.
+- Explain limits such as office hours in a `HelperText`.
+
+## API Reference
+
+| Prop          | Type                   | Default |
+| ------------- | ---------------------- | ------- |
+| `min` / `max` | `string` (`"HH:mm"`)   | —       |
+| `step`        | `number` (seconds)     | `60`    |
+| `size`        | `"sm" \| "md" \| "lg"` | `"md"`  |
+| `invalid`     | `boolean`              | `false` |
+| `valid`       | `boolean`              | `false` |

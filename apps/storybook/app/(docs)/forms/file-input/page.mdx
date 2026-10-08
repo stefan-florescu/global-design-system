@@ -1,0 +1,78 @@
+export const metadata = {
+  title: "File Input",
+  description: "A native file field and a large drag-and-drop dropzone.",
+};
+
+<PageHeader {...metadata} section="Forms" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="file-input-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { FileDropzone, FileInput, Label } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Label htmlFor="avatar">Profile picture</Label>
+<FileInput id="avatar" accept="image/*" />
+```
+
+## Examples
+
+### File upload
+
+A native file field with the browser's button restyled.
+
+<ComponentPreview name="file-input-demo" />
+
+### Helper text
+
+Say which formats and sizes are accepted.
+
+<ComponentPreview name="file-input-helper" />
+
+### Multiple files
+
+<ComponentPreview name="file-input-multiple" />
+
+### Sizes
+
+<ComponentPreview name="file-input-sizes" />
+
+### Dropzone
+
+`FileDropzone` is a large target: click it, focus it with <kbd>Tab</kbd>, or drop files on it. It works without JavaScript because the native input covers the whole area.
+
+<ComponentPreview name="file-input-dropzone" />
+
+## Accessibility
+
+- Both are native `type="file"` inputs, so the file dialog, keyboard and screen readers work as
+  usual.
+- `FileDropzone`'s text is its label; its focus ring appears around the whole area.
+- Check files on the server too: `accept` only filters the file dialog.
+
+## API Reference
+
+### FileInput
+
+| Prop       | Type                   | Default |
+| ---------- | ---------------------- | ------- |
+| `accept`   | `string`               | —       |
+| `multiple` | `boolean`              | `false` |
+| `size`     | `"sm" \| "md" \| "lg"` | `"md"`  |
+| `invalid`  | `boolean`              | `false` |
+
+### FileDropzone
+
+| Prop          | Type        | Default                            |
+| ------------- | ----------- | ---------------------------------- |
+| `title`       | `ReactNode` | "Click to upload or drag and drop" |
+| `description` | `ReactNode` | —                                  |
+
+Both forward native `<input>` attributes.

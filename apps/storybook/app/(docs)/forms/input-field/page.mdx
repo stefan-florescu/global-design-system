@@ -1,0 +1,109 @@
+export const metadata = {
+  title: "Input Field",
+  description:
+    "A single-line text field with labels, helper text, icons, addons and validation states.",
+};
+
+<PageHeader {...metadata} section="Forms" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="input-field-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { HelperText, Input, Label } from "@stefan-florescu/ui";
+```
+
+```tsx
+<div className="grid gap-2">
+  <Label htmlFor="email">Email address</Label>
+  <Input id="email" type="email" aria-describedby="email-help" />
+  <HelperText id="email-help">We'll never share your email.</HelperText>
+</div>
+```
+
+## Examples
+
+### Default input
+
+Pair each `Input` with a `Label`. Native attributes such as `type`, `autoComplete` and `required` work as usual.
+
+<ComponentPreview name="input-field-demo" />
+
+### Input sizes
+
+Three sizes that match the button heights: `sm` (36px), `md` (40px) and `lg` (48px).
+
+<ComponentPreview name="input-field-sizes" />
+
+### Disabled and read-only
+
+Disabled fields can't be focused or submitted. Prefer `readOnly` for values people should still be able to select and copy.
+
+<ComponentPreview name="input-field-disabled" />
+
+### Helper text
+
+Add a `HelperText` and reference its `id` from the field's `aria-describedby`.
+
+<ComponentPreview name="input-field-helper" />
+
+### Input element with icon
+
+`startIcon` and `endIcon` add decorative icons inside the field.
+
+<ComponentPreview name="input-field-icon" />
+
+### Input group
+
+`addon` attaches text such as "@" or "https://" before the field.
+
+<ComponentPreview name="input-field-addon" />
+
+### Form validation
+
+Set `valid` or `invalid` and explain the state in a `HelperText` with the matching `variant`.
+
+<ComponentPreview name="input-field-validation" />
+
+## Accessibility
+
+- Every field needs a visible `Label` whose `htmlFor` matches the field's `id`. Placeholders are
+  hints, not labels.
+- Link helper and error text with `aria-describedby` so it is read with the field.
+- `invalid` sets `aria-invalid="true"` and a red border; always say what is wrong in text too.
+- The border uses the `input` token, which clears 3:1 against the page in both themes, and focus
+  adds a `ring`-coloured border and ring.
+
+## API Reference
+
+### Input
+
+| Prop        | Type                   | Default  |
+| ----------- | ---------------------- | -------- |
+| `size`      | `"sm" \| "md" \| "lg"` | `"md"`   |
+| `invalid`   | `boolean`              | `false`  |
+| `valid`     | `boolean`              | `false`  |
+| `startIcon` | `ReactNode`            | —        |
+| `endIcon`   | `ReactNode`            | —        |
+| `addon`     | `ReactNode`            | —        |
+| `type`      | `string`               | `"text"` |
+
+### Label
+
+| Prop       | Type      | Default |
+| ---------- | --------- | ------- |
+| `required` | `boolean` | `false` |
+| `disabled` | `boolean` | `false` |
+
+### HelperText
+
+| Prop      | Type                                | Default     |
+| --------- | ----------------------------------- | ----------- |
+| `variant` | `"default" \| "error" \| "success"` | `"default"` |
+
+All parts forward native attributes, including `ref` and `className`.

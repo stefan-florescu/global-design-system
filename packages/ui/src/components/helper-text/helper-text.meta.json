@@ -1,0 +1,23 @@
+{
+  "name": "HelperText",
+  "status": "beta",
+  "description": "Hint, error or success text under a form control, linked with aria-describedby.",
+  "category": "forms",
+  "import": "import { HelperText } from \"@stefan-florescu/ui\";",
+  "ariaPattern": null,
+  "client": false,
+  "props": "generated",
+  "variants": {
+    "variant": ["default", "error", "success"]
+  },
+  "tokens": [
+    "color.muted-foreground",
+    "color.destructive-subtle-foreground",
+    "color.success-subtle-foreground",
+    "text.sm"
+  ],
+  "useWhen": ["Explaining a field or its error"],
+  "avoidWhen": [],
+  "related": ["Input"],
+  "docs": "apps/storybook/app/(docs)/forms/input-field/page.mdx"
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Range",
+  "status": "beta",
+  "description": "A native slider for picking a value from a range.",
+  "category": "forms",
+  "import": "import { Range } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/slider/",
+  "client": false,
+  "props": "generated",
+  "variants": {
+    "size": ["sm", "md", "lg"]
+  },
+  "tokens": ["color.muted", "color.brand", "color.ring", "radius.full"],
+  "useWhen": ["Approximate values where the exact number matters less"],
+  "avoidWhen": [],
+  "related": ["Label", "HelperText"],
+  "docs": "apps/storybook/app/(docs)/forms/range/page.mdx"
+}

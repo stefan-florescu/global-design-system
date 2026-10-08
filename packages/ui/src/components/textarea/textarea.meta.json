@@ -1,0 +1,28 @@
+{
+  "name": "Textarea",
+  "status": "beta",
+  "description": "A multi-line text field that can be resized vertically.",
+  "category": "forms",
+  "import": "import { Textarea } from \"@stefan-florescu/ui\";",
+  "ariaPattern": null,
+  "client": false,
+  "props": "generated",
+  "variants": {
+    "size": ["sm", "md", "lg"]
+  },
+  "tokens": [
+    "color.input",
+    "color.background",
+    "color.foreground",
+    "color.muted",
+    "color.muted-foreground",
+    "color.ring",
+    "color.destructive",
+    "color.success",
+    "radius.lg"
+  ],
+  "useWhen": ["Long free-text answers: messages, comments"],
+  "avoidWhen": [],
+  "related": ["Label", "HelperText"],
+  "docs": "apps/storybook/app/(docs)/forms/textarea/page.mdx"
+}

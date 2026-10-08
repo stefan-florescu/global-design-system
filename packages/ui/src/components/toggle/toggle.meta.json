@@ -1,0 +1,25 @@
+{
+  "name": "Toggle",
+  "status": "beta",
+  "description": "An on/off switch: a native checkbox with role=\"switch\".",
+  "category": "forms",
+  "import": "import { Toggle } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/switch/",
+  "client": false,
+  "props": "generated",
+  "variants": {
+    "size": ["sm", "md", "lg"]
+  },
+  "tokens": [
+    "color.input",
+    "color.brand",
+    "color.background",
+    "color.ring",
+    "radius.full",
+    "z.raised"
+  ],
+  "useWhen": ["Settings that take effect immediately"],
+  "avoidWhen": [],
+  "related": ["Label", "HelperText"],
+  "docs": "apps/storybook/app/(docs)/forms/toggle/page.mdx"
+}

@@ -1,0 +1,28 @@
+{
+  "name": "FileInput",
+  "status": "beta",
+  "description": "A native file field and a large drag-and-drop dropzone.",
+  "category": "forms",
+  "import": "import { FileDropzone, FileInput } from \"@stefan-florescu/ui\";",
+  "ariaPattern": null,
+  "client": false,
+  "props": "generated",
+  "variants": {
+    "size": ["sm", "md", "lg"]
+  },
+  "tokens": [
+    "color.input",
+    "color.background",
+    "color.foreground",
+    "color.muted",
+    "color.muted-foreground",
+    "color.ring",
+    "color.destructive",
+    "color.success",
+    "radius.lg"
+  ],
+  "useWhen": ["Uploading files"],
+  "avoidWhen": [],
+  "related": ["Label", "HelperText"],
+  "docs": "apps/storybook/app/(docs)/forms/file-input/page.mdx"
+}

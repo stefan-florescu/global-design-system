@@ -1,0 +1,80 @@
+export const metadata = {
+  title: "Number Input",
+  description: "A number field with optional minus and plus stepper buttons.",
+};
+
+<PageHeader {...metadata} section="Forms" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="number-input-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Label, NumberInput } from "@stefan-florescu/ui";
+```
+
+```tsx
+<NumberInput id="guests" stepper defaultValue={2} min={1} max={10} />
+```
+
+## Examples
+
+### Default number input
+
+A `type="number"` field: arrow keys change the value by `step`.
+
+<ComponentPreview name="number-input-demo" />
+
+### Control buttons
+
+Add `stepper` for − and + buttons. They disable themselves at `min` and `max`.
+
+<ComponentPreview name="number-input-stepper" />
+
+### Counter input
+
+A compact stepper with `size="sm"`.
+
+<ComponentPreview name="number-input-counter" />
+
+### Currency input
+
+Use `addon` for a currency sign and `step={0.01}` for cents.
+
+<ComponentPreview name="number-input-currency" />
+
+### ZIP code input
+
+For codes that are digits but not amounts, use an `Input` with `inputMode="numeric"` and a `pattern` instead.
+
+<ComponentPreview name="number-input-zip" />
+
+## Accessibility
+
+- The field is a native spin button: <kbd>↑</kbd> and <kbd>↓</kbd> change the value by `step`.
+- The − and + buttons are named "Decrease" and "Increase" (change them with `decrementLabel` and
+  `incrementLabel`) and point at the field with `aria-controls`.
+- Use `NumberInput` for amounts. For codes and IDs (ZIP codes, card numbers), use `Input` with
+  `inputMode="numeric"`: they aren't numbers you count up or down.
+
+## API Reference
+
+| Prop             | Type                              | Default      |
+| ---------------- | --------------------------------- | ------------ |
+| `value`          | `number \| null`                  | —            |
+| `defaultValue`   | `number \| null`                  | `null`       |
+| `onValueChange`  | `(value: number \| null) => void` | —            |
+| `min` / `max`    | `number`                          | —            |
+| `step`           | `number`                          | `1`          |
+| `stepper`        | `boolean`                         | `false`      |
+| `decrementLabel` | `string`                          | `"Decrease"` |
+| `incrementLabel` | `string`                          | `"Increase"` |
+| `size`           | `"sm" \| "md" \| "lg"`            | `"md"`       |
+| `invalid`        | `boolean`                         | `false`      |
+| `valid`          | `boolean`                         | `false`      |
+
+`NumberInput` is a client component.

@@ -34,6 +34,7 @@
   "avoidWhen": ["Feedback about the current task: use Alert"],
   "related": ["Alert"],
   "examples": [
+    "apps/storybook/registry/demos/banner-newsletter.tsx",
     "apps/storybook/registry/demos/banner-demo.tsx",
     "apps/storybook/registry/demos/banner-bottom.tsx",
     "apps/storybook/registry/demos/banner-cta.tsx",

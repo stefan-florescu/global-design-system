@@ -1,0 +1,73 @@
+export const metadata = {
+  title: "Range",
+  description: "A native slider for picking a value from a range.",
+};
+
+<PageHeader {...metadata} section="Forms" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="range-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Label, Range } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Label htmlFor="volume">Volume</Label>
+<Range id="volume" min={0} max={100} defaultValue={50} />
+```
+
+## Examples
+
+### Default range
+
+<ComponentPreview name="range-demo" />
+
+### Disabled state
+
+<ComponentPreview name="range-disabled" />
+
+### Min and max
+
+Show the limits as text next to the slider.
+
+<ComponentPreview name="range-min-max" />
+
+### Steps
+
+`step` sets the increment.
+
+<ComponentPreview name="range-steps" />
+
+### Sizes
+
+<ComponentPreview name="range-sizes" />
+
+### Show the value
+
+Display the current value in an `<output>`, and set `aria-valuetext` when the number needs a unit.
+
+<ComponentPreview name="range-value" />
+
+## Accessibility
+
+- A native slider: arrow keys change the value by `step`, <kbd>Page Up</kbd>/<kbd>Page Down</kbd>
+  by larger amounts, <kbd>Home</kbd>/<kbd>End</kbd> jump to the limits.
+- Give it a `Label`, and `aria-valuetext` when the number alone isn't meaningful (for example
+  "70%").
+- Show the exact value when it matters; sliders are hard to set precisely.
+
+## API Reference
+
+| Prop          | Type                   | Default     |
+| ------------- | ---------------------- | ----------- |
+| `min` / `max` | `number`               | `0` / `100` |
+| `step`        | `number`               | `1`         |
+| `size`        | `"sm" \| "md" \| "lg"` | `"md"`      |
+
+All other `<input>` attributes are forwarded.

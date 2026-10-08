@@ -1,0 +1,18 @@
+{
+  "name": "Fieldset",
+  "status": "beta",
+  "description": "Groups related controls, such as radios or checkboxes, under a legend.",
+  "category": "forms",
+  "import": "import { Fieldset } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/tutorials/forms/grouping/",
+  "client": false,
+  "props": "generated",
+  "variants": {
+    "orientation": ["vertical", "horizontal"]
+  },
+  "tokens": ["color.foreground", "text.sm"],
+  "useWhen": ["Radio groups and checkbox groups"],
+  "avoidWhen": [],
+  "related": ["Label", "HelperText"],
+  "docs": "apps/storybook/app/(docs)/forms/radio/page.mdx"
+}

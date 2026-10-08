@@ -1,0 +1,30 @@
+{
+  "name": "Input",
+  "status": "beta",
+  "description": "A single-line text field with sizes, icons, addons and validation states.",
+  "category": "forms",
+  "import": "import { HelperText, Input, Label } from \"@stefan-florescu/ui\";",
+  "ariaPattern": null,
+  "client": false,
+  "props": "generated",
+  "variants": {
+    "size": ["sm", "md", "lg"],
+    "invalid": [true, false],
+    "valid": [true, false]
+  },
+  "tokens": [
+    "color.input",
+    "color.background",
+    "color.foreground",
+    "color.muted",
+    "color.muted-foreground",
+    "color.ring",
+    "color.destructive",
+    "color.success",
+    "radius.lg"
+  ],
+  "useWhen": ["Short free-text answers: names, emails, URLs"],
+  "avoidWhen": [],
+  "related": ["Label", "HelperText"],
+  "docs": "apps/storybook/app/(docs)/forms/input-field/page.mdx"
+}

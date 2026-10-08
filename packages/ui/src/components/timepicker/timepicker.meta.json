@@ -1,0 +1,28 @@
+{
+  "name": "Timepicker",
+  "status": "beta",
+  "description": "A native time field with a clock icon, min, max and step.",
+  "category": "forms",
+  "import": "import { Timepicker } from \"@stefan-florescu/ui\";",
+  "ariaPattern": null,
+  "client": false,
+  "props": "generated",
+  "variants": {
+    "size": ["sm", "md", "lg"]
+  },
+  "tokens": [
+    "color.input",
+    "color.background",
+    "color.foreground",
+    "color.muted",
+    "color.muted-foreground",
+    "color.ring",
+    "color.destructive",
+    "color.success",
+    "radius.lg"
+  ],
+  "useWhen": ["Choosing a time of day"],
+  "avoidWhen": [],
+  "related": ["Label", "HelperText"],
+  "docs": "apps/storybook/app/(docs)/forms/timepicker/page.mdx"
+}

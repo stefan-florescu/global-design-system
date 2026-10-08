@@ -1,0 +1,28 @@
+{
+  "name": "PhoneInput",
+  "status": "beta",
+  "description": "A country-code select joined to a phone number field.",
+  "category": "forms",
+  "import": "import { PhoneInput } from \"@stefan-florescu/ui\";",
+  "ariaPattern": null,
+  "client": false,
+  "props": "generated",
+  "variants": {
+    "size": ["sm", "md", "lg"]
+  },
+  "tokens": [
+    "color.input",
+    "color.background",
+    "color.foreground",
+    "color.muted",
+    "color.muted-foreground",
+    "color.ring",
+    "color.destructive",
+    "color.success",
+    "radius.lg"
+  ],
+  "useWhen": ["Collecting a phone number"],
+  "avoidWhen": [],
+  "related": ["Label", "HelperText"],
+  "docs": "apps/storybook/app/(docs)/forms/phone-input/page.mdx"
+}

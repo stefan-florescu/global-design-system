@@ -28,6 +28,7 @@
   "avoidWhen": ["Wrapping a whole page section: use layout spacing", "Nesting cards inside cards"],
   "related": ["Avatar", "Badge", "Button"],
   "examples": [
+    "apps/storybook/registry/demos/card-form.tsx",
     "apps/storybook/registry/demos/card-demo.tsx",
     "apps/storybook/registry/demos/card-cta.tsx",
     "apps/storybook/registry/demos/card-image.tsx",

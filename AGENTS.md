@@ -35,8 +35,15 @@ Dependency direction is strictly **tokens → themes → ui → apps**. Never im
   docs page in `apps/storybook` (page, demos, registry entry and sidebar entry). See the file
   contract below.
 - **Flowbite is the reference.** Unless the task says otherwise, model the component's anatomy,
-  options and docs examples on `https://flowbite.com/docs/components/<name>/` (and the matching
-  `flowbite-react` component for the React API). Mirror its example sections on the docs page.
+  options and docs examples on `https://flowbite.com/docs/components/<name>/` (form controls:
+  `https://flowbite.com/docs/forms/<name>/`) and the matching `flowbite-react` component for the
+  React API. Mirror its example sections on the docs page.
+- **Form controls** (inputs, selects, checkboxes, toggles…) live in the sidebar's **Forms**
+  section, with pages at `app/(docs)/forms/<name>/page.mdx`. They share the field styles in
+  `components/input/input.variants.ts` and pair with `Label`, `HelperText` and `Fieldset`.
+- **Use new components everywhere.** When a component lands, replace any hand-made version of it
+  across the website (demos, docs pages, site chrome where it fits) and add the Flowbite examples
+  that were skipped because the component was missing.
 - **Translate, don't copy.** Map Flowbite's colours, sizes and radii to our semantic tokens, keep
   our prop conventions (`variant`, `size`, adjective booleans), and drop examples we have no tokens
   for (gradients, coloured shadows, brand logos). Accessibility follows WAI-ARIA, even where
@@ -99,6 +106,7 @@ apps/storybook/                # the docs website ("storybook" is just the folde
 ├── registry/demos/<kebab-name>-<example>.tsx      # live examples (also shown as code)
 ├── registry/index.ts                              # register each demo
 ├── app/(docs)/components/<kebab-name>/page.mdx    # the docs page (copy components/button)
+├── app/(docs)/forms/<kebab-name>/page.mdx         # …or here for form controls (copy forms/input-field)
 └── lib/navigation.ts                              # add the page to the sidebar
 ```
 

@@ -1,0 +1,29 @@
+{
+  "name": "NumberInput",
+  "status": "beta",
+  "description": "A number field with optional \u2212 and + stepper buttons.",
+  "category": "forms",
+  "import": "import { NumberInput } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/spinbutton/",
+  "client": true,
+  "props": "generated",
+  "variants": {
+    "size": ["sm", "md", "lg"],
+    "stepper": [true, false]
+  },
+  "tokens": [
+    "color.input",
+    "color.background",
+    "color.foreground",
+    "color.muted",
+    "color.muted-foreground",
+    "color.ring",
+    "color.destructive",
+    "color.success",
+    "radius.lg"
+  ],
+  "useWhen": ["Quantities and other small numbers"],
+  "avoidWhen": [],
+  "related": ["Label", "HelperText"],
+  "docs": "apps/storybook/app/(docs)/forms/number-input/page.mdx"
+}

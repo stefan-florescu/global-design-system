@@ -1,0 +1,95 @@
+export const metadata = {
+  title: "Checkbox",
+  description: "A native checkbox with a label, a description and a bordered card style.",
+};
+
+<PageHeader {...metadata} section="Forms" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="checkbox-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Checkbox, Fieldset } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Checkbox name="terms" label="I agree with the terms and conditions" required />
+```
+
+## Examples
+
+### Default checkbox
+
+<ComponentPreview name="checkbox-demo" />
+
+### Disabled state
+
+<ComponentPreview name="checkbox-disabled" />
+
+### Checkbox link
+
+The label can contain a link.
+
+<ComponentPreview name="checkbox-link" />
+
+### Helper text
+
+`description` adds text under the label, read as the checkbox's description.
+
+<ComponentPreview name="checkbox-helper" />
+
+### Bordered
+
+`bordered` puts the checkbox in a box that highlights when checked. The whole box is clickable.
+
+<ComponentPreview name="checkbox-bordered" />
+
+### Checkbox list group
+
+Group related checkboxes in a `Fieldset` with a legend.
+
+<ComponentPreview name="checkbox-list" />
+
+### Inline layout
+
+`orientation="horizontal"` lays the group out in a row.
+
+<ComponentPreview name="checkbox-inline" />
+
+## Accessibility
+
+- A native checkbox tinted with `accent-brand`, so the browser keeps drawing it, including in
+  high-contrast and forced-colors modes.
+- The label is linked with `htmlFor`, so clicking it toggles the checkbox; <kbd>Space</kbd>
+  toggles it from the keyboard.
+- Group related checkboxes in a `Fieldset` so screen readers announce the legend.
+- `invalid` sets `aria-invalid` and a red outline; explain the problem in text as well.
+
+## API Reference
+
+### Checkbox
+
+| Prop          | Type        | Default |
+| ------------- | ----------- | ------- |
+| `label`       | `ReactNode` | —       |
+| `description` | `ReactNode` | —       |
+| `bordered`    | `boolean`   | `false` |
+| `invalid`     | `boolean`   | `false` |
+
+All other `<input>` attributes are forwarded, such as `name`, `value` and `defaultChecked`.
+
+### Fieldset
+
+| Prop          | Type                         | Default      |
+| ------------- | ---------------------------- | ------------ |
+| `legend`      | `ReactNode` (required)       | —            |
+| `hideLegend`  | `boolean`                    | `false`      |
+| `orientation` | `"vertical" \| "horizontal"` | `"vertical"` |
+
+`className` styles the `<fieldset>`; `contentClassName` styles the element that lays out the
+controls, for example a grid.
