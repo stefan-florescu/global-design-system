@@ -46,7 +46,7 @@ Future: `.cursor/rules/*.mdc` only if needed (Cursor already reads `AGENTS.md`).
   "useWhen": ["Submitting a form", "Starting a primary action"],
   "avoidWhen": ["Navigating to another page — use Link"],
   "related": ["IconButton", "Link"],
-  "examples": ["button.stories.tsx#Primary"]
+  "examples": ["apps/storybook/registry/demos/button-demo.tsx"]
 }
 ```
 
@@ -68,7 +68,7 @@ A JSON Schema (`schemas/component-meta.schema.json`, Phase B) validates these in
 - ESLint: forbid arbitrary Tailwind values and primitive colour classes in `packages/ui` (Phase A),
   forbid `lucide-react` imports outside `packages/icons`, jsx-a11y **strict**.
 - TypeScript strict + `noUncheckedIndexedAccess`.
-- Storybook a11y = error; Vitest; visual regression (Phase B).
+- jsx-a11y strict lint = error; Vitest with axe assertions and visual regression (Phase B).
 - Required changeset and Conventional Commit titles make AI-authored PRs reviewable.
 - Copilot code review / Claude Code GitHub Action can be enabled to review PRs against `AGENTS.md`.
 

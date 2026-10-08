@@ -1,8 +1,0 @@
-{
-  "extends": "@stefan-florescu/typescript-config/nextjs.json",
-  "compilerOptions": {
-    "paths": { "@/*": ["./*"] }
-  },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.mdx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules", ".next"]
-}

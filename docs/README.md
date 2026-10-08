@@ -10,7 +10,7 @@ This folder is the architectural source of truth. It is written for designers, e
 | 03  | [Design Foundations](architecture/03-design-foundations.md)                 | Color, type, spacing, radius, elevation, grid, breakpoints |
 | 04  | [Governance](architecture/04-governance.md)                                 | Contribution, approval, versioning, doc standards          |
 | 05  | [Component Roadmap](architecture/05-component-roadmap.md)                   | Phases A–E, priorities, exit criteria                      |
-| 06  | [Documentation Architecture](architecture/06-documentation-architecture.md) | Docs site IA, page templates, Storybook vs docs split      |
+| 06  | [Documentation Architecture](architecture/06-documentation-architecture.md) | Docs site IA and page templates                            |
 | 07  | [AI Readiness](architecture/07-ai-readiness.md)                             | Copilot, Claude Code, OpenAI Agents, future assistants     |
 | 08  | [Environments & Deployment](architecture/08-environments-and-deployment.md) | Local, cloud, GitHub, Vercel, npm — setup checklist        |
 

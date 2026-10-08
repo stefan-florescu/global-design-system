@@ -6,7 +6,7 @@ import tseslint from "typescript-eslint";
 
 /** Base rules for every TypeScript workspace. */
 export const base = tseslint.config(
-  { ignores: ["dist/**", "build/**", ".next/**", "storybook-static/**", "coverage/**"] },
+  { ignores: ["dist/**", "build/**", ".next/**", "coverage/**"] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {

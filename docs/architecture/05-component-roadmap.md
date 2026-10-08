@@ -5,7 +5,7 @@ P0 = blocks everything after it; P1 = needed for most screens; P2 = common; P3 =
 
 ## Phase 0 — Environment ✅ (this PR)
 
-Monorepo, tooling, CI/CD, Vercel projects, docs & Storybook shells, AI instructions.
+Monorepo, tooling, CI/CD, Vercel projects, docs site, AI instructions.
 
 ## Phase A — Foundations
 
@@ -20,7 +20,7 @@ Monorepo, tooling, CI/CD, Vercel projects, docs & Storybook shells, AI instructi
 | Iconography spec + `@stefan-florescu/icons` defaults | P1       | `Icon` wrapper, size/stroke rules            |
 | Focus ring & a11y utilities (`VisuallyHidden`)       | P0       | utilities                                    |
 | Tailwind bridge (`@theme inline`)                    | P0       | `packages/config/tailwind/theme.css`         |
-| Foundations docs + Storybook token playgrounds       | P1       | swatches, type specimens, spacing visualiser |
+| Foundations docs pages with token playgrounds        | P1       | swatches, type specimens, spacing visualiser |
 
 **Exit:** all foundations tokenised, both themes pass contrast, docs pages published.
 

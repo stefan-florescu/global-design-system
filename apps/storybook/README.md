@@ -1,10 +1,10 @@
-# @stefan-florescu/site
+# @stefan-florescu/storybook
 
-The public documentation website (Next.js 15 · React 19 · Tailwind CSS v4 · MDX), styled after
+The design-system website (folder and package keep the name "storybook") (Next.js 15 · React 19 · Tailwind CSS v4 · MDX), styled after
 ui.shadcn.com.
 
 ```bash
-pnpm dev:site   # http://localhost:3000
+pnpm dev:storybook   # http://localhost:3000
 ```
 
 ## Structure

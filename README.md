@@ -9,10 +9,9 @@ Token-driven · component-based · accessible by default · multi-theme · AI-fr
 | `@stefan-florescu/ui`     | React 19 components — Tailwind CSS v4 + CVA       |
 | `@stefan-florescu/icons`  | Governed lucide.dev icon layer                    |
 
-| App              | Stack               | Local                 |
-| ---------------- | ------------------- | --------------------- |
-| `apps/site`      | Next.js 15 · MDX    | http://localhost:3000 |
-| `apps/storybook` | Storybook 10 · Vite | http://localhost:6006 |
+| App              | Stack                                     | Local                 |
+| ---------------- | ----------------------------------------- | --------------------- |
+| `apps/storybook` | Next.js 15 · MDX docs site (shadcn-style) | http://localhost:3000 |
 
 ## Quick start
 
@@ -24,7 +23,7 @@ pnpm dev
 
 | Command          | Does                                         |
 | ---------------- | -------------------------------------------- |
-| `pnpm dev`       | Run the docs site + Storybook                |
+| `pnpm dev`       | Run the docs site (`apps/storybook`)         |
 | `pnpm build`     | Build every package and app (Turborepo)      |
 | `pnpm lint`      | ESLint (incl. jsx-a11y strict)               |
 | `pnpm typecheck` | TypeScript strict                            |

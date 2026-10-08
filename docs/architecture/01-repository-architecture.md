@@ -25,13 +25,11 @@ Principles:
 ```
 global-design-system/                 # "stefan-design-system"
 ├── apps/
-│   ├── site/                         # Next.js 15 docs website (shadcn-style, MDX) → Vercel
-│   │   ├── app/(docs)/               # Foundation, Components, Changelog pages (MDX)
-│   │   ├── components/               # Site chrome: header, search, theme toggle, TOC
-│   │   └── registry/demos/           # Live examples rendered by <ComponentPreview>
-│   └── storybook/                    # Storybook 10 workbench → Vercel (static)
-│       ├── .storybook/               # main.ts, preview.ts, preview.css
-│       ├── src/                      # Storybook-only MDX (intro, token playgrounds)
+│   └── storybook/                    # Docs website (Next.js 15, MDX, shadcn-style) → Vercel
+│       │                             #   ("storybook" is only the folder/package name)
+│       ├── app/(docs)/               # Foundation, Components, Changelog pages (MDX)
+│       ├── components/               # Site chrome: header, search, theme toggle, TOC
+│       ├── registry/demos/           # Live examples rendered by <ComponentPreview>
 │       └── vercel.json
 │
 ├── packages/
@@ -106,7 +104,6 @@ Rules:
 | Tokens (JSON path)      | `category.concept.property.variant.state` | `color.action.primary.background.hover`                                     |
 | Tokens (CSS)            | `--sds-` + kebab path                     | `--sds-color-action-primary-background-hover`                               |
 | Theme names             | lowercase                                 | `light`, `dark`, `high-contrast`, `brand-x`                                 |
-| Stories                 | `Category/Name`                           | `Components/Button`, `Foundations/Color`                                    |
 | Branches                | `type/short-desc`                         | `feat/button`, `fix/dialog-focus-trap`                                      |
 | Commits / PR titles     | Conventional Commits + scope              | `feat(ui): add Button`                                                      |
 | ADRs                    | `NNNN-kebab-title.md`                     | `0003-dtcg-token-format.md`                                                 |

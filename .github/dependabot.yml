@@ -10,8 +10,8 @@ updates:
     groups:
       react-next:
         patterns: ["react", "react-dom", "@types/react*", "next", "@next/*"]
-      storybook:
-        patterns: ["storybook", "@storybook/*", "eslint-plugin-storybook"]
+      mdx-docs:
+        patterns: ["@next/mdx", "@mdx-js/*", "shiki", "remark-*", "rehype-*", "next-themes"]
       tailwind:
         patterns: ["tailwindcss", "@tailwindcss/*", "prettier-plugin-tailwindcss", "tailwind-merge"]
       tooling:

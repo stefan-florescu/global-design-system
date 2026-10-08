@@ -1,6 +1,6 @@
 # 0004 · Separate docs site (Next.js) and Storybook workbench
 
-- **Status:** Accepted — see the 2026-10-08 update and ADR 0006
+- **Status:** Superseded by [0006](0006-shadcn-style-docs-site.md)
 - **Date:** 2026-10-07
 
 ## Context
@@ -24,4 +24,4 @@ as MDX until the guidance outgrows it; the split above remains the target archit
 
 ## Update 2026-10-08
 
-The docs site is back as `apps/site` — see [ADR 0006](0006-shadcn-style-docs-site.md).
+A single docs site replaces both surfaces — see [ADR 0006](0006-shadcn-style-docs-site.md).

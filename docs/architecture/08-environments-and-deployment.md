@@ -1,13 +1,13 @@
 # 08 · Environments & Deployment
 
-| Environment | Where                              | Purpose                                 |
-| ----------- | ---------------------------------- | --------------------------------------- |
-| Local       | Your machine                       | Day-to-day development                  |
-| Cloud dev   | Claude Code on the web, Codespaces | Develop from anywhere, AI agents        |
-| CI          | GitHub Actions                     | Verify every PR, release on `main`      |
-| Preview     | Vercel (per PR / branch)           | Review docs + Storybook for each change |
-| Production  | Vercel (`main`)                    | Public docs + Storybook                 |
-| Registry    | npmjs.com + GitHub Packages        | Consumable packages                     |
+| Environment | Where                              | Purpose                              |
+| ----------- | ---------------------------------- | ------------------------------------ |
+| Local       | Your machine                       | Day-to-day development               |
+| Cloud dev   | Claude Code on the web, Codespaces | Develop from anywhere, AI agents     |
+| CI          | GitHub Actions                     | Verify every PR, release on `main`   |
+| Preview     | Vercel (per PR / branch)           | Review the docs site for each change |
+| Production  | Vercel (`main`)                    | Public docs site                     |
+| Registry    | npmjs.com + GitHub Packages        | Consumable packages                  |
 
 ## 8.1 Local
 
@@ -16,7 +16,7 @@
 git clone git@github.com:stefan-florescu/global-design-system.git
 cd global-design-system
 corepack enable && pnpm install     # also installs husky git hooks
-pnpm dev                            # storybook :6006
+pnpm dev                            # docs site :3000
 ```
 
 Useful: `pnpm dev:storybook`, `pnpm build`, `pnpm --filter @stefan-florescu/ui test:watch`.
@@ -63,27 +63,16 @@ Consumers of GitHub Packages add to their `.npmrc`:
 //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
 ```
 
-## 8.5 Vercel — two projects
+## 8.5 Vercel — docs site project
 
-Two Vercel projects are linked to this GitHub repo: the public docs site and the Storybook workbench.
-
-| Setting           | Docs site                    |
-| ----------------- | ---------------------------- |
-| Project name      | `sds-site`                   |
-| Root Directory    | `apps/site`                  |
-| Framework preset  | Next.js                      |
-| Build             | from `apps/site/vercel.json` |
-| Node.js version   | 22.x                         |
-| Production branch | `main`                       |
-
-Storybook:
+One Vercel project, linked to this GitHub repo:
 
 | Setting                              | Value                                                                                    |
 | ------------------------------------ | ---------------------------------------------------------------------------------------- |
 | Project name                         | `sds-storybook`                                                                          |
 | Root Directory                       | `apps/storybook`                                                                         |
-| Framework preset                     | Other                                                                                    |
-| Build / Output                       | from `apps/storybook/vercel.json` (`storybook-static`)                                   |
+| Framework                            | Next.js (set by `apps/storybook/vercel.json`, overrides the dashboard preset)            |
+| Build                                | from `apps/storybook/vercel.json`                                                        |
 | Node.js version                      | 22.x                                                                                     |
 | Include files outside root directory | ✅ enabled (default for monorepos)                                                       |
 | Ignored build step                   | `npx turbo-ignore` (in `vercel.json`) — skips deploys when nothing it depends on changed |
