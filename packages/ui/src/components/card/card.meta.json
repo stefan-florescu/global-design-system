@@ -1,0 +1,40 @@
+{
+  "name": "Card",
+  "status": "beta",
+  "description": "A surface that groups related content and actions about a single subject.",
+  "category": "layout",
+  "import": "import { Card, CardDescription, CardTitle } from \"@stefan-florescu/ui\";",
+  "ariaPattern": null,
+  "client": false,
+  "props": "generated",
+  "parts": ["Card", "CardTitle", "CardDescription"],
+  "variants": { "horizontal": [true, false] },
+  "defaults": { "horizontal": false },
+  "tokens": [
+    "color.card",
+    "color.card-foreground",
+    "color.muted-foreground",
+    "color.border",
+    "color.accent",
+    "color.ring",
+    "radius.lg",
+    "shadow.sm",
+    "text.2xl"
+  ],
+  "useWhen": [
+    "Previewing an item in a grid or list",
+    "Grouping a short block of content with its actions"
+  ],
+  "avoidWhen": ["Wrapping a whole page section: use layout spacing", "Nesting cards inside cards"],
+  "related": ["Avatar", "Badge", "Button"],
+  "examples": [
+    "apps/storybook/registry/demos/card-demo.tsx",
+    "apps/storybook/registry/demos/card-cta.tsx",
+    "apps/storybook/registry/demos/card-image.tsx",
+    "apps/storybook/registry/demos/card-horizontal.tsx",
+    "apps/storybook/registry/demos/card-profile.tsx",
+    "apps/storybook/registry/demos/card-ecommerce.tsx",
+    "apps/storybook/registry/demos/card-list.tsx",
+    "apps/storybook/registry/demos/card-pricing.tsx"
+  ]
+}

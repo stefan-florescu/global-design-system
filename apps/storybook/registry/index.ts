@@ -44,6 +44,11 @@ import ButtonAsLink from "./demos/button-as-link";
 import ButtonDemo from "./demos/button-demo";
 import ButtonDisabled from "./demos/button-disabled";
 import ButtonFullWidth from "./demos/button-full-width";
+import ButtonGroupDemo from "./demos/button-group-demo";
+import ButtonGroupIcons from "./demos/button-group-icons";
+import ButtonGroupLinks from "./demos/button-group-links";
+import ButtonGroupOutline from "./demos/button-group-outline";
+import ButtonGroupOutlineIcons from "./demos/button-group-outline-icons";
 import ButtonIcon from "./demos/button-icon";
 import ButtonLoading from "./demos/button-loading";
 import ButtonOutline from "./demos/button-outline";
@@ -53,6 +58,36 @@ import ButtonSizesWithIcon from "./demos/button-sizes-with-icon";
 import ButtonVariants from "./demos/button-variants";
 import ButtonWithIcon from "./demos/button-with-icon";
 import ButtonWithLabel from "./demos/button-with-label";
+import CardCta from "./demos/card-cta";
+import CardDemo from "./demos/card-demo";
+import CardEcommerce from "./demos/card-ecommerce";
+import CardHorizontal from "./demos/card-horizontal";
+import CardImage from "./demos/card-image";
+import CardList from "./demos/card-list";
+import CardPricing from "./demos/card-pricing";
+import CardProfile from "./demos/card-profile";
+import CarouselControls from "./demos/carousel-controls";
+import CarouselDemo from "./demos/carousel-demo";
+import CarouselIndicators from "./demos/carousel-indicators";
+import CarouselStatic from "./demos/carousel-static";
+import ChatBubbleClean from "./demos/chat-bubble-clean";
+import ChatBubbleConversation from "./demos/chat-bubble-conversation";
+import ChatBubbleDemo from "./demos/chat-bubble-demo";
+import ChatBubbleFile from "./demos/chat-bubble-file";
+import ChatBubbleImage from "./demos/chat-bubble-image";
+import ChatBubbleOutline from "./demos/chat-bubble-outline";
+import ClipboardCard from "./demos/clipboard-card";
+import ClipboardDemo from "./demos/clipboard-demo";
+import ClipboardIcon from "./demos/clipboard-icon";
+import ClipboardText from "./demos/clipboard-text";
+import DatepickerButtons from "./demos/datepicker-buttons";
+import DatepickerDemo from "./demos/datepicker-demo";
+import DatepickerDisabledDays from "./demos/datepicker-disabled-days";
+import DatepickerInline from "./demos/datepicker-inline";
+import DatepickerMinMax from "./demos/datepicker-min-max";
+import DatepickerRange from "./demos/datepicker-range";
+import DatepickerTitle from "./demos/datepicker-title";
+import DatepickerWeekStart from "./demos/datepicker-week-start";
 
 /**
  * Demo registry. Each key must match a file in registry/demos/<key>.tsx — the
@@ -103,6 +138,11 @@ export const demos = {
   "button-demo": ButtonDemo,
   "button-disabled": ButtonDisabled,
   "button-full-width": ButtonFullWidth,
+  "button-group-demo": ButtonGroupDemo,
+  "button-group-icons": ButtonGroupIcons,
+  "button-group-links": ButtonGroupLinks,
+  "button-group-outline": ButtonGroupOutline,
+  "button-group-outline-icons": ButtonGroupOutlineIcons,
   "button-icon": ButtonIcon,
   "button-loading": ButtonLoading,
   "button-outline": ButtonOutline,
@@ -112,6 +152,36 @@ export const demos = {
   "button-variants": ButtonVariants,
   "button-with-icon": ButtonWithIcon,
   "button-with-label": ButtonWithLabel,
+  "card-cta": CardCta,
+  "card-demo": CardDemo,
+  "card-ecommerce": CardEcommerce,
+  "card-horizontal": CardHorizontal,
+  "card-image": CardImage,
+  "card-list": CardList,
+  "card-pricing": CardPricing,
+  "card-profile": CardProfile,
+  "carousel-controls": CarouselControls,
+  "carousel-demo": CarouselDemo,
+  "carousel-indicators": CarouselIndicators,
+  "carousel-static": CarouselStatic,
+  "chat-bubble-clean": ChatBubbleClean,
+  "chat-bubble-conversation": ChatBubbleConversation,
+  "chat-bubble-demo": ChatBubbleDemo,
+  "chat-bubble-file": ChatBubbleFile,
+  "chat-bubble-image": ChatBubbleImage,
+  "chat-bubble-outline": ChatBubbleOutline,
+  "clipboard-card": ClipboardCard,
+  "clipboard-demo": ClipboardDemo,
+  "clipboard-icon": ClipboardIcon,
+  "clipboard-text": ClipboardText,
+  "datepicker-buttons": DatepickerButtons,
+  "datepicker-demo": DatepickerDemo,
+  "datepicker-disabled-days": DatepickerDisabledDays,
+  "datepicker-inline": DatepickerInline,
+  "datepicker-min-max": DatepickerMinMax,
+  "datepicker-range": DatepickerRange,
+  "datepicker-title": DatepickerTitle,
+  "datepicker-week-start": DatepickerWeekStart,
 } satisfies Record<string, ComponentType>;
 
 export type DemoName = keyof typeof demos;

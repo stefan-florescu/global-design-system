@@ -1,0 +1,22 @@
+{
+  "name": "Clipboard",
+  "status": "beta",
+  "description": "A button that copies a value to the clipboard and confirms it visually and to screen readers.",
+  "category": "actions",
+  "import": "import { Clipboard } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/button/",
+  "client": true,
+  "props": "generated",
+  "variants": { "variant": "see Button", "size": "see Button", "iconOnly": [true, false] },
+  "defaults": { "label": "Copy", "copiedLabel": "Copied!", "resetAfter": 2000 },
+  "tokens": ["see Button"],
+  "useWhen": ["Copying install commands, API keys, links or codes"],
+  "avoidWhen": ["Long content the user needs to read first"],
+  "related": ["Button"],
+  "examples": [
+    "apps/storybook/registry/demos/clipboard-demo.tsx",
+    "apps/storybook/registry/demos/clipboard-icon.tsx",
+    "apps/storybook/registry/demos/clipboard-text.tsx",
+    "apps/storybook/registry/demos/clipboard-card.tsx"
+  ]
+}

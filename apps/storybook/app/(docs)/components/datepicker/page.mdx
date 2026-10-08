@@ -1,0 +1,139 @@
+export const metadata = {
+  title: "Datepicker",
+  description:
+    "Pick a day from a calendar, inline or in a popover opened from a button. The calendar also supports date ranges.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="datepicker-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Calendar, Datepicker } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Datepicker label="Departure" name="departure" onChange={(date) => console.log(date)} />
+```
+
+`Datepicker` and `Calendar` are client components. `Datepicker` is a button that opens a
+`Calendar` in a popover; use `Calendar` directly to show it inline.
+
+## Examples
+
+### Datepicker
+
+Press the button to open the calendar. Picking a day closes it (`autoHide`) and returns focus to
+the button. Escape or a click outside closes it too. Pass `name` to submit the day with a form as
+`yyyy-mm-dd`.
+
+<ComponentPreview name="datepicker-demo" />
+
+### Inline datepicker
+
+Render `Calendar` to keep the calendar on the page.
+
+<ComponentPreview name="datepicker-inline" />
+
+### Date range picker
+
+Set `mode="range"`. The first click sets the start, the second the end; the days between use the
+`brand-subtle` surface.
+
+<ComponentPreview name="datepicker-range" />
+
+### Action buttons
+
+Add `showTodayButton` and `showClearButton` for shortcuts under the calendar.
+
+<ComponentPreview name="datepicker-buttons" />
+
+### Title
+
+Pass `title` to show a heading above the calendar, and `label` to say what the date is for. The
+label also names the button and the dialog.
+
+<ComponentPreview name="datepicker-title" />
+
+### Min and max
+
+Pass `min` and `max` to limit the selectable days. Days outside the range are disabled and the
+month buttons stop at the limits.
+
+<ComponentPreview name="datepicker-min-max" />
+
+### Week start
+
+Set `weekStartsOn` (0 = Sunday, 1 = Monday…) and `locale` for month and weekday names.
+
+<ComponentPreview name="datepicker-week-start" />
+
+### Disabled days
+
+Pass `isDateDisabled` to disable any day, for example weekends.
+
+<ComponentPreview name="datepicker-disabled-days" />
+
+## Accessibility
+
+- Follows the WAI-ARIA [date picker dialog](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/datepicker-dialog/)
+  example. The button has `aria-haspopup="dialog"` and `aria-expanded`; its name includes the
+  `label` and the selected day ("Departure, Oct 8, 2026").
+- The calendar is a `grid` named by the month ("October 2026"), which is announced when it
+  changes. Each day is a button named with the full date, today has `aria-current="date"`, and
+  selected days have `aria-selected`.
+- Only one day is in the tab order. Keyboard:
+
+| Key                                       | Action                                              |
+| ----------------------------------------- | --------------------------------------------------- |
+| <kbd>←</kbd> / <kbd>→</kbd>               | Previous / next day                                 |
+| <kbd>↑</kbd> / <kbd>↓</kbd>               | Same day previous / next week                       |
+| <kbd>Home</kbd> / <kbd>End</kbd>          | First / last day of the week                        |
+| <kbd>Page Up</kbd> / <kbd>Page Down</kbd> | Previous / next month (with <kbd>Shift</kbd>: year) |
+| <kbd>Enter</kbd> / <kbd>Space</kbd>       | Select the focused day                              |
+| <kbd>Esc</kbd>                            | Close the popover and return to the button          |
+
+- Disabled days stay focusable so keyboard users can move past them, but they can't be selected.
+- For dates far in the past, such as a birth date, separate day, month and year fields are faster
+  and easier than a calendar.
+
+## API Reference
+
+### Datepicker
+
+| Prop              | Type                           | Default         |
+| ----------------- | ------------------------------ | --------------- |
+| `value`           | `Date \| null`                 | —               |
+| `defaultValue`    | `Date \| null`                 | `null`          |
+| `onChange`        | `(date: Date \| null) => void` | —               |
+| `label`           | `string`                       | `"Date"`        |
+| `placeholder`     | `string`                       | `"Select date"` |
+| `name`            | `string`                       | —               |
+| `autoHide`        | `boolean`                      | `true`          |
+| `showTodayButton` | `boolean`                      | `false`         |
+| `showClearButton` | `boolean`                      | `false`         |
+| `disabled`        | `boolean`                      | `false`         |
+
+Also accepts the `Calendar` options `min`, `max`, `isDateDisabled`, `weekStartsOn`, `locale` and
+`title`.
+
+### Calendar
+
+| Prop             | Type                                        | Default        |
+| ---------------- | ------------------------------------------- | -------------- |
+| `mode`           | `"single" \| "range"`                       | `"single"`     |
+| `value`          | `Date \| null` or `{ from, to }` for ranges | —              |
+| `defaultValue`   | Same as `value`                             | —              |
+| `onChange`       | `(date: Date) => void` or `(range) => void` | —              |
+| `min` / `max`    | `Date`                                      | —              |
+| `isDateDisabled` | `(date: Date) => boolean`                   | —              |
+| `weekStartsOn`   | `0 \| 1 \| 2 \| 3 \| 4 \| 5 \| 6`           | `0`            |
+| `locale`         | `string`                                    | Browser locale |
+| `defaultMonth`   | `Date`                                      | Today          |
+| `title`          | `ReactNode`                                 | —              |

@@ -1,0 +1,75 @@
+export const metadata = {
+  title: "Button Group",
+  description: "Joins related buttons or links into a single control.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="button-group-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Button, ButtonGroup } from "@stefan-florescu/ui";
+```
+
+```tsx
+<ButtonGroup aria-label="Account">
+  <Button variant="outline">Profile</Button>
+  <Button variant="outline">Settings</Button>
+</ButtonGroup>
+```
+
+## Examples
+
+### Default
+
+Wrap `Button`s in a `ButtonGroup`. Only the outer corners stay rounded, and neighbouring borders
+overlap into a single line.
+
+<ComponentPreview name="button-group-demo" />
+
+### More examples
+
+Links styled with `buttonVariants()` group the same way. Use links when each item goes to another
+page.
+
+<ComponentPreview name="button-group-links" />
+
+### Group buttons with icons
+
+<ComponentPreview name="button-group-icons" />
+
+### Outline
+
+Use any button style, for example `variant="primary"` with `outline`.
+
+<ComponentPreview name="button-group-outline" />
+
+### Outline with icons
+
+<ComponentPreview name="button-group-outline-icons" />
+
+## Accessibility
+
+- Renders `role="group"`. Give it an `aria-label` that names the set, such as "Account" or "Text
+  alignment", so screen readers announce it when focus enters.
+- Every button stays a separate tab stop with its own name and keyboard behaviour.
+- The focused button moves to the `z.raised` layer, so its focus ring is never hidden behind a
+  neighbour.
+- A button group is for actions. To choose one option from a set, use a radio group or tabs,
+  which announce the selected state.
+
+## API Reference
+
+| Prop         | Type      | Default |
+| ------------ | --------- | ------- |
+| `pill`       | `boolean` | `false` |
+| `aria-label` | `string`  | —       |
+
+All other `<div>` attributes are forwarded, including `ref` and `className`. Size and style come
+from the buttons inside.
