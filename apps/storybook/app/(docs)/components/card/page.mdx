@@ -67,6 +67,10 @@ Add `horizontal` to place the image on the left from the `md` breakpoint.
 
 ### User profile card
 
+Show a dropdown menu and buttons for actions on a user. Make the card `relative` and put a
+[`Dropdown`](/components/dropdown) in its top corner, opened from an icon button with
+`DropdownTrigger asChild`.
+
 <ComponentPreview name="card-profile" />
 
 ### Card with form inputs
@@ -97,7 +101,7 @@ strikethrough.
 
 Flowbite's "Call to action card" and "Crypto card" use brand logos, and "Card with nav tabs" and
 "Card full width tabs" need a tabs component the design system doesn't have yet, so they are not
-shown. The profile card's menu button is left out until a dropdown component exists.
+shown.
 
 ## Accessibility
 
@@ -108,6 +112,9 @@ shown. The profile card's menu button is left out until a dropdown component exi
   contains a button, which is invalid HTML; here it is a plain card.
 - Link cards draw a solid `ring` outline on keyboard focus; Flowbite has no focus style.
 - Images are decorative unless you pass `imgAlt`.
+- The profile card's menu button is named "Actions for Bonnie Green" (Flowbite's "Open dropdown"
+  doesn't say what it acts on), draws a solid focus outline, and opens a WAI-ARIA menu: see
+  [Dropdown](/components/dropdown) for its keyboard support.
 - Card text uses `heading` and `body` on the `neutral-primary-soft` surface, which pass WCAG 2.2 AA
   in both themes.
 

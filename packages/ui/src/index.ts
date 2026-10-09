@@ -19,6 +19,8 @@ export * from "./components/chat-bubble";
 export * from "./components/checkbox";
 export * from "./components/clipboard";
 export * from "./components/datepicker";
+export * from "./components/drawer";
+export * from "./components/dropdown";
 export * from "./components/fieldset";
 export * from "./components/file-input";
 export * from "./components/helper-text";

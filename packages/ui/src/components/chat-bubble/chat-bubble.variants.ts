@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
-import { focusOutline, focusOutlineInset } from "../../lib/focus";
+import { focusOutline } from "../../lib/focus";
 
 /*
  * Flowbite v4's chat bubble, class for class (https://flowbite.com/docs/components/chat-bubble/).
@@ -85,21 +85,11 @@ export const chatBubbleActionClassName = [
 ].join(" ");
 
 /**
- * Flowbite's dropdown under the "more" button: a native popover, anchored below the button where
- * CSS anchor positioning is supported (centred in the viewport elsewhere).
+ * Flowbite's dots dropdown under the "more" button: the `Dropdown` panel and items, narrowed to
+ * Flowbite's `w-40` with its `rounded-md` items.
  */
-export const chatBubbleMenuClassName = [
-  "w-40 rounded-base border border-default-medium bg-neutral-primary-medium p-0 shadow-lg",
-  "supports-[position-area:bottom]:inset-auto supports-[position-area:bottom]:m-0 supports-[position-area:bottom]:mt-2",
-  "[position-area:bottom_span-right] [position-try-fallbacks:flip-block]",
-].join(" ");
+export const chatBubbleMenuClassName = "w-40";
 
-export const chatBubbleMenuListClassName = "m-0 list-none p-2 text-sm font-medium text-body";
-
-export const chatBubbleMenuItemClassName = [
-  "block w-full cursor-pointer rounded-md p-2 text-start",
-  "hover:bg-neutral-tertiary-medium hover:text-heading",
-  focusOutlineInset,
-].join(" ");
+export const chatBubbleMenuItemClassName = "rounded-md";
 
 export type ChatBubbleVariantProps = VariantProps<typeof chatBubbleBodyVariants>;

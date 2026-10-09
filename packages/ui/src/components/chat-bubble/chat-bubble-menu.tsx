@@ -1,81 +1,73 @@
 "use client";
 
 import { EllipsisVertical } from "@stefan-florescu/icons";
-import { useId, type ComponentProps, type CSSProperties } from "react";
 
 import { cn } from "../../lib/cn";
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+  type DropdownItemProps,
+  type DropdownMenuProps,
+  type DropdownPlacement,
+  type DropdownProps,
+} from "../dropdown";
 
 import {
   chatBubbleActionClassName,
   chatBubbleMenuClassName,
   chatBubbleMenuItemClassName,
-  chatBubbleMenuListClassName,
 } from "./chat-bubble.variants";
 
-export type ChatBubbleMenuProps = Omit<ComponentProps<"div">, "popover"> & {
-  /** Accessible name of the "more" button. */
-  label?: string;
-};
+export type ChatBubbleMenuProps = DropdownMenuProps &
+  Pick<DropdownProps, "open" | "defaultOpen" | "onOpenChange"> & {
+    /** Accessible name of the "more" button. */
+    label?: string;
+    /** Where the menu opens, as on `Dropdown`. Flowbite's chat bubbles use `bottom-start`. */
+    placement?: DropdownPlacement;
+  };
 
 /**
- * The "more" button next to a chat bubble and the list of actions it opens (Flowbite's dots
- * dropdown). Uses the native popover: Escape and a click outside close it, and Tab moves from the
- * button into the actions. Pass it to `ChatBubble`'s `actions`.
+ * The "more" button next to a chat bubble and the menu of actions it opens (Flowbite's dots
+ * dropdown), built on `Dropdown`: a WAI-ARIA menu button with arrow keys, Home, End, typeahead,
+ * and Escape returning focus to the button. Pass it to `ChatBubble`'s `actions`.
  */
 export function ChatBubbleMenu({
   label = "Message actions",
+  placement = "bottom-start",
+  open,
+  defaultOpen,
+  onOpenChange,
   className,
   children,
   ...props
 }: ChatBubbleMenuProps) {
-  const id = useId();
-  const menuId = `${id}-menu`;
-  const anchor = `--chat-bubble-menu-${id.replace(/[^\w-]/g, "")}`;
-
   return (
-    <>
-      <button
-        type="button"
-        aria-label={label}
-        popoverTarget={menuId}
-        className={chatBubbleActionClassName}
-        style={{ anchorName: anchor } as CSSProperties}
-      >
-        <EllipsisVertical aria-hidden />
-      </button>
-      <div
-        id={menuId}
-        popover="auto"
-        className={cn(chatBubbleMenuClassName, className)}
-        style={{ positionAnchor: anchor } as CSSProperties}
-        {...props}
-      >
-        <ul className={chatBubbleMenuListClassName}>{children}</ul>
-      </div>
-    </>
+    <Dropdown
+      placement={placement}
+      open={open}
+      defaultOpen={defaultOpen}
+      onOpenChange={onOpenChange}
+    >
+      <DropdownTrigger asChild>
+        <button type="button" aria-label={label} className={chatBubbleActionClassName}>
+          <EllipsisVertical aria-hidden />
+        </button>
+      </DropdownTrigger>
+      <DropdownMenu className={cn(chatBubbleMenuClassName, className)} {...props}>
+        {children}
+      </DropdownMenu>
+    </Dropdown>
   );
 }
 
-export type ChatBubbleMenuItemProps = ComponentProps<"button">;
+export type ChatBubbleMenuItemProps = DropdownItemProps;
 
-/** One action in a `ChatBubbleMenu`, such as "Reply". Closes the menu when chosen. */
-export function ChatBubbleMenuItem({
-  className,
-  onClick,
-  type = "button",
-  ...props
-}: ChatBubbleMenuItemProps) {
-  return (
-    <li>
-      <button
-        type={type}
-        className={cn(chatBubbleMenuItemClassName, className)}
-        onClick={(event) => {
-          onClick?.(event);
-          event.currentTarget.closest<HTMLElement>("[popover]")?.hidePopover?.();
-        }}
-        {...props}
-      />
-    </li>
-  );
+/**
+ * One action in a `ChatBubbleMenu`, such as "Reply": a `DropdownItem` (`menuitem`) that closes
+ * the menu and returns focus to the "more" button when chosen. Pass `href` to render a link.
+ */
+export function ChatBubbleMenuItem({ className, ...props }: ChatBubbleMenuItemProps) {
+  return <DropdownItem className={cn(chatBubbleMenuItemClassName, className)} {...props} />;
 }

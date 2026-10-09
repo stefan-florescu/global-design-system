@@ -43,20 +43,44 @@ Set `variant="solid"` to place the trail on the `neutral-secondary-medium` surfa
 
 <ComponentPreview name="breadcrumb-solid" />
 
+### Header breadcrumb
+
+Show a list of items, such as the branches of a repository, with a badge on the current page and a
+[`Dropdown`](/components/dropdown) next to the trail.
+
+<ComponentPreview name="breadcrumb-header" />
+
+### Breadcrumb with dropdown
+
+Put dropdowns inside the trail: pass your own `<li>` elements to `Breadcrumb`, each holding a
+`Dropdown`. Mark the last trigger with `aria-current="page"`.
+
+<ComponentPreview name="breadcrumb-dropdown" />
+
+### Breadcrumb with button
+
+Use a button with a dropdown after the current page.
+
+<ComponentPreview name="breadcrumb-button" />
+
 ### Breadcrumb with navigation
 
 Put a `ButtonGroup` of back and forward buttons next to the trail.
 
 <ComponentPreview name="breadcrumb-navigation" />
 
-Flowbite's "Header breadcrumb", "Breadcrumb with dropdown" and "Breadcrumb with button" examples
-open dropdown menus, which the design system doesn't have yet, so they are not shown.
-
 ## Accessibility
 
 - Renders a `<nav>` landmark named "Breadcrumb" (change it with `aria-label`) containing an
   ordered list, as in the WAI-ARIA Breadcrumb pattern.
 - The last item, without `href`, has `aria-current="page"` and is not a link.
+- Dropdowns in or next to the trail are [`Dropdown`](/components/dropdown) menu buttons: the
+  arrow keys move through their items and Escape closes them. In "Breadcrumb with dropdown" the
+  current level's button carries `aria-current="page"` and the "/" separator is hidden from
+  assistive technology. Flowbite marks two items as the current page in "Header breadcrumb", puts
+  the "/" directly in the list, and keeps the branch button inside the breadcrumb landmark; here
+  only the last item is current, the separator sits in a list item, and the branch button follows
+  the landmark.
 - Chevron separators and icons are decorative and hidden from assistive technology. Separators
   flip in right-to-left layouts.
 - Links draw a solid `ring` outline on keyboard focus; Flowbite has no focus style.

@@ -32,7 +32,7 @@
   ],
   "useWhen": ["Showing messages in a conversation, comment thread or support chat"],
   "avoidWhen": ["System messages about the page: use Alert"],
-  "related": ["Avatar", "Button"],
+  "related": ["Avatar", "Button", "Dropdown"],
   "examples": [
     "apps/storybook/registry/demos/chat-bubble-demo.tsx",
     "apps/storybook/registry/demos/chat-bubble-voice-note.tsx",
@@ -55,5 +55,5 @@
     "apps/storybook/registry/demos/chat-bubble-conversation.tsx"
   ],
   "parts": ["ChatBubble", "ChatBubbleMenu", "ChatBubbleMenuItem"],
-  "notes": "ChatBubble is server-safe; ChatBubbleMenu and ChatBubbleMenuItem are client components (native popover)."
+  "notes": "ChatBubble is server-safe; ChatBubbleMenu and ChatBubbleMenuItem are client components built on Dropdown (WAI-ARIA menu button: arrow keys, Home, End, typeahead, Escape)."
 }

@@ -38,6 +38,13 @@ Pass `icon={null}` for the bare field and attach the icon as an addon at its end
 
 <ComponentPreview name="timepicker-icon" />
 
+### Timepicker with dropdown
+
+Join a `Dropdown` to the end of the field for options such as the duration of an event. The chosen
+option replaces the button's label.
+
+<ComponentPreview name="timepicker-dropdown" />
+
 ### Timepicker with select
 
 Attach a `Select` to the end of the field to choose an option such as the timezone.
@@ -49,6 +56,13 @@ Attach a `Select` to the end of the field to choose an option such as the timezo
 Use two timepickers to choose a time interval, such as the duration of an event.
 
 <ComponentPreview name="timepicker-range" />
+
+### Timerange with dropdown
+
+Show the time range inside a `Dropdown` only when the button is clicked. "Save time" is a
+`DropdownItem`, so choosing it closes the dropdown and returns focus to the button.
+
+<ComponentPreview name="timepicker-range-dropdown" />
 
 ### Timerange picker with toggle
 
@@ -64,6 +78,13 @@ set of slots. The slots are radio buttons styled as buttons, so arrow keys move 
 
 <ComponentPreview name="timepicker-inline" />
 
+### Drawer with timepicker
+
+Schedule several time intervals, such as one per working day, inside a `Drawer`. Delete a day's
+interval with its trash button, or add one back with "Add interval".
+
+<ComponentPreview name="timepicker-drawer" />
+
 ## Accessibility
 
 - A native `type="time"` field, so each part (hours, minutes, AM/PM) is reachable with the keyboard
@@ -74,6 +95,17 @@ set of slots. The slots are radio buttons styled as buttons, so arrow keys move 
   inputs with `display: none`, which removes them from the keyboard and screen readers; here they
   are visually hidden (`sr-only`), keep the arrow-key radio behaviour and draw the `ring` outline
   around the slot on keyboard focus. Slot labels on the `brand` fill use `brand-foreground`.
+- The duration dropdown is a WAI-ARIA menu button; once a duration is chosen, the button reads
+  "Duration: 1 hour". The time range dropdown is a non-modal dialog named "Time range": focus moves
+  to the start time when it opens, and <kbd>Escape</kbd> or "Save time" closes it and returns focus
+  to the button.
+- The schedule drawer is a modal dialog named by its title: focus stays inside it until it closes.
+  Each day's checkbox and time fields are named with the full day ("Monday start time"), and the
+  trash buttons say which interval they delete. Deleting a row moves focus to "Add interval", and
+  adding one moves focus to the new row. Flowbite pins "Close" and "Save all" over the bottom of the
+  drawer; here they sit at the bottom but in the flow, so they never cover a field on short
+  screens.
+- Not ported: Flowbite's _Modal with timepicker_ (needs a modal component).
 
 ## API Reference
 

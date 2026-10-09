@@ -74,6 +74,14 @@ so it isn't read twice.
 
 <ComponentPreview name="avatar-text" />
 
+### User dropdown
+
+Open a menu from the user's avatar with [`Dropdown`](/components/dropdown): wrap the avatar in a
+`<button>` passed to `DropdownTrigger asChild`. The button has no visible text, so give it an
+`aria-label`, and give the avatar an empty `alt`.
+
+<ComponentPreview name="avatar-user-dropdown" />
+
 ### Sizes
 
 Flowbite's sizes, from `2xs` (18px) to `2xl` (64px). `md` (40px), Flowbite's default avatar, is
@@ -91,8 +99,8 @@ the default.
 | `xl`  | 56px   | `rounded-base` |
 | `2xl` | 64px   | `rounded-base` |
 
-Flowbite's "Avatar tooltip" and "User dropdown" examples are not shown: they need Tooltip and
-Dropdown components, which the system doesn't have yet.
+Flowbite's "Avatar tooltip" example is not shown: it needs a Tooltip component, which the system
+doesn't have yet.
 
 ## Accessibility
 
@@ -104,6 +112,9 @@ Dropdown components, which the system doesn't have yet.
   `neutral-secondary-medium`) pass WCAG 2.2 AA in light and dark, as in Flowbite.
 - The status dot includes visually hidden text ("Online", "Busy"…), which you can change with
   `statusLabel`.
+- In the user dropdown, the avatar sits in a real `<button>` (Flowbite opens the menu from the
+  `<img>` itself, which the keyboard cannot reach), named "User menu", with a solid focus outline.
+  The menu follows the WAI-ARIA menu button pattern; see [Dropdown](/components/dropdown).
 - `AvatarGroupCounter` becomes a link when you pass `href`, with a solid focus outline. Give it an
   `aria-label` such as "99 more people". Its label uses `dark-foreground` instead of Flowbite's
   white.

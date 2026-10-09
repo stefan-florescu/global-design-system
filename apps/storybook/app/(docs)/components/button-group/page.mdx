@@ -55,6 +55,20 @@ Icon-only buttons are 36px squares with a 16px icon. Each needs an `aria-label`.
 
 <ComponentPreview name="button-group-icons" />
 
+### Button group dropdown
+
+Show three buttons joined together where the third one opens a
+[`Dropdown`](/components/dropdown) menu. Wrap the group in `Dropdown`, put the `DropdownTrigger`
+in the group and the `DropdownMenu` after it, so the group's corner styles reach only the buttons.
+
+<ComponentPreview name="button-group-dropdown" />
+
+### Button group badge
+
+Add a badge inside the button group, next to a button that opens a dropdown menu.
+
+<ComponentPreview name="button-group-badge" />
+
 ### QR code button group
 
 <ComponentPreview name="button-group-qr-code" />
@@ -95,9 +109,6 @@ hover.
 
 <ComponentPreview name="button-group-outline" />
 
-Flowbite's "Button group dropdown" and "Button group badge" examples open a dropdown menu, which
-the design system doesn't have yet, so they are not shown.
-
 ## Accessibility
 
 - Renders `role="group"`. Give it an `aria-label` that names the set, such as "Account" or "Text
@@ -105,7 +116,12 @@ the design system doesn't have yet, so they are not shown.
 - Every button stays a separate tab stop with its own name and keyboard behaviour.
 - Flowbite marks counts and labels inside a group (`456k`, "Save book", the QR mark) as disabled
   buttons. Here they are `<span>`s hidden from assistive technology, and the meaning moves into the
-  neighbouring button's name, so screen readers don't announce an unusable button.
+  neighbouring button's name, so screen readers don't announce an unusable button: the badge
+  group's menu button is named "Messages, 2 unread". Flowbite's "My files" button in the dropdown
+  group is disabled for no reason, so here it is an ordinary button.
+- Dropdown buttons in a group are [`Dropdown`](/components/dropdown) menu buttons: the arrow keys
+  move through the items and Escape closes the menu and returns focus to the button. The "more"
+  button has no visible text, so it is named "More options".
 - Keyboard focus adds the solid `ring` outline to Flowbite's `ring-3` halo, and the focused button
   moves to the `z.raised` layer so the outline is never hidden behind a neighbour.
 - Flowbite's tooltips on icon buttons are replaced by `aria-label`s until a tooltip component
