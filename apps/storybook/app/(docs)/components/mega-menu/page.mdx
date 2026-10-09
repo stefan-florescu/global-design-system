@@ -1,0 +1,169 @@
+export const metadata = {
+  title: "Mega Menu",
+  description:
+    "Open a wide panel of grouped links from a navbar item, under the item or across the full width of the navbar, with icons, descriptions, a call to action or an image.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="mega-menu-demo" flush />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+Then import the styles once in your global CSS, after Tailwind:
+
+```css
+@import "tailwindcss";
+@import "@stefan-florescu/ui/styles.css";
+```
+
+## Usage
+
+```tsx
+import {
+  MegaMenu,
+  MegaMenuContent,
+  MegaMenuGroup,
+  MegaMenuLink,
+  MegaMenuTrigger,
+} from "@stefan-florescu/ui";
+```
+
+```tsx
+<nav aria-label="Main">
+  <ul>
+    <li>
+      <MegaMenu>
+        <MegaMenuTrigger>Company</MegaMenuTrigger>
+        <MegaMenuContent>
+          <MegaMenuGroup>
+            <MegaMenuLink href="/about">About Us</MegaMenuLink>
+            <MegaMenuLink href="/library">Library</MegaMenuLink>
+          </MegaMenuGroup>
+          <MegaMenuGroup>
+            <MegaMenuLink href="/blog">Blog</MegaMenuLink>
+          </MegaMenuGroup>
+        </MegaMenuContent>
+      </MegaMenu>
+    </li>
+  </ul>
+</nav>
+```
+
+Put the `MegaMenu` in the navbar item it belongs to. `MegaMenuTrigger` is that item: a button
+styled as Flowbite's navbar link. `MegaMenuContent` is the panel; each `MegaMenuGroup` is a column
+(a list) of `MegaMenuLink`s, and anything else, such as a call to action, can sit next to them.
+
+From `md` up the panel floats in the browser's top layer, under its trigger or, with `fullWidth`,
+across the whole navbar. Below `md` it stacks in the page under its trigger, inside the collapsed
+navbar, so the hamburger menu grows to show it. Change the breakpoint with `stackBelow`.
+
+We have no Navbar component yet, so the examples build the navbar from plain markup, styled like
+Flowbite's, with a hamburger button that shows and hides the links below `md`.
+
+## Default mega menu
+
+Use this example to show a list of links aligned on three columns inside the mega menu dropdown.
+
+<ComponentPreview name="mega-menu-demo" flush />
+
+## Mega menu with icons
+
+This example of a mega menu dropdown can be used to also show an icon near the text of the link.
+Put the icon before the label; it is sized and spaced for you.
+
+<ComponentPreview name="mega-menu-icons" flush />
+
+## Full width dropdown
+
+Use this example to show a mega menu dropdown that spans the entire width of the document page. Add
+`fullWidth` to `MegaMenuContent`, and `description` to a link for a line of text under its title.
+
+<ComponentPreview name="mega-menu-full-width" flush />
+
+## Full width with CTA
+
+This example can be used to also show a CTA button or link next to the menu items inside the
+dropdown.
+
+<ComponentPreview name="mega-menu-cta" flush />
+
+## Full width with image
+
+This example can be used to also show a CTA with a background image inside the dropdown next to the
+other menu items and links.
+
+<ComponentPreview name="mega-menu-image" flush />
+
+## Accessibility
+
+- The mega menu follows the WAI-ARIA
+  [disclosure navigation menu](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/examples/disclosure-navigation/)
+  example, not the menu pattern: site navigation is a set of links, so there are no `menu` or
+  `menuitem` roles and no arrow-key handling to learn.
+- The trigger is a `<button>` with `aria-expanded` and `aria-controls`. The panel follows it in the
+  DOM, so <Kbd>Tab</Kbd> reaches its links right after the trigger, whether it floats or stacks.
+  Opening it does not move focus.
+- <Kbd>Escape</Kbd> closes the panel and returns focus to the trigger. A click outside, or moving
+  focus out of the trigger and the panel, closes it too. Following a link closes it.
+- Each column is a list. A link with a `description` is named by its title, and the description is
+  read as its description. Mark the current page with `aria-current="page"`; it is shown in
+  `fg-brand`.
+- The trigger, the links and the hamburger draw the solid `ring` outline on keyboard focus.
+- Differences from Flowbite: Flowbite's panel is a Popper dropdown (and its full-width panel a
+  collapse placed after the whole navbar, so it comes last in the Tab order) with no Escape
+  handling; here the panel always follows its trigger, closes with Escape and returns focus.
+  Flowbite's full-width examples load open; ours start closed. Flowbite's image card is a link with
+  a button inside it, which is not valid HTML; here only "Get started" is a link. The brand logos
+  are left out.
+
+| Key                                 | Action                                                                            |
+| ----------------------------------- | --------------------------------------------------------------------------------- |
+| <Kbd>Enter</Kbd> / <Kbd>Space</Kbd> | On the trigger, shows or hides the panel. On a link, <Kbd>Enter</Kbd> follows it. |
+| <Kbd>Tab</Kbd>                      | Moves to the panel's links, in order, then on to the next navbar item.            |
+| <Kbd>Escape</Kbd>                   | Closes the panel and returns focus to the trigger.                                |
+
+## API Reference
+
+### MegaMenu
+
+Holds the open state. Renders no element.
+
+| Prop           | Type                                | Default |
+| -------------- | ----------------------------------- | ------- |
+| `open`         | `boolean`. Controls the open state. | —       |
+| `defaultOpen`  | `boolean`                           | `false` |
+| `onOpenChange` | `(open: boolean) => void`           | —       |
+
+### MegaMenuTrigger
+
+Takes `button` props and `ref`.
+
+| Prop      | Type                                                                    | Default |
+| --------- | ----------------------------------------------------------------------- | ------- |
+| `asChild` | `boolean`. Render the only child (a `<button>`) as the trigger instead. | `false` |
+| `chevron` | `boolean`. Show the chevron after the label. Ignored with `asChild`.    | `true`  |
+
+### MegaMenuContent
+
+Forwards `div` props; `className` goes on the panel.
+
+| Prop         | Type                                                                                    | Default                   |
+| ------------ | --------------------------------------------------------------------------------------- | ------------------------- |
+| `fullWidth`  | `boolean`. Span the nearest `<nav>`, under it, with the columns in a centred container. | `false`                   |
+| `columns`    | `1 \| 2 \| 3 \| 4`. Columns from `md` up.                                               | `3`                       |
+| `align`      | `"center" \| "start" \| "end"`. Where an anchored panel lines up with its trigger.      | `"center"`                |
+| `offset`     | `number`. Gap under the trigger (or the navbar), in px.                                 | `10` (`4` with fullWidth) |
+| `stackBelow` | `"sm" \| "md" \| "lg" \| "xl" \| "none"`. Below it the panel stacks in the page flow.   | `"md"`                    |
+
+### MegaMenuGroup and MegaMenuLink
+
+`MegaMenuGroup` is a column (`ul`) and forwards its props; name it with `aria-label` when useful.
+`MegaMenuLink` renders an `li` with an `a` and forwards `a` props.
+
+| Prop          | Type                                                                                       | Default |
+| ------------- | ------------------------------------------------------------------------------------------ | ------- |
+| `description` | `ReactNode`. A line under the title, read as the link's description.                       | —       |
+| `asChild`     | `boolean`. Render the only child, such as a router `Link`, as the link (no `description`). | `false` |

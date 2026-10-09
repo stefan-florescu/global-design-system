@@ -1,0 +1,69 @@
+{
+  "name": "Indicator",
+  "status": "beta",
+  "description": "A small dot, count or icon that shows status or new activity, pinned to another element or shown inline as a legend.",
+  "category": "data-display",
+  "import": "import { Indicator } from \"@stefan-florescu/ui\";",
+  "ariaPattern": null,
+  "client": false,
+  "props": "generated",
+  "variants": {
+    "variant": ["gray", "dark", "brand", "success", "danger", "warning"],
+    "size": ["xs", "sm", "md", "lg", "xl"],
+    "placement": [
+      "top-start",
+      "top-center",
+      "top-end",
+      "middle-start",
+      "middle-center",
+      "middle-end",
+      "bottom-start",
+      "bottom-center",
+      "bottom-end"
+    ],
+    "bordered": [true, false]
+  },
+  "defaults": {
+    "variant": "brand",
+    "size": "md"
+  },
+  "tokens": [
+    "color.neutral-quaternary",
+    "color.heading",
+    "color.dark",
+    "color.dark-foreground",
+    "color.brand",
+    "color.brand-foreground",
+    "color.success",
+    "color.success-foreground",
+    "color.danger",
+    "color.danger-foreground",
+    "color.warning",
+    "color.warning-foreground",
+    "color.buffer",
+    "radius.full",
+    "text.xs",
+    "text.sm"
+  ],
+  "useWhen": [
+    "Showing presence (online, busy) on an avatar",
+    "Showing a count of new items on a button or icon",
+    "Marking a chart legend entry or a step"
+  ],
+  "avoidWhen": [
+    "Labels that need words: use Badge",
+    "Meaning carried by colour alone: add a label or visible text"
+  ],
+  "related": ["Avatar", "Badge", "Button"],
+  "examples": [
+    "apps/storybook/registry/demos/indicator-demo.tsx",
+    "apps/storybook/registry/demos/indicator-legend.tsx",
+    "apps/storybook/registry/demos/indicator-count.tsx",
+    "apps/storybook/registry/demos/indicator-status.tsx",
+    "apps/storybook/registry/demos/indicator-badge.tsx",
+    "apps/storybook/registry/demos/indicator-stepper.tsx",
+    "apps/storybook/registry/demos/indicator-loading.tsx",
+    "apps/storybook/registry/demos/indicator-spinner.tsx",
+    "apps/storybook/registry/demos/indicator-position.tsx"
+  ]
+}

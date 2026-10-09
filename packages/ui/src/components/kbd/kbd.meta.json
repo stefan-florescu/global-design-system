@@ -1,0 +1,46 @@
+{
+  "name": "Kbd",
+  "status": "beta",
+  "description": "Shows a key from the keyboard, such as Ctrl or Esc, inline in text, tables and shortcut hints.",
+  "category": "data-display",
+  "import": "import { Kbd } from \"@stefan-florescu/ui\";",
+  "ariaPattern": null,
+  "client": false,
+  "props": "generated",
+  "variants": {
+    "size": ["sm", "md"]
+  },
+  "defaults": {
+    "size": "md"
+  },
+  "tokens": [
+    "color.heading",
+    "color.neutral-tertiary",
+    "color.default-medium",
+    "radius.base",
+    "radius.default",
+    "font.mono",
+    "font.semibold",
+    "text.xs"
+  ],
+  "useWhen": [
+    "Naming keys or shortcuts in text, tables and docs",
+    "Showing a keyboard shortcut hint in a button or field"
+  ],
+  "avoidWhen": [
+    "Code or command output: use <code>",
+    "Labels and statuses: use Badge",
+    "Anything people click: use Button"
+  ],
+  "related": ["Badge", "Button"],
+  "examples": [
+    "apps/storybook/registry/demos/kbd-demo.tsx",
+    "apps/storybook/registry/demos/kbd-text.tsx",
+    "apps/storybook/registry/demos/kbd-table.tsx",
+    "apps/storybook/registry/demos/kbd-arrows.tsx",
+    "apps/storybook/registry/demos/kbd-letters.tsx",
+    "apps/storybook/registry/demos/kbd-numbers.tsx",
+    "apps/storybook/registry/demos/kbd-function.tsx",
+    "apps/storybook/registry/demos/kbd-hint.tsx"
+  ]
+}

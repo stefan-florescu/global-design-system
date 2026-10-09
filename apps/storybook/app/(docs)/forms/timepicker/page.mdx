@@ -78,6 +78,13 @@ set of slots. The slots are radio buttons styled as buttons, so arrow keys move 
 
 <ComponentPreview name="timepicker-inline" />
 
+### Modal with timepicker
+
+Choose the day in an inline `Calendar` and the time from a set of slots inside a `Modal`, to
+schedule an appointment. "Save" submits the form and closes the modal; "Discard" closes it.
+
+<ComponentPreview name="timepicker-modal" />
+
 ### Drawer with timepicker
 
 Schedule several time intervals, such as one per working day, inside a `Drawer`. Delete a day's
@@ -97,7 +104,7 @@ interval with its trash button, or add one back with "Add interval".
   around the slot on keyboard focus. Slot labels on the `brand` fill use `brand-foreground`.
 - The duration dropdown is a WAI-ARIA menu button; once a duration is chosen, the button reads
   "Duration: 1 hour". The time range dropdown is a non-modal dialog named "Time range": focus moves
-  to the start time when it opens, and <kbd>Escape</kbd> or "Save time" closes it and returns focus
+  to the start time when it opens, and <Kbd>Escape</Kbd> or "Save time" closes it and returns focus
   to the button.
 - The schedule drawer is a modal dialog named by its title: focus stays inside it until it closes.
   Each day's checkbox and time fields are named with the full day ("Monday start time"), and the
@@ -105,7 +112,8 @@ interval with its trash button, or add one back with "Add interval".
   adding one moves focus to the new row. Flowbite pins "Close" and "Save all" over the bottom of the
   drawer; here they sit at the bottom but in the flow, so they never cover a field on short
   screens.
-- Not ported: Flowbite's _Modal with timepicker_ (needs a modal component).
+- The appointment modal is a modal dialog named by its title. Its time slots are the same
+  radio buttons as the inline example, grouped under "Pick your time".
 
 ## API Reference
 

@@ -14,9 +14,12 @@ import { Tabs } from "./tabs";
 export async function ComponentPreview({
   name,
   stack = false,
+  flush = false,
 }: {
   name: DemoName;
   stack?: boolean;
+  /** Edge to edge: no side padding, for full-width examples such as navbars. */
+  flush?: boolean;
 }) {
   const Demo = demos[name];
   const file = path.join(process.cwd(), "registry", "demos", `${name}.tsx`);
@@ -30,7 +33,11 @@ export async function ComponentPreview({
           value: "preview",
           label: "Preview",
           content: (
-            <div className={stack ? "preview preview--stack" : "preview"}>
+            <div
+              className={["preview", stack && "preview--stack", flush && "preview--flush"]
+                .filter(Boolean)
+                .join(" ")}
+            >
               <div className="preview__toolbar">
                 <CopyButton value={source.trim()} subtle />
               </div>

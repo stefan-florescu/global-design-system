@@ -30,6 +30,21 @@ describe("Avatar", () => {
     expect(screen.getByText("Busy")).toHaveClass("sr-only");
   });
 
+  it("draws the status as a bordered Indicator sized to the avatar", () => {
+    render(<Avatar alt="Jese Leos" initials="JL" status="online" statusPosition="top-right" />);
+    const dot = screen.getByText("Online").parentElement;
+    expect(dot).toHaveAttribute("data-slot", "indicator");
+    expect(dot).toHaveClass(
+      "absolute",
+      "top-0",
+      "-end-0.5",
+      "size-3.5",
+      "bg-success",
+      "border-2",
+      "border-buffer",
+    );
+  });
+
   it("uses a custom status label", () => {
     render(<Avatar alt="Jese Leos" initials="JL" status="away" statusLabel="In a meeting" />);
     expect(screen.getByText("In a meeting")).toBeInTheDocument();

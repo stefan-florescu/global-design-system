@@ -2,12 +2,15 @@ import { User } from "@stefan-florescu/icons";
 import type { ComponentProps } from "react";
 
 import { cn } from "../../lib/cn";
+import { Indicator } from "../indicator";
 
 import {
   avatarFrameVariants,
   avatarGroupCounterClassName,
   avatarImageVariants,
   avatarPlaceholderClassName,
+  avatarStatusSize,
+  avatarStatusVariant,
   avatarStatusVariants,
   avatarVariants,
   type AvatarVariantProps,
@@ -91,9 +94,13 @@ export function Avatar({
         )}
       </span>
       {status ? (
-        <span className={avatarStatusVariants({ status, size, shape, position: statusPosition })}>
-          <span className="sr-only">{statusLabel ?? STATUS_LABELS[status]}</span>
-        </span>
+        <Indicator
+          variant={avatarStatusVariant[status]}
+          size={avatarStatusSize[size ?? "md"]}
+          bordered
+          label={statusLabel ?? STATUS_LABELS[status]}
+          className={avatarStatusVariants({ shape, position: statusPosition })}
+        />
       ) : null}
     </span>
   );

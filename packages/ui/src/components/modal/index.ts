@@ -1,0 +1,22 @@
+export {
+  Modal,
+  ModalBody,
+  ModalClose,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalTitle,
+  ModalTrigger,
+  useModal,
+  type ModalBodyProps,
+  type ModalCloseProps,
+  type ModalContentProps,
+  type ModalFooterProps,
+  type ModalHeaderProps,
+  type ModalPlacement,
+  type ModalProps,
+  type ModalSize,
+  type ModalTitleProps,
+  type ModalTriggerProps,
+} from "./modal";
+export { modalVariants, type ModalVariantProps } from "./modal.variants";

@@ -166,7 +166,8 @@ Use an icon button as the trigger, for example on cards: give `DropdownTrigger` 
 ## Notification bell
 
 Show a list of notifications with the sender's avatar, the message and its time, opened from a
-bell. `asChild` turns your own button into the trigger.
+bell. `asChild` turns your own button into the trigger. The bell's dot and the icons on the
+avatars use [`Indicator`](/components/indicators).
 
 <ComponentPreview name="dropdown-notification" />
 
@@ -260,15 +261,15 @@ Set the distance and the skidding of the menu relative to the trigger.
 
 | Key                                 | Action                                                                                 |
 | ----------------------------------- | -------------------------------------------------------------------------------------- |
-| <kbd>Enter</kbd> / <kbd>Space</kbd> | On the trigger, opens the menu on its first item. On an item, chooses it.              |
-| <kbd>Arrow Down</kbd>               | On the trigger, opens the menu on its first item. In the menu, moves to the next item. |
-| <kbd>Arrow Up</kbd>                 | On the trigger, opens the menu on its last item. In the menu, moves to the previous.   |
-| <kbd>Home</kbd> / <kbd>End</kbd>    | Moves to the first / last item.                                                        |
-| <kbd>A</kbd>–<kbd>Z</kbd>           | Moves to the next item whose label starts with the typed letters.                      |
-| <kbd>Arrow Right</kbd>              | On an item with a sub-menu, opens it on its first item.                                |
-| <kbd>Arrow Left</kbd>               | In a sub-menu, closes it and returns to its item.                                      |
-| <kbd>Escape</kbd>                   | Closes the menu (or sub-menu) and returns focus to the trigger.                        |
-| <kbd>Tab</kbd>                      | Closes the menu and moves on. In `DropdownContent`, moves through the content.         |
+| <Kbd>Enter</Kbd> / <Kbd>Space</Kbd> | On the trigger, opens the menu on its first item. On an item, chooses it.              |
+| <Kbd>Arrow Down</Kbd>               | On the trigger, opens the menu on its first item. In the menu, moves to the next item. |
+| <Kbd>Arrow Up</Kbd>                 | On the trigger, opens the menu on its last item. In the menu, moves to the previous.   |
+| <Kbd>Home</Kbd> / <Kbd>End</Kbd>    | Moves to the first / last item.                                                        |
+| <Kbd>A</Kbd>–<Kbd>Z</Kbd>           | Moves to the next item whose label starts with the typed letters.                      |
+| <Kbd>Arrow Right</Kbd>              | On an item with a sub-menu, opens it on its first item.                                |
+| <Kbd>Arrow Left</Kbd>               | In a sub-menu, closes it and returns to its item.                                      |
+| <Kbd>Escape</Kbd>                   | Closes the menu (or sub-menu) and returns focus to the trigger.                        |
+| <Kbd>Tab</Kbd>                      | Closes the menu and moves on. In `DropdownContent`, moves through the content.         |
 
 ## API Reference
 

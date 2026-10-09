@@ -138,6 +138,7 @@ import ClipboardContact from "./demos/clipboard-contact";
 import ClipboardDemo from "./demos/clipboard-demo";
 import ClipboardInput from "./demos/clipboard-input";
 import ClipboardInputGroup from "./demos/clipboard-input-group";
+import ClipboardModal from "./demos/clipboard-modal";
 import ClipboardText from "./demos/clipboard-text";
 import ClipboardUrlShortener from "./demos/clipboard-url-shortener";
 import DatepickerAutohide from "./demos/datepicker-autohide";
@@ -198,6 +199,20 @@ import FileInputDropzoneButton from "./demos/file-input-dropzone-button";
 import FileInputHelper from "./demos/file-input-helper";
 import FileInputMultiple from "./demos/file-input-multiple";
 import FileInputSizes from "./demos/file-input-sizes";
+import FooterDemo from "./demos/footer-demo";
+import FooterLogo from "./demos/footer-logo";
+import FooterSitemap from "./demos/footer-sitemap";
+import FooterSocial from "./demos/footer-social";
+import FooterSticky from "./demos/footer-sticky";
+import IndicatorBadge from "./demos/indicator-badge";
+import IndicatorCount from "./demos/indicator-count";
+import IndicatorDemo from "./demos/indicator-demo";
+import IndicatorLegend from "./demos/indicator-legend";
+import IndicatorLoading from "./demos/indicator-loading";
+import IndicatorPosition from "./demos/indicator-position";
+import IndicatorSpinner from "./demos/indicator-spinner";
+import IndicatorStatus from "./demos/indicator-status";
+import IndicatorStepper from "./demos/indicator-stepper";
 import InputFieldDemo from "./demos/input-field-demo";
 import InputFieldDisabled from "./demos/input-field-disabled";
 import InputFieldDropdown from "./demos/input-field-dropdown";
@@ -206,6 +221,29 @@ import InputFieldHelper from "./demos/input-field-helper";
 import InputFieldSearch from "./demos/input-field-search";
 import InputFieldSizes from "./demos/input-field-sizes";
 import InputFieldValidation from "./demos/input-field-validation";
+import KbdArrows from "./demos/kbd-arrows";
+import KbdDemo from "./demos/kbd-demo";
+import KbdFunction from "./demos/kbd-function";
+import KbdHint from "./demos/kbd-hint";
+import KbdLetters from "./demos/kbd-letters";
+import KbdNumbers from "./demos/kbd-numbers";
+import KbdTable from "./demos/kbd-table";
+import KbdText from "./demos/kbd-text";
+import MegaMenuCta from "./demos/mega-menu-cta";
+import MegaMenuDemo from "./demos/mega-menu-demo";
+import MegaMenuFullWidth from "./demos/mega-menu-full-width";
+import MegaMenuIcons from "./demos/mega-menu-icons";
+import MegaMenuImage from "./demos/mega-menu-image";
+import ModalCrud from "./demos/modal-crud";
+import ModalDemo from "./demos/modal-demo";
+import ModalForm from "./demos/modal-form";
+import ModalPlacement from "./demos/modal-placement";
+import ModalPopup from "./demos/modal-popup";
+import ModalProgress from "./demos/modal-progress";
+import ModalRadio from "./demos/modal-radio";
+import ModalSizes from "./demos/modal-sizes";
+import ModalStatic from "./demos/modal-static";
+import ModalTimeline from "./demos/modal-timeline";
 import NumberInputAdvanced from "./demos/number-input-advanced";
 import NumberInputConvert from "./demos/number-input-convert";
 import NumberInputCounter from "./demos/number-input-counter";
@@ -264,6 +302,7 @@ import TimepickerDrawer from "./demos/timepicker-drawer";
 import TimepickerDropdown from "./demos/timepicker-dropdown";
 import TimepickerIcon from "./demos/timepicker-icon";
 import TimepickerInline from "./demos/timepicker-inline";
+import TimepickerModal from "./demos/timepicker-modal";
 import TimepickerRange from "./demos/timepicker-range";
 import TimepickerRangeDropdown from "./demos/timepicker-range-dropdown";
 import TimepickerSelect from "./demos/timepicker-select";
@@ -420,6 +459,7 @@ export const demos = {
   "clipboard-demo": ClipboardDemo,
   "clipboard-input": ClipboardInput,
   "clipboard-input-group": ClipboardInputGroup,
+  "clipboard-modal": ClipboardModal,
   "clipboard-text": ClipboardText,
   "clipboard-url-shortener": ClipboardUrlShortener,
   "datepicker-autohide": DatepickerAutohide,
@@ -480,6 +520,20 @@ export const demos = {
   "file-input-helper": FileInputHelper,
   "file-input-multiple": FileInputMultiple,
   "file-input-sizes": FileInputSizes,
+  "footer-demo": FooterDemo,
+  "footer-logo": FooterLogo,
+  "footer-sitemap": FooterSitemap,
+  "footer-social": FooterSocial,
+  "footer-sticky": FooterSticky,
+  "indicator-badge": IndicatorBadge,
+  "indicator-count": IndicatorCount,
+  "indicator-demo": IndicatorDemo,
+  "indicator-legend": IndicatorLegend,
+  "indicator-loading": IndicatorLoading,
+  "indicator-position": IndicatorPosition,
+  "indicator-spinner": IndicatorSpinner,
+  "indicator-status": IndicatorStatus,
+  "indicator-stepper": IndicatorStepper,
   "input-field-demo": InputFieldDemo,
   "input-field-disabled": InputFieldDisabled,
   "input-field-dropdown": InputFieldDropdown,
@@ -488,6 +542,29 @@ export const demos = {
   "input-field-search": InputFieldSearch,
   "input-field-sizes": InputFieldSizes,
   "input-field-validation": InputFieldValidation,
+  "kbd-arrows": KbdArrows,
+  "kbd-demo": KbdDemo,
+  "kbd-function": KbdFunction,
+  "kbd-hint": KbdHint,
+  "kbd-letters": KbdLetters,
+  "kbd-numbers": KbdNumbers,
+  "kbd-table": KbdTable,
+  "kbd-text": KbdText,
+  "mega-menu-cta": MegaMenuCta,
+  "mega-menu-demo": MegaMenuDemo,
+  "mega-menu-full-width": MegaMenuFullWidth,
+  "mega-menu-icons": MegaMenuIcons,
+  "mega-menu-image": MegaMenuImage,
+  "modal-crud": ModalCrud,
+  "modal-demo": ModalDemo,
+  "modal-form": ModalForm,
+  "modal-placement": ModalPlacement,
+  "modal-popup": ModalPopup,
+  "modal-progress": ModalProgress,
+  "modal-radio": ModalRadio,
+  "modal-sizes": ModalSizes,
+  "modal-static": ModalStatic,
+  "modal-timeline": ModalTimeline,
   "number-input-advanced": NumberInputAdvanced,
   "number-input-convert": NumberInputConvert,
   "number-input-counter": NumberInputCounter,
@@ -546,6 +623,7 @@ export const demos = {
   "timepicker-dropdown": TimepickerDropdown,
   "timepicker-icon": TimepickerIcon,
   "timepicker-inline": TimepickerInline,
+  "timepicker-modal": TimepickerModal,
   "timepicker-range": TimepickerRange,
   "timepicker-range-dropdown": TimepickerRangeDropdown,
   "timepicker-select": TimepickerSelect,
