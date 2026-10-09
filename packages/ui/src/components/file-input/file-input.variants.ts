@@ -31,8 +31,7 @@ export type FileInputVariantProps = VariantProps<typeof fileInputVariants>;
 
 /*
  * Flowbite's dropzone: a 256px dashed area on `neutral-secondary-medium` that darkens on hover.
- * Deviation: the dashed border is the `input` token (Flowbite: `default-strong`), so the drop
- * area's edge reaches 3:1. The native input is stretched over it, invisible, so clicking,
+ * The dashed border is the `input` token (gray-200, as Flowbite's `default-strong`). The native input is stretched over it, invisible, so clicking,
  * keyboard focus and drag-and-drop all work without script; keyboard focus outlines the area.
  */
 export const fileDropzoneClassName = [

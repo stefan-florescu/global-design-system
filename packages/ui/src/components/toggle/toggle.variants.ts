@@ -4,9 +4,8 @@ import { cva, type VariantProps } from "class-variance-authority";
  * Flowbite v4's toggle (https://flowbite.com/docs/forms/toggle/), class for class: a visually
  * hidden native checkbox (`peer`) followed by a track whose `after:` knob slides over when checked.
  *
- * Differences from Flowbite, for WCAG 2.2 AA:
- * - the off track is `input` instead of `neutral-quaternary`, so the switch reaches 3:1 against
- *   the page (1.4.11); the on track is `brand` and the knob `brand-foreground`, as in Flowbite.
+ * The off track is `input` (gray-200, as Flowbite's `neutral-quaternary`), the on track `brand` and
+ * the knob `brand-foreground`. Differences from Flowbite, for WCAG 2.2 AA:
  * - keyboard focus also draws the solid `ring` outline around Flowbite's `brand-soft` halo.
  * - the knob animation stops when the user prefers reduced motion.
  */

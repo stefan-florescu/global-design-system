@@ -7,8 +7,7 @@ import { focusOutline } from "../../lib/focus";
  * Flowbite draws them with its Tailwind plugin; the same look is rebuilt here from utilities:
  *
  * - a 16px native input with `appearance-none`: `bg-neutral-secondary-medium`, a 1px border and
- *   `rounded-xs` (checkbox) or `rounded-full` (radio). The border is `input` instead of Flowbite's
- *   `default-medium`, so the box reaches 3:1 against the page (WCAG 1.4.11).
+ *   `rounded-xs` (checkbox) or `rounded-full` (radio). The border is `input`, Flowbite's gray-200.
  * - checked: a `brand` fill with a `brand-foreground` check mark (checkbox) or centre dot (radio),
  *   drawn by a sibling element so it follows the theme tokens.
  * - focus: Flowbite's soft `ring-2` halo, plus the solid `ring` outline on keyboard focus.

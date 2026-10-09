@@ -704,8 +704,8 @@
       }
     },
     "input": {
-      "$value": "{color.gray.450}",
-      "$description": "Field and checkbox borders. Darker than Flowbite's gray-200 so the boundary reaches 3:1 (WCAG 1.4.11).",
+      "$value": "{color.gray.200}",
+      "$description": "Field, checkbox and radio borders: Flowbite's gray-200 (gray-700 in dark). Below 3:1 against the page, by request; the field's fill and focus border carry the boundary.",
       "$extensions": {
         "sds": {
           "group": "Borders & focus"

@@ -52,9 +52,8 @@ export const PAIRS = [
   ...["tag", "attr", "string", "keyword", "fn", "comment"].map((name) =>
     pair(`syntax-${name}`, "code-bg"),
   ),
-  // Control boundaries, checked fills and focus indicators
+  // Focus indicators. The `input` border is Flowbite's gray-200 by request and is not checked.
   ...["neutral-primary", "neutral-primary-soft", "neutral-secondary-medium"].flatMap((surface) => [
-    pair("input", surface, NON_TEXT),
     pair("ring", surface, NON_TEXT),
   ]),
   // Checked controls and active indicators on the page and on cards

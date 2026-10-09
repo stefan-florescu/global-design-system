@@ -56,8 +56,7 @@ A one-row `Textarea` between attachment buttons and a send button, for chat mess
   editor, comment box and chat input, make it `sr-only`. Placeholders are hints, not labels.
 - Link helper and error text with `aria-describedby` so it is read with the field. `invalid` sets
   `aria-invalid="true"`; always say what is wrong in text too.
-- Differences from Flowbite, for WCAG 2.2 AA: the field border is the `input` token instead of
-  `default-medium`, so its edge reaches 3:1 against the page (1.4.11). In the editor and comment
+- Difference from Flowbite: in the editor and comment
   box the inner textarea has no border, so the outer box shows the `brand` focus border and ring
   (Flowbite shows no focus there).
 - Icon-only toolbar buttons are `Button`s with an `aria-label`, so they keep the keyboard focus

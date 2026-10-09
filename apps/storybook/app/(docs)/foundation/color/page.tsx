@@ -53,8 +53,8 @@ export default function ColorPage() {
       <p>
         Tailwind CSS v4&apos;s palette, the one Flowbite v4 is built on. Every hue runs from{" "}
         <strong>50</strong> (lightest) to <strong>950</strong> (darkest) in eleven steps, written in
-        OKLCH so wide-gamut screens show the same colours as flowbite.com. Gray adds one step,{" "}
-        <code>450</code>, for field borders that must reach 3:1. Click any swatch to copy its value.
+        OKLCH so wide-gamut screens show the same colours as flowbite.com. The hex under each swatch
+        is its sRGB equivalent; click a swatch to copy it.
       </p>
       <ColorScales />
 
@@ -119,8 +119,7 @@ export default function ColorPage() {
           <p className="callout__title">Where we differ from Flowbite</p>
           <p>
             The roles and values are Flowbite v4&apos;s, except where they miss WCAG 2.2 AA:{" "}
-            <code>input</code> (field borders, gray-450 instead of gray-200), <code>ring</code> (a
-            solid keyboard-focus outline around Flowbite&apos;s soft halo),{" "}
+            <code>ring</code> (a solid keyboard-focus outline around Flowbite&apos;s soft halo),{" "}
             <code>warning-foreground</code> (dark text on orange instead of white) and{" "}
             <code>success</code>, which stays on emerald-700 in dark mode so white text keeps 4.5:1.
           </p>
@@ -265,11 +264,12 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <H2 id="accessibility">Accessibility</H2>
       <p>
         Every text token in the table above clears <strong>4.5:1</strong> against its own surface in
-        both themes. <code>--sds-color-input</code> and <code>--sds-color-ring</code> clear{" "}
-        <strong>3:1</strong>, which WCAG 2.2 requires of control boundaries and focus indicators.{" "}
-        <code>--sds-color-default</code> sits below that deliberately — it draws decorative
-        hairlines and is never the only cue for a control. These pairings are checked on every build
-        of the themes; a token change that breaks one fails the build.
+        both themes. <code>--sds-color-ring</code> clears <strong>3:1</strong>, which WCAG 2.2
+        requires of focus indicators. <code>--sds-color-default</code> and{" "}
+        <code>--sds-color-input</code> (Flowbite&apos;s gray-200 field border) sit below that by
+        choice: a field is also marked by its fill and, when focused, by its brand border. These
+        pairings are checked on every build of the themes; a token change that breaks one fails the
+        build.
       </p>
       <p>
         Pair a tinted surface with its matching text role, never with a primitive picked by eye:{" "}
