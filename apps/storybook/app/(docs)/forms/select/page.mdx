@@ -58,6 +58,13 @@ Add `disabled` so the selection cannot be changed.
 
 <ComponentPreview name="select-underline" />
 
+### Select with dropdown
+
+Join a `Dropdown` to the start of a select, for example to choose the country whose states the
+select lists. Choosing a country shows its code on the button and updates the options.
+
+<ComponentPreview name="select-dropdown" />
+
 ### Sizes
 
 Four sizes, from `sm` to `xl`; `md` is the default. Like Flowbite, every size keeps `text-sm` and
@@ -83,6 +90,9 @@ grows only its padding.
 - Focus shows Flowbite's `brand` border and 1px ring, which together reach 3:1.
 - `invalid` sets `aria-invalid="true"` and the danger colours; say what is wrong in a `HelperText`
   linked with `aria-describedby`.
+- In the select with dropdown, the country button is a WAI-ARIA menu button. Its visible label is
+  the country code, followed by hidden text with the country's name, so it is announced as
+  "US (United States), choose a country". Flowbite shows flags; we show the code instead.
 - Multiple selection needs <kbd>Ctrl</kbd> or <kbd>Cmd</kbd> and is hard to discover; for a few
   options, prefer checkboxes.
 

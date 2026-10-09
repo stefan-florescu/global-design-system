@@ -70,21 +70,64 @@ describe("ChatBubble", () => {
 });
 
 describe("ChatBubbleMenu", () => {
-  it("names the button and links it to the popover of actions", async () => {
-    const user = userEvent.setup();
-    const onReply = vi.fn();
-    render(
+  function Actions({ onReply }: { onReply?: () => void }) {
+    return (
       <ChatBubbleMenu>
         <ChatBubbleMenuItem onClick={onReply}>Reply</ChatBubbleMenuItem>
+        <ChatBubbleMenuItem>Forward</ChatBubbleMenuItem>
         <ChatBubbleMenuItem>Delete</ChatBubbleMenuItem>
-      </ChatBubbleMenu>,
+      </ChatBubbleMenu>
     );
-    const button = screen.getByRole("button", { name: "Message actions" });
-    const menu = document.getElementById(button.getAttribute("popovertarget")!);
-    expect(menu).toHaveAttribute("popover", "auto");
-    expect(menu).toContainElement(screen.getByRole("button", { name: "Reply", hidden: true }));
-    await user.click(screen.getByRole("button", { name: "Reply", hidden: true }));
-    expect(onReply).toHaveBeenCalled();
+  }
+
+  const button = () => screen.getByRole("button", { name: "Message actions" });
+
+  it('is a menu button named by the "more" button', async () => {
+    const user = userEvent.setup();
+    render(<Actions />);
+    expect(button()).toHaveAttribute("aria-haspopup", "menu");
+    expect(button()).toHaveAttribute("aria-expanded", "false");
+    expect(screen.queryByRole("menu")).not.toBeInTheDocument();
+
+    await user.click(button());
+    const menu = screen.getByRole("menu", { name: "Message actions" });
+    expect(button()).toHaveAttribute("aria-expanded", "true");
+    expect(button()).toHaveAttribute("aria-controls", menu.id);
+    expect(menu).toHaveClass("w-40");
+    expect(screen.getAllByRole("menuitem").map((item) => item.textContent)).toEqual([
+      "Reply",
+      "Forward",
+      "Delete",
+    ]);
+    expect(screen.getByRole("menuitem", { name: "Reply" })).toHaveFocus();
+  });
+
+  it("moves through the actions with the arrow keys and typeahead", async () => {
+    const user = userEvent.setup();
+    render(<Actions />);
+    button().focus();
+    await user.keyboard("{ArrowUp}");
+    expect(screen.getByRole("menuitem", { name: "Delete" })).toHaveFocus();
+    await user.keyboard("{ArrowDown}");
+    expect(screen.getByRole("menuitem", { name: "Reply" })).toHaveFocus();
+    await user.keyboard("f");
+    expect(screen.getByRole("menuitem", { name: "Forward" })).toHaveFocus();
+    await user.keyboard("{End}");
+    expect(screen.getByRole("menuitem", { name: "Delete" })).toHaveFocus();
+    await user.keyboard("{Escape}");
+    expect(screen.queryByRole("menu")).not.toBeInTheDocument();
+    expect(button()).toHaveFocus();
+  });
+
+  it("runs an action, closes the menu and returns focus to the button", async () => {
+    const user = userEvent.setup();
+    const onReply = vi.fn();
+    render(<Actions onReply={onReply} />);
+    await user.click(button());
+    await user.keyboard("{Enter}");
+    expect(onReply).toHaveBeenCalledTimes(1);
+    expect(screen.queryByRole("menu")).not.toBeInTheDocument();
+    expect(button()).toHaveFocus();
   });
 
   it("accepts a custom label", () => {

@@ -121,6 +121,16 @@ export const sidebarNav: NavSection[] = [
         description: "Pick a day or a range from a calendar, inline or in a popover.",
         href: "/components/datepicker",
       },
+      {
+        title: "Drawer",
+        description: "A panel that slides in from an edge of the screen over the page.",
+        href: "/components/drawer",
+      },
+      {
+        title: "Dropdown",
+        description: "A menu of actions or options that opens from a button.",
+        href: "/components/dropdown",
+      },
     ],
   },
   {

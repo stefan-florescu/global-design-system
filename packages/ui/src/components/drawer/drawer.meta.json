@@ -1,0 +1,74 @@
+{
+  "name": "Drawer",
+  "status": "beta",
+  "description": "A panel that slides in from an edge of the screen over the page, for navigation, forms or details.",
+  "category": "overlay",
+  "import": "import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerHandle, DrawerHeader, DrawerTitle, DrawerTrigger } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/",
+  "client": true,
+  "props": "generated",
+  "parts": [
+    "Drawer",
+    "DrawerTrigger",
+    "DrawerContent",
+    "DrawerHeader",
+    "DrawerTitle",
+    "DrawerDescription",
+    "DrawerClose",
+    "DrawerHandle"
+  ],
+  "variants": {
+    "placement": ["left", "right", "top", "bottom"],
+    "backdrop": [true, false],
+    "scrollLock": [true, false],
+    "edge": [true, false]
+  },
+  "defaults": {
+    "placement": "left",
+    "backdrop": true,
+    "scrollLock": true,
+    "edge": false,
+    "defaultOpen": false
+  },
+  "tokens": [
+    "color.neutral-primary-soft",
+    "color.neutral-secondary-soft",
+    "color.neutral-tertiary",
+    "color.neutral-quaternary",
+    "color.dark-backdrop",
+    "color.default",
+    "color.body",
+    "color.heading",
+    "color.ring",
+    "radius.base",
+    "radius.lg",
+    "z.modal",
+    "z.fixed"
+  ],
+  "useWhen": [
+    "Showing navigation, filters or a form next to the page without leaving it",
+    "Editing or reading the details of an item from a list",
+    "A mobile menu that slides in from the side"
+  ],
+  "avoidWhen": [
+    "Asking for a short confirmation: use a modal dialog",
+    "Content that should always be visible: use a sidebar in the layout",
+    "A short list of actions from a button: use a dropdown"
+  ],
+  "related": ["Button"],
+  "examples": [
+    "apps/storybook/registry/demos/drawer-demo.tsx",
+    "apps/storybook/registry/demos/drawer-navigation.tsx",
+    "apps/storybook/registry/demos/drawer-contact.tsx",
+    "apps/storybook/registry/demos/drawer-form.tsx",
+    "apps/storybook/registry/demos/drawer-left.tsx",
+    "apps/storybook/registry/demos/drawer-right.tsx",
+    "apps/storybook/registry/demos/drawer-top.tsx",
+    "apps/storybook/registry/demos/drawer-bottom.tsx",
+    "apps/storybook/registry/demos/drawer-scroll-locked.tsx",
+    "apps/storybook/registry/demos/drawer-scroll-enabled.tsx",
+    "apps/storybook/registry/demos/drawer-backdrop.tsx",
+    "apps/storybook/registry/demos/drawer-no-backdrop.tsx",
+    "apps/storybook/registry/demos/drawer-edge.tsx"
+  ]
+}

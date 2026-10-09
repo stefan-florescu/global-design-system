@@ -153,9 +153,15 @@ readers announce new messages as they arrive.
   messages added to the end are announced politely.
 - The time renders a `<time>` element; pass `dateTime` so it has a machine-readable value.
 - When the sender's name is shown, give the avatar an empty `alt` so the name isn't read twice.
-- `ChatBubbleMenu` is a native popover: the button is named "Message actions" (change it with
-  `label`), <kbd>Tab</kbd> moves from it into the actions, and <kbd>Esc</kbd> or a click outside
-  closes it. Keyboard focus shows a solid `ring` outline as well as Flowbite's halo.
+- `ChatBubbleMenu` is a [`Dropdown`](/components/dropdown) menu and follows the
+  [WAI-ARIA menu button](https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/) pattern. The
+  "more" button is named "Message actions" (change it with `label`) and has `aria-haspopup="menu"`
+  and `aria-expanded`; the actions are `menuitem`s. <kbd>Enter</kbd>, <kbd>Space</kbd> or
+  <kbd>Arrow Down</kbd> open it on the first action (<kbd>Arrow Up</kbd> on the last), the arrow
+  keys, <kbd>Home</kbd>, <kbd>End</kbd> and typing move between actions, and choosing one or
+  pressing <kbd>Esc</kbd> closes it and returns focus to the button. Keyboard focus shows a solid
+  `ring` outline as well as Flowbite's halo. Flowbite's dots dropdown is a list of links with no
+  menu roles or arrow-key support.
 - Image download buttons also appear when they receive keyboard focus, not only on hover, and every
   icon-only button has a name, such as "Pause voice note" or "Download Flowbite Terms &
   Conditions". Flowbite's tooltips are replaced by these names.
@@ -182,10 +188,16 @@ All other `<div>` attributes are forwarded, including `ref` and `className`.
 
 ### ChatBubbleMenu
 
-| Prop       | Type                                | Default             |
-| ---------- | ----------------------------------- | ------------------- |
-| `label`    | `string`. The "more" button's name. | `"Message actions"` |
-| `children` | `ChatBubbleMenuItem` elements       | —                   |
+| Prop           | Type                                                    | Default             |
+| -------------- | ------------------------------------------------------- | ------------------- |
+| `label`        | `string`. The "more" button's name.                     | `"Message actions"` |
+| `placement`    | `Dropdown` placement, such as `"bottom"` or `"top-end"` | `"bottom-start"`    |
+| `open`         | `boolean`. Controls the open state.                     | —                   |
+| `defaultOpen`  | `boolean`                                               | `false`             |
+| `onOpenChange` | `(open: boolean) => void`                               | —                   |
+| `children`     | `ChatBubbleMenuItem` elements                           | —                   |
 
-Other attributes go to the popover. `ChatBubbleMenuItem` is a `<button>` that closes the menu
-when chosen; it accepts every button attribute, such as `onClick`.
+Other attributes go to the menu (`DropdownMenu`, `w-40` like Flowbite's). `ChatBubbleMenuItem` is
+a `DropdownItem`: a `menuitem` button, or a link with `href`, that closes the menu when chosen. It
+takes every `DropdownItem` prop, such as `onClick`, `variant="danger"` or `disabled`. Other
+`Dropdown` parts, such as `DropdownDivider`, can go between the items.

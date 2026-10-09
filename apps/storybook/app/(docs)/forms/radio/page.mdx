@@ -71,6 +71,13 @@ The same list group laid out in a row from the `sm` breakpoint.
 
 <ComponentPreview name="radio-list-horizontal" />
 
+### Radio in dropdown
+
+Put a set of options with helper text in a `Dropdown`. Each option is a `DropdownRadioItem` in a
+`DropdownRadioGroup`, so the menu keeps one choice and stays open while you change it.
+
+<ComponentPreview name="radio-dropdown" />
+
 ### Inline layout
 
 Put radios in a `flex` row to align them horizontally.
@@ -113,7 +120,10 @@ Add an `icon` above the title of a card.
   `brand` border instead of Flowbite's `brand-subtle`, so the selected state reaches 3:1.
 - The link in a label is underlined, not only coloured, so it does not rely on colour alone
   (WCAG 1.4.1).
-- Not ported: Flowbite's _Radio in dropdown_ (needs a dropdown component).
+- In the dropdown, Flowbite uses form radios inside a list. Here the options are WAI-ARIA menu
+  radio items (`menuitemradio` with `aria-checked`): the arrow keys move between them, and
+  pressing <kbd>Enter</kbd> or <kbd>Space</kbd> chooses one. The helper text is read as the
+  item's description, and <kbd>Escape</kbd> closes the menu and returns focus to the trigger.
 
 ## API Reference
 

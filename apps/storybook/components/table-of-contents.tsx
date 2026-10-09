@@ -52,7 +52,8 @@ export function TableOfContents() {
     const frame = requestAnimationFrame(() => {
       elements = Array.from(
         document.querySelectorAll<HTMLElement>(
-          "[data-docs-content] :is(h2, h3)[id]:not([data-toc-skip])",
+          // Headings inside live examples (such as a drawer's title) are not page sections.
+          "[data-docs-content] :is(h2, h3)[id]:not([data-toc-skip], .preview *)",
         ),
       );
       setHeadings(

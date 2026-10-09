@@ -1,0 +1,351 @@
+export const metadata = {
+  title: "Dropdown",
+  description:
+    "Show a menu of actions or options, or a panel of content, when a button is pressed, in many layouts, styles and placements.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="dropdown-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+Then import the styles once in your global CSS, after Tailwind:
+
+```css
+@import "tailwindcss";
+@import "@stefan-florescu/ui/styles.css";
+```
+
+## Usage
+
+```tsx
+import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Dropdown>
+  <DropdownTrigger>Options</DropdownTrigger>
+  <DropdownMenu>
+    <DropdownItem onClick={edit}>Edit</DropdownItem>
+    <DropdownItem href="/settings">Settings</DropdownItem>
+  </DropdownMenu>
+</Dropdown>
+```
+
+`Dropdown` holds the open state and the placement. `DropdownTrigger` is the button that opens it:
+our `Button` with a chevron, or your own element with `asChild`. The panel opens in the browser's
+top layer, so no `overflow: hidden` or stacking context can clip it, and it flips to the other side
+of the trigger when there is no room.
+
+Choose the panel by what it holds:
+
+| Panel             | Use it for                                                                                                         | Keyboard                                                  |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------- |
+| `DropdownMenu`    | Actions and options that apply at once: `DropdownItem`, `DropdownCheckboxItem`, `DropdownRadioItem`, sub-menus.    | Arrow keys, Home, End and typing move between the items.  |
+| `DropdownContent` | Anything else: form fields, a search box, a list of checkboxes with a submit button, a date picker, or site links. | Tab moves through the content as on the rest of the page. |
+
+Give `DropdownContent` `role="dialog"` when it holds form controls: focus moves to its first control
+when it opens. Leave the role off for navigation links (a disclosure), where focus stays on the
+trigger.
+
+## Dropdown example
+
+Press the button to show the menu; press it again, press Escape or click outside to hide it.
+Choosing an item runs it, closes the menu and returns focus to the button.
+
+<ComponentPreview name="dropdown-demo" />
+
+## Dropdown hover
+
+Add `openOnHover` to also open the menu when the pointer rests on the button, and close it when the
+pointer leaves the button and the menu. Opening and closing wait 300ms. A click, a tap or the
+keyboard still open it, and a click keeps it open. We recommend opening on click.
+
+<ComponentPreview name="dropdown-hover" />
+
+### Delay duration
+
+Set `hoverDelay` (in milliseconds) to change how long the menu waits before it opens or closes on
+hover. This example waits 500ms instead of the default 300ms.
+
+<ComponentPreview name="dropdown-hover-delay" />
+
+## Dropdown divider
+
+Put a `DropdownDivider` between groups of items.
+
+<ComponentPreview name="dropdown-divider" />
+
+## Dropdown header
+
+Use `DropdownHeader` to show extra information above the items, such as the signed-in user. It is
+not an item, so the arrow keys skip it. Put an icon first in an item and it is sized and spaced for
+you; `variant="danger"` colours a destructive item.
+
+<ComponentPreview name="dropdown-header" />
+
+## Multi-level dropdown
+
+Nest a `DropdownSub` to open a second menu from an item. It opens on the right of the item (on the
+left in right-to-left layouts) with a click, Enter, Space or Arrow Right, and Arrow Left or Escape
+comes back.
+
+<ComponentPreview name="dropdown-multi-level" />
+
+## Dropdown with checkbox
+
+`DropdownCheckboxItem` turns an option on and off. Choosing it keeps the menu open, so several can
+be changed in a row.
+
+<ComponentPreview name="dropdown-checkbox" />
+
+### Background hover
+
+By default each option is a row with Flowbite's hover background.
+
+<ComponentPreview name="dropdown-checkbox-hover" />
+
+### Helper text
+
+Add a `description` under the label. It is read as the item's description.
+
+<ComponentPreview name="dropdown-checkbox-helper" />
+
+## Dropdown with radio
+
+Wrap `DropdownRadioItem`s in a `DropdownRadioGroup` to choose one option of a set. Use `value`
+and `onValueChange` to control it, or `defaultValue`.
+
+<ComponentPreview name="dropdown-radio" />
+
+### Background hover
+
+<ComponentPreview name="dropdown-radio-hover" />
+
+### Helper text
+
+<ComponentPreview name="dropdown-radio-helper" />
+
+## Dropdown with toggle switch
+
+Add `indicator="toggle"` to draw a checkbox item as a switch, for a yes or no choice.
+
+<ComponentPreview name="dropdown-toggle" />
+
+## Dropdown with scrolling
+
+Put a long list of items in a `DropdownGroup` with a fixed height and `overflow-y-auto`, so it
+scrolls without growing the menu. The button under the list is an item too, styled with
+`buttonVariants()`.
+
+<ComponentPreview name="dropdown-scrolling" />
+
+## Scrollable checkboxes
+
+A list of checkboxes with an action on them is a small form, so it uses `DropdownContent` with
+`role="dialog"` and our `Checkbox`: Tab moves through the checkboxes and the button.
+
+<ComponentPreview name="dropdown-scrollable-checkboxes" />
+
+## Dropdown with search
+
+Add a search field above the list to filter it. Focus moves to the field when the dropdown opens.
+
+<ComponentPreview name="dropdown-search" />
+
+## Menu icon
+
+Use an icon button as the trigger, for example on cards: give `DropdownTrigger` `iconOnly`,
+`chevron={false}` and an `aria-label`.
+
+<ComponentPreview name="dropdown-menu-icon" />
+
+## Notification bell
+
+Show a list of notifications with the sender's avatar, the message and its time, opened from a
+bell. `asChild` turns your own button into the trigger.
+
+<ComponentPreview name="dropdown-notification" />
+
+## User avatar
+
+Open the user's menu from their avatar. The trigger has no visible text, so give it an
+`aria-label`.
+
+<ComponentPreview name="dropdown-avatar" />
+
+### Avatar with name
+
+Show the user's name next to the avatar.
+
+<ComponentPreview name="dropdown-avatar-name" />
+
+## Dropdown navbar
+
+Use a dropdown in a navigation bar to add a second level of links. Site navigation is not an
+application menu, so it uses `DropdownContent` without a role: the button discloses a list of
+links that Tab moves through.
+
+<ComponentPreview name="dropdown-navbar" />
+
+## Dropdown datepicker
+
+Show a date range picker in a dropdown. Clicks in the calendar count as inside the dropdown, so it
+stays open while you pick the dates; Escape closes the calendar first, then the dropdown.
+
+<ComponentPreview name="dropdown-datepicker" />
+
+## Sizes
+
+The trigger takes every `Button` size, from `xs` to `xl`.
+
+<ComponentPreview name="dropdown-sizes" />
+
+## Placement
+
+Set `placement` to `top`, `right`, `bottom` (the default) or `left`. The chevron points to where
+the menu opens. When there is no room on that side, the menu flips to the other.
+
+<ComponentPreview name="dropdown-placement" />
+
+### Double placement
+
+Add `-start` or `-end` to align the menu with an edge of the trigger: `left-end` puts the menu on
+the left, level with the bottom of the button, and `right-end` on the right.
+
+<ComponentPreview name="dropdown-double-placement" />
+
+## Dropdown offset
+
+Set the distance and the skidding of the menu relative to the trigger.
+
+### Distance
+
+`offset` is the gap between the trigger and the menu, in pixels. It is 10 by default.
+
+<ComponentPreview name="dropdown-offset-distance" />
+
+### Skidding
+
+`skidding` moves the menu along the trigger, in pixels: to the right, or down for `left` and
+`right` placements.
+
+<ComponentPreview name="dropdown-offset-skidding" />
+
+## Accessibility
+
+- `DropdownMenu` follows the [WAI-ARIA menu button](https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/)
+  pattern. The trigger has `aria-haspopup="menu"`, `aria-expanded` and, while open,
+  `aria-controls`; the menu is named by the trigger. Items are `menuitem`, `menuitemcheckbox` (with
+  `aria-checked`) or `menuitemradio`, and dividers are `separator`s.
+- Focus moves into the menu when it opens and back to the trigger when an item is chosen or Escape
+  is pressed. Opening on hover does not move focus.
+- `DropdownContent role="dialog"` is a non-modal dialog named by the trigger (or your
+  `aria-label`), and focus moves to its first control. Without a role it follows the
+  [disclosure](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/) pattern.
+- Disabled items stay focusable, as WAI-ARIA recommends, are announced as unavailable and cannot be
+  chosen.
+- Items show the solid `ring` outline and the hover fill on keyboard focus. Checkbox, radio and
+  switch items draw their state with the same tokens as `Checkbox`, `Radio` and `Toggle`, so the
+  `input` border reaches 3:1.
+- The switch's knob does not animate when the user prefers reduced motion.
+- Differences from Flowbite: Flowbite's dropdown is a list of links with no menu roles and no arrow
+  key support, its checkbox and radio lists are form inputs, and its hover dropdown only opens with
+  the pointer. Here those lists are menu items, hover dropdowns also open with a click, a tap and
+  the keyboard, and the "Dropdown datepicker" needs no `ignore-click-outside` option. The
+  notification badge on purple is `warning` here, as we have no purple fill.
+
+| Key                                 | Action                                                                                 |
+| ----------------------------------- | -------------------------------------------------------------------------------------- |
+| <kbd>Enter</kbd> / <kbd>Space</kbd> | On the trigger, opens the menu on its first item. On an item, chooses it.              |
+| <kbd>Arrow Down</kbd>               | On the trigger, opens the menu on its first item. In the menu, moves to the next item. |
+| <kbd>Arrow Up</kbd>                 | On the trigger, opens the menu on its last item. In the menu, moves to the previous.   |
+| <kbd>Home</kbd> / <kbd>End</kbd>    | Moves to the first / last item.                                                        |
+| <kbd>A</kbd>–<kbd>Z</kbd>           | Moves to the next item whose label starts with the typed letters.                      |
+| <kbd>Arrow Right</kbd>              | On an item with a sub-menu, opens it on its first item.                                |
+| <kbd>Arrow Left</kbd>               | In a sub-menu, closes it and returns to its item.                                      |
+| <kbd>Escape</kbd>                   | Closes the menu (or sub-menu) and returns focus to the trigger.                        |
+| <kbd>Tab</kbd>                      | Closes the menu and moves on. In `DropdownContent`, moves through the content.         |
+
+## API Reference
+
+### Dropdown
+
+| Prop           | Type                                                                         | Default    |
+| -------------- | ---------------------------------------------------------------------------- | ---------- |
+| `open`         | `boolean`. Controls the open state.                                          | —          |
+| `defaultOpen`  | `boolean`                                                                    | `false`    |
+| `onOpenChange` | `(open: boolean) => void`                                                    | —          |
+| `placement`    | `"top" \| "right" \| "bottom" \| "left"`, optionally with `-start` or `-end` | `"bottom"` |
+| `offset`       | `number`. Gap between trigger and panel, in px.                              | `10`       |
+| `skidding`     | `number`. Shift along the trigger, in px.                                    | `0`        |
+| `openOnHover`  | `boolean`. Also open on hover; a click, a tap and the keyboard still work.   | `false`    |
+| `hoverDelay`   | `number`. Delay before opening or closing on hover, in ms.                   | `300`      |
+
+### DropdownTrigger
+
+Takes every `Button` prop (`variant`, `size`, `iconOnly`…) and `ref`.
+
+| Prop      | Type                                                                           | Default |
+| --------- | ------------------------------------------------------------------------------ | ------- |
+| `asChild` | `boolean`. Render the only child (a focusable element) as the trigger instead. | `false` |
+| `chevron` | `boolean`. Show a chevron pointing to the placement. Ignored with `asChild`.   | `true`  |
+
+### DropdownMenu and DropdownContent
+
+Both render the panel (`w-44` by default; set a width with `className`) and forward `div` props.
+
+| Prop   | Type                                                                         | Default |
+| ------ | ---------------------------------------------------------------------------- | ------- |
+| `role` | `"dialog"`. `DropdownContent` only: a panel of form controls, focused first. | —       |
+
+### DropdownItem
+
+| Prop            | Type                                                                        | Default     |
+| --------------- | --------------------------------------------------------------------------- | ----------- |
+| `variant`       | `"default" \| "danger"`                                                     | `"default"` |
+| `href`          | `string`. Render a link instead of a button.                                | —           |
+| `asChild`       | `boolean`. Render the only child, such as a router `Link`, as the item.     | `false`     |
+| `disabled`      | `boolean`                                                                   | `false`     |
+| `closeOnSelect` | `boolean`. Call `preventDefault()` in `onClick` to keep the menu open once. | `true`      |
+| `textValue`     | `string`. Text for typeahead when the label is not plain text.              | —           |
+
+### DropdownCheckboxItem
+
+| Prop                | Type                                               | Default      |
+| ------------------- | -------------------------------------------------- | ------------ |
+| `checked`           | `boolean`. Controls the state.                     | —            |
+| `defaultChecked`    | `boolean`                                          | `false`      |
+| `onCheckedChange`   | `(checked: boolean) => void`                       | —            |
+| `indicator`         | `"checkbox" \| "toggle"`                           | `"checkbox"` |
+| `indicatorPosition` | `"start" \| "end"`                                 | `"start"`    |
+| `description`       | `ReactNode`. Helper text, read as the description. | —            |
+| `closeOnSelect`     | `boolean`                                          | `false`      |
+
+Also takes `variant`, `disabled` and `textValue`.
+
+### DropdownRadioGroup and DropdownRadioItem
+
+| Prop            | Type                                                   | Default |
+| --------------- | ------------------------------------------------------ | ------- |
+| `value`         | `string`. On the group, the chosen value (controlled). | —       |
+| `defaultValue`  | `string`. On the group.                                | —       |
+| `onValueChange` | `(value: string) => void`. On the group.               | —       |
+| `value`         | `string`. On the item, the value it sets. Required.    | —       |
+
+The item also takes `description`, `indicatorPosition`, `closeOnSelect`, `variant`, `disabled` and
+`textValue`.
+
+### DropdownSub, DropdownSubTrigger and DropdownSubMenu
+
+`DropdownSub` takes `open`, `defaultOpen`, `onOpenChange`, `placement` (default `"right-start"`),
+`offset` and `skidding`. `DropdownSubTrigger` takes `variant` and `button` props;
+`DropdownSubMenu` takes the same props as `DropdownMenu`.
+
+### DropdownHeader, DropdownGroup and DropdownDivider
+
+`DropdownHeader` is a box for information above the items. `DropdownGroup` groups items (name it
+with `aria-label`). `DropdownDivider` is a full-width line. All forward `div` props.
