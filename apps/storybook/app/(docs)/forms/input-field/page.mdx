@@ -104,10 +104,10 @@ which works with the keyboard, screen readers and mobile pickers without extra s
   in compact layouts such as search. Placeholders are hints, not labels.
 - Link helper and error text with `aria-describedby` so it is read with the field.
 - `invalid` sets `aria-invalid="true"`; always say what is wrong in text too, not only in colour.
+- The field border is Flowbite's gray-200 (`input`), which is under 3:1 against the page; the field's fill and its focus border mark it.
 - Differences from Flowbite, for WCAG 2.2 AA:
-  - The field border uses the `input` token instead of Flowbite's `default-medium`, which is under
-    3:1 against the page (1.4.11). Valid and invalid fields use the solid `success` and `danger`
-    borders instead of Flowbite's `success-subtle` and `danger-subtle`.
+  - Valid and invalid fields use the solid `success` and `danger` borders instead of Flowbite's
+    `success-subtle` and `danger-subtle`.
   - Focus keeps Flowbite's brand border and 1px ring. The dropdown-button select in a group also
     draws the solid `ring` outline on keyboard focus.
 - Icons inside the field are decorative and hidden from assistive technology.

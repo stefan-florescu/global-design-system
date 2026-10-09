@@ -194,7 +194,7 @@
       "$value": "{color.gray.700}"
     },
     "input": {
-      "$value": "{color.gray.500}"
+      "$value": "{color.gray.700}"
     },
     "ring": {
       "$value": "{color.blue.500}"

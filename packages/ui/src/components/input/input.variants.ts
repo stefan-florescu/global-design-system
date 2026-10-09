@@ -4,10 +4,9 @@ import { focusOutline } from "../../lib/focus";
 
 /*
  * Shared look of every text-like field (Input, Select, Textarea, NumberInput…): Flowbite v4's
- * input field, class for class (https://flowbite.com/docs/forms/input-field/). One deviation:
- * the border is the `input` token, not Flowbite's `default-medium` (gray-200), so the field's
- * edge reaches 3:1 against the page (WCAG 1.4.11). Invalid and valid states use Flowbite's
- * danger / success fields with a solid `danger` / `success` border for the same reason.
+ * input field, class for class (https://flowbite.com/docs/forms/input-field/). The border is the
+ * `input` token, Flowbite's gray-200 (gray-700 in dark). Invalid and valid states use Flowbite's
+ * danger / success fields with a solid `danger` / `success` border, so the state reaches 3:1.
  */
 export const fieldVariants = cva(
   [

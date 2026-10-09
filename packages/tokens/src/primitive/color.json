@@ -24,10 +24,6 @@
       "400": {
         "$value": "oklch(70.7% 0.022 261.325)"
       },
-      "450": {
-        "$value": "oklch(63% 0.025 262.85)",
-        "$description": "Not in Tailwind's palette: the lightest gray that reaches 3:1 on white and gray-50. Used for field borders, where Flowbite's gray-200 is too faint."
-      },
       "500": {
         "$value": "oklch(55.1% 0.027 264.364)"
       },

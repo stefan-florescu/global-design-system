@@ -70,8 +70,7 @@ set of slots. The slots are radio buttons styled as buttons, so arrow keys move 
   and read correctly by screen readers. The clock icon is decorative (`aria-hidden`).
 - The submitted value is always 24-hour `HH:mm`, whatever the display format. `min`, `max` and
   `step` (seconds) limit the choices; explain limits such as office hours in a `HelperText`.
-- Differences from Flowbite, for WCAG 2.2 AA: field borders are the `input` token instead of
-  `default-medium`, so their edges reach 3:1 (1.4.11). Flowbite's time slots hide their radio
+- Differences from Flowbite, for WCAG 2.2 AA: Flowbite's time slots hide their radio
   inputs with `display: none`, which removes them from the keyboard and screen readers; here they
   are visually hidden (`sr-only`), keep the arrow-key radio behaviour and draw the `ring` outline
   around the slot on keyboard focus. Slot labels on the `brand` fill use `brand-foreground`.

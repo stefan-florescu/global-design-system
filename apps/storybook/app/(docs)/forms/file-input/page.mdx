@@ -77,8 +77,6 @@ Use a `Button` to open the file dialog instead of making the whole area clickabl
   usual. Give `FileInput` a `Label`; `FileDropzone`'s own text is its label.
 - `accept` only filters the file dialog; check files on the server too.
 - Differences from Flowbite, for WCAG 2.2 AA:
-  - The field border is the `input` token instead of `default-medium`, and the dropzone's dashed
-    border is `input` instead of `default-strong`, so their edges reach 3:1 (1.4.11).
   - In dark mode the "Choose file" label is `heading` instead of `body`, because `body` on
     `neutral-quaternary` is under 4.5:1 there (1.4.3).
   - Flowbite hides the dropzone's input with `display: none`, so it cannot be reached with the

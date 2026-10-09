@@ -78,9 +78,7 @@ grows only its padding.
   Multiple and `htmlSize` selects are exposed as a listbox.
 - Give every select a `Label`; the underline select uses an `sr-only` one. The chevron is
   decorative (`aria-hidden`).
-- Differences from Flowbite, for WCAG 2.2 AA: the border is the `input` token instead of
-  `default-medium`, so the field's edge reaches 3:1 against the page (1.4.11); the underline is
-  drawn in `input` for the same reason. List selects (`multiple`, `htmlSize`) show no chevron,
+- The border and the underline are Flowbite's gray-200 (`input`). List selects (`multiple`, `htmlSize`) show no chevron,
   because they do not open a menu.
 - Focus shows Flowbite's `brand` border and 1px ring, which together reach 3:1.
 - `invalid` sets `aria-invalid="true"` and the danger colours; say what is wrong in a `HelperText`

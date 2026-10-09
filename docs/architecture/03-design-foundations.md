@@ -11,8 +11,7 @@ point to validate in Figma before implementation.
 ## 3.1 Color system
 
 - **Primitives:** Tailwind v4's palette in oklch, as used by Flowbite v4: 16 hues (`gray`, `blue`,
-  `emerald`, `rose`, `orange`, `yellow` and decorative hues), each `50`…`950`, plus `white`, `black` and
-  an accessibility step `gray.450`. `--sds-color-{hue}-{step}`.
+  `emerald`, `rose`, `orange`, `yellow` and decorative hues), each `50`…`950`, plus `white` and `black`. `--sds-color-{hue}-{step}`.
 - **Semantic tokens (90):** Flowbite v4's role names (ADR 0009), grouped as Text (`heading`, `body`,
   `body-subtle`, `fg-*`), Surfaces (`neutral-primary*`, `neutral-secondary*`, `neutral-tertiary*`,
   `neutral-quaternary*`, `disabled`, `dark*`, `overlay`), Brand & status (`brand`, `success`, `danger`,
@@ -20,9 +19,10 @@ point to validate in Figma before implementation.
   `light*`, `muted`, `buffer*`, `*-subtle`, `input`, `ring`) and Code surface (`code-*`, `syntax-*`).
   `--sds-color-{name}`; Tailwind `bg-{name}`, `text-{name}`, `border-{name}`, `ring-{name}`.
 - **Themes:** light = semantic defaults; dark re-points the colour roles, following Flowbite's dark theme.
-- **Accessibility:** 46 pairings (text ≥ 4.5:1; `input`, `ring` and `brand` ≥ 3:1) are checked in both
-  themes on every themes build; the build fails on a regression. Where Flowbite's values fail, the
-  nearest passing value is used (`input`, `ring`, `warning-foreground`, dark `success`).
+- **Accessibility:** 43 pairings (text ≥ 4.5:1; `ring` and `brand` ≥ 3:1) are checked in both themes
+  on every themes build; the build fails on a regression. Where Flowbite's values fail, the nearest
+  passing value is used (`ring`, `warning-foreground`, dark `success`). The `input` field border is
+  Flowbite's gray-200 by request and is not checked (ADR 0009).
 
 ## 3.2 Typography system
 

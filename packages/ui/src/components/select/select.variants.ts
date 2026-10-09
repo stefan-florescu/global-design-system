@@ -4,8 +4,8 @@ import { cva, type VariantProps } from "class-variance-authority";
  * Flowbite v4 select (https://flowbite.com/docs/forms/select/), on the shared field styles (see
  * input.variants.ts). Flowbite keeps `text-sm` at every size, so the select does too. The
  * chevron replaces the one Flowbite's plugin draws as a background image; `pe-10` is the room
- * that plugin reserves for it. Deviations: the underline border is the `input` token (3:1), and
- * list selects (`multiple`, `htmlSize`) show no chevron, since they do not open a menu.
+ * that plugin reserves for it. The underline border is the `input` token. List selects
+ * (`multiple`, `htmlSize`) show no chevron, since they do not open a menu.
  */
 export const selectVariants = cva("cursor-pointer appearance-none text-sm", {
   variants: {

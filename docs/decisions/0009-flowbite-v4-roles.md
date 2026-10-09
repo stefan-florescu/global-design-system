@@ -34,8 +34,6 @@ defined in `flowbite/src/themes/default.css`, in light and dark. The docs markup
   raw palette colours (to roles). Variant names follow Flowbite's option names, lowercased (`danger`,
   `dark`, `tertiary`…), with Flowbite's blue default named `brand`.
 - **Accessibility wins where Flowbite fails WCAG 2.2 AA.** These tokens and rules are ours:
-  - `input` (gray-450, a step added between 400 and 500): field, checkbox and radio borders.
-    Flowbite's gray-200 border is about 1.2:1 against the page.
   - `ring`: a solid keyboard-focus outline (`lib/focus.ts`) around Flowbite's soft focus halo.
     The halo alone is under 3:1.
   - `warning-foreground` is dark: white on orange-500 is about 2.8:1. For the same reason,
@@ -43,7 +41,11 @@ defined in `flowbite/src/themes/default.css`, in light and dark. The docs markup
   - `success` stays on emerald-700 in dark mode: white on Flowbite's emerald-600 is under 4.5:1.
   - Outline and validation text uses the `fg-*` text roles instead of the fill colours.
 
-  The themes build checks 46 pairings in both themes.
+  The themes build checks 43 pairings in both themes.
+
+  **Amended (October 2026):** `input` (field, checkbox and radio borders) was first gray-450 to reach
+  3:1. By request it is now Flowbite's own gray-200 (gray-700 in dark), below 3:1 and no longer
+  checked; the field's fill and its brand focus border mark the control. `gray.450` is removed.
 
 ## Consequences
 
