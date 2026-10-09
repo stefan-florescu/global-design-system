@@ -1,16 +1,9 @@
 "use client";
 
 import { CornerDownLeft, FileText, Search } from "@stefan-florescu/icons";
+import { Kbd, Modal, ModalContent, ModalTrigger } from "@stefan-florescu/ui";
 import { useRouter } from "next/navigation";
-import {
-  useCallback,
-  useEffect,
-  useId,
-  useMemo,
-  useRef,
-  useState,
-  useSyncExternalStore,
-} from "react";
+import { useCallback, useEffect, useId, useMemo, useState, useSyncExternalStore } from "react";
 
 import { mainNav, sidebarNav } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
@@ -27,13 +20,12 @@ const allResults: Result[] = [
 ];
 
 /**
- * Header search (⌘K / Ctrl+K / "/"). Native <dialog> provides the focus trap and Esc;
- * the input + listbox follow the WAI-ARIA combobox pattern.
+ * Header search (⌘K / Ctrl+K / "/"). A `Modal` (native <dialog>) provides the focus trap, Esc,
+ * the backdrop and focus return; the input + listbox follow the WAI-ARIA combobox pattern.
  */
 export function SearchCommand() {
   const router = useRouter();
-  const dialogRef = useRef<HTMLDialogElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [open, setOpen] = useState(false);
   const listboxId = useId();
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
@@ -51,17 +43,15 @@ export function SearchCommand() {
     );
   }, [query]);
 
-  const open = useCallback(() => {
+  // Start every search afresh. The modal moves focus to the combobox, its first focusable element.
+  const reset = useCallback(() => {
     setQuery("");
     setActiveIndex(0);
-    dialogRef.current?.showModal();
-    inputRef.current?.focus();
   }, []);
 
-  // Resolve the dialog from the event target so handlers never touch refs during render.
-  const go = (result: Result | undefined, from: Element) => {
+  const go = (result: Result | undefined) => {
     if (!result) return;
-    from.closest("dialog")?.close();
+    setOpen(false);
     router.push(result.href);
   };
 
@@ -76,13 +66,13 @@ export function SearchCommand() {
         (event.key === "/" && !typing)
       ) {
         event.preventDefault();
-        if (dialogRef.current?.open) dialogRef.current.close();
-        else open();
+        if (!open) reset();
+        setOpen(!open);
       }
     };
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
-  }, [open]);
+  }, [open, reset]);
 
   const onInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "ArrowDown") {
@@ -93,7 +83,7 @@ export function SearchCommand() {
       setActiveIndex((i) => Math.max(i - 1, 0));
     } else if (event.key === "Enter") {
       event.preventDefault();
-      go(results[activeIndex], event.currentTarget);
+      go(results[activeIndex]);
     }
   };
 
@@ -101,32 +91,31 @@ export function SearchCommand() {
   const optionId = (index: number) => `${listboxId}-option-${index}`;
 
   return (
-    <>
-      <button
-        type="button"
-        onClick={open}
-        aria-keyshortcuts="Meta+K Control+K"
-        className="text-body hover:bg-neutral-tertiary hover:text-heading focus-visible:ring-ring/50 sm:bg-neutral-secondary-medium/50 sm:border-default inline-flex h-9 items-center gap-2 rounded-md text-sm transition-colors focus-visible:ring-[3px] focus-visible:outline-none max-sm:w-9 max-sm:justify-center sm:w-56 sm:border sm:px-3 lg:w-64"
-      >
-        <Search aria-hidden className="size-4 shrink-0 sm:hidden" />
-        <span className="hidden sm:inline">Search components…</span>
-        <span className="sr-only sm:hidden">Search components</span>
-        <kbd className="bg-neutral-secondary-medium pointer-events-none ml-auto hidden h-5 items-center gap-0.5 rounded border px-1.5 font-mono text-[10px] font-medium select-none sm:inline-flex">
-          {isMac ? "⌘" : "Ctrl"} K
-        </kbd>
-      </button>
+    <Modal open={open} onOpenChange={setOpen} placement="top-center" size="lg">
+      <ModalTrigger asChild>
+        <button
+          type="button"
+          onClick={reset}
+          aria-keyshortcuts="Meta+K Control+K"
+          className="text-body hover:bg-neutral-tertiary hover:text-heading focus-visible:ring-ring/50 sm:bg-neutral-secondary-medium/50 sm:border-default inline-flex h-9 items-center gap-2 rounded-md text-sm transition-colors focus-visible:ring-[3px] focus-visible:outline-none max-sm:w-9 max-sm:justify-center sm:w-56 sm:border sm:px-3 lg:w-64"
+        >
+          <Search aria-hidden className="size-4 shrink-0 sm:hidden" />
+          <span className="hidden sm:inline">Search components…</span>
+          <span className="sr-only sm:hidden">Search components</span>
+          <Kbd size="sm" className="pointer-events-none ms-auto hidden select-none sm:inline-block">
+            {isMac ? "⌘" : "Ctrl"} K
+          </Kbd>
+        </button>
+      </ModalTrigger>
 
-      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events -- backdrop click; Esc is handled natively by <dialog> */}
-      <dialog
-        ref={dialogRef}
+      {/* Opens near the top, like a command palette; the panel keeps its own look. */}
+      <ModalContent
         aria-label="Search documentation"
-        onClick={(event) => event.target === event.currentTarget && event.currentTarget.close()}
-        className="bg-neutral-primary-medium text-heading fixed top-[12vh] mx-auto w-[calc(100%-2rem)] max-w-lg overflow-hidden rounded-xl border p-0 shadow-2xl"
+        className="bg-neutral-primary-medium text-heading mt-[12vh] overflow-hidden rounded-xl p-0 shadow-2xl md:p-0"
       >
         <div className="flex items-center gap-2 border-b px-3">
           <Search aria-hidden className="text-body size-4 shrink-0" />
           <input
-            ref={inputRef}
             type="text"
             role="combobox"
             aria-expanded="true"
@@ -143,9 +132,7 @@ export function SearchCommand() {
             onKeyDown={onInputKeyDown}
             className="placeholder:text-body h-12 w-full bg-transparent text-sm outline-none"
           />
-          <kbd className="bg-neutral-secondary-medium text-body rounded border px-1.5 font-mono text-[10px]">
-            Esc
-          </kbd>
+          <Kbd size="sm">Esc</Kbd>
         </div>
 
         <div
@@ -172,7 +159,7 @@ export function SearchCommand() {
                       tabIndex={-1}
                       aria-selected={index === activeIndex}
                       onMouseMove={() => setActiveIndex(index)}
-                      onClick={(event) => go(result, event.currentTarget)}
+                      onClick={() => go(result)}
                       className={cn(
                         "flex cursor-pointer items-center gap-2 rounded-md px-2 py-2 text-sm",
                         index === activeIndex && "bg-neutral-tertiary text-heading",
@@ -190,7 +177,7 @@ export function SearchCommand() {
             ))
           )}
         </div>
-      </dialog>
-    </>
+      </ModalContent>
+    </Modal>
   );
 }

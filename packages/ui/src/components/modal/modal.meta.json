@@ -1,0 +1,77 @@
+{
+  "name": "Modal",
+  "status": "beta",
+  "description": "A dialog on top of the page for notices, confirmations and short forms, built on the native <dialog>.",
+  "category": "overlay",
+  "import": "import { Modal, ModalBody, ModalClose, ModalContent, ModalFooter, ModalHeader, ModalTitle, ModalTrigger } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/",
+  "client": true,
+  "props": "generated",
+  "parts": [
+    "Modal",
+    "ModalTrigger",
+    "ModalContent",
+    "ModalHeader",
+    "ModalTitle",
+    "ModalClose",
+    "ModalBody",
+    "ModalFooter"
+  ],
+  "variants": {
+    "size": ["sm", "md", "lg", "xl", "2xl", "3xl", "4xl", "5xl", "6xl", "7xl"],
+    "placement": [
+      "top-left",
+      "top-center",
+      "top-right",
+      "center-left",
+      "center",
+      "center-right",
+      "bottom-left",
+      "bottom-center",
+      "bottom-right"
+    ],
+    "dismissible": [true, false]
+  },
+  "defaults": {
+    "size": "2xl",
+    "placement": "center",
+    "dismissible": true,
+    "defaultOpen": false
+  },
+  "tokens": [
+    "color.neutral-primary-soft",
+    "color.neutral-tertiary",
+    "color.dark-backdrop",
+    "color.default",
+    "color.body",
+    "color.heading",
+    "color.ring",
+    "radius.base",
+    "shadow.sm",
+    "space.4",
+    "space.6"
+  ],
+  "useWhen": [
+    "Asking the user to confirm or decline an action, such as deleting an item",
+    "A short form (sign in, create or edit an item) without leaving the page",
+    "A notice the user must read or acknowledge before continuing"
+  ],
+  "avoidWhen": [
+    "Navigation, filters or long forms next to the page: use a drawer",
+    "A short list of actions from a button: use a dropdown",
+    "A message that needs no answer: use an alert or a toast"
+  ],
+  "related": ["Button", "Drawer"],
+  "examples": [
+    "apps/storybook/registry/demos/modal-demo.tsx",
+    "apps/storybook/registry/demos/modal-static.tsx",
+    "apps/storybook/registry/demos/modal-popup.tsx",
+    "apps/storybook/registry/demos/modal-form.tsx",
+    "apps/storybook/registry/demos/modal-crud.tsx",
+    "apps/storybook/registry/demos/modal-radio.tsx",
+    "apps/storybook/registry/demos/modal-timeline.tsx",
+    "apps/storybook/registry/demos/modal-progress.tsx",
+    "apps/storybook/registry/demos/modal-sizes.tsx",
+    "apps/storybook/registry/demos/modal-placement.tsx"
+  ]
+}

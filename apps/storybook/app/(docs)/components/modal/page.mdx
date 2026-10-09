@@ -1,0 +1,218 @@
+export const metadata = {
+  title: "Modal",
+  description:
+    "Show a dialog on top of the page for notices, confirmations and short forms, built on the native dialog element.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="modal-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+Then import the styles once in your global CSS, after Tailwind:
+
+```css
+@import "tailwindcss";
+@import "@stefan-florescu/ui/styles.css";
+```
+
+## Usage
+
+```tsx
+import {
+  Button,
+  Modal,
+  ModalBody,
+  ModalClose,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalTitle,
+  ModalTrigger,
+} from "@stefan-florescu/ui";
+```
+
+```tsx
+<Modal>
+  <ModalTrigger>Toggle modal</ModalTrigger>
+  <ModalContent>
+    <ModalHeader>
+      <ModalTitle>Terms of Service</ModalTitle>
+      <ModalClose />
+    </ModalHeader>
+    <ModalBody>…</ModalBody>
+    <ModalFooter>
+      <ModalClose asChild>
+        <Button>I accept</Button>
+      </ModalClose>
+    </ModalFooter>
+  </ModalContent>
+</Modal>
+```
+
+`ModalClose` is the × button; with `asChild` it closes the modal from your own button instead. To
+open the modal from your own state, make it controlled:
+
+```tsx
+const [open, setOpen] = useState(false);
+
+<Modal open={open} onOpenChange={setOpen}>
+  <ModalContent>…</ModalContent>
+</Modal>;
+```
+
+Inside `<Modal>`, `useModal()` returns `{ open, setOpen }`, for example to close it after a form is
+submitted.
+
+## Examples
+
+### Default modal
+
+The modal is a native `<dialog>` in the centre of the screen. `ModalTrigger` opens it, and the
+close buttons, <Kbd>Esc</Kbd> and a click on the backdrop close it. `ModalTitle` names the dialog,
+so you don't wire `aria-labelledby` yourself.
+
+<ComponentPreview name="modal-demo" />
+
+### Static modal
+
+Set `dismissible={false}` so a click outside the modal doesn't close it, for a choice the user has
+to make, such as a cookie notice or a survey. The close buttons and <Kbd>Esc</Kbd> still close it.
+
+<ComponentPreview name="modal-static" />
+
+### Pop-up modal
+
+Use this example to ask the user to confirm a decision, such as deleting an item. It is an
+`alertdialog`, and focus starts on "No, cancel" (`data-autofocus`), so pressing <Kbd>Enter</Kbd>
+right away never deletes anything.
+
+<ComponentPreview name="modal-popup" />
+
+### Form element
+
+Put a form inside the modal to sign in or register without leaving the page.
+
+<ComponentPreview name="modal-form" />
+
+### Modal with CRUD
+
+Use a form inside the modal to create, update or delete an item. Submitting it closes the modal
+with `useModal()`.
+
+<ComponentPreview name="modal-crud" />
+
+### Modal with radio inputs
+
+Show a list of options as radio buttons styled as cards. The arrow keys move between them.
+
+<ComponentPreview name="modal-radio" />
+
+### Modal with timeline
+
+Show a timeline of events, such as a changelog, inside the modal.
+
+<ComponentPreview name="modal-timeline" />
+
+### Modal with progress bar
+
+Show the progress of a task, such as the storage used, with a `progressbar`. The text under the
+title describes the dialog through `aria-describedby`.
+
+<ComponentPreview name="modal-progress" />
+
+## Sizes
+
+Set `size` to one of Flowbite's `max-w-*` widths, from `sm` to `7xl` (`2xl`, 672px, by default).
+Flowbite's small, default, large and extra large modals are `md`, `lg`, `4xl` and `7xl`. The modal
+is never wider than the screen, minus a 16px gap on each side.
+
+<ComponentPreview name="modal-sizes" />
+
+## Placement
+
+Set `placement` to `{top|center|bottom}-{left|center|right}` (`top-left`, `bottom-right`…) to place
+the modal 16px from the edges of the screen. The default is `center`.
+
+<ComponentPreview name="modal-placement" />
+
+## Accessibility
+
+- Follows the WAI-ARIA [dialog (modal)](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)
+  pattern with the native `<dialog>` and `showModal()`: the modal sits in the top layer and the rest
+  of the page is inert, so <Kbd>Tab</Kbd> only reaches the modal (and the browser's own controls).
+- On open, focus moves to the first focusable element in the modal (usually its close button), or
+  to the element with `data-autofocus`. On close, focus returns to the trigger.
+- `ModalTitle` names the dialog with `aria-labelledby`. A modal without a title needs an
+  `aria-label` on `ModalContent`; add `aria-describedby` for a short description. Pass
+  `role="alertdialog"` for a confirmation that interrupts the user.
+- `ModalTrigger` has `aria-haspopup="dialog"`, `aria-expanded` and `aria-controls`.
+- The × button is labelled "Close" (pass `label` for something more specific). Keyboard focus
+  draws a solid `ring` outline on it and on every button.
+- The page can't scroll while the modal is open, as in Flowbite. A modal taller than the screen
+  scrolls inside.
+- Differences from Flowbite:
+  - The modal is a `dialog` that traps focus and makes the page inert; Flowbite's is a `div` that
+    keeps the page in the tab order, and doesn't move focus.
+  - The title is an `h2`, not an `h3`, so it doesn't skip heading levels.
+  - The radio cards hide their inputs with `sr-only` instead of `display: none`, so the keyboard
+    and screen readers reach them, and they draw the `ring` outline on keyboard focus.
+  - The progress bar has `role="progressbar"` with its value, and its width matches the value
+    (376,3 of 500 GB is 75%; Flowbite draws 85%).
+- Not ported: Flowbite's _Crypto wallet_ example, which is a list of wallet brand logos. In the
+  timeline, the Figma logo on "Duplicate in Figma" is a copy icon.
+
+| Key                                                | Action                                  |
+| -------------------------------------------------- | --------------------------------------- |
+| <Kbd>Enter</Kbd> / <Kbd>Space</Kbd> on the trigger | Opens the modal and moves focus into it |
+| <Kbd>Tab</Kbd> / <Kbd>Shift</Kbd>+<Kbd>Tab</Kbd>   | Moves through the modal, staying inside |
+| <Kbd>Esc</Kbd>                                     | Closes the modal and returns focus      |
+
+## API Reference
+
+### Modal
+
+The root. It holds the state and renders no element.
+
+| Prop           | Type                                                            | Default    |
+| -------------- | --------------------------------------------------------------- | ---------- |
+| `open`         | `boolean`. Controlled.                                          | —          |
+| `defaultOpen`  | `boolean`. Uncontrolled.                                        | `false`    |
+| `onOpenChange` | `(open: boolean) => void`                                       | —          |
+| `size`         | `"sm" \| "md" \| "lg" \| "xl" \| "2xl" \| … \| "7xl"`           | `"2xl"`    |
+| `placement`    | `"center" \| "top-left" \| "top-center" \| … \| "bottom-right"` | `"center"` |
+| `dismissible`  | `boolean`. A click on the backdrop closes it (`false`: static). | `true`     |
+
+### ModalTrigger
+
+A `Button` that opens the modal. Takes every `Button` prop (`variant`, `size`…). With `asChild`, it
+renders its only child (your own button or link) instead.
+
+### ModalContent
+
+The `<dialog>` box. Its padding, border and shadow are Flowbite's; change them with `className`
+(`p-0` for a modal with its own padded sections). All other `<dialog>` attributes are forwarded,
+including `ref`, `role` and `aria-*`.
+
+### ModalHeader, ModalTitle, ModalBody, ModalFooter
+
+A heading row with a divider, an `h2`, the spaced content and a row of actions over a divider. They
+forward their element's attributes.
+
+### ModalClose
+
+| Prop      | Type                                             | Default   |
+| --------- | ------------------------------------------------ | --------- |
+| `label`   | `string`. The accessible name of the × button.   | `"Close"` |
+| `asChild` | `boolean`. Closes the modal from its only child. | `false`   |
+
+### useModal
+
+```tsx
+const { open, setOpen } = useModal();
+```
+
+Opens or closes the modal from any element inside `<Modal>`.

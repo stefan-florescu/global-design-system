@@ -81,24 +81,12 @@ export const avatarImageVariants = cva("size-full object-cover", {
 /** Flowbite's placeholder: a person silhouette, larger than the frame and cropped by it. */
 export const avatarPlaceholderClassName = "absolute -start-1/10 top-0 size-6/5 fill-current";
 
-/** Flowbite's dot indicator: 14px with a 2px `buffer` ring that separates it from the image. */
-export const avatarStatusVariants = cva("absolute rounded-full border-2 border-buffer", {
+/**
+ * Flowbite's dot indicator: an `Indicator` (14px on the default avatar, with the 2px `buffer`
+ * ring that separates it from the image). This sets its corner and its size for each avatar size.
+ */
+export const avatarStatusVariants = cva("absolute", {
   variants: {
-    status: {
-      online: "bg-success",
-      away: "bg-warning",
-      busy: "bg-danger",
-      offline: "bg-neutral-quaternary",
-    },
-    size: {
-      "2xs": "size-2",
-      xs: "size-2.5",
-      sm: "size-3",
-      md: "size-3.5",
-      lg: "size-3.5",
-      xl: "size-4",
-      "2xl": "size-4",
-    },
     position: {
       "top-right": "top-0",
       "bottom-right": "bottom-0",
@@ -113,8 +101,27 @@ export const avatarStatusVariants = cva("absolute rounded-full border-2 border-b
     { shape: "square", position: "top-right", className: "-translate-y-1/2" },
     { shape: "square", position: "bottom-right", className: "translate-y-1/4" },
   ],
-  defaultVariants: { size: "md", position: "bottom-right", shape: "circle" },
+  defaultVariants: { position: "bottom-right", shape: "circle" },
 });
+
+/** Indicator size for each avatar size: 8, 10, 12, 14, 14, 16 and 16px dots. */
+export const avatarStatusSize = {
+  "2xs": "xs",
+  xs: "sm",
+  sm: "md",
+  md: "lg",
+  lg: "lg",
+  xl: "xl",
+  "2xl": "xl",
+} as const;
+
+/** Indicator colour for each presence status. */
+export const avatarStatusVariant = {
+  online: "success",
+  away: "warning",
+  busy: "danger",
+  offline: "gray",
+} as const;
 
 /** The "+99" item at the end of an avatar group. */
 export const avatarGroupCounterClassName = [

@@ -131,6 +131,31 @@ export const sidebarNav: NavSection[] = [
         description: "A menu of actions or options that opens from a button.",
         href: "/components/dropdown",
       },
+      {
+        title: "Footer",
+        description: "The closing section of a page: links, copyright and social icons.",
+        href: "/components/footer",
+      },
+      {
+        title: "Indicators",
+        description: "Small dots and counters that show status or new activity on another element.",
+        href: "/components/indicators",
+      },
+      {
+        title: "KBD",
+        description: "A key or keyboard shortcut, shown the way it looks on a keyboard.",
+        href: "/components/kbd",
+      },
+      {
+        title: "Mega Menu",
+        description: "A wide navigation panel with grouped links, opened from a navbar item.",
+        href: "/components/mega-menu",
+      },
+      {
+        title: "Modal",
+        description: "A dialog over the page that asks for a decision or shows focused content.",
+        href: "/components/modal",
+      },
     ],
   },
   {

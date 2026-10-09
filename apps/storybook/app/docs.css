@@ -647,6 +647,20 @@
     background-position: -8px -8px;
   }
 
+  /* Full-width examples (navbars): the preview's border frames the demo, under the toolbar. */
+  .preview.preview--flush {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    padding: 2.75rem 0 0;
+    overflow: hidden;
+  }
+
+  .preview--flush > :last-child {
+    border-top: var(--sds-border-width-1) solid var(--sds-color-default);
+  }
+
   .preview--stack {
     flex-direction: column;
     align-items: stretch;
@@ -807,6 +821,11 @@
 
   td code {
     font-size: 0.8125rem;
+  }
+
+  /* Keyboard tables: keep a row's keys (<Kbd>Enter</Kbd> / <Kbd>Space</Kbd>) on one line. */
+  td:first-child:has(> kbd) {
+    white-space: nowrap;
   }
 
   .cell-type {

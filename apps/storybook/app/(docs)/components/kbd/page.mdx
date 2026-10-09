@@ -1,0 +1,112 @@
+export const metadata = {
+  title: "KBD",
+  description:
+    "Use the KBD component as an inline element to show a key from the keyboard inside paragraphs, tables and other components.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="kbd-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Kbd } from "@stefan-florescu/ui";
+```
+
+```tsx
+<p>
+  Press <Kbd>Ctrl</Kbd> + <Kbd>K</Kbd> to search.
+</p>
+```
+
+`Kbd` renders the semantic `<Kbd>` element, so keys use the monospace `font-mono` face, which suits
+keyboard input best.
+
+## Examples
+
+### Default KBD
+
+Here's a list of keys that you can use inside any other element.
+
+<ComponentPreview name="kbd-demo" />
+
+### KBD inside text
+
+Nest a key inside a paragraph.
+
+<ComponentPreview name="kbd-text" />
+
+### KBD inside table
+
+Use keys inside a table to show which key does what, as in the keyboard tables of these docs.
+
+<ComponentPreview name="kbd-table" />
+
+### Arrow keys
+
+Show arrow keys with an icon. An icon-only key needs a visually hidden name, such as
+`<span className="sr-only">Arrow key up</span>`. Keys that hold an icon centre it and size it to
+10px. Add `rtl:rotate-180` to the left and right keys so they point the right way in right-to-left
+layouts.
+
+<ComponentPreview name="kbd-arrows" />
+
+### Letter keys
+
+Show a key from the Latin alphabet.
+
+<ComponentPreview name="kbd-letters" />
+
+### Number keys
+
+Show a key from the English numeral system.
+
+<ComponentPreview name="kbd-numbers" />
+
+### Function keys
+
+Show function keys.
+
+<ComponentPreview name="kbd-function" />
+
+### Compact keys
+
+Set `size="sm"` for a smaller key in shortcut hints inside buttons and fields, such as the search
+button in the header of these docs. This size is our addition; Flowbite has one size.
+
+<ComponentPreview name="kbd-hint" />
+
+## Accessibility
+
+- Renders the native `<Kbd>` element, which marks keyboard input. It has no ARIA role and is not
+  interactive, so it needs no keyboard support or focus style.
+- Screen readers read the key's text. Icon-only keys (arrow keys) need visually hidden text, as in
+  Flowbite; the icon is decorative and hidden from assistive technology.
+- Spell out keys the way people say them (`Ctrl`, `Shift`, `Esc`). Symbols such as `⌘` or `↑` may
+  be read inconsistently, so pair them with text or a hidden name.
+- When an element has a shortcut, also declare it with `aria-keyshortcuts` on that element; a
+  `Kbd` hint is only visual.
+- `heading` on `neutral-tertiary` passes WCAG 2.2 AA in both themes.
+
+## API Reference
+
+### Kbd
+
+| Prop   | Type           | Default |
+| ------ | -------------- | ------- |
+| `size` | `"sm" \| "md"` | `"md"`  |
+
+All native `<Kbd>` attributes are forwarded, including `ref` and `className`.
+
+| Token              | Use                       |
+| ------------------ | ------------------------- |
+| `neutral-tertiary` | Key surface               |
+| `default-medium`   | Key border                |
+| `heading`          | Key label                 |
+| `radius.base`      | Corners (12px; `sm`: 8px) |
+| `font.mono`        | Key face (from `<Kbd>`)   |

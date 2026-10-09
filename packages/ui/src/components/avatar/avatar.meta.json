@@ -41,7 +41,7 @@
   ],
   "useWhen": ["Showing who authored, owns or is assigned to something", "Showing who is online"],
   "avoidWhen": ["Decorative illustrations: use an image"],
-  "related": ["Badge"],
+  "related": ["Badge", "Indicator"],
   "examples": [
     "apps/storybook/registry/demos/avatar-demo.tsx",
     "apps/storybook/registry/demos/avatar-bordered.tsx",

@@ -8,7 +8,6 @@ import {
   useEffect,
   useId,
   useMemo,
-  useRef,
   useState,
   type ComponentProps,
   type MouseEvent,
@@ -17,6 +16,7 @@ import {
 import { createPortal } from "react-dom";
 
 import { cn } from "../../lib/cn";
+import { useDialog } from "../../lib/use-dialog";
 import { Button, type ButtonProps } from "../button";
 
 import {
@@ -184,100 +184,7 @@ export function DrawerContent({ className, children, ref, ...props }: DrawerCont
     hasTitle,
     hasDescription,
   } = useDrawerContext("DrawerContent");
-  const dialogRef = useRef<HTMLDialogElement | null>(null);
-  const returnFocus = useRef<HTMLElement | null>(null);
-  const openRef = useRef(open);
-  useEffect(() => {
-    openRef.current = open;
-  }, [open]);
-
-  // Open and close the native dialog to match the state.
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-    if (open && !dialog.open) {
-      returnFocus.current =
-        document.activeElement instanceof HTMLElement ? document.activeElement : null;
-      if (backdrop) dialog.showModal();
-      else dialog.show();
-    } else if (!open && dialog.open) {
-      const hadFocus = dialog.contains(document.activeElement);
-      dialog.close();
-      const target = returnFocus.current;
-      returnFocus.current = null;
-      // The browser returns focus too; this covers focus that was inside a non-modal drawer.
-      if (
-        target?.isConnected &&
-        (hadFocus || document.activeElement === document.body || !document.activeElement)
-      ) {
-        target.focus({ preventScroll: true });
-      }
-    }
-  }, [open, backdrop]);
-
-  // Close on unmount so the page is never left inert.
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    return () => {
-      if (dialog?.open) dialog.close();
-    };
-  }, []);
-
-  // Flowbite's body scrolling: disabled (locked) while open, unless `scrollLock` is off.
-  useEffect(() => {
-    if (!open || !scrollLock) return;
-    const root = document.documentElement;
-    const previous = root.style.overflow;
-    root.style.overflow = "hidden";
-    return () => {
-      root.style.overflow = previous;
-    };
-  }, [open, scrollLock]);
-
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-
-    // Escape on a modal dialog: close through the state, so a controlled drawer stays in sync
-    // and the slide-out runs.
-    const onCancel = (event: Event) => {
-      event.preventDefault();
-      setOpen(false);
-    };
-    // Escape on a non-modal dialog, which the browser does not close by itself.
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape" && !event.defaultPrevented && !dialog.matches(":modal")) {
-        event.preventDefault();
-        setOpen(false);
-      }
-    };
-    // A click on the backdrop targets the dialog itself, outside its box.
-    const onClick = (event: globalThis.MouseEvent) => {
-      if (event.target !== dialog || !dialog.matches(":modal")) return;
-      const box = dialog.getBoundingClientRect();
-      const inside =
-        event.clientX >= box.left &&
-        event.clientX <= box.right &&
-        event.clientY >= box.top &&
-        event.clientY <= box.bottom;
-      if (!inside) setOpen(false);
-    };
-    // Closed by the browser (a `<form method="dialog">`, a second Escape): sync the state.
-    const onClose = () => {
-      if (openRef.current) setOpen(false);
-    };
-
-    dialog.addEventListener("cancel", onCancel);
-    dialog.addEventListener("keydown", onKeyDown);
-    dialog.addEventListener("click", onClick);
-    dialog.addEventListener("close", onClose);
-    return () => {
-      dialog.removeEventListener("cancel", onCancel);
-      dialog.removeEventListener("keydown", onKeyDown);
-      dialog.removeEventListener("click", onClick);
-      dialog.removeEventListener("close", onClose);
-    };
-  }, [setOpen]);
+  const dialogRef = useDialog({ open, setOpen, modal: backdrop, scrollLock });
 
   const [edgeSlot, setEdgeSlot] = useState<HTMLDivElement | null>(null);
 

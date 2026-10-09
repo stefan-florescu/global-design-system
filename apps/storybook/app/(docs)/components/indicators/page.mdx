@@ -1,0 +1,155 @@
+export const metadata = {
+  title: "Indicators",
+  description:
+    "Small dots and counters that show status or new activity on another element, or mark a legend entry.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="indicator-count" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+Then import the styles once in your global CSS, after Tailwind:
+
+```css
+@import "tailwindcss";
+@import "@stefan-florescu/ui/styles.css";
+```
+
+## Usage
+
+```tsx
+import { Indicator } from "@stefan-florescu/ui";
+```
+
+```tsx
+<button type="button" className="relative">
+  Messages
+  <Indicator variant="danger" bordered count={8} label="8 unread" placement="top-end" />
+</button>
+```
+
+An indicator is a small element positioned absolutely relative to another component, such as a
+button, avatar or card, that shows a count, a status or other short information. Set `placement`
+to pin it to an edge or corner of a `relative` parent; leave it out to show it inline, as in a
+legend. It is server-safe: no `"use client"` needed.
+
+## Examples
+
+### Default indicator
+
+Use `variant` to pick the colour and `className` to space the dots.
+
+<ComponentPreview name="indicator-demo" />
+
+| Variant   | Fill                 | Count text           |
+| --------- | -------------------- | -------------------- |
+| `gray`    | `neutral-quaternary` | `heading`            |
+| `dark`    | `dark`               | `dark-foreground`    |
+| `brand`   | `brand`              | `brand-foreground`   |
+| `success` | `success`            | `success-foreground` |
+| `danger`  | `danger`             | `danger-foreground`  |
+| `warning` | `warning`            | `warning-foreground` |
+
+Flowbite also shows purple, indigo and teal dots. Those single-colour fills have no role in our
+tokens, so they are left out.
+
+### Legend indicator
+
+Use an inline indicator as a legend for charts, with the text next to it. Here `size="sm"` gives
+Flowbite's 10px legend dot. The text names the series, so the dot stays decorative.
+
+<ComponentPreview name="indicator-legend" />
+
+### Indicator count
+
+Pass `count` to show a number inside the indicator and pin it to a button with `placement`.
+`bordered` adds the 2px `buffer` ring that separates it from the button. `label` replaces the
+visible number for screen readers, so the button reads "Messages 8 unread". Use `max` to cap long
+counts, for example `max={99}` shows "99+".
+
+<ComponentPreview name="indicator-count" />
+
+### Status indicator
+
+Show whether a user is online with a dot on their avatar. `Avatar`'s `status` prop renders a
+bordered `Indicator` sized to the avatar and announces the status as text ("Online", "Busy").
+
+<ComponentPreview name="indicator-status" />
+
+### Badge indicator
+
+Put an inline indicator inside a `Badge`, before its label.
+
+<ComponentPreview name="indicator-badge" />
+
+### Stepper indicator
+
+Indicators can mark the steps of a stepper, holding an icon (sized like a count) or a dot. Each
+step's state is written as visually hidden text after its name, so it does not rely on colour.
+
+<ComponentPreview name="indicator-stepper" />
+
+### Loading indicator
+
+Use this pulsing label when the content inside a card is still loading. The card has
+`role="status"`, so the text is announced, and the pulse stops when the user prefers reduced
+motion.
+
+<ComponentPreview name="indicator-loading" />
+
+### Spinner indicator
+
+Use a spinner inside a card that hasn't loaded yet. It is the `LoaderCircle` icon in `brand`, as
+in `Button`'s `loading` state, with "Loading..." as visually hidden text.
+
+<ComponentPreview name="indicator-spinner" />
+
+### Indicator position
+
+Set `placement` to pin the indicator anywhere relative to its parent: `top-start`, `top-center`,
+`top-end`, `middle-start`, `middle-center`, `middle-end`, `bottom-start`, `bottom-center` or
+`bottom-end`. The indicator's centre sits on the edge or corner. To position something else, such
+as these badges, pass `indicatorPlacementVariants({ placement })` as its `className`.
+For a custom offset, leave `placement` out and position it yourself, for example
+`className="absolute -top-2 -end-2"`, as the [notification badge](/components/badge) does.
+
+<ComponentPreview name="indicator-position" />
+
+## Accessibility
+
+- A dot alone is decorative: without `label` or `count`, the indicator is hidden from assistive
+  technology (`aria-hidden`). When the dot means something, such as a status, pass `label`; it is
+  read instead of the dot as visually hidden text.
+- A `count` is read as its number. Pass `label` ("8 unread") to give it context; the visible
+  number is then hidden and the label is read in its place.
+- Don't rely on colour alone (WCAG 1.4.1): pair a dot with visible text (a legend, a badge
+  label) or with a `label`. An icon inside an indicator is decorative; mark it `aria-hidden`.
+- Flowbite's counts use white text on `danger`; ours use each variant's `*-foreground` token,
+  which is checked against its fill on every token build.
+- The loading and spinner examples use `role="status"`, and their animations stop when the user
+  prefers reduced motion.
+- `placement` uses logical sides, so `start` and `end` flip in right-to-left layouts.
+- Flowbite's stepper example puts the step names in `h3` elements and draws its connecting line
+  in `bg-base`, a colour Flowbite v4 doesn't define, so the line is invisible on flowbite.com.
+  Ours uses paragraphs (so the page outline stays intact) and draws the line in `default`.
+
+## API Reference
+
+| Prop        | Type                                                                              | Default   |
+| ----------- | --------------------------------------------------------------------------------- | --------- |
+| `variant`   | `"gray" \| "dark" \| "brand" \| "success" \| "danger" \| "warning"`               | `"brand"` |
+| `size`      | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`. Dots 8–16px; counts and icons 16–32px.    | `"md"`    |
+| `placement` | `"top-start" \| "top-center" \| "top-end" \| "middle-start" \| …` `"bottom-end"`. | —         |
+| `bordered`  | `boolean`. 2px `buffer` border.                                                   | `false`   |
+| `count`     | `number \| string`. Shown inside the indicator.                                   | —         |
+| `max`       | `number`. A larger numeric `count` shows as `max+`.                               | —         |
+| `label`     | `string`. Visually hidden text alternative.                                       | —         |
+| `children`  | An icon shown inside the indicator, sized like a count.                           | —         |
+| `className` | `string`. Merged with `cn()`; your classes win.                                   | —         |
+
+All other native `<span>` attributes are forwarded. `indicatorVariants()` and
+`indicatorPlacementVariants()` return the class names for custom elements.

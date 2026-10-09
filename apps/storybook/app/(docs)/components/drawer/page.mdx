@@ -60,7 +60,7 @@ const [open, setOpen] = useState(false);
 ### Default drawer
 
 The drawer is a native `<dialog>` that slides in from the left. `DrawerTrigger` opens it, and the
-close button, <kbd>Esc</kbd> and a click on the backdrop close it. `DrawerTitle` names the dialog
+close button, <Kbd>Esc</Kbd> and a click on the backdrop close it. `DrawerTitle` names the dialog
 and `DrawerDescription` describes it, so you don't wire `aria-labelledby` yourself.
 
 <ComponentPreview name="drawer-demo" />
@@ -128,14 +128,14 @@ The backdrop dims the page while the drawer is open, and a click on it closes th
 ### Enabled (default)
 
 With the backdrop, the drawer is a **modal** dialog: the rest of the page is inert until it
-closes, and <kbd>Tab</kbd> stays inside the drawer.
+closes, and <Kbd>Tab</Kbd> stays inside the drawer.
 
 <ComponentPreview name="drawer-backdrop" />
 
 ### Disabled
 
 Without the backdrop, the drawer is a **non-modal** dialog: the page stays usable, a click outside
-doesn't close it, and <kbd>Tab</kbd> can leave it. <kbd>Esc</kbd> still closes it while focus is
+doesn't close it, and <Kbd>Tab</Kbd> can leave it. <Kbd>Esc</Kbd> still closes it while focus is
 inside.
 
 <ComponentPreview name="drawer-no-backdrop" />
@@ -158,9 +158,9 @@ kept inside the example.
 
 - Follows the WAI-ARIA [dialog (modal)](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)
   pattern with the native `<dialog>` and `showModal()`: the drawer sits in the top layer, the rest
-  of the page is inert, so <kbd>Tab</kbd> only reaches the drawer (and the browser's own controls).
+  of the page is inert, so <Kbd>Tab</Kbd> only reaches the drawer (and the browser's own controls).
 - On open, focus moves to the first focusable element in the drawer (its close button). Add
-  `autoFocus` to another element to start there instead. On close, focus returns to the trigger.
+  `data-autofocus` to another element to start there instead. On close, focus returns to the trigger.
 - `DrawerTitle` (or `DrawerHandle`) names the dialog with `aria-labelledby`, and
   `DrawerDescription` describes it with `aria-describedby`. A drawer without a title needs an
   `aria-label` on `DrawerContent`.
@@ -180,9 +180,9 @@ kept inside the example.
 
 | Key                                                | Action                                                  |
 | -------------------------------------------------- | ------------------------------------------------------- |
-| <kbd>Enter</kbd> / <kbd>Space</kbd> on the trigger | Opens the drawer and moves focus into it                |
-| <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd>   | Moves through the drawer (stays inside with a backdrop) |
-| <kbd>Esc</kbd>                                     | Closes the drawer and returns focus                     |
+| <Kbd>Enter</Kbd> / <Kbd>Space</Kbd> on the trigger | Opens the drawer and moves focus into it                |
+| <Kbd>Tab</Kbd> / <Kbd>Shift</Kbd>+<Kbd>Tab</Kbd>   | Moves through the drawer (stays inside with a backdrop) |
+| <Kbd>Esc</Kbd>                                     | Closes the drawer and returns focus                     |
 
 ## API Reference
 

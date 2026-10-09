@@ -1,0 +1,62 @@
+{
+  "name": "Footer",
+  "status": "beta",
+  "description": "The page footer, with the brand, groups of links, a copyright notice and social media icons.",
+  "category": "navigation",
+  "import": "import { Footer, FooterBrand, FooterCopyright, FooterDivider, FooterIcon, FooterIcons, FooterLink, FooterLinkGroup, FooterTitle } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/contentinfo.html",
+  "client": false,
+  "props": "generated",
+  "parts": [
+    "Footer",
+    "FooterBrand",
+    "FooterTitle",
+    "FooterLinkGroup",
+    "FooterLink",
+    "FooterCopyright",
+    "FooterDivider",
+    "FooterIcons",
+    "FooterIcon"
+  ],
+  "variants": {
+    "variant": ["default", "card", "sticky"],
+    "vertical": [true, false]
+  },
+  "defaults": {
+    "variant": "default",
+    "vertical": false
+  },
+  "tokens": [
+    "color.neutral-primary-soft",
+    "color.default",
+    "color.heading",
+    "color.body",
+    "color.fg-brand",
+    "color.ring",
+    "radius.base",
+    "radius.xs",
+    "shadow.xs",
+    "shadow.sm",
+    "layer.fixed",
+    "text.sm",
+    "text.2xl",
+    "font.medium",
+    "font.semibold"
+  ],
+  "useWhen": [
+    "The bottom of every page: copyright, legal links and a sitemap",
+    "Linking to social media profiles"
+  ],
+  "avoidWhen": [
+    "Primary navigation: use a navbar",
+    "Announcements pinned to the viewport: use Banner"
+  ],
+  "related": ["Banner", "Breadcrumb", "BottomNavigation"],
+  "examples": [
+    "apps/storybook/registry/demos/footer-demo.tsx",
+    "apps/storybook/registry/demos/footer-logo.tsx",
+    "apps/storybook/registry/demos/footer-social.tsx",
+    "apps/storybook/registry/demos/footer-sitemap.tsx",
+    "apps/storybook/registry/demos/footer-sticky.tsx"
+  ]
+}

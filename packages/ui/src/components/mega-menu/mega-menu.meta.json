@@ -1,0 +1,60 @@
+{
+  "name": "MegaMenu",
+  "status": "beta",
+  "description": "Flowbite's mega menu: a navbar item that opens a wide panel of grouped links, under its trigger or across the full width of the navbar, following the WAI-ARIA disclosure navigation pattern. On small screens the panel stacks in the collapsed navbar.",
+  "category": "navigation",
+  "import": "import { MegaMenu, MegaMenuContent, MegaMenuGroup, MegaMenuLink, MegaMenuTrigger } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/examples/disclosure-navigation/",
+  "client": true,
+  "props": "generated",
+  "parts": ["MegaMenu", "MegaMenuTrigger", "MegaMenuContent", "MegaMenuGroup", "MegaMenuLink"],
+  "variants": {
+    "MegaMenuContent.fullWidth": [true, false],
+    "MegaMenuContent.columns": [1, 2, 3, 4],
+    "MegaMenuContent.align": ["center", "start", "end"],
+    "MegaMenuContent.stackBelow": ["sm", "md", "lg", "xl", "none"]
+  },
+  "defaults": {
+    "MegaMenuContent.fullWidth": false,
+    "MegaMenuContent.columns": 3,
+    "MegaMenuContent.align": "center",
+    "MegaMenuContent.offset": "10 (4 with fullWidth)",
+    "MegaMenuContent.stackBelow": "md",
+    "MegaMenuTrigger.chevron": true
+  },
+  "tokens": [
+    "color.neutral-primary-soft",
+    "color.neutral-secondary-soft",
+    "color.neutral-secondary-medium",
+    "color.default",
+    "color.light",
+    "color.body",
+    "color.heading",
+    "color.fg-brand",
+    "color.ring",
+    "radius.base",
+    "radius.lg",
+    "shadow.sm",
+    "shadow.xs",
+    "breakpoint.md",
+    "z.dropdown"
+  ],
+  "useWhen": [
+    "A navbar item that leads to many pages, grouped in columns",
+    "Navigation links with icons or one-line descriptions",
+    "A navigation panel with a call to action or a promotional card next to the links"
+  ],
+  "avoidWhen": [
+    "A short list of links under a navbar item: use Dropdown with DropdownContent",
+    "Actions or options (not navigation): use Dropdown with DropdownMenu",
+    "Site navigation in a side panel: use Drawer"
+  ],
+  "related": ["Dropdown", "Drawer", "Button"],
+  "examples": [
+    "apps/storybook/registry/demos/mega-menu-demo.tsx",
+    "apps/storybook/registry/demos/mega-menu-icons.tsx",
+    "apps/storybook/registry/demos/mega-menu-full-width.tsx",
+    "apps/storybook/registry/demos/mega-menu-cta.tsx",
+    "apps/storybook/registry/demos/mega-menu-image.tsx"
+  ]
+}

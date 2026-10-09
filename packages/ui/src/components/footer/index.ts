@@ -1,0 +1,21 @@
+export {
+  Footer,
+  FooterBrand,
+  FooterCopyright,
+  FooterDivider,
+  FooterIcon,
+  FooterIcons,
+  FooterLink,
+  FooterLinkGroup,
+  FooterTitle,
+  type FooterBrandProps,
+  type FooterCopyrightProps,
+  type FooterDividerProps,
+  type FooterIconProps,
+  type FooterIconsProps,
+  type FooterLinkGroupProps,
+  type FooterLinkProps,
+  type FooterProps,
+  type FooterTitleProps,
+} from "./footer";
+export { footerVariants, type FooterVariantProps } from "./footer.variants";

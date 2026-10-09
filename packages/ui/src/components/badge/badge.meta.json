@@ -57,7 +57,7 @@
     "Showing removable filters (chips)"
   ],
   "avoidWhen": ["Messages that need a sentence: use Alert", "Actions: use Button"],
-  "related": ["Alert", "Avatar", "Button"],
+  "related": ["Alert", "Avatar", "Button", "Indicator"],
   "examples": [
     "apps/storybook/registry/demos/badge-demo.tsx",
     "apps/storybook/registry/demos/badge-bordered.tsx",

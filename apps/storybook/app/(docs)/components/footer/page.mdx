@@ -1,0 +1,182 @@
+export const metadata = {
+  title: "Footer",
+  description:
+    "Use the footer at the bottom of every page to show the brand, sitemap links, a copyright notice and social media profiles.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="footer-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import {
+  Footer,
+  FooterBrand,
+  FooterCopyright,
+  FooterDivider,
+  FooterIcon,
+  FooterIcons,
+  FooterLink,
+  FooterLinkGroup,
+} from "@stefan-florescu/ui";
+```
+
+```tsx
+<Footer variant="card">
+  <div className="mx-auto w-full max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+    <FooterCopyright href="/" by="Stefan DS™" year={2023}>
+      . All Rights Reserved.
+    </FooterCopyright>
+    <FooterLinkGroup className="mt-3 sm:mt-0">
+      <FooterLink href="/about">About</FooterLink>
+      <FooterLink href="/privacy">Privacy Policy</FooterLink>
+    </FooterLinkGroup>
+  </div>
+</Footer>
+```
+
+`Footer` styles the surface; arrange its parts with your own layout (a centred `max-w-screen-xl`
+container, a flex row or a grid), as in the examples below.
+
+## Examples
+
+### Default footer
+
+Use the `card` variant to show a copyright notice and some helpful website links on a bordered card
+with `rounded-base` corners and `shadow-xs`.
+
+<ComponentPreview name="footer-demo" />
+
+### Footer with logo
+
+Add `FooterBrand` to show your logo mark and name, a few website links, and the copyright notice on
+a second row after a `FooterDivider`. Pass an icon or inline SVG as `logo`, or an image URL as
+`src`.
+
+<ComponentPreview name="footer-logo" />
+
+### Social media icons
+
+Show the brand, multiple columns of links, a copyright notice and social media profile icons. Give
+each `FooterLinkGroup` a `title` and set `vertical` to stack its links. `FooterIcons` holds the
+icon links; each `FooterIcon` needs a `label`.
+
+Flowbite uses the Facebook, Discord, X (Twitter), GitHub and Dribbble logos. We don't ship brand
+logos, so these examples use generic icons: `Users`, `MessageSquareText`, `AtSign`, `GitBranch` and
+`Palette`.
+
+<ComponentPreview name="footer-social" />
+
+### Sitemap links
+
+If your website has many pages, show a sitemap spanning the entire width of a row, followed by a
+copyright notice and social media icons on a `neutral-secondary-soft` bar.
+
+<ComponentPreview name="footer-sitemap" />
+
+### Sticky footer
+
+Use the `sticky` variant to fix the footer to the bottom of the viewport while the page scrolls. It
+sits on the `z.fixed` layer, above sticky headers and below overlays. The example renders inside a
+frame that stands in for the browser window; leave room for the footer at the end of your content so
+it doesn't cover it.
+
+<ComponentPreview name="footer-sticky" />
+
+## Accessibility
+
+- `Footer` renders a `<footer>` element. At the top level of a page it is the `contentinfo`
+  landmark; inside an `<article>` or `<section>` it has no landmark role.
+- Each `FooterLinkGroup` is a `<nav>` landmark with a list of links. With a `title`, the heading
+  (an `<h2>`) names the landmark; without one, name it with `aria-label` (it defaults to "Footer").
+  Give every group on a page a different name. Flowbite uses plain lists without landmarks.
+- `FooterBrand` is named by the brand name. A logo mark passed as `logo` is hidden from assistive
+  technology, and an image passed as `src` has empty alternative text unless you set `alt`.
+- `FooterIcon` links show only an icon, so `label` is required: it names the link through visually
+  hidden text, as in Flowbite. Name the `FooterIcons` list with `aria-label` (such as "Social
+  media").
+- Links underline on hover and draw a solid `ring` outline on keyboard focus; Flowbite has no
+  focus style. The brand, copyright and icon links get the same outline.
+- `body` text and links pass WCAG 2.2 AA on `neutral-primary-soft`, `neutral-primary` and
+  `neutral-secondary-soft` in both themes; icon links reach 3:1 or more.
+- Pattern: [WAI-ARIA landmarks](https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/).
+
+| Key                               | Action                                         |
+| --------------------------------- | ---------------------------------------------- |
+| <Kbd>Tab</Kbd>                    | Moves through the footer's links in page order |
+| <Kbd>Shift</Kbd> + <Kbd>Tab</Kbd> | Moves back                                     |
+| <Kbd>Enter</Kbd>                  | Follows the focused link                       |
+
+## API Reference
+
+### Footer
+
+| Prop      | Type                              | Default     |
+| --------- | --------------------------------- | ----------- |
+| `variant` | `"default" \| "card" \| "sticky"` | `"default"` |
+
+### FooterBrand
+
+| Prop   | Type        | Default |
+| ------ | ----------- | ------- |
+| `href` | `string`    | —       |
+| `name` | `ReactNode` | —       |
+| `logo` | `ReactNode` | —       |
+| `src`  | `string`    | —       |
+| `alt`  | `string`    | `""`    |
+
+### FooterLinkGroup
+
+| Prop         | Type        | Default    |
+| ------------ | ----------- | ---------- |
+| `title`      | `ReactNode` | —          |
+| `vertical`   | `boolean`   | `false`    |
+| `aria-label` | `string`    | `"Footer"` |
+
+### FooterLink
+
+| Prop   | Type     | Default |
+| ------ | -------- | ------- |
+| `href` | `string` | —       |
+
+### FooterTitle
+
+A standalone column heading (`<h2>`), when you lay out a group yourself. `FooterLinkGroup`'s `title`
+renders one for you.
+
+### FooterCopyright
+
+| Prop       | Type               | Default |
+| ---------- | ------------------ | ------- |
+| `by`       | `ReactNode`        | —       |
+| `href`     | `string`           | —       |
+| `year`     | `number \| string` | —       |
+| `children` | `ReactNode`        | —       |
+
+### FooterIcons, FooterIcon
+
+| Prop    | Type        | Default |
+| ------- | ----------- | ------- |
+| `href`  | `string`    | —       |
+| `icon`  | `ReactNode` | —       |
+| `label` | `string`    | —       |
+
+`FooterDivider` is a styled `<hr>`. All parts forward native attributes, including `ref` and
+`className`.
+
+| Token                    | Use                                   |
+| ------------------------ | ------------------------------------- |
+| `neutral-primary-soft`   | Footer surface                        |
+| `default`                | Card border, sticky top border, rule  |
+| `heading`                | Brand name, column titles, icon hover |
+| `body`                   | Links, copyright and icons            |
+| `fg-brand`               | Logo mark                             |
+| `radius.base`            | Card corners (12px)                   |
+| `shadow.xs`, `shadow.sm` | Card, sticky footer                   |
+| `z.fixed`                | Sticky footer layer                   |

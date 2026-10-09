@@ -1,3 +1,4 @@
+import { Kbd } from "@stefan-florescu/ui";
 import type { MDXComponents } from "mdx/types";
 import Link from "next/link";
 import type { ComponentProps, ReactElement } from "react";
@@ -42,6 +43,8 @@ const components: MDXComponents = {
   Callout,
   ComponentPreview,
   InstallCommand,
+  // Keys in the docs: write <Kbd>Esc</Kbd>. (MDX doesn't remap a literal <kbd> tag.)
+  Kbd,
   PageHeader,
 };
 
