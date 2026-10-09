@@ -27,8 +27,9 @@ import { FileDropzone, FileInput, Label } from "@stefan-florescu/ui";
 
 ### File upload example
 
-A native file field to upload a single file. The browser's "Choose file" button is styled as a
-segment at the start of the field.
+A native file field to upload a single file. The browser's "Choose file" button is a segment inside
+the start of the field, 4px from its border, with its start corners rounded to 8px: the field's 12px
+radius minus the gap, so the curves stay parallel.
 
 <ComponentPreview name="file-input-demo" />
 
@@ -46,8 +47,8 @@ Add `multiple` to allow more than one file.
 
 ### Sizes
 
-`md` (Flowbite's base) and `lg`; `sm` is also available. The size sets the text of the file name;
-the button keeps `text-sm`.
+`md` (Flowbite's base) and `lg`; `sm` is also available. Fields are 38, 42 and 50px tall, like the
+other fields; the size sets the file name's text and the button's padding.
 
 <ComponentPreview name="file-input-sizes" />
 
