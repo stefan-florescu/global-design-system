@@ -119,8 +119,8 @@ Show a timeline of events, such as a changelog, inside the modal.
 
 ### Modal with progress bar
 
-Show the progress of a task, such as the storage used, with a `progressbar`. The text under the
-title describes the dialog through `aria-describedby`.
+Show the progress of a task, such as the storage used, with a [`Progress`](/components/progress)
+bar. The text under the title describes the dialog through `aria-describedby`.
 
 <ComponentPreview name="modal-progress" />
 
@@ -160,8 +160,8 @@ the modal 16px from the edges of the screen. The default is `center`.
   - The title is an `h2`, not an `h3`, so it doesn't skip heading levels.
   - The radio cards hide their inputs with `sr-only` instead of `display: none`, so the keyboard
     and screen readers reach them, and they draw the `ring` outline on keyboard focus.
-  - The progress bar has `role="progressbar"` with its value, and its width matches the value
-    (376,3 of 500 GB is 75%; Flowbite draws 85%).
+  - The [`Progress`](/components/progress) bar has `role="progressbar"` with its value, and its
+    width matches the value (376,3 of 500 GB is 75%; Flowbite draws 85%).
 - Not ported: Flowbite's _Crypto wallet_ example, which is a list of wallet brand logos. In the
   timeline, the Figma logo on "Duplicate in Figma" is a copy icon.
 

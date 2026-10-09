@@ -1,0 +1,200 @@
+export const metadata = {
+  title: "Popover",
+  description:
+    "Show rich content, such as a profile, a description or password rules, in a box next to the element that is clicked, hovered or focused.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="popover-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+Then import the styles once in your global CSS, after Tailwind:
+
+```css
+@import "tailwindcss";
+@import "@stefan-florescu/ui/styles.css";
+```
+
+## Usage
+
+```tsx
+import { Button, Popover, PopoverBody, PopoverHeader, PopoverTitle } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Popover
+  content={
+    <>
+      <PopoverHeader>
+        <PopoverTitle>Popover title</PopoverTitle>
+      </PopoverHeader>
+      <PopoverBody>And here's some amazing content.</PopoverBody>
+    </>
+  }
+>
+  <Button>Default popover</Button>
+</Popover>
+```
+
+The only child of `Popover` is the trigger: a `Button`, a link, a text field or any focusable
+element. `content` is what the box shows. The box opens in the browser's top layer, so no
+`overflow: hidden` or stacking context can clip it, and it flips to the other side of the trigger
+when there is no room. `className` and other `div` props go to the box (`w-64` with no padding by
+default).
+
+The box is rendered right after the trigger, so Tab moves from the trigger into its links and
+buttons. Keep a popover out of a `<p>`: for a trigger in running text, wrap the text in a `<div>`
+as the "Image popover" example does.
+
+## Default popover
+
+Press the button to show the popover; press it again, press <Kbd>Escape</Kbd> or click outside to
+hide it. `PopoverHeader` is Flowbite's grey title bar and `PopoverBody` the padded content under
+it. The first `PopoverTitle` names the popover for screen readers.
+
+<ComponentPreview name="popover-demo" />
+
+## User profile
+
+Use this example to show more information about a user profile when hovering over the trigger.
+`trigger="hover"` opens it while the pointer rests on the button or the popover, and while the
+button has keyboard focus.
+
+<ComponentPreview name="popover-user-profile" />
+
+## Company profile
+
+This example shows more information about a company profile. The ⋯ button opens a
+[`Dropdown`](/components/dropdown) from inside the popover, and the friends use `AvatarGroup`.
+Flowbite's logo is replaced by an icon, as we don't ship brand logos.
+
+<ComponentPreview name="popover-company-profile" />
+
+## Image popover
+
+Show detailed information and an image when hovering over a portion of highlighted text, as
+Wikipedia and large news outlets do. The popover is `w-96` with `p-3` and `rounded-lg`, set with
+`className`.
+
+<ComponentPreview name="popover-image" />
+
+## Description popover
+
+Show helpful information inside a popover when hovering over a question mark button, opening
+below it and aligned to its end with `placement="bottom-end"`. The icon button is named by its
+hidden "Show information" text.
+
+<ComponentPreview name="popover-description" />
+
+## Progress popover
+
+Show a progress bar with details inside a popover when hovering over a button. The bar is a
+[`Progress`](/components/progress) named "Storage used".
+
+<ComponentPreview name="popover-progress" />
+
+## Password strength
+
+Show the password strength as the user types, in a popover below the field. It opens when the field
+is focused or hovered, and the field is described by it, so screen readers read the rules too. Each
+rule says whether it is met.
+
+<ComponentPreview name="popover-password" />
+
+## Placement
+
+Set `placement` to `top` (the default), `right`, `bottom` or `left`. Add `-start` or `-end` to
+align the popover with an edge of the trigger, or use `auto` to open it on the side with the most
+room. When there is no room on the chosen side, it flips to the other.
+
+<ComponentPreview name="popover-placement" />
+
+## Triggering
+
+Set `trigger` to `click` (the default) or `hover`. A hover popover also opens on keyboard focus and
+with a click or a tap, which keeps it open until you press outside, so it works without a mouse.
+We recommend `click` for popovers with buttons or forms.
+
+<ComponentPreview name="popover-triggering" />
+
+## Offset
+
+`offset` is the gap between the trigger and the popover, in pixels. It is 10 by default; this
+example uses 30.
+
+<ComponentPreview name="popover-offset" />
+
+## Animation
+
+The popover fades in with Flowbite's `transition-opacity duration-300`. Change it with Tailwind
+utilities in `className`: this example also grows from 95% with `starting:open:scale-95` over
+500ms. Animations are switched off when the user prefers reduced motion.
+
+<ComponentPreview name="popover-animation" />
+
+## Disable arrow
+
+Set `arrow={false}` to hide the arrow.
+
+<ComponentPreview name="popover-no-arrow" />
+
+## Accessibility
+
+- The popover is a non-modal dialog (`role="dialog"`), named by its first `PopoverTitle`, by your
+  `aria-label` or `aria-labelledby`, or else by the trigger. It is not a tooltip: it can hold links,
+  buttons and form fields.
+- **Click popovers** follow the [dialog](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)
+  pattern without the modal parts. The trigger has `aria-haspopup="dialog"`, `aria-expanded` and,
+  while open, `aria-controls`. Opening moves focus to the first link or control in the popover (or
+  to the popover itself); <Kbd>Escape</Kbd> closes it and returns focus to the trigger; a click
+  outside or moving focus out closes it.
+- **Hover popovers** meet WCAG 1.4.13 (content on hover or focus). They open on hover and on keyboard
+  focus; they stay open while the pointer moves from the trigger to the popover and while focus is
+  in either (hoverable, persistent); <Kbd>Escape</Kbd> closes them without moving the pointer or
+  focus (dismissible). Tab moves from the trigger into the popover's links and buttons. The trigger
+  is described by the popover (`aria-describedby`), so its text is read with the trigger. A click or
+  a tap opens them too, for touch screens.
+- The fade (and the scale of the "Animation" example) is dropped when the user prefers reduced
+  motion. The arrow is decorative and hidden from assistive technology.
+- Differences from Flowbite: Flowbite's popover is a `role="tooltip"` that only opens with the
+  pointer or focus and can't be closed with <Kbd>Escape</Kbd>; its interactive content can't be
+  reached by keyboard. Here it is a dialog with the behaviour above. Our default trigger is `click`
+  (flowbite-react's default) rather than Flowbite's `hover`. The "Progress popover" bar shows the
+  80% that its text describes (30 of 150 GB left) instead of 85%, the "Password strength" bars and
+  rules follow what is typed, the "Image popover" uses an illustration instead of a map of Italy, and
+  the "Company profile" shows an icon instead of the Flowbite logo. The popover fades in but closes
+  at once.
+
+| Key                                 | Action                                                                                  |
+| ----------------------------------- | --------------------------------------------------------------------------------------- |
+| <Kbd>Enter</Kbd> / <Kbd>Space</Kbd> | On a click trigger, opens the popover and moves focus into it, or closes it.            |
+| <Kbd>Tab</Kbd>                      | Moves through the popover's content. Moving past it closes it. Focus opens a hover one. |
+| <Kbd>Escape</Kbd>                   | Closes the popover and returns focus to the trigger.                                    |
+
+## API Reference
+
+### Popover
+
+Also takes `div` props and `ref`, applied to the popover box.
+
+| Prop           | Type                                                                                      | Default   |
+| -------------- | ----------------------------------------------------------------------------------------- | --------- |
+| `content`      | `ReactNode`. What the popover shows. Required.                                            | —         |
+| `children`     | `ReactElement`. The trigger: one focusable element. Its props and `ref` are kept.         | —         |
+| `trigger`      | `"click" \| "hover"`                                                                      | `"click"` |
+| `placement`    | `"top" \| "right" \| "bottom" \| "left"`, optionally with `-start` or `-end`, or `"auto"` | `"top"`   |
+| `offset`       | `number`. Gap between trigger and popover, in px.                                         | `10`      |
+| `arrow`        | `boolean`. Show the arrow.                                                                | `true`    |
+| `open`         | `boolean`. Controls the open state.                                                       | —         |
+| `defaultOpen`  | `boolean`                                                                                 | `false`   |
+| `onOpenChange` | `(open: boolean) => void`                                                                 | —         |
+
+### PopoverHeader, PopoverTitle and PopoverBody
+
+`PopoverHeader` is Flowbite's title bar and forwards `div` props. `PopoverTitle` is an `h3` that
+names the popover (the first one does) and forwards `h3` props. `PopoverBody` is the padded content
+under the header and forwards `div` props. Change their spacing or weight with `className`.

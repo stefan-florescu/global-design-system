@@ -1,0 +1,276 @@
+export const metadata = {
+  title: "Sidebar",
+  description:
+    "Vertical navigation along the side of an app or dashboard: menu items with icons and badges, multi-level groups, a logo and a call to action, opening as a drawer on small screens.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="sidebar-demo" flush />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+Then import the styles once in your global CSS, after Tailwind:
+
+```css
+@import "tailwindcss";
+@import "@stefan-florescu/ui/styles.css";
+```
+
+## Usage
+
+```tsx
+import {
+  Sidebar,
+  SidebarCollapse,
+  SidebarItem,
+  SidebarItemGroup,
+  SidebarItems,
+  SidebarLogo,
+} from "@stefan-florescu/ui";
+```
+
+```tsx
+<Sidebar>
+  <SidebarLogo href="/" name="Acme" logo={<Layers aria-hidden />} />
+  <SidebarItems>
+    <SidebarItemGroup>
+      <SidebarItem href="/" icon={<ChartPie aria-hidden />} active>
+        Dashboard
+      </SidebarItem>
+      <SidebarCollapse label="E-commerce" icon={<ShoppingCart aria-hidden />}>
+        <SidebarItem href="/products">Products</SidebarItem>
+        <SidebarItem href="/billing">Billing</SidebarItem>
+      </SidebarCollapse>
+      <SidebarItem href="/inbox" icon={<Inbox aria-hidden />} count={2}>
+        Inbox
+      </SidebarItem>
+    </SidebarItemGroup>
+  </SidebarItems>
+</Sidebar>
+<main className="sm:ms-64">…</main>
+```
+
+`Sidebar` is an `<aside>` fixed to the start edge of the window, 256px wide and full height, with
+Flowbite's scrolling panel. Leave room for it in your layout (`sm:ms-64`). `SidebarItems` is the
+`<nav>` inside it; each `SidebarItemGroup` is a list of `SidebarItem`s and `SidebarCollapse`s.
+
+**Small screens.** Below the `breakpoint` (`sm` by default) the sidebar hides and Flowbite's
+hamburger button, rendered just before it, opens the same content in a [Drawer](/components/drawer).
+Following an item closes the drawer. To put the hamburger somewhere else, such as in a navbar, wrap
+the layout in a `SidebarProvider` and place a `SidebarToggle` where you want it (see
+[Sidebar with navbar](#sidebar-with-navbar)). Use `breakpoint="none"` to always show the sidebar.
+
+**Router links.** Pass `asChild` and a router link as the only child; the icon, label and count
+are added inside it:
+
+```tsx
+<SidebarItem asChild icon={<Users aria-hidden />} active={pathname === "/users"}>
+  <Link href="/users">Users</Link>
+</SidebarItem>
+```
+
+The examples render inside a frame that stands in for the browser window, so the fixed sidebar
+stays inside it.
+
+<Callout title="Layering">
+  The fixed sidebar sits on the `z.sticky` layer (`z-sticky`), under a fixed navbar (`z.fixed`) and
+  every overlay, as Flowbite's `z-40` sidebar sits under its `z-50` navbar. See [Spacing &
+  layout](/foundation/spacing-and-layout#layering).
+</Callout>
+
+## Examples
+
+### Default sidebar
+
+Use this example to show a responsive list of menu items inside the sidebar with icons and labels.
+`label` adds a tag such as "Pro" (a gray bordered `Badge`) and `count` a round counter (a danger
+`Badge`); change their colours with `labelVariant` and `countVariant`.
+
+<ComponentPreview name="sidebar-demo" flush />
+
+### Multi-level menu
+
+Use `SidebarCollapse` to create multi-level menu items: a button that shows and hides the second
+level. Open it on first render with `defaultOpen`, or control it with `open` and `onOpenChange`.
+
+<ComponentPreview name="sidebar-multi-level" flush />
+
+### Content separator
+
+Separate the content inside the sidebar with a border between two menus: every `SidebarItemGroup`
+after the first starts with a divider.
+
+<ComponentPreview name="sidebar-separator" flush />
+
+### CTA button
+
+Use `SidebarCTA` to add a call to action under the menu and encourage your users to visit a
+dedicated page. It is a bordered brand [Alert](/components/alert) without a live region; add
+`dismissible` for a close button.
+
+<ComponentPreview name="sidebar-cta" flush />
+
+### Logo branding
+
+Show the logo of your brand and link back to the homepage from the top of the sidebar with
+`SidebarLogo`. Pass a mark element as `logo`, or an image as `src`.
+
+<ComponentPreview name="sidebar-logo" flush />
+
+### Sidebar with navbar
+
+Use this example to show a [Navbar](/components/navbar) together with a sidebar layout for your web
+application. `SidebarProvider` shares the drawer between the `Sidebar` and the `SidebarToggle` in
+the navbar, and the sidebar doesn't render its own hamburger. As in Flowbite, the fixed navbar
+covers the top of the sidebar; `pt-12` starts the items under it.
+
+<ComponentPreview name="sidebar-navbar" flush />
+
+### Off-canvas sidebar
+
+Use this example to show the navigation in a [Drawer](/components/drawer) when a button is clicked:
+put `SidebarItems` in `DrawerContent`, with the logo and close button in a `DrawerHeader`. Give the
+drawer a name with `aria-label` (or a `DrawerTitle`).
+
+<ComponentPreview name="sidebar-off-canvas" />
+
+## Dashboard layout
+
+Combine a fixed navbar, the sidebar and your page into an application shell, as in Flowbite's
+[admin dashboard](https://github.com/themesberg/flowbite-admin-dashboard). This one switches to the
+drawer below `md`, marks the current page with `active` (inside an open `SidebarCollapse`) and
+separates secondary links into a second group.
+
+<ComponentPreview name="sidebar-dashboard" flush />
+
+For more layouts, see Flowbite's [sidenav](https://flowbite.com/blocks/application/sidenav/) and
+[application shell](https://flowbite.com/blocks/application/shells/) blocks.
+
+## Accessibility
+
+- The sidebar is an `<aside>` (a complementary landmark) named "Sidebar"; change it with `label`.
+  `SidebarItems` is a `<nav>` landmark named "Sidebar"; change it with `aria-label` (for example
+  "Main" when the sidebar is the app's main navigation). Items are list items, so screen readers
+  announce how many there are.
+- The current page has `aria-current="page"` and Flowbite's hover colours (`neutral-tertiary`,
+  `fg-brand`), so it is not shown by colour alone.
+- `SidebarCollapse` follows the WAI-ARIA
+  [disclosure navigation](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/examples/disclosure-navigation/)
+  pattern: a button with `aria-expanded` and `aria-controls` that shows and hides the nested list.
+  The chevron turns over when it is open; the turn is off when the user prefers reduced motion.
+- `label` and `count` are read with the item ("Kanban Pro", "Inbox 2"). Add hidden text to a count
+  that needs context, such as `count={<>2<span className="sr-only"> unread messages</span></>}`.
+- Below the breakpoint the sidebar opens in a `Drawer`: a modal dialog named like the sidebar, with
+  focus moved inside and kept there, <Kbd>Esc</Kbd> and the backdrop closing it, and focus returned
+  to the hamburger. The hamburger is labelled "Open sidebar" (`SidebarToggle`'s `label`) and has
+  `aria-haspopup="dialog"`, `aria-expanded` and `aria-controls`. The drawer closes by itself when
+  the window grows past the breakpoint.
+- Keyboard focus draws a solid `ring` outline inside items, collapse buttons and the logo.
+- Differences from Flowbite:
+  - Flowbite's sidebar slides off screen below `sm` but stays in the tab order; here it is hidden
+    and its content opens in a modal drawer.
+  - Flowbite's multi-level button has no `aria-expanded`, and its CTA card is a `role="alert"`
+    live region; here the button is a disclosure and the CTA has no live-region role.
+  - The current page is styled; Flowbite's examples have no current page.
+  - Brand logos are replaced by our logo mark.
+
+| Key                                              | Action                                                 |
+| ------------------------------------------------ | ------------------------------------------------------ |
+| <Kbd>Tab</Kbd> / <Kbd>Shift</Kbd>+<Kbd>Tab</Kbd> | Moves through the items, collapse buttons and the CTA  |
+| <Kbd>Enter</Kbd>                                 | Follows a link                                         |
+| <Kbd>Enter</Kbd> / <Kbd>Space</Kbd> on a group   | Shows or hides its items                               |
+| <Kbd>Enter</Kbd> / <Kbd>Space</Kbd> on hamburger | Opens the drawer (below the breakpoint) and focuses it |
+| <Kbd>Esc</Kbd>                                   | Closes the drawer and returns focus to the hamburger   |
+
+## API Reference
+
+### Sidebar
+
+An `<aside>`. Takes every `<aside>` attribute; set the width with `className` (`w-64` by default).
+
+| Prop           | Type                                               | Default     |
+| -------------- | -------------------------------------------------- | ----------- |
+| `position`     | `"fixed" \| "sticky" \| "static"`                  | `"fixed"`   |
+| `breakpoint`   | `"sm" \| "md" \| "lg" \| "none"`. Drawer below it. | `"sm"`      |
+| `label`        | `string`. Names the aside and its drawer.          | `"Sidebar"` |
+| `open`         | `boolean`. The drawer, controlled.                 | —           |
+| `defaultOpen`  | `boolean`. The drawer, uncontrolled.               | `false`     |
+| `onOpenChange` | `(open: boolean) => void`                          | —           |
+
+Inside a `SidebarProvider`, set `breakpoint`, `open`, `defaultOpen` and `onOpenChange` on the
+provider instead.
+
+### SidebarProvider
+
+Holds the drawer state for a `Sidebar` and a `SidebarToggle` placed elsewhere. Renders no element.
+Takes `breakpoint`, `open`, `defaultOpen` and `onOpenChange`, as above. `useSidebar()` returns
+`{ open, setOpen }` inside it.
+
+### SidebarToggle
+
+Flowbite's hamburger: a ghost icon `Button` shown only below the breakpoint.
+
+| Prop    | Type     | Default          |
+| ------- | -------- | ---------------- |
+| `label` | `string` | `"Open sidebar"` |
+
+### SidebarLogo
+
+| Prop   | Type        | Default |
+| ------ | ----------- | ------- |
+| `href` | `string`    | —       |
+| `name` | `ReactNode` | —       |
+| `logo` | `ReactNode` | —       |
+| `src`  | `string`    | —       |
+| `alt`  | `string`    | `""`    |
+
+### SidebarItems and SidebarItemGroup
+
+`SidebarItems` is a `<nav aria-label="Sidebar">`; `SidebarItemGroup` a `<ul>`. Both take their
+element's attributes.
+
+### SidebarItem
+
+Renders an `<a>` with `href`, a router link with `asChild`, and a `<button>` otherwise, and
+forwards the matching attributes.
+
+| Prop           | Type                                                                       | Default    |
+| -------------- | -------------------------------------------------------------------------- | ---------- |
+| `href`         | `string`                                                                   | —          |
+| `asChild`      | `boolean`                                                                  | `false`    |
+| `icon`         | `ReactNode`. Drawn at 20px.                                                | —          |
+| `label`        | `ReactNode`                                                                | —          |
+| `labelVariant` | `"brand" \| "alternative" \| "gray" \| "danger" \| "success" \| "warning"` | `"gray"`   |
+| `count`        | `ReactNode`                                                                | —          |
+| `countVariant` | Same as `labelVariant`                                                     | `"danger"` |
+| `active`       | `boolean`. Sets `aria-current="page"`.                                     | `false`    |
+
+### SidebarCollapse
+
+A `<button>` and a nested list. Takes the button's attributes.
+
+| Prop           | Type                      | Default |
+| -------------- | ------------------------- | ------- |
+| `label`        | `ReactNode`               | —       |
+| `icon`         | `ReactNode`               | —       |
+| `open`         | `boolean`. Controlled.    | —       |
+| `defaultOpen`  | `boolean`. Uncontrolled.  | `false` |
+| `onOpenChange` | `(open: boolean) => void` | —       |
+
+### SidebarCTA
+
+Takes every [Alert](/components/alert#api-reference) prop; `variant` is `"brand"` and `bordered`
+is `true` by default.
+
+| Token                  | Use                                 |
+| ---------------------- | ----------------------------------- |
+| `neutral-primary-soft` | Panel surface                       |
+| `default`              | Panel edge and group dividers       |
+| `body`                 | Item text and icons                 |
+| `neutral-tertiary`     | Item hover and current-page surface |
+| `fg-brand`             | Item hover and current-page text    |
+| `heading`              | Logo name                           |
+| `z.sticky`             | Layer of the fixed sidebar          |

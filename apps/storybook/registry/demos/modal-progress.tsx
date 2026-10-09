@@ -10,6 +10,7 @@ import {
   ModalContent,
   ModalTitle,
   ModalTrigger,
+  Progress,
 } from "@stefan-florescu/ui";
 
 export default function ModalProgress() {
@@ -33,20 +34,15 @@ export default function ModalProgress() {
           </span>
           <span className="font-medium">376,3 of 500 GB used</span>
         </div>
-        <div
-          role="progressbar"
+        <Progress
+          value={used}
+          max={total}
+          variant="danger"
+          size="lg"
           aria-labelledby={`${id}-label`}
-          aria-valuenow={used}
-          aria-valuemin={0}
-          aria-valuemax={total}
-          aria-valuetext="376,3 of 500 GB used"
-          className="bg-neutral-quaternary mb-6 h-2.5 w-full rounded-full"
-        >
-          <div
-            className="bg-danger h-2.5 rounded-full"
-            style={{ width: `${(used / total) * 100}%` }}
-          />
-        </div>
+          valueText="376,3 of 500 GB used"
+          className="mb-6"
+        />
         <div className="mt-6 flex items-center gap-4">
           <ModalClose asChild>
             <Button>Upgrade to PRO</Button>

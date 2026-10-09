@@ -156,6 +156,42 @@ export const sidebarNav: NavSection[] = [
         description: "A dialog over the page that asks for a decision or shows focused content.",
         href: "/components/modal",
       },
+      {
+        title: "Navbar",
+        description:
+          "The top bar of a site: brand, links, search and account actions, collapsing on small screens.",
+        href: "/components/navbar",
+      },
+      {
+        title: "Pagination",
+        description: "Links to move between pages of results or table rows.",
+        href: "/components/pagination",
+      },
+      {
+        title: "Popover",
+        description: "Rich content in a small panel that opens next to its trigger.",
+        href: "/components/popover",
+      },
+      {
+        title: "Progress",
+        description: "Bars that show how far a task or value has advanced.",
+        href: "/components/progress",
+      },
+      {
+        title: "Rating",
+        description: "Stars and scores that show a rating and its reviews.",
+        href: "/components/rating",
+      },
+      {
+        title: "Sidebar",
+        description: "Vertical navigation along the side of an app or dashboard.",
+        href: "/components/sidebar",
+      },
+      {
+        title: "Skeleton",
+        description: "Pulsing placeholders shown while content loads.",
+        href: "/components/skeleton",
+      },
     ],
   },
   {

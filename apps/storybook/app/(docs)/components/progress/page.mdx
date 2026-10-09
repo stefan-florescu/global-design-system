@@ -1,0 +1,115 @@
+export const metadata = {
+  title: "Progress",
+  description:
+    "Use the progress bar to show the completion rate of a task or a quantity, with an optional label inside or outside the bar.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="progress-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Progress } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Progress value={45} aria-label="Upload progress" />
+```
+
+Set `max` when the value has another unit, and `valueText` to say it in words. The text is shown by
+`labelProgress` and read by screen readers instead of the percentage.
+
+```tsx
+<Progress value={376.3} max={500} aria-label="My storage" valueText="376.3 of 500 GB used" />
+```
+
+## Examples
+
+### Default progress bar
+
+Pass `value` from 0 to 100 and an accessible name. The bar fills the width of its container.
+
+<ComponentPreview name="progress-demo" />
+
+### Sizes
+
+Set `size` to `sm`, `md` (the default) or `lg` for Flowbite's 6px, 8px and 10px bars. `xl` is
+16px, the height of a bar with a label inside. Here each bar is named by the heading above it
+with `aria-labelledby`.
+
+<ComponentPreview name="progress-sizes" />
+
+### With label inside
+
+Add `labelProgress` to print the percentage inside the bar. The bar grows to 16px to fit it.
+Pass `textLabel` with `labelText` to show the name inside the bar too.
+
+<ComponentPreview name="progress-label-inside" />
+
+### With label outside
+
+Set `textLabelPosition="outside"` and `progressLabelPosition="outside"` to show the name and the
+value above the bar.
+
+<ComponentPreview name="progress-label-outside" />
+
+### Colors
+
+Set `variant` to `dark`, `brand` (the default), `success`, `danger` or `warning`.
+
+<ComponentPreview name="progress-colors" />
+
+| Variant   | Fill      | Label inside         |
+| --------- | --------- | -------------------- |
+| `brand`   | `brand`   | `brand-foreground`   |
+| `dark`    | `dark`    | `dark-foreground`    |
+| `success` | `success` | `success-foreground` |
+| `danger`  | `danger`  | `danger-foreground`  |
+| `warning` | `warning` | `warning-foreground` |
+
+flowbite-react also offers purple, indigo, teal, cyan, lime, pink and gray bars. We have no fill
+roles for those colours, so they are left out.
+
+## Accessibility
+
+- The track is a `role="progressbar"` with `aria-valuenow`, `aria-valuemin` (0) and
+  `aria-valuemax`, as the [WAI-ARIA progressbar role](https://www.w3.org/TR/wai-aria-1.2/#progressbar)
+  requires. `aria-valuetext` is the visible value: `valueText`, or the rounded percentage.
+  Flowbite's markup has no role or values.
+- A progress bar must have a name. TypeScript requires `textLabel`, `aria-label` or
+  `aria-labelledby`; flowbite-react falls back to the word "progressbar".
+- Labels drawn outside the bar repeat its name and value, so they are hidden from assistive
+  technology and not read twice. Labels inside the bar are part of the progressbar, whose content
+  is not read separately.
+- Screen readers don't announce every change. If the user is waiting for a task to finish, also
+  announce the result, for example in a `role="status"` region.
+- Flowbite's fills are under 3:1 against the track in dark mode (and `warning` in light mode). When
+  the exact value matters, show it as text with `labelProgress` or `valueText`, so the bar is not
+  the only way to read it.
+
+## API Reference
+
+| Prop                    | Type                                                           | Default                  |
+| ----------------------- | -------------------------------------------------------------- | ------------------------ |
+| `value`                 | `number`. Clamped to 0–`max`.                                  | —                        |
+| `max`                   | `number`                                                       | `100`                    |
+| `variant`               | `"brand" \| "dark" \| "success" \| "danger" \| "warning"`      | `"brand"`                |
+| `size`                  | `"sm" \| "md" \| "lg" \| "xl"`                                 | `"md"`                   |
+| `textLabel`             | `string`. The accessible name, shown with `labelText`.         | —                        |
+| `labelText`             | `boolean`                                                      | `false`                  |
+| `textLabelPosition`     | `"inside" \| "outside"`                                        | `"inside"`               |
+| `labelProgress`         | `boolean`. Shows the value.                                    | `false`                  |
+| `progressLabelPosition` | `"inside" \| "outside"`                                        | `"inside"`               |
+| `valueText`             | `string`. The value as text, shown and announced.              | the percentage, e.g. 45% |
+| `aria-label`            | `string`. Required without `textLabel` or `aria-labelledby`.   | `textLabel`              |
+| `aria-labelledby`       | `string`. The id of a visible label.                           | —                        |
+| `className`             | `string`. Merged with `cn()` on the wrapper; your classes win. | —                        |
+
+All other native attributes go to the wrapper `<div>`. `progressTrackVariants()` and
+`progressBarVariants()` return the class names for custom markup.

@@ -244,6 +244,18 @@ import ModalRadio from "./demos/modal-radio";
 import ModalSizes from "./demos/modal-sizes";
 import ModalStatic from "./demos/modal-static";
 import ModalTimeline from "./demos/modal-timeline";
+import NavbarCta from "./demos/navbar-cta";
+import NavbarDemo from "./demos/navbar-demo";
+import NavbarDropdown from "./demos/navbar-dropdown";
+import NavbarHamburger from "./demos/navbar-hamburger";
+import NavbarLanguage from "./demos/navbar-language";
+import NavbarMegaMenu from "./demos/navbar-mega-menu";
+import NavbarMultiLevel from "./demos/navbar-multi-level";
+import NavbarSearch from "./demos/navbar-search";
+import NavbarSolid from "./demos/navbar-solid";
+import NavbarSticky from "./demos/navbar-sticky";
+import NavbarSubmenu from "./demos/navbar-submenu";
+import NavbarUserMenu from "./demos/navbar-user-menu";
 import NumberInputAdvanced from "./demos/number-input-advanced";
 import NumberInputConvert from "./demos/number-input-convert";
 import NumberInputCounter from "./demos/number-input-counter";
@@ -257,12 +269,42 @@ import NumberInputSlider from "./demos/number-input-slider";
 import NumberInputStepper from "./demos/number-input-stepper";
 import NumberInputStepperIcon from "./demos/number-input-stepper-icon";
 import NumberInputZip from "./demos/number-input-zip";
+import PaginationDemo from "./demos/pagination-demo";
+import PaginationDropdown from "./demos/pagination-dropdown";
+import PaginationEllipsis from "./demos/pagination-ellipsis";
+import PaginationIcons from "./demos/pagination-icons";
+import PaginationInput from "./demos/pagination-input";
+import PaginationInputButton from "./demos/pagination-input-button";
+import PaginationLinks from "./demos/pagination-links";
+import PaginationNavigation from "./demos/pagination-navigation";
+import PaginationNavigationIcons from "./demos/pagination-navigation-icons";
+import PaginationSelectButtons from "./demos/pagination-select-buttons";
+import PaginationSingle from "./demos/pagination-single";
+import PaginationTable from "./demos/pagination-table";
+import PaginationTableIcons from "./demos/pagination-table-icons";
 import PhoneInputAdvanced from "./demos/phone-input-advanced";
 import PhoneInputAuth from "./demos/phone-input-auth";
 import PhoneInputCountry from "./demos/phone-input-country";
 import PhoneInputDemo from "./demos/phone-input-demo";
 import PhoneInputSelect from "./demos/phone-input-select";
 import PhoneInputVerification from "./demos/phone-input-verification";
+import PopoverAnimation from "./demos/popover-animation";
+import PopoverCompanyProfile from "./demos/popover-company-profile";
+import PopoverDemo from "./demos/popover-demo";
+import PopoverDescription from "./demos/popover-description";
+import PopoverImage from "./demos/popover-image";
+import PopoverNoArrow from "./demos/popover-no-arrow";
+import PopoverOffset from "./demos/popover-offset";
+import PopoverPassword from "./demos/popover-password";
+import PopoverPlacement from "./demos/popover-placement";
+import PopoverProgress from "./demos/popover-progress";
+import PopoverTriggering from "./demos/popover-triggering";
+import PopoverUserProfile from "./demos/popover-user-profile";
+import ProgressColors from "./demos/progress-colors";
+import ProgressDemo from "./demos/progress-demo";
+import ProgressLabelInside from "./demos/progress-label-inside";
+import ProgressLabelOutside from "./demos/progress-label-outside";
+import ProgressSizes from "./demos/progress-sizes";
 import RadioAdvanced from "./demos/radio-advanced";
 import RadioAdvancedIcons from "./demos/radio-advanced-icons";
 import RadioBordered from "./demos/radio-bordered";
@@ -280,6 +322,14 @@ import RangeLabels from "./demos/range-labels";
 import RangeMinMax from "./demos/range-min-max";
 import RangeSizes from "./demos/range-sizes";
 import RangeSteps from "./demos/range-steps";
+import RatingAdvanced from "./demos/rating-advanced";
+import RatingComment from "./demos/rating-comment";
+import RatingCount from "./demos/rating-count";
+import RatingDemo from "./demos/rating-demo";
+import RatingReview from "./demos/rating-review";
+import RatingScore from "./demos/rating-score";
+import RatingSizes from "./demos/rating-sizes";
+import RatingText from "./demos/rating-text";
 import SearchInputAdvanced from "./demos/search-input-advanced";
 import SearchInputCategory from "./demos/search-input-category";
 import SearchInputDemo from "./demos/search-input-demo";
@@ -293,6 +343,22 @@ import SelectMultiple from "./demos/select-multiple";
 import SelectSize from "./demos/select-size";
 import SelectSizes from "./demos/select-sizes";
 import SelectUnderline from "./demos/select-underline";
+import SidebarCta from "./demos/sidebar-cta";
+import SidebarDashboard from "./demos/sidebar-dashboard";
+import SidebarDemo from "./demos/sidebar-demo";
+import SidebarLogo from "./demos/sidebar-logo";
+import SidebarMultiLevel from "./demos/sidebar-multi-level";
+import SidebarNavbar from "./demos/sidebar-navbar";
+import SidebarOffCanvas from "./demos/sidebar-off-canvas";
+import SidebarSeparator from "./demos/sidebar-separator";
+import SkeletonCard from "./demos/skeleton-card";
+import SkeletonDemo from "./demos/skeleton-demo";
+import SkeletonImage from "./demos/skeleton-image";
+import SkeletonList from "./demos/skeleton-list";
+import SkeletonTestimonial from "./demos/skeleton-testimonial";
+import SkeletonText from "./demos/skeleton-text";
+import SkeletonVideo from "./demos/skeleton-video";
+import SkeletonWidget from "./demos/skeleton-widget";
 import TextareaChat from "./demos/textarea-chat";
 import TextareaComment from "./demos/textarea-comment";
 import TextareaDemo from "./demos/textarea-demo";
@@ -565,6 +631,18 @@ export const demos = {
   "modal-sizes": ModalSizes,
   "modal-static": ModalStatic,
   "modal-timeline": ModalTimeline,
+  "navbar-cta": NavbarCta,
+  "navbar-demo": NavbarDemo,
+  "navbar-dropdown": NavbarDropdown,
+  "navbar-hamburger": NavbarHamburger,
+  "navbar-language": NavbarLanguage,
+  "navbar-mega-menu": NavbarMegaMenu,
+  "navbar-multi-level": NavbarMultiLevel,
+  "navbar-search": NavbarSearch,
+  "navbar-solid": NavbarSolid,
+  "navbar-sticky": NavbarSticky,
+  "navbar-submenu": NavbarSubmenu,
+  "navbar-user-menu": NavbarUserMenu,
   "number-input-advanced": NumberInputAdvanced,
   "number-input-convert": NumberInputConvert,
   "number-input-counter": NumberInputCounter,
@@ -578,12 +656,42 @@ export const demos = {
   "number-input-stepper": NumberInputStepper,
   "number-input-stepper-icon": NumberInputStepperIcon,
   "number-input-zip": NumberInputZip,
+  "pagination-demo": PaginationDemo,
+  "pagination-dropdown": PaginationDropdown,
+  "pagination-ellipsis": PaginationEllipsis,
+  "pagination-icons": PaginationIcons,
+  "pagination-input": PaginationInput,
+  "pagination-input-button": PaginationInputButton,
+  "pagination-links": PaginationLinks,
+  "pagination-navigation": PaginationNavigation,
+  "pagination-navigation-icons": PaginationNavigationIcons,
+  "pagination-select-buttons": PaginationSelectButtons,
+  "pagination-single": PaginationSingle,
+  "pagination-table": PaginationTable,
+  "pagination-table-icons": PaginationTableIcons,
   "phone-input-advanced": PhoneInputAdvanced,
   "phone-input-auth": PhoneInputAuth,
   "phone-input-country": PhoneInputCountry,
   "phone-input-demo": PhoneInputDemo,
   "phone-input-select": PhoneInputSelect,
   "phone-input-verification": PhoneInputVerification,
+  "popover-animation": PopoverAnimation,
+  "popover-company-profile": PopoverCompanyProfile,
+  "popover-demo": PopoverDemo,
+  "popover-description": PopoverDescription,
+  "popover-image": PopoverImage,
+  "popover-no-arrow": PopoverNoArrow,
+  "popover-offset": PopoverOffset,
+  "popover-password": PopoverPassword,
+  "popover-placement": PopoverPlacement,
+  "popover-progress": PopoverProgress,
+  "popover-triggering": PopoverTriggering,
+  "popover-user-profile": PopoverUserProfile,
+  "progress-colors": ProgressColors,
+  "progress-demo": ProgressDemo,
+  "progress-label-inside": ProgressLabelInside,
+  "progress-label-outside": ProgressLabelOutside,
+  "progress-sizes": ProgressSizes,
   "radio-advanced": RadioAdvanced,
   "radio-advanced-icons": RadioAdvancedIcons,
   "radio-bordered": RadioBordered,
@@ -601,6 +709,14 @@ export const demos = {
   "range-min-max": RangeMinMax,
   "range-sizes": RangeSizes,
   "range-steps": RangeSteps,
+  "rating-advanced": RatingAdvanced,
+  "rating-comment": RatingComment,
+  "rating-count": RatingCount,
+  "rating-demo": RatingDemo,
+  "rating-review": RatingReview,
+  "rating-score": RatingScore,
+  "rating-sizes": RatingSizes,
+  "rating-text": RatingText,
   "search-input-advanced": SearchInputAdvanced,
   "search-input-category": SearchInputCategory,
   "search-input-demo": SearchInputDemo,
@@ -614,6 +730,22 @@ export const demos = {
   "select-size": SelectSize,
   "select-sizes": SelectSizes,
   "select-underline": SelectUnderline,
+  "sidebar-cta": SidebarCta,
+  "sidebar-dashboard": SidebarDashboard,
+  "sidebar-demo": SidebarDemo,
+  "sidebar-logo": SidebarLogo,
+  "sidebar-multi-level": SidebarMultiLevel,
+  "sidebar-navbar": SidebarNavbar,
+  "sidebar-off-canvas": SidebarOffCanvas,
+  "sidebar-separator": SidebarSeparator,
+  "skeleton-card": SkeletonCard,
+  "skeleton-demo": SkeletonDemo,
+  "skeleton-image": SkeletonImage,
+  "skeleton-list": SkeletonList,
+  "skeleton-testimonial": SkeletonTestimonial,
+  "skeleton-text": SkeletonText,
+  "skeleton-video": SkeletonVideo,
+  "skeleton-widget": SkeletonWidget,
   "textarea-chat": TextareaChat,
   "textarea-comment": TextareaComment,
   "textarea-demo": TextareaDemo,

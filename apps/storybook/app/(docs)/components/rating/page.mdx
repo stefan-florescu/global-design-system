@@ -1,0 +1,116 @@
+export const metadata = {
+  title: "Rating",
+  description: "Stars and scores that show a rating and its reviews.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="rating-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Rating } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Rating value={4} />
+```
+
+## Examples
+
+### Default rating
+
+A row of five stars. A star fills for each whole point of `value`, so 4.95 fills four and a star
+never claims more than was earned. Set `max` for another number of stars.
+
+<ComponentPreview name="rating-demo" />
+
+### Rating with text
+
+Show the exact score as text next to the stars. The text already states the score, so the stars
+get `aria-hidden` and are not announced twice.
+
+<ComponentPreview name="rating-text" />
+
+### Rating count
+
+One star, the average score and a link to the reviews.
+
+<ComponentPreview name="rating-count" />
+
+### Star sizes
+
+Three sizes: `sm` (20px, the default), `md` (24px) and `lg` (28px).
+
+<ComponentPreview name="rating-sizes" />
+
+### Advanced rating
+
+How the reviews split across each star rating, with a [`Progress`](/components/progress) bar per
+row in the `warning` colour.
+
+<ComponentPreview name="rating-advanced" />
+
+### Score rating
+
+Break an overall score into categories, each with a brand [`Progress`](/components/progress) bar
+in a description list.
+
+<ComponentPreview name="rating-score" />
+
+### Rating comment
+
+A single review: the reviewer's [`Avatar`](/components/avatar), their star rating and title, the
+review and its actions.
+
+<ComponentPreview name="rating-comment" />
+
+### Review content
+
+A review laid out in columns: the reviewer and their stay, then the review with its score.
+
+<ComponentPreview name="rating-review" />
+
+## Accessibility
+
+- `Rating` is a static image: `role="img"` named "Rated 4 out of 5" (change it with `label`). The
+  stars inside are hidden from assistive technology. To let people choose a score, use radio
+  buttons instead.
+- When visible text next to the stars already states the score ("4.95 out of 5"), pass
+  `aria-hidden` so it is not read twice, as in "Rating with text" and "Advanced rating".
+- Stars are Flowbite's `fg-yellow` (yellow-400) when filled and `fg-disabled` when empty. In the
+  light theme neither reaches the 3:1 non-text contrast of WCAG 1.4.11 against the page (about
+  1.5:1 and 2.5:1), and no role token in the yellow family does without changing the look. Show
+  the score as visible text next to the stars wherever the exact value matters; the text, not the
+  colour, then carries the information.
+- In "Advanced rating" and "Score rating" each bar is a [`Progress`](/components/progress) named by
+  its row label ("5 star", "Staff") and valued with the visible figure, which is hidden from
+  assistive technology so it is not read twice. Flowbite's bars are plain `<div>`s with no
+  semantics.
+- The rating comment's title stays an `<h3>` and the review's an `<h4>`, as in Flowbite; adjust the
+  levels to fit the page they are placed in.
+- The score badges ("8.7") read as "Score: 8.7" in "Review content". Links draw the solid `ring`
+  outline on keyboard focus; Flowbite has no focus style.
+- Flowbite's flag before "United States" in "Review content" is left out: there are no flag icons.
+
+## API Reference
+
+| Prop          | Type                   | Default                        |
+| ------------- | ---------------------- | ------------------------------ |
+| `value`       | `number`               | —                              |
+| `max`         | `number`               | `5`                            |
+| `size`        | `"sm" \| "md" \| "lg"` | `"sm"`                         |
+| `label`       | `string`               | `"Rated {value} out of {max}"` |
+| `aria-hidden` | `boolean`              | —                              |
+
+All other `<div>` attributes are forwarded, including `ref` and `className`.
+
+| Token         | Use          |
+| ------------- | ------------ |
+| `fg-yellow`   | Filled stars |
+| `fg-disabled` | Empty stars  |

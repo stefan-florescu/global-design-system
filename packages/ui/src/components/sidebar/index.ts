@@ -1,0 +1,23 @@
+export {
+  Sidebar,
+  SidebarCollapse,
+  SidebarCTA,
+  SidebarItem,
+  SidebarItemGroup,
+  SidebarItems,
+  SidebarLogo,
+  SidebarProvider,
+  SidebarToggle,
+  useSidebar,
+  type SidebarBreakpoint,
+  type SidebarCollapseProps,
+  type SidebarCTAProps,
+  type SidebarItemGroupProps,
+  type SidebarItemProps,
+  type SidebarItemsProps,
+  type SidebarLogoProps,
+  type SidebarProps,
+  type SidebarProviderProps,
+  type SidebarToggleProps,
+} from "./sidebar";
+export { sidebarItemVariants, sidebarVariants, type SidebarVariantProps } from "./sidebar.variants";

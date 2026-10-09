@@ -1,0 +1,177 @@
+export const metadata = {
+  title: "Pagination",
+  description: "Links to move between pages of results or table rows.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="pagination-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Pagination } from "@stefan-florescu/ui";
+```
+
+```tsx
+const [page, setPage] = useState(1);
+
+<Pagination currentPage={page} totalPages={10} onPageChange={setPage} />;
+```
+
+`Pagination` is controlled: it shows `currentPage` and reports the page someone picks through
+`onPageChange`. Pass `getPageHref` instead (or as well) to render links, which also works in Server
+Components.
+
+## Examples
+
+### Default pagination
+
+Numbered pages between previous and next. Five pages are listed around the current one
+(`siblingCount={2}`), shifted at the ends. Two sizes: `sm` is 36px tall, `md` (the default) 40px.
+
+<ComponentPreview name="pagination-demo" />
+
+### Pagination with icons
+
+Set `showIcons` to replace the previous and next labels with chevrons. The labels stay as visually
+hidden text, so the controls keep their names.
+
+<ComponentPreview name="pagination-icons" />
+
+### Previous and next
+
+`layout="navigation"` shows only two separate buttons.
+
+<ComponentPreview name="pagination-navigation" />
+
+### Previous and next with icons
+
+<ComponentPreview name="pagination-navigation-icons" />
+
+### Table data pagination
+
+`layout="table"` summarises the rows on the current page above joined previous and next buttons.
+Pass `itemsPerPage` and `totalItems`; `totalPages` is worked out from them.
+
+<ComponentPreview name="pagination-table" />
+
+### Table pagination with icons
+
+<ComponentPreview name="pagination-table-icons" />
+
+### Pagination with dropdown
+
+Children are placed after the pages, inside the same landmark. Here a [`Select`](/forms/select)
+chooses the number of items per page.
+
+<ComponentPreview name="pagination-dropdown" />
+
+### Pagination with input
+
+Add a field to jump to a page. Type a number and press <Kbd>Enter</Kbd>.
+
+<ComponentPreview name="pagination-input" />
+
+### Input field and button
+
+A field and a [`Button`](/components/button) on their own, in a `<nav>` named "Pagination".
+
+<ComponentPreview name="pagination-input-button" />
+
+### Select input and buttons
+
+Choose the page from a [`Select`](/forms/select) and step with a [`ButtonGroup`](/components/button-group)
+of icon buttons.
+
+<ComponentPreview name="pagination-select-buttons" />
+
+### Single pagination
+
+`layout="single"` shows the position ("1 of 99") between icon-only previous and next buttons.
+
+<ComponentPreview name="pagination-single" />
+
+### With ellipsis
+
+Not in Flowbite. For long ranges, `showEllipsis` always lists the first and last page and replaces
+the gaps with an ellipsis. `siblingCount` sets how many pages surround the current one.
+
+<ComponentPreview name="pagination-ellipsis" />
+
+### As links
+
+Not in Flowbite. `getPageHref` renders every control as a link, so pages can be opened in a new
+tab and crawled. `onPageChange` still runs on click, with the event, so a client-side router can
+call `preventDefault()` and push the URL itself.
+
+<ComponentPreview name="pagination-links" />
+
+## Accessibility
+
+- Renders a `<nav>` landmark named "Pagination" (change it with `aria-label`, for example "Search
+  results", when a page has more than one) holding a list of controls.
+- The current page has `aria-current="page"`. Page controls are named "Page 3" and so on (change
+  it with `getPageLabel`); Flowbite announces only the number.
+- Previous and next are real disabled states at the ends of the range: disabled `<button>`s, or,
+  for links, an element with `role="link"` and `aria-disabled="true"` and no `href`, so it leaves
+  the tab order. Flowbite never disables them.
+- Icon-only previous and next keep their label as visually hidden text; the chevrons and arrows are
+  hidden from assistive technology and flip in right-to-left layouts.
+- The table summary ("Showing 11 to 20 of 100 Entries") and the single layout's "1 of 99" are
+  polite live regions, so the new position is announced after previous or next is pressed.
+- Every control draws the solid `ring` outline on keyboard focus and moves to the `z.raised` layer,
+  so joined neighbours never cover it. Flowbite removes the outline (`focus:outline-none`).
+- In "Single pagination" Flowbite's middle "1 of 99" is a button that does nothing; here it is
+  text. Flowbite's tooltips on the icon buttons ("Single pagination", "Select input and buttons")
+  are left out until a tooltip component exists; the buttons are named "Previous" and "Next".
+- In "Select input and buttons" Flowbite shows the page count as the placeholder of a disabled
+  field; here it is the field's value, named "Total pages".
+- The ellipsis is hidden from assistive technology; the page names around it say where the range
+  jumps.
+- Disabled ends use Flowbite's disabled-button colours (`disabled`, `fg-disabled`), which are
+  exempt from contrast minimums. Every other label passes WCAG 2.2 AA in both themes.
+
+## API Reference
+
+| Prop            | Type                                                  | Default           |
+| --------------- | ----------------------------------------------------- | ----------------- |
+| `currentPage`   | `number`                                              | —                 |
+| `totalPages`    | `number`                                              | from `totalItems` |
+| `onPageChange`  | `(page: number, event: MouseEvent) => void`           | —                 |
+| `getPageHref`   | `(page: number) => string`                            | —                 |
+| `layout`        | `"pagination" \| "navigation" \| "table" \| "single"` | `"pagination"`    |
+| `size`          | `"sm" \| "md"`                                        | `"md"`            |
+| `showIcons`     | `boolean`                                             | `false`           |
+| `siblingCount`  | `number`                                              | `2`               |
+| `showEllipsis`  | `boolean`                                             | `false`           |
+| `previousLabel` | `string`                                              | `"Previous"`      |
+| `nextLabel`     | `string`                                              | `"Next"`          |
+| `getPageLabel`  | `(page: number) => string`                            | `` `Page ${n}` `` |
+| `itemsPerPage`  | `number`                                              | `10`              |
+| `totalItems`    | `number`                                              | —                 |
+| `renderInfo`    | `(info: PaginationInfo) => ReactNode`                 | —                 |
+| `aria-label`    | `string`                                              | `"Pagination"`    |
+| `children`      | `ReactNode`                                           | —                 |
+
+`renderInfo` replaces the table summary and the single layout's "1 of 99", for example to
+translate them. It receives `currentPage`, `totalPages`, `firstItem`, `lastItem` and `totalItems`.
+All other `<nav>` attributes are forwarded, including `ref` and `className`.
+`getPaginationItems(currentPage, totalPages, siblingCount, showEllipsis)` returns the list of pages
+(and ellipses) the component shows, for building your own layout.
+
+| Token                      | Use                                   |
+| -------------------------- | ------------------------------------- |
+| `neutral-secondary-medium` | Control fill                          |
+| `neutral-tertiary-medium`  | Hover fill and current page           |
+| `default-medium`           | Borders                               |
+| `body` / `heading`         | Labels, and labels on hover           |
+| `fg-brand`                 | Current page                          |
+| `disabled` / `fg-disabled` | Disabled previous and next            |
+| `neutral-tertiary`         | Focus halo (single layout)            |
+| `radius.base`              | Outer corners (12px)                  |
+| `shadow.xs`                | Previous and next buttons, single bar |

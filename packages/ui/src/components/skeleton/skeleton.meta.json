@@ -1,0 +1,54 @@
+{
+  "name": "Skeleton",
+  "status": "beta",
+  "description": "Use skeleton placeholders that mimic text, images, video and cards while their content loads.",
+  "category": "feedback",
+  "import": "import { Skeleton, SkeletonLine, SkeletonImage, SkeletonVideo, SkeletonAvatar, SkeletonBlock } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/TR/wai-aria-1.2/#status",
+  "client": false,
+  "props": "generated",
+  "parts": [
+    "Skeleton",
+    "SkeletonBlock",
+    "SkeletonLine",
+    "SkeletonImage",
+    "SkeletonVideo",
+    "SkeletonAvatar"
+  ],
+  "variants": {
+    "animated": [true, false],
+    "SkeletonLine.size": ["sm", "md"],
+    "subtle": [true, false]
+  },
+  "defaults": {
+    "label": "Loading…",
+    "animated": true,
+    "SkeletonLine.size": "md"
+  },
+  "tokens": [
+    "color.neutral-quaternary",
+    "color.default",
+    "color.fg-disabled",
+    "radius.full",
+    "radius.base"
+  ],
+  "useWhen": [
+    "Loading content whose layout is known, such as text, cards, lists or media",
+    "Avoiding layout shift while data is fetched"
+  ],
+  "avoidWhen": [
+    "Progress with a known value: use Progress",
+    "Very short waits, where a placeholder only flickers"
+  ],
+  "related": ["Progress", "Card", "Avatar"],
+  "examples": [
+    "apps/storybook/registry/demos/skeleton-demo.tsx",
+    "apps/storybook/registry/demos/skeleton-image.tsx",
+    "apps/storybook/registry/demos/skeleton-video.tsx",
+    "apps/storybook/registry/demos/skeleton-text.tsx",
+    "apps/storybook/registry/demos/skeleton-card.tsx",
+    "apps/storybook/registry/demos/skeleton-widget.tsx",
+    "apps/storybook/registry/demos/skeleton-list.tsx",
+    "apps/storybook/registry/demos/skeleton-testimonial.tsx"
+  ]
+}

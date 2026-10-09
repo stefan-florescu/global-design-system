@@ -1,0 +1,38 @@
+{
+  "name": "Rating",
+  "status": "beta",
+  "description": "A static star rating that shows a score, with its text alternative.",
+  "category": "data-display",
+  "import": "import { Rating } from \"@stefan-florescu/ui\";",
+  "ariaPattern": null,
+  "client": false,
+  "props": "generated",
+  "parts": ["Rating"],
+  "variants": {
+    "size": ["sm", "md", "lg"]
+  },
+  "defaults": {
+    "size": "sm",
+    "max": 5
+  },
+  "tokens": ["color.fg-yellow", "color.fg-disabled"],
+  "useWhen": [
+    "Showing the average score of a product, place or review",
+    "Showing the score a single reviewer gave"
+  ],
+  "avoidWhen": [
+    "Letting people choose a score: use radio buttons",
+    "Progress towards a goal: use a progress bar"
+  ],
+  "related": ["Card", "Avatar", "Progress"],
+  "examples": [
+    "apps/storybook/registry/demos/rating-demo.tsx",
+    "apps/storybook/registry/demos/rating-text.tsx",
+    "apps/storybook/registry/demos/rating-count.tsx",
+    "apps/storybook/registry/demos/rating-sizes.tsx",
+    "apps/storybook/registry/demos/rating-advanced.tsx",
+    "apps/storybook/registry/demos/rating-score.tsx",
+    "apps/storybook/registry/demos/rating-comment.tsx",
+    "apps/storybook/registry/demos/rating-review.tsx"
+  ]
+}
