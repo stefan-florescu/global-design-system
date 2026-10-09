@@ -21,6 +21,16 @@ describe("FileInput", () => {
     expect(input).toHaveClass("text-lg");
     expect(input).toHaveAttribute("aria-invalid", "true");
   });
+
+  it("draws the choose button as a segment inside the field, rounded at the start", () => {
+    render(<FileInput aria-label="Avatar" />);
+    expect(screen.getByLabelText("Avatar")).toHaveClass(
+      "file:my-1",
+      "file:ms-1",
+      "file:rounded-s",
+      "file:rounded-e-none",
+    );
+  });
 });
 
 describe("FileDropzone", () => {

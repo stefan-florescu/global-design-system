@@ -2,24 +2,25 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 /*
  * Flowbite v4 file input (https://flowbite.com/docs/forms/file-input/): the shared field styles
- * (see input.variants.ts) with no padding, and the browser's "Choose file" button styled as
- * Flowbite's plugin does: a `neutral-quaternary` segment with `body` text. Deviation: in dark
- * mode that text is `heading`, because `body` on `neutral-quaternary` is under 4.5:1 there.
- * The button keeps `text-sm` and takes the field's line height, so `lg` grows by 2px like
- * Flowbite's large input.
+ * (see input.variants.ts) with the browser's "Choose file" button as a `neutral-quaternary`
+ * segment with `body` text. The segment sits inside the field, 4px from its border, with its
+ * start corners rounded to 8px: the field's 12px radius minus the gap, so the curves stay
+ * parallel. The segment's padding sets the field height: 38, 42 and 50px, like the other fields.
+ * Deviation: in dark mode the label is `heading`, because `body` on `neutral-quaternary` is under
+ * 4.5:1 there.
  */
 export const fileInputVariants = cva(
   [
     "cursor-pointer p-0 disabled:file:cursor-not-allowed",
-    "file:-ms-4 file:me-4 file:cursor-pointer file:border-0 file:bg-neutral-quaternary file:py-2.5 file:ps-8 file:pe-4",
-    "file:text-sm file:leading-[inherit] file:font-medium file:text-body dark:file:text-heading",
+    "file:my-1 file:ms-1 file:me-3 file:cursor-pointer file:rounded-s file:rounded-e-none file:border-0 file:bg-neutral-quaternary",
+    "file:font-medium file:text-body hover:file:text-heading dark:file:text-heading",
   ],
   {
     variants: {
       size: {
-        sm: "text-xs",
-        md: "text-sm",
-        lg: "text-lg",
+        sm: "text-xs file:px-3 file:py-1.5 file:text-xs file:leading-4",
+        md: "text-sm file:px-4 file:py-1.5 file:text-sm file:leading-5",
+        lg: "text-lg file:px-5 file:py-2.5 file:text-sm file:leading-5",
       },
     },
     defaultVariants: { size: "md" },
