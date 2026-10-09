@@ -1,36 +1,41 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
+import { focusOutline } from "../../lib/focus";
+
 /*
- * Flowbite's breadcrumb: links in `foreground` that turn `brand-subtle-foreground` on hover,
- * the current page in `muted-foreground`, chevron separators. `solid` adds a `muted` surface
- * (muted-foreground on muted is a checked pairing).
+ * Flowbite v4 breadcrumb, class for class (https://flowbite.com/docs/components/breadcrumb/):
+ * `text-body` links that turn `fg-brand` on hover, the current page in `body-subtle`, 14px
+ * chevron separators. `solid` is Flowbite's "Solid background" trail. Accessibility addition:
+ * links draw the solid keyboard outline from lib/focus (Flowbite has no focus style).
  */
-export const breadcrumbVariants = cva("w-fit", {
+export const breadcrumbVariants = cva("flex", {
   variants: {
     variant: {
       default: "",
-      solid: "rounded-lg border border-border bg-muted px-5 py-3",
+      solid: "rounded-base border border-default-medium bg-neutral-secondary-medium p-3",
     },
   },
   defaultVariants: { variant: "default" },
 });
 
 export const breadcrumbListClassName =
-  "m-0 flex list-none flex-wrap items-center gap-1.5 p-0 text-sm font-medium md:gap-2.5";
+  "m-0 inline-flex list-none items-center space-x-1 p-0 md:space-x-2 rtl:space-x-reverse";
 
-export const breadcrumbItemClassName = "group inline-flex items-center gap-1.5 md:gap-2.5";
+export const breadcrumbItemClassName =
+  "group inline-flex items-center space-x-1.5 rtl:space-x-reverse";
 
 export const breadcrumbSeparatorClassName =
-  "size-4 shrink-0 text-muted-foreground group-first:hidden";
+  "size-3.5 shrink-0 text-body group-first:hidden rtl:rotate-180";
+
+const labelClassName =
+  "inline-flex items-center text-sm font-medium [&_svg]:me-1.5 [&_svg]:size-4 [&_svg]:shrink-0";
 
 export const breadcrumbLinkClassName = [
-  "inline-flex items-center gap-2 rounded-xs text-foreground no-underline",
-  "transition-colors hover:text-brand-subtle-foreground motion-reduce:transition-none",
-  "outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-  "[&_svg]:size-4 [&_svg]:shrink-0",
+  labelClassName,
+  "rounded-xs text-body no-underline hover:text-fg-brand",
+  focusOutline,
 ].join(" ");
 
-export const breadcrumbPageClassName =
-  "inline-flex items-center gap-2 text-muted-foreground [&_svg]:size-4 [&_svg]:shrink-0";
+export const breadcrumbPageClassName = [labelClassName, "text-body-subtle"].join(" ");
 
 export type BreadcrumbVariantProps = VariantProps<typeof breadcrumbVariants>;

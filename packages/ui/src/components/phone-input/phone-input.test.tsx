@@ -23,4 +23,19 @@ describe("PhoneInput", () => {
     expect(screen.getByRole("combobox")).toHaveAttribute("aria-invalid", "true");
     expect(screen.getByRole("textbox")).toHaveAttribute("aria-invalid", "true");
   });
+
+  it("styles the country select like Flowbite's dropdown button in one field group", () => {
+    const { container } = render(<PhoneInput aria-label="Phone number" />);
+    expect(container.firstChild).toHaveClass("-space-x-px", "shadow-xs", "rounded-base");
+    expect(screen.getByRole("combobox")).toHaveClass("font-medium", "text-body", "rounded-e-none");
+    expect(screen.getByRole("textbox")).toHaveClass("rounded-s-none", "shadow-none");
+  });
+
+  it("joins an end addon", () => {
+    render(
+      <PhoneInput aria-label="Phone number" endAddon={<button type="button">Send SMS</button>} />,
+    );
+    expect(screen.getByRole("textbox")).toHaveClass("rounded-e-none");
+    expect(screen.getByRole("button", { name: "Send SMS" })).toBeInTheDocument();
+  });
 });

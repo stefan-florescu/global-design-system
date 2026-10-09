@@ -6,7 +6,7 @@ import { useState, type ComponentProps, type ReactNode } from "react";
 import { cn } from "../../lib/cn";
 
 import {
-  alertDismissClassName,
+  alertDismissVariants,
   alertIconClassName,
   alertVariants,
   type AlertVariantProps,
@@ -27,11 +27,11 @@ export type AlertProps = ComponentProps<"div"> &
 /**
  * A short, important message about the current page or task.
  *
- * `destructive` and `warning` alerts use `role="alert"`, so screen readers announce them when
+ * `danger` and `warning` alerts use `role="alert"`, so screen readers announce them when
  * they appear; the other variants use the polite `role="status"`. Pass `role` to override.
  */
 export function Alert({
-  variant = "info",
+  variant = "brand",
   bordered,
   accentBorder,
   icon,
@@ -45,7 +45,7 @@ export function Alert({
   const [dismissed, setDismissed] = useState(false);
   if (dismissed) return null;
 
-  const urgent = variant === "destructive" || variant === "warning";
+  const urgent = variant === "danger" || variant === "warning";
 
   return (
     <div
@@ -59,12 +59,14 @@ export function Alert({
           {icon}
         </span>
       ) : null}
-      <div className="min-w-0 flex-1">{children}</div>
+      <div data-slot="alert-content" className="min-w-0 flex-1">
+        {children}
+      </div>
       {dismissible ? (
         <button
           type="button"
           aria-label={dismissLabel}
-          className={alertDismissClassName}
+          className={alertDismissVariants({ variant })}
           onClick={() => {
             setDismissed(true);
             onDismiss?.();
@@ -82,7 +84,7 @@ export function AlertTitle({ className, ...props }: ComponentProps<"p">) {
   return <p data-slot="alert-title" className={cn("font-medium", className)} {...props} />;
 }
 
-/** Supporting text of an alert. */
+/** Supporting text of an alert, below its title. */
 export function AlertDescription({ className, ...props }: ComponentProps<"div">) {
-  return <div data-slot="alert-description" className={cn("mt-1", className)} {...props} />;
+  return <div data-slot="alert-description" className={cn("mt-2", className)} {...props} />;
 }

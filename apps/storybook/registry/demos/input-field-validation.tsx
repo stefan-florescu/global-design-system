@@ -7,29 +7,33 @@ export default function InputFieldValidation() {
   const id = useId();
 
   return (
-    <div className="grid w-full max-w-sm gap-6">
-      <div className="grid gap-2">
-        <Label htmlFor={`${id}-valid-username`}>Username</Label>
+    <div className="w-full">
+      <div className="mb-6">
+        <Label htmlFor={`${id}-success`} variant="success">
+          Your name
+        </Label>
         <Input
-          id={`${id}-valid-username`}
+          id={`${id}-success`}
           valid
-          defaultValue="ana.popescu"
-          aria-describedby={`${id}-valid-username-help`}
+          placeholder="Success input"
+          aria-describedby={`${id}-success-help`}
         />
-        <HelperText id={`${id}-valid-username-help`} variant="success">
-          Well done! That username is available.
+        <HelperText id={`${id}-success-help`} variant="success">
+          <span className="font-medium">Well done!</span> Some success message.
         </HelperText>
       </div>
-      <div className="grid gap-2">
-        <Label htmlFor={`${id}-invalid-username`}>Username</Label>
+      <div className="mb-6">
+        <Label htmlFor={`${id}-danger`} variant="danger">
+          Your name
+        </Label>
         <Input
-          id={`${id}-invalid-username`}
+          id={`${id}-danger`}
           invalid
-          defaultValue="ana"
-          aria-describedby={`${id}-invalid-username-help`}
+          placeholder="Error input"
+          aria-describedby={`${id}-danger-help`}
         />
-        <HelperText id={`${id}-invalid-username-help`} variant="error">
-          Usernames need at least 6 characters.
+        <HelperText id={`${id}-danger-help`} variant="danger">
+          <span className="font-medium">Oh, snapp!</span> Some error message.
         </HelperText>
       </div>
     </div>

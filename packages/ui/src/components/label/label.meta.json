@@ -1,23 +1,28 @@
 {
   "name": "Label",
   "status": "beta",
-  "description": "The visible name of a form control.",
+  "description": "The visible name of a form control: Flowbite's block label with a 10px gap below.",
   "category": "forms",
   "import": "import { Label } from \"@stefan-florescu/ui\";",
   "ariaPattern": null,
   "client": false,
   "props": "generated",
   "variants": {
+    "variant": ["default", "success", "danger"],
     "disabled": [true, false]
   },
   "tokens": [
-    "color.foreground",
-    "color.muted-foreground",
-    "color.destructive-subtle-foreground",
+    "color.heading",
+    "color.body",
+    "color.fg-success-strong",
+    "color.fg-danger-strong",
     "text.sm"
   ],
   "useWhen": ["Every form control"],
   "avoidWhen": [],
-  "related": ["Input"],
-  "docs": "apps/storybook/app/(docs)/forms/input-field/page.mdx"
+  "related": ["Input", "HelperText", "Fieldset"],
+  "docs": "apps/storybook/app/(docs)/forms/input-field/page.mdx",
+  "defaults": {
+    "variant": "default"
+  }
 }

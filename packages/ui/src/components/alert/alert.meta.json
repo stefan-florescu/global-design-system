@@ -1,7 +1,7 @@
 {
   "name": "Alert",
   "status": "beta",
-  "description": "A short, important message about the current page or task: information, success, a warning or an error.",
+  "description": "Show contextual messages to your users, such as information, success, a warning or an error.",
   "category": "feedback",
   "import": "import { Alert, AlertDescription, AlertTitle } from \"@stefan-florescu/ui\";",
   "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/alert/",
@@ -9,25 +9,40 @@
   "props": "generated",
   "parts": ["Alert", "AlertTitle", "AlertDescription"],
   "variants": {
-    "variant": ["info", "success", "warning", "destructive", "neutral"],
+    "variant": ["brand", "danger", "success", "warning", "dark"],
     "bordered": [true, false],
     "accentBorder": [true, false],
     "dismissible": [true, false]
   },
-  "defaults": { "variant": "info" },
+  "defaults": {
+    "variant": "brand"
+  },
   "tokens": [
-    "color.info-subtle",
-    "color.info-subtle-foreground",
+    "color.brand-softer",
+    "color.brand-soft",
+    "color.brand-medium",
+    "color.brand-subtle",
+    "color.fg-brand-strong",
+    "color.danger-soft",
+    "color.danger-medium",
+    "color.danger-subtle",
+    "color.fg-danger-strong",
+    "color.success-soft",
+    "color.success-medium",
     "color.success-subtle",
-    "color.success-subtle-foreground",
+    "color.fg-success-strong",
+    "color.warning-soft",
+    "color.warning-medium",
     "color.warning-subtle",
-    "color.warning-subtle-foreground",
-    "color.destructive-subtle",
-    "color.destructive-subtle-foreground",
-    "color.muted",
-    "color.foreground",
+    "color.fg-warning",
+    "color.neutral-secondary-medium",
+    "color.neutral-tertiary",
+    "color.neutral-tertiary-medium",
+    "color.default-medium",
+    "color.heading",
     "color.ring",
-    "radius.lg",
+    "radius.base",
+    "radius.default",
     "text.sm"
   ],
   "useWhen": [
@@ -39,10 +54,11 @@
   "examples": [
     "apps/storybook/registry/demos/alert-demo.tsx",
     "apps/storybook/registry/demos/alert-icon.tsx",
-    "apps/storybook/registry/demos/alert-list.tsx",
     "apps/storybook/registry/demos/alert-bordered.tsx",
+    "apps/storybook/registry/demos/alert-list.tsx",
     "apps/storybook/registry/demos/alert-dismissible.tsx",
     "apps/storybook/registry/demos/alert-accent-border.tsx",
-    "apps/storybook/registry/demos/alert-additional-content.tsx"
+    "apps/storybook/registry/demos/alert-additional-content.tsx",
+    "apps/storybook/registry/demos/alert-announcement.tsx"
   ]
 }

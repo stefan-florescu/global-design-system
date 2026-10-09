@@ -7,11 +7,9 @@ export default function TextareaDemo() {
   const id = useId();
 
   return (
-    <div className="grid w-full max-w-sm gap-6">
-      <div className="grid gap-2">
-        <Label htmlFor={`${id}-message`}>Your message</Label>
-        <Textarea id={`${id}-message`} placeholder="Write your thoughts here…" />
-      </div>
+    <div className="w-full">
+      <Label htmlFor={`${id}-message`}>Your message</Label>
+      <Textarea id={`${id}-message`} rows={4} placeholder="Write your thoughts here..." />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useId } from "react";
 
+import { Mail } from "@stefan-florescu/icons";
 import { HelperText, Input, Label } from "@stefan-florescu/ui";
 
 export default function InputFieldHelper() {
@@ -7,19 +8,22 @@ export default function InputFieldHelper() {
   const id = useId();
 
   return (
-    <div className="grid w-full max-w-sm gap-6">
-      <div className="grid gap-2">
-        <Label htmlFor={`${id}-helper-email`}>Email address</Label>
-        <Input
-          id={`${id}-helper-email`}
-          type="email"
-          aria-describedby={`${id}-helper-email-help`}
-          placeholder="ana@example.com"
-        />
-        <HelperText id={`${id}-helper-email-help`}>
-          We&apos;ll never share your email with anyone else.
-        </HelperText>
-      </div>
+    <div className="w-full">
+      <Label htmlFor={`${id}-email`}>Your Email</Label>
+      <Input
+        id={`${id}-email`}
+        type="email"
+        startIcon={<Mail />}
+        placeholder="name@flowbite.com"
+        aria-describedby={`${id}-email-help`}
+      />
+      <HelperText id={`${id}-email-help`}>
+        We’ll never share your details. Read our{" "}
+        <a href="#privacy" className="text-fg-brand font-medium hover:underline">
+          Privacy Policy
+        </a>
+        .
+      </HelperText>
     </div>
   );
 }

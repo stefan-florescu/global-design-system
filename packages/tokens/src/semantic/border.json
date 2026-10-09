@@ -19,29 +19,38 @@
   },
   "radius": {
     "$type": "dimension",
+    "$description": "Flowbite's radius scale. rounded-base (12px) is the default for buttons, fields and cards.",
     "none": {
       "$value": "0"
     },
     "xs": {
-      "$value": "0.125rem"
+      "$value": "4px"
     },
     "sm": {
-      "$value": "0.25rem"
+      "$value": "6px"
+    },
+    "default": {
+      "$value": "8px",
+      "$description": "The plain `rounded` utility: badges and small chips."
     },
     "md": {
-      "$value": "0.375rem"
+      "$value": "6px"
+    },
+    "base": {
+      "$value": "12px",
+      "$description": "Buttons, fields, cards, alerts and dropdowns."
     },
     "lg": {
-      "$value": "0.5rem"
+      "$value": "16px"
     },
     "xl": {
-      "$value": "0.75rem"
+      "$value": "12px"
     },
     "2xl": {
-      "$value": "1rem"
+      "$value": "16px"
     },
     "3xl": {
-      "$value": "1.5rem"
+      "$value": "24px"
     },
     "full": {
       "$value": "9999px"

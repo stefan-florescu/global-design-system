@@ -18,7 +18,7 @@ type ButtonStyleProps = Omit<ButtonVariantProps, "variant" | "outline"> &
         outline?: boolean;
       }
     | {
-        variant: "secondary" | "outline" | "ghost" | "link";
+        variant: "tertiary" | "dark" | "ghost";
         outline?: never;
       }
   );

@@ -7,18 +7,15 @@ export default function SelectMultiple() {
   const id = useId();
 
   return (
-    <div className="grid w-full max-w-sm gap-6">
-      <div className="grid gap-2">
-        <Label htmlFor={`${id}-countries`}>Countries</Label>
-        <Select id={`${id}-countries`} multiple>
-          <option value="us">United States</option>
-          <option value="ca">Canada</option>
-          <option value="fr">France</option>
-          <option value="de">Germany</option>
-          <option value="ro">Romania</option>
-        </Select>
-      </div>
-      <p className="text-muted-foreground m-0 text-xs">Hold Ctrl (Cmd on Mac) to select several.</p>
-    </div>
+    <form className="w-full max-w-sm">
+      <Label htmlFor={`${id}-countries-multiple`}>Select an option</Label>
+      <Select id={`${id}-countries-multiple`} multiple defaultValue={[""]}>
+        <option value="">Choose countries</option>
+        <option value="US">United States</option>
+        <option value="CA">Canada</option>
+        <option value="FR">France</option>
+        <option value="DE">Germany</option>
+      </Select>
+    </form>
   );
 }

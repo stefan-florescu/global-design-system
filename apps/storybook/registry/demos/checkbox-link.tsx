@@ -6,12 +6,10 @@ export default function CheckboxLink() {
       label={
         <>
           I agree with the{" "}
-          <a
-            href="/changelog"
-            className="text-brand-subtle-foreground underline hover:no-underline"
-          >
+          <a href="#terms" className="text-fg-brand underline hover:no-underline">
             terms and conditions
           </a>
+          .
         </>
       }
     />

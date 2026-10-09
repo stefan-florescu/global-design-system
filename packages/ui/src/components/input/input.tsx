@@ -48,7 +48,7 @@ export function Input({
         fieldVariants({ size }),
         startIcon && "ps-9",
         endIcon && "pe-9",
-        addon && "rounded-s-none",
+        addon && "rounded-s-none shadow-none",
         className,
       )}
       {...props}
@@ -58,17 +58,18 @@ export function Input({
   if (!startIcon && !endIcon && !addon) return input;
 
   return (
-    <div className="relative flex w-full">
+    <div className={cn("relative flex w-full", addon && "rounded-base shadow-xs")}>
       {addon ? (
-        <span className={cn(fieldAddonClassName, "rounded-s-lg border-e-0")}>{addon}</span>
+        <span className={cn(fieldAddonClassName, "rounded-s-base border-e-0")}>{addon}</span>
       ) : null}
       <div className="relative w-full">
+        {input}
+        {/* After the field, so they paint above it even while a focused field is raised. */}
         {startIcon ? (
           <span aria-hidden className={cn(fieldIconClassName, "start-0 ps-3")}>
             {startIcon}
           </span>
         ) : null}
-        {input}
         {endIcon ? (
           <span aria-hidden className={cn(fieldIconClassName, "end-0 pe-3")}>
             {endIcon}

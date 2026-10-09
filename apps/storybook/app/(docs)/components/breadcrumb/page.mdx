@@ -20,34 +20,48 @@ import { Breadcrumb, BreadcrumbItem } from "@stefan-florescu/ui";
 
 ```tsx
 <Breadcrumb>
-  <BreadcrumbItem href="/">Home</BreadcrumbItem>
+  <BreadcrumbItem href="/" icon={<House aria-hidden />}>
+    Home
+  </BreadcrumbItem>
   <BreadcrumbItem href="/projects">Projects</BreadcrumbItem>
-  <BreadcrumbItem>Design system</BreadcrumbItem>
+  <BreadcrumbItem>Flowbite</BreadcrumbItem>
 </Breadcrumb>
 ```
 
 ## Examples
 
-### Default
+### Default breadcrumb
 
-Give every level an `href` except the last one, which marks the current page. Add `icon` to show
-an icon before a label.
+Give every level an `href` except the last one, which marks the current page. Add `icon` to show a
+16px icon before a label.
 
 <ComponentPreview name="breadcrumb-demo" />
 
 ### Solid background
 
-Set `variant="solid"` to place the trail on the `muted` surface with a border.
+Set `variant="solid"` to place the trail on the `neutral-secondary-medium` surface with a border.
 
 <ComponentPreview name="breadcrumb-solid" />
+
+### Breadcrumb with navigation
+
+Put a `ButtonGroup` of back and forward buttons next to the trail.
+
+<ComponentPreview name="breadcrumb-navigation" />
+
+Flowbite's "Header breadcrumb", "Breadcrumb with dropdown" and "Breadcrumb with button" examples
+open dropdown menus, which the design system doesn't have yet, so they are not shown.
 
 ## Accessibility
 
 - Renders a `<nav>` landmark named "Breadcrumb" (change it with `aria-label`) containing an
   ordered list, as in the WAI-ARIA Breadcrumb pattern.
 - The last item, without `href`, has `aria-current="page"` and is not a link.
-- Chevron separators and icons are decorative and hidden from assistive technology.
-- Links show a focus ring on keyboard focus.
+- Chevron separators and icons are decorative and hidden from assistive technology. Separators
+  flip in right-to-left layouts.
+- Links draw a solid `ring` outline on keyboard focus; Flowbite has no focus style.
+- Links (`body`) and the current page (`body-subtle`) pass WCAG 2.2 AA on the page and on the solid
+  surface in both themes.
 - Pattern: [WAI-ARIA Breadcrumb](https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/).
 
 ## API Reference
@@ -67,3 +81,12 @@ Set `variant="solid"` to place the trail on the `muted` surface with a border.
 | `icon` | `ReactNode` | —       |
 
 All parts forward native attributes, including `ref` and `className`.
+
+| Token                      | Use                  |
+| -------------------------- | -------------------- |
+| `body`                     | Links and separators |
+| `fg-brand`                 | Link hover           |
+| `body-subtle`              | Current page         |
+| `neutral-secondary-medium` | Solid surface        |
+| `default-medium`           | Solid border         |
+| `radius.base`              | Solid corners (12px) |

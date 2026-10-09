@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Input Field",
   description:
-    "A single-line text field with labels, helper text, icons, addons and validation states.",
+    "Accept data from the user with text, email, password, number, URL and phone fields, in several sizes, states and layouts.",
 };
 
 <PageHeader {...metadata} section="Forms" badges={[{ label: "Beta", variant: "secondary" }]} />
@@ -19,91 +19,146 @@ import { HelperText, Input, Label } from "@stefan-florescu/ui";
 ```
 
 ```tsx
-<div className="grid gap-2">
+<div>
   <Label htmlFor="email">Email address</Label>
-  <Input id="email" type="email" aria-describedby="email-help" />
-  <HelperText id="email-help">We'll never share your email.</HelperText>
+  <Input id="email" type="email" placeholder="john.doe@company.com" aria-describedby="email-help" />
+  <HelperText id="email-help">We’ll never share your details.</HelperText>
 </div>
 ```
 
+`Label` is a block with a 10px gap below it and `HelperText` has a 10px gap above it, so a label,
+a field and its helper text stack without a wrapper grid.
+
 ## Examples
 
-### Default input
+### Input fields
 
-Pair each `Input` with a `Label`. Native attributes such as `type`, `autoComplete` and `required` work as usual.
+A form with text, phone, URL, number, email and password fields in a two-column grid. Native
+attributes such as `type`, `pattern`, `autoComplete` and `required` work as usual.
 
 <ComponentPreview name="input-field-demo" />
 
 ### Input sizes
 
-Three sizes that match the button heights: `sm` (36px), `md` (40px) and `lg` (48px).
+Four sizes that grow by padding, like Flowbite: `sm`, `md` (Flowbite's "base", the default), `lg`
+and `xl`. The two larger sizes also use 16px text.
 
 <ComponentPreview name="input-field-sizes" />
 
-### Disabled and read-only
+| Size | Height | Padding       | Text   |
+| ---- | ------ | ------------- | ------ |
+| `sm` | 38px   | `px-2.5 py-2` | `sm`   |
+| `md` | 42px   | `px-3 py-2.5` | `sm`   |
+| `lg` | 50px   | `px-3.5 py-3` | `base` |
+| `xl` | 54px   | `px-4 py-3.5` | `base` |
 
-Disabled fields can't be focused or submitted. Prefer `readOnly` for values people should still be able to select and copy.
+### Disabled state
+
+Disabled fields can't be focused or submitted, and their text uses the `fg-disabled` colour. Prefer
+`readOnly` on its own for values people should still be able to select and copy.
 
 <ComponentPreview name="input-field-disabled" />
 
-### Helper text
+### Validation
 
-Add a `HelperText` and reference its `id` from the field's `aria-describedby`.
-
-<ComponentPreview name="input-field-helper" />
-
-### Input element with icon
-
-`startIcon` and `endIcon` add decorative icons inside the field.
-
-<ComponentPreview name="input-field-icon" />
-
-### Input group
-
-`addon` attaches text such as "@" or "https://" before the field.
-
-<ComponentPreview name="input-field-addon" />
-
-### Form validation
-
-Set `valid` or `invalid` and explain the state in a `HelperText` with the matching `variant`.
+Set `valid` or `invalid` on the field, the matching `variant` on its `Label`, and explain the state
+in a `HelperText` linked with `aria-describedby`.
 
 <ComponentPreview name="input-field-validation" />
 
+### Input group
+
+`startIcon` adds a decorative 16px icon inside the field. `addon` attaches text or an icon to the
+field's start, such as "https://".
+
+<ComponentPreview name="input-field-group" />
+
+### Helper text
+
+Add a `HelperText` below the field and reference its `id` from the field's `aria-describedby`.
+
+<ComponentPreview name="input-field-helper" />
+
+### Search input
+
+`SearchInput` with `submitLabel` places the submit button inside the field. See
+[Search Input](/forms/search-input) for more layouts.
+
+<ComponentPreview name="input-field-search" />
+
+### Dropdown input
+
+Join a `Select`, a field and a `Button` in one group. `fieldGroupClassName` overlaps their borders
+and shares one shadow, `fieldSelectAddonClassName` styles the select like Flowbite's dropdown
+button, and `fieldGroupItemClassName` lifts the focused field above its neighbours. Square the
+inner corners of each part.
+
+<ComponentPreview name="input-field-dropdown" />
+
+Flowbite opens a dropdown menu with an icon before "All categories"; we use a native `<select>`,
+which works with the keyboard, screen readers and mobile pickers without extra script.
+
 ## Accessibility
 
-- Every field needs a visible `Label` whose `htmlFor` matches the field's `id`. Placeholders are
-  hints, not labels.
+- Every field needs a visible `Label` whose `htmlFor` matches the field's `id`, or an `sr-only` one
+  in compact layouts such as search. Placeholders are hints, not labels.
 - Link helper and error text with `aria-describedby` so it is read with the field.
-- `invalid` sets `aria-invalid="true"` and a red border; always say what is wrong in text too.
-- The border uses the `input` token, which clears 3:1 against the page in both themes, and focus
-  adds a `ring`-coloured border and ring.
+- `invalid` sets `aria-invalid="true"`; always say what is wrong in text too, not only in colour.
+- Differences from Flowbite, for WCAG 2.2 AA:
+  - The field border uses the `input` token instead of Flowbite's `default-medium`, which is under
+    3:1 against the page (1.4.11). Valid and invalid fields use the solid `success` and `danger`
+    borders instead of Flowbite's `success-subtle` and `danger-subtle`.
+  - Focus keeps Flowbite's brand border and 1px ring. The dropdown-button select in a group also
+    draws the solid `ring` outline on keyboard focus.
+- Icons inside the field are decorative and hidden from assistive technology.
 
 ## API Reference
 
 ### Input
 
-| Prop        | Type                   | Default  |
-| ----------- | ---------------------- | -------- |
-| `size`      | `"sm" \| "md" \| "lg"` | `"md"`   |
-| `invalid`   | `boolean`              | `false`  |
-| `valid`     | `boolean`              | `false`  |
-| `startIcon` | `ReactNode`            | —        |
-| `endIcon`   | `ReactNode`            | —        |
-| `addon`     | `ReactNode`            | —        |
-| `type`      | `string`               | `"text"` |
+| Prop        | Type                           | Default  |
+| ----------- | ------------------------------ | -------- |
+| `size`      | `"sm" \| "md" \| "lg" \| "xl"` | `"md"`   |
+| `invalid`   | `boolean`                      | `false`  |
+| `valid`     | `boolean`                      | `false`  |
+| `startIcon` | `ReactNode`                    | —        |
+| `endIcon`   | `ReactNode`                    | —        |
+| `addon`     | `ReactNode`                    | —        |
+| `type`      | `string`                       | `"text"` |
 
 ### Label
 
-| Prop       | Type      | Default |
-| ---------- | --------- | ------- |
-| `required` | `boolean` | `false` |
-| `disabled` | `boolean` | `false` |
+| Prop       | Type                                 | Default     |
+| ---------- | ------------------------------------ | ----------- |
+| `variant`  | `"default" \| "success" \| "danger"` | `"default"` |
+| `required` | `boolean`                            | `false`     |
+| `disabled` | `boolean`                            | `false`     |
 
 ### HelperText
 
-| Prop      | Type                                | Default     |
-| --------- | ----------------------------------- | ----------- |
-| `variant` | `"default" \| "error" \| "success"` | `"default"` |
+| Prop      | Type                                 | Default     |
+| --------- | ------------------------------------ | ----------- |
+| `variant` | `"default" \| "success" \| "danger"` | `"default"` |
+
+### Field group helpers
+
+| Export                      | Use                                                            |
+| --------------------------- | -------------------------------------------------------------- |
+| `fieldGroupClassName`       | Wrapper that joins controls edge to edge with one shadow.      |
+| `fieldSelectAddonClassName` | A `Select` in a group, styled like Flowbite's dropdown button. |
+| `fieldGroupItemClassName`   | A field in a group: no own shadow, raised while focused.       |
+| `fieldVariants`             | The field styles, for elements that are not an `Input`.        |
+
+### Tokens
+
+| Part            | Tokens                                                                                                     |
+| --------------- | ---------------------------------------------------------------------------------------------------------- |
+| Field           | `neutral-secondary-medium` · `input` border · `heading` · `body` placeholder · `shadow-xs` · `radius-base` |
+| Focus           | `brand` border and ring                                                                                    |
+| Valid / invalid | `success-soft` / `danger-soft` · `success` / `danger` border · `fg-success-strong` / `fg-danger-strong`    |
+| Disabled        | `fg-disabled` text                                                                                         |
+| Addon           | `neutral-tertiary` · `body`                                                                                |
+| Label           | `heading` · `fg-success-strong` / `fg-danger-strong`                                                       |
+| Helper text     | `body` · `fg-success-strong` / `fg-danger-strong`                                                          |
 
 All parts forward native attributes, including `ref` and `className`.

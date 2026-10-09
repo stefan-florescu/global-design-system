@@ -1,5 +1,10 @@
 import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
+import { extendTailwindMerge } from "tailwind-merge";
+
+/** Teaches tailwind-merge the scale names our preset adds (Flowbite's `rounded-base`). */
+const twMerge = extendTailwindMerge({
+  extend: { theme: { radius: ["base"] } },
+});
 
 /**
  * Merge class names and resolve Tailwind conflicts (last one wins).

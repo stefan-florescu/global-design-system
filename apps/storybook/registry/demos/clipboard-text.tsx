@@ -7,23 +7,22 @@ export default function ClipboardText() {
   const id = useId();
 
   return (
-    <div className="grid w-full max-w-md gap-2">
-      <Label htmlFor={`${id}-invite-link`}>Invite link</Label>
+    <div className="w-full max-w-72">
       <div className="relative">
+        <Label htmlFor={`${id}-npm-install`} className="sr-only">
+          Install command
+        </Label>
         <Input
-          id={`${id}-invite-link`}
+          id={`${id}-npm-install`}
+          className="text-body"
           readOnly
-          value="https://design.example.com/invite/7f3k"
-          className="pe-28 font-mono"
-          size="lg"
+          value="npm i @stefan-florescu/ui"
         />
         <Clipboard
-          value="https://design.example.com/invite/7f3k"
-          variant="outline"
-          size="xs"
-          label="Copy link"
-          copiedLabel="Copied!"
-          className="absolute end-2 top-1/2 -translate-y-1/2"
+          value="npm i @stefan-florescu/ui"
+          variant="tertiary"
+          copiedLabel="Copied"
+          className="absolute end-1.5 top-1/2 -translate-y-1/2"
         />
       </div>
     </div>

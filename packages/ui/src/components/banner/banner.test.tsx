@@ -23,9 +23,37 @@ describe("Banner", () => {
     expect(screen.getByRole("region")).toHaveClass("fixed", "bottom-0", "border-t");
   });
 
+  it("uses Flowbite's soft neutral bar", () => {
+    render(<Banner>Top</Banner>);
+    expect(screen.getByRole("region")).toHaveClass(
+      "bg-neutral-primary-soft",
+      "border-default",
+      "p-4",
+      "text-sm",
+      "text-body",
+    );
+  });
+
   it("floats as a card inset from the edge", () => {
     render(<Banner floating>Card</Banner>);
-    expect(screen.getByRole("region")).toHaveClass("rounded-lg", "shadow-md", "inset-x-4");
+    expect(screen.getByRole("region")).toHaveClass(
+      "rounded-base",
+      "border",
+      "shadow-xs",
+      "inset-x-4",
+      "top-6",
+    );
+  });
+
+  it("closes from the keyboard", async () => {
+    const user = userEvent.setup();
+    render(<Banner dismissible>Hello</Banner>);
+    await user.tab();
+    const close = screen.getByRole("button", { name: "Close banner" });
+    expect(close).toHaveFocus();
+    expect(close).toHaveClass("size-7", "rounded-sm", "focus-visible:outline-2");
+    await user.keyboard("{Enter}");
+    expect(screen.queryByRole("region")).not.toBeInTheDocument();
   });
 
   it("dismisses itself and reports it", async () => {

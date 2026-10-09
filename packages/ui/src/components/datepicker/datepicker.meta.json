@@ -1,42 +1,46 @@
 {
   "name": "Datepicker",
   "status": "beta",
-  "description": "Pick a day from a calendar: inline (Calendar) or in a popover opened from a button (Datepicker). Calendar also supports date ranges.",
+  "description": "Flowbite's datepicker: a text field with a calendar icon that opens a calendar to pick a day (Datepicker) or a range (DateRangePicker); Calendar shows the calendar inline. Dates can also be typed in a format.",
   "category": "forms",
-  "import": "import { Calendar, Datepicker } from \"@stefan-florescu/ui\";",
-  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/datepicker-dialog/",
+  "import": "import { Calendar, DateRangePicker, Datepicker } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-datepicker/",
   "client": true,
   "props": "generated",
-  "parts": ["Datepicker", "Calendar"],
+  "parts": ["Datepicker", "DateRangePicker", "Calendar"],
   "variants": {
     "mode": ["single", "range"],
+    "orientation": ["bottom left", "bottom right", "top left", "top right"],
     "autoHide": [true, false],
-    "showTodayButton": [true, false],
-    "showClearButton": [true, false]
+    "showButtons": [true, false]
   },
   "defaults": {
     "mode": "single",
     "weekStartsOn": 0,
-    "autoHide": true,
+    "autoHide": false,
+    "showButtons": false,
+    "orientation": "bottom left",
+    "format": "mm/dd/yyyy",
     "label": "Date",
     "placeholder": "Select date"
   },
   "tokens": [
-    "color.popover",
-    "color.popover-foreground",
-    "color.foreground",
-    "color.muted-foreground",
-    "color.accent",
-    "color.accent-foreground",
+    "color.neutral-primary-medium",
+    "color.default-medium",
+    "color.heading",
+    "color.body",
+    "color.body-subtle",
+    "color.fg-disabled",
+    "color.neutral-tertiary-medium",
+    "color.neutral-tertiary",
     "color.brand",
+    "color.brand-strong",
+    "color.brand-medium",
     "color.brand-foreground",
-    "color.brand-subtle",
-    "color.brand-subtle-foreground",
-    "color.border",
+    "color.neutral-secondary-medium",
+    "color.input",
     "color.ring",
-    "radius.lg",
-    "shadow.sm",
-    "shadow.lg",
+    "radius.base",
     "z.popover"
   ],
   "useWhen": [
@@ -46,15 +50,19 @@
   "avoidWhen": [
     "Dates far in the past, such as a birth date: use separate day, month and year fields"
   ],
-  "related": ["Button"],
+  "related": ["Input", "Timepicker", "Button"],
   "examples": [
     "apps/storybook/registry/demos/datepicker-demo.tsx",
     "apps/storybook/registry/demos/datepicker-inline.tsx",
     "apps/storybook/registry/demos/datepicker-range.tsx",
+    "apps/storybook/registry/demos/datepicker-autohide.tsx",
     "apps/storybook/registry/demos/datepicker-buttons.tsx",
-    "apps/storybook/registry/demos/datepicker-title.tsx",
+    "apps/storybook/registry/demos/datepicker-format.tsx",
     "apps/storybook/registry/demos/datepicker-min-max.tsx",
+    "apps/storybook/registry/demos/datepicker-orientation.tsx",
+    "apps/storybook/registry/demos/datepicker-title.tsx",
     "apps/storybook/registry/demos/datepicker-week-start.tsx",
-    "apps/storybook/registry/demos/datepicker-disabled-days.tsx"
+    "apps/storybook/registry/demos/datepicker-disabled-days.tsx",
+    "apps/storybook/registry/demos/datepicker-timepicker.tsx"
   ]
 }

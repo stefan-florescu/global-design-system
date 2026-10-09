@@ -8,16 +8,14 @@
   "client": false,
   "props": "generated",
   "variants": {
-    "variant": ["default", "error", "success"]
+    "variant": ["default", "success", "danger"]
   },
-  "tokens": [
-    "color.muted-foreground",
-    "color.destructive-subtle-foreground",
-    "color.success-subtle-foreground",
-    "text.sm"
-  ],
+  "tokens": ["color.body", "color.fg-success-strong", "color.fg-danger-strong", "text.sm"],
   "useWhen": ["Explaining a field or its error"],
   "avoidWhen": [],
-  "related": ["Input"],
-  "docs": "apps/storybook/app/(docs)/forms/input-field/page.mdx"
+  "related": ["Input", "Label"],
+  "docs": "apps/storybook/app/(docs)/forms/input-field/page.mdx",
+  "defaults": {
+    "variant": "default"
+  }
 }

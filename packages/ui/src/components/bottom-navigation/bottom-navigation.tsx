@@ -4,21 +4,28 @@ import { cn } from "../../lib/cn";
 
 import {
   bottomNavigationItemClassName,
+  bottomNavigationLabelClassName,
   bottomNavigationListVariants,
   bottomNavigationVariants,
   type BottomNavigationVariantProps,
 } from "./bottom-navigation.variants";
 
-export type BottomNavigationProps = ComponentProps<"nav"> & BottomNavigationVariantProps;
+export type BottomNavigationProps = ComponentProps<"nav"> &
+  BottomNavigationVariantProps & {
+    /** Content above the items, such as Flowbite's segmented "New / Popular / Following" bar. */
+    header?: ReactNode;
+  };
 
 /**
  * A bar of top-level destinations fixed to the bottom of the screen, for mobile layouts.
- * Renders a `<nav>` landmark ("Bottom navigation" by default) with a list of items.
+ * Renders a `<nav>` landmark ("Bottom navigation" by default) with a list of items, one equal
+ * column each.
  */
 export function BottomNavigation({
   position,
   floating,
   bordered,
+  header,
   className,
   children,
   ...props
@@ -30,13 +37,14 @@ export function BottomNavigation({
       className={cn(bottomNavigationVariants({ position, floating }), className)}
       {...props}
     >
-      <ul className={bottomNavigationListVariants({ bordered })}>{children}</ul>
+      {header}
+      <ul className={bottomNavigationListVariants({ bordered, floating })}>{children}</ul>
     </nav>
   );
 }
 
 type ItemOwnProps = {
-  /** Icon shown above the label. Mark it `aria-hidden`. */
+  /** Icon shown above the label (24px). Mark it `aria-hidden`. */
   icon?: ReactNode;
   /** Marks the item for the current page (`aria-current`). */
   active?: boolean;
@@ -63,7 +71,7 @@ export function BottomNavigationItem({
   const content = (
     <>
       {icon}
-      <span className={hideLabel ? "sr-only" : undefined}>{children}</span>
+      <span className={hideLabel ? "sr-only" : bottomNavigationLabelClassName}>{children}</span>
     </>
   );
 

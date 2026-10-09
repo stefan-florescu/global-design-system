@@ -4,27 +4,36 @@ import { useState } from "react";
 
 import { Badge } from "@stefan-florescu/ui";
 
+const BADGES = [
+  { variant: "brand", label: "Brand" },
+  { variant: "alternative", label: "Alternative" },
+  { variant: "gray", label: "Gray" },
+  { variant: "danger", label: "Danger" },
+  { variant: "success", label: "Success" },
+  { variant: "warning", label: "Warning" },
+] as const;
+
 export default function BadgeDismissible() {
-  const [tags, setTags] = useState(["React", "Tailwind CSS", "Accessibility", "Tokens"]);
+  const [badges, setBadges] = useState<readonly (typeof BADGES)[number][]>(BADGES);
 
   return (
-    <div className="flex flex-wrap items-center gap-2">
-      {tags.map((tag) => (
+    <div className="flex flex-wrap items-center justify-center gap-4">
+      {badges.map(({ variant, label }) => (
         <Badge
-          key={tag}
-          variant="neutral"
-          size="lg"
-          onDismiss={() => setTags((current) => current.filter((t) => t !== tag))}
-          dismissLabel={`Remove ${tag}`}
+          key={variant}
+          variant={variant}
+          bordered
+          onDismiss={() => setBadges((current) => current.filter((b) => b.variant !== variant))}
+          dismissLabel={`Remove ${label}`}
         >
-          {tag}
+          {label}
         </Badge>
       ))}
-      {tags.length === 0 ? (
+      {badges.length === 0 ? (
         <button
           type="button"
-          className="text-muted-foreground text-sm underline underline-offset-4"
-          onClick={() => setTags(["React", "Tailwind CSS", "Accessibility", "Tokens"])}
+          className="text-fg-brand text-sm font-medium underline underline-offset-4"
+          onClick={() => setBadges(BADGES)}
         >
           Reset
         </button>

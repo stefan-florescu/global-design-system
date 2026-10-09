@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Badge",
   description:
-    "A small label for a status, count or category. It can also be a link or a removable chip.",
+    "Use badges to show counts or labels next to other elements, as links, or as removable chips.",
 };
 
 <PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
@@ -24,34 +24,54 @@ import { Badge } from "@stefan-florescu/ui";
 
 ## Examples
 
-### Default
+### Default badges
 
-Each variant uses its intent's `-subtle` surface and `-subtle-foreground` text; `neutral` uses
-`secondary`. All pairings pass WCAG 2.2 AA in both themes.
+Use badges to show counts or labels inside or outside other components. Choose the `variant` by
+meaning: `brand` is the default, `alternative` and `gray` are neutral, and `danger`, `success` and
+`warning` carry status.
 
 <ComponentPreview name="badge-demo" />
 
-### Large badges
+| Variant       | Tokens                                                                |
+| ------------- | --------------------------------------------------------------------- |
+| `brand`       | `brand-softer` · `fg-brand-strong` text · `brand-subtle` border       |
+| `alternative` | `neutral-primary-soft` · `heading` text · `default` border            |
+| `gray`        | `neutral-secondary-medium` · `heading` text · `default-medium` border |
+| `danger`      | `danger-soft` · `fg-danger-strong` text · `danger-subtle` border      |
+| `success`     | `success-soft` · `fg-success-strong` text · `success-subtle` border   |
+| `warning`     | `warning-soft` · `fg-warning` text · `warning-subtle` border          |
 
-Set `size="lg"` for larger text.
+### Bordered badges
 
-<ComponentPreview name="badge-large" />
-
-### Bordered
-
-Add `bordered` for a border in the badge's colour.
+Add `bordered` for a border in the variant's colour.
 
 <ComponentPreview name="badge-bordered" />
 
-### Pills
+### Large badges
+
+Set `size="lg"` for `text-sm` and larger padding.
+
+<ComponentPreview name="badge-large" />
+
+### Large bordered badges
+
+Large bordered badges draw an inset ring instead of a border, so they keep the large height.
+
+<ComponentPreview name="badge-large-bordered" />
+
+### Pill badges
 
 Add `pill` to round the ends.
 
 <ComponentPreview name="badge-pill" />
 
+### Pill bordered badges
+
+<ComponentPreview name="badge-pill-bordered" />
+
 ### Badges as links
 
-Pass `href` to render the badge as a link.
+Pass `href` to render the badge as a link. Links darken on hover and show a focus outline.
 
 <ComponentPreview name="badge-link" />
 
@@ -61,48 +81,90 @@ Put an icon before the label. Mark it `aria-hidden`; the text carries the meanin
 
 <ComponentPreview name="badge-icon" />
 
-### Notification badge
+### Large badges with icon
 
-Position a badge on another element to show a count. Hide the badge itself from assistive
-technology and put the count in the button's accessible name.
+<ComponentPreview name="badge-large-icon" />
 
-<ComponentPreview name="badge-notification" />
+### Badges with only icon
 
-### Badge with icon only
-
-Add `iconOnly` for a round badge with just an icon. Include visually hidden text so it has a name.
+Add `iconOnly` for a round badge with just an icon: 20px, or 24px with `size="lg"`. Include
+visually hidden text so it has a name.
 
 <ComponentPreview name="badge-icon-only" />
 
-### Dismissible badges
+### Large badges with only icon
 
-Pass `onDismiss` to add a remove button, for example for filter chips. Remove the badge from
-your state when it is called. This example needs a client component for the state.
+<ComponentPreview name="badge-large-icon-only" />
+
+### Badges with dot
+
+Add `dot` to show a dot in the label colour before the content.
+
+<ComponentPreview name="badge-dot" />
+
+### Badges with loader
+
+Put a spinning `LoaderCircle` before the label. The spinner stops when the user prefers reduced
+motion.
+
+<ComponentPreview name="badge-loader" />
+
+### Dismissible badges (chips)
+
+Pass `onDismiss` to add a remove button, for example for tags inside an input. Remove the badge
+from your state when it is called, and name the button with `dismissLabel`. This example needs a
+client component for the state.
 
 <ComponentPreview name="badge-dismissible" />
+
+### Chips with avatar
+
+Put a 14px avatar image before the label of a dismissible badge.
+
+<ComponentPreview name="badge-avatar" />
+
+### Notification badge
+
+Position a badge on a button to show a count. Hide the badge from assistive technology and put
+the count in the button's accessible name.
+
+<ComponentPreview name="badge-notification" />
+
+### Button with badge
+
+Add a count inside a button. As above, the count is part of the button's `aria-label`.
+
+<ComponentPreview name="badge-button" />
 
 ## Accessibility
 
 - A badge is plain text in a `<span>` (or an `<a>` with `href`). Its content is its label, so
   write labels that make sense on their own.
-- Don't rely on colour alone: "Failed" in a destructive badge is clear; a red badge without text
-  is not.
+- Don't rely on colour alone: "Failed" in a danger badge is clear; a red badge without text is not.
+  Icon-only badges need visually hidden text.
+- Every label and fill pairing passes WCAG 2.2 AA in light and dark, as in Flowbite.
 - The remove button is a native `<button>` named "Remove". Use `dismissLabel` to say what is
   removed, such as "Remove React".
-- Links and remove buttons show a focus ring on keyboard focus.
+- Links and remove buttons draw a solid 2px `ring` outline on keyboard focus; Flowbite has none.
+- Flowbite's notification and count badges use white text on `danger`; ours use
+  `danger-foreground`, which is checked against `danger` on every token build.
+- The loader and the dot are decorative and hidden from assistive technology. The spinner respects
+  `prefers-reduced-motion`.
 
 ## API Reference
 
-| Prop           | Type                                                                        | Default    |
-| -------------- | --------------------------------------------------------------------------- | ---------- |
-| `variant`      | `"brand" \| "neutral" \| "info" \| "success" \| "warning" \| "destructive"` | `"brand"`  |
-| `size`         | `"sm" \| "lg"`                                                              | `"sm"`     |
-| `bordered`     | `boolean`                                                                   | `false`    |
-| `pill`         | `boolean`                                                                   | `false`    |
-| `iconOnly`     | `boolean`                                                                   | `false`    |
-| `href`         | `string`                                                                    | —          |
-| `onDismiss`    | `() => void`                                                                | —          |
-| `dismissLabel` | `string`                                                                    | `"Remove"` |
+| Prop           | Type                                                                       | Default    |
+| -------------- | -------------------------------------------------------------------------- | ---------- |
+| `variant`      | `"brand" \| "alternative" \| "gray" \| "danger" \| "success" \| "warning"` | `"brand"`  |
+| `size`         | `"sm" \| "lg"`                                                             | `"sm"`     |
+| `bordered`     | `boolean`                                                                  | `false`    |
+| `pill`         | `boolean`                                                                  | `false`    |
+| `iconOnly`     | `boolean`. Add visually hidden text.                                       | `false`    |
+| `dot`          | `boolean`                                                                  | `false`    |
+| `href`         | `string`. Renders an `<a>`.                                                | —          |
+| `onDismiss`    | `() => void`. Adds a remove button.                                        | —          |
+| `dismissLabel` | `string`                                                                   | `"Remove"` |
+| `className`    | `string`. Merged with `cn()`; your classes win.                            | —          |
 
 All other native attributes are forwarded. `badgeVariants()` returns the class names for custom
 elements.

@@ -1,10 +1,14 @@
-import { Fieldset, Radio } from "@stefan-florescu/ui";
+import { useId } from "react";
+
+import { Radio } from "@stefan-florescu/ui";
 
 export default function RadioDisabled() {
+  const name = useId();
+
   return (
-    <Fieldset legend="Delivery">
-      <Radio name="delivery" value="standard" label="Standard" disabled />
-      <Radio name="delivery" value="express" label="Express" disabled defaultChecked />
-    </Fieldset>
+    <div>
+      <Radio name={name} label="Disabled radio" disabled className="mb-4" />
+      <Radio name={name} label="Disabled checked" disabled defaultChecked />
+    </div>
   );
 }

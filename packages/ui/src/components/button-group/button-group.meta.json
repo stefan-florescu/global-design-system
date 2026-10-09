@@ -7,9 +7,31 @@
   "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/button/",
   "client": false,
   "props": "generated",
-  "variants": { "pill": [true, false] },
-  "defaults": { "pill": false },
-  "tokens": ["radius.lg", "radius.full", "z.raised"],
+  "variants": {
+    "orientation": ["horizontal", "vertical"],
+    "outline": [true, false],
+    "pill": [true, false]
+  },
+  "defaults": {
+    "orientation": "horizontal",
+    "outline": false,
+    "pill": false
+  },
+  "tokens": [
+    "radius.base",
+    "radius.full",
+    "shadow.xs",
+    "color.dark-strong",
+    "color.dark",
+    "color.dark-foreground",
+    "color.neutral-primary",
+    "color.heading",
+    "color.brand-strong",
+    "color.success-strong",
+    "color.danger-strong",
+    "color.warning-strong",
+    "z.raised"
+  ],
   "useWhen": [
     "Two to five related actions on the same object",
     "Switching between related views with links"
@@ -18,9 +40,15 @@
   "related": ["Button"],
   "examples": [
     "apps/storybook/registry/demos/button-group-demo.tsx",
-    "apps/storybook/registry/demos/button-group-links.tsx",
+    "apps/storybook/registry/demos/button-group-info.tsx",
+    "apps/storybook/registry/demos/button-group-icon-action.tsx",
     "apps/storybook/registry/demos/button-group-icons.tsx",
-    "apps/storybook/registry/demos/button-group-outline.tsx",
-    "apps/storybook/registry/demos/button-group-outline-icons.tsx"
+    "apps/storybook/registry/demos/button-group-qr-code.tsx",
+    "apps/storybook/registry/demos/button-group-pagination.tsx",
+    "apps/storybook/registry/demos/button-group-vertical.tsx",
+    "apps/storybook/registry/demos/button-group-colors.tsx",
+    "apps/storybook/registry/demos/button-group-links.tsx",
+    "apps/storybook/registry/demos/button-group-with-icons.tsx",
+    "apps/storybook/registry/demos/button-group-outline.tsx"
   ]
 }

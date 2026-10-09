@@ -3,23 +3,25 @@ import { Banner } from "@stefan-florescu/ui";
 
 export default function BannerDemo() {
   return (
-    <div className="border-border bg-background relative h-60 w-full transform-gpu overflow-hidden rounded-lg border">
+    <div className="border-default bg-neutral-primary rounded-base relative h-60 w-full transform-gpu overflow-hidden border">
       {/* The frame stands in for the browser window, so the fixed banner stays inside it. */}
       <Banner dismissible>
-        <p className="flex items-center gap-3">
-          <span className="bg-brand-subtle text-brand-subtle-foreground inline-flex size-7 shrink-0 items-center justify-center rounded-full [&_svg]:size-4">
-            <Megaphone aria-hidden />
-          </span>
-          <span>
-            New: the Button and Accordion components are available.{" "}
-            <a
-              href="/changelog"
-              className="text-brand-subtle-foreground font-medium underline underline-offset-2 hover:no-underline"
-            >
-              See what&apos;s new
-            </a>
-          </span>
-        </p>
+        <div className="mx-auto flex items-center">
+          <p className="flex items-center">
+            <span className="bg-neutral-tertiary me-2.5 inline-flex size-6 shrink-0 items-center justify-center rounded-full">
+              <Megaphone aria-hidden className="text-body size-3.5" />
+            </span>
+            <span>
+              New brand identity has been launched for the{" "}
+              <a
+                href="/changelog"
+                className="text-fg-brand inline font-medium underline hover:no-underline"
+              >
+                Stefan Design System
+              </a>
+            </span>
+          </p>
+        </div>
       </Banner>
     </div>
   );

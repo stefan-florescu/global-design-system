@@ -1,10 +1,14 @@
-import { Fieldset, Radio } from "@stefan-florescu/ui";
+import { useId } from "react";
+
+import { Radio } from "@stefan-florescu/ui";
 
 export default function RadioBordered() {
+  const name = useId();
+
   return (
-    <Fieldset legend="Billing" className="w-full max-w-sm">
-      <Radio name="billing" value="monthly" label="Monthly" bordered defaultChecked />
-      <Radio name="billing" value="yearly" label="Yearly (save 20%)" bordered />
-    </Fieldset>
+    <div className="grid w-full gap-6 md:grid-cols-2">
+      <Radio variant="bordered" name={name} label="Default radio" />
+      <Radio variant="bordered" name={name} label="Checked state" defaultChecked />
+    </div>
   );
 }

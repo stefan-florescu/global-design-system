@@ -96,14 +96,14 @@ describe("Button", () => {
     render(<Button className="w-full rounded-none">Save</Button>);
     const button = screen.getByRole("button", { name: "Save" });
     expect(button).toHaveClass("w-full", "rounded-none");
-    expect(button).not.toHaveClass("rounded-lg");
+    expect(button).not.toHaveClass("rounded-base");
   });
 
-  it("uses semantic tokens for fills and outlines", () => {
+  it("uses Flowbite's semantic tokens for fills and outlines", () => {
     render(
       <>
         <Button>Brand</Button>
-        <Button variant="destructive" outline>
+        <Button variant="danger" outline>
           Delete
         </Button>
       </>,
@@ -111,11 +111,25 @@ describe("Button", () => {
     expect(screen.getByRole("button", { name: "Brand" })).toHaveClass(
       "bg-brand",
       "text-brand-foreground",
+      "hover:bg-brand-strong",
+      "focus:ring-brand-medium",
     );
     const outline = screen.getByRole("button", { name: "Delete" });
-    expect(outline).toHaveClass("border-current", "bg-transparent");
-    expect(outline).toHaveClass("text-destructive-subtle-foreground");
-    expect(outline).not.toHaveClass("bg-destructive", "text-destructive-foreground");
+    expect(outline).toHaveClass("border-danger", "bg-neutral-primary", "text-fg-danger");
+    expect(outline).not.toHaveClass("bg-danger", "text-danger-foreground", "shadow-xs");
+  });
+
+  it("keeps its colours while loading and greys out when disabled", () => {
+    render(
+      <>
+        <Button loading>Saving</Button>
+        <Button disabled>Off</Button>
+      </>,
+    );
+    expect(screen.getByRole("button", { name: "Saving" })).toHaveAttribute("aria-busy", "true");
+    expect(screen.getByRole("button", { name: "Off" })).toHaveClass(
+      "disabled:not-aria-busy:bg-disabled",
+    );
   });
 
   it("only allows outline on intents that have a filled surface", () => {
@@ -131,16 +145,15 @@ describe("Button", () => {
 
 describe("buttonVariants", () => {
   it("styles other elements, such as links", () => {
-    const classes = buttonVariants({ variant: "outline", size: "sm" });
-    expect(classes).toContain("border-border");
-    expect(classes).toContain("h-9");
+    const classes = buttonVariants({ variant: "tertiary", size: "sm" });
+    expect(classes).toContain("border-default");
+    expect(classes).toContain("py-2");
   });
 
-  it("lets the link variant size to its text", () => {
-    const classes = buttonVariants({ variant: "link", size: "lg" }).split(" ");
-    expect(classes).toContain("h-auto");
-    expect(classes).not.toContain("h-12");
-    expect(classes).toContain("px-0");
-    expect(classes).not.toContain("px-5");
+  it("makes icon-only buttons square", () => {
+    const classes = buttonVariants({ iconOnly: true, size: "md" }).split(" ");
+    expect(classes).toContain("size-10");
+    expect(classes).toContain("p-0");
+    expect(classes).not.toContain("px-4");
   });
 });

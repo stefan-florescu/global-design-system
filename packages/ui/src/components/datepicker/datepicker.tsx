@@ -1,48 +1,76 @@
 "use client";
 
-import { Calendar as CalendarIcon } from "@stefan-florescu/icons";
-import { useEffect, useId, useState, type ComponentProps } from "react";
+import { useState, type ReactNode } from "react";
 
-import { cn } from "../../lib/cn";
 import { Button } from "../button";
 
 import { Calendar, type CalendarProps } from "./calendar";
-import { startOfDay, toISODate } from "./date-utils";
-import { datepickerFooterClassName, datepickerPopoverClassName } from "./datepicker.variants";
+import { DatepickerField, type DatepickerFieldOptions } from "./datepicker-field";
+import { startOfDay } from "./date-utils";
+import { calendarFooterButtonClassName, calendarFooterClassName } from "./datepicker.variants";
 
-type SharedCalendarProps = Pick<
+export type SharedCalendarProps = Pick<
   CalendarProps,
-  "min" | "max" | "isDateDisabled" | "weekStartsOn" | "locale" | "title"
+  "min" | "max" | "isDateDisabled" | "weekStartsOn" | "title"
 >;
 
-export type DatepickerProps = Omit<ComponentProps<"div">, "onChange" | "defaultValue" | "title"> &
-  SharedCalendarProps & {
+export type DatepickerActionsProps = {
+  /** Close the calendar as soon as a day is picked (Flowbite's `datepicker-autohide`). */
+  autoHide?: boolean;
+  /** Show Flowbite's "Today" and "Clear" buttons under the calendar. */
+  showButtons?: boolean;
+  todayLabel?: string;
+  clearLabel?: string;
+};
+
+export type DatepickerProps = DatepickerFieldOptions &
+  SharedCalendarProps &
+  DatepickerActionsProps & {
     /** The selected day (controlled). */
     value?: Date | null;
     /** The day selected on first render (uncontrolled). */
     defaultValue?: Date | null;
     /** Called with the new day, or `null` when cleared. */
     onChange?: (date: Date | null) => void;
-    /** What the date is for, such as "Departure". Names the button and the calendar. */
+    /** What the date is for, such as "Departure". Names the field and the calendar. */
     label?: string;
     /** Text shown when no day is selected. */
     placeholder?: string;
-    /** Close the calendar as soon as a day is picked. */
-    autoHide?: boolean;
-    /** Show a "Today" button under the calendar. */
-    showTodayButton?: boolean;
-    /** Show a "Clear" button under the calendar. */
-    showClearButton?: boolean;
-    todayLabel?: string;
-    clearLabel?: string;
     /** Submit the day with a form as yyyy-mm-dd under this name. */
     name?: string;
-    disabled?: boolean;
+    /** The field's id, for a `<Label htmlFor>`. */
+    id?: string;
+    /** Classes for the field's wrapper, such as a width. */
+    className?: string;
   };
 
+/** The Today / Clear footer shared by Datepicker and DateRangePicker. */
+export function renderDatepickerButtons(
+  { showButtons, todayLabel = "Today", clearLabel = "Clear" }: DatepickerActionsProps,
+  onToday: () => void,
+  onClear: () => void,
+): ReactNode {
+  if (!showButtons) return null;
+  return (
+    <div className={calendarFooterClassName}>
+      <Button size="sm" className={calendarFooterButtonClassName} onClick={onToday}>
+        {todayLabel}
+      </Button>
+      <Button
+        size="sm"
+        variant="secondary"
+        className={calendarFooterButtonClassName}
+        onClick={onClear}
+      >
+        {clearLabel}
+      </Button>
+    </div>
+  );
+}
+
 /**
- * A button that opens a calendar in a popover to pick a day. Escape or a click outside closes
- * it and returns focus to the button.
+ * Flowbite's datepicker: a text field with a calendar icon. Type a date in `format`, or press the
+ * field (or Arrow Down) to pick one from the calendar. Escape or a click outside closes it.
  */
 export function Datepicker({
   value,
@@ -50,162 +78,78 @@ export function Datepicker({
   onChange,
   label = "Date",
   placeholder = "Select date",
-  autoHide = true,
-  showTodayButton = false,
-  showClearButton = false,
-  todayLabel = "Today",
-  clearLabel = "Clear",
   name,
+  id,
+  format,
+  locale,
+  orientation,
   disabled,
+  autoHide = false,
+  showButtons = false,
+  todayLabel,
+  clearLabel,
   min,
   max,
   isDateDisabled,
   weekStartsOn,
-  locale,
   title,
   className,
-  ...props
 }: DatepickerProps) {
   const [internal, setInternal] = useState<Date | null>(defaultValue);
   const selected = value !== undefined ? value : internal;
-  const [open, setOpen] = useState(false);
-  const id = useId();
-  const rootId = `${id}-root`;
-  const triggerId = `${id}-trigger`;
-  const popoverId = `${id}-popover`;
-
-  const display = selected
-    ? new Intl.DateTimeFormat(locale, { dateStyle: "medium" }).format(selected)
-    : placeholder;
-
-  const focusTrigger = () => document.getElementById(triggerId)?.focus();
-
-  const close = (returnFocus: boolean) => {
-    setOpen(false);
-    if (returnFocus) requestAnimationFrame(focusTrigger);
-  };
+  // Remount the calendar on its month when a date is typed into the field.
+  const [typed, setTyped] = useState(0);
 
   const commit = (date: Date | null) => {
     if (value === undefined) setInternal(date);
     onChange?.(date);
   };
 
-  // While open: close on a click outside, when focus leaves, or on Escape (returning focus).
-  // Native listeners, because the wrapper and the dialog are not interactive elements.
-  useEffect(() => {
-    if (!open) return;
-    const root = document.getElementById(rootId);
-    if (!root) return;
-    const onPointerDown = (event: PointerEvent) => {
-      if (!root.contains(event.target as Node)) setOpen(false);
-    };
-    const onFocusOut = (event: FocusEvent) => {
-      if (event.relatedTarget && !root.contains(event.relatedTarget as Node)) setOpen(false);
-    };
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key !== "Escape") return;
-      event.stopPropagation();
-      setOpen(false);
-      requestAnimationFrame(() => document.getElementById(triggerId)?.focus());
-    };
-    document.addEventListener("pointerdown", onPointerDown);
-    root.addEventListener("focusout", onFocusOut);
-    root.addEventListener("keydown", onKeyDown);
-    return () => {
-      document.removeEventListener("pointerdown", onPointerDown);
-      root.removeEventListener("focusout", onFocusOut);
-      root.removeEventListener("keydown", onKeyDown);
-    };
-  }, [open, rootId, triggerId]);
-
   return (
-    <div
-      id={rootId}
-      data-slot="datepicker"
-      className={cn("relative inline-block", className)}
-      {...props}
+    <DatepickerField
+      id={id}
+      date={selected}
+      onCommit={(date) => {
+        commit(date);
+        setTyped((count) => count + 1);
+      }}
+      label={label}
+      placeholder={placeholder}
+      name={name}
+      format={format}
+      locale={locale}
+      orientation={orientation}
+      disabled={disabled}
+      rootClassName={className}
     >
-      <Button
-        id={triggerId}
-        variant="outline"
-        disabled={disabled}
-        aria-label={`${label}, ${display}`}
-        aria-haspopup="dialog"
-        aria-expanded={open}
-        aria-controls={open ? popoverId : undefined}
-        className="justify-start font-normal"
-        onClick={() => {
-          setOpen((current) => !current);
-          if (!open) {
-            requestAnimationFrame(() =>
-              document
-                .getElementById(popoverId)
-                ?.querySelector<HTMLButtonElement>('[data-date][tabindex="0"]')
-                ?.focus(),
-            );
-          }
-        }}
-      >
-        <CalendarIcon aria-hidden />
-        <span className={selected ? undefined : "text-muted-foreground"}>{display}</span>
-      </Button>
-      {name ? (
-        <input type="hidden" name={name} value={selected ? toISODate(selected) : ""} />
-      ) : null}
-      {open ? (
-        <div
-          id={popoverId}
-          role="dialog"
-          aria-modal="false"
-          aria-label={`Choose ${label.toLowerCase()}`}
-          className={datepickerPopoverClassName}
+      {(close) => (
+        <Calendar
+          key={typed}
+          value={selected}
+          onChange={(date) => {
+            commit(date);
+            if (autoHide) close(true);
+          }}
+          min={min}
+          max={max}
+          isDateDisabled={isDateDisabled}
+          weekStartsOn={weekStartsOn}
+          locale={locale}
+          title={title}
         >
-          <Calendar
-            value={selected}
-            onChange={(date) => {
-              commit(date);
-              if (autoHide) close(true);
-            }}
-            min={min}
-            max={max}
-            isDateDisabled={isDateDisabled}
-            weekStartsOn={weekStartsOn}
-            locale={locale}
-            title={title}
-            className="shadow-lg"
-          >
-            {showTodayButton || showClearButton ? (
-              <div className={datepickerFooterClassName}>
-                {showTodayButton ? (
-                  <Button
-                    size="sm"
-                    fullWidth
-                    onClick={() => {
-                      commit(startOfDay(new Date()));
-                      close(true);
-                    }}
-                  >
-                    {todayLabel}
-                  </Button>
-                ) : null}
-                {showClearButton ? (
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    fullWidth
-                    onClick={() => {
-                      commit(null);
-                      close(true);
-                    }}
-                  >
-                    {clearLabel}
-                  </Button>
-                ) : null}
-              </div>
-            ) : null}
-          </Calendar>
-        </div>
-      ) : null}
-    </div>
+          {renderDatepickerButtons(
+            { showButtons, todayLabel, clearLabel },
+            () => {
+              commit(startOfDay(new Date()));
+              close(true);
+            },
+            () => {
+              commit(null);
+              close(true);
+            },
+          )}
+        </Calendar>
+      )}
+    </DatepickerField>
   );
 }

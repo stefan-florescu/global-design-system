@@ -10,8 +10,16 @@ describe("FileInput", () => {
     const user = userEvent.setup();
     render(<FileInput aria-label="Avatar" />);
     const input = screen.getByLabelText("Avatar") as HTMLInputElement;
+    expect(input).toHaveAttribute("type", "file");
     await user.upload(input, file);
     expect(input.files?.[0]).toBe(file);
+  });
+
+  it("applies the size and invalid state", () => {
+    render(<FileInput aria-label="Avatar" size="lg" invalid />);
+    const input = screen.getByLabelText("Avatar");
+    expect(input).toHaveClass("text-lg");
+    expect(input).toHaveAttribute("aria-invalid", "true");
   });
 });
 
@@ -21,7 +29,13 @@ describe("FileDropzone", () => {
     render(<FileDropzone description="PNG or JPG, up to 2 MB" accept="image/*" />);
     const input = screen.getByLabelText(/Click to upload/) as HTMLInputElement;
     expect(input).toHaveAttribute("type", "file");
+    expect(input).toHaveAttribute("accept", "image/*");
     await user.upload(input, file);
     expect(input.files?.[0]).toBe(file);
+  });
+
+  it("can be disabled", () => {
+    render(<FileDropzone disabled />);
+    expect(screen.getByLabelText(/Click to upload/)).toBeDisabled();
   });
 });

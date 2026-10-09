@@ -19,57 +19,108 @@ import { Button, ButtonGroup } from "@stefan-florescu/ui";
 
 ```tsx
 <ButtonGroup aria-label="Account">
-  <Button variant="outline">Profile</Button>
-  <Button variant="outline">Settings</Button>
+  <Button variant="tertiary" size="sm">
+    Profile
+  </Button>
+  <Button variant="tertiary" size="sm">
+    Settings
+  </Button>
 </ButtonGroup>
 ```
 
+`ButtonGroup` joins whatever `Button`s you put inside it: only the outer corners stay rounded,
+neighbouring borders overlap into one line, and the group draws the shadow. Flowbite's grouped
+buttons are `variant="tertiary"` at `size="sm"`.
+
 ## Examples
 
-### Default
-
-Wrap `Button`s in a `ButtonGroup`. Only the outer corners stay rounded, and neighbouring borders
-overlap into a single line.
+### Default example
 
 <ComponentPreview name="button-group-demo" />
 
-### More examples
+### Button group info
+
+Pair a button with a count. The count is text, not an action, so it is a `<span>` styled with
+`buttonVariants()` and the button's `aria-label` includes it.
+
+<ComponentPreview name="button-group-info" />
+
+### Button group icon action
+
+<ComponentPreview name="button-group-icon-action" />
+
+### Button group icons
+
+Icon-only buttons are 36px squares with a 16px icon. Each needs an `aria-label`.
+
+<ComponentPreview name="button-group-icons" />
+
+### QR code button group
+
+<ComponentPreview name="button-group-qr-code" />
+
+### Pagination button group
+
+<ComponentPreview name="button-group-pagination" />
+
+### Vertical button groups
+
+Set `orientation="vertical"` to stack the buttons. Give the group a width to make the buttons fill
+it.
+
+<ComponentPreview name="button-group-vertical" />
+
+### Button group with colors
+
+Any button variant works. Neighbouring filled buttons of the same colour are split by a line in
+their `*-strong` colour, as in Flowbite.
+
+<ComponentPreview name="button-group-colors" />
+
+### Button group as links
 
 Links styled with `buttonVariants()` group the same way. Use links when each item goes to another
-page.
+page, and mark the current one with `aria-current="page"`.
 
 <ComponentPreview name="button-group-links" />
 
 ### Group buttons with icons
 
-<ComponentPreview name="button-group-icons" />
+<ComponentPreview name="button-group-with-icons" />
 
-### Outline
+### Button group outline
 
-Use any button style, for example `variant="primary"` with `outline`.
+Add `outline` for Flowbite's dark outline style: `dark-strong` borders that fill with `dark` on
+hover.
 
 <ComponentPreview name="button-group-outline" />
 
-### Outline with icons
-
-<ComponentPreview name="button-group-outline-icons" />
+Flowbite's "Button group dropdown" and "Button group badge" examples open a dropdown menu, which
+the design system doesn't have yet, so they are not shown.
 
 ## Accessibility
 
 - Renders `role="group"`. Give it an `aria-label` that names the set, such as "Account" or "Text
   alignment", so screen readers announce it when focus enters.
 - Every button stays a separate tab stop with its own name and keyboard behaviour.
-- The focused button moves to the `z.raised` layer, so its focus ring is never hidden behind a
-  neighbour.
+- Flowbite marks counts and labels inside a group (`456k`, "Save book", the QR mark) as disabled
+  buttons. Here they are `<span>`s hidden from assistive technology, and the meaning moves into the
+  neighbouring button's name, so screen readers don't announce an unusable button.
+- Keyboard focus adds the solid `ring` outline to Flowbite's `ring-3` halo, and the focused button
+  moves to the `z.raised` layer so the outline is never hidden behind a neighbour.
+- Flowbite's tooltips on icon buttons are replaced by `aria-label`s until a tooltip component
+  exists.
 - A button group is for actions. To choose one option from a set, use a radio group or tabs,
   which announce the selected state.
 
 ## API Reference
 
-| Prop         | Type      | Default |
-| ------------ | --------- | ------- |
-| `pill`       | `boolean` | `false` |
-| `aria-label` | `string`  | —       |
+| Prop          | Type                         | Default        |
+| ------------- | ---------------------------- | -------------- |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` |
+| `outline`     | `boolean`                    | `false`        |
+| `pill`        | `boolean`                    | `false`        |
+| `aria-label`  | `string`                     | —              |
 
-All other `<div>` attributes are forwarded, including `ref` and `className`. Size and style come
-from the buttons inside.
+All other `<div>` attributes are forwarded, including `ref` and `className`. Size and colour come
+from the buttons inside; `outline` restyles them as Flowbite's outline group.

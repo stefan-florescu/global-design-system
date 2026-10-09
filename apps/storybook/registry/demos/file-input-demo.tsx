@@ -7,11 +7,9 @@ export default function FileInputDemo() {
   const id = useId();
 
   return (
-    <div className="grid w-full max-w-sm gap-6">
-      <div className="grid gap-2">
-        <Label htmlFor={`${id}-upload`}>Upload file</Label>
-        <FileInput id={`${id}-upload`} />
-      </div>
+    <div className="w-full">
+      <Label htmlFor={`${id}-file-input`}>Upload file</Label>
+      <FileInput id={`${id}-file-input`} />
     </div>
   );
 }

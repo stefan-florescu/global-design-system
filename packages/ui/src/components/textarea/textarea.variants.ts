@@ -1,2 +1,5 @@
-/* Multi-line field: the shared field styles with auto height, vertical padding and resizing. */
-export const textareaClassName = "h-auto min-h-24 resize-y py-2.5 leading-relaxed";
+/*
+ * Flowbite v4 textarea (https://flowbite.com/docs/forms/textarea/): the shared field styles
+ * (see input.variants.ts) with Flowbite's even `p-3.5` padding. Flowbite has a single size.
+ */
+export const textareaClassName = "p-3.5";

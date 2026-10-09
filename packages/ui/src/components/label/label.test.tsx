@@ -13,6 +13,28 @@ describe("Label", () => {
     expect(screen.getByRole("textbox", { name: "Email" })).toBeInTheDocument();
   });
 
+  it("uses Flowbite's label styles", () => {
+    render(<Label htmlFor="x">Name</Label>);
+    expect(screen.getByText("Name")).toHaveClass(
+      "block",
+      "mb-2.5",
+      "text-sm",
+      "font-medium",
+      "text-heading",
+    );
+  });
+
+  it("colours the label for validation states", () => {
+    render(
+      <>
+        <Label variant="success">Valid</Label>
+        <Label variant="danger">Invalid</Label>
+      </>,
+    );
+    expect(screen.getByText("Valid")).toHaveClass("text-fg-success-strong");
+    expect(screen.getByText("Invalid")).toHaveClass("text-fg-danger-strong");
+  });
+
   it("shows a decorative required marker", () => {
     render(
       <>

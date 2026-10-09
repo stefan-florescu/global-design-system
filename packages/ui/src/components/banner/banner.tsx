@@ -5,7 +5,12 @@ import { useState, type ComponentProps } from "react";
 
 import { cn } from "../../lib/cn";
 
-import { bannerDismissClassName, bannerVariants, type BannerVariantProps } from "./banner.variants";
+import {
+  bannerDismissClassName,
+  bannerDismissWrapperClassName,
+  bannerVariants,
+  type BannerVariantProps,
+} from "./banner.variants";
 
 export type BannerProps = ComponentProps<"section"> &
   BannerVariantProps & {
@@ -41,19 +46,21 @@ export function Banner({
       className={cn(bannerVariants({ position, floating }), className)}
       {...props}
     >
-      <div className="flex min-w-0 flex-1 flex-wrap items-center gap-x-4 gap-y-3">{children}</div>
+      {children}
       {dismissible ? (
-        <button
-          type="button"
-          aria-label={dismissLabel}
-          className={bannerDismissClassName}
-          onClick={() => {
-            setDismissed(true);
-            onDismiss?.();
-          }}
-        >
-          <X aria-hidden />
-        </button>
+        <div className={bannerDismissWrapperClassName}>
+          <button
+            type="button"
+            aria-label={dismissLabel}
+            className={bannerDismissClassName}
+            onClick={() => {
+              setDismissed(true);
+              onDismiss?.();
+            }}
+          >
+            <X aria-hidden />
+          </button>
+        </div>
       ) : null}
     </section>
   );

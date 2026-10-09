@@ -1,6 +1,7 @@
 export const metadata = {
   title: "Toggle",
-  description: "An on/off switch for settings that take effect immediately.",
+  description:
+    "An on/off switch for settings that take effect immediately, in two sizes, with labels, icons or as a card.",
 };
 
 <PageHeader {...metadata} section="Forms" badges={[{ label: "Beta", variant: "secondary" }]} />
@@ -23,41 +24,87 @@ import { Toggle } from "@stefan-florescu/ui";
 
 ## Examples
 
-### Default toggle
+### Toggle example
+
+A switch with a label. The whole label is the click target.
 
 <ComponentPreview name="toggle-demo" />
 
 ### Checked state
 
+Set `defaultChecked` (or `checked` with `onChange`) to turn it on.
+
 <ComponentPreview name="toggle-checked" />
 
 ### Disabled state
 
+Add `disabled` to stop the user from changing it. The off track turns `neutral-tertiary` and the
+label `fg-disabled`.
+
 <ComponentPreview name="toggle-disabled" />
+
+### Double labels
+
+Put a label on each side. Link both with `htmlFor` so either toggles the switch, and give the
+switch an `aria-label` that says what "on" means.
+
+<ComponentPreview name="toggle-double-labels" />
+
+### Toggle with icons
+
+Icons on either side work the same way: mark them `aria-hidden` and name the switch with
+`aria-label`.
+
+<ComponentPreview name="toggle-icons" />
+
+### Toggle card
+
+`bordered` puts the switch, a title and its `description` in a card.
+
+<ComponentPreview name="toggle-card" />
+
+### Toggle card with icon
+
+Add an `icon`: the text moves before the switch and the icon sits above it.
+
+<ComponentPreview name="toggle-card-icon" />
 
 ### Sizes
 
+Two sizes: `md` (Flowbite's "base") is the default.
+
 <ComponentPreview name="toggle-sizes" />
 
-### With description
-
-<ComponentPreview name="toggle-description" />
+| Size | Track | Knob |
+| ---- | ----- | ---- |
+| `md` | 36×20 | 16px |
+| `lg` | 44×24 | 20px |
 
 ## Accessibility
 
 - A native checkbox with `role="switch"`: screen readers announce "switch, on/off", <kbd>Space</kbd>
   toggles it, and it submits with forms like a checkbox.
-- The off track uses the `input` colour and the on track `brand`, both 3:1 against the page; the
-  knob position shows the state without relying on colour.
+- The off track is the `input` colour instead of Flowbite's `neutral-quaternary`, which is under
+  3:1 against the page; the on track is `brand`. Both reach 3:1 (WCAG 1.4.11), and the knob position
+  shows the state without relying on colour.
+- Focus shows Flowbite's soft `brand-soft` halo; keyboard focus also draws a solid 2px `ring`
+  outline, because the halo alone is under 3:1.
+- The knob stops animating when the user prefers reduced motion.
+- With a `description`, the title names the switch and the description is read as its description.
 - Use a toggle for settings that apply at once. For choices confirmed by a submit button, use a
   checkbox.
+- Not ported: Flowbite's _Colors_ example (uses palette colours we have no tokens for). The card
+  with icon shows a generic icon instead of Flowbite's brand logo.
 
 ## API Reference
 
-| Prop          | Type                   | Default |
-| ------------- | ---------------------- | ------- |
-| `label`       | `ReactNode`            | —       |
-| `description` | `ReactNode`            | —       |
-| `size`        | `"sm" \| "md" \| "lg"` | `"md"`  |
+| Prop          | Type                                  | Default |
+| ------------- | ------------------------------------- | ------- |
+| `label`       | `ReactNode`                           | —       |
+| `description` | `ReactNode`                           | —       |
+| `size`        | `"md" \| "lg"`                        | `"md"`  |
+| `bordered`    | `boolean`                             | `false` |
+| `icon`        | `ReactNode` (shown before the switch) | —       |
 
-All other `<input>` attributes are forwarded, such as `name`, `checked` and `defaultChecked`.
+All other `<input>` attributes are forwarded, such as `name`, `checked`, `defaultChecked` and
+`disabled`. `className` styles the outer `<label>`.

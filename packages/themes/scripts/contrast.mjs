@@ -14,34 +14,52 @@ const pair = (fg, bg, min = TEXT) => [
 ];
 
 export const PAIRS = [
-  // Text on its own surface
-  pair("foreground", "background"),
-  pair("card-foreground", "card"),
-  pair("popover-foreground", "popover"),
-  pair("accent-foreground", "accent"),
-  pair("muted-foreground", "background"),
-  pair("muted-foreground", "muted"),
-  pair("muted-foreground", "card"),
-  pair("brand", "background", NON_TEXT), // a fill and indicator colour, never body text
-  // Labels on filled and subtle pairs
-  ...["primary", "secondary", "brand", "success", "warning", "destructive", "info"].map((name) =>
+  // Text on the surfaces it sits on
+  ...[
+    "neutral-primary",
+    "neutral-primary-soft",
+    "neutral-primary-medium",
+    "neutral-secondary-medium",
+    "neutral-tertiary",
+    "neutral-tertiary-medium",
+  ].map((surface) => pair("heading", surface)),
+  // Body text; on neutral-tertiary-medium (a hover fill) the label switches to heading
+  ...[
+    "neutral-primary",
+    "neutral-primary-soft",
+    "neutral-primary-medium",
+    "neutral-secondary-medium",
+    "neutral-tertiary",
+  ].map((surface) => pair("body", surface)),
+  pair("body-subtle", "neutral-primary"),
+  pair("body-subtle", "neutral-primary-soft"),
+  pair("fg-brand", "neutral-primary"),
+  pair("fg-brand", "neutral-primary-soft"),
+  pair("fg-success", "neutral-primary"),
+  pair("fg-danger", "neutral-primary"),
+  // Labels on filled buttons, at rest and on hover
+  ...["brand", "success", "danger", "warning", "dark"].flatMap((name) => [
     pair(`${name}-foreground`, name),
-  ),
-  ...["brand", "success", "warning", "destructive", "info"].map((name) =>
-    pair(`${name}-subtle-foreground`, `${name}-subtle`),
-  ),
-  // Outline button labels sit on the page background
-  ...["brand", "success", "warning", "destructive", "info"].map((name) =>
-    pair(`${name}-subtle-foreground`, "background"),
-  ),
+    pair(`${name}-foreground`, `${name}-strong`),
+  ]),
+  // Text on soft (tinted) surfaces: badges, alerts
+  pair("fg-brand-strong", "brand-softer"),
+  pair("fg-success-strong", "success-soft"),
+  pair("fg-danger-strong", "danger-soft"),
+  pair("fg-warning", "warning-soft"),
   // Code surface
   pair("code-foreground", "code-bg"),
   ...["tag", "attr", "string", "keyword", "fn", "comment"].map((name) =>
     pair(`syntax-${name}`, "code-bg"),
   ),
-  // Control boundaries and focus indicators
-  pair("input", "background", NON_TEXT),
-  pair("ring", "background", NON_TEXT),
+  // Control boundaries, checked fills and focus indicators
+  ...["neutral-primary", "neutral-primary-soft", "neutral-secondary-medium"].flatMap((surface) => [
+    pair("input", surface, NON_TEXT),
+    pair("ring", surface, NON_TEXT),
+  ]),
+  // Checked controls and active indicators on the page and on cards
+  pair("brand", "neutral-primary", NON_TEXT),
+  pair("brand", "neutral-primary-soft", NON_TEXT),
 ];
 
 function oklchToLinearRgb(l, c, h) {

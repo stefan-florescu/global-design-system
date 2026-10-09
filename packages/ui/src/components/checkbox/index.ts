@@ -1,2 +1,7 @@
 export { Checkbox, type CheckboxProps } from "./checkbox";
-export { choiceVariants, type ChoiceVariantProps } from "./checkbox.variants";
+export {
+  choiceControlVariants,
+  choiceVariants,
+  type ChoiceVariant,
+  type ChoiceVariantProps,
+} from "./checkbox.variants";

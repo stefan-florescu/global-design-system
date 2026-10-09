@@ -70,8 +70,8 @@
     font-family: var(--sds-font-sans);
     font-size: 1rem;
     line-height: 1.6;
-    color: var(--sds-color-foreground);
-    background-color: var(--sds-color-background);
+    color: var(--sds-color-heading);
+    background-color: var(--sds-color-neutral-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: "cv11", "ss01";
@@ -124,18 +124,18 @@
 
   hr {
     border: none;
-    border-top: var(--sds-border-width-1) solid var(--sds-color-border);
+    border-top: var(--sds-border-width-1) solid var(--sds-color-default);
     margin: 2.5rem 0;
   }
 
   :focus-visible {
     outline: 2px solid var(--sds-color-ring);
     outline-offset: 2px;
-    border-radius: var(--sds-radius-sm);
+    border-radius: var(--sds-radius-xs);
   }
 
   ::selection {
-    background: color-mix(in srgb, var(--sds-color-foreground) 12%, transparent);
+    background: color-mix(in srgb, var(--sds-color-heading) 12%, transparent);
   }
 
   .sr-only {
@@ -158,9 +158,9 @@
     padding: 0.5rem 0.875rem;
     font-size: 0.875rem;
     font-weight: 500;
-    border-radius: var(--sds-radius-lg);
-    background: var(--sds-color-popover);
-    border: var(--sds-border-width-1) solid var(--sds-color-border);
+    border-radius: var(--sds-radius-default);
+    background: var(--sds-color-neutral-primary-medium);
+    border: var(--sds-border-width-1) solid var(--sds-color-default);
     box-shadow: var(--sds-shadow-lg);
     transform: translateY(-200%);
   }
@@ -235,12 +235,12 @@
   }
 
   button.sidebar__heading:hover {
-    background: var(--sds-color-accent);
+    background: var(--sds-color-neutral-tertiary);
   }
 
   .sidebar__heading-chevron {
     margin-left: auto;
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
     transition: transform 0.2s ease;
   }
 
@@ -257,7 +257,7 @@
     flex-direction: column;
     list-style: none;
     /* Guide rail, like shadcn's nested nav */
-    border-left: var(--sds-border-width-1) solid var(--sds-color-border);
+    border-left: var(--sds-border-width-1) solid var(--sds-color-default);
     margin-left: 0.5rem;
     padding-left: 0.5rem;
   }
@@ -269,7 +269,7 @@
     gap: 0.5rem;
     padding: 0.3125rem 0.625rem;
     font-size: 0.875rem;
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
     border-radius: var(--sds-radius-md);
     transition:
       color 0.15s ease,
@@ -277,14 +277,14 @@
   }
 
   .sidebar__link:hover {
-    color: var(--sds-color-foreground);
-    background: color-mix(in srgb, var(--sds-color-accent) 70%, transparent);
+    color: var(--sds-color-heading);
+    background: color-mix(in srgb, var(--sds-color-neutral-tertiary) 70%, transparent);
   }
 
   .sidebar__link[aria-current="page"] {
-    color: var(--sds-color-foreground);
+    color: var(--sds-color-heading);
     font-weight: 500;
-    background: var(--sds-color-accent);
+    background: var(--sds-color-neutral-tertiary);
   }
 
   /* Active indicator on the guide rail */
@@ -296,7 +296,7 @@
     bottom: 0.375rem;
     width: 2px;
     border-radius: var(--sds-radius-full);
-    background: var(--sds-color-foreground);
+    background: var(--sds-color-heading);
   }
 
   .sidebar__tag {
@@ -308,14 +308,14 @@
     text-transform: uppercase;
     line-height: 1.4;
     border-radius: var(--sds-radius-full);
-    border: var(--sds-border-width-1) solid var(--sds-color-border);
-    color: var(--sds-color-muted-foreground);
+    border: var(--sds-border-width-1) solid var(--sds-color-default);
+    color: var(--sds-color-body);
   }
 
   .sidebar__tag--new {
-    color: var(--sds-color-info);
-    border-color: color-mix(in srgb, var(--sds-color-info) 40%, transparent);
-    background: color-mix(in srgb, var(--sds-color-info) 10%, transparent);
+    color: var(--sds-color-brand);
+    border-color: color-mix(in srgb, var(--sds-color-brand) 40%, transparent);
+    background: color-mix(in srgb, var(--sds-color-brand) 10%, transparent);
   }
 
   .sidebar__tag--wip {
@@ -375,23 +375,23 @@
   .toc__link {
     display: block;
     padding: 0.3125rem 0;
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
     transition: color 0.15s ease;
   }
 
   .toc__link:hover {
-    color: var(--sds-color-foreground);
+    color: var(--sds-color-heading);
   }
 
   .toc__link[data-active="true"] {
-    color: var(--sds-color-foreground);
+    color: var(--sds-color-heading);
     font-weight: 500;
   }
 
   .toc__footer {
     margin-top: 1.25rem;
     padding-top: 1rem;
-    border-top: var(--sds-border-width-1) solid var(--sds-color-border);
+    border-top: var(--sds-border-width-1) solid var(--sds-color-default);
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -402,11 +402,11 @@
     display: inline-flex;
     align-items: center;
     gap: 0.375rem;
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
   }
 
   .toc__footer a:hover {
-    color: var(--sds-color-foreground);
+    color: var(--sds-color-heading);
   }
 
   /* ==========================================================================
@@ -430,11 +430,11 @@
     gap: 0.375rem;
     margin-bottom: 1rem;
     font-size: 0.875rem;
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
   }
 
   .breadcrumb__current {
-    color: var(--sds-color-foreground);
+    color: var(--sds-color-heading);
     font-weight: 500;
   }
 
@@ -456,7 +456,7 @@
     margin-top: 0.75rem;
     font-size: 1.125rem;
     line-height: 1.65;
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
     text-wrap: pretty;
   }
 
@@ -469,22 +469,23 @@
   }
 
   /* -- Prose ------------------------------------------------------------- */
+  /* Article styles; live examples (.preview) keep the component's own typography. */
 
   .prose > * + * {
     margin-top: 1.25rem;
   }
 
-  .prose h2 {
+  .prose h2:where(:not(.preview *)) {
     margin-top: 3rem;
     padding-bottom: 0.5rem;
-    border-bottom: var(--sds-border-width-1) solid var(--sds-color-border);
+    border-bottom: var(--sds-border-width-1) solid var(--sds-color-default);
     font-size: 1.5rem;
     font-weight: 600;
     letter-spacing: -0.015em;
     scroll-margin-top: 6rem;
   }
 
-  .prose h3 {
+  .prose h3:where(:not(.preview *)) {
     margin-top: 2.25rem;
     font-size: 1.125rem;
     font-weight: 600;
@@ -492,77 +493,77 @@
     scroll-margin-top: 6rem;
   }
 
-  .prose h4 {
+  .prose h4:where(:not(.preview *)) {
     margin-top: 1.75rem;
     font-size: 1rem;
     font-weight: 600;
     scroll-margin-top: 6rem;
   }
 
-  .prose p {
+  .prose p:where(:not(.preview *)) {
     line-height: 1.75;
     text-wrap: pretty;
   }
 
-  .prose a:not(.btn) {
+  .prose a:not(.btn):where(:not(.preview *)) {
     font-weight: 500;
     text-decoration: underline;
-    text-decoration-color: var(--sds-color-border);
+    text-decoration-color: var(--sds-color-default);
     text-underline-offset: 3px;
   }
 
-  .prose a:not(.btn):hover {
-    text-decoration-color: var(--sds-color-foreground);
+  .prose a:not(.btn):where(:not(.preview *)):hover {
+    text-decoration-color: var(--sds-color-heading);
   }
 
-  .prose ul,
-  .prose :where(ol) {
+  .prose ul:where(:not(.preview *)),
+  .prose :where(ol):where(:not(.preview *)) {
     padding-left: 1.5rem;
   }
 
   /* Tailwind's preflight removes list markers; prose lists keep the browser defaults. */
-  .prose :where(ul) {
+  .prose :where(ul):where(:not(.preview *)) {
     list-style: disc;
   }
 
-  .prose :where(ol) {
+  .prose :where(ol):where(:not(.preview *)) {
     list-style: decimal;
   }
 
-  .prose li {
+  .prose li:where(:not(.preview *)) {
     margin-top: 0.5rem;
     line-height: 1.7;
   }
 
-  .prose li::marker {
-    color: var(--sds-color-muted-foreground);
+  .prose li:where(:not(.preview *))::marker {
+    color: var(--sds-color-body);
   }
 
-  .prose strong {
+  .prose strong:where(:not(.preview *)) {
     font-weight: 600;
   }
 
   /* Inline code */
-  .prose :not(pre) > code {
+  .prose :not(pre) > code:where(:not(.preview *)) {
     padding: 0.15em 0.35em;
     font-size: 0.85em;
     font-weight: 500;
-    background: var(--sds-color-muted);
-    border-radius: var(--sds-radius-sm);
+    background: var(--sds-color-neutral-secondary-medium);
+    border-radius: var(--sds-radius-xs);
     white-space: nowrap;
   }
 
-  .prose blockquote {
+  .prose blockquote:where(:not(.preview *)) {
     padding-left: 1rem;
-    border-left: var(--sds-border-width-2) solid var(--sds-color-border);
-    color: var(--sds-color-muted-foreground);
+    border-left: var(--sds-border-width-2) solid var(--sds-color-default);
+    color: var(--sds-color-body);
     font-style: italic;
   }
 
   /* Anchor link that appears on heading hover */
   .heading-anchor {
     margin-left: 0.5rem;
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
     opacity: 0;
     text-decoration: none !important;
     transition: opacity 0.15s ease;
@@ -592,7 +593,7 @@
     height: 2.25rem;
     padding: 0.1875rem;
     margin-bottom: 0.75rem;
-    background: var(--sds-color-muted);
+    background: var(--sds-color-neutral-secondary-medium);
     border-radius: var(--sds-radius-md);
   }
 
@@ -603,20 +604,20 @@
     padding-inline: 0.75rem;
     font-size: 0.8125rem;
     font-weight: 500;
-    color: var(--sds-color-muted-foreground);
-    border-radius: var(--sds-radius-sm);
+    color: var(--sds-color-body);
+    border-radius: var(--sds-radius-xs);
     transition:
       background-color 0.15s ease,
       color 0.15s ease;
   }
 
   .tabs__trigger:hover {
-    color: var(--sds-color-foreground);
+    color: var(--sds-color-heading);
   }
 
   .tabs__trigger[aria-selected="true"] {
-    color: var(--sds-color-foreground);
-    background: var(--sds-color-background);
+    color: var(--sds-color-heading);
+    background: var(--sds-color-neutral-primary);
     box-shadow: var(--sds-shadow-sm);
   }
 
@@ -628,6 +629,8 @@
 
   .preview {
     position: relative;
+    /* Tailwind's default, as on flowbite.com; the article text uses 1.6. */
+    line-height: 1.5;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -635,11 +638,11 @@
     gap: 0.75rem;
     min-height: 21rem;
     padding: 2.5rem;
-    border: var(--sds-border-width-1) solid var(--sds-color-border);
+    border: var(--sds-border-width-1) solid var(--sds-color-default);
     border-radius: var(--sds-radius-xl);
-    background-color: var(--sds-color-background);
+    background-color: var(--sds-color-neutral-primary);
     /* Subtle grid so transparent components read clearly */
-    background-image: radial-gradient(var(--sds-color-border) 1px, transparent 1px);
+    background-image: radial-gradient(var(--sds-color-default) 1px, transparent 1px);
     background-size: 16px 16px;
     background-position: -8px -8px;
   }
@@ -667,7 +670,7 @@
 
   .code-block {
     position: relative;
-    border: var(--sds-border-width-1) solid var(--sds-color-border);
+    border: var(--sds-border-width-1) solid var(--sds-color-default);
     border-radius: var(--sds-radius-xl);
     background: var(--sds-color-code-bg);
     overflow: hidden;
@@ -707,7 +710,7 @@
     height: 1.875rem;
     margin-left: auto;
     color: var(--sds-color-code-muted);
-    border-radius: var(--sds-radius-sm);
+    border-radius: var(--sds-radius-xs);
     transition:
       background-color 0.15s ease,
       color 0.15s ease;
@@ -730,12 +733,12 @@
 
   /* Copy button variant for light surfaces (preview toolbar) */
   .copy-button--subtle {
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
   }
 
   .copy-button--subtle:hover {
-    background: var(--sds-color-accent);
-    color: var(--sds-color-foreground);
+    background: var(--sds-color-neutral-tertiary);
+    color: var(--sds-color-heading);
   }
 
   /* Minimal token colors for the hand-marked code samples */
@@ -772,7 +775,7 @@
     width: 100%;
     margin-top: 1.25rem;
     overflow-x: auto;
-    border: var(--sds-border-width-1) solid var(--sds-color-border);
+    border: var(--sds-border-width-1) solid var(--sds-color-default);
     border-radius: var(--sds-radius-xl);
   }
 
@@ -786,7 +789,7 @@
   }
 
   thead {
-    background: color-mix(in srgb, var(--sds-color-muted) 50%, transparent);
+    background: color-mix(in srgb, var(--sds-color-neutral-secondary-medium) 50%, transparent);
   }
 
   th {
@@ -799,7 +802,7 @@
   td {
     padding: 0.75rem 1rem;
     vertical-align: top;
-    border-top: var(--sds-border-width-1) solid var(--sds-color-border);
+    border-top: var(--sds-border-width-1) solid var(--sds-color-default);
   }
 
   td code {
@@ -807,13 +810,13 @@
   }
 
   .cell-type {
-    color: var(--sds-color-info);
+    color: var(--sds-color-brand);
     font-family: var(--sds-font-mono);
     font-size: 0.8125rem;
   }
 
   .cell-muted {
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
   }
 
   /* -- Callout ----------------------------------------------------------- */
@@ -822,10 +825,10 @@
     display: flex;
     gap: 0.75rem;
     padding: 1rem;
-    border: var(--sds-border-width-1) solid var(--sds-color-border);
+    border: var(--sds-border-width-1) solid var(--sds-color-default);
     border-left-width: var(--sds-border-width-4);
-    border-radius: var(--sds-radius-lg);
-    background: color-mix(in srgb, var(--sds-color-muted) 40%, transparent);
+    border-radius: var(--sds-radius-default);
+    background: color-mix(in srgb, var(--sds-color-neutral-secondary-medium) 40%, transparent);
     font-size: 0.9375rem;
   }
 
@@ -843,11 +846,11 @@
   }
 
   .callout--info {
-    border-left-color: var(--sds-color-info);
+    border-left-color: var(--sds-color-brand);
   }
 
   .callout--info .callout__icon {
-    color: var(--sds-color-info);
+    color: var(--sds-color-brand);
   }
 
   .callout--success {
@@ -867,11 +870,11 @@
   }
 
   .callout--danger {
-    border-left-color: var(--sds-color-destructive);
+    border-left-color: var(--sds-color-danger);
   }
 
   .callout--danger .callout__icon {
-    color: var(--sds-color-destructive);
+    color: var(--sds-color-danger);
   }
 
   /* -- Do / Don't grid --------------------------------------------------- */
@@ -886,7 +889,7 @@
   .guideline {
     display: flex;
     flex-direction: column;
-    border: var(--sds-border-width-1) solid var(--sds-color-border);
+    border: var(--sds-border-width-1) solid var(--sds-color-default);
     border-radius: var(--sds-radius-xl);
     overflow: hidden;
   }
@@ -896,7 +899,7 @@
     place-items: center;
     min-height: 7.5rem;
     padding: 1.5rem;
-    background: color-mix(in srgb, var(--sds-color-muted) 40%, transparent);
+    background: color-mix(in srgb, var(--sds-color-neutral-secondary-medium) 40%, transparent);
   }
 
   .guideline__caption {
@@ -906,7 +909,7 @@
     padding: 0.875rem 1rem;
     font-size: 0.875rem;
     line-height: 1.55;
-    border-top: var(--sds-border-width-1) solid var(--sds-color-border);
+    border-top: var(--sds-border-width-1) solid var(--sds-color-default);
   }
 
   .guideline--do .guideline__caption svg {
@@ -914,7 +917,7 @@
   }
 
   .guideline--dont .guideline__caption svg {
-    color: var(--sds-color-destructive);
+    color: var(--sds-color-danger);
   }
 
   /* -- Token / swatch grid ----------------------------------------------- */
@@ -927,8 +930,8 @@
   }
 
   .swatch {
-    border: var(--sds-border-width-1) solid var(--sds-color-border);
-    border-radius: var(--sds-radius-lg);
+    border: var(--sds-border-width-1) solid var(--sds-color-default);
+    border-radius: var(--sds-radius-default);
     overflow: hidden;
   }
 
@@ -938,7 +941,7 @@
 
   .swatch__meta {
     padding: 0.5rem 0.625rem;
-    border-top: var(--sds-border-width-1) solid var(--sds-color-border);
+    border-top: var(--sds-border-width-1) solid var(--sds-color-default);
     font-size: 0.75rem;
   }
 
@@ -948,7 +951,7 @@
 
   .swatch__value {
     font-family: var(--sds-font-mono);
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
   }
 
   /* -- Card grid (index pages) ------------------------------------------- */
@@ -965,7 +968,7 @@
     flex-direction: column;
     gap: 0.375rem;
     padding: 1.125rem;
-    border: var(--sds-border-width-1) solid var(--sds-color-border);
+    border: var(--sds-border-width-1) solid var(--sds-color-default);
     border-radius: var(--sds-radius-xl);
     transition:
       background-color 0.15s ease,
@@ -973,7 +976,7 @@
   }
 
   .doc-card:hover {
-    background: color-mix(in srgb, var(--sds-color-accent) 50%, transparent);
+    background: color-mix(in srgb, var(--sds-color-neutral-tertiary) 50%, transparent);
     border-color: color-mix(in srgb, var(--sds-color-ring) 50%, transparent);
   }
 
@@ -985,7 +988,7 @@
   .doc-card__text {
     font-size: 0.8125rem;
     line-height: 1.55;
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
   }
 
   /* -- Prev / next pager ------------------------------------------------- */
@@ -997,7 +1000,7 @@
     max-width: var(--content-max);
     margin-top: 4rem;
     padding-top: 1.5rem;
-    border-top: var(--sds-border-width-1) solid var(--sds-color-border);
+    border-top: var(--sds-border-width-1) solid var(--sds-color-default);
   }
 
   .pager__link {
@@ -1007,13 +1010,13 @@
     flex: 1;
     max-width: 17rem;
     padding: 0.875rem 1rem;
-    border: var(--sds-border-width-1) solid var(--sds-color-border);
+    border: var(--sds-border-width-1) solid var(--sds-color-default);
     border-radius: var(--sds-radius-xl);
     transition: background-color 0.15s ease;
   }
 
   .pager__link:hover {
-    background: color-mix(in srgb, var(--sds-color-accent) 50%, transparent);
+    background: color-mix(in srgb, var(--sds-color-neutral-tertiary) 50%, transparent);
   }
 
   .pager__link--next {
@@ -1026,7 +1029,7 @@
     align-items: center;
     gap: 0.25rem;
     font-size: 0.75rem;
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
   }
 
   .pager__link--next .pager__dir {
@@ -1067,45 +1070,45 @@
   }
 
   .btn--primary {
-    background: var(--sds-color-primary);
-    color: var(--sds-color-primary-foreground);
+    background: var(--sds-color-dark);
+    color: var(--sds-color-dark-foreground);
   }
 
   .btn--primary:hover {
-    background: color-mix(in srgb, var(--sds-color-primary) 90%, transparent);
+    background: color-mix(in srgb, var(--sds-color-dark) 90%, transparent);
   }
 
   .btn--secondary {
-    background: var(--sds-color-secondary);
-    color: var(--sds-color-secondary-foreground);
+    background: var(--sds-color-neutral-secondary-medium);
+    color: var(--sds-color-heading);
   }
 
   .btn--secondary:hover {
-    background: color-mix(in srgb, var(--sds-color-secondary) 80%, transparent);
+    background: color-mix(in srgb, var(--sds-color-neutral-secondary-medium) 80%, transparent);
   }
 
   .btn--outline {
-    border: var(--sds-border-width-1) solid var(--sds-color-border);
-    background: var(--sds-color-background);
+    border: var(--sds-border-width-1) solid var(--sds-color-default);
+    background: var(--sds-color-neutral-primary);
   }
 
   .btn--outline:hover {
-    background: var(--sds-color-accent);
-    color: var(--sds-color-accent-foreground);
+    background: var(--sds-color-neutral-tertiary);
+    color: var(--sds-color-heading);
   }
 
   .btn--ghost:hover {
-    background: var(--sds-color-accent);
-    color: var(--sds-color-accent-foreground);
+    background: var(--sds-color-neutral-tertiary);
+    color: var(--sds-color-heading);
   }
 
   .btn--destructive {
-    background: var(--sds-color-destructive);
-    color: var(--sds-color-destructive-foreground);
+    background: var(--sds-color-danger);
+    color: var(--sds-color-danger-foreground);
   }
 
   .btn--destructive:hover {
-    background: color-mix(in srgb, var(--sds-color-destructive) 90%, transparent);
+    background: color-mix(in srgb, var(--sds-color-danger) 90%, transparent);
   }
 
   .btn--link {
@@ -1119,7 +1122,7 @@
     height: 2rem;
     padding-inline: 0.75rem;
     font-size: 0.8125rem;
-    border-radius: var(--sds-radius-sm);
+    border-radius: var(--sds-radius-xs);
   }
 
   .btn--lg {
@@ -1145,18 +1148,18 @@
   }
 
   .badge--default {
-    background: var(--sds-color-primary);
-    color: var(--sds-color-primary-foreground);
+    background: var(--sds-color-dark);
+    color: var(--sds-color-dark-foreground);
   }
 
   .badge--secondary {
-    background: var(--sds-color-secondary);
-    color: var(--sds-color-secondary-foreground);
+    background: var(--sds-color-neutral-secondary-medium);
+    color: var(--sds-color-heading);
   }
 
   .badge--outline {
-    border-color: var(--sds-color-border);
-    color: var(--sds-color-foreground);
+    border-color: var(--sds-color-default);
+    color: var(--sds-color-heading);
   }
 
   .badge--success {
@@ -1170,7 +1173,7 @@
     height: 2.25rem;
     padding-inline: 0.75rem;
     font-size: 0.875rem;
-    background: var(--sds-color-background);
+    background: var(--sds-color-neutral-primary);
     border: var(--sds-border-width-1) solid var(--sds-color-input);
     border-radius: var(--sds-radius-md);
     outline: none;
@@ -1180,7 +1183,7 @@
   }
 
   .input::placeholder {
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
   }
 
   .input:focus {
@@ -1286,14 +1289,15 @@
     margin-top: 0.375rem;
     font-size: 0.9375rem;
     line-height: 1.6;
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
   }
 
   /* All ten steps on one row so the scale reads as a ramp; two rows of five
    once the column is too narrow for the hex labels. */
   .scale__steps {
     display: grid;
-    grid-template-columns: repeat(10, minmax(0, 1fr));
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
     gap: 0.5rem;
     margin-top: 1rem;
     padding: 0;
@@ -1302,7 +1306,8 @@
 
   @media (max-width: 47.99em) {
     .scale__steps {
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-auto-flow: row;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
 
@@ -1337,8 +1342,8 @@
     font-family: var(--sds-font-sans);
     font-size: 0.6875rem;
     font-weight: 600;
-    color: var(--sds-color-popover-foreground);
-    background: var(--sds-color-popover);
+    color: var(--sds-color-heading);
+    background: var(--sds-color-neutral-primary-medium);
     border-radius: inherit;
     opacity: 0;
     transition: opacity 0.15s ease;
@@ -1359,8 +1364,8 @@
     font-family: var(--sds-font-mono);
     font-size: 0.6875rem;
     line-height: 1.2;
-    color: var(--sds-color-muted-foreground);
-    text-transform: uppercase;
+    color: var(--sds-color-body);
+    overflow-wrap: anywhere;
   }
 
   /* -- Token table ------------------------------------------------------- */
@@ -1375,9 +1380,9 @@
     font-weight: 600;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--sds-color-muted-foreground);
-    background: var(--sds-color-muted);
-    border-top: var(--sds-border-width-1) solid var(--sds-color-border);
+    color: var(--sds-color-body);
+    background: var(--sds-color-neutral-secondary-medium);
+    border-top: var(--sds-border-width-1) solid var(--sds-color-default);
   }
 
   .token-value {
@@ -1391,7 +1396,7 @@
     width: 0.875rem;
     height: 0.875rem;
     flex-shrink: 0;
-    border-radius: var(--sds-radius-sm);
+    border-radius: var(--sds-radius-xs);
     box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--sds-color-black) 12%, transparent);
   }
 
@@ -1407,7 +1412,7 @@
   .token-value__hex {
     font-family: var(--sds-font-mono);
     font-size: 0.6875rem;
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
     text-transform: uppercase;
   }
 
@@ -1422,7 +1427,7 @@
 
   .token-demo__item {
     padding: 0.875rem 1rem;
-    border-radius: var(--sds-radius-lg);
+    border-radius: var(--sds-radius-default);
     border: var(--sds-border-width-1) solid transparent;
     font-size: 0.8125rem;
     font-weight: 500;
@@ -1465,7 +1470,7 @@
     margin-top: 1.25rem;
     padding: 0;
     list-style: none;
-    border: var(--sds-border-width-1) solid var(--sds-color-border);
+    border: var(--sds-border-width-1) solid var(--sds-color-default);
     border-radius: var(--sds-radius-xl);
     overflow: hidden;
   }
@@ -1480,7 +1485,7 @@
   }
 
   .ramp__row + .ramp__row {
-    border-top: var(--sds-border-width-1) solid var(--sds-color-border);
+    border-top: var(--sds-border-width-1) solid var(--sds-color-default);
   }
 
   /* Density bands — a 36-step ramp needs signposting */
@@ -1491,9 +1496,9 @@
     font-weight: 600;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--sds-color-muted-foreground);
-    background: var(--sds-color-muted);
-    border-top: var(--sds-border-width-1) solid var(--sds-color-border);
+    color: var(--sds-color-body);
+    background: var(--sds-color-neutral-secondary-medium);
+    border-top: var(--sds-border-width-1) solid var(--sds-color-default);
   }
 
   .ramp__group:first-child {
@@ -1501,7 +1506,7 @@
   }
 
   .ramp__row:hover {
-    background: color-mix(in srgb, var(--sds-color-accent) 50%, transparent);
+    background: color-mix(in srgb, var(--sds-color-neutral-tertiary) 50%, transparent);
   }
 
   .ramp__name,
@@ -1512,7 +1517,7 @@
 
   .ramp__px {
     text-align: right;
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
     font-variant-numeric: tabular-nums;
   }
 
@@ -1522,18 +1527,18 @@
   .ramp__bar {
     height: 0.875rem;
     max-width: 100%;
-    border-radius: var(--sds-radius-sm);
+    border-radius: var(--sds-radius-xs);
     background: var(--sds-color-brand);
   }
 
   .ramp__bar[style*="width: 0px"] {
-    outline: 1px dashed var(--sds-color-border);
+    outline: 1px dashed var(--sds-color-default);
   }
 
   /* -- 4px grid canvas --------------------------------------------------- */
 
   .grid-canvas {
-    background-color: var(--sds-color-card);
+    background-color: var(--sds-color-neutral-primary-soft);
     background-image:
       linear-gradient(
         to right,
@@ -1578,15 +1583,15 @@
     gap: var(--sds-space-2);
     padding: var(--sds-space-3) var(--sds-space-4);
     font-size: 0.875rem;
-    background: var(--sds-color-card);
-    border: var(--sds-border-width-1) solid var(--sds-color-border);
-    border-radius: var(--sds-radius-lg);
+    background: var(--sds-color-neutral-primary-soft);
+    border: var(--sds-border-width-1) solid var(--sds-color-default);
+    border-radius: var(--sds-radius-default);
   }
 
   .demo-caption {
     margin-top: var(--sds-space-3);
     font-size: 0.8125rem;
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
   }
 
   .demo-caption code {
@@ -1598,7 +1603,7 @@
   .grid-demo {
     margin-top: 1.25rem;
     padding: var(--sds-space-4);
-    border: var(--sds-border-width-1) solid var(--sds-color-border);
+    border: var(--sds-border-width-1) solid var(--sds-color-default);
     border-radius: var(--sds-radius-xl);
   }
 
@@ -1609,11 +1614,11 @@
     height: 3.5rem;
     font-family: var(--sds-font-mono);
     font-size: 0.6875rem;
-    color: var(--sds-color-brand-subtle-foreground);
+    color: var(--sds-color-fg-brand);
     background: color-mix(in srgb, var(--sds-color-brand) 16%, transparent);
     border: var(--sds-border-width-1) solid
       color-mix(in srgb, var(--sds-color-brand) 35%, transparent);
-    border-radius: var(--sds-radius-sm);
+    border-radius: var(--sds-radius-xs);
   }
 
   .grid-demo__span {
@@ -1649,7 +1654,7 @@
     margin-top: var(--sds-space-3);
     font-family: var(--sds-font-mono);
     font-size: 0.75rem;
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
   }
 
   /* CSS-only breakpoint readout — no JS, so it can never drift from the
@@ -1722,8 +1727,8 @@
   .ruler__track {
     position: relative;
     height: 1.75rem;
-    border-radius: var(--sds-radius-sm);
-    background: var(--sds-color-muted);
+    border-radius: var(--sds-radius-xs);
+    background: var(--sds-color-neutral-secondary-medium);
     overflow: hidden;
   }
 
@@ -1754,7 +1759,7 @@
   .ruler__ticks {
     font-family: var(--sds-font-mono);
     font-size: 0.6875rem;
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
   }
 
   /* -- Container diagram ------------------------------------------------- */
@@ -1764,7 +1769,7 @@
     gap: var(--sds-space-2);
     margin-top: 1.25rem;
     padding: var(--sds-space-4);
-    border: var(--sds-border-width-1) solid var(--sds-color-border);
+    border: var(--sds-border-width-1) solid var(--sds-color-default);
     border-radius: var(--sds-radius-xl);
   }
 
@@ -1784,9 +1789,9 @@
     background: repeating-linear-gradient(
       -45deg,
       transparent 0 5px,
-      color-mix(in srgb, var(--sds-color-muted-foreground) 12%, transparent) 5px 6px
+      color-mix(in srgb, var(--sds-color-body) 12%, transparent) 5px 6px
     );
-    border-radius: var(--sds-radius-sm);
+    border-radius: var(--sds-radius-xs);
   }
 
   /* Centred, because that is what a container does */
@@ -1798,11 +1803,11 @@
     height: 1.75rem;
     font-family: var(--sds-font-mono);
     font-size: 0.6875rem;
-    color: var(--sds-color-brand-subtle-foreground);
+    color: var(--sds-color-fg-brand);
     background: color-mix(in srgb, var(--sds-color-brand) 16%, transparent);
     border: var(--sds-border-width-1) solid
       color-mix(in srgb, var(--sds-color-brand) 35%, transparent);
-    border-radius: var(--sds-radius-sm);
+    border-radius: var(--sds-radius-xs);
   }
 
   @media (max-width: 47.99em) {
@@ -1905,7 +1910,7 @@
 
   .specimen {
     padding: var(--sds-space-5);
-    border: var(--sds-border-width-1) solid var(--sds-color-border);
+    border: var(--sds-border-width-1) solid var(--sds-color-default);
     border-radius: var(--sds-radius-xl);
   }
 
@@ -1916,7 +1921,7 @@
     gap: var(--sds-space-2) var(--sds-space-3);
     margin-bottom: var(--sds-space-3);
     padding-bottom: var(--sds-space-3);
-    border-bottom: var(--sds-border-width-1) solid var(--sds-color-border);
+    border-bottom: var(--sds-border-width-1) solid var(--sds-color-default);
   }
 
   .specimen__token {
@@ -1927,7 +1932,7 @@
 
   .specimen__name {
     font-size: var(--sds-text-xs);
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
   }
 
   .specimen__stack {
@@ -1935,7 +1940,7 @@
     font-family: var(--sds-font-mono);
     font-size: 0.6875rem;
     line-height: var(--sds-leading-4);
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
     word-break: break-word;
   }
 
@@ -1949,7 +1954,7 @@
     margin-top: var(--sds-space-2);
     font-size: var(--sds-text-base);
     line-height: var(--sds-leading-6);
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
   }
 
   /* -- Type ramp --------------------------------------------------------- */
@@ -1958,7 +1963,7 @@
     margin-top: 1.25rem;
     padding: 0;
     list-style: none;
-    border: var(--sds-border-width-1) solid var(--sds-color-border);
+    border: var(--sds-border-width-1) solid var(--sds-color-default);
     border-radius: var(--sds-radius-xl);
     overflow: hidden;
   }
@@ -1973,20 +1978,20 @@
   }
 
   .type-ramp__row + .type-ramp__row {
-    border-top: var(--sds-border-width-1) solid var(--sds-color-border);
+    border-top: var(--sds-border-width-1) solid var(--sds-color-default);
   }
 
   .type-ramp__meta {
     font-family: var(--sds-font-mono);
     font-size: 0.6875rem;
     line-height: var(--sds-leading-4);
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
   }
 
   .type-ramp__token {
     display: block;
     font-size: 0.75rem;
-    color: var(--sds-color-foreground);
+    color: var(--sds-color-heading);
   }
 
   /* Rendered at the token's real size, clipped rather than wrapped so the
@@ -2005,7 +2010,7 @@
     margin-top: 1.25rem;
     padding: 0;
     list-style: none;
-    border: var(--sds-border-width-1) solid var(--sds-color-border);
+    border: var(--sds-border-width-1) solid var(--sds-color-default);
     border-radius: var(--sds-radius-xl);
     overflow: hidden;
   }
@@ -2020,13 +2025,13 @@
   }
 
   .spec-list__row + .spec-list__row {
-    border-top: var(--sds-border-width-1) solid var(--sds-color-border);
+    border-top: var(--sds-border-width-1) solid var(--sds-color-default);
   }
 
   .spec-list__meta {
     font-family: var(--sds-font-mono);
     font-size: 0.75rem;
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
   }
 
   .spec-list__meta strong {
@@ -2034,7 +2039,7 @@
     font-family: var(--sds-font-mono);
     font-size: 0.75rem;
     font-weight: var(--sds-font-medium);
-    color: var(--sds-color-foreground);
+    color: var(--sds-color-heading);
   }
 
   .spec-list__sample {
@@ -2062,7 +2067,7 @@
 
   .leading-demo__col {
     padding: var(--sds-space-4);
-    border: var(--sds-border-width-1) solid var(--sds-color-border);
+    border: var(--sds-border-width-1) solid var(--sds-color-default);
     border-radius: var(--sds-radius-xl);
     /* 4px rules, so you can see the lines land on the grid */
     background-image: repeating-linear-gradient(
@@ -2076,7 +2081,7 @@
     margin-bottom: var(--sds-space-2);
     font-family: var(--sds-font-mono);
     font-size: 0.6875rem;
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
   }
 
   /* No background: the 4px rules have to show through the text for the demo
@@ -2096,7 +2101,7 @@
 
   .align-demo__box {
     padding: var(--sds-space-4);
-    border: var(--sds-border-width-1) solid var(--sds-color-border);
+    border: var(--sds-border-width-1) solid var(--sds-color-default);
     border-radius: var(--sds-radius-xl);
     font-size: var(--sds-text-sm);
     line-height: var(--sds-leading-5);
@@ -2107,7 +2112,7 @@
     margin-bottom: var(--sds-space-2);
     font-family: var(--sds-font-mono);
     font-size: 0.6875rem;
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
   }
 
   /* -- Pairing table ----------------------------------------------------- */
@@ -2149,9 +2154,9 @@
 
   .edge-sample {
     height: 2.5rem;
-    border: var(--sds-border-width-1) solid var(--sds-color-border);
-    border-radius: var(--sds-radius-lg);
-    background: color-mix(in srgb, var(--sds-color-muted) 45%, transparent);
+    border: var(--sds-border-width-1) solid var(--sds-color-default);
+    border-radius: var(--sds-radius-default);
+    background: color-mix(in srgb, var(--sds-color-neutral-secondary-medium) 45%, transparent);
   }
 
   /* -- Radius ramp ------------------------------------------------------- */
@@ -2196,7 +2201,7 @@
     font-family: var(--sds-font-mono);
     font-size: 0.6875rem;
     line-height: var(--sds-leading-4);
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
   }
 
   /* -- Nested radius demo ------------------------------------------------ */
@@ -2210,7 +2215,7 @@
 
   .nest-demo__outer {
     padding: var(--sds-space-2);
-    border: var(--sds-border-width-1) solid var(--sds-color-border);
+    border: var(--sds-border-width-1) solid var(--sds-color-default);
     border-radius: var(--sds-radius-2xl);
     background: color-mix(in srgb, var(--sds-color-brand) 10%, transparent);
   }
@@ -2220,8 +2225,8 @@
     place-items: center;
     height: 5rem;
     font-size: var(--sds-text-sm);
-    background: var(--sds-color-card);
-    border: var(--sds-border-width-1) solid var(--sds-color-border);
+    background: var(--sds-color-neutral-primary-soft);
+    border: var(--sds-border-width-1) solid var(--sds-color-default);
     border-radius: var(--r);
   }
 
@@ -2232,7 +2237,7 @@
     margin-top: var(--sds-space-2);
     font-size: var(--sds-text-xs);
     line-height: var(--sds-leading-4);
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
   }
 
   .nest-demo__caption code {
@@ -2244,7 +2249,7 @@
   }
 
   .nest-demo--dont .nest-demo__caption svg {
-    color: var(--sds-color-destructive);
+    color: var(--sds-color-danger);
   }
 
   /* -- Corner / composition demo ----------------------------------------- */
@@ -2263,7 +2268,7 @@
     font-family: var(--sds-font-mono);
     font-size: 0.6875rem;
     text-align: center;
-    color: var(--sds-color-brand-subtle-foreground);
+    color: var(--sds-color-fg-brand);
     background: color-mix(in srgb, var(--sds-color-brand) 12%, transparent);
     border: var(--sds-border-width-1) solid
       color-mix(in srgb, var(--sds-color-brand) 40%, transparent);
@@ -2282,7 +2287,7 @@
     padding: var(--sds-space-4);
     font-size: var(--sds-text-sm);
     line-height: var(--sds-leading-5);
-    border-radius: var(--sds-radius-lg);
+    border-radius: var(--sds-radius-default);
   }
 
   .edge-colors__label {
@@ -2290,6 +2295,6 @@
     margin-bottom: var(--sds-space-1);
     font-family: var(--sds-font-mono);
     font-size: 0.6875rem;
-    color: var(--sds-color-muted-foreground);
+    color: var(--sds-color-body);
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "Banner",
   "status": "beta",
-  "description": "A site-wide message pinned to the top or bottom of the page: an announcement, a call to action or a notice.",
+  "description": "Use a banner to show a marketing message, an announcement or a notice, pinned to the top or bottom of the page.",
   "category": "feedback",
   "import": "import { Banner } from \"@stefan-florescu/ui\";",
   "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/",
@@ -12,19 +12,21 @@
     "floating": [true, false],
     "dismissible": [true, false]
   },
-  "defaults": { "position": "top", "floating": false },
+  "defaults": {
+    "position": "top",
+    "floating": false
+  },
   "tokens": [
-    "color.muted",
-    "color.background",
-    "color.foreground",
-    "color.muted-foreground",
-    "color.border",
-    "color.accent",
-    "color.accent-foreground",
+    "color.neutral-primary-soft",
+    "color.neutral-tertiary",
+    "color.default",
+    "color.body",
+    "color.heading",
     "color.ring",
     "z.fixed",
-    "radius.lg",
-    "shadow.md",
+    "radius.base",
+    "radius.sm",
+    "shadow.xs",
     "text.sm"
   ],
   "useWhen": [
@@ -34,10 +36,10 @@
   "avoidWhen": ["Feedback about the current task: use Alert"],
   "related": ["Alert"],
   "examples": [
-    "apps/storybook/registry/demos/banner-newsletter.tsx",
     "apps/storybook/registry/demos/banner-demo.tsx",
     "apps/storybook/registry/demos/banner-bottom.tsx",
     "apps/storybook/registry/demos/banner-cta.tsx",
+    "apps/storybook/registry/demos/banner-newsletter.tsx",
     "apps/storybook/registry/demos/banner-informational.tsx"
   ]
 }

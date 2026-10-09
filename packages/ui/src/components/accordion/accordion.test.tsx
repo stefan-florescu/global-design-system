@@ -164,9 +164,55 @@ describe("Accordion", () => {
     expect(trigger("Next")).toHaveFocus();
   });
 
-  it("applies the brand variant to the open title", () => {
+  it("uses Flowbite's box and open-title colours by default", () => {
+    const { container } = render(<Faq />);
+    expect(container.firstChild).toHaveClass("rounded-base", "border-default", "shadow-xs");
+    expect(trigger("What is Flowbite?")).toHaveClass(
+      "p-5",
+      "text-body",
+      "data-[state=open]:bg-neutral-secondary-medium",
+      "data-[state=open]:text-heading",
+      "hover:bg-neutral-secondary-medium",
+    );
+  });
+
+  it("applies the brand hover colour", () => {
     render(<Faq variant="brand" />);
-    expect(trigger("What is Flowbite?")).toHaveClass("data-[state=open]:bg-brand-subtle");
+    expect(trigger("What is Flowbite?")).toHaveClass(
+      "hover:bg-brand-softer",
+      "hover:text-fg-brand",
+    );
+  });
+
+  it("separates items into cards", () => {
+    const { container } = render(<Faq separated />);
+    expect(container.firstChild).toHaveClass("gap-4");
+    expect(trigger("Is there a Figma file?")).toHaveClass("rounded-base", "border", "shadow-xs");
+  });
+
+  it("lays out a flush accordion without side padding", () => {
+    render(<Faq flush />);
+    expect(trigger("What is Flowbite?")).toHaveClass("py-5", "border-b");
+    expect(trigger("What is Flowbite?")).not.toHaveClass("p-5");
+  });
+
+  it("replaces or removes the chevron with icon", () => {
+    render(
+      <Accordion>
+        <AccordionItem value="a">
+          <AccordionTrigger icon={null}>No icon</AccordionTrigger>
+          <AccordionContent>A</AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="b">
+          <AccordionTrigger icon={<svg data-testid="custom" aria-hidden />}>
+            Custom
+          </AccordionTrigger>
+          <AccordionContent>B</AccordionContent>
+        </AccordionItem>
+      </Accordion>,
+    );
+    expect(trigger("No icon").querySelector("svg")).toBeNull();
+    expect(screen.getByTestId("custom")).toBeInTheDocument();
   });
 
   it("throws a helpful error outside an Accordion", () => {

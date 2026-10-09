@@ -10,16 +10,22 @@
   "variants": {
     "autoPlay": [true, false],
     "controls": [true, false],
-    "indicators": [true, false]
+    "indicators": [true, false],
+    "transition": ["default", "fast"]
   },
-  "defaults": { "autoPlay": false, "interval": 5000, "controls": true, "indicators": true },
+  "defaults": {
+    "autoPlay": false,
+    "interval": 5000,
+    "controls": true,
+    "indicators": true,
+    "transition": "default"
+  },
   "tokens": [
-    "color.background",
-    "color.foreground",
+    "color.neutral-primary-medium",
+    "color.heading",
     "color.ring",
-    "radius.lg",
-    "radius.full",
-    "shadow.sm"
+    "radius.base",
+    "z.raised"
   ],
   "useWhen": ["Showcasing several images or highlights in limited space"],
   "avoidWhen": [
@@ -29,8 +35,8 @@
   "related": ["Card"],
   "examples": [
     "apps/storybook/registry/demos/carousel-demo.tsx",
-    "apps/storybook/registry/demos/carousel-static.tsx",
     "apps/storybook/registry/demos/carousel-controls.tsx",
-    "apps/storybook/registry/demos/carousel-indicators.tsx"
+    "apps/storybook/registry/demos/carousel-indicators.tsx",
+    "apps/storybook/registry/demos/carousel-animation.tsx"
   ]
 }

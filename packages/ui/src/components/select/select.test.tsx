@@ -24,8 +24,27 @@ describe("Select", () => {
         <option>React</option>
       </Select>,
     );
-    expect(screen.getByRole("listbox", { name: "Tags" })).toHaveClass("h-auto");
+    expect(screen.getByRole("listbox", { name: "Tags" })).toBeInTheDocument();
     expect(container.querySelector("svg")).toBeNull();
+  });
+
+  it("shows a decorative chevron and keeps text-sm at every size", () => {
+    const { container } = render(
+      <Select aria-label="Country" size="xl">
+        <option>Romania</option>
+      </Select>,
+    );
+    expect(container.querySelector("svg")).toHaveAttribute("aria-hidden", "true");
+    expect(screen.getByRole("combobox")).toHaveClass("text-sm", "px-4", "py-3.5");
+  });
+
+  it("supports the underline style", () => {
+    render(
+      <Select aria-label="Country" variant="underline">
+        <option>Romania</option>
+      </Select>,
+    );
+    expect(screen.getByRole("combobox")).toHaveClass("border-b-2", "ps-0", "bg-transparent");
   });
 
   it("marks invalid choices", () => {

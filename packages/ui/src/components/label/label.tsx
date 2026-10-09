@@ -10,13 +10,20 @@ export type LabelProps = ComponentProps<"label"> &
     required?: boolean;
   };
 
-/** The visible name of a form control. Point `htmlFor` at the control's `id`. */
-export function Label({ disabled, required, className, children, ...props }: LabelProps) {
+/**
+ * The visible name of a form control. Point `htmlFor` at the control's `id`. It is a block with
+ * Flowbite's 10px gap below, so place it directly above the control.
+ */
+export function Label({ variant, disabled, required, className, children, ...props }: LabelProps) {
   return (
-    <label data-slot="label" className={cn(labelVariants({ disabled }), className)} {...props}>
+    <label
+      data-slot="label"
+      className={cn(labelVariants({ variant, disabled }), className)}
+      {...props}
+    >
       {children}
       {required ? (
-        <span aria-hidden className="text-destructive-subtle-foreground ms-0.5">
+        <span aria-hidden className="text-fg-danger-strong ms-0.5">
           *
         </span>
       ) : null}

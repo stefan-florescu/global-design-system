@@ -1,28 +1,51 @@
 import { useId } from "react";
 
-import { Label, SearchInput, Select } from "@stefan-florescu/ui";
+import { Search } from "@stefan-florescu/icons";
+import {
+  Button,
+  Input,
+  Label,
+  Select,
+  cn,
+  fieldGroupClassName,
+  fieldGroupItemClassName,
+  fieldSelectAddonClassName,
+} from "@stefan-florescu/ui";
 
 export default function SearchInputCategory() {
   // Unique ids, so the example can appear more than once on a page.
   const id = useId();
 
   return (
-    <form role="search" className="flex w-full max-w-lg gap-2">
-      <div className="w-40 shrink-0">
-        <Label htmlFor={`${id}-search-category`} className="sr-only">
-          Category
+    <form role="search" className="mx-auto w-full max-w-2xl">
+      <div className={fieldGroupClassName}>
+        <div className="shrink-0">
+          <Label htmlFor={`${id}-category`} className="sr-only">
+            Category
+          </Label>
+          <Select id={`${id}-category`} className={cn(fieldSelectAddonClassName, "rounded-e-none")}>
+            <option>All categories</option>
+            <option>Shopping</option>
+            <option>Images</option>
+            <option>News</option>
+            <option>Finance</option>
+          </Select>
+        </div>
+        <Label htmlFor={`${id}-search`} className="sr-only">
+          Search for products
         </Label>
-        <Select id={`${id}-search-category`} defaultValue="all">
-          <option value="all">All categories</option>
-          <option value="components">Components</option>
-          <option value="tokens">Tokens</option>
-          <option value="forms">Forms</option>
-        </Select>
+        <Input
+          id={`${id}-search`}
+          type="search"
+          placeholder="Search for products"
+          required
+          className={cn(fieldGroupItemClassName, "rounded-none")}
+        />
+        <Button type="submit" className="rounded-s-none">
+          <Search aria-hidden />
+          Search
+        </Button>
       </div>
-      <Label htmlFor={`${id}-search-with-category`} className="sr-only">
-        Search
-      </Label>
-      <SearchInput id={`${id}-search-with-category`} placeholder="Search" submitLabel="Search" />
     </form>
   );
 }

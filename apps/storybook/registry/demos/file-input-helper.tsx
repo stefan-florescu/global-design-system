@@ -7,12 +7,12 @@ export default function FileInputHelper() {
   const id = useId();
 
   return (
-    <div className="grid w-full max-w-sm gap-6">
-      <div className="grid gap-2">
-        <Label htmlFor={`${id}-avatar`}>Profile picture</Label>
-        <FileInput id={`${id}-avatar`} accept="image/*" aria-describedby={`${id}-avatar-help`} />
-        <HelperText id={`${id}-avatar-help`}>SVG, PNG, JPG or GIF (max. 800×400px).</HelperText>
-      </div>
+    <div className="w-full">
+      <Label htmlFor={`${id}-file-input`}>Upload file</Label>
+      <FileInput id={`${id}-file-input`} aria-describedby={`${id}-file-input-help`} />
+      <HelperText id={`${id}-file-input-help`} className="mt-1">
+        SVG, PNG, JPG or GIF (MAX. 800x400px).
+      </HelperText>
     </div>
   );
 }

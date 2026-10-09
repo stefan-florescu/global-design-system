@@ -7,11 +7,9 @@ export default function NumberInputDemo() {
   const id = useId();
 
   return (
-    <div className="grid w-full max-w-sm gap-6">
-      <div className="grid gap-2">
-        <Label htmlFor={`${id}-quantity`}>Quantity</Label>
-        <NumberInput id={`${id}-quantity`} min={0} placeholder="0" />
-      </div>
-    </div>
+    <form className="mx-auto w-full max-w-sm">
+      <Label htmlFor={`${id}-number`}>Select a number:</Label>
+      <NumberInput id={`${id}-number`} placeholder="90210" required />
+    </form>
   );
 }

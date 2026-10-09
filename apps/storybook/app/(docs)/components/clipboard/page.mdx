@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Clipboard",
   description:
-    "A button that copies a value to the clipboard and confirms it visually and to screen readers.",
+    "Copy text, code, links, API keys or contact details to the clipboard with a single click, and confirm it visually and to screen readers.",
 };
 
 <PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
@@ -22,53 +22,102 @@ import { Clipboard } from "@stefan-florescu/ui";
 <Clipboard value="npm install @stefan-florescu/ui" />
 ```
 
-`Clipboard` is a client component built on `Button`, so it accepts the same `variant`, `size`,
-`pill` and `iconOnly` options.
+`Clipboard` is a client component. It copies `value` when pressed, shows its copied state for two
+seconds (`resetAfter`) and announces it to screen readers. Place it next to, or inside, the
+element that shows the value: a read-only `Input`, a code block or an address.
 
 ## Examples
 
-### Copy to clipboard
+### Default copy to clipboard
 
-Place the button next to a read-only `Input` that shows the value it copies. After copying, the button shows a check icon and
-"Copied!" for two seconds (`resetAfter`).
+Use this example to copy the content of an input text field by clicking on a button. The label
+changes to "Copied!" with a check icon.
 
 <ComponentPreview name="clipboard-demo" />
 
 ### Input with copy button
 
-Set `iconOnly` for a compact button inside the field. Its `label` becomes the accessible name, so
-say what it copies.
+Set `variant="ghost"` and `iconOnly` for an icon button positioned inside the field. Its `label`
+becomes the accessible name, so say what it copies. After copying, the icon turns into a checked
+clipboard.
 
-<ComponentPreview name="clipboard-icon" />
+<ComponentPreview name="clipboard-input" />
 
 ### Copy button with text
 
+Set `variant="tertiary"` for a small bordered button with a label and an icon inside the field.
+
 <ComponentPreview name="clipboard-text" />
+
+### Input group with copy
+
+Join the button to a field with an addon, such as "URL", inside an input group.
+
+<ComponentPreview name="clipboard-input-group" />
+
+### URL shortener input group
+
+Use this example to copy a shortened URL: a `Button` to generate it, the field, and a
+`secondary` copy button.
+
+<ComponentPreview name="clipboard-url-shortener" />
+
+### Copy source code block
+
+Use this example to copy the code inside a `<pre>` and `<code>` block with a button positioned in
+its corner. The code block scrolls; browsers let keyboard users focus and scroll it.
+
+<ComponentPreview name="clipboard-code" />
 
 ### Card with API keys
 
+Use this example to show several fields with copy buttons inside a `Card`, such as account IDs and
+API keys. Give each button a specific name ("Copy API key").
+
 <ComponentPreview name="clipboard-card" />
+
+### Copy contact details
+
+Use this example to copy the contact details of a person from an `<address>` element.
+
+<ComponentPreview name="clipboard-contact" />
+
+| Variant     | Tokens                                                                       | Use it for                              |
+| ----------- | ---------------------------------------------------------------------------- | --------------------------------------- |
+| `brand`     | `brand` · `brand-strong` on hover · `brand-foreground` label                 | A copy button next to a field.          |
+| `secondary` | `neutral-secondary-medium` · `default-medium` border · `body`                | The end of an input group.              |
+| `ghost`     | `body` icon · `neutral-quaternary` on hover · `fg-brand` copied icon         | An icon button inside a field or card.  |
+| `tertiary`  | `neutral-primary-strong` · `default-strong` border · `fg-brand` copied state | A small labelled button in a code block |
 
 ## Accessibility
 
 - A native `<button>`. Its name is `label` ("Copy" by default) and changes to `copiedLabel` after
-  copying.
+  copying. Icon-only buttons use the label as their `aria-label`.
 - The confirmation is also sent to a polite `role="status"` live region, so screen-reader users
-  hear "Copied!" without moving focus.
-- Make the name specific when there are several copy buttons ("Copy API key"), or point to the
-  value with `aria-describedby`.
-- The check icon isn't the only confirmation: the text changes too.
+  hear "Copied!" without moving focus. This replaces Flowbite's "Copy to clipboard" tooltip.
+- Make the name specific when there are several copy buttons ("Copy API key").
+- The copied state never relies on colour alone: the icon and the text change too.
+- Keyboard focus draws a solid `ring` outline as well as Flowbite's halo.
+- Fields are `readOnly` rather than Flowbite's `disabled readonly`, so they stay focusable and
+  their value can be selected and read.
+- In dark mode the `tertiary` button's label uses `heading` instead of Flowbite's `body`, and its
+  copied state uses `heading` text with an `fg-brand-strong` icon instead of `fg-brand`: Flowbite's
+  colours are under 4.5:1 on the `neutral-primary-strong` fill.
 - Copying needs a secure context (HTTPS or localhost). If the browser refuses, the button stays in
   its normal state.
 
 ## API Reference
 
-| Prop          | Type                      | Default     |
-| ------------- | ------------------------- | ----------- |
-| `value`       | `string` (required)       | —           |
-| `label`       | `string`                  | `"Copy"`    |
-| `copiedLabel` | `string`                  | `"Copied!"` |
-| `resetAfter`  | `number` (ms)             | `2000`      |
-| `onCopy`      | `(value: string) => void` | —           |
+| Prop          | Type                                                 | Default     |
+| ------------- | ---------------------------------------------------- | ----------- |
+| `value`       | `string` (required)                                  | —           |
+| `variant`     | `"brand" \| "secondary" \| "ghost" \| "tertiary"`    | `"brand"`   |
+| `size`        | `"sm" \| "md"`                                       | `"md"`      |
+| `iconOnly`    | `boolean`. Shows only the icon; `label` names it.    | `false`     |
+| `label`       | `string`                                             | `"Copy"`    |
+| `copiedLabel` | `string`                                             | `"Copied!"` |
+| `resetAfter`  | `number` (ms)                                        | `2000`      |
+| `onCopy`      | `(value: string) => void`                            | —           |
+| `className`   | `string`. Merged with `cn()`; position it with this. | —           |
 
-Accepts every `Button` prop except `children`, including `variant`, `size` and `iconOnly`.
+All other native `<button>` attributes are forwarded, including `ref` and `disabled`.

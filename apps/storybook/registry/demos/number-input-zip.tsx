@@ -8,20 +8,19 @@ export default function NumberInputZip() {
   const id = useId();
 
   return (
-    <div className="grid w-full max-w-sm gap-6">
-      <div className="grid gap-2">
-        <Label htmlFor={`${id}-zip`}>ZIP code</Label>
-        <Input
-          id={`${id}-zip`}
-          inputMode="numeric"
-          pattern="[0-9]{5}"
-          maxLength={5}
-          startIcon={<MapPin />}
-          placeholder="12345"
-          aria-describedby={`${id}-zip-help`}
-        />
-        <HelperText id={`${id}-zip-help`}>Five digits.</HelperText>
-      </div>
-    </div>
+    <form className="mx-auto w-full max-w-sm">
+      <Label htmlFor={`${id}-zip`}>ZIP code:</Label>
+      <Input
+        id={`${id}-zip`}
+        inputMode="numeric"
+        autoComplete="postal-code"
+        pattern="^\d{5}(-\d{4})?$"
+        startIcon={<MapPin />}
+        placeholder="12345 or 12345-6789"
+        aria-describedby={`${id}-zip-help`}
+        required
+      />
+      <HelperText id={`${id}-zip-help`}>Please select a 5 digit number from 0 to 9.</HelperText>
+    </form>
   );
 }

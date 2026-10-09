@@ -13,8 +13,24 @@ describe("Range", () => {
     expect(slider).toHaveValue("7");
   });
 
-  it("applies sizes", () => {
-    render(<Range aria-label="Thin" size="sm" />);
-    expect(screen.getByRole("slider")).toHaveClass("h-1");
+  it("applies Flowbite's sizes", () => {
+    render(
+      <>
+        <Range aria-label="Small" size="sm" />
+        <Range aria-label="Default" />
+        <Range aria-label="Large" size="lg" />
+      </>,
+    );
+    expect(screen.getByRole("slider", { name: "Small" })).toHaveClass("h-1");
+    expect(screen.getByRole("slider", { name: "Default" })).toHaveClass(
+      "h-2",
+      "bg-neutral-quaternary",
+    );
+    expect(screen.getByRole("slider", { name: "Large" })).toHaveClass("h-3");
+  });
+
+  it("can be disabled", () => {
+    render(<Range aria-label="Locked" disabled />);
+    expect(screen.getByRole("slider", { name: "Locked" })).toBeDisabled();
   });
 });

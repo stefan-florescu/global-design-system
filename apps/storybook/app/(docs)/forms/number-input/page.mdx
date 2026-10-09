@@ -1,11 +1,12 @@
 export const metadata = {
   title: "Number Input",
-  description: "A number field with optional minus and plus stepper buttons.",
+  description:
+    "Set a number such as a quantity, ZIP code, amount or PIN, with control buttons, counters, currency selects and sliders.",
 };
 
 <PageHeader {...metadata} section="Forms" badges={[{ label: "Beta", variant: "secondary" }]} />
 
-<ComponentPreview name="number-input-demo" />
+<ComponentPreview name="number-input-stepper" />
 
 ## Installation
 
@@ -18,63 +19,144 @@ import { Label, NumberInput } from "@stefan-florescu/ui";
 ```
 
 ```tsx
-<NumberInput id="guests" stepper defaultValue={2} min={1} max={10} />
+<Label htmlFor="quantity">Choose quantity:</Label>
+<NumberInput id="quantity" stepper defaultValue={2} min={1} max={10} />
 ```
 
 ## Examples
 
 ### Default number input
 
-A `type="number"` field: arrow keys change the value by `step`.
+A `type="number"` field: arrow keys change the value by `step`, and `onValueChange` reports a number,
+or `null` when the field is empty.
 
 <ComponentPreview name="number-input-demo" />
 
+### ZIP code input
+
+A ZIP code is digits, not a number to count with, so use an `Input` with `inputMode="numeric"`, a
+`pattern`, an icon and helper text.
+
+<ComponentPreview name="number-input-zip" />
+
+### Phone number
+
+A `PhoneInput` with a country-code select. See [Phone Input](/forms/phone-input) for more.
+
+<ComponentPreview name="number-input-phone" />
+
 ### Control buttons
 
-Add `stepper` for − and + buttons. They disable themselves at `min` and `max`.
+`stepper` adds − and + buttons that share the field's border: our secondary `Button`, 40px tall like
+Flowbite's. They respect `min`, `max` and `step`, and turn disabled at the limits.
 
 <ComponentPreview name="number-input-stepper" />
 
+### Control buttons with icon
+
+`caption` shows small text, such as an icon and "Bedrooms", under the value inside the field. It is
+added to the field's description.
+
+<ComponentPreview name="number-input-stepper-icon" />
+
 ### Counter input
 
-A compact stepper with `size="sm"`.
+`variant="counter"` draws the buttons as small round 24px buttons around a borderless value.
 
 <ComponentPreview name="number-input-counter" />
 
 ### Currency input
 
-Use `addon` for a currency sign and `step={0.01}` for cents.
+An amount field joined to a currency `Select` with the field group helpers from
+[Input Field](/forms/input-field#dropdown-input).
 
 <ComponentPreview name="number-input-currency" />
 
-### ZIP code input
+### Credit card input
 
-For codes that are digits but not amounts, use an `Input` with `inputMode="numeric"` and a `pattern` instead.
+Card number, expiry date and security code. Flowbite shows the Visa logo; we use a generic card icon
+and leave brand logos out.
 
-<ComponentPreview name="number-input-zip" />
+<ComponentPreview name="number-input-credit-card" />
+
+### Pin code input
+
+Six one-digit fields that move focus forward as you type and back as you delete, and spread a pasted
+code over the fields. Each field has its own `aria-label`.
+
+<ComponentPreview name="number-input-pin" />
+
+### Number input with slider
+
+Keep a field and a `Range` in sync, so people can type the amount or drag to it.
+
+<ComponentPreview name="number-input-slider" />
+
+### Convert currency
+
+Two amount fields with currency selects, side by side.
+
+<ComponentPreview name="number-input-convert" />
+
+### Advanced control buttons
+
+Several steppers with captions, for booking forms.
+
+<ComponentPreview name="number-input-advanced" />
+
+### Min and max values
+
+`min` and `max` limit both the buttons and the arrow keys.
+
+<ComponentPreview name="number-input-min-max" />
+
+<Callout title="Native selects instead of dropdown menus">
+  Flowbite opens dropdown menus with flags and coin logos from buttons. We use native `<select>`
+  elements styled like Flowbite's dropdown button; they work with the keyboard, screen readers and
+  mobile pickers without extra script, and show text only.
+</Callout>
 
 ## Accessibility
 
-- The field is a native spin button: <kbd>↑</kbd> and <kbd>↓</kbd> change the value by `step`.
-- The − and + buttons are named "Decrease" and "Increase" (change them with `decrementLabel` and
-  `incrementLabel`) and point at the field with `aria-controls`.
-- Use `NumberInput` for amounts. For codes and IDs (ZIP codes, card numbers), use `Input` with
-  `inputMode="numeric"`: they aren't numbers you count up or down.
+- The field is a native `type="number"` input, exposed as a spin button: <kbd>↑</kbd> and
+  <kbd>↓</kbd> change the value by `step`.
+- The − and + buttons are named by `decrementLabel` and `incrementLabel` ("Decrease", "Increase"),
+  point at the field with `aria-controls`, and are disabled at `min` and `max`.
+- Differences from Flowbite, for WCAG 2.2 AA:
+  - The field and the control buttons use the `input` border instead of Flowbite's `default-medium`,
+    which is under 3:1 against the page.
+  - Flowbite removes the counter field's focus ring; ours keeps the solid `ring` outline for
+    keyboard focus. Every button also draws it around Flowbite's soft halo.
+  - Flowbite's control-button field falls back to black 16px text; ours uses the `heading` colour
+    and the field's 14px text, so it stays readable in dark mode.
+- Counter buttons are 24×24px, the WCAG 2.5.8 minimum target size.
 
 ## API Reference
+
+### NumberInput
+
+Takes every `Input` prop except `type`, `value`, `defaultValue`, `onChange`, `min`, `max` and `step`.
 
 | Prop             | Type                              | Default      |
 | ---------------- | --------------------------------- | ------------ |
 | `value`          | `number \| null`                  | —            |
 | `defaultValue`   | `number \| null`                  | `null`       |
 | `onValueChange`  | `(value: number \| null) => void` | —            |
-| `min` / `max`    | `number`                          | —            |
+| `min`            | `number`                          | —            |
+| `max`            | `number`                          | —            |
 | `step`           | `number`                          | `1`          |
 | `stepper`        | `boolean`                         | `false`      |
+| `variant`        | `"default" \| "counter"`          | `"default"`  |
+| `caption`        | `ReactNode`                       | —            |
+| `size`           | `"sm" \| "md" \| "lg" \| "xl"`    | `"md"`       |
 | `decrementLabel` | `string`                          | `"Decrease"` |
 | `incrementLabel` | `string`                          | `"Increase"` |
-| `size`           | `"sm" \| "md" \| "lg"`            | `"md"`       |
-| `invalid`        | `boolean`                         | `false`      |
-| `valid`          | `boolean`                         | `false`      |
 
-`NumberInput` is a client component.
+### Tokens
+
+| Part            | Tokens                                                                                                                    |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Field           | `neutral-secondary-medium` · `input` border · `heading` · `body` placeholder                                              |
+| Control buttons | `neutral-secondary-medium` · `neutral-tertiary-medium` on hover · `heading` icon · `neutral-tertiary` focus halo · `ring` |
+| Caption         | `body` text · `body-subtle` icon                                                                                          |
+| Group           | `shadow-xs` · `radius-base`                                                                                               |

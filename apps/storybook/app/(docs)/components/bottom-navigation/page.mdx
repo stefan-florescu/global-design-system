@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Bottom Navigation",
   description:
-    "A bar of top-level destinations fixed to the bottom of the screen, for mobile layouts.",
+    "A bar of menu items or actions fixed to the bottom of the screen, for mobile and app-like layouts.",
 };
 
 <PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
@@ -23,14 +23,15 @@ import { BottomNavigation, BottomNavigationItem } from "@stefan-florescu/ui";
   <BottomNavigationItem href="/" icon={<House aria-hidden />} active>
     Home
   </BottomNavigationItem>
-  <BottomNavigationItem href="/settings" icon={<Settings aria-hidden />}>
+  <BottomNavigationItem href="/settings" icon={<SlidersVertical aria-hidden />}>
     Settings
   </BottomNavigationItem>
 </BottomNavigation>
 ```
 
-The examples render inside a frame that stands in for a phone screen. In your app, the bar is
-fixed to the bottom of the viewport.
+The examples render inside a frame that stands in for the browser window. In your app, the bar is
+fixed to the bottom of the viewport. Each item takes one equal column of a centred `max-w-lg`
+grid.
 
 <Callout title="Layering">
   `BottomNavigation` sits on the `z.fixed` layer (`z-fixed`), above sticky headers and below
@@ -39,9 +40,10 @@ fixed to the bottom of the viewport.
 
 ## Examples
 
-### Default
+### Default bottom navigation
 
-Items are links when they have `href`, and buttons otherwise. Mark the current page with `active`.
+Items are links when they have `href`, and buttons otherwise. Mark the current page with `active`:
+it sets `aria-current` and colours the item `fg-brand`.
 
 <ComponentPreview name="bottom-navigation-demo" />
 
@@ -51,21 +53,46 @@ Add `bordered` to separate the items with dividers.
 
 <ComponentPreview name="bottom-navigation-bordered" />
 
-### Application bar
+### Application bar example
 
-Add `floating` for a rounded bar inset from the edges. Use `hideLabel` to show only icons (the
-label stays available to screen readers) and put a primary action in the middle.
+Add `floating` for a rounded bar inset from the bottom edge. Use `hideLabel` to show only icons
+(the label stays available to screen readers) and put a call to action in the middle.
 
 <ComponentPreview name="bottom-navigation-app-bar" />
+
+### Example with pagination
+
+Any list item can sit between the items. Give it `col-span-2` to take two columns.
+
+<ComponentPreview name="bottom-navigation-pagination" />
+
+### Button group bottom bar
+
+Pass `header` to show content above the items, such as a group of feed filters. The pressed filter
+has `aria-pressed`.
+
+<ComponentPreview name="bottom-navigation-button-group" />
+
+### Card with bottom bar
+
+Set `position="sticky"` to keep the bar at the bottom of a scrolling container, such as a card.
+
+<ComponentPreview name="bottom-navigation-card" />
+
+Flowbite's "Online meeting control bar" and "Video player bar" are media toolbars rather than
+navigation, and need tooltip, dropdown and progress components the design system doesn't have yet,
+so they are not shown.
 
 ## Accessibility
 
 - Renders a `<nav>` landmark named "Bottom navigation" (change it with `aria-label`) containing a
   list, so screen readers announce how many destinations there are.
-- The current page has `aria-current="page"`, which screen readers announce. Visually it is shown
-  by the brand text colour; if that is the only cue in your design, add another one, such as a
-  filled icon.
-- `hideLabel` keeps the label as visually hidden text; every item always has a name.
+- The current page has `aria-current="page"`, which screen readers announce, and is coloured
+  `fg-brand` (Flowbite only colours items on hover). If colour is the only cue in your design, add
+  another one, such as a filled icon.
+- `hideLabel` keeps the label as visually hidden text; every item always has a name. Flowbite's
+  tooltips on icon-only items are not included until a tooltip component exists.
+- Keyboard focus draws a solid `ring` outline inside the item; Flowbite has no focus style.
 - Each item fills its share of the 64px-high bar, well above the 24×24px minimum target size.
 - A fixed bar covers the bottom of the page. Add matching padding to your layout so no content is
   hidden behind it.
@@ -74,12 +101,13 @@ label stays available to screen readers) and put a primary action in the middle.
 
 ### BottomNavigation
 
-| Prop         | Type                  | Default               |
-| ------------ | --------------------- | --------------------- |
-| `position`   | `"fixed" \| "static"` | `"fixed"`             |
-| `floating`   | `boolean`             | `false`               |
-| `bordered`   | `boolean`             | `false`               |
-| `aria-label` | `string`              | `"Bottom navigation"` |
+| Prop         | Type                              | Default               |
+| ------------ | --------------------------------- | --------------------- |
+| `position`   | `"fixed" \| "sticky" \| "static"` | `"fixed"`             |
+| `floating`   | `boolean`                         | `false`               |
+| `bordered`   | `boolean`                         | `false`               |
+| `header`     | `ReactNode`                       | —                     |
+| `aria-label` | `string`                          | `"Bottom navigation"` |
 
 ### BottomNavigationItem
 
@@ -91,4 +119,13 @@ label stays available to screen readers) and put a primary action in the middle.
 | `hideLabel` | `boolean`   | `false` |
 
 Items render an `<a>` with `href`, otherwise a `<button>`, and forward the matching native
-attributes.
+attributes. Icons are drawn at 24px.
+
+| Token                      | Use                    |
+| -------------------------- | ---------------------- |
+| `neutral-primary-soft`     | Bar surface            |
+| `default`                  | Top border, dividers   |
+| `body`                     | Icons and labels       |
+| `neutral-secondary-medium` | Item hover surface     |
+| `fg-brand`                 | Hover and current item |
+| `z.fixed`                  | Layer of the fixed bar |

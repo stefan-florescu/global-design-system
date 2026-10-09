@@ -1,15 +1,16 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 /*
- * Hint, error or success text under a control. Error and success use the `-subtle-foreground`
- * tokens, which the themes build checks against the page background.
+ * Flowbite v4's helper text, class for class: `mt-2.5 text-sm text-body`, with the validation
+ * colours `fg-success-strong` and `fg-danger-strong`. The themes build checks each against the
+ * page background (WCAG 1.4.3).
  */
-export const helperTextVariants = cva("m-0 text-sm", {
+export const helperTextVariants = cva("mt-2.5 text-sm", {
   variants: {
     variant: {
-      default: "text-muted-foreground",
-      error: "text-destructive-subtle-foreground",
-      success: "text-success-subtle-foreground",
+      default: "text-body",
+      success: "text-fg-success-strong",
+      danger: "text-fg-danger-strong",
     },
   },
   defaultVariants: { variant: "default" },

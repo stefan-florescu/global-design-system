@@ -10,7 +10,7 @@
   "variants": {
     "orientation": ["vertical", "horizontal"]
   },
-  "tokens": ["color.foreground", "text.sm"],
+  "tokens": ["color.heading", "text.sm"],
   "useWhen": ["Radio groups and checkbox groups"],
   "avoidWhen": [],
   "related": ["Label", "HelperText"],

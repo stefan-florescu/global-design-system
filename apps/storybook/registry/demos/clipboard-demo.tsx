@@ -7,17 +7,17 @@ export default function ClipboardDemo() {
   const id = useId();
 
   return (
-    <div className="grid w-full max-w-md gap-2">
-      <Label htmlFor={`${id}-install-command`}>Install command</Label>
-      <div className="flex items-center gap-2">
-        <Input
-          id={`${id}-install-command`}
-          readOnly
-          value="npm install @stefan-florescu/ui"
-          className="font-mono"
-        />
-        <Clipboard value="npm install @stefan-florescu/ui" label="Copy" copiedLabel="Copied!" />
-      </div>
+    <div className="grid w-full max-w-92 grid-cols-8 gap-2">
+      <Label htmlFor={`${id}-npm-install`} className="sr-only">
+        Install command
+      </Label>
+      <Input
+        id={`${id}-npm-install`}
+        readOnly
+        value="npm i @stefan-florescu/ui"
+        className="text-body col-span-6"
+      />
+      <Clipboard value="npm i @stefan-florescu/ui" className="col-span-2" />
     </div>
   );
 }

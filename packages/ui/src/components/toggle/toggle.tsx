@@ -1,11 +1,16 @@
 import { useId, type ComponentProps, type ReactNode } from "react";
 
 import { cn } from "../../lib/cn";
-import { choiceDescriptionClassName, choiceLabelVariants } from "../checkbox/checkbox.variants";
 
 import {
+  toggleDescriptionClassName,
+  toggleIconClassName,
   toggleInputClassName,
+  toggleLabelVariants,
+  toggleTextVariants,
+  toggleTitleClassName,
   toggleTrackVariants,
+  toggleVariants,
   type ToggleVariantProps,
 } from "./toggle.variants";
 
@@ -13,18 +18,23 @@ export type ToggleProps = Omit<ComponentProps<"input">, "type" | "size" | "role"
   ToggleVariantProps & {
     /** Visible label, linked to the switch. */
     label?: ReactNode;
-    /** Helper text under the label. */
+    /** Helper text under the label, read as the switch's description. */
     description?: ReactNode;
+    /** Decorative icon for the `bordered` card; the text then sits before the switch. */
+    icon?: ReactNode;
   };
 
 /**
  * An on/off switch for a setting that applies immediately. A native checkbox with
- * `role="switch"`, so it works with Space, forms and assistive technology.
+ * `role="switch"`, so it works with Space, forms and assistive technology. The whole label is
+ * the click target.
  */
 export function Toggle({
   size,
+  bordered,
   label,
   description,
+  icon,
   id,
   disabled,
   className,
@@ -32,34 +42,73 @@ export function Toggle({
 }: ToggleProps) {
   const fallbackId = useId();
   const inputId = id ?? fallbackId;
+  const labelId = label ? `${inputId}-label` : undefined;
   const descriptionId = description ? `${inputId}-description` : undefined;
+  const isDisabled = Boolean(disabled);
+
+  const track = <span aria-hidden className={toggleTrackVariants({ size })} />;
+
+  // With a description the label wraps it too, so name the switch by its title only.
+  const title = label ? (
+    <span
+      id={labelId}
+      className={cn(
+        toggleLabelVariants({ disabled: isDisabled }),
+        description ? toggleTitleClassName : undefined,
+      )}
+    >
+      {label}
+    </span>
+  ) : null;
+
+  const descriptionText = description ? (
+    <span id={descriptionId} className={toggleDescriptionClassName}>
+      {description}
+    </span>
+  ) : null;
+
+  const hasBlock = Boolean(description || icon);
 
   return (
-    <div data-slot="toggle" className={cn("inline-flex items-start gap-3", className)}>
-      <span className="relative inline-flex shrink-0">
-        <input
-          type="checkbox"
-          role="switch"
-          id={inputId}
-          disabled={disabled}
-          aria-describedby={descriptionId}
-          className={toggleInputClassName}
-          {...props}
-        />
-        <span aria-hidden className={toggleTrackVariants({ size })} />
-      </span>
-      {label ? (
-        <div className="grid gap-0.5">
-          <label htmlFor={inputId} className={choiceLabelVariants({ disabled })}>
-            {label}
-          </label>
+    <label
+      htmlFor={inputId}
+      data-slot="toggle"
+      className={cn(toggleVariants({ bordered, align: hasBlock ? "start" : "center" }), className)}
+    >
+      <input
+        type="checkbox"
+        role="switch"
+        id={inputId}
+        disabled={disabled}
+        aria-labelledby={description ? labelId : undefined}
+        aria-describedby={descriptionId}
+        className={toggleInputClassName}
+        {...props}
+      />
+      {icon ? (
+        <>
+          <span className={toggleTextVariants({ position: "start" })}>
+            <span aria-hidden className={toggleIconClassName}>
+              {icon}
+            </span>
+            {title}
+            {descriptionText}
+          </span>
+          {track}
+        </>
+      ) : (
+        <>
+          {track}
           {description ? (
-            <p id={descriptionId} className={choiceDescriptionClassName}>
-              {description}
-            </p>
+            <span className={toggleTextVariants({ position: "description" })}>
+              {title}
+              {descriptionText}
+            </span>
+          ) : label ? (
+            <span className={toggleTextVariants({ position: "label" })}>{title}</span>
           ) : null}
-        </div>
-      ) : null}
-    </div>
+        </>
+      )}
+    </label>
   );
 }

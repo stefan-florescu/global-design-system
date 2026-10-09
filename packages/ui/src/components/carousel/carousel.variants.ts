@@ -1,28 +1,57 @@
+import { cva, type VariantProps } from "class-variance-authority";
+
+import { focusOutline } from "../../lib/focus";
+
 /*
- * Flowbite's carousel on semantic tokens. Controls and indicators sit on the slides, so they
- * use a translucent `background` disc with `foreground` icons, which stays legible on light
- * and dark images in both themes.
+ * Flowbite v4 carousel, class for class (https://flowbite.com/docs/components/carousel/): a
+ * `h-56 md:h-96` slide window with `rounded-base` corners, 40px translucent control squares at
+ * the sides and 12px indicators centred at the bottom. Flowbite's raw `white` / `gray-800`
+ * surfaces map to `neutral-primary-medium`, and `z-30` to the `z.raised` layer.
+ * Accessibility deviations:
+ * - control icons are `heading` instead of white: a white icon on a 30% white square falls under
+ *   3:1 on light images in the light theme (in dark it is white, as in Flowbite);
+ * - controls and indicators draw the solid keyboard outline from lib/focus.
  */
-export const carouselClassName = "relative w-full overflow-hidden rounded-lg";
+export const carouselClassName = "relative w-full";
 
-export const carouselTrackClassName =
-  "flex transition-transform ease-out motion-reduce:transition-none";
+export const carouselViewportClassName = "relative h-56 overflow-hidden rounded-base md:h-96";
 
-export const carouselSlideClassName = "w-full shrink-0";
+export const carouselTrackVariants = cva(
+  "flex h-full transition-transform motion-reduce:transition-none",
+  {
+    variants: {
+      transition: {
+        /** Flowbite's default slide: 700ms, ease-in-out. */
+        default: "duration-700 ease-in-out",
+        /** Flowbite's "Animation" example: 200ms, linear. */
+        fast: "duration-200 ease-linear",
+      },
+    },
+    defaultVariants: { transition: "default" },
+  },
+);
 
-export const carouselControlClassName = [
-  "inline-flex size-10 cursor-pointer items-center justify-center rounded-full",
-  "bg-background/60 text-foreground shadow-sm transition-colors hover:bg-background/90 motion-reduce:transition-none",
-  "outline-hidden focus-visible:ring-2 focus-visible:ring-ring",
+export const carouselSlideClassName = "relative h-full w-full shrink-0";
+
+/** The full-height hit area at each side. */
+export const carouselControlClassName =
+  "group absolute top-0 z-raised flex h-full cursor-pointer items-center justify-center px-4 outline-hidden";
+
+/** The visible square inside a control. */
+export const carouselControlIconClassName = [
+  "inline-flex size-10 items-center justify-center rounded-base bg-neutral-primary-medium/30 text-heading",
+  "group-hover:bg-neutral-primary-medium/50 group-focus:ring-4 group-focus:ring-neutral-primary-medium",
+  "group-focus-visible:outline-2 group-focus-visible:outline-solid group-focus-visible:outline-offset-2 group-focus-visible:outline-ring",
   "[&_svg]:size-5",
 ].join(" ");
 
+export const carouselIndicatorsClassName =
+  "absolute bottom-5 left-1/2 z-raised flex -translate-x-1/2 space-x-3 rtl:space-x-reverse";
+
 export const carouselIndicatorClassName = [
-  "group inline-flex size-6 cursor-pointer items-center justify-center rounded-full",
-  "outline-hidden focus-visible:ring-2 focus-visible:ring-ring",
+  "size-3 cursor-pointer rounded-base bg-neutral-primary-medium/50 hover:bg-neutral-primary-medium",
+  "aria-[current=true]:bg-neutral-primary-medium",
+  focusOutline,
 ].join(" ");
 
-export const carouselDotClassName = [
-  "size-3 rounded-full bg-background/60 shadow-sm transition-colors motion-reduce:transition-none",
-  "group-hover:bg-background group-aria-[current=true]:bg-background",
-].join(" ");
+export type CarouselVariantProps = VariantProps<typeof carouselTrackVariants>;

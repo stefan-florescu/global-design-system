@@ -8,16 +8,20 @@
   "client": false,
   "props": "generated",
   "parts": ["Breadcrumb", "BreadcrumbItem"],
-  "variants": { "variant": ["default", "solid"] },
-  "defaults": { "variant": "default" },
+  "variants": {
+    "variant": ["default", "solid"]
+  },
+  "defaults": {
+    "variant": "default"
+  },
   "tokens": [
-    "color.foreground",
-    "color.muted-foreground",
-    "color.brand-subtle-foreground",
-    "color.muted",
-    "color.border",
+    "color.body",
+    "color.fg-brand",
+    "color.body-subtle",
+    "color.neutral-secondary-medium",
+    "color.default-medium",
     "color.ring",
-    "radius.lg",
+    "radius.base",
     "text.sm",
     "font.medium"
   ],
@@ -26,6 +30,7 @@
   "related": ["BottomNavigation"],
   "examples": [
     "apps/storybook/registry/demos/breadcrumb-demo.tsx",
-    "apps/storybook/registry/demos/breadcrumb-solid.tsx"
+    "apps/storybook/registry/demos/breadcrumb-solid.tsx",
+    "apps/storybook/registry/demos/breadcrumb-navigation.tsx"
   ]
 }

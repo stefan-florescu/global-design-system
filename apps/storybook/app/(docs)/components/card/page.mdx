@@ -18,31 +18,46 @@ import { Card, CardDescription, CardTitle } from "@stefan-florescu/ui";
 ```
 
 ```tsx
-<Card>
-  <CardTitle>Release notes</CardTitle>
-  <CardDescription>What changed this week.</CardDescription>
+<Card className="max-w-sm">
+  <CardTitle>Noteworthy technology acquisitions 2021</CardTitle>
+  <CardDescription>Here are the biggest technology acquisitions of 2025 so far.</CardDescription>
 </Card>
 ```
+
+Children sit in a `p-6` body. `CardTitle` is Flowbite's 24px semibold title with a 12px gap
+below; override its size or spacing with `className`, as the examples do.
 
 ## Examples
 
 ### Default card
 
-Pass `href` to make the whole card a link. It gets the `accent` hover surface and a focus ring.
+Pass `href` to make the whole card a link. It takes the `neutral-secondary-medium` hover surface.
 
 <ComponentPreview name="card-demo" />
 
-### Card with action button
+### Card with button
 
-Without `href`, put actions inside the card. Don't combine both: a link can't contain buttons.
+Without `href`, put actions inside the card. Don't combine both: a link can't contain buttons or
+other links.
 
-<ComponentPreview name="card-cta" />
+<ComponentPreview name="card-button" />
+
+### Card with link
+
+<ComponentPreview name="card-link" />
 
 ### Card with image
 
-Pass `imgSrc` (and `imgAlt` when the image carries meaning) to show an image above the content.
+Pass `imgSrc` (and `imgAlt` when the image carries meaning) to show an image flush with the top
+edge.
 
 <ComponentPreview name="card-image" />
+
+### Card with description
+
+Put an image inside the body instead to keep the card's padding around it.
+
+<ComponentPreview name="card-description" />
 
 ### Horizontal card
 
@@ -50,17 +65,17 @@ Add `horizontal` to place the image on the left from the `md` breakpoint.
 
 <ComponentPreview name="card-horizontal" />
 
-### Card with form inputs
-
-<ComponentPreview name="card-form" />
-
 ### User profile card
 
 <ComponentPreview name="card-profile" />
 
+### Card with form inputs
+
+<ComponentPreview name="card-form" />
+
 ### E-commerce card
 
-The star rating is one image named "Rated 4 out of 5"; the stars themselves are hidden from
+The star rating is one image named "Rated 5 out of 5"; the stars themselves are hidden from
 assistive technology.
 
 <ComponentPreview name="card-ecommerce" />
@@ -72,19 +87,29 @@ assistive technology.
 ### Pricing card
 
 Features that aren't included say so in visually hidden text, so the meaning doesn't depend on the
-strikethrough or the icon.
+strikethrough.
 
 <ComponentPreview name="card-pricing" />
+
+### Testimonial card
+
+<ComponentPreview name="card-testimonial" />
+
+Flowbite's "Call to action card" and "Crypto card" use brand logos, and "Card with nav tabs" and
+"Card full width tabs" need a tabs component the design system doesn't have yet, so they are not
+shown. The profile card's menu button is left out until a dropdown component exists.
 
 ## Accessibility
 
 - A card is a plain container. Give it a heading with `CardTitle` (an `<h3>` by default; set
   `headingLevel` to match your page outline) so screen-reader users can jump between cards.
 - With `href`, the whole card is one link whose name is all of its text. Keep link cards short,
-  and don't put buttons or other links inside them.
+  and don't put buttons or other links inside them. Flowbite's horizontal card is a link that
+  contains a button, which is invalid HTML; here it is a plain card.
+- Link cards draw a solid `ring` outline on keyboard focus; Flowbite has no focus style.
 - Images are decorative unless you pass `imgAlt`.
-- Card text uses `card-foreground` and `muted-foreground` on the `card` surface, which pass WCAG
-  2.2 AA in both themes.
+- Card text uses `heading` and `body` on the `neutral-primary-soft` surface, which pass WCAG 2.2 AA
+  in both themes.
 
 ## API Reference
 
@@ -103,5 +128,14 @@ strikethrough or the icon.
 | -------------- | ----------------------- | ------- |
 | `headingLevel` | `2 \| 3 \| 4 \| 5 \| 6` | `3`     |
 
-`CardDescription` renders a `<p>`. All parts forward native attributes, including `ref` and
-`className`.
+`CardDescription` renders a `<p>` in `body`. All parts forward native attributes, including `ref`
+and `className`.
+
+| Token                      | Use                 |
+| -------------------------- | ------------------- |
+| `neutral-primary-soft`     | Card surface        |
+| `default`                  | Border              |
+| `neutral-secondary-medium` | Link card hover     |
+| `heading` · `body`         | Title · description |
+| `radius.base`              | Corners (12px)      |
+| `shadow.xs`                | Elevation           |

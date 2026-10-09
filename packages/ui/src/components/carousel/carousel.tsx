@@ -16,10 +16,13 @@ import { cn } from "../../lib/cn";
 import {
   carouselClassName,
   carouselControlClassName,
-  carouselDotClassName,
+  carouselControlIconClassName,
   carouselIndicatorClassName,
+  carouselIndicatorsClassName,
   carouselSlideClassName,
-  carouselTrackClassName,
+  carouselTrackVariants,
+  carouselViewportClassName,
+  type CarouselVariantProps,
 } from "./carousel.variants";
 
 const REDUCED_MOTION = "(prefers-reduced-motion: reduce)";
@@ -46,25 +49,26 @@ function isFocusVisible(element: Element) {
   }
 }
 
-export type CarouselProps = Omit<ComponentProps<"section">, "children"> & {
-  /** One child per slide. */
-  children: ReactNode;
-  /**
-   * Advance slides automatically. A pause button is shown, rotation pauses on hover and stops
-   * when keyboard focus enters, and it never starts for people who prefer reduced motion.
-   */
-  autoPlay?: boolean;
-  /** Milliseconds between slides when `autoPlay` is on. */
-  interval?: number;
-  /** Show previous and next buttons. */
-  controls?: boolean;
-  /** Show a button per slide to jump to it. */
-  indicators?: boolean;
-  /** Slide shown first. */
-  defaultIndex?: number;
-  /** Called with the new slide index. */
-  onSlideChange?: (index: number) => void;
-};
+export type CarouselProps = Omit<ComponentProps<"section">, "children"> &
+  CarouselVariantProps & {
+    /** One child per slide. */
+    children: ReactNode;
+    /**
+     * Advance slides automatically. A pause button is shown, rotation pauses on hover and stops
+     * when keyboard focus enters, and it never starts for people who prefer reduced motion.
+     */
+    autoPlay?: boolean;
+    /** Milliseconds between slides when `autoPlay` is on. */
+    interval?: number;
+    /** Show previous and next buttons. */
+    controls?: boolean;
+    /** Show a button per slide to jump to it. */
+    indicators?: boolean;
+    /** Slide shown first. */
+    defaultIndex?: number;
+    /** Called with the new slide index. */
+    onSlideChange?: (index: number) => void;
+  };
 
 /**
  * Cycles through a set of slides. Follows the WAI-ARIA Carousel pattern: a labelled region of
@@ -78,6 +82,7 @@ export function Carousel({
   indicators = true,
   defaultIndex = 0,
   onSlideChange,
+  transition,
   className,
   id,
   ...props
@@ -138,66 +143,30 @@ export function Carousel({
       className={cn(carouselClassName, className)}
       {...props}
     >
-      <div
-        aria-live={rotating ? "off" : "polite"}
-        className={carouselTrackClassName}
-        style={{ transform: `translateX(-${index * 100}%)` }}
-      >
-        {slides.map((slide, i) => (
-          <div
-            key={i}
-            role="group"
-            aria-roledescription="slide"
-            aria-label={`${i + 1} of ${count}`}
-            aria-hidden={i !== index}
-            inert={i !== index}
-            className={carouselSlideClassName}
-          >
-            {slide}
-          </div>
-        ))}
+      <div className={carouselViewportClassName}>
+        <div
+          aria-live={rotating ? "off" : "polite"}
+          className={carouselTrackVariants({ transition })}
+          style={{ transform: `translateX(-${index * 100}%)` }}
+        >
+          {slides.map((slide, i) => (
+            <div
+              key={i}
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`${i + 1} of ${count}`}
+              aria-hidden={i !== index}
+              inert={i !== index}
+              className={carouselSlideClassName}
+            >
+              {slide}
+            </div>
+          ))}
+        </div>
       </div>
 
-      {autoPlay && !reducedMotion && count > 1 ? (
-        <div className="absolute top-3 left-3">
-          <button
-            type="button"
-            aria-label={playing ? "Stop automatic slide show" : "Start automatic slide show"}
-            className={carouselControlClassName}
-            onClick={() => setPlaying((value) => !value)}
-          >
-            {playing ? <Pause aria-hidden /> : <Play aria-hidden />}
-          </button>
-        </div>
-      ) : null}
-
-      {controls && count > 1 ? (
-        <>
-          <div className="absolute inset-y-0 left-0 flex items-center px-4">
-            <button
-              type="button"
-              aria-label="Previous slide"
-              className={carouselControlClassName}
-              onClick={() => goTo(index - 1)}
-            >
-              <ChevronLeft aria-hidden />
-            </button>
-          </div>
-          <div className="absolute inset-y-0 right-0 flex items-center px-4">
-            <button
-              type="button"
-              aria-label="Next slide"
-              className={carouselControlClassName}
-              onClick={() => goTo(index + 1)}
-            >
-              <ChevronRight aria-hidden />
-            </button>
-          </div>
-        </>
-      ) : null}
-
       {indicators && count > 1 ? (
-        <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1">
+        <div className={carouselIndicatorsClassName}>
           {slides.map((_, i) => (
             <button
               key={i}
@@ -206,11 +175,47 @@ export function Carousel({
               aria-current={i === index ? "true" : undefined}
               className={carouselIndicatorClassName}
               onClick={() => goTo(i)}
-            >
-              <span aria-hidden className={carouselDotClassName} />
-            </button>
+            />
           ))}
         </div>
+      ) : null}
+
+      {controls && count > 1 ? (
+        <>
+          <button
+            type="button"
+            className={cn(carouselControlClassName, "start-0")}
+            onClick={() => goTo(index - 1)}
+          >
+            <span className={carouselControlIconClassName}>
+              <ChevronLeft aria-hidden className="rtl:rotate-180" />
+              <span className="sr-only">Previous slide</span>
+            </span>
+          </button>
+          <button
+            type="button"
+            className={cn(carouselControlClassName, "end-0")}
+            onClick={() => goTo(index + 1)}
+          >
+            <span className={carouselControlIconClassName}>
+              <ChevronRight aria-hidden className="rtl:rotate-180" />
+              <span className="sr-only">Next slide</span>
+            </span>
+          </button>
+        </>
+      ) : null}
+
+      {autoPlay && !reducedMotion && count > 1 ? (
+        <button
+          type="button"
+          aria-label={playing ? "Stop automatic slide show" : "Start automatic slide show"}
+          className={cn(carouselControlClassName, "start-0 h-auto p-4")}
+          onClick={() => setPlaying((value) => !value)}
+        >
+          <span className={carouselControlIconClassName}>
+            {playing ? <Pause aria-hidden /> : <Play aria-hidden />}
+          </span>
+        </button>
       ) : null}
     </section>
   );

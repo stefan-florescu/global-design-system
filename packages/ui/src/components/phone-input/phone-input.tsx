@@ -1,10 +1,19 @@
-import { useId } from "react";
+import { useId, type ReactNode } from "react";
 
 import { cn } from "../../lib/cn";
 import { Input, type InputProps } from "../input";
+import {
+  fieldGroupClassName,
+  fieldGroupItemClassName,
+  fieldSelectAddonClassName,
+} from "../input/input.variants";
 import { Select } from "../select";
 
-import { phoneInputCountryClassName, phoneInputNumberClassName } from "./phone-input.variants";
+import {
+  phoneInputCountryClassName,
+  phoneInputNumberClassName,
+  phoneInputNumberWithEndClassName,
+} from "./phone-input.variants";
 
 export type PhoneCountry = {
   /** ISO 3166 code, such as "RO". */
@@ -17,15 +26,15 @@ export type PhoneCountry = {
 
 export const defaultPhoneCountries: PhoneCountry[] = [
   { code: "US", dialCode: "+1", name: "United States" },
+  { code: "AU", dialCode: "+61", name: "Australia" },
   { code: "GB", dialCode: "+44", name: "United Kingdom" },
-  { code: "DE", dialCode: "+49", name: "Germany" },
   { code: "FR", dialCode: "+33", name: "France" },
+  { code: "CA", dialCode: "+1", name: "Canada" },
+  { code: "DE", dialCode: "+49", name: "Germany" },
   { code: "ES", dialCode: "+34", name: "Spain" },
   { code: "IT", dialCode: "+39", name: "Italy" },
   { code: "NL", dialCode: "+31", name: "Netherlands" },
   { code: "RO", dialCode: "+40", name: "Romania" },
-  { code: "CA", dialCode: "+1", name: "Canada" },
-  { code: "AU", dialCode: "+61", name: "Australia" },
 ];
 
 export type PhoneInputProps = Omit<InputProps, "type" | "addon" | "startIcon"> & {
@@ -37,14 +46,20 @@ export type PhoneInputProps = Omit<InputProps, "type" | "addon" | "startIcon"> &
   countryName?: string;
   /** Accessible name of the country select. */
   countryLabel?: string;
+  /**
+   * A control joined to the field's end, such as a `Select` for "Send SMS" / "Call". Square its
+   * start corners (`rounded-s-none`).
+   */
+  endAddon?: ReactNode;
 };
 
-/** A country-code select joined to a phone number field. */
+/** A country-code select joined to a phone number field (Flowbite's phone input). */
 export function PhoneInput({
   countries = defaultPhoneCountries,
   defaultCountry = countries[0]?.code,
   countryName,
   countryLabel = "Country code",
+  endAddon,
   size,
   invalid,
   valid,
@@ -54,8 +69,8 @@ export function PhoneInput({
 }: PhoneInputProps) {
   const selectId = useId();
   return (
-    <div data-slot="phone-input" className="flex w-full">
-      <div className="shrink-0">
+    <div data-slot="phone-input" className={fieldGroupClassName}>
+      <div className="relative shrink-0">
         <Select
           id={selectId}
           aria-label={countryLabel}
@@ -65,7 +80,7 @@ export function PhoneInput({
           invalid={invalid}
           valid={valid}
           disabled={disabled}
-          className={phoneInputCountryClassName}
+          className={cn(fieldSelectAddonClassName, phoneInputCountryClassName)}
         >
           {countries.map((country) => (
             <option
@@ -86,9 +101,15 @@ export function PhoneInput({
         invalid={invalid}
         valid={valid}
         disabled={disabled}
-        className={cn(phoneInputNumberClassName, className)}
+        className={cn(
+          fieldGroupItemClassName,
+          phoneInputNumberClassName,
+          endAddon != null && phoneInputNumberWithEndClassName,
+          className,
+        )}
         {...props}
       />
+      {endAddon != null ? <div className="relative shrink-0">{endAddon}</div> : null}
     </div>
   );
 }

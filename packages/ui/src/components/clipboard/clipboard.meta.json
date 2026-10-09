@@ -1,22 +1,57 @@
 {
   "name": "Clipboard",
   "status": "beta",
-  "description": "A button that copies a value to the clipboard and confirms it visually and to screen readers.",
+  "description": "A button that copies a value to the clipboard and confirms it visually and to screen readers: Flowbite's brand and secondary buttons, ghost icon button and tertiary chip.",
   "category": "actions",
   "import": "import { Clipboard } from \"@stefan-florescu/ui\";",
   "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/button/",
   "client": true,
   "props": "generated",
-  "variants": { "variant": "see Button", "size": "see Button", "iconOnly": [true, false] },
-  "defaults": { "label": "Copy", "copiedLabel": "Copied!", "resetAfter": 2000 },
-  "tokens": ["see Button"],
+  "variants": {
+    "variant": ["brand", "secondary", "ghost", "tertiary"],
+    "size": ["sm", "md"],
+    "iconOnly": [true, false]
+  },
+  "defaults": {
+    "variant": "brand",
+    "size": "md",
+    "iconOnly": false,
+    "label": "Copy",
+    "copiedLabel": "Copied!",
+    "resetAfter": 2000
+  },
+  "tokens": [
+    "color.brand",
+    "color.brand-strong",
+    "color.brand-medium",
+    "color.brand-foreground",
+    "color.neutral-secondary-medium",
+    "color.neutral-tertiary-medium",
+    "color.default-medium",
+    "color.body",
+    "color.heading",
+    "color.neutral-quaternary",
+    "color.neutral-primary-strong",
+    "color.neutral-secondary-strong",
+    "color.default-strong",
+    "color.fg-brand",
+    "color.fg-brand-strong",
+    "color.ring",
+    "radius.base",
+    "radius.default",
+    "shadow.xs"
+  ],
   "useWhen": ["Copying install commands, API keys, links or codes"],
   "avoidWhen": ["Long content the user needs to read first"],
-  "related": ["Button"],
+  "related": ["Button", "Input", "Card"],
   "examples": [
     "apps/storybook/registry/demos/clipboard-demo.tsx",
-    "apps/storybook/registry/demos/clipboard-icon.tsx",
+    "apps/storybook/registry/demos/clipboard-input.tsx",
     "apps/storybook/registry/demos/clipboard-text.tsx",
-    "apps/storybook/registry/demos/clipboard-card.tsx"
+    "apps/storybook/registry/demos/clipboard-input-group.tsx",
+    "apps/storybook/registry/demos/clipboard-url-shortener.tsx",
+    "apps/storybook/registry/demos/clipboard-code.tsx",
+    "apps/storybook/registry/demos/clipboard-card.tsx",
+    "apps/storybook/registry/demos/clipboard-contact.tsx"
   ]
 }

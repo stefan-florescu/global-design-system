@@ -1,29 +1,45 @@
 {
   "name": "NumberInput",
   "status": "beta",
-  "description": "A number field with optional \u2212 and + stepper buttons.",
+  "description": "Flowbite's number input: a number field with optional control buttons (stepper), a round-button counter and a caption.",
   "category": "forms",
   "import": "import { NumberInput } from \"@stefan-florescu/ui\";",
   "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/spinbutton/",
   "client": true,
   "props": "generated",
   "variants": {
-    "size": ["sm", "md", "lg"],
+    "size": ["sm", "md", "lg", "xl"],
+    "variant": ["default", "counter"],
     "stepper": [true, false]
   },
   "tokens": [
+    "color.neutral-secondary-medium",
     "color.input",
-    "color.background",
-    "color.foreground",
-    "color.muted",
-    "color.muted-foreground",
-    "color.ring",
-    "color.destructive",
+    "color.heading",
+    "color.body",
+    "color.brand",
+    "color.danger",
+    "color.danger-soft",
+    "color.fg-danger-strong",
     "color.success",
-    "radius.lg"
+    "color.success-soft",
+    "color.fg-success-strong",
+    "color.fg-disabled",
+    "radius.base",
+    "shadow.xs",
+    "color.neutral-tertiary-medium",
+    "color.neutral-tertiary",
+    "color.default-medium",
+    "color.body-subtle",
+    "color.ring"
   ],
   "useWhen": ["Quantities and other small numbers"],
   "avoidWhen": [],
-  "related": ["Label", "HelperText"],
-  "docs": "apps/storybook/app/(docs)/forms/number-input/page.mdx"
+  "related": ["Input", "Label", "HelperText", "Button"],
+  "docs": "apps/storybook/app/(docs)/forms/number-input/page.mdx",
+  "defaults": {
+    "size": "md",
+    "variant": "default",
+    "step": 1
+  }
 }

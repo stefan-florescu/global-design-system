@@ -28,7 +28,7 @@ export function MobileNav({ className }: { className?: string }) {
       <button
         type="button"
         onClick={() => dialogRef.current?.showModal()}
-        className="hover:bg-accent focus-visible:ring-ring/50 -ml-2 inline-flex size-9 items-center justify-center rounded-md focus-visible:ring-[3px] focus-visible:outline-none"
+        className="hover:bg-neutral-tertiary focus-visible:ring-ring/50 -ml-2 inline-flex size-9 items-center justify-center rounded-md focus-visible:ring-[3px] focus-visible:outline-none"
       >
         <Menu aria-hidden className="size-5" />
         <span className="sr-only">Open menu</span>
@@ -39,7 +39,7 @@ export function MobileNav({ className }: { className?: string }) {
         ref={dialogRef}
         aria-label="Site navigation"
         onClick={(event) => event.target === dialogRef.current && close()}
-        className="bg-background text-foreground fixed inset-y-0 left-0 m-0 h-dvh max-h-dvh w-[85vw] max-w-xs border-r p-0 shadow-xl"
+        className="bg-neutral-primary text-heading fixed inset-y-0 left-0 m-0 h-dvh max-h-dvh w-[85vw] max-w-xs border-r p-0 shadow-xl"
       >
         <div className="flex h-full flex-col">
           <div className="flex h-14 items-center justify-between border-b px-4">
@@ -47,7 +47,7 @@ export function MobileNav({ className }: { className?: string }) {
             <button
               type="button"
               onClick={close}
-              className="hover:bg-accent focus-visible:ring-ring/50 inline-flex size-9 items-center justify-center rounded-md focus-visible:ring-[3px] focus-visible:outline-none"
+              className="hover:bg-neutral-tertiary focus-visible:ring-ring/50 inline-flex size-9 items-center justify-center rounded-md focus-visible:ring-[3px] focus-visible:outline-none"
             >
               <X aria-hidden className="size-5" />
               <span className="sr-only">Close menu</span>
@@ -63,7 +63,7 @@ export function MobileNav({ className }: { className?: string }) {
                   aria-current={active === item.href ? "page" : undefined}
                   className={cn(
                     "focus-visible:ring-ring/50 flex h-9 items-center rounded-md px-2 text-base font-medium focus-visible:ring-[3px] focus-visible:outline-none",
-                    active === item.href ? "text-foreground" : "text-muted-foreground",
+                    active === item.href ? "text-heading" : "text-body",
                   )}
                 >
                   {item.title}

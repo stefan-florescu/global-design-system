@@ -110,4 +110,13 @@ describe("Carousel", () => {
     render(<Slides controls={false} indicators={false} />);
     expect(screen.queryByRole("button")).not.toBeInTheDocument();
   });
+
+  it("uses Flowbite's slide window and transition speeds", () => {
+    const { rerender } = render(<Slides />);
+    const track = slide("1 of 3").parentElement;
+    expect(track?.parentElement).toHaveClass("h-56", "md:h-96", "rounded-base", "overflow-hidden");
+    expect(track).toHaveClass("duration-700", "ease-in-out", "motion-reduce:transition-none");
+    rerender(<Slides transition="fast" />);
+    expect(slide("1 of 3").parentElement).toHaveClass("duration-200", "ease-linear");
+  });
 });

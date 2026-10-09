@@ -7,15 +7,11 @@ export default function SearchInputDemo() {
   const id = useId();
 
   return (
-    <form role="search" className="w-full max-w-md">
-      <Label htmlFor={`${id}-search-demo`} className="sr-only">
+    <form role="search" className="mx-auto w-full max-w-md">
+      <Label htmlFor={`${id}-search`} className="sr-only">
         Search
       </Label>
-      <SearchInput
-        id={`${id}-search-demo`}
-        placeholder="Search components, tokens…"
-        submitLabel="Search"
-      />
+      <SearchInput id={`${id}-search`} placeholder="Search" submitLabel="Search" required />
     </form>
   );
 }

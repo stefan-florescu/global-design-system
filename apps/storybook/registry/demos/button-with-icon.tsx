@@ -1,14 +1,14 @@
-import { ArrowRight, Plus } from "@stefan-florescu/icons";
+import { ArrowRight, ShoppingCart } from "@stefan-florescu/icons";
 import { Button } from "@stefan-florescu/ui";
 
 export default function ButtonWithIcon() {
   return (
-    <div className="flex flex-wrap items-center gap-3">
+    <div className="flex flex-wrap items-center gap-2">
       <Button>
-        <Plus aria-hidden />
-        New project
+        <ShoppingCart aria-hidden />
+        Buy now
       </Button>
-      <Button variant="outline">
+      <Button>
         Choose plan
         <ArrowRight aria-hidden />
       </Button>

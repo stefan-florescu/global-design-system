@@ -2,6 +2,8 @@ import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { Calendar } from "./calendar";
+import { DateRangePicker } from "./date-range-picker";
+import { formatDate, parseDate } from "./date-utils";
 import { Datepicker } from "./datepicker";
 
 const OCT_8 = new Date(2026, 9, 8);
@@ -101,33 +103,45 @@ describe("Calendar", () => {
 });
 
 describe("Datepicker", () => {
-  it("opens a calendar dialog, picks a day and returns focus", async () => {
+  it("is a combobox field that opens a calendar dialog and picks a day", async () => {
     const user = userEvent.setup();
     const onChange = vi.fn();
     render(<Datepicker defaultValue={OCT_8} locale="en-US" onChange={onChange} />);
-    const trigger = screen.getByRole("button", { name: "Date, Oct 8, 2026" });
-    expect(trigger).toHaveAttribute("aria-haspopup", "dialog");
-    await user.click(trigger);
-    expect(trigger).toHaveAttribute("aria-expanded", "true");
+    const field = screen.getByRole("combobox", { name: "Date" });
+    expect(field).toHaveValue("10/08/2026");
+    expect(field).toHaveAttribute("aria-haspopup", "dialog");
+    await user.click(field);
+    expect(field).toHaveAttribute("aria-expanded", "true");
     const dialog = screen.getByRole("dialog", { name: "Choose date" });
-    await waitFor(() =>
-      expect(within(dialog).getByRole("button", { name: /October 8, 2026/ })).toHaveFocus(),
-    );
     await user.click(within(dialog).getByRole("button", { name: "Friday, October 23, 2026" }));
     expect(onChange).toHaveBeenCalledWith(new Date(2026, 9, 23));
-    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
-    await waitFor(() =>
-      expect(screen.getByRole("button", { name: "Date, Oct 23, 2026" })).toHaveFocus(),
-    );
+    expect(field).toHaveValue("10/23/2026");
+    // Flowbite keeps the calendar open unless autoHide is set.
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
   });
 
-  it("closes on Escape", async () => {
+  it("closes after picking with autoHide and returns focus to the field", async () => {
     const user = userEvent.setup();
-    render(<Datepicker locale="en-US" />);
-    await user.click(screen.getByRole("button", { name: "Date, Select date" }));
-    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    render(<Datepicker defaultValue={OCT_8} locale="en-US" autoHide />);
+    const field = screen.getByRole("combobox");
+    await user.click(field);
+    await user.click(screen.getByRole("button", { name: "Friday, October 23, 2026" }));
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    await waitFor(() => expect(field).toHaveFocus());
+  });
+
+  it("opens with Arrow Down, focusing the selected day, and closes on Escape", async () => {
+    const user = userEvent.setup();
+    render(<Datepicker defaultValue={OCT_8} locale="en-US" />);
+    const field = screen.getByRole("combobox");
+    field.focus();
+    await user.keyboard("{ArrowDown}");
+    await waitFor(() =>
+      expect(screen.getByRole("button", { name: "Thursday, October 8, 2026" })).toHaveFocus(),
+    );
     await user.keyboard("{Escape}");
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    await waitFor(() => expect(field).toHaveFocus());
   });
 
   it("closes on a click outside", async () => {
@@ -138,9 +152,19 @@ describe("Datepicker", () => {
         <p>Outside</p>
       </>,
     );
-    await user.click(screen.getByRole("button", { name: "Date, Select date" }));
+    await user.click(screen.getByRole("combobox", { name: "Date" }));
     await user.click(screen.getByText("Outside"));
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  });
+
+  it("reads a typed date in its format", async () => {
+    const user = userEvent.setup();
+    const onChange = vi.fn();
+    render(<Datepicker format="mm-dd-yyyy" locale="en-US" onChange={onChange} />);
+    const field = screen.getByRole("combobox");
+    await user.type(field, "12-24-2026{Enter}");
+    expect(onChange).toHaveBeenCalledWith(new Date(2026, 11, 24));
+    expect(field).toHaveValue("12-24-2026");
   });
 
   it("clears the value and submits it with a form", async () => {
@@ -151,15 +175,57 @@ describe("Datepicker", () => {
         defaultValue={OCT_8}
         name="departure"
         label="Departure"
-        showClearButton
+        showButtons
         locale="en-US"
         onChange={onChange}
       />,
     );
     expect(container.querySelector('input[name="departure"]')).toHaveValue("2026-10-08");
-    await user.click(screen.getByRole("button", { name: "Departure, Oct 8, 2026" }));
+    await user.click(screen.getByRole("combobox", { name: "Departure" }));
+    expect(screen.getByRole("button", { name: "Today" })).toHaveClass("bg-brand");
     await user.click(screen.getByRole("button", { name: "Clear" }));
     expect(onChange).toHaveBeenCalledWith(null);
     expect(container.querySelector('input[name="departure"]')).toHaveValue("");
+  });
+
+  it("opens towards the end with orientation", async () => {
+    const user = userEvent.setup();
+    render(<Datepicker orientation="bottom right" />);
+    await user.click(screen.getByRole("combobox"));
+    expect(screen.getByRole("dialog")).toHaveClass("end-0", "top-full");
+  });
+});
+
+describe("DateRangePicker", () => {
+  it("sets each end of the range from its own field", async () => {
+    const user = userEvent.setup();
+    const onChange = vi.fn();
+    render(
+      <DateRangePicker
+        defaultValue={{ from: OCT_8, to: null }}
+        locale="en-US"
+        onChange={onChange}
+      />,
+    );
+    expect(screen.getByText("to")).toBeInTheDocument();
+    await user.click(screen.getByRole("combobox", { name: "End date" }));
+    await user.click(screen.getByRole("button", { name: "Monday, October 12, 2026" }));
+    expect(onChange).toHaveBeenLastCalledWith({ from: OCT_8, to: new Date(2026, 9, 12) });
+    expect(screen.getByRole("combobox", { name: "End date" })).toHaveValue("10/12/2026");
+    expect(
+      screen.getByRole("button", { name: "Saturday, October 10, 2026" }).parentElement,
+    ).toHaveAttribute("aria-selected", "true");
+  });
+});
+
+describe("formatDate and parseDate", () => {
+  it("use Flowbite's format tokens", () => {
+    expect(formatDate(OCT_8)).toBe("10/08/2026");
+    expect(formatDate(OCT_8, "dd-mm-yy")).toBe("08-10-26");
+    expect(formatDate(OCT_8, "MM d, yyyy", "en-US")).toBe("October 8, 2026");
+    expect(parseDate("10/08/2026")).toEqual(OCT_8);
+    expect(parseDate("October 8, 2026", "MM d, yyyy", "en-US")).toEqual(OCT_8);
+    expect(parseDate("02/30/2026")).toBeNull();
+    expect(parseDate("tomorrow")).toBeNull();
   });
 });

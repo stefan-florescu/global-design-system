@@ -1,17 +1,26 @@
 import { useId } from "react";
 
-import { Label, NumberInput } from "@stefan-florescu/ui";
+import { HelperText, Label, NumberInput } from "@stefan-florescu/ui";
 
 export default function NumberInputStepper() {
   // Unique ids, so the example can appear more than once on a page.
   const id = useId();
 
   return (
-    <div className="grid w-full max-w-sm gap-6">
-      <div className="grid gap-2">
-        <Label htmlFor={`${id}-guests`}>Guests</Label>
-        <NumberInput id={`${id}-guests`} stepper defaultValue={2} min={1} max={10} />
+    <form className="mx-auto w-full max-w-xs">
+      <Label htmlFor={`${id}-quantity`}>Choose quantity:</Label>
+      <div className="max-w-36">
+        <NumberInput
+          id={`${id}-quantity`}
+          stepper
+          placeholder="999"
+          aria-describedby={`${id}-quantity-help`}
+          required
+        />
       </div>
-    </div>
+      <HelperText id={`${id}-quantity-help`}>
+        Please select a 5 digit number from 0 to 9.
+      </HelperText>
+    </form>
   );
 }

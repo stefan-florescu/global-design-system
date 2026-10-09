@@ -7,11 +7,9 @@ export default function FileInputMultiple() {
   const id = useId();
 
   return (
-    <div className="grid w-full max-w-sm gap-6">
-      <div className="grid gap-2">
-        <Label htmlFor={`${id}-attachments`}>Attachments</Label>
-        <FileInput id={`${id}-attachments`} multiple />
-      </div>
+    <div className="w-full">
+      <Label htmlFor={`${id}-multiple-files`}>Upload multiple files</Label>
+      <FileInput id={`${id}-multiple-files`} multiple />
     </div>
   );
 }

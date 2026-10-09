@@ -8,6 +8,7 @@ import {
   useState,
   type ComponentProps,
   type KeyboardEvent,
+  type ReactNode,
 } from "react";
 
 import { cn } from "../../lib/cn";
@@ -15,6 +16,7 @@ import { cn } from "../../lib/cn";
 import {
   accordionContentVariants,
   accordionIconClassName,
+  accordionItemClassName,
   accordionTriggerVariants,
   accordionVariants,
 } from "./accordion.variants";
@@ -24,6 +26,7 @@ type AccordionContextValue = {
   toggle: (value: string) => void;
   variant: "neutral" | "brand";
   flush: boolean;
+  separated: boolean;
 };
 
 const AccordionContext = createContext<AccordionContextValue | null>(null);
@@ -59,10 +62,12 @@ export type AccordionProps = Omit<ComponentProps<"div">, "defaultValue"> & {
   value?: string[];
   /** Called with the values of the open items whenever an item opens or closes. */
   onValueChange?: (value: string[]) => void;
-  /** Open-title colour: `neutral` (muted surface) or `brand` (brand-subtle surface). */
+  /** Hover colour of the titles: `neutral` (gray) or `brand` (Flowbite's "Color options"). */
   variant?: "neutral" | "brand";
-  /** Remove the outer border, radius and side padding, leaving only dividers. */
+  /** Remove the outer box, background and side padding, leaving only dividers. */
   flush?: boolean;
+  /** Show every item as its own card, 1rem apart (Flowbite's "Separated cards"). */
+  separated?: boolean;
 };
 
 /**
@@ -76,6 +81,7 @@ export function Accordion({
   onValueChange,
   variant = "neutral",
   flush = false,
+  separated = false,
   className,
   children,
   ...props
@@ -95,8 +101,12 @@ export function Accordion({
   };
 
   return (
-    <AccordionContext value={{ openValues, toggle, variant, flush }}>
-      <div data-slot="accordion" className={cn(accordionVariants({ flush }), className)} {...props}>
+    <AccordionContext value={{ openValues, toggle, variant, flush, separated }}>
+      <div
+        data-slot="accordion"
+        className={cn(accordionVariants({ flush, separated }), className)}
+        {...props}
+      >
         {children}
       </div>
     </AccordionContext>
@@ -127,7 +137,7 @@ export function AccordionItem({
       <div
         data-slot="accordion-item"
         data-state={open ? "open" : "closed"}
-        className={className}
+        className={cn(accordionItemClassName, className)}
         {...props}
       />
     </AccordionItemContext>
@@ -159,22 +169,28 @@ function focusSibling(event: KeyboardEvent<HTMLButtonElement>) {
 export type AccordionTriggerProps = ComponentProps<"button"> & {
   /** Level of the heading that wraps the button. Match the page outline. */
   headingLevel?: 2 | 3 | 4 | 5 | 6;
+  /**
+   * Icon at the end of the title. By default a chevron that turns while the item is open. Pass
+   * another icon to show it without turning, or `null` for none.
+   */
+  icon?: ReactNode;
 };
 
 export function AccordionTrigger({
   headingLevel = 3,
+  icon,
   className,
   children,
   onClick,
   onKeyDown,
   ...props
 }: AccordionTriggerProps) {
-  const { toggle, variant, flush } = useAccordion("AccordionTrigger");
+  const { toggle, variant, flush, separated } = useAccordion("AccordionTrigger");
   const { open, disabled, value, triggerId, contentId } = useAccordionItem("AccordionTrigger");
   const Heading = `h${headingLevel}` as const;
 
   return (
-    <Heading className="m-0 text-sm">
+    <Heading className="m-0">
       <button
         type="button"
         id={triggerId}
@@ -183,7 +199,7 @@ export function AccordionTrigger({
         disabled={disabled}
         data-slot="accordion-trigger"
         data-state={open ? "open" : "closed"}
-        className={cn(accordionTriggerVariants({ variant, flush }), className)}
+        className={cn(accordionTriggerVariants({ variant, flush, separated }), className)}
         onClick={(event) => {
           onClick?.(event);
           if (!event.defaultPrevented) toggle(value);
@@ -195,7 +211,7 @@ export function AccordionTrigger({
         {...props}
       >
         {children}
-        <ChevronDown aria-hidden className={accordionIconClassName} />
+        {icon === undefined ? <ChevronDown aria-hidden className={accordionIconClassName} /> : icon}
       </button>
     </Heading>
   );
@@ -204,7 +220,7 @@ export function AccordionTrigger({
 export type AccordionContentProps = ComponentProps<"div">;
 
 export function AccordionContent({ className, ...props }: AccordionContentProps) {
-  const { flush } = useAccordion("AccordionContent");
+  const { flush, separated } = useAccordion("AccordionContent");
   const { open, triggerId, contentId } = useAccordionItem("AccordionContent");
 
   return (
@@ -215,7 +231,7 @@ export function AccordionContent({ className, ...props }: AccordionContentProps)
       hidden={!open}
       data-slot="accordion-content"
       data-state={open ? "open" : "closed"}
-      className={cn(accordionContentVariants({ flush }), className)}
+      className={cn(accordionContentVariants({ flush, separated }), className)}
       {...props}
     />
   );

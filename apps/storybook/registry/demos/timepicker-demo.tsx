@@ -7,11 +7,11 @@ export default function TimepickerDemo() {
   const id = useId();
 
   return (
-    <div className="grid w-full max-w-sm gap-6">
-      <div className="grid gap-2">
-        <Label htmlFor={`${id}-start-time`}>Start time</Label>
-        <Timepicker id={`${id}-start-time`} defaultValue="09:00" />
-      </div>
-    </div>
+    <form className="mx-auto w-full max-w-[8rem]">
+      <Label htmlFor={`${id}-time`} className="mb-2">
+        Select time:
+      </Label>
+      <Timepicker id={`${id}-time`} min="09:00" max="18:00" defaultValue="00:00" required />
+    </form>
   );
 }

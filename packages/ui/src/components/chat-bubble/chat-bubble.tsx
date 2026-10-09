@@ -4,8 +4,11 @@ import { cn } from "../../lib/cn";
 
 import {
   chatBubbleBodyVariants,
+  chatBubbleContentVariants,
+  chatBubbleHeaderClassName,
   chatBubbleMetaClassName,
-  chatBubbleMutedClassName,
+  chatBubbleNameClassName,
+  chatBubbleSurfaceVariants,
   chatBubbleVariants,
   type ChatBubbleVariantProps,
 } from "./chat-bubble.variants";
@@ -20,13 +23,15 @@ export type ChatBubbleProps = ComponentProps<"div"> &
     time?: string;
     /** Machine-readable time for `<time dateTime>`, such as "2026-10-08T11:46". */
     dateTime?: string;
-    /** Delivery status shown under the message, such as "Delivered". */
+    /** Delivery status under the message, such as "Delivered". Can be a row with actions. */
     status?: ReactNode;
+    /** Shown next to the bubble, such as a `ChatBubbleMenu`. */
+    actions?: ReactNode;
   };
 
 /**
- * One message in a conversation: avatar, sender, time, content and status. Put a conversation
- * in a container with `role="log"` so new messages are announced.
+ * One message in a conversation: avatar, sender, time, content, status and actions. Put a
+ * conversation in a container with `role="log"` so new messages are announced.
  */
 export function ChatBubble({
   avatar,
@@ -34,12 +39,26 @@ export function ChatBubble({
   time,
   dateTime,
   status,
+  actions,
   variant,
   align,
   className,
   children,
   ...props
 }: ChatBubbleProps) {
+  const header =
+    name || time ? (
+      <div className={chatBubbleHeaderClassName}>
+        {name ? <span className={chatBubbleNameClassName}>{name}</span> : null}
+        {time ? (
+          <time dateTime={dateTime} className={chatBubbleMetaClassName}>
+            {time}
+          </time>
+        ) : null}
+      </div>
+    ) : null;
+  const content = <div className={chatBubbleContentVariants({ variant })}>{children}</div>;
+
   return (
     <div
       data-slot="chat-bubble"
@@ -48,19 +67,15 @@ export function ChatBubble({
     >
       {avatar}
       <div className={chatBubbleBodyVariants({ variant, align })}>
-        {name || time ? (
-          <div className={chatBubbleMetaClassName}>
-            {name ? <span className="font-semibold">{name}</span> : null}
-            {time ? (
-              <time dateTime={dateTime} className={chatBubbleMutedClassName}>
-                {time}
-              </time>
-            ) : null}
-          </div>
-        ) : null}
-        <div className="py-1.5">{children}</div>
-        {status ? <span className={chatBubbleMutedClassName}>{status}</span> : null}
+        {header}
+        {variant === "outline" ? (
+          <div className={chatBubbleSurfaceVariants({ align })}>{content}</div>
+        ) : (
+          content
+        )}
+        {status ? <div className={chatBubbleMetaClassName}>{status}</div> : null}
       </div>
+      {actions}
     </div>
   );
 }

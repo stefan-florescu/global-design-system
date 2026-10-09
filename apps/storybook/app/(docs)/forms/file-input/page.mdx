@@ -1,6 +1,7 @@
 export const metadata = {
   title: "File Input",
-  description: "A native file field and a large drag-and-drop dropzone.",
+  description:
+    "Let people upload one or more files from their device, with a native file field or a drag-and-drop dropzone.",
 };
 
 <PageHeader {...metadata} section="Forms" badges={[{ label: "Beta", variant: "secondary" }]} />
@@ -18,55 +19,85 @@ import { FileDropzone, FileInput, Label } from "@stefan-florescu/ui";
 ```
 
 ```tsx
-<Label htmlFor="avatar">Profile picture</Label>
-<FileInput id="avatar" accept="image/*" />
+<Label htmlFor="file_input">Upload file</Label>
+<FileInput id="file_input" />
 ```
 
 ## Examples
 
-### File upload
+### File upload example
 
-A native file field with the browser's button restyled.
+A native file field to upload a single file. The browser's "Choose file" button is styled as a
+segment at the start of the field.
 
 <ComponentPreview name="file-input-demo" />
 
 ### Helper text
 
-Say which formats and sizes are accepted.
+Say which file types and sizes are accepted in a `HelperText`, linked with `aria-describedby`.
 
 <ComponentPreview name="file-input-helper" />
 
 ### Multiple files
 
+Add `multiple` to allow more than one file.
+
 <ComponentPreview name="file-input-multiple" />
 
 ### Sizes
 
+`md` (Flowbite's base) and `lg`; `sm` is also available. The size sets the text of the file name;
+the button keeps `text-sm`.
+
 <ComponentPreview name="file-input-sizes" />
+
+| Size | Height | Text |
+| ---- | ------ | ---- |
+| `sm` | 38px   | `xs` |
+| `md` | 42px   | `sm` |
+| `lg` | 44px   | `lg` |
 
 ### Dropzone
 
-`FileDropzone` is a large target: click it, focus it with <kbd>Tab</kbd>, or drop files on it. It works without JavaScript because the native input covers the whole area.
+`FileDropzone` is a large area that people can click, focus with <kbd>Tab</kbd>, or drop files on.
+It works without JavaScript: the native file input covers the whole area.
 
 <ComponentPreview name="file-input-dropzone" />
+
+### Dropzone with button
+
+Use a `Button` to open the file dialog instead of making the whole area clickable.
+
+<ComponentPreview name="file-input-dropzone-button" />
 
 ## Accessibility
 
 - Both are native `type="file"` inputs, so the file dialog, keyboard and screen readers work as
-  usual.
-- `FileDropzone`'s text is its label; its focus ring appears around the whole area.
-- Check files on the server too: `accept` only filters the file dialog.
+  usual. Give `FileInput` a `Label`; `FileDropzone`'s own text is its label.
+- `accept` only filters the file dialog; check files on the server too.
+- Differences from Flowbite, for WCAG 2.2 AA:
+  - The field border is the `input` token instead of `default-medium`, and the dropzone's dashed
+    border is `input` instead of `default-strong`, so their edges reach 3:1 (1.4.11).
+  - In dark mode the "Choose file" label is `heading` instead of `body`, because `body` on
+    `neutral-quaternary` is under 4.5:1 there (1.4.3).
+  - Flowbite hides the dropzone's input with `display: none`, so it cannot be reached with the
+    keyboard. Here the input is invisible but covers the area, and keyboard focus outlines the
+    whole dropzone in `ring`.
+- In the dropzone with button, the `Button` opens the dialog, so the hidden input stays out of the
+  tab order.
 
 ## API Reference
 
 ### FileInput
 
-| Prop       | Type                   | Default |
-| ---------- | ---------------------- | ------- |
-| `accept`   | `string`               | —       |
-| `multiple` | `boolean`              | `false` |
-| `size`     | `"sm" \| "md" \| "lg"` | `"md"`  |
-| `invalid`  | `boolean`              | `false` |
+| Prop        | Type                          | Default |
+| ----------- | ----------------------------- | ------- |
+| `size`      | `"sm" \| "md" \| "lg"`        | `"md"`  |
+| `accept`    | `string`                      | —       |
+| `multiple`  | `boolean`                     | `false` |
+| `invalid`   | `boolean`                     | `false` |
+| `disabled`  | `boolean`                     | `false` |
+| `className` | `string`. Merged with `cn()`. | —       |
 
 ### FileDropzone
 
@@ -74,5 +105,13 @@ Say which formats and sizes are accepted.
 | ------------- | ----------- | ---------------------------------- |
 | `title`       | `ReactNode` | "Click to upload or drag and drop" |
 | `description` | `ReactNode` | —                                  |
+| `className`   | `string`    | —                                  |
 
-Both forward native `<input>` attributes.
+Both forward the other native `<input>` attributes to the file input, including `ref`;
+`FileDropzone`'s `className` goes on the drop area.
+
+| Part          | Tokens                                                                                                |
+| ------------- | ----------------------------------------------------------------------------------------------------- |
+| Field         | `neutral-secondary-medium` · `input` border · `heading` · `rounded-base`                              |
+| Choose button | `neutral-quaternary` · `body` (`heading` in dark)                                                     |
+| Dropzone      | `neutral-secondary-medium` · dashed `input` border · `body` text · `neutral-tertiary-medium` on hover |

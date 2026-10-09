@@ -1,6 +1,7 @@
 export const metadata = {
   title: "Chat Bubble",
-  description: "One message in a conversation: avatar, sender, time, content and delivery status.",
+  description:
+    "Show chat messages with text, voice notes, files, images, galleries and link previews, in default, outline and clean styles.",
 };
 
 <PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
@@ -14,69 +15,157 @@ export const metadata = {
 ## Usage
 
 ```tsx
-import { Avatar, ChatBubble } from "@stefan-florescu/ui";
+import { Avatar, ChatBubble, ChatBubbleMenu, ChatBubbleMenuItem } from "@stefan-florescu/ui";
 ```
 
 ```tsx
 <ChatBubble
-  avatar={<Avatar src="/team/ana.jpg" alt="" size="sm" />}
-  name="Ana Popescu"
+  avatar={<Avatar src="/team/bonnie.jpg" alt="" size="sm" />}
+  name="Bonnie Green"
   time="11:46"
   dateTime="2026-10-08T11:46"
   status="Delivered"
+  actions={
+    <ChatBubbleMenu>
+      <ChatBubbleMenuItem>Reply</ChatBubbleMenuItem>
+    </ChatBubbleMenu>
+  }
 >
-  The new tokens are live.
+  That's awesome. I think our users will really appreciate the improvements.
 </ChatBubble>
 ```
+
+`ChatBubble` lays out the avatar, the sender's name and time, the message, the status and the
+actions. Anything can go inside it: text, a voice note, a file, images or a link preview.
 
 ## Examples
 
 ### Default chat bubble
 
-The message sits on the `muted` surface. The corner next to the avatar stays square.
+Use this example to show a simple chat bubble with a text message, user profile and a timestamp.
+The name, time and status sit inside the `neutral-secondary-soft` bubble, and the corner next to
+the avatar stays square. `ChatBubbleMenu` adds the "more" button and its actions.
 
 <ComponentPreview name="chat-bubble-demo" />
 
+### Voice note message
+
+This example can be used to show a voice note message with control buttons and a dropdown menu.
+
+<ComponentPreview name="chat-bubble-voice-note" />
+
 ### File attachment
 
-Any content can go inside the bubble, such as a file with a download button.
+Use this example to send a file attachment inside a chat bubble with the ability to download the
+file.
 
 <ComponentPreview name="chat-bubble-file" />
 
 ### Image attachment
 
+This example can be used to show an image attachment with a download button when hovering over or
+focusing it.
+
 <ComponentPreview name="chat-bubble-image" />
+
+### Image gallery
+
+Use this example to show an image gallery based on a grid layout with the ability to download
+images. Pass a row to `status` to add an action next to it.
+
+<ComponentPreview name="chat-bubble-gallery" />
+
+### URL preview sharing
+
+Use this example to show a preview of the URL that is being shared inside the chat bubble.
+
+<ComponentPreview name="chat-bubble-url-preview" />
 
 ### Outline chat bubble
 
-Set `variant="outline"` for a bordered bubble on the page background.
+Set `variant="outline"` to show the user profile and timestamp outside the chat bubble.
 
 <ComponentPreview name="chat-bubble-outline" />
 
+### Outline voice note
+
+<ComponentPreview name="chat-bubble-outline-voice-note" />
+
+### Outline file attachment
+
+<ComponentPreview name="chat-bubble-outline-file" />
+
+### Outline image attachment
+
+<ComponentPreview name="chat-bubble-outline-image" />
+
+### Outline image gallery
+
+<ComponentPreview name="chat-bubble-outline-gallery" />
+
+### Outline URL preview sharing
+
+<ComponentPreview name="chat-bubble-outline-url-preview" />
+
 ### Clean chat bubble
 
-Set `variant="clean"` to drop the surface and padding, for dense threads.
+Set `variant="clean"` to show the message on the page, with no bubble. The text uses `heading`.
 
 <ComponentPreview name="chat-bubble-clean" />
 
+### Clean voice note
+
+<ComponentPreview name="chat-bubble-clean-voice-note" />
+
+### Clean file attachment
+
+<ComponentPreview name="chat-bubble-clean-file" />
+
+### Clean image attachment
+
+<ComponentPreview name="chat-bubble-clean-image" />
+
+### Clean image gallery
+
+<ComponentPreview name="chat-bubble-clean-gallery" />
+
+### Clean URL preview sharing
+
+<ComponentPreview name="chat-bubble-clean-url-preview" />
+
 ### Conversation
 
-Set `align="end"` for messages the user sent. Wrap the conversation in a container with
-`role="log"` and an `aria-label`, so screen readers announce new messages as they arrive.
+Set `align="end"` for messages the user sent: the avatar moves to the end and the square corner
+follows it. Wrap the conversation in a container with `role="log"` and an `aria-label`, so screen
+readers announce new messages as they arrive.
 
 <ComponentPreview name="chat-bubble-conversation" />
 
+| Variant   | Tokens                                                                     |
+| --------- | -------------------------------------------------------------------------- |
+| `default` | `neutral-secondary-soft` bubble · `heading` name · `body` message and time |
+| `outline` | Same bubble, with the name, time and status outside it                     |
+| `clean`   | No bubble · `heading` message · `body` time and status                     |
+
 ## Accessibility
 
-- Put conversations in a `role="log"` container with a name, such as "Chat with Ana Popescu". New
+- Put conversations in a `role="log"` container with a name, such as "Chat with Bonnie Green". New
   messages added to the end are announced politely.
 - The time renders a `<time>` element; pass `dateTime` so it has a machine-readable value.
 - When the sender's name is shown, give the avatar an empty `alt` so the name isn't read twice.
-- Text uses `foreground` and `muted-foreground` on `muted` or `background`, pairings that pass WCAG
-  2.2 AA in both themes.
-- Name icon-only actions inside a bubble, such as "Download Design tokens guide".
+- `ChatBubbleMenu` is a native popover: the button is named "Message actions" (change it with
+  `label`), <kbd>Tab</kbd> moves from it into the actions, and <kbd>Esc</kbd> or a click outside
+  closes it. Keyboard focus shows a solid `ring` outline as well as Flowbite's halo.
+- Image download buttons also appear when they receive keyboard focus, not only on hover, and every
+  icon-only button has a name, such as "Pause voice note" or "Download Flowbite Terms &
+  Conditions". Flowbite's tooltips are replaced by these names.
+- Text uses `heading` and `body` on `neutral-secondary-soft`, pairings that pass WCAG 2.2 AA in
+  both themes. Flowbite's white labels on images use `dark-foreground`, and the hover overlay uses
+  `dark-backdrop` instead of a raw gray.
 
 ## API Reference
+
+### ChatBubble
 
 | Prop       | Type                                | Default     |
 | ---------- | ----------------------------------- | ----------- |
@@ -85,7 +174,18 @@ Set `align="end"` for messages the user sent. Wrap the conversation in a contain
 | `time`     | `string`                            | —           |
 | `dateTime` | `string`                            | —           |
 | `status`   | `ReactNode`                         | —           |
+| `actions`  | `ReactNode`, such as a menu         | —           |
 | `variant`  | `"default" \| "outline" \| "clean"` | `"default"` |
 | `align`    | `"start" \| "end"`                  | `"start"`   |
 
 All other `<div>` attributes are forwarded, including `ref` and `className`.
+
+### ChatBubbleMenu
+
+| Prop       | Type                                | Default             |
+| ---------- | ----------------------------------- | ------------------- |
+| `label`    | `string`. The "more" button's name. | `"Message actions"` |
+| `children` | `ChatBubbleMenuItem` elements       | —                   |
+
+Other attributes go to the popover. `ChatBubbleMenuItem` is a `<button>` that closes the menu
+when chosen; it accepts every button attribute, such as `onClick`.

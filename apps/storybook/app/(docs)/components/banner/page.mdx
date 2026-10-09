@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Banner",
   description:
-    "A site-wide message pinned to the top or bottom of the page: an announcement, a call to action or a notice.",
+    "Use a banner to show a marketing message, an announcement or a notice, pinned to the top or bottom of the page.",
 };
 
 <PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
@@ -32,34 +32,36 @@ is fixed to the viewport.
 
 ## Examples
 
-### Sticky banner
+### Default sticky banner
 
-By default the banner is fixed to the top of the viewport. Add `dismissible` to let people close
-it.
+A `neutral-primary-soft` bar fixed to the top of the viewport, with a message, an icon and a link.
+Add `dismissible` to let people close it.
 
 <ComponentPreview name="banner-demo" />
 
-### Bottom banner
+### Bottom banner position
 
-Set `position="bottom"` to pin it to the bottom instead.
+Set `position="bottom"` to pin the banner to the bottom of the page instead.
 
 <ComponentPreview name="banner-bottom" />
 
 ### Marketing CTA banner
 
-Add `floating` for a card inset from the edges, with a border and shadow.
+Add `floating` for Flowbite's marketing card: inset from the edges, with a border, `rounded-base`
+corners and `shadow-xs`. It is at most `max-w-7xl` wide from the `lg` breakpoint.
 
 <ComponentPreview name="banner-cta" />
 
 ### Newsletter sign-up banner
 
-A banner can hold a short form, such as an email sign-up.
+A banner can hold a short inline form, such as an email sign-up.
 
 <ComponentPreview name="banner-newsletter" />
 
 ### Informational banner
 
-Combine a heading, a description and actions.
+Combine a heading, a description and a call to action. This example uses the
+`neutral-secondary-soft` surface, as Flowbite does, through `className`.
 
 <ComponentPreview name="banner-informational" />
 
@@ -68,6 +70,8 @@ Combine a heading, a description and actions.
 `position="static"` places the banner in the normal page flow, for example at the top of a
 layout that already scrolls.
 
+Flowbite's marketing banner shows its brand logo; the example uses the product name instead.
+
 ## Accessibility
 
 - The banner is a `<section>` labelled "Announcement", so it is listed as a region landmark.
@@ -75,19 +79,24 @@ layout that already scrolls.
 - It is not a live region: content that is on the page when it loads isn't announced. Use
   `Alert` for messages that react to what the user just did.
 - The close button is a native `<button>` named "Close banner" (change it with `dismissLabel`).
+  Flowbite gives it no focus style; ours draws a solid 2px `ring` outline on keyboard focus.
   Use `onDismiss` to remember the choice so the banner doesn't return on every page.
+- The "Sign Up" and "Subscribe" buttons use `Button`, so their labels use `brand-foreground`
+  rather than Flowbite's white, and form fields use the `input` border, which reaches 3:1.
 - A fixed banner covers part of the page. Add matching padding to your layout so no content is
   hidden behind it.
 
 ## API Reference
 
-| Prop           | Type                            | Default          |
-| -------------- | ------------------------------- | ---------------- |
-| `position`     | `"top" \| "bottom" \| "static"` | `"top"`          |
-| `floating`     | `boolean`                       | `false`          |
-| `dismissible`  | `boolean`                       | `false`          |
-| `dismissLabel` | `string`                        | `"Close banner"` |
-| `onDismiss`    | `() => void`                    | —                |
-| `aria-label`   | `string`                        | `"Announcement"` |
+| Prop           | Type                                            | Default          |
+| -------------- | ----------------------------------------------- | ---------------- |
+| `position`     | `"top" \| "bottom" \| "static"`                 | `"top"`          |
+| `floating`     | `boolean`                                       | `false`          |
+| `dismissible`  | `boolean`                                       | `false`          |
+| `dismissLabel` | `string`                                        | `"Close banner"` |
+| `onDismiss`    | `() => void`                                    | —                |
+| `aria-label`   | `string`                                        | `"Announcement"` |
+| `className`    | `string`. Merged with `cn()`; your classes win. | —                |
 
-All other `<section>` attributes are forwarded, including `ref` and `className`.
+All other `<section>` attributes are forwarded, including `ref`. Children are laid out in a
+row with `justify-between`; the close button comes last.

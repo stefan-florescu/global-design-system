@@ -4,7 +4,8 @@ import type { ComponentProps } from "react";
 import { cn } from "../../lib/cn";
 
 import {
-  badgeDismissClassName,
+  badgeDismissVariants,
+  badgeDotVariants,
   badgeLinkClassName,
   badgeVariants,
   type BadgeVariantProps,
@@ -14,6 +15,8 @@ export type BadgeProps = Omit<ComponentProps<"span">, "ref"> &
   BadgeVariantProps & {
     /** Turn the badge into a link. */
     href?: string;
+    /** Show a dot in the label colour before the content. */
+    dot?: boolean;
     /**
      * Show a remove button (a "chip"). Called when it is pressed; remove the badge from your
      * state to hide it.
@@ -31,6 +34,7 @@ export function Badge({
   pill,
   iconOnly,
   href,
+  dot = false,
   onDismiss,
   dismissLabel = "Remove",
   className,
@@ -38,10 +42,21 @@ export function Badge({
   ...props
 }: BadgeProps) {
   const classes = cn(
-    badgeVariants({ variant, size, bordered, pill, iconOnly }),
+    badgeVariants({
+      variant,
+      size,
+      bordered,
+      pill,
+      iconOnly,
+      link: Boolean(href),
+      dismissible: Boolean(onDismiss),
+    }),
     href && badgeLinkClassName,
     className,
   );
+  const dotElement = dot ? (
+    <span aria-hidden data-slot="badge-dot" className={badgeDotVariants({ variant })} />
+  ) : null;
 
   if (href) {
     return (
@@ -51,6 +66,7 @@ export function Badge({
         className={classes}
         {...(props as Omit<ComponentProps<"a">, "ref">)}
       >
+        {dotElement}
         {children}
       </a>
     );
@@ -58,12 +74,14 @@ export function Badge({
 
   return (
     <span data-slot="badge" className={classes} {...props}>
+      {dotElement}
       {children}
       {onDismiss ? (
         <button
           type="button"
           aria-label={dismissLabel}
-          className={badgeDismissClassName}
+          data-slot="badge-dismiss"
+          className={badgeDismissVariants({ variant })}
           onClick={onDismiss}
         >
           <X aria-hidden />

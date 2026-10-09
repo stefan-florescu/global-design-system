@@ -2,10 +2,10 @@ import { Card, CardDescription, CardTitle } from "@stefan-florescu/ui";
 
 export default function CardDemo() {
   return (
-    <Card href="/changelog" className="max-w-sm">
-      <CardTitle>What&apos;s new in the design system</CardTitle>
+    <Card href="/components/card" className="max-w-sm">
+      <CardTitle>Noteworthy technology acquisitions 2021</CardTitle>
       <CardDescription>
-        Tokens, themes and components ship as one versioned system, so every product stays in step.
+        Here are the biggest technology acquisitions of 2025 so far, in reverse chronological order.
       </CardDescription>
     </Card>
   );

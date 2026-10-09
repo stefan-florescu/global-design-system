@@ -1,13 +1,18 @@
-import { Upload } from "@stefan-florescu/icons";
+import { CloudUpload } from "@stefan-florescu/icons";
 import type { ComponentProps, ReactNode } from "react";
 
 import { cn } from "../../lib/cn";
-import { fieldVariants, type FieldVariantProps } from "../input/input.variants";
+import { fieldVariants } from "../input/input.variants";
 
-import { fileDropzoneClassName, fileInputClassName } from "./file-input.variants";
+import {
+  fileDropzoneClassName,
+  fileDropzoneContentClassName,
+  fileInputVariants,
+  type FileInputVariantProps,
+} from "./file-input.variants";
 
 export type FileInputProps = Omit<ComponentProps<"input">, "type" | "size"> &
-  FieldVariantProps & {
+  FileInputVariantProps & {
     /** Marks the selection as wrong: red border and `aria-invalid`. */
     invalid?: boolean;
   };
@@ -19,7 +24,7 @@ export function FileInput({ size, invalid, className, ...props }: FileInputProps
       type="file"
       data-slot="file-input"
       aria-invalid={invalid || undefined}
-      className={cn(fieldVariants({ size }), fileInputClassName, className)}
+      className={cn(fieldVariants(), fileInputVariants({ size }), className)}
       {...props}
     />
   );
@@ -48,9 +53,11 @@ export function FileDropzone({
 }: FileDropzoneProps) {
   return (
     <label data-slot="file-dropzone" className={cn(fileDropzoneClassName, className)}>
-      <Upload aria-hidden className="text-muted-foreground size-8" />
-      <span className="text-foreground text-sm">{title}</span>
-      {description ? <span className="text-muted-foreground text-xs">{description}</span> : null}
+      <span className={fileDropzoneContentClassName}>
+        <CloudUpload aria-hidden className="mb-4 size-8" />
+        <span className="mb-2 text-sm">{title}</span>
+        {description ? <span className="text-xs">{description}</span> : null}
+      </span>
       <input type="file" className="absolute inset-0 cursor-pointer opacity-0" {...props} />
     </label>
   );

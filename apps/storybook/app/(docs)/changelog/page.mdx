@@ -5,6 +5,19 @@ export const metadata = {
 
 <PageHeader {...metadata} />
 
+## October 2026 — Flowbite v4 look
+
+- Every component now looks like the matching one on flowbite.com (Flowbite v4), class for class.
+  Each docs page mirrors Flowbite's examples, in Flowbite's order.
+- New foundation: Tailwind v4's palette in OKLCH and Flowbite v4's semantic colour roles
+  (`bg-brand`, `hover:bg-brand-strong`, `text-heading`, `text-body`, `border-default`…), Flowbite's
+  radius scale (`rounded-base` 12px) and shadows.
+- Where Flowbite misses WCAG 2.2 AA, we use the nearest passing value, and each page lists these
+  differences. Examples: darker field borders (`input`), a solid keyboard-focus outline (`ring`),
+  dark text on warning fills.
+- Breaking API changes, such as Button `danger` replacing `destructive`, are listed in the release
+  notes.
+
 ## October 2026 — Forms
 
 - New **Forms** section with twelve components: Input Field, File Input, Search Input, Number

@@ -40,12 +40,7 @@ export function Select({
         className={cn(fieldVariants({ size }), selectVariants({ variant, list }), className)}
         {...props}
       />
-      {list ? null : (
-        <ChevronDown
-          aria-hidden
-          className={cn(selectChevronClassName, variant === "underline" && "end-0")}
-        />
-      )}
+      {list ? null : <ChevronDown aria-hidden className={selectChevronClassName} />}
     </div>
   );
 }

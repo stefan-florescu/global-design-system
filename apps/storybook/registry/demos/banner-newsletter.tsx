@@ -7,29 +7,27 @@ export default function BannerNewsletter() {
   const id = useId();
 
   return (
-    <div className="border-border bg-background relative h-60 w-full transform-gpu overflow-hidden rounded-lg border">
+    <div className="border-default bg-neutral-primary rounded-base relative h-60 w-full transform-gpu overflow-hidden border">
       {/* The frame stands in for the browser window, so the fixed banner stays inside it. */}
       <Banner dismissible aria-label="Newsletter">
-        <form className="flex w-full flex-col gap-3 md:flex-row md:items-center">
-          <p className="m-0 flex-1 text-sm">
-            Get design-system updates in your inbox, once a month.
-          </p>
-          <Label htmlFor={`${id}-newsletter-email`} className="sr-only">
-            Email address
-          </Label>
-          <Input
-            id={`${id}-newsletter-email`}
-            type="email"
-            autoComplete="email"
-            placeholder="ana@example.com"
-            size="sm"
-            className="md:w-64"
-            required
-          />
-          <Button type="submit" size="sm">
-            Subscribe
-          </Button>
-        </form>
+        <div className="mx-auto flex w-full shrink-0 items-center sm:w-auto">
+          <form className="flex w-full flex-col items-center gap-4 md:flex-row">
+            <Label htmlFor={`${id}-email`} className="me-auto mb-0 shrink-0 md:me-0">
+              Sign up now
+            </Label>
+            <Input
+              id={`${id}-email`}
+              type="email"
+              autoComplete="email"
+              placeholder="Enter your email"
+              className="w-full md:w-64"
+              required
+            />
+            <Button type="submit" className="w-full md:w-auto">
+              Subscribe
+            </Button>
+          </form>
+        </div>
       </Banner>
     </div>
   );

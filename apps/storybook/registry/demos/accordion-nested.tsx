@@ -2,40 +2,111 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@s
 
 export default function AccordionNested() {
   return (
-    <Accordion defaultValue={["item-1"]} className="w-full max-w-2xl">
+    <Accordion defaultValue={["item-1"]} className="w-full">
       <AccordionItem value="item-1">
         <AccordionTrigger>What is the Stefan Design System?</AccordionTrigger>
         <AccordionContent>
-          <p className="mb-4">
-            A token-driven, accessible React design system. It is organised in layers:
+          <p className="mb-2">
+            The Stefan Design System is an open-source library of accessible React components built
+            on design tokens and Tailwind CSS, including buttons, alerts, forms and more.
           </p>
-          <Accordion defaultValue={["tokens"]}>
-            <AccordionItem value="tokens">
-              <AccordionTrigger headingLevel={4}>Tokens</AccordionTrigger>
+          <p className="mb-4">
+            Check out this guide to learn how to{" "}
+            <a href="/components/button" className="text-fg-brand hover:underline">
+              get started
+            </a>{" "}
+            and start building interfaces even faster with components on top of Tailwind CSS.
+          </p>
+          <Accordion defaultValue={["item-1"]}>
+            <AccordionItem value="item-1">
+              <AccordionTrigger headingLevel={4}>
+                What is the Stefan Design System?
+              </AccordionTrigger>
               <AccordionContent>
-                Primitive and semantic design decisions, published as CSS variables, JS and JSON.
+                <p className="mb-2">
+                  The Stefan Design System is an open-source library of accessible React components
+                  built on design tokens and Tailwind CSS, including buttons, alerts, forms and
+                  more.
+                </p>
+                <p>
+                  Check out this guide to learn how to{" "}
+                  <a href="/components/button" className="text-fg-brand hover:underline">
+                    get started
+                  </a>{" "}
+                  and start building interfaces even faster with components on top of Tailwind CSS.
+                </p>
               </AccordionContent>
             </AccordionItem>
-            <AccordionItem value="themes">
-              <AccordionTrigger headingLevel={4}>Themes</AccordionTrigger>
+            <AccordionItem value="item-2">
+              <AccordionTrigger headingLevel={4}>Is there a Figma file available?</AccordionTrigger>
               <AccordionContent>
-                Light and dark re-assign the semantic tokens through a data-theme attribute.
+                <p className="mb-2">
+                  The tokens are published as DTCG JSON, so every colour, size and radius in the
+                  library can be synced to Figma variables.
+                </p>
+                <p>
+                  Check out the{" "}
+                  <a href="/foundation/color" className="text-fg-brand hover:underline">
+                    colour foundations
+                  </a>{" "}
+                  based on the semantic tokens and the components of the design system.
+                </p>
               </AccordionContent>
             </AccordionItem>
-            <AccordionItem value="components">
-              <AccordionTrigger headingLevel={4}>Components</AccordionTrigger>
+            <AccordionItem value="item-3">
+              <AccordionTrigger headingLevel={4}>
+                How is it different from other component libraries?
+              </AccordionTrigger>
               <AccordionContent>
-                Accessible React components that only read semantic tokens.
+                <p className="mb-2">
+                  Every component reads semantic tokens only, and every text and fill pairing is
+                  checked for WCAG 2.2 AA contrast in light and dark themes.
+                </p>
+                <p className="mb-2">
+                  It follows Flowbite&apos;s anatomy and examples, so the two work well side by
+                  side.
+                </p>
+                <p className="mb-2">Learn more about these technologies:</p>
+                <ul className="list-disc ps-5">
+                  <li>
+                    <a href="https://flowbite.com/" className="text-fg-brand hover:underline">
+                      Flowbite
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://tailwindcss.com/" className="text-fg-brand hover:underline">
+                      Tailwind CSS
+                    </a>
+                  </li>
+                </ul>
               </AccordionContent>
             </AccordionItem>
           </Accordion>
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2">
-        <AccordionTrigger>Is there a Figma file available?</AccordionTrigger>
+        <AccordionTrigger>How is it different from other component libraries?</AccordionTrigger>
         <AccordionContent>
-          The tokens are published as DTCG JSON, so they can be synced to Figma variables with any
-          DTCG-compatible plugin.
+          <p className="mb-2">
+            Every component reads semantic tokens only, and every text and fill pairing is checked
+            for WCAG 2.2 AA contrast in light and dark themes.
+          </p>
+          <p className="mb-2">
+            It follows Flowbite&apos;s anatomy and examples, so the two work well side by side.
+          </p>
+          <p className="mb-2">Learn more about these technologies:</p>
+          <ul className="list-disc ps-5">
+            <li>
+              <a href="https://flowbite.com/" className="text-fg-brand hover:underline">
+                Flowbite
+              </a>
+            </li>
+            <li>
+              <a href="https://tailwindcss.com/" className="text-fg-brand hover:underline">
+                Tailwind CSS
+              </a>
+            </li>
+          </ul>
         </AccordionContent>
       </AccordionItem>
     </Accordion>

@@ -2,9 +2,9 @@ import { Toggle } from "@stefan-florescu/ui";
 
 export default function ToggleDisabled() {
   return (
-    <div className="grid gap-4">
-      <Toggle label="Disabled toggle" disabled />
-      <Toggle label="Disabled checked toggle" disabled defaultChecked />
+    <div className="flex flex-col flex-wrap items-center">
+      <Toggle label="Disabled toggle" disabled className="mb-5" />
+      <Toggle label="Disabled checked" disabled defaultChecked />
     </div>
   );
 }

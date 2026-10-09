@@ -11,8 +11,13 @@ describe("Card", () => {
       </Card>,
     );
     expect(screen.getByRole("heading", { level: 3, name: "Release notes" })).toBeInTheDocument();
-    expect(screen.getByText("What changed this week.")).toHaveClass("text-muted-foreground");
-    expect(screen.getByTestId("card")).toHaveClass("bg-card", "border-border");
+    expect(screen.getByText("What changed this week.")).toHaveClass("text-body");
+    expect(screen.getByTestId("card")).toHaveClass(
+      "bg-neutral-primary-soft",
+      "border-default",
+      "rounded-base",
+      "shadow-xs",
+    );
   });
 
   it("becomes a single link with href", () => {
@@ -23,7 +28,7 @@ describe("Card", () => {
     );
     const link = screen.getByRole("link", { name: "Changelog" });
     expect(link).toHaveAttribute("href", "/changelog");
-    expect(link).toHaveClass("hover:bg-accent");
+    expect(link).toHaveClass("hover:bg-neutral-secondary-medium");
   });
 
   it("shows an image with alt text, decorative by default", () => {

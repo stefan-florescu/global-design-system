@@ -7,15 +7,19 @@ export default function TimepickerRange() {
   const id = useId();
 
   return (
-    <div className="grid w-full max-w-sm grid-cols-2 gap-4">
-      <div className="grid gap-2">
-        <Label htmlFor={`${id}-range-start`}>Start</Label>
-        <Timepicker id={`${id}-range-start`} defaultValue="09:00" />
+    <form className="mx-auto grid w-full max-w-[16rem] grid-cols-2 gap-4">
+      <div>
+        <Label htmlFor={`${id}-start-time`} className="mb-2">
+          Start time:
+        </Label>
+        <Timepicker id={`${id}-start-time`} min="09:00" max="18:00" defaultValue="00:00" required />
       </div>
-      <div className="grid gap-2">
-        <Label htmlFor={`${id}-range-end`}>End</Label>
-        <Timepicker id={`${id}-range-end`} defaultValue="17:30" />
+      <div>
+        <Label htmlFor={`${id}-end-time`} className="mb-2">
+          End time:
+        </Label>
+        <Timepicker id={`${id}-end-time`} min="09:00" max="18:00" defaultValue="00:00" required />
       </div>
-    </div>
+    </form>
   );
 }

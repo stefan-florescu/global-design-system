@@ -7,19 +7,11 @@ export default function FileInputSizes() {
   const id = useId();
 
   return (
-    <div className="grid w-full max-w-sm gap-6">
-      <div className="grid gap-2">
-        <Label htmlFor={`${id}-file-sm`}>Small</Label>
-        <FileInput id={`${id}-file-sm`} size="sm" />
-      </div>
-      <div className="grid gap-2">
-        <Label htmlFor={`${id}-file-md`}>Medium</Label>
-        <FileInput id={`${id}-file-md`} size="md" />
-      </div>
-      <div className="grid gap-2">
-        <Label htmlFor={`${id}-file-lg`}>Large</Label>
-        <FileInput id={`${id}-file-lg`} size="lg" />
-      </div>
+    <div className="w-full space-y-6">
+      <Label htmlFor={`${id}-base-size`}>Base file input</Label>
+      <FileInput id={`${id}-base-size`} />
+      <Label htmlFor={`${id}-large-size`}>Large file input</Label>
+      <FileInput id={`${id}-large-size`} size="lg" />
     </div>
   );
 }

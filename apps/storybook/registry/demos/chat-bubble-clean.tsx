@@ -4,7 +4,7 @@ export default function ChatBubbleClean() {
   return (
     <ChatBubble
       avatar={<Avatar src="/avatars/1.svg" alt="" size="sm" />}
-      name="Ana Popescu"
+      name="Bonnie Green"
       time="11:46"
       dateTime="2026-10-08T11:46"
       status="Delivered"

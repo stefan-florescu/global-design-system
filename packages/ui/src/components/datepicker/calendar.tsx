@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from "@stefan-florescu/icons";
+import { ArrowLeft, ArrowRight } from "@stefan-florescu/icons";
 import {
   useId,
   useState,
@@ -11,7 +11,6 @@ import {
 } from "react";
 
 import { cn } from "../../lib/cn";
-import { Button } from "../button";
 
 import {
   addDays,
@@ -29,9 +28,15 @@ import {
 import {
   calendarClassName,
   calendarDayVariants,
+  calendarGridClassName,
   calendarHeaderClassName,
+  calendarMainClassName,
   calendarMonthLabelClassName,
+  calendarNavButtonClassName,
+  calendarRowClassName,
+  calendarTitleClassName,
   calendarWeekdayClassName,
+  calendarWeekdaysClassName,
 } from "./datepicker.variants";
 
 export type DateRange = { from: Date | null; to: Date | null };
@@ -68,6 +73,11 @@ type RangeProps = {
   value?: DateRange;
   defaultValue?: DateRange;
   onChange?: (range: DateRange) => void;
+  /**
+   * Which end a click sets. Without it, the first click sets the start and the second the end;
+   * `DateRangePicker` sets it to the field that opened the calendar.
+   */
+  rangeEdge?: "from" | "to";
 };
 
 export type CalendarProps = CalendarBaseProps & (SingleProps | RangeProps);
@@ -123,8 +133,9 @@ export function Calendar(props: CalendarProps) {
     title,
     className,
     children,
-    ...rest
+    ...restProps
   } = props;
+  const { rangeEdge, ...rest } = restProps as typeof restProps & { rangeEdge?: "from" | "to" };
 
   const isRange = mode === "range";
   const [singleState, setSingleState] = useState<Date | null>(
@@ -182,12 +193,19 @@ export function Calendar(props: CalendarProps) {
     if (!month || !isSameMonth(date, month)) setMonth(startOfMonth(date));
     if (isRange) {
       const { from, to } = range;
-      const next: DateRange =
-        !from || to
-          ? { from: date, to: null }
-          : compareDays(date, from) < 0
-            ? { from: date, to: from }
-            : { from, to: date };
+      let next: DateRange;
+      if (rangeEdge === "from") {
+        next = { from: date, to: to && compareDays(date, to) > 0 ? null : to };
+      } else if (rangeEdge === "to") {
+        next = from && compareDays(date, from) < 0 ? { from: date, to: from } : { from, to: date };
+      } else {
+        next =
+          !from || to
+            ? { from: date, to: null }
+            : compareDays(date, from) < 0
+              ? { from: date, to: from }
+              : { from, to: date };
+      }
       if (value === undefined) setRangeState(next);
       (onChange as ((next: DateRange) => void) | undefined)?.(next);
     } else {
@@ -222,7 +240,11 @@ export function Calendar(props: CalendarProps) {
   const stateOf = (date: Date) => {
     if (isDisabled(date)) return "disabled" as const;
     if (isRange) {
-      if (isSameDay(date, range.from) || isSameDay(date, range.to)) return "selected" as const;
+      const { from, to } = range;
+      const both = Boolean(from && to && !isSameDay(from, to));
+      if (both && isSameDay(date, from)) return "rangeStart" as const;
+      if (both && isSameDay(date, to)) return "rangeEnd" as const;
+      if (isSameDay(date, from) || isSameDay(date, to)) return "selected" as const;
       if (
         range.from &&
         range.to &&
@@ -236,74 +258,82 @@ export function Calendar(props: CalendarProps) {
     return month && isSameMonth(date, month) ? ("default" as const) : ("outside" as const);
   };
 
+  const isSelected = (state: ReturnType<typeof stateOf>) =>
+    state === "selected" || state === "rangeStart" || state === "rangeEnd" || state === "inRange";
+
   return (
     <div data-slot="calendar" className={cn(calendarClassName, className)} {...rest}>
-      {title ? <p className="m-0 mb-2 text-center font-semibold">{title}</p> : null}
+      {title ? <div className={calendarTitleClassName}>{title}</div> : null}
       <div className={calendarHeaderClassName}>
-        <Button
-          variant="ghost"
-          size="sm"
-          iconOnly
+        <button
+          type="button"
           aria-label="Previous month"
           disabled={!canGoBack}
+          className={calendarNavButtonClassName}
           onClick={() => showMonth(-1)}
         >
-          <ChevronLeft aria-hidden />
-        </Button>
+          <ArrowLeft aria-hidden />
+        </button>
         <div id={labelId} aria-live="polite" className={calendarMonthLabelClassName}>
           {month ? monthFormat.format(month) : null}
         </div>
-        <Button
-          variant="ghost"
-          size="sm"
-          iconOnly
+        <button
+          type="button"
           aria-label="Next month"
           disabled={!canGoForward}
+          className={calendarNavButtonClassName}
           onClick={() => showMonth(1)}
         >
-          <ChevronRight aria-hidden />
-        </Button>
+          <ArrowRight aria-hidden />
+        </button>
       </div>
-      <div role="grid" aria-labelledby={labelId} aria-multiselectable={isRange || undefined}>
-        <div role="row" className="grid grid-cols-7">
+      <div
+        role="grid"
+        aria-labelledby={labelId}
+        aria-multiselectable={isRange || undefined}
+        className={calendarMainClassName}
+      >
+        <div role="row" className={calendarWeekdaysClassName}>
           {weekdays.map((day) => (
             <div key={day.getDay()} role="columnheader" className={calendarWeekdayClassName}>
               <abbr title={weekdayLong.format(day)} className="no-underline">
-                {weekdayShort.format(day)}
+                {weekdayShort.format(day).slice(0, 2)}
               </abbr>
             </div>
           ))}
         </div>
-        {weeks.map((week) => (
-          <div key={toISODate(week[0]!)} role="row" className="grid grid-cols-7">
-            {week.map((date) => {
-              const state = stateOf(date);
-              const isFocusTarget = isSameDay(date, focused);
-              return (
-                <div
-                  key={toISODate(date)}
-                  role="gridcell"
-                  aria-selected={state === "selected" || state === "inRange"}
-                  className="flex justify-center"
-                >
-                  <button
-                    type="button"
-                    data-date={toISODate(date)}
-                    tabIndex={isFocusTarget ? 0 : -1}
-                    aria-label={dayLabel.format(date)}
-                    aria-current={isSameDay(date, today) ? "date" : undefined}
-                    aria-disabled={state === "disabled" || undefined}
-                    className={calendarDayVariants({ state, today: isSameDay(date, today) })}
-                    onClick={() => select(date)}
-                    onKeyDown={(event) => onDayKeyDown(event, date)}
+        <div role="rowgroup" className={calendarGridClassName}>
+          {weeks.map((week) => (
+            <div key={toISODate(week[0]!)} role="row" className={calendarRowClassName}>
+              {week.map((date) => {
+                const state = stateOf(date);
+                const isFocusTarget = isSameDay(date, focused);
+                return (
+                  <div
+                    key={toISODate(date)}
+                    role="gridcell"
+                    aria-selected={isSelected(state)}
+                    className="flex"
                   >
-                    {date.getDate()}
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-        ))}
+                    <button
+                      type="button"
+                      data-date={toISODate(date)}
+                      tabIndex={isFocusTarget ? 0 : -1}
+                      aria-label={dayLabel.format(date)}
+                      aria-current={isSameDay(date, today) ? "date" : undefined}
+                      aria-disabled={state === "disabled" || undefined}
+                      className={calendarDayVariants({ state })}
+                      onClick={() => select(date)}
+                      onKeyDown={(event) => onDayKeyDown(event, date)}
+                    >
+                      {date.getDate()}
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          ))}
+        </div>
       </div>
       {children}
     </div>

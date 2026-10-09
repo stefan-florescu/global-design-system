@@ -7,11 +7,11 @@ export default function NumberInputCounter() {
   const id = useId();
 
   return (
-    <div className="grid justify-items-start gap-2">
-      <Label htmlFor={`${id}-counter`}>Choose quantity</Label>
-      <div className="w-36">
-        <NumberInput id={`${id}-counter`} stepper size="sm" defaultValue={1} min={1} max={99} />
-      </div>
-    </div>
+    <form className="mx-auto w-full max-w-xs">
+      <Label htmlFor={`${id}-counter`} className="mb-1.5">
+        Choose quantity:
+      </Label>
+      <NumberInput id={`${id}-counter`} variant="counter" defaultValue={12} min={0} required />
+    </form>
   );
 }

@@ -15,14 +15,19 @@ describe("HelperText", () => {
     );
   });
 
-  it("uses checked text tokens for errors and success", () => {
+  it("uses Flowbite's helper text styles", () => {
+    render(<HelperText>Hint</HelperText>);
+    expect(screen.getByText("Hint")).toHaveClass("mt-2.5", "text-sm", "text-body");
+  });
+
+  it("uses checked text tokens for danger and success", () => {
     render(
       <>
-        <HelperText variant="error">Required</HelperText>
+        <HelperText variant="danger">Required</HelperText>
         <HelperText variant="success">Looks good</HelperText>
       </>,
     );
-    expect(screen.getByText("Required")).toHaveClass("text-destructive-subtle-foreground");
-    expect(screen.getByText("Looks good")).toHaveClass("text-success-subtle-foreground");
+    expect(screen.getByText("Required")).toHaveClass("text-fg-danger-strong");
+    expect(screen.getByText("Looks good")).toHaveClass("text-fg-success-strong");
   });
 });

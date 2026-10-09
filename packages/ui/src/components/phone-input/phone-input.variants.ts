@@ -1,4 +1,11 @@
-/* Phone field: a country-code Select joined to a `tel` Input, sharing one field border. */
-export const phoneInputCountryClassName = "w-auto rounded-e-none border-e-0";
+/*
+ * Flowbite v4's phone input with country code (https://flowbite.com/docs/forms/phone-input/):
+ * a country selector joined to the field in a field group (see input.variants.ts). Our selector
+ * is a native `<select>` styled like Flowbite's dropdown button; Flowbite's is a dropdown menu.
+ */
+export const phoneInputCountryClassName = "rounded-e-none";
 
 export const phoneInputNumberClassName = "rounded-s-none";
+
+/** The field when something (such as a "Send SMS" select) is joined to its end. */
+export const phoneInputNumberWithEndClassName = "rounded-e-none";

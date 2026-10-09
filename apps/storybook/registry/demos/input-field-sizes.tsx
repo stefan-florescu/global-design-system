@@ -7,18 +7,22 @@ export default function InputFieldSizes() {
   const id = useId();
 
   return (
-    <div className="grid w-full max-w-sm gap-6">
-      <div className="grid gap-2">
-        <Label htmlFor={`${id}-size-sm`}>Small</Label>
-        <Input id={`${id}-size-sm`} size="sm" placeholder="Small input" />
+    <div className="w-full space-y-6">
+      <div>
+        <Label htmlFor={`${id}-sm`}>Small Input</Label>
+        <Input id={`${id}-sm`} size="sm" />
       </div>
-      <div className="grid gap-2">
-        <Label htmlFor={`${id}-size-md`}>Medium</Label>
-        <Input id={`${id}-size-md`} size="md" placeholder="Medium input" />
+      <div>
+        <Label htmlFor={`${id}-md`}>Base Input</Label>
+        <Input id={`${id}-md`} />
       </div>
-      <div className="grid gap-2">
-        <Label htmlFor={`${id}-size-lg`}>Large</Label>
-        <Input id={`${id}-size-lg`} size="lg" placeholder="Large input" />
+      <div>
+        <Label htmlFor={`${id}-lg`}>Large Input</Label>
+        <Input id={`${id}-lg`} size="lg" />
+      </div>
+      <div>
+        <Label htmlFor={`${id}-xl`}>Extra Large Input</Label>
+        <Input id={`${id}-xl`} size="xl" />
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 {
   "name": "Range",
   "status": "beta",
-  "description": "A native slider for picking a value from a range.",
+  "description": "Flowbite's range slider: a native slider with a brand thumb, in three sizes.",
   "category": "forms",
   "import": "import { Range } from \"@stefan-florescu/ui\";",
   "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/slider/",
@@ -10,7 +10,14 @@
   "variants": {
     "size": ["sm", "md", "lg"]
   },
-  "tokens": ["color.muted", "color.brand", "color.ring", "radius.full"],
+  "tokens": [
+    "color.neutral-quaternary",
+    "color.brand",
+    "color.brand-medium",
+    "color.body",
+    "color.ring",
+    "radius.full"
+  ],
   "useWhen": ["Approximate values where the exact number matters less"],
   "avoidWhen": [],
   "related": ["Label", "HelperText"],

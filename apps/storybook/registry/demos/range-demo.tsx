@@ -7,11 +7,9 @@ export default function RangeDemo() {
   const id = useId();
 
   return (
-    <div className="grid w-full max-w-sm gap-6">
-      <div className="grid gap-2">
-        <Label htmlFor={`${id}-volume`}>Volume</Label>
-        <Range id={`${id}-volume`} defaultValue={50} />
-      </div>
+    <div className="w-full">
+      <Label htmlFor={id}>Default range</Label>
+      <Range id={id} defaultValue={50} />
     </div>
   );
 }

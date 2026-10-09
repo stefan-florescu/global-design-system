@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Range",
-  description: "A native slider for picking a value from a range.",
+  description: "A native slider for picking a number between a minimum and a maximum.",
 };
 
 <PageHeader {...metadata} section="Forms" badges={[{ label: "Beta", variant: "secondary" }]} />
@@ -24,35 +24,48 @@ import { Label, Range } from "@stefan-florescu/ui";
 
 ## Examples
 
-### Default range
+### Range slider example
+
+A slider from 0 to 100 (the browser's defaults) with a value of 50.
 
 <ComponentPreview name="range-demo" />
 
 ### Disabled state
 
+Add `disabled` to stop the user from changing the value. The thumb turns `body`.
+
 <ComponentPreview name="range-disabled" />
 
 ### Min and max
 
-Show the limits as text next to the slider.
+`min` and `max` set the limits of the value.
 
 <ComponentPreview name="range-min-max" />
 
 ### Steps
 
-`step` sets the increment.
+`step` sets the increment the value changes by.
 
 <ComponentPreview name="range-steps" />
 
 ### Sizes
 
+Three sizes: `md` is Flowbite's default, `sm` and `lg` its `range-sm` and `range-lg`.
+
 <ComponentPreview name="range-sizes" />
 
-### Show the value
+| Size | Track | Thumb |
+| ---- | ----- | ----- |
+| `sm` | 4px   | 16px  |
+| `md` | 8px   | 20px  |
+| `lg` | 12px  | 24px  |
 
-Display the current value in an `<output>`, and set `aria-valuetext` when the number needs a unit.
+### Labels
 
-<ComponentPreview name="range-value" />
+Show milestone values under the slider. Hide them from assistive technology, which announces the
+value itself, and keep a label for the slider (here visually hidden).
+
+<ComponentPreview name="range-labels" />
 
 ## Accessibility
 
@@ -60,6 +73,9 @@ Display the current value in an `<output>`, and set `aria-valuetext` when the nu
   by larger amounts, <kbd>Home</kbd>/<kbd>End</kbd> jump to the limits.
 - Give it a `Label`, and `aria-valuetext` when the number alone isn't meaningful (for example
   "70%").
+- The thumb is `brand`, 3:1 against the page. Focus shows Flowbite's `brand-medium` halo around it;
+  keyboard focus also draws a solid 2px `ring` outline around the slider.
+- In forced-colors (high contrast) mode the browser draws the slider itself, so it stays visible.
 - Show the exact value when it matters; sliders are hard to set precisely.
 
 ## API Reference
@@ -70,4 +86,5 @@ Display the current value in an `<output>`, and set `aria-valuetext` when the nu
 | `step`        | `number`               | `1`         |
 | `size`        | `"sm" \| "md" \| "lg"` | `"md"`      |
 
-All other `<input>` attributes are forwarded.
+All other `<input>` attributes are forwarded, such as `value`, `defaultValue`, `onChange` and
+`disabled`.

@@ -17,7 +17,13 @@ export const SCALES = Object.entries(color).filter(
 
 const title = (hue: string) => hue.charAt(0).toUpperCase() + hue.slice(1);
 
-/** The primitive colour scales, rendered from @stefan-florescu/tokens. Click a swatch to copy its hex. */
+/** "oklch(62.3% 0.214 259.815)" → "L 62.3%": the full value is long, so it lives in the tooltip. */
+const lightness = (value: string) => {
+  const match = value.match(/oklch\(\s*([\d.]+%)/);
+  return match ? `L ${match[1]}` : value;
+};
+
+/** The primitive colour scales, rendered from @stefan-florescu/tokens. Click a swatch to copy its value. */
 export function ColorScales() {
   return (
     <>
@@ -39,7 +45,9 @@ export function ColorScales() {
                     style={{ background: `var(--sds-color-${hue}-${step})` }}
                   />
                   <span className="scale__shade">{step}</span>
-                  <span className="scale__hex">{token.$value}</span>
+                  <span className="scale__hex" title={token.$value}>
+                    {lightness(token.$value)}
+                  </span>
                 </li>
               ))}
             </ol>

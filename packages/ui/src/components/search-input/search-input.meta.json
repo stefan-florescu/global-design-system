@@ -1,28 +1,39 @@
 {
   "name": "SearchInput",
   "status": "beta",
-  "description": "A search field with an icon and an optional submit button.",
+  "description": "Flowbite's search input: a search field with an icon and an optional submit button inside it.",
   "category": "forms",
   "import": "import { SearchInput } from \"@stefan-florescu/ui\";",
   "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/search.html",
   "client": false,
   "props": "generated",
   "variants": {
-    "size": ["sm", "md", "lg"]
+    "size": ["sm", "md", "lg", "xl"]
   },
   "tokens": [
+    "color.neutral-secondary-medium",
     "color.input",
-    "color.background",
-    "color.foreground",
-    "color.muted",
-    "color.muted-foreground",
-    "color.ring",
-    "color.destructive",
+    "color.heading",
+    "color.body",
+    "color.brand",
+    "color.danger",
+    "color.danger-soft",
+    "color.fg-danger-strong",
     "color.success",
-    "radius.lg"
+    "color.success-soft",
+    "color.fg-success-strong",
+    "color.fg-disabled",
+    "radius.base",
+    "shadow.xs",
+    "color.brand-strong",
+    "color.brand-foreground",
+    "radius.default"
   ],
   "useWhen": ["Searching a site or a list"],
   "avoidWhen": [],
-  "related": ["Label", "HelperText"],
-  "docs": "apps/storybook/app/(docs)/forms/search-input/page.mdx"
+  "related": ["Input", "Label", "Button"],
+  "docs": "apps/storybook/app/(docs)/forms/search-input/page.mdx",
+  "defaults": {
+    "size": "md"
+  }
 }

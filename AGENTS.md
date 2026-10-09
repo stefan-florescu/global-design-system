@@ -44,10 +44,15 @@ Dependency direction is strictly **tokens → themes → ui → apps**. Never im
 - **Use new components everywhere.** When a component lands, replace any hand-made version of it
   across the website (demos, docs pages, site chrome where it fits) and add the Flowbite examples
   that were skipped because the component was missing.
-- **Translate, don't copy.** Map Flowbite's colours, sizes and radii to our semantic tokens, keep
-  our prop conventions (`variant`, `size`, adjective booleans), and drop examples we have no tokens
-  for (gradients, coloured shadows, brand logos). Accessibility follows WAI-ARIA, even where
-  Flowbite does less.
+- **Look exactly like Flowbite v4.** Our semantic tokens carry Flowbite v4's role names
+  (`bg-brand`, `hover:bg-brand-strong`, `text-heading`, `text-body`, `border-default-medium`,
+  `rounded-base`, `shadow-xs`…), so copy Flowbite's classes as they are (source:
+  `github.com/themesberg/flowbite`, `content/`). Translate only `text-white` on a fill (→ `*-foreground`),
+  raw palette colours (→ roles) and form-control borders (`border-default-medium` → `border-input`).
+  Add `focusOutline` (`src/lib/focus.ts`) to interactive elements. Name variants after Flowbite's options,
+  lowercased (`danger`, `dark`…; its blue default is `brand`), keep our `size` names, and drop examples
+  we have no tokens for (gradients, coloured shadows, brand logos). Where Flowbite fails WCAG 2.2 AA, use
+  the nearest passing token and note it on the docs page (ADR 0009).
 - Interactive components start with `"use client"`; server-safe ones must not. The ui build emits one
   file per module, so the directive is kept.
 
@@ -113,9 +118,11 @@ apps/storybook/                # the docs website ("storybook" is just the folde
 ## Naming
 
 - Files & folders: `kebab-case`. Components & types: `PascalCase`. Props & hooks: `camelCase`.
-- Tokens: dot paths in JSON (`color.muted-foreground`, `space.6`), CSS vars `--sds-color-muted-foreground`,
-  `--sds-space-6`; Tailwind utilities use the semantic name (`text-muted-foreground`, `bg-brand`).
-- Variants: `variant` (visual intent), `size` (`sm | md | lg`), booleans as adjectives (`disabled`, `invalid`).
+- Tokens: dot paths in JSON (`color.neutral-secondary-medium`, `space.6`), CSS vars
+  `--sds-color-neutral-secondary-medium`, `--sds-space-6`; Tailwind utilities use the semantic name, which is
+  Flowbite v4's role name (`bg-neutral-secondary-medium`, `text-body`, `bg-brand`).
+- Variants: `variant` (visual intent, Flowbite's option names), `size` (`xs | sm | md | lg | xl`; Flowbite's
+  "base" is `md`), booleans as adjectives (`disabled`, `invalid`).
 - Commits: Conventional Commits with a package scope, e.g. `feat(ui): add Button`.
 
 ## Where to read more

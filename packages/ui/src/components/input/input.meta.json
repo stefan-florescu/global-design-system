@@ -1,30 +1,42 @@
 {
   "name": "Input",
   "status": "beta",
-  "description": "A single-line text field with sizes, icons, addons and validation states.",
+  "description": "Flowbite's input field: a single-line text field with sizes, icons, addons, field groups and validation states.",
   "category": "forms",
   "import": "import { HelperText, Input, Label } from \"@stefan-florescu/ui\";",
   "ariaPattern": null,
   "client": false,
   "props": "generated",
   "variants": {
-    "size": ["sm", "md", "lg"],
+    "size": ["sm", "md", "lg", "xl"],
     "invalid": [true, false],
     "valid": [true, false]
   },
   "tokens": [
+    "color.neutral-secondary-medium",
     "color.input",
-    "color.background",
-    "color.foreground",
-    "color.muted",
-    "color.muted-foreground",
-    "color.ring",
-    "color.destructive",
+    "color.heading",
+    "color.body",
+    "color.brand",
+    "color.danger",
+    "color.danger-soft",
+    "color.fg-danger-strong",
     "color.success",
-    "radius.lg"
+    "color.success-soft",
+    "color.fg-success-strong",
+    "color.fg-disabled",
+    "radius.base",
+    "shadow.xs",
+    "color.neutral-tertiary",
+    "color.neutral-tertiary-medium",
+    "color.ring"
   ],
   "useWhen": ["Short free-text answers: names, emails, URLs"],
   "avoidWhen": [],
   "related": ["Label", "HelperText"],
-  "docs": "apps/storybook/app/(docs)/forms/input-field/page.mdx"
+  "docs": "apps/storybook/app/(docs)/forms/input-field/page.mdx",
+  "defaults": {
+    "size": "md",
+    "type": "text"
+  }
 }
