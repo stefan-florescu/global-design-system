@@ -1,22 +1,23 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
+import { focusOutline } from "../../lib/focus";
+
 /*
- * Flowbite's card on semantic tokens: `card` surface and text, `border` outline, `shadow-sm`.
- * Link cards add the `accent` hover surface and a focus ring.
+ * Flowbite v4 card, class for class (https://flowbite.com/docs/components/card/): a
+ * `neutral-primary-soft` surface with a `default` border, `rounded-base` corners and `shadow-xs`,
+ * padded `p-6`. Link cards take Flowbite's `neutral-secondary-medium` hover. Accessibility
+ * addition: link cards draw the solid keyboard outline from lib/focus.
  */
 export const cardVariants = cva(
-  "flex flex-col overflow-hidden rounded-lg border border-border bg-card text-card-foreground shadow-sm",
+  "flex flex-col rounded-base border border-default bg-neutral-primary-soft shadow-xs",
   {
     variants: {
       horizontal: {
-        true: "md:flex-row",
+        true: "items-center p-6 md:flex-row",
         false: "",
       },
       interactive: {
-        true: [
-          "no-underline transition-colors hover:bg-accent motion-reduce:transition-none",
-          "outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-        ],
+        true: ["no-underline hover:bg-neutral-secondary-medium", focusOutline],
         false: "",
       },
     },
@@ -24,20 +25,29 @@ export const cardVariants = cva(
   },
 );
 
-export const cardImageVariants = cva("w-full object-cover", {
+export const cardImageVariants = cva("", {
   variants: {
     horizontal: {
-      true: "h-64 md:h-auto md:w-48",
-      false: "",
+      true: "mb-4 h-64 w-full rounded-base object-cover md:mb-0 md:h-auto md:w-48",
+      false: "w-full rounded-t-base",
     },
   },
   defaultVariants: { horizontal: false },
 });
 
-export const cardBodyClassName = "flex flex-1 flex-col justify-center gap-3 p-6";
+export const cardBodyVariants = cva("", {
+  variants: {
+    horizontal: {
+      true: "flex flex-col justify-between leading-normal md:p-4",
+      false: "p-6",
+    },
+  },
+  defaultVariants: { horizontal: false },
+});
 
-export const cardTitleClassName = "m-0 text-2xl font-bold tracking-tight text-card-foreground";
+export const cardTitleClassName =
+  "mb-3 text-2xl leading-8 font-semibold tracking-tight text-heading";
 
-export const cardDescriptionClassName = "m-0 text-muted-foreground";
+export const cardDescriptionClassName = "text-body";
 
 export type CardVariantProps = Omit<VariantProps<typeof cardVariants>, "interactive">;

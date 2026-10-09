@@ -119,7 +119,7 @@ the tenth product, not just the first.
   only. A new theme or brand is data, not code.
 - **Composable components:** small primitives combine into complex components, patterns and
   templates (Phases A → E).
-- **Stable, minimal APIs:** props describe intent (`variant="destructive"`), not implementation
+- **Stable, minimal APIs:** props describe intent (`variant="danger"`), not implementation
   (`color="red"`). Every public API is a long-term commitment.
 - **Strict dependency direction:** tokens → themes → ui → apps. Packages never import from apps.
 - **Semantic versioning** with Changesets; breaking changes come with migration notes and, where

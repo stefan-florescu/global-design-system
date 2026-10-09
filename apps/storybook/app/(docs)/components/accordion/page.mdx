@@ -39,46 +39,48 @@ JavaScript ships to the browser.
 
 ## Examples
 
-### Default
+### Default accordion
 
 Opening an item closes the one that was open. Pressing an open item's title closes it. Open the
-first item on load with `defaultValue`.
+first item on load with `defaultValue`. The open title uses `neutral-secondary-medium` and
+`heading`.
 
 <ComponentPreview name="accordion-demo" />
 
+### Separated cards
+
+Add `separated` to show each item as its own card, 1rem apart.
+
+<ComponentPreview name="accordion-separated" />
+
 ### Always open
 
-Add `multiple` to keep several items open at once.
+Add `multiple` to keep several items open at once. This example also puts an icon before each
+title.
 
 <ComponentPreview name="accordion-multiple" />
 
-### Collapse all
-
-Leave out `defaultValue` to start with every item closed.
-
-<ComponentPreview name="accordion-collapsed" />
-
 ### Color options
 
-Set `variant="brand"` to colour the open title with the `brand-subtle` surface and
-`brand-subtle-foreground` text instead of the neutral `muted` surface.
+Set `variant="brand"` for Flowbite's blue hover: `brand-softer` with `fg-brand` text.
 
 <ComponentPreview name="accordion-brand" />
 
-### Flush
+### Flush accordion
 
-Add `flush` to remove the outer border, radius and side padding, leaving only dividers. Use it
-inside cards and narrow columns.
+Add `flush` to remove the box, background and side padding, leaving a `default` hairline under
+every title and panel.
 
 <ComponentPreview name="accordion-flush" />
 
-### Icon accordion
+### Arrow style
 
-Put an icon before the title text. The chevron stays at the end and turns when the item opens.
+The chevron turns while its item is open. Pass `icon` to `AccordionTrigger` to show another icon,
+which doesn't turn, or `icon={null}` for none.
 
-<ComponentPreview name="accordion-icon" />
+<ComponentPreview name="accordion-arrow" />
 
-### Nesting
+### Nesting accordions
 
 An accordion can sit inside another item's content. Lower the nested titles' `headingLevel` so the
 page outline stays correct. Arrow keys move only between titles of the same accordion.
@@ -92,11 +94,13 @@ page outline stays correct. Arrow keys move only between titles of the same acco
   match your page outline).
 - The button has `aria-expanded` and `aria-controls`. The panel is a `region` labelled by its
   title, and is `hidden` while closed, so it is skipped by keyboard and screen readers.
-- A 2px `ring` focus ring appears inside the title on keyboard focus.
-- The chevron is decorative (`aria-hidden`), and its rotation stops when the user prefers reduced
-  motion.
-- Text and surface pairs (`muted-foreground`, `muted`, `brand-subtle`) pass WCAG 2.2 AA in both
-  themes.
+- Flowbite has no keyboard focus style on titles; ours draws a solid 2px `ring` outline inside the
+  title on keyboard focus.
+- Icons are decorative (`aria-hidden`), and the chevron's rotation stops when the user prefers
+  reduced motion.
+- Every text and surface pairing (`body` and `heading` on `neutral-primary` and
+  `neutral-secondary-medium`, `fg-brand` on `brand-softer`) passes WCAG 2.2 AA in both themes, as
+  in Flowbite.
 
 | Key                                 | Action                                             |
 | ----------------------------------- | -------------------------------------------------- |
@@ -117,6 +121,7 @@ page outline stays correct. Arrow keys move only between titles of the same acco
 | `onValueChange` | `(value: string[]) => void` | —           |
 | `variant`       | `"neutral" \| "brand"`      | `"neutral"` |
 | `flush`         | `boolean`                   | `false`     |
+| `separated`     | `boolean`                   | `false`     |
 | `className`     | `string`                    | —           |
 
 ### AccordionItem
@@ -128,9 +133,10 @@ page outline stays correct. Arrow keys move only between titles of the same acco
 
 ### AccordionTrigger
 
-| Prop           | Type                    | Default |
-| -------------- | ----------------------- | ------- |
-| `headingLevel` | `2 \| 3 \| 4 \| 5 \| 6` | `3`     |
+| Prop           | Type                                                  | Default         |
+| -------------- | ----------------------------------------------------- | --------------- |
+| `headingLevel` | `2 \| 3 \| 4 \| 5 \| 6`                               | `3`             |
+| `icon`         | `ReactNode`. Replaces the chevron; `null` removes it. | Turning chevron |
 
 ### AccordionContent
 

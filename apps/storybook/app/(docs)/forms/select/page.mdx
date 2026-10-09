@@ -1,0 +1,110 @@
+export const metadata = {
+  title: "Select",
+  description:
+    "Let people choose one or more options from a native dropdown list, in several styles and sizes.",
+};
+
+<PageHeader {...metadata} section="Forms" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="select-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Label, Select } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Label htmlFor="countries">Select an option</Label>
+<Select id="countries" defaultValue="">
+  <option value="">Choose a country</option>
+  <option value="US">United States</option>
+</Select>
+```
+
+## Examples
+
+### Select input example
+
+A native `<select>` with a chevron. Start with an empty option when there is no sensible default.
+
+<ComponentPreview name="select-demo" />
+
+### Multiple options
+
+Add `multiple` to let people choose one or more options from a list.
+
+<ComponentPreview name="select-multiple" />
+
+### Size attribute
+
+`htmlSize` is the native `size` attribute: the number of options visible at once in the list.
+
+<ComponentPreview name="select-size" />
+
+### Disabled state
+
+Add `disabled` so the selection cannot be changed.
+
+<ComponentPreview name="select-disabled" />
+
+### Underline select
+
+`variant="underline"` keeps only a bottom border, as an alternative look.
+
+<ComponentPreview name="select-underline" />
+
+### Sizes
+
+Four sizes, from `sm` to `xl`; `md` is the default. Like Flowbite, every size keeps `text-sm` and
+grows only its padding.
+
+<ComponentPreview name="select-sizes" />
+
+| Size | Height | Padding       |
+| ---- | ------ | ------------- |
+| `sm` | 38px   | `px-2.5 py-2` |
+| `md` | 42px   | `px-3 py-2.5` |
+| `lg` | 46px   | `px-3.5 py-3` |
+| `xl` | 50px   | `px-4 py-3.5` |
+
+## Accessibility
+
+- A native `<select>`, so keyboard, screen readers and mobile pickers work as people expect.
+  Multiple and `htmlSize` selects are exposed as a listbox.
+- Give every select a `Label`; the underline select uses an `sr-only` one. The chevron is
+  decorative (`aria-hidden`).
+- Differences from Flowbite, for WCAG 2.2 AA: the border is the `input` token instead of
+  `default-medium`, so the field's edge reaches 3:1 against the page (1.4.11); the underline is
+  drawn in `input` for the same reason. List selects (`multiple`, `htmlSize`) show no chevron,
+  because they do not open a menu.
+- Focus shows Flowbite's `brand` border and 1px ring, which together reach 3:1.
+- `invalid` sets `aria-invalid="true"` and the danger colours; say what is wrong in a `HelperText`
+  linked with `aria-describedby`.
+- Multiple selection needs <kbd>Ctrl</kbd> or <kbd>Cmd</kbd> and is hard to discover; for a few
+  options, prefer checkboxes.
+
+## API Reference
+
+| Prop        | Type                                   | Default     |
+| ----------- | -------------------------------------- | ----------- |
+| `variant`   | `"default" \| "underline"`             | `"default"` |
+| `size`      | `"sm" \| "md" \| "lg" \| "xl"`         | `"md"`      |
+| `htmlSize`  | `number`. Shows the options as a list. | —           |
+| `multiple`  | `boolean`                              | `false`     |
+| `invalid`   | `boolean`                              | `false`     |
+| `valid`     | `boolean`                              | `false`     |
+| `disabled`  | `boolean`                              | `false`     |
+| `className` | `string`. Merged with `cn()`.          | —           |
+
+All other `<select>` attributes are forwarded to the select, including `ref`.
+
+| Part    | Tokens                                                                                      |
+| ------- | ------------------------------------------------------------------------------------------- |
+| Field   | `neutral-secondary-medium` · `input` border · `heading` text · `rounded-base` · `shadow-xs` |
+| Focus   | `brand` border and ring                                                                     |
+| Chevron | `body-subtle`                                                                               |

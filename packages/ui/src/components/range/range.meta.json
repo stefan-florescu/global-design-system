@@ -1,0 +1,25 @@
+{
+  "name": "Range",
+  "status": "beta",
+  "description": "Flowbite's range slider: a native slider with a brand thumb, in three sizes.",
+  "category": "forms",
+  "import": "import { Range } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/slider/",
+  "client": false,
+  "props": "generated",
+  "variants": {
+    "size": ["sm", "md", "lg"]
+  },
+  "tokens": [
+    "color.neutral-quaternary",
+    "color.brand",
+    "color.brand-medium",
+    "color.body",
+    "color.ring",
+    "radius.full"
+  ],
+  "useWhen": ["Approximate values where the exact number matters less"],
+  "avoidWhen": [],
+  "related": ["Label", "HelperText"],
+  "docs": "apps/storybook/app/(docs)/forms/range/page.mdx"
+}

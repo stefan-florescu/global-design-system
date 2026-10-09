@@ -5,7 +5,7 @@ export default function ButtonAsLink() {
   return (
     <a
       href="https://github.com/stefan-florescu/global-design-system"
-      className={buttonVariants({ variant: "outline" })}
+      className={buttonVariants({ variant: "tertiary" })}
     >
       View on GitHub
       <ArrowUpRight aria-hidden />

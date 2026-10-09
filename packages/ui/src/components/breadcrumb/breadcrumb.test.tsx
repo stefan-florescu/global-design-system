@@ -37,6 +37,6 @@ describe("Breadcrumb", () => {
 
   it("applies the solid variant", () => {
     render(<Trail variant="solid" />);
-    expect(screen.getByRole("navigation")).toHaveClass("bg-muted", "border");
+    expect(screen.getByRole("navigation")).toHaveClass("bg-neutral-secondary-medium", "border");
   });
 });

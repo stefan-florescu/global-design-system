@@ -23,7 +23,7 @@ never contain raw values.
                 │
  packages/config/tailwind/theme.css   @theme inline { --color-*: var(--sds-…) }
                 │
- packages/ui   bg-surface  text-foreground  rounded-md  shadow-sm  …
+ packages/ui   bg-neutral-primary-soft  text-heading  rounded-base  shadow-xs  …
 ```
 
 ## 2.2 The four tiers
@@ -77,13 +77,14 @@ directly.
 {
   "color": {
     "$type": "color",
-    "background": {
+    "neutral-primary": {
       "$value": "{color.white}",
-      "$description": "The page canvas. Everything else sits on top of it.",
+      "$description": "The page canvas.",
       "$extensions": { "sds": { "group": "Surfaces" } }
     },
-    "muted-foreground": { "$value": "{color.gray.600}" },
+    "body": { "$value": "{color.gray.600}" },
     "brand": { "$value": "{color.blue.700}" },
+    "brand-strong": { "$value": "{color.blue.800}" },
     "overlay": { "$value": "color-mix(in srgb, {color.gray.900} 60%, transparent)" }
   }
 }
@@ -129,8 +130,8 @@ The light theme is the semantic defaults; `src/light/` only holds deviations fro
 Emits:
 
 ```css
-:root, [data-theme="light"] { --sds-color-background: var(--sds-color-white); … }
-[data-theme="dark"]          { --sds-color-background: var(--sds-color-gray-900); … }
+:root, [data-theme="light"] { --sds-color-neutral-primary: var(--sds-color-white); … }
+[data-theme="dark"]          { --sds-color-neutral-primary: var(--sds-color-gray-950); … }
 ```
 
 Theme axes planned (each orthogonal, combinable through separate data attributes):
@@ -147,10 +148,10 @@ Theme axes planned (each orthogonal, combinable through separate data attributes
 
 ```css
 @theme inline {
-  --color-background: var(--sds-color-background); /* bg-background */
-  --color-muted-foreground: var(--sds-color-muted-foreground); /* text-muted-foreground */
-  --color-border: var(--sds-color-border); /* border-border */
-  --radius-md: var(--sds-radius-md); /* rounded-md */
+  --color-neutral-primary: var(--sds-color-neutral-primary); /* bg-neutral-primary */
+  --color-body: var(--sds-color-body); /* text-body */
+  --color-default: var(--sds-color-default); /* border-default */
+  --radius-base: var(--sds-radius-base); /* rounded-base */
   --font-sans: var(--sds-font-sans); /* font-sans */
 }
 ```

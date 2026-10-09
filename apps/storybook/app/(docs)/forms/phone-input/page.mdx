@@ -1,0 +1,111 @@
+export const metadata = {
+  title: "Phone Input",
+  description:
+    "Collect a phone number with a phone field, optionally joined to a country-code select, for sign-up and verification forms.",
+};
+
+<PageHeader {...metadata} section="Forms" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="phone-input-country" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Label, PhoneInput } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Label htmlFor="phone">Phone number</Label>
+<PhoneInput id="phone" placeholder="123-456-7890" />
+```
+
+## Examples
+
+### Default phone input
+
+A plain `Input` with `type="tel"`, a phone icon, a `pattern` and helper text that explains the
+format.
+
+<ComponentPreview name="phone-input-demo" />
+
+### Phone input country code
+
+`PhoneInput` joins a country-code select to a `tel` field. Each option shows the country code and
+dialling code ("US +1") and is announced with the full country name.
+
+<ComponentPreview name="phone-input-country" />
+
+### Verification code input
+
+Explain what happens next in a `HelperText`, then send the code with a full-width `Button`.
+
+<ComponentPreview name="phone-input-verification" />
+
+### Phone number select
+
+Let people pick one of their saved numbers and copy it with a `Clipboard` button joined to the
+select.
+
+<ComponentPreview name="phone-input-select" />
+
+### Authentication form
+
+Sign people in with a phone number instead of an email address.
+
+<ComponentPreview name="phone-input-auth" />
+
+### Advanced phone verification
+
+`endAddon` joins another control to the field's end, here a select for the verification method.
+
+<ComponentPreview name="phone-input-advanced" />
+
+<Callout title="Native selects instead of dropdown menus">
+  Flowbite opens a dropdown menu with country flags from a button. We use a native `<select>` styled
+  like that button, which works with the keyboard, screen readers and mobile pickers without extra
+  script. The country code ("US") stands in for the flag. Flowbite's "Floating label input" example
+  is left out: there is no floating-label field in the system yet.
+</Callout>
+
+## Accessibility
+
+- Give the number field a `Label`; the country select is named by `countryLabel` ("Country code").
+- `autoComplete="tel-national"` and `inputMode="tel"` let browsers fill the number and show a phone
+  keypad on mobile.
+- `invalid` marks both the select and the field with `aria-invalid`; explain the problem in text.
+- Differences from Flowbite, for WCAG 2.2 AA:
+  - The select and the field use the `input` border instead of Flowbite's `default-medium`, which is
+    under 3:1 against the page.
+  - Keyboard focus on the select draws the solid `ring` outline around Flowbite's soft halo.
+
+## API Reference
+
+### PhoneInput
+
+Takes every `Input` prop except `type`, `addon` and `startIcon`; `className`, `id` and `ref` go to
+the number field.
+
+| Prop             | Type                           | Default                 |
+| ---------------- | ------------------------------ | ----------------------- |
+| `countries`      | `PhoneCountry[]`               | `defaultPhoneCountries` |
+| `defaultCountry` | `string`                       | first country's `code`  |
+| `countryName`    | `string`                       | —                       |
+| `countryLabel`   | `string`                       | `"Country code"`        |
+| `endAddon`       | `ReactNode`                    | —                       |
+| `size`           | `"sm" \| "md" \| "lg" \| "xl"` | `"md"`                  |
+| `invalid`        | `boolean`                      | `false`                 |
+| `valid`          | `boolean`                      | `false`                 |
+
+`PhoneCountry` is `{ code: string; dialCode: string; name: string }`.
+
+### Tokens
+
+| Part           | Tokens                                                                                                                        |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Country select | `neutral-secondary-medium` · `neutral-tertiary-medium` on hover · `body` → `heading` · `neutral-tertiary` focus halo · `ring` |
+| Field          | `neutral-secondary-medium` · `input` border · `heading` · `body` placeholder · `brand` focus                                  |
+| Group          | `shadow-xs` · `radius-base`                                                                                                   |

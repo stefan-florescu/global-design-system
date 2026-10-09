@@ -32,56 +32,54 @@ import { Button } from "@stefan-florescu/ui";
 
 ### Default
 
-Choose the variant by the intent of the action, not by the colour you want. Each variant reads
-its fill and label from the semantic colour tokens, so it follows the active theme.
+Flowbite's button set. Choose the variant by the intent of the action: `brand` is the main call to
+action, `secondary` and `tertiary` support it, and `success`, `danger` and `warning` carry status.
 
 <ComponentPreview name="button-variants" />
 
-| Variant       | Tokens                                   | Use it for                                                 |
-| ------------- | ---------------------------------------- | ---------------------------------------------------------- |
-| `brand`       | `brand` · `brand-foreground`             | The main call to action. The default; use one per view.    |
-| `primary`     | `primary` · `primary-foreground`         | A high-emphasis neutral action, such as Save in a toolbar. |
-| `secondary`   | `secondary` · `secondary-foreground`     | A supporting action next to a primary one.                 |
-| `outline`     | `border` · `background` · `foreground`   | A low-emphasis alternative, such as Cancel.                |
-| `ghost`       | `accent` · `accent-foreground` on hover  | Toolbars, menus and dense layouts where a fill adds noise. |
-| `success`     | `success` · `success-foreground`         | Confirming a positive outcome, such as Approve or Publish. |
-| `warning`     | `warning` · `warning-foreground`         | An action that needs care but can be undone.               |
-| `destructive` | `destructive` · `destructive-foreground` | Irreversible actions: delete, revoke, disconnect.          |
-| `info`        | `info` · `info-foreground`               | A neutral, informational action, such as View details.     |
-| `link`        | `primary`                                | An action that should read as inline text.                 |
+| Variant     | Tokens                                                            | Use it for                                                 |
+| ----------- | ----------------------------------------------------------------- | ---------------------------------------------------------- |
+| `brand`     | `brand` · `brand-strong` on hover · `brand-medium` focus halo     | The main call to action. The default; use one per view.    |
+| `secondary` | `neutral-secondary-medium` · `default-medium` border · `body`     | A supporting action next to the main one.                  |
+| `tertiary`  | `neutral-primary-soft` · `default` border · `body`                | A low-emphasis alternative, such as Cancel.                |
+| `success`   | `success` · `success-strong` on hover                             | Confirming a positive outcome, such as Approve.            |
+| `danger`    | `danger` · `danger-strong` on hover                               | Irreversible actions: delete, revoke, disconnect.          |
+| `warning`   | `warning` · `warning-strong` on hover · `warning-foreground` text | An action that needs care but can be undone.               |
+| `dark`      | `dark` · `dark-strong` on hover                                   | A high-emphasis neutral action.                            |
+| `ghost`     | `heading` · `neutral-secondary-medium` on hover                   | Toolbars, menus and dense layouts where a fill adds noise. |
 
 ### Pills
 
-Add `pill` to round the ends with `radius.full`.
+Add `pill` to round the ends.
 
 <ComponentPreview name="button-pill" />
 
 ### Outline
 
-Add `outline` to draw a filled intent as an outline: a transparent fill, with a border and label in
-the intent's `-subtle-foreground` colour and its `-subtle` surface on hover. Those pairings pass
-WCAG 2.2 AA in both themes. `outline` applies to `brand`, `primary`, `success`, `warning`,
-`destructive` and `info`.
+Add `outline` to show the colour only on the border and label; the button fills on hover.
+`outline` applies to `brand`, `secondary` (gray), `success`, `danger` and `warning`.
 
 <ComponentPreview name="button-outline" />
 
 ### Sizes
 
-Five sizes on the 4px spacing scale, from `xs` (32px) to `xl` (52px). `md` is the default.
+Five sizes, from `xs` to `xl`. `md` (Flowbite's "base") is the default.
 
 <ComponentPreview name="button-sizes" />
 
-| Size | Height | Padding (inline) | Text   | Icon |
-| ---- | ------ | ---------------- | ------ | ---- |
-| `xs` | 32px   | `space.3`        | `xs`   | 14px |
-| `sm` | 36px   | `space.3`        | `sm`   | 16px |
-| `md` | 40px   | `space.5`        | `sm`   | 16px |
-| `lg` | 48px   | `space.5`        | `base` | 20px |
-| `xl` | 52px   | `space.6`        | `base` | 20px |
+| Size | Height | Padding       | Text   | Icon |
+| ---- | ------ | ------------- | ------ | ---- |
+| `xs` | 34px   | `px-3 py-1.5` | `xs`   | 14px |
+| `sm` | 38px   | `px-3 py-2`   | `sm`   | 16px |
+| `md` | 42px   | `px-4 py-2.5` | `sm`   | 16px |
+| `lg` | 50px   | `px-5 py-3`   | `base` | 16px |
+| `xl` | 54px   | `px-6 py-3.5` | `base` | 20px |
+
+### Outline sizes
+
+<ComponentPreview name="button-outline-sizes" />
 
 ### Sizes with icon
-
-Icons scale with the button size and keep the 1.5 stroke.
 
 <ComponentPreview name="button-sizes-with-icon" />
 
@@ -101,15 +99,16 @@ and says what the number means.
 
 ### Icon buttons
 
-Add `iconOnly` for a square button. An icon-only button has no visible text, so it **must** have
-an `aria-label`.
+Add `iconOnly` for a square button: 32, 36 or 40px for `xs`, `sm` and `md`. An icon-only button has
+no visible text, so it **must** have an `aria-label`.
 
 <ComponentPreview name="button-icon" />
 
-### Loading
+### Loader
 
-`loading` shows a spinner, disables the button and sets `aria-busy`. Keep the label so screen
-readers still announce what is happening. The spinner stops when the user prefers reduced motion.
+`loading` shows a spinner, disables the button and sets `aria-busy`, while keeping its colours.
+Keep the label so screen readers still announce what is happening. The spinner stops when the user
+prefers reduced motion.
 
 <ComponentPreview name="button-loading" />
 
@@ -139,15 +138,16 @@ Use a link for navigation and a button for actions. If a link must look like a b
 
 - Renders a native `<button>`. The default `type="button"` means it never submits a form by accident.
 - Reachable with <kbd>Tab</kbd>; activates with <kbd>Enter</kbd> and <kbd>Space</kbd>.
-- A 2px `ring` focus ring, offset from the button, appears on keyboard focus (`:focus-visible`) and
-  clears 3:1 against the background in both themes.
+- Focus shows Flowbite's soft halo. Keyboard focus (`:focus-visible`) also draws a solid 2px `ring`
+  outline, because the halo alone is under 3:1 against the page.
 - Every label and fill pairing is checked against WCAG 2.2 AA in light and dark on each token
-  build.
+  build. Two differ from Flowbite to pass: the `warning` label is dark instead of white, and outline
+  labels use the `fg-success`, `fg-danger` and `fg-warning` text colours.
 - Icon-only buttons **must** have an `aria-label`. Decorative icons are `aria-hidden`.
 - While loading, the button is disabled and `aria-busy="true"`; the spinner is hidden from
   assistive technology.
-- Transitions and the spinner respect `prefers-reduced-motion`.
-- The smallest size (`xs`, 32px) meets the WCAG 2.5.8 minimum target size of 24×24px.
+- The spinner respects `prefers-reduced-motion`.
+- The smallest size (`xs`, 34px) meets the WCAG 2.5.8 minimum target size of 24×24px.
 - Pattern: [WAI-ARIA Button](https://www.w3.org/WAI/ARIA/apg/patterns/button/).
 
 | Key              | Action                    |
@@ -160,18 +160,18 @@ Use a link for navigation and a button for actions. If a link must look like a b
 
 ### Button
 
-| Prop        | Type                                                                                                                         | Default    |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| `variant`   | `"brand" \| "primary" \| "secondary" \| "outline" \| "ghost" \| "success" \| "warning" \| "destructive" \| "info" \| "link"` | `"brand"`  |
-| `outline`   | `boolean`. Only with `brand`, `primary`, `success`, `warning`, `destructive` and `info`.                                     | `false`    |
-| `size`      | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`                                                                                       | `"md"`     |
-| `pill`      | `boolean`                                                                                                                    | `false`    |
-| `iconOnly`  | `boolean`. Requires `aria-label`.                                                                                            | `false`    |
-| `fullWidth` | `boolean`                                                                                                                    | `false`    |
-| `loading`   | `boolean`                                                                                                                    | `false`    |
-| `disabled`  | `boolean`                                                                                                                    | `false`    |
-| `type`      | `"button" \| "submit" \| "reset"`                                                                                            | `"button"` |
-| `className` | `string`. Merged with `cn()`; your classes win.                                                                              | —          |
+| Prop        | Type                                                                                              | Default    |
+| ----------- | ------------------------------------------------------------------------------------------------- | ---------- |
+| `variant`   | `"brand" \| "secondary" \| "tertiary" \| "success" \| "danger" \| "warning" \| "dark" \| "ghost"` | `"brand"`  |
+| `outline`   | `boolean`. Only with `brand`, `secondary`, `success`, `danger` and `warning`.                     | `false`    |
+| `size`      | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`                                                            | `"md"`     |
+| `pill`      | `boolean`                                                                                         | `false`    |
+| `iconOnly`  | `boolean`. Requires `aria-label`.                                                                 | `false`    |
+| `fullWidth` | `boolean`                                                                                         | `false`    |
+| `loading`   | `boolean`                                                                                         | `false`    |
+| `disabled`  | `boolean`                                                                                         | `false`    |
+| `type`      | `"button" \| "submit" \| "reset"`                                                                 | `"button"` |
+| `className` | `string`. Merged with `cn()`; your classes win.                                                   | —          |
 
 All other native `<button>` attributes are forwarded, including `ref`.
 

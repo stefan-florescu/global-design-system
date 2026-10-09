@@ -34,7 +34,7 @@ export default function BorderAndRadiusPage() {
             A border is three independent decisions — width, style and colour. Width and style come
             from this page; colour comes from the{" "}
             <Link href="/foundation/color">semantic colour tokens</Link> (
-            <code>--sds-color-border</code> for dividers, <code>--sds-color-input</code> for
+            <code>--sds-color-default</code> for dividers, <code>--sds-color-input</code> for
             controls). Never write <code>1px&nbsp;solid&nbsp;#e5e7eb</code>.
           </p>
         </div>
@@ -54,7 +54,8 @@ export default function BorderAndRadiusPage() {
             className="edge-sample"
             style={{
               borderWidth: "0",
-              background: "color-mix(in srgb, var(--sds-color-muted) 45%, transparent)",
+              background:
+                "color-mix(in srgb, var(--sds-color-neutral-secondary-medium) 45%, transparent)",
             }}
           ></span>
         </li>
@@ -241,9 +242,9 @@ export default function BorderAndRadiusPage() {
       <div className="edge-colors">
         <div
           className="edge-colors__box"
-          style={{ border: "var(--sds-border-width-1) solid var(--sds-color-border)" }}
+          style={{ border: "var(--sds-border-width-1) solid var(--sds-color-default)" }}
         >
-          <span className="edge-colors__label">--sds-color-border</span> A divider or card outline.
+          <span className="edge-colors__label">--sds-color-default</span> A divider or card outline.
           Decorative, so it sits below 3:1 deliberately.
         </div>
         <div
@@ -256,18 +257,18 @@ export default function BorderAndRadiusPage() {
         <div
           className="edge-colors__box"
           style={{
-            border: "var(--sds-border-width-2) solid var(--sds-color-destructive)",
-            background: "var(--sds-color-destructive-subtle)",
-            color: "var(--sds-color-destructive-subtle-foreground)",
+            border: "var(--sds-border-width-2) solid var(--sds-color-danger)",
+            background: "var(--sds-color-danger-soft)",
+            color: "var(--sds-color-fg-danger-strong)",
           }}
         >
-          <span className="edge-colors__label">--sds-color-destructive</span> An invalid field.
-          Thicker <em>and</em> recoloured, so colour is never the only cue.
+          <span className="edge-colors__label">--sds-color-danger</span> An invalid field. Thicker{" "}
+          <em>and</em> recoloured, so colour is never the only cue.
         </div>
       </div>
       <H2 id="radius-scale">Radius scale</H2>
       <p>
-        Nine steps from square to pill. The tiles below have square bottom corners on purpose — the
+        Eight steps from square to pill. The tiles below have square bottom corners on purpose — the
         flat edge gives your eye a reference for how much of the corner each step actually cuts.
       </p>
       <ol className="radius-ramp">
@@ -277,28 +278,25 @@ export default function BorderAndRadiusPage() {
         </li>
         <li className="radius-ramp__step">
           <span className="radius-ramp__tile" style={{ "--r": "var(--sds-radius-xs)" }}></span>{" "}
-          <span className="radius-ramp__name">xs</span> <span className="radius-ramp__px">2px</span>
+          <span className="radius-ramp__name">xs</span> <span className="radius-ramp__px">4px</span>
         </li>
         <li className="radius-ramp__step">
-          <span className="radius-ramp__tile" style={{ "--r": "var(--sds-radius-sm)" }}></span>{" "}
-          <span className="radius-ramp__name">sm</span> <span className="radius-ramp__px">4px</span>
+          <span className="radius-ramp__tile" style={{ "--r": "var(--sds-radius-xs)" }}></span>{" "}
+          <span className="radius-ramp__name">sm</span> <span className="radius-ramp__px">6px</span>
         </li>
         <li className="radius-ramp__step">
-          <span className="radius-ramp__tile" style={{ "--r": "var(--sds-radius-md)" }}></span>{" "}
-          <span className="radius-ramp__name">md</span> <span className="radius-ramp__px">6px</span>
+          <span className="radius-ramp__tile" style={{ "--r": "var(--sds-radius-default)" }}></span>{" "}
+          <span className="radius-ramp__name">rounded</span>{" "}
+          <span className="radius-ramp__px">8px</span>
         </li>
         <li className="radius-ramp__step">
-          <span className="radius-ramp__tile" style={{ "--r": "var(--sds-radius-lg)" }}></span>{" "}
-          <span className="radius-ramp__name">lg</span> <span className="radius-ramp__px">8px</span>
-        </li>
-        <li className="radius-ramp__step">
-          <span className="radius-ramp__tile" style={{ "--r": "var(--sds-radius-xl)" }}></span>{" "}
-          <span className="radius-ramp__name">xl</span>{" "}
+          <span className="radius-ramp__tile" style={{ "--r": "var(--sds-radius-base)" }}></span>{" "}
+          <span className="radius-ramp__name">base</span>{" "}
           <span className="radius-ramp__px">12px</span>
         </li>
         <li className="radius-ramp__step">
-          <span className="radius-ramp__tile" style={{ "--r": "var(--sds-radius-2xl)" }}></span>{" "}
-          <span className="radius-ramp__name">2xl</span>{" "}
+          <span className="radius-ramp__tile" style={{ "--r": "var(--sds-radius-default)" }}></span>{" "}
+          <span className="radius-ramp__name">lg</span>{" "}
           <span className="radius-ramp__px">16px</span>
         </li>
         <li className="radius-ramp__step">
@@ -339,24 +337,36 @@ export default function BorderAndRadiusPage() {
               <td>
                 <code>--sds-radius-xs</code>
               </td>
-              <td className="cell-type">0.125rem</td>
-              <td>
-                <code>2px</code>
-              </td>
-              <td className="cell-muted">
-                Tiny targets where a larger radius would eat the corner: a checkbox, a 16px swatch.
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <code>--sds-radius-sm</code>
-              </td>
               <td className="cell-type">0.25rem</td>
               <td>
                 <code>4px</code>
               </td>
               <td className="cell-muted">
-                Inner elements: a tab, a menu item, a nested code sample.
+                Checkboxes (Flowbite&apos;s <code>rounded-xs</code>) and small swatches.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code>--sds-radius-xs</code>
+              </td>
+              <td className="cell-type">0.375rem</td>
+              <td>
+                <code>6px</code>
+              </td>
+              <td className="cell-muted">
+                Small inner elements: list items, a nested code sample.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code>--sds-radius-default</code>
+              </td>
+              <td className="cell-type">0.5rem</td>
+              <td>
+                <code>8px</code>
+              </td>
+              <td className="cell-muted">
+                The plain <code>rounded</code> utility: badges and small chips.
               </td>
             </tr>
             <tr>
@@ -367,17 +377,31 @@ export default function BorderAndRadiusPage() {
               <td>
                 <code>6px</code>
               </td>
-              <td className="cell-muted">Controls: buttons, inputs, selects, icon buttons.</td>
+              <td className="cell-muted">
+                Kept from Tailwind&apos;s scale; Flowbite uses it for dropdown items.
+              </td>
             </tr>
             <tr>
               <td>
-                <code>--sds-radius-lg</code>
+                <code>--sds-radius-base</code>
               </td>
-              <td className="cell-type">0.5rem</td>
+              <td className="cell-type">0.75rem</td>
               <td>
-                <code>8px</code>
+                <code>12px</code>
               </td>
-              <td className="cell-muted">Small containers: a callout, a popover, a toast.</td>
+              <td className="cell-muted">
+                Flowbite&apos;s default: buttons, fields, cards, alerts, dropdowns, popovers.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code>--sds-radius-default</code>
+              </td>
+              <td className="cell-type">1rem</td>
+              <td>
+                <code>16px</code>
+              </td>
+              <td className="cell-muted">Large containers: a modal, a drawer, a bottom sheet.</td>
             </tr>
             <tr>
               <td>
@@ -387,9 +411,7 @@ export default function BorderAndRadiusPage() {
               <td>
                 <code>12px</code>
               </td>
-              <td className="cell-muted">
-                Cards, code blocks, tables, preview stages. The container default.
-              </td>
+              <td className="cell-muted">Kept from Tailwind&apos;s scale (same as base).</td>
             </tr>
             <tr>
               <td>
@@ -399,7 +421,7 @@ export default function BorderAndRadiusPage() {
               <td>
                 <code>16px</code>
               </td>
-              <td className="cell-muted">Large surfaces: a dialog, a drawer, a bottom sheet.</td>
+              <td className="cell-muted">Kept from Tailwind&apos;s scale (same as lg).</td>
             </tr>
             <tr>
               <td>
@@ -420,19 +442,19 @@ export default function BorderAndRadiusPage() {
                 <code>pill</code>
               </td>
               <td className="cell-muted">
-                Pills and circles: badges, avatars, switches, chips. Any value larger than half the
-                box gives the same result.
+                Pills and circles: avatars, toggles, pill buttons and badges. Any value larger than
+                half the box gives the same result.
               </td>
             </tr>
           </tbody>
         </table>
       </div>
       <p>
-        The steps are 0, 2, 4, 6, 8, 12, 16, 24 — not multiples of 4 all the way down. Radius is
-        measured from the corner inward, so a 2px difference is clearly visible on a small control
-        and invisible on a dialog; the scale is finest exactly where components are smallest. 6px
-        for controls is the one value that breaks the 4px grid, and it earns it: 4px reads as square
-        at a 36px control height, 8px reads as soft.
+        This is Flowbite v4&apos;s radius scale. Most components use <code>rounded-base</code>{" "}
+        (12px): buttons, fields, cards, alerts and dropdowns. Note that Flowbite redefines{" "}
+        <code>rounded-lg</code> as 16px and <code>rounded-sm</code> as 6px, and the plain{" "}
+        <code>rounded</code> utility is 8px. <code>md</code>, <code>xl</code> and <code>2xl</code>{" "}
+        keep Tailwind&apos;s values.
       </p>
       <H3 id="choosing-a-radius">Choosing a radius</H3>
       <p>
@@ -457,52 +479,45 @@ export default function BorderAndRadiusPage() {
               <td className="cell-muted">At 16px, anything larger visibly clips the corner.</td>
             </tr>
             <tr>
-              <td>Button, input, select</td>
+              <td>Badge, chip</td>
               <td>
-                <code>--sds-radius-md</code>
+                <code>--sds-radius-default</code>
               </td>
               <td className="cell-muted">
-                Matches the 36px control height — a soft corner that still reads as a rectangle.
+                Flowbite&apos;s plain <code>rounded</code>: a soft corner on a small label.
               </td>
             </tr>
             <tr>
-              <td>Tab, menu item, nested block</td>
+              <td>Button, input, select, textarea</td>
               <td>
-                <code>--sds-radius-sm</code>
+                <code>--sds-radius-base</code>
+              </td>
+              <td className="cell-muted">Flowbite&apos;s control default, at every size.</td>
+            </tr>
+            <tr>
+              <td>Card, alert, dropdown, popover</td>
+              <td>
+                <code>--sds-radius-base</code>
               </td>
               <td className="cell-muted">
-                Sits inside a rounded container, so it takes the smaller step.
+                The same radius as the controls inside them keeps a page calm.
               </td>
             </tr>
             <tr>
-              <td>Callout, popover, toast</td>
+              <td>Modal, drawer, sheet</td>
               <td>
-                <code>--sds-radius-lg</code>
-              </td>
-              <td className="cell-muted">Small floating surfaces.</td>
-            </tr>
-            <tr>
-              <td>Card, code block, table</td>
-              <td>
-                <code>--sds-radius-xl</code>
-              </td>
-              <td className="cell-muted">The container default across these docs.</td>
-            </tr>
-            <tr>
-              <td>Dialog, drawer, sheet</td>
-              <td>
-                <code>--sds-radius-2xl</code>
+                <code>--sds-radius-default</code>
               </td>
               <td className="cell-muted">
                 Large surfaces need more radius to read as rounded at all.
               </td>
             </tr>
             <tr>
-              <td>Badge, chip, avatar, switch</td>
+              <td>Avatar, toggle, pill button</td>
               <td>
                 <code>--sds-radius-full</code>
               </td>
-              <td className="cell-muted">Shape carries the meaning: a pill is not a button.</td>
+              <td className="cell-muted">Shape carries the meaning.</td>
             </tr>
           </tbody>
         </table>
@@ -517,7 +532,7 @@ export default function BorderAndRadiusPage() {
       <div className="nest-demo">
         <div className="nest-demo--do">
           <div className="nest-demo__outer">
-            <div className="nest-demo__inner" style={{ "--r": "var(--sds-radius-lg)" }}>
+            <div className="nest-demo__inner" style={{ "--r": "var(--sds-radius-default)" }}>
               8px inside 16px
             </div>
           </div>
@@ -525,8 +540,8 @@ export default function BorderAndRadiusPage() {
             <CircleCheck aria-hidden size={16} />
             <span>
               <strong>Do</strong> — outer <code>--sds-radius-2xl</code> (16px) minus{" "}
-              <code>--sds-space-2</code> padding (8px) gives <code>--sds-radius-lg</code> (8px). The
-              curves stay parallel.
+              <code>--sds-space-2</code> padding (8px) gives <code>--sds-radius-default</code>{" "}
+              (8px). The curves stay parallel.
             </span>
           </p>
         </div>
@@ -556,7 +571,7 @@ export default function BorderAndRadiusPage() {
 }
 
 .sheet > * {
-  border-radius: var(--sds-radius-lg);   /*  8px */
+  border-radius: var(--sds-radius-default);   /*  8px */
 }
 
 /* Or let the browser do the subtraction for you: */
@@ -655,21 +670,21 @@ export default function BorderAndRadiusPage() {
         lang="css"
         code={`/* Width, style and colour are three separate decisions. */
 .card {
-  border: var(--sds-border-width-1) solid var(--sds-color-border);
+  border: var(--sds-border-width-1) solid var(--sds-color-default);
   border-radius: var(--sds-radius-xl);
 }
 
 /* A control boundary needs more contrast than a divider, so it uses
-   --sds-color-input rather than --sds-color-border. See the Color page. */
+   --sds-color-input rather than --sds-color-default. See the Color page. */
 .input {
   border: var(--sds-border-width-1) solid var(--sds-color-input);
-  border-radius: var(--sds-radius-md);
+  border-radius: var(--sds-radius-base);
 }
 
 .input[aria-invalid="true"] {
   /* Thicken as well as recolour: never colour alone. */
   border-width: var(--sds-border-width-2);
-  border-color: var(--sds-color-destructive);
+  border-color: var(--sds-color-danger);
 }
 
 /* Turning a border off: keep style and colour for the later state. */
@@ -682,7 +697,7 @@ export default function BorderAndRadiusPage() {
         <li>
           <strong>Non-text contrast</strong> — 1.4.11 requires 3:1 for the boundary of any control
           whose shape is the only thing marking it. That is why <code>--sds-color-input</code> is a
-          darker step than <code>--sds-color-border</code>; a decorative divider is exempt.
+          darker step than <code>--sds-color-default</code>; a decorative divider is exempt.
         </li>
         <li>
           <strong>Forced colours</strong> — Windows High Contrast and{" "}
@@ -705,7 +720,7 @@ export default function BorderAndRadiusPage() {
         <Link className="doc-card" href="/foundation/color">
           <span className="doc-card__title">Color</span>{" "}
           <span className="doc-card__text">
-            Where <code>--sds-color-border</code> and <code>--sds-color-input</code> come from.
+            Where <code>--sds-color-default</code> and <code>--sds-color-input</code> come from.
           </span>
         </Link>{" "}
         <Link className="doc-card" href="/foundation/spacing-and-layout">

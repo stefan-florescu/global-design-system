@@ -1,45 +1,342 @@
 {
   "color": {
     "$type": "color",
-    "background": {
+    "heading": {
+      "$value": "{color.gray.900}",
+      "$description": "Headings, labels and primary text.",
+      "$extensions": {
+        "sds": {
+          "group": "Text"
+        }
+      }
+    },
+    "body": {
+      "$value": "{color.gray.600}",
+      "$description": "Body copy, secondary text and placeholders.",
+      "$extensions": {
+        "sds": {
+          "group": "Text"
+        }
+      }
+    },
+    "body-subtle": {
+      "$value": "{color.gray.500}",
+      "$description": "Tertiary text: captions, timestamps, metadata.",
+      "$extensions": {
+        "sds": {
+          "group": "Text"
+        }
+      }
+    },
+    "fg-brand-subtle": {
+      "$value": "{color.blue.200}",
+      "$description": "Brand text on a strong brand fill.",
+      "$extensions": {
+        "sds": {
+          "group": "Text"
+        }
+      }
+    },
+    "fg-brand": {
+      "$value": "{color.blue.700}",
+      "$description": "Links and brand-coloured text.",
+      "$extensions": {
+        "sds": {
+          "group": "Text"
+        }
+      }
+    },
+    "fg-brand-strong": {
+      "$value": "{color.blue.900}",
+      "$description": "Text on brand-soft surfaces: badges, alerts.",
+      "$extensions": {
+        "sds": {
+          "group": "Text"
+        }
+      }
+    },
+    "fg-success": {
+      "$value": "{color.emerald.700}",
+      "$description": "Success text and icons.",
+      "$extensions": {
+        "sds": {
+          "group": "Text"
+        }
+      }
+    },
+    "fg-success-strong": {
+      "$value": "{color.emerald.900}",
+      "$description": "Text on success-soft surfaces.",
+      "$extensions": {
+        "sds": {
+          "group": "Text"
+        }
+      }
+    },
+    "fg-danger": {
+      "$value": "{color.rose.700}",
+      "$description": "Error text and icons.",
+      "$extensions": {
+        "sds": {
+          "group": "Text"
+        }
+      }
+    },
+    "fg-danger-strong": {
+      "$value": "{color.rose.900}",
+      "$description": "Text on danger-soft surfaces.",
+      "$extensions": {
+        "sds": {
+          "group": "Text"
+        }
+      }
+    },
+    "fg-warning-subtle": {
+      "$value": "{color.orange.600}",
+      "$description": "Warning icons.",
+      "$extensions": {
+        "sds": {
+          "group": "Text"
+        }
+      }
+    },
+    "fg-warning": {
+      "$value": "{color.orange.900}",
+      "$description": "Warning text, and text on warning-soft surfaces.",
+      "$extensions": {
+        "sds": {
+          "group": "Text"
+        }
+      }
+    },
+    "fg-yellow": {
+      "$value": "{color.yellow.400}",
+      "$description": "Rating stars.",
+      "$extensions": {
+        "sds": {
+          "group": "Text"
+        }
+      }
+    },
+    "fg-disabled": {
+      "$value": "{color.gray.400}",
+      "$description": "Disabled text. Exempt from contrast minimums.",
+      "$extensions": {
+        "sds": {
+          "group": "Text"
+        }
+      }
+    },
+    "fg-purple": {
+      "$value": "{color.purple.600}",
+      "$description": "Decorative purple text and icons.",
+      "$extensions": {
+        "sds": {
+          "group": "Text"
+        }
+      }
+    },
+    "fg-cyan": {
+      "$value": "{color.cyan.600}",
+      "$description": "Decorative cyan text and icons.",
+      "$extensions": {
+        "sds": {
+          "group": "Text"
+        }
+      }
+    },
+    "fg-indigo": {
+      "$value": "{color.indigo.600}",
+      "$description": "Decorative indigo text and icons.",
+      "$extensions": {
+        "sds": {
+          "group": "Text"
+        }
+      }
+    },
+    "fg-pink": {
+      "$value": "{color.pink.600}",
+      "$description": "Decorative pink text and icons.",
+      "$extensions": {
+        "sds": {
+          "group": "Text"
+        }
+      }
+    },
+    "fg-lime": {
+      "$value": "{color.lime.600}",
+      "$description": "Decorative lime text and icons.",
+      "$extensions": {
+        "sds": {
+          "group": "Text"
+        }
+      }
+    },
+    "neutral-primary-soft": {
       "$value": "{color.white}",
-      "$description": "The page canvas. Everything else sits on top of it.",
+      "$description": "Cards, panels and preview stages.",
       "$extensions": {
         "sds": {
           "group": "Surfaces"
         }
       }
     },
-    "card": {
+    "neutral-primary": {
       "$value": "{color.white}",
-      "$description": "Raised containers: cards, preview stages, panels.",
+      "$description": "The page canvas.",
       "$extensions": {
         "sds": {
           "group": "Surfaces"
         }
       }
     },
-    "popover": {
+    "neutral-primary-medium": {
       "$value": "{color.white}",
-      "$description": "Floating surfaces: menus, dialogs, the command palette.",
+      "$description": "Floating surfaces: dropdowns, popovers, the command palette.",
       "$extensions": {
         "sds": {
           "group": "Surfaces"
         }
       }
     },
-    "muted": {
+    "neutral-primary-strong": {
+      "$value": "{color.white}",
+      "$description": "Floating surfaces one level above primary-medium.",
+      "$extensions": {
+        "sds": {
+          "group": "Surfaces"
+        }
+      }
+    },
+    "neutral-secondary-soft": {
+      "$value": "{color.gray.50}",
+      "$description": "Recessed fills on cards.",
+      "$extensions": {
+        "sds": {
+          "group": "Surfaces"
+        }
+      }
+    },
+    "neutral-secondary": {
+      "$value": "{color.gray.50}",
+      "$description": "Recessed fills on the page.",
+      "$extensions": {
+        "sds": {
+          "group": "Surfaces"
+        }
+      }
+    },
+    "neutral-secondary-medium": {
+      "$value": "{color.gray.50}",
+      "$description": "Form fields, secondary buttons and gray badges.",
+      "$extensions": {
+        "sds": {
+          "group": "Surfaces"
+        }
+      }
+    },
+    "neutral-secondary-strong": {
+      "$value": "{color.gray.50}",
+      "$description": "Hover fill for neutral-secondary-medium.",
+      "$extensions": {
+        "sds": {
+          "group": "Surfaces"
+        }
+      }
+    },
+    "neutral-secondary-strongest": {
+      "$value": "{color.gray.50}",
+      "$description": "Pressed fill for neutral-secondary surfaces.",
+      "$extensions": {
+        "sds": {
+          "group": "Surfaces"
+        }
+      }
+    },
+    "neutral-tertiary-soft": {
       "$value": "{color.gray.100}",
-      "$description": "Recessed fills: table headers, tab bars, code chrome.",
+      "$description": "Subtle hover fill on the page.",
       "$extensions": {
         "sds": {
           "group": "Surfaces"
         }
       }
     },
-    "accent": {
+    "neutral-tertiary": {
       "$value": "{color.gray.100}",
-      "$description": "Hover and selected background for rows, nav items and menu items.",
+      "$description": "Hover and selected fill for rows, nav and menu items.",
+      "$extensions": {
+        "sds": {
+          "group": "Surfaces"
+        }
+      }
+    },
+    "neutral-tertiary-medium": {
+      "$value": "{color.gray.100}",
+      "$description": "Hover fill for secondary buttons and fields.",
+      "$extensions": {
+        "sds": {
+          "group": "Surfaces"
+        }
+      }
+    },
+    "neutral-quaternary": {
+      "$value": "{color.gray.200}",
+      "$description": "Tracks and inactive fills: progress, range, toggle.",
+      "$extensions": {
+        "sds": {
+          "group": "Surfaces"
+        }
+      }
+    },
+    "neutral-quaternary-medium": {
+      "$value": "{color.gray.200}",
+      "$description": "Hover fill for neutral-quaternary.",
+      "$extensions": {
+        "sds": {
+          "group": "Surfaces"
+        }
+      }
+    },
+    "disabled": {
+      "$value": "{color.gray.100}",
+      "$description": "Disabled control fills.",
+      "$extensions": {
+        "sds": {
+          "group": "Surfaces"
+        }
+      }
+    },
+    "dark-soft": {
+      "$value": "{color.gray.800}",
+      "$description": "Soft dark fills: tooltips.",
+      "$extensions": {
+        "sds": {
+          "group": "Surfaces"
+        }
+      }
+    },
+    "dark": {
+      "$value": "{color.gray.800}",
+      "$description": "Dark buttons and inverted surfaces.",
+      "$extensions": {
+        "sds": {
+          "group": "Surfaces"
+        }
+      }
+    },
+    "dark-strong": {
+      "$value": "{color.gray.900}",
+      "$description": "Hover fill for dark.",
+      "$extensions": {
+        "sds": {
+          "group": "Surfaces"
+        }
+      }
+    },
+    "dark-backdrop": {
+      "$value": "{color.gray.950}",
+      "$description": "Backdrop colour behind modals and drawers.",
       "$extensions": {
         "sds": {
           "group": "Surfaces"
@@ -55,54 +352,351 @@
         }
       }
     },
-    "foreground": {
-      "$value": "{color.gray.900}",
-      "$description": "Body copy and headings on --sds-color-background.",
+    "brand-softer": {
+      "$value": "{color.blue.50}",
+      "$description": "Brand tint: badges, alerts, selected rows.",
       "$extensions": {
         "sds": {
-          "group": "Text"
+          "group": "Brand & status"
         }
       }
     },
-    "card-foreground": {
-      "$value": "{color.gray.900}",
-      "$description": "Text on a card. Keep it in sync with --sds-color-foreground.",
+    "brand-soft": {
+      "$value": "{color.blue.100}",
+      "$description": "Brand tint, one step stronger than brand-softer.",
       "$extensions": {
         "sds": {
-          "group": "Text"
+          "group": "Brand & status"
         }
       }
     },
-    "popover-foreground": {
-      "$value": "{color.gray.900}",
-      "$description": "Text on a floating surface.",
+    "brand": {
+      "$value": "{color.blue.700}",
+      "$description": "Primary actions, checked controls and active indicators.",
       "$extensions": {
         "sds": {
-          "group": "Text"
+          "group": "Brand & status"
         }
       }
     },
-    "muted-foreground": {
-      "$value": "{color.gray.600}",
-      "$description": "Secondary text: captions, metadata, placeholders, helper text. gray-500 would only reach 4.4:1 on --sds-color-muted.",
+    "brand-medium": {
+      "$value": "{color.blue.200}",
+      "$description": "Focus halo around brand buttons; brand tint for hovers.",
       "$extensions": {
         "sds": {
-          "group": "Text"
+          "group": "Brand & status"
         }
       }
     },
-    "accent-foreground": {
-      "$value": "{color.gray.900}",
-      "$description": "Text on a hovered or selected row.",
+    "brand-strong": {
+      "$value": "{color.blue.800}",
+      "$description": "Hover fill for brand.",
       "$extensions": {
         "sds": {
-          "group": "Text"
+          "group": "Brand & status"
         }
       }
     },
-    "border": {
+    "brand-foreground": {
+      "$value": "{color.white}",
+      "$description": "Text and icons on brand and brand-strong.",
+      "$extensions": {
+        "sds": {
+          "group": "Brand & status"
+        }
+      }
+    },
+    "success-soft": {
+      "$value": "{color.emerald.50}",
+      "$description": "Success tint: badges and alerts.",
+      "$extensions": {
+        "sds": {
+          "group": "Brand & status"
+        }
+      }
+    },
+    "success": {
+      "$value": "{color.emerald.700}",
+      "$description": "Success fill. Stays on 700 in dark mode, where Flowbite's 600 is under 4.5:1 with white text.",
+      "$extensions": {
+        "sds": {
+          "group": "Brand & status"
+        }
+      }
+    },
+    "success-medium": {
+      "$value": "{color.emerald.100}",
+      "$description": "Focus halo around success buttons.",
+      "$extensions": {
+        "sds": {
+          "group": "Brand & status"
+        }
+      }
+    },
+    "success-strong": {
+      "$value": "{color.emerald.800}",
+      "$description": "Hover fill for success.",
+      "$extensions": {
+        "sds": {
+          "group": "Brand & status"
+        }
+      }
+    },
+    "success-foreground": {
+      "$value": "{color.white}",
+      "$description": "Text and icons on success fills.",
+      "$extensions": {
+        "sds": {
+          "group": "Brand & status"
+        }
+      }
+    },
+    "danger-soft": {
+      "$value": "{color.rose.50}",
+      "$description": "Danger tint: badges and alerts.",
+      "$extensions": {
+        "sds": {
+          "group": "Brand & status"
+        }
+      }
+    },
+    "danger": {
+      "$value": "{color.rose.700}",
+      "$description": "Destructive actions and error fills.",
+      "$extensions": {
+        "sds": {
+          "group": "Brand & status"
+        }
+      }
+    },
+    "danger-medium": {
+      "$value": "{color.rose.100}",
+      "$description": "Focus halo around danger buttons.",
+      "$extensions": {
+        "sds": {
+          "group": "Brand & status"
+        }
+      }
+    },
+    "danger-strong": {
+      "$value": "{color.rose.800}",
+      "$description": "Hover fill for danger.",
+      "$extensions": {
+        "sds": {
+          "group": "Brand & status"
+        }
+      }
+    },
+    "danger-foreground": {
+      "$value": "{color.white}",
+      "$description": "Text and icons on danger fills.",
+      "$extensions": {
+        "sds": {
+          "group": "Brand & status"
+        }
+      }
+    },
+    "warning-soft": {
+      "$value": "{color.orange.50}",
+      "$description": "Warning tint: badges and alerts.",
+      "$extensions": {
+        "sds": {
+          "group": "Brand & status"
+        }
+      }
+    },
+    "warning": {
+      "$value": "{color.orange.500}",
+      "$description": "Warning fill.",
+      "$extensions": {
+        "sds": {
+          "group": "Brand & status"
+        }
+      }
+    },
+    "warning-medium": {
+      "$value": "{color.orange.100}",
+      "$description": "Focus halo around warning buttons.",
+      "$extensions": {
+        "sds": {
+          "group": "Brand & status"
+        }
+      }
+    },
+    "warning-strong": {
+      "$value": "{color.orange.600}",
+      "$description": "Hover fill for warning. One step from warning (Flowbite uses 700) so the dark label keeps 4.5:1.",
+      "$extensions": {
+        "sds": {
+          "group": "Brand & status"
+        }
+      }
+    },
+    "warning-foreground": {
+      "$value": "{color.gray.950}",
+      "$description": "Text on warning fills. Dark rather than Flowbite's white, which is under 3:1 on orange.",
+      "$extensions": {
+        "sds": {
+          "group": "Brand & status"
+        }
+      }
+    },
+    "dark-foreground": {
+      "$value": "{color.white}",
+      "$description": "Text and icons on dark fills.",
+      "$extensions": {
+        "sds": {
+          "group": "Brand & status"
+        }
+      }
+    },
+    "buffer": {
+      "$value": "{color.white}",
+      "$description": "Ring that separates stacked items from the page, e.g. avatar stacks.",
+      "$extensions": {
+        "sds": {
+          "group": "Borders & focus"
+        }
+      }
+    },
+    "buffer-medium": {
+      "$value": "{color.white}",
+      "$description": "Buffer ring on cards.",
+      "$extensions": {
+        "sds": {
+          "group": "Borders & focus"
+        }
+      }
+    },
+    "buffer-strong": {
+      "$value": "{color.white}",
+      "$description": "Buffer ring on floating surfaces.",
+      "$extensions": {
+        "sds": {
+          "group": "Borders & focus"
+        }
+      }
+    },
+    "muted": {
+      "$value": "{color.gray.50}",
+      "$description": "Barely-there dividers.",
+      "$extensions": {
+        "sds": {
+          "group": "Borders & focus"
+        }
+      }
+    },
+    "light-subtle": {
+      "$value": "{color.gray.100}",
+      "$description": "Light dividers.",
+      "$extensions": {
+        "sds": {
+          "group": "Borders & focus"
+        }
+      }
+    },
+    "light": {
+      "$value": "{color.gray.100}",
+      "$description": "Light borders.",
+      "$extensions": {
+        "sds": {
+          "group": "Borders & focus"
+        }
+      }
+    },
+    "light-medium": {
+      "$value": "{color.gray.100}",
+      "$description": "Light borders on floating surfaces.",
+      "$extensions": {
+        "sds": {
+          "group": "Borders & focus"
+        }
+      }
+    },
+    "default-subtle": {
       "$value": "{color.gray.200}",
-      "$description": "Decorative hairlines: dividers, card outlines, table rules. Never the only cue for a control.",
+      "$description": "Subtle borders.",
+      "$extensions": {
+        "sds": {
+          "group": "Borders & focus"
+        }
+      }
+    },
+    "default": {
+      "$value": "{color.gray.200}",
+      "$description": "Default borders and dividers: cards, tables, separators.",
+      "$extensions": {
+        "sds": {
+          "group": "Borders & focus"
+        }
+      }
+    },
+    "default-medium": {
+      "$value": "{color.gray.200}",
+      "$description": "Borders of secondary buttons, gray badges and list groups.",
+      "$extensions": {
+        "sds": {
+          "group": "Borders & focus"
+        }
+      }
+    },
+    "default-strong": {
+      "$value": "{color.gray.200}",
+      "$description": "Stronger borders on dark surfaces.",
+      "$extensions": {
+        "sds": {
+          "group": "Borders & focus"
+        }
+      }
+    },
+    "success-subtle": {
+      "$value": "{color.emerald.200}",
+      "$description": "Border of success badges and alerts.",
+      "$extensions": {
+        "sds": {
+          "group": "Borders & focus"
+        }
+      }
+    },
+    "danger-subtle": {
+      "$value": "{color.rose.200}",
+      "$description": "Border of danger badges and alerts.",
+      "$extensions": {
+        "sds": {
+          "group": "Borders & focus"
+        }
+      }
+    },
+    "warning-subtle": {
+      "$value": "{color.orange.200}",
+      "$description": "Border of warning badges and alerts.",
+      "$extensions": {
+        "sds": {
+          "group": "Borders & focus"
+        }
+      }
+    },
+    "brand-subtle": {
+      "$value": "{color.blue.200}",
+      "$description": "Border of brand badges and alerts.",
+      "$extensions": {
+        "sds": {
+          "group": "Borders & focus"
+        }
+      }
+    },
+    "brand-light": {
+      "$value": "{color.blue.600}",
+      "$description": "Brand border accents.",
+      "$extensions": {
+        "sds": {
+          "group": "Borders & focus"
+        }
+      }
+    },
+    "dark-subtle": {
+      "$value": "{color.gray.800}",
+      "$description": "Border of dark surfaces.",
       "$extensions": {
         "sds": {
           "group": "Borders & focus"
@@ -110,8 +704,8 @@
       }
     },
     "input": {
-      "$value": "{color.gray.500}",
-      "$description": "Border of form controls. Holds at gray-500 in both themes because a control boundary must clear 3:1 against its surface.",
+      "$value": "{color.gray.450}",
+      "$description": "Field and checkbox borders. Darker than Flowbite's gray-200 so the boundary reaches 3:1 (WCAG 1.4.11).",
       "$extensions": {
         "sds": {
           "group": "Borders & focus"
@@ -119,233 +713,17 @@
       }
     },
     "ring": {
-      "$value": "{color.blue.600}",
-      "$description": "Focus ring. Restyle it if you must, but never remove it.",
+      "$value": "{color.blue.700}",
+      "$description": "Keyboard focus outline. Solid so it reaches 3:1 on every surface; Flowbite's soft halo stays around it.",
       "$extensions": {
         "sds": {
           "group": "Borders & focus"
         }
       }
     },
-    "primary": {
-      "$value": "{color.gray.900}",
-      "$description": "Highest-emphasis action. One per view.",
-      "$extensions": {
-        "sds": {
-          "group": "Actions"
-        }
-      }
-    },
-    "primary-foreground": {
-      "$value": "{color.white}",
-      "$description": "Label on a primary action.",
-      "$extensions": {
-        "sds": {
-          "group": "Actions"
-        }
-      }
-    },
-    "secondary": {
-      "$value": "{color.gray.100}",
-      "$description": "Supporting action sitting next to a primary one.",
-      "$extensions": {
-        "sds": {
-          "group": "Actions"
-        }
-      }
-    },
-    "secondary-foreground": {
-      "$value": "{color.gray.900}",
-      "$description": "Label on a secondary action.",
-      "$extensions": {
-        "sds": {
-          "group": "Actions"
-        }
-      }
-    },
-    "brand": {
-      "$value": "{color.blue.700}",
-      "$description": "Brand accent: links, active nav, selected states. Point --sds-color-primary at this to make the whole system branded.",
-      "$extensions": {
-        "sds": {
-          "group": "Actions"
-        }
-      }
-    },
-    "brand-foreground": {
-      "$value": "{color.white}",
-      "$description": "Label on a filled brand surface.",
-      "$extensions": {
-        "sds": {
-          "group": "Actions"
-        }
-      }
-    },
-    "brand-subtle": {
-      "$value": "{color.blue.50}",
-      "$description": "Tinted brand background for chips and banners.",
-      "$extensions": {
-        "sds": {
-          "group": "Actions"
-        }
-      }
-    },
-    "brand-subtle-foreground": {
-      "$value": "{color.blue.700}",
-      "$description": "Text and icons on --sds-color-brand-subtle.",
-      "$extensions": {
-        "sds": {
-          "group": "Actions"
-        }
-      }
-    },
-    "success": {
-      "$value": "{color.green.600}",
-      "$description": "Filled confirmation: success badges, completed steps.",
-      "$extensions": {
-        "sds": {
-          "group": "Status"
-        }
-      }
-    },
-    "success-foreground": {
-      "$value": "{color.white}",
-      "$description": "Label on --sds-color-success.",
-      "$extensions": {
-        "sds": {
-          "group": "Status"
-        }
-      }
-    },
-    "success-subtle": {
-      "$value": "{color.green.50}",
-      "$description": "Background of a success banner or toast.",
-      "$extensions": {
-        "sds": {
-          "group": "Status"
-        }
-      }
-    },
-    "success-subtle-foreground": {
-      "$value": "{color.green.700}",
-      "$description": "Text on --sds-color-success-subtle.",
-      "$extensions": {
-        "sds": {
-          "group": "Status"
-        }
-      }
-    },
-    "warning": {
-      "$value": "{color.yellow.400}",
-      "$description": "Filled caution. Carries dark text: every step that still reads as yellow (300\u2013500) falls below 4.5:1 against white.",
-      "$extensions": {
-        "sds": {
-          "group": "Status"
-        }
-      }
-    },
-    "warning-foreground": {
-      "$value": "{color.gray.900}",
-      "$description": "Label on --sds-color-warning.",
-      "$extensions": {
-        "sds": {
-          "group": "Status"
-        }
-      }
-    },
-    "warning-subtle": {
-      "$value": "{color.yellow.50}",
-      "$description": "Background of a warning banner.",
-      "$extensions": {
-        "sds": {
-          "group": "Status"
-        }
-      }
-    },
-    "warning-subtle-foreground": {
-      "$value": "{color.yellow.700}",
-      "$description": "Text on --sds-color-warning-subtle.",
-      "$extensions": {
-        "sds": {
-          "group": "Status"
-        }
-      }
-    },
-    "destructive": {
-      "$value": "{color.red.600}",
-      "$description": "Irreversible actions: delete, revoke, disconnect.",
-      "$extensions": {
-        "sds": {
-          "group": "Status"
-        }
-      }
-    },
-    "destructive-foreground": {
-      "$value": "{color.white}",
-      "$description": "Label on --sds-color-destructive.",
-      "$extensions": {
-        "sds": {
-          "group": "Status"
-        }
-      }
-    },
-    "destructive-subtle": {
-      "$value": "{color.red.50}",
-      "$description": "Background of an error banner or invalid field.",
-      "$extensions": {
-        "sds": {
-          "group": "Status"
-        }
-      }
-    },
-    "destructive-subtle-foreground": {
-      "$value": "{color.red.700}",
-      "$description": "Text on --sds-color-destructive-subtle.",
-      "$extensions": {
-        "sds": {
-          "group": "Status"
-        }
-      }
-    },
-    "info": {
-      "$value": "{color.blue.600}",
-      "$description": "Neutral information: badges, type annotations, inline hints.",
-      "$extensions": {
-        "sds": {
-          "group": "Status"
-        }
-      }
-    },
-    "info-foreground": {
-      "$value": "{color.white}",
-      "$description": "Label on --sds-color-info.",
-      "$extensions": {
-        "sds": {
-          "group": "Status"
-        }
-      }
-    },
-    "info-subtle": {
-      "$value": "{color.blue.50}",
-      "$description": "Background of an informational callout.",
-      "$extensions": {
-        "sds": {
-          "group": "Status"
-        }
-      }
-    },
-    "info-subtle-foreground": {
-      "$value": "{color.blue.700}",
-      "$description": "Text on --sds-color-info-subtle.",
-      "$extensions": {
-        "sds": {
-          "group": "Status"
-        }
-      }
-    },
     "code-bg": {
       "$value": "{color.gray.900}",
-      "$description": "Code block background. Stays dark in both themes on purpose.",
+      "$description": "Code block background.",
       "$extensions": {
         "sds": {
           "group": "Code surface"
@@ -354,7 +732,7 @@
     },
     "code-foreground": {
       "$value": "{color.gray.200}",
-      "$description": "Default code text.",
+      "$description": "Code block text.",
       "$extensions": {
         "sds": {
           "group": "Code surface"
@@ -363,7 +741,7 @@
     },
     "code-border": {
       "$value": "color-mix(in srgb, {color.white} 8%, transparent)",
-      "$description": "Divider inside the code block header.",
+      "$description": "Code block border.",
       "$extensions": {
         "sds": {
           "group": "Code surface"
@@ -372,7 +750,7 @@
     },
     "code-muted": {
       "$value": "{color.gray.400}",
-      "$description": "Filenames and the terminal prompt.",
+      "$description": "Line numbers and code chrome.",
       "$extensions": {
         "sds": {
           "group": "Code surface"
@@ -381,7 +759,7 @@
     },
     "syntax-tag": {
       "$value": "{color.pink.400}",
-      "$description": "Tags and element names.",
+      "$description": "Syntax colour: tags.",
       "$extensions": {
         "sds": {
           "group": "Code surface"
@@ -390,7 +768,7 @@
     },
     "syntax-attr": {
       "$value": "{color.yellow.300}",
-      "$description": "Attributes and property names.",
+      "$description": "Syntax colour: attrs.",
       "$extensions": {
         "sds": {
           "group": "Code surface"
@@ -399,7 +777,7 @@
     },
     "syntax-string": {
       "$value": "{color.green.300}",
-      "$description": "Strings and values.",
+      "$description": "Syntax colour: strings.",
       "$extensions": {
         "sds": {
           "group": "Code surface"
@@ -408,7 +786,7 @@
     },
     "syntax-keyword": {
       "$value": "{color.purple.300}",
-      "$description": "Keywords and at-rules.",
+      "$description": "Syntax colour: keywords.",
       "$extensions": {
         "sds": {
           "group": "Code surface"
@@ -417,7 +795,7 @@
     },
     "syntax-fn": {
       "$value": "{color.blue.300}",
-      "$description": "Functions and selectors.",
+      "$description": "Syntax colour: fns.",
       "$extensions": {
         "sds": {
           "group": "Code surface"
@@ -426,7 +804,7 @@
     },
     "syntax-comment": {
       "$value": "{color.gray.400}",
-      "$description": "Comments.",
+      "$description": "Syntax colour: comments.",
       "$extensions": {
         "sds": {
           "group": "Code surface"

@@ -7,8 +7,9 @@
  *   3. this file                → exposes SEMANTIC tokens as utilities via @theme inline
  *
  * Colour primitives (e.g. --sds-color-blue-700) are intentionally not exposed: components
- * use semantic utilities only (bg-background, text-muted-foreground, border-border,
- * ring-ring, bg-brand…). `inline` keeps the var() live, so theme switching needs no rebuild.
+ * use semantic utilities only. The names are Flowbite v4's roles (bg-brand, hover:bg-brand-strong,
+ * text-heading, text-body, border-default-medium, bg-neutral-secondary-medium…), so Flowbite markup
+ * maps class for class. `inline` keeps the var() live, so theme switching needs no rebuild.
  * Leading needs no mapping: Tailwind's leading-6 is already 6 × 4px, like --sds-leading-6.
  */
 
@@ -16,45 +17,87 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @theme inline {
-  /* Semantic colours → bg-*, text-*, border-*, ring-*, fill-*… */
-  --color-background: var(--sds-color-background);
-  --color-card: var(--sds-color-card);
-  --color-popover: var(--sds-color-popover);
-  --color-muted: var(--sds-color-muted);
-  --color-accent: var(--sds-color-accent);
+  /* Semantic colours (Flowbite v4 roles) → bg-brand, text-heading, border-default-medium… */
+  --color-heading: var(--sds-color-heading);
+  --color-body: var(--sds-color-body);
+  --color-body-subtle: var(--sds-color-body-subtle);
+  --color-fg-brand-subtle: var(--sds-color-fg-brand-subtle);
+  --color-fg-brand: var(--sds-color-fg-brand);
+  --color-fg-brand-strong: var(--sds-color-fg-brand-strong);
+  --color-fg-success: var(--sds-color-fg-success);
+  --color-fg-success-strong: var(--sds-color-fg-success-strong);
+  --color-fg-danger: var(--sds-color-fg-danger);
+  --color-fg-danger-strong: var(--sds-color-fg-danger-strong);
+  --color-fg-warning-subtle: var(--sds-color-fg-warning-subtle);
+  --color-fg-warning: var(--sds-color-fg-warning);
+  --color-fg-yellow: var(--sds-color-fg-yellow);
+  --color-fg-disabled: var(--sds-color-fg-disabled);
+  --color-fg-purple: var(--sds-color-fg-purple);
+  --color-fg-cyan: var(--sds-color-fg-cyan);
+  --color-fg-indigo: var(--sds-color-fg-indigo);
+  --color-fg-pink: var(--sds-color-fg-pink);
+  --color-fg-lime: var(--sds-color-fg-lime);
+  --color-neutral-primary-soft: var(--sds-color-neutral-primary-soft);
+  --color-neutral-primary: var(--sds-color-neutral-primary);
+  --color-neutral-primary-medium: var(--sds-color-neutral-primary-medium);
+  --color-neutral-primary-strong: var(--sds-color-neutral-primary-strong);
+  --color-neutral-secondary-soft: var(--sds-color-neutral-secondary-soft);
+  --color-neutral-secondary: var(--sds-color-neutral-secondary);
+  --color-neutral-secondary-medium: var(--sds-color-neutral-secondary-medium);
+  --color-neutral-secondary-strong: var(--sds-color-neutral-secondary-strong);
+  --color-neutral-secondary-strongest: var(--sds-color-neutral-secondary-strongest);
+  --color-neutral-tertiary-soft: var(--sds-color-neutral-tertiary-soft);
+  --color-neutral-tertiary: var(--sds-color-neutral-tertiary);
+  --color-neutral-tertiary-medium: var(--sds-color-neutral-tertiary-medium);
+  --color-neutral-quaternary: var(--sds-color-neutral-quaternary);
+  --color-neutral-quaternary-medium: var(--sds-color-neutral-quaternary-medium);
+  --color-disabled: var(--sds-color-disabled);
+  --color-dark-soft: var(--sds-color-dark-soft);
+  --color-dark: var(--sds-color-dark);
+  --color-dark-strong: var(--sds-color-dark-strong);
+  --color-dark-backdrop: var(--sds-color-dark-backdrop);
   --color-overlay: var(--sds-color-overlay);
-  --color-foreground: var(--sds-color-foreground);
-  --color-card-foreground: var(--sds-color-card-foreground);
-  --color-popover-foreground: var(--sds-color-popover-foreground);
-  --color-muted-foreground: var(--sds-color-muted-foreground);
-  --color-accent-foreground: var(--sds-color-accent-foreground);
-  --color-border: var(--sds-color-border);
+  --color-brand-softer: var(--sds-color-brand-softer);
+  --color-brand-soft: var(--sds-color-brand-soft);
+  --color-brand: var(--sds-color-brand);
+  --color-brand-medium: var(--sds-color-brand-medium);
+  --color-brand-strong: var(--sds-color-brand-strong);
+  --color-brand-foreground: var(--sds-color-brand-foreground);
+  --color-success-soft: var(--sds-color-success-soft);
+  --color-success: var(--sds-color-success);
+  --color-success-medium: var(--sds-color-success-medium);
+  --color-success-strong: var(--sds-color-success-strong);
+  --color-success-foreground: var(--sds-color-success-foreground);
+  --color-danger-soft: var(--sds-color-danger-soft);
+  --color-danger: var(--sds-color-danger);
+  --color-danger-medium: var(--sds-color-danger-medium);
+  --color-danger-strong: var(--sds-color-danger-strong);
+  --color-danger-foreground: var(--sds-color-danger-foreground);
+  --color-warning-soft: var(--sds-color-warning-soft);
+  --color-warning: var(--sds-color-warning);
+  --color-warning-medium: var(--sds-color-warning-medium);
+  --color-warning-strong: var(--sds-color-warning-strong);
+  --color-warning-foreground: var(--sds-color-warning-foreground);
+  --color-dark-foreground: var(--sds-color-dark-foreground);
+  --color-buffer: var(--sds-color-buffer);
+  --color-buffer-medium: var(--sds-color-buffer-medium);
+  --color-buffer-strong: var(--sds-color-buffer-strong);
+  --color-muted: var(--sds-color-muted);
+  --color-light-subtle: var(--sds-color-light-subtle);
+  --color-light: var(--sds-color-light);
+  --color-light-medium: var(--sds-color-light-medium);
+  --color-default-subtle: var(--sds-color-default-subtle);
+  --color-default: var(--sds-color-default);
+  --color-default-medium: var(--sds-color-default-medium);
+  --color-default-strong: var(--sds-color-default-strong);
+  --color-success-subtle: var(--sds-color-success-subtle);
+  --color-danger-subtle: var(--sds-color-danger-subtle);
+  --color-warning-subtle: var(--sds-color-warning-subtle);
+  --color-brand-subtle: var(--sds-color-brand-subtle);
+  --color-brand-light: var(--sds-color-brand-light);
+  --color-dark-subtle: var(--sds-color-dark-subtle);
   --color-input: var(--sds-color-input);
   --color-ring: var(--sds-color-ring);
-  --color-primary: var(--sds-color-primary);
-  --color-primary-foreground: var(--sds-color-primary-foreground);
-  --color-secondary: var(--sds-color-secondary);
-  --color-secondary-foreground: var(--sds-color-secondary-foreground);
-  --color-brand: var(--sds-color-brand);
-  --color-brand-foreground: var(--sds-color-brand-foreground);
-  --color-brand-subtle: var(--sds-color-brand-subtle);
-  --color-brand-subtle-foreground: var(--sds-color-brand-subtle-foreground);
-  --color-success: var(--sds-color-success);
-  --color-success-foreground: var(--sds-color-success-foreground);
-  --color-success-subtle: var(--sds-color-success-subtle);
-  --color-success-subtle-foreground: var(--sds-color-success-subtle-foreground);
-  --color-warning: var(--sds-color-warning);
-  --color-warning-foreground: var(--sds-color-warning-foreground);
-  --color-warning-subtle: var(--sds-color-warning-subtle);
-  --color-warning-subtle-foreground: var(--sds-color-warning-subtle-foreground);
-  --color-destructive: var(--sds-color-destructive);
-  --color-destructive-foreground: var(--sds-color-destructive-foreground);
-  --color-destructive-subtle: var(--sds-color-destructive-subtle);
-  --color-destructive-subtle-foreground: var(--sds-color-destructive-subtle-foreground);
-  --color-info: var(--sds-color-info);
-  --color-info-foreground: var(--sds-color-info-foreground);
-  --color-info-subtle: var(--sds-color-info-subtle);
-  --color-info-subtle-foreground: var(--sds-color-info-subtle-foreground);
   --color-code-bg: var(--sds-color-code-bg);
   --color-code-foreground: var(--sds-color-code-foreground);
   --color-code-border: var(--sds-color-code-border);
@@ -93,17 +136,22 @@
   /* Spacing — Tailwind multiplies this 4px base (p-6 = 24px = --sds-space-6) */
   --spacing: var(--sds-space-1);
 
-  /* Radius & elevation */
+  /* Radius & elevation — Flowbite's scale: rounded 8px, rounded-base 12px, rounded-lg 16px */
+  --radius: var(--sds-radius-default);
   --radius-xs: var(--sds-radius-xs);
   --radius-sm: var(--sds-radius-sm);
   --radius-md: var(--sds-radius-md);
+  --radius-base: var(--sds-radius-base);
   --radius-lg: var(--sds-radius-lg);
   --radius-xl: var(--sds-radius-xl);
   --radius-2xl: var(--sds-radius-2xl);
   --radius-3xl: var(--sds-radius-3xl);
+  --shadow-2xs: var(--sds-shadow-2xs);
+  --shadow-xs: var(--sds-shadow-xs);
   --shadow-sm: var(--sds-shadow-sm);
   --shadow-md: var(--sds-shadow-md);
   --shadow-lg: var(--sds-shadow-lg);
+  --shadow-xl: var(--sds-shadow-xl);
 
   /* Layers — z-base, z-sticky, z-fixed, z-overlay, z-modal… */
   --z-index-base: var(--sds-z-base);

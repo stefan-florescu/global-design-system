@@ -102,8 +102,8 @@ Rules:
 | Hooks                   | `use` + `PascalCase`                | `useControllableState`                                                      |
 | Props                   | `camelCase`; booleans as adjectives | `disabled`, `invalid`, `fullWidth`                                          |
 | Variant props           | `variant`, `size`, `tone`           | `size: "sm" \| "md" \| "lg"`                                                |
-| Tokens (JSON path)      | `category.name` / `category.step`   | `color.muted-foreground`, `color.blue.700`, `space.6`                       |
-| Tokens (CSS)            | `--sds-` + kebab path               | `--sds-color-muted-foreground`, `--sds-space-6`                             |
+| Tokens (JSON path)      | `category.name` / `category.step`   | `color.neutral-secondary-medium`, `color.blue.700`, `space.6`               |
+| Tokens (CSS)            | `--sds-` + kebab path               | `--sds-color-neutral-secondary-medium`, `--sds-space-6`                     |
 | Theme names             | lowercase                           | `light`, `dark`, `high-contrast`, `brand-x`                                 |
 | Branches                | `type/short-desc`                   | `feat/button`, `fix/dialog-focus-trap`                                      |
 | Commits / PR titles     | Conventional Commits + scope        | `feat(ui): add Button`                                                      |

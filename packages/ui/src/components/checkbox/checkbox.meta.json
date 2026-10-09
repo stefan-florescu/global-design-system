@@ -1,0 +1,38 @@
+{
+  "name": "Checkbox",
+  "status": "beta",
+  "description": "Flowbite's checkbox: a native checkbox with label, helper text, bordered card, list-group row and selectable-card layouts.",
+  "category": "forms",
+  "import": "import { Checkbox } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/",
+  "client": false,
+  "props": "generated",
+  "variants": {
+    "variant": ["default", "bordered", "list", "card"],
+    "invalid": [true, false]
+  },
+  "tokens": [
+    "color.neutral-secondary-medium",
+    "color.input",
+    "color.light",
+    "color.brand",
+    "color.brand-foreground",
+    "color.brand-soft",
+    "color.brand-softer",
+    "color.fg-brand-strong",
+    "color.neutral-primary-soft",
+    "color.default",
+    "color.heading",
+    "color.body",
+    "color.fg-disabled",
+    "color.danger",
+    "color.ring",
+    "radius.xs",
+    "radius.base",
+    "shadow.xs"
+  ],
+  "useWhen": ["Independent yes/no choices, or picking several options"],
+  "avoidWhen": [],
+  "related": ["Label", "HelperText"],
+  "docs": "apps/storybook/app/(docs)/forms/checkbox/page.mdx"
+}

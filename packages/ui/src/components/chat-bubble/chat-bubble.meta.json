@@ -1,21 +1,33 @@
 {
   "name": "ChatBubble",
   "status": "beta",
-  "description": "One message in a conversation: avatar, sender, time, content and delivery status.",
+  "description": "One message in a conversation: avatar, sender, time, content (text, voice note, file, images, link preview), status and an actions menu. Flowbite's default, outline and clean styles.",
   "category": "data-display",
   "import": "import { ChatBubble } from \"@stefan-florescu/ui\";",
   "ariaPattern": "https://www.w3.org/TR/wai-aria-1.2/#log",
   "client": false,
   "props": "generated",
-  "variants": { "variant": ["default", "outline", "clean"], "align": ["start", "end"] },
-  "defaults": { "variant": "default", "align": "start" },
+  "variants": {
+    "variant": ["default", "outline", "clean"],
+    "align": ["start", "end"]
+  },
+  "defaults": {
+    "variant": "default",
+    "align": "start"
+  },
   "tokens": [
-    "color.muted",
-    "color.foreground",
-    "color.muted-foreground",
-    "color.background",
-    "color.border",
-    "radius.xl",
+    "color.neutral-secondary-soft",
+    "color.heading",
+    "color.body",
+    "color.neutral-primary",
+    "color.neutral-tertiary",
+    "color.neutral-primary-medium",
+    "color.neutral-tertiary-medium",
+    "color.default-medium",
+    "color.ring",
+    "radius.base",
+    "radius.md",
+    "shadow.lg",
     "text.sm"
   ],
   "useWhen": ["Showing messages in a conversation, comment thread or support chat"],
@@ -23,10 +35,25 @@
   "related": ["Avatar", "Button"],
   "examples": [
     "apps/storybook/registry/demos/chat-bubble-demo.tsx",
+    "apps/storybook/registry/demos/chat-bubble-voice-note.tsx",
     "apps/storybook/registry/demos/chat-bubble-file.tsx",
     "apps/storybook/registry/demos/chat-bubble-image.tsx",
+    "apps/storybook/registry/demos/chat-bubble-gallery.tsx",
+    "apps/storybook/registry/demos/chat-bubble-url-preview.tsx",
     "apps/storybook/registry/demos/chat-bubble-outline.tsx",
+    "apps/storybook/registry/demos/chat-bubble-outline-voice-note.tsx",
+    "apps/storybook/registry/demos/chat-bubble-outline-file.tsx",
+    "apps/storybook/registry/demos/chat-bubble-outline-image.tsx",
+    "apps/storybook/registry/demos/chat-bubble-outline-gallery.tsx",
+    "apps/storybook/registry/demos/chat-bubble-outline-url-preview.tsx",
     "apps/storybook/registry/demos/chat-bubble-clean.tsx",
+    "apps/storybook/registry/demos/chat-bubble-clean-voice-note.tsx",
+    "apps/storybook/registry/demos/chat-bubble-clean-file.tsx",
+    "apps/storybook/registry/demos/chat-bubble-clean-image.tsx",
+    "apps/storybook/registry/demos/chat-bubble-clean-gallery.tsx",
+    "apps/storybook/registry/demos/chat-bubble-clean-url-preview.tsx",
     "apps/storybook/registry/demos/chat-bubble-conversation.tsx"
-  ]
+  ],
+  "parts": ["ChatBubble", "ChatBubbleMenu", "ChatBubbleMenuItem"],
+  "notes": "ChatBubble is server-safe; ChatBubbleMenu and ChatBubbleMenuItem are client components (native popover)."
 }

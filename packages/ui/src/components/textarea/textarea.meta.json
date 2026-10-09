@@ -1,0 +1,31 @@
+{
+  "name": "Textarea",
+  "status": "beta",
+  "description": "Flowbite's textarea: a multi-line text field that can be resized vertically.",
+  "category": "forms",
+  "import": "import { Textarea } from \"@stefan-florescu/ui\";",
+  "ariaPattern": null,
+  "client": false,
+  "props": "generated",
+  "variants": {},
+  "tokens": [
+    "color.neutral-secondary-medium",
+    "color.input",
+    "color.heading",
+    "color.body",
+    "color.brand",
+    "color.fg-disabled",
+    "color.danger",
+    "color.danger-soft",
+    "color.fg-danger-strong",
+    "color.success",
+    "color.success-soft",
+    "color.fg-success-strong",
+    "radius.base",
+    "shadow.xs"
+  ],
+  "useWhen": ["Long free-text answers: messages, comments"],
+  "avoidWhen": [],
+  "related": ["Label", "HelperText"],
+  "docs": "apps/storybook/app/(docs)/forms/textarea/page.mdx"
+}

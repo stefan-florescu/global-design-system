@@ -1,0 +1,31 @@
+{
+  "name": "Timepicker",
+  "status": "beta",
+  "description": "Flowbite's timepicker: a native time field with a clock icon, min, max and step.",
+  "category": "forms",
+  "import": "import { Timepicker } from \"@stefan-florescu/ui\";",
+  "ariaPattern": null,
+  "client": false,
+  "props": "generated",
+  "variants": {},
+  "tokens": [
+    "color.neutral-secondary-medium",
+    "color.input",
+    "color.heading",
+    "color.body",
+    "color.brand",
+    "color.fg-disabled",
+    "color.danger",
+    "color.danger-soft",
+    "color.fg-danger-strong",
+    "color.success",
+    "color.success-soft",
+    "color.fg-success-strong",
+    "radius.base",
+    "shadow.xs"
+  ],
+  "useWhen": ["Choosing a time of day"],
+  "avoidWhen": [],
+  "related": ["Label", "HelperText", "Calendar", "Select"],
+  "docs": "apps/storybook/app/(docs)/forms/timepicker/page.mdx"
+}

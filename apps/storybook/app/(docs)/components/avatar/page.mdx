@@ -19,39 +19,39 @@ import { Avatar, AvatarGroup, AvatarGroupCounter } from "@stefan-florescu/ui";
 ```
 
 ```tsx
-<Avatar src="/team/ana.jpg" alt="Ana Popescu" />
+<Avatar src="/avatars/1.svg" alt="Jese Leos" />
 ```
 
 ## Examples
 
-### Default
+### Default avatar
 
-Avatars are circles by default. Set `shape="square"` for rounded squares.
+Avatars are 40px circles by default. Set `shape="square"` for Flowbite's rounded square.
 
 <ComponentPreview name="avatar-demo" />
 
 ### Bordered
 
-Add `bordered` for a ring around the avatar.
+Add `bordered` for a 2px `default` ring around the avatar, 4px from the image.
 
 <ComponentPreview name="avatar-bordered" />
 
 ### Placeholder icon
 
-Without `src` or `initials`, the avatar shows a person icon on the `muted` surface.
+Without `src` or `initials`, the avatar shows a person silhouette on `neutral-secondary-medium`.
 
 <ComponentPreview name="avatar-placeholder" />
 
 ### Placeholder initials
 
-Pass `initials` to show one or two letters instead of an image.
+Pass `initials` to show the person's initials on `neutral-tertiary` instead of an image.
 
 <ComponentPreview name="avatar-initials" />
 
 ### Dot indicator
 
 Set `status` to `online`, `away`, `busy` or `offline`, and `statusPosition` to `top-right` or
-`bottom-right`. Screen readers announce the status as text.
+`bottom-right`. On squares the dot sits on the corner. Screen readers announce the status as text.
 
 <ComponentPreview name="avatar-status" />
 
@@ -62,8 +62,8 @@ Set `status` to `online`, `away`, `busy` or `offline`, and `statusPosition` to `
 
 ### Stacked
 
-Wrap avatars in `AvatarGroup` and add `stacked` to each, so it is outlined against the next.
-End the group with `AvatarGroupCounter` to show how many more there are.
+Wrap avatars in `AvatarGroup` and add `stacked` to each, so a 2px `buffer` border separates it
+from the next. End the group with `AvatarGroupCounter` to show how many more there are.
 
 <ComponentPreview name="avatar-stacked" />
 
@@ -76,9 +76,23 @@ so it isn't read twice.
 
 ### Sizes
 
-Five sizes from `xs` (24px) to `xl` (144px). `md` (40px) is the default.
+Flowbite's sizes, from `2xs` (18px) to `2xl` (64px). `md` (40px), Flowbite's default avatar, is
+the default.
 
 <ComponentPreview name="avatar-sizes" />
+
+| Size  | Pixels | Square radius  |
+| ----- | ------ | -------------- |
+| `2xs` | 18px   | `rounded-sm`   |
+| `xs`  | 24px   | `rounded-sm`   |
+| `sm`  | 32px   | `rounded-base` |
+| `md`  | 40px   | `rounded-base` |
+| `lg`  | 44px   | `rounded-base` |
+| `xl`  | 56px   | `rounded-base` |
+| `2xl` | 64px   | `rounded-base` |
+
+Flowbite's "Avatar tooltip" and "User dropdown" examples are not shown: they need Tooltip and
+Dropdown components, which the system doesn't have yet.
 
 ## Accessibility
 
@@ -86,27 +100,30 @@ Five sizes from `xs` (24px) to `xl` (144px). `md` (40px) is the default.
   exposed as `role="img"` with the same name.
 - Leave `alt` out (or empty) when the person's name is already shown next to the avatar; the
   avatar is then decorative and hidden from assistive technology.
+- Initials (`body` on `neutral-tertiary`) and the placeholder silhouette (`body-subtle` on
+  `neutral-secondary-medium`) pass WCAG 2.2 AA in light and dark, as in Flowbite.
 - The status dot includes visually hidden text ("Online", "Busy"…), which you can change with
   `statusLabel`.
-- `AvatarGroupCounter` becomes a link when you pass `href`. Give it an `aria-label` such as
-  "99 more people".
+- `AvatarGroupCounter` becomes a link when you pass `href`, with a solid focus outline. Give it an
+  `aria-label` such as "99 more people". Its label uses `dark-foreground` instead of Flowbite's
+  white.
 
 ## API Reference
 
 ### Avatar
 
-| Prop             | Type                                        | Default          |
-| ---------------- | ------------------------------------------- | ---------------- |
-| `src`            | `string`                                    | —                |
-| `alt`            | `string`                                    | —                |
-| `initials`       | `string`                                    | —                |
-| `size`           | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`      | `"md"`           |
-| `shape`          | `"circle" \| "square"`                      | `"circle"`       |
-| `bordered`       | `boolean`                                   | `false`          |
-| `stacked`        | `boolean`                                   | `false`          |
-| `status`         | `"online" \| "away" \| "busy" \| "offline"` | —                |
-| `statusPosition` | `"top-right" \| "bottom-right"`             | `"bottom-right"` |
-| `statusLabel`    | `string`                                    | Status name      |
+| Prop             | Type                                                     | Default          |
+| ---------------- | -------------------------------------------------------- | ---------------- |
+| `src`            | `string`                                                 | —                |
+| `alt`            | `string`                                                 | —                |
+| `initials`       | `string`                                                 | —                |
+| `size`           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl"` | `"md"`           |
+| `shape`          | `"circle" \| "square"`                                   | `"circle"`       |
+| `bordered`       | `boolean`                                                | `false`          |
+| `stacked`        | `boolean`                                                | `false`          |
+| `status`         | `"online" \| "away" \| "busy" \| "offline"`              | —                |
+| `statusPosition` | `"top-right" \| "bottom-right"`                          | `"bottom-right"` |
+| `statusLabel`    | `string`                                                 | Status name      |
 
 ### AvatarGroup
 
@@ -114,8 +131,8 @@ Accepts all `<div>` attributes.
 
 ### AvatarGroupCounter
 
-| Prop   | Type     | Default |
-| ------ | -------- | ------- |
-| `href` | `string` | —       |
+| Prop   | Type                                 | Default |
+| ------ | ------------------------------------ | ------- |
+| `href` | `string`. Renders an `<a>` when set. | —       |
 
 All parts forward native attributes, including `ref` and `className`.

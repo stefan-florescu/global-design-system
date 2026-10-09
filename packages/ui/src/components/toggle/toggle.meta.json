@@ -1,0 +1,34 @@
+{
+  "name": "Toggle",
+  "status": "beta",
+  "description": "Flowbite's toggle: an on/off switch (a native checkbox with role=\"switch\"), plain or as a card.",
+  "category": "forms",
+  "import": "import { Toggle } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/switch/",
+  "client": false,
+  "props": "generated",
+  "variants": {
+    "size": ["md", "lg"],
+    "bordered": [true, false]
+  },
+  "tokens": [
+    "color.input",
+    "color.brand",
+    "color.brand-foreground",
+    "color.brand-soft",
+    "color.neutral-tertiary",
+    "color.neutral-primary-soft",
+    "color.default",
+    "color.heading",
+    "color.body",
+    "color.fg-disabled",
+    "color.ring",
+    "radius.full",
+    "radius.base",
+    "shadow.xs"
+  ],
+  "useWhen": ["Settings that take effect immediately"],
+  "avoidWhen": [],
+  "related": ["Label", "HelperText"],
+  "docs": "apps/storybook/app/(docs)/forms/toggle/page.mdx"
+}

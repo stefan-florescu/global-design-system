@@ -106,12 +106,12 @@ export function SearchCommand() {
         type="button"
         onClick={open}
         aria-keyshortcuts="Meta+K Control+K"
-        className="text-muted-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring/50 sm:bg-muted/50 sm:border-border inline-flex h-9 items-center gap-2 rounded-md text-sm transition-colors focus-visible:ring-[3px] focus-visible:outline-none max-sm:w-9 max-sm:justify-center sm:w-56 sm:border sm:px-3 lg:w-64"
+        className="text-body hover:bg-neutral-tertiary hover:text-heading focus-visible:ring-ring/50 sm:bg-neutral-secondary-medium/50 sm:border-default inline-flex h-9 items-center gap-2 rounded-md text-sm transition-colors focus-visible:ring-[3px] focus-visible:outline-none max-sm:w-9 max-sm:justify-center sm:w-56 sm:border sm:px-3 lg:w-64"
       >
         <Search aria-hidden className="size-4 shrink-0 sm:hidden" />
         <span className="hidden sm:inline">Search components…</span>
         <span className="sr-only sm:hidden">Search components</span>
-        <kbd className="bg-muted pointer-events-none ml-auto hidden h-5 items-center gap-0.5 rounded border px-1.5 font-mono text-[10px] font-medium select-none sm:inline-flex">
+        <kbd className="bg-neutral-secondary-medium pointer-events-none ml-auto hidden h-5 items-center gap-0.5 rounded border px-1.5 font-mono text-[10px] font-medium select-none sm:inline-flex">
           {isMac ? "⌘" : "Ctrl"} K
         </kbd>
       </button>
@@ -121,10 +121,10 @@ export function SearchCommand() {
         ref={dialogRef}
         aria-label="Search documentation"
         onClick={(event) => event.target === event.currentTarget && event.currentTarget.close()}
-        className="bg-popover text-popover-foreground fixed top-[12vh] mx-auto w-[calc(100%-2rem)] max-w-lg overflow-hidden rounded-xl border p-0 shadow-2xl"
+        className="bg-neutral-primary-medium text-heading fixed top-[12vh] mx-auto w-[calc(100%-2rem)] max-w-lg overflow-hidden rounded-xl border p-0 shadow-2xl"
       >
         <div className="flex items-center gap-2 border-b px-3">
-          <Search aria-hidden className="text-muted-foreground size-4 shrink-0" />
+          <Search aria-hidden className="text-body size-4 shrink-0" />
           <input
             ref={inputRef}
             type="text"
@@ -141,9 +141,9 @@ export function SearchCommand() {
               setActiveIndex(0);
             }}
             onKeyDown={onInputKeyDown}
-            className="placeholder:text-muted-foreground h-12 w-full bg-transparent text-sm outline-none"
+            className="placeholder:text-body h-12 w-full bg-transparent text-sm outline-none"
           />
-          <kbd className="bg-muted text-muted-foreground rounded border px-1.5 font-mono text-[10px]">
+          <kbd className="bg-neutral-secondary-medium text-body rounded border px-1.5 font-mono text-[10px]">
             Esc
           </kbd>
         </div>
@@ -155,16 +155,11 @@ export function SearchCommand() {
           className="max-h-80 overflow-y-auto p-2"
         >
           {results.length === 0 ? (
-            <p className="text-muted-foreground py-8 text-center text-sm">
-              No results for “{query}”.
-            </p>
+            <p className="text-body py-8 text-center text-sm">No results for “{query}”.</p>
           ) : (
             groups.map((group) => (
               <div key={group} role="group" aria-label={group}>
-                <div
-                  aria-hidden
-                  className="text-muted-foreground px-2 pt-2 pb-1 text-xs font-medium"
-                >
+                <div aria-hidden className="text-body px-2 pt-2 pb-1 text-xs font-medium">
                   {group}
                 </div>
                 {results.map((result, index) =>
@@ -180,16 +175,13 @@ export function SearchCommand() {
                       onClick={(event) => go(result, event.currentTarget)}
                       className={cn(
                         "flex cursor-pointer items-center gap-2 rounded-md px-2 py-2 text-sm",
-                        index === activeIndex && "bg-accent text-accent-foreground",
+                        index === activeIndex && "bg-neutral-tertiary text-heading",
                       )}
                     >
-                      <FileText aria-hidden className="text-muted-foreground size-4" />
+                      <FileText aria-hidden className="text-body size-4" />
                       {result.title}
                       {index === activeIndex ? (
-                        <CornerDownLeft
-                          aria-hidden
-                          className="text-muted-foreground ml-auto size-3.5"
-                        />
+                        <CornerDownLeft aria-hidden className="text-body ml-auto size-3.5" />
                       ) : null}
                     </div>
                   ),

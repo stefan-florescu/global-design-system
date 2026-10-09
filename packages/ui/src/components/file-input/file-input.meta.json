@@ -1,0 +1,36 @@
+{
+  "name": "FileInput",
+  "status": "beta",
+  "description": "Flowbite's file input: a native file field and a drag-and-drop dropzone.",
+  "category": "forms",
+  "import": "import { FileDropzone, FileInput } from \"@stefan-florescu/ui\";",
+  "ariaPattern": null,
+  "client": false,
+  "props": "generated",
+  "variants": {
+    "size": ["sm", "md", "lg"]
+  },
+  "tokens": [
+    "color.neutral-secondary-medium",
+    "color.input",
+    "color.heading",
+    "color.body",
+    "color.brand",
+    "color.fg-disabled",
+    "color.danger",
+    "color.danger-soft",
+    "color.fg-danger-strong",
+    "color.success",
+    "color.success-soft",
+    "color.fg-success-strong",
+    "radius.base",
+    "shadow.xs",
+    "color.neutral-quaternary",
+    "color.neutral-tertiary-medium",
+    "color.ring"
+  ],
+  "useWhen": ["Uploading files"],
+  "avoidWhen": [],
+  "related": ["Label", "HelperText"],
+  "docs": "apps/storybook/app/(docs)/forms/file-input/page.mdx"
+}

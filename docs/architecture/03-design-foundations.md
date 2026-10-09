@@ -10,18 +10,19 @@ point to validate in Figma before implementation.
 
 ## 3.1 Color system
 
-- **Primitives:** 8 scales from the Flowbite palette — `gray`, `red`, `yellow`, `green`, `blue`,
-  `indigo`, `purple`, `pink` — each `50`…`900` (80 hex values) plus `white` and `black`.
-  `--sds-color-{hue}-{step}`.
-- **Semantic tokens (48):** shadcn-style names grouped as Surfaces (`background`, `card`,
-  `popover`, `muted`, `accent`, `overlay`), Text (`foreground`, `*-foreground`), Borders & focus
-  (`border`, `input`, `ring`), Actions (`primary`, `secondary`, `brand`, `brand-subtle`), Status
-  (`success`, `warning`, `destructive`, `info` with `-foreground`, `-subtle`,
-  `-subtle-foreground`) and Code surface (`code-*`, `syntax-*`). `--sds-color-{name}`; Tailwind
-  `bg-{name}`, `text-{name}`, `border-{name}`, `ring-{name}`.
-- **Themes:** light = semantic defaults; dark re-points 29 colour tokens and `shadow-lg`.
-- **Accessibility:** 34 pairings (text ≥ 4.5:1, `input`, `ring`, `brand` fill ≥ 3:1) are checked in
-  both themes on every themes build; the build fails on a regression.
+- **Primitives:** Tailwind v4's palette in oklch, as used by Flowbite v4: 16 hues (`gray`, `blue`,
+  `emerald`, `rose`, `orange`, `yellow` and decorative hues), each `50`…`950`, plus `white`, `black` and
+  an accessibility step `gray.450`. `--sds-color-{hue}-{step}`.
+- **Semantic tokens (90):** Flowbite v4's role names (ADR 0009), grouped as Text (`heading`, `body`,
+  `body-subtle`, `fg-*`), Surfaces (`neutral-primary*`, `neutral-secondary*`, `neutral-tertiary*`,
+  `neutral-quaternary*`, `disabled`, `dark*`, `overlay`), Brand & status (`brand`, `success`, `danger`,
+  `warning`, each with `-softer`/`-soft`/`-medium`/`-strong` and `-foreground`), Borders & focus (`default*`,
+  `light*`, `muted`, `buffer*`, `*-subtle`, `input`, `ring`) and Code surface (`code-*`, `syntax-*`).
+  `--sds-color-{name}`; Tailwind `bg-{name}`, `text-{name}`, `border-{name}`, `ring-{name}`.
+- **Themes:** light = semantic defaults; dark re-points the colour roles, following Flowbite's dark theme.
+- **Accessibility:** 46 pairings (text ≥ 4.5:1; `input`, `ring` and `brand` ≥ 3:1) are checked in both
+  themes on every themes build; the build fails on a regression. Where Flowbite's values fail, the
+  nearest passing value is used (`input`, `ring`, `warning-foreground`, dark `success`).
 
 ## 3.2 Typography system
 

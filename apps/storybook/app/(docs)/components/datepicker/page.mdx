@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Datepicker",
   description:
-    "Pick a day from a calendar, inline or in a popover opened from a button. The calendar also supports date ranges.",
+    "Select a date, or a range of dates, from a calendar or by typing it into a field, with options for format, limits, buttons, orientation and title.",
 };
 
 <PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
@@ -15,58 +15,82 @@ export const metadata = {
 ## Usage
 
 ```tsx
-import { Calendar, Datepicker } from "@stefan-florescu/ui";
+import { Calendar, DateRangePicker, Datepicker } from "@stefan-florescu/ui";
 ```
 
 ```tsx
 <Datepicker label="Departure" name="departure" onChange={(date) => console.log(date)} />
 ```
 
-`Datepicker` and `Calendar` are client components. `Datepicker` is a button that opens a
-`Calendar` in a popover; use `Calendar` directly to show it inline.
+`Datepicker`, `DateRangePicker` and `Calendar` are client components. `Datepicker` is a text
+field with a calendar icon: type a date, or press the field to pick one from a `Calendar` in a
+popover. Use `Calendar` on its own to show the calendar inline. No plugin or extra script is
+needed.
 
 ## Examples
 
-### Datepicker
+### Datepicker example
 
-Press the button to open the calendar. Picking a day closes it (`autoHide`) and returns focus to
-the button. Escape or a click outside closes it too. Pass `name` to submit the day with a form as
-`yyyy-mm-dd`.
+Press the field to open the calendar, or type a date as `mm/dd/yyyy`. Escape or a click outside
+closes the calendar. Pass `name` to submit the day with a form as `yyyy-mm-dd`.
 
 <ComponentPreview name="datepicker-demo" />
 
 ### Inline datepicker
 
-Render `Calendar` to keep the calendar on the page.
+Render `Calendar` to keep the calendar on the page, and `defaultValue` to select a day.
 
 <ComponentPreview name="datepicker-inline" />
 
 ### Date range picker
 
-Set `mode="range"`. The first click sets the start, the second the end; the days between use the
-`brand-subtle` surface.
+Use `DateRangePicker` for a start and an end field joined by "to". Each field opens the calendar
+and sets its end of the range; the days between are highlighted.
 
 <ComponentPreview name="datepicker-range" />
 
+## Options
+
+### Autohide
+
+Set `autoHide` to close the calendar right after selecting a date.
+
+<ComponentPreview name="datepicker-autohide" />
+
 ### Action buttons
 
-Add `showTodayButton` and `showClearButton` for shortcuts under the calendar.
+Set `showButtons` to add the "Today" and "Clear" buttons under the calendar: "Today" selects the
+current day and "Clear" resets the selection.
 
 <ComponentPreview name="datepicker-buttons" />
 
-### Title
+### Date format
 
-Pass `title` to show a heading above the calendar, and `label` to say what the date is for. The
-label also names the button and the dialog.
+Pass a `format` such as `mm-dd-yyyy` to change how the date is shown and typed. It uses
+Flowbite's tokens: `d`/`dd` day, `m`/`mm` month, `M`/`MM` month name, `D`/`DD` weekday name and
+`yy`/`yyyy` year.
 
-<ComponentPreview name="datepicker-title" />
+<ComponentPreview name="datepicker-format" />
 
-### Min and max
+### Max and min dates
 
-Pass `min` and `max` to limit the selectable days. Days outside the range are disabled and the
-month buttons stop at the limits.
+Use `min` and `max` to set the earliest and latest dates that can be selected. Days outside them
+are disabled, and the month buttons stop at the limits.
 
 <ComponentPreview name="datepicker-min-max" />
+
+### Orientation
+
+Set `orientation` to `"bottom left"` (the default), `"bottom right"`, `"top left"` or
+`"top right"` to choose where the calendar opens.
+
+<ComponentPreview name="datepicker-orientation" />
+
+### Title
+
+Pass `title` to show a title above the calendar.
+
+<ComponentPreview name="datepicker-title" />
 
 ### Week start
 
@@ -80,26 +104,38 @@ Pass `isDateDisabled` to disable any day, for example weekends.
 
 <ComponentPreview name="datepicker-disabled-days" />
 
+## Timepicker
+
+Use the [Timepicker](/forms/timepicker) to select a time alongside the datepicker.
+
+<ComponentPreview name="datepicker-timepicker" />
+
 ## Accessibility
 
-- Follows the WAI-ARIA [date picker dialog](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/datepicker-dialog/)
-  example. The button has `aria-haspopup="dialog"` and `aria-expanded`; its name includes the
-  `label` and the selected day ("Departure, Oct 8, 2026").
+- Follows the WAI-ARIA [date picker combobox](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-datepicker/)
+  example. The field is a `combobox` with `aria-haspopup="dialog"` and `aria-expanded`, named by
+  `label` ("Date" by default). The calendar is a non-modal `dialog` named "Choose date".
 - The calendar is a `grid` named by the month ("October 2026"), which is announced when it
   changes. Each day is a button named with the full date, today has `aria-current="date"`, and
   selected days have `aria-selected`.
-- Only one day is in the tab order. Keyboard:
+- Only one day is in the tab order, and it shows a solid `ring` outline when focused (Flowbite's
+  calendar has no visible focus). Keyboard:
 
-| Key                                       | Action                                              |
-| ----------------------------------------- | --------------------------------------------------- |
-| <kbd>←</kbd> / <kbd>→</kbd>               | Previous / next day                                 |
-| <kbd>↑</kbd> / <kbd>↓</kbd>               | Same day previous / next week                       |
-| <kbd>Home</kbd> / <kbd>End</kbd>          | First / last day of the week                        |
-| <kbd>Page Up</kbd> / <kbd>Page Down</kbd> | Previous / next month (with <kbd>Shift</kbd>: year) |
-| <kbd>Enter</kbd> / <kbd>Space</kbd>       | Select the focused day                              |
-| <kbd>Esc</kbd>                            | Close the popover and return to the button          |
+| Key                                       | Action                                                 |
+| ----------------------------------------- | ------------------------------------------------------ |
+| <kbd>↓</kbd> in the field                 | Opens the calendar and moves focus to the selected day |
+| <kbd>Enter</kbd> in the field             | Reads the typed date                                   |
+| <kbd>←</kbd> / <kbd>→</kbd>               | Previous / next day                                    |
+| <kbd>↑</kbd> / <kbd>↓</kbd>               | Same day previous / next week                          |
+| <kbd>Home</kbd> / <kbd>End</kbd>          | First / last day of the week                           |
+| <kbd>Page Up</kbd> / <kbd>Page Down</kbd> | Previous / next month (with <kbd>Shift</kbd>: year)    |
+| <kbd>Enter</kbd> / <kbd>Space</kbd>       | Selects the focused day                                |
+| <kbd>Esc</kbd>                            | Closes the calendar and returns focus to the field     |
 
+- Days of the previous and next month use `body-subtle` instead of Flowbite's `fg-disabled`,
+  which is under 4.5:1 while those days can still be picked. Disabled days keep `fg-disabled`.
 - Disabled days stay focusable so keyboard users can move past them, but they can't be selected.
+- The field's border is the `input` token (3:1 against the page), like every form control.
 - For dates far in the past, such as a birth date, separate day, month and year fields are faster
   and easier than a calendar.
 
@@ -107,33 +143,61 @@ Pass `isDateDisabled` to disable any day, for example weekends.
 
 ### Datepicker
 
-| Prop              | Type                           | Default         |
-| ----------------- | ------------------------------ | --------------- |
-| `value`           | `Date \| null`                 | —               |
-| `defaultValue`    | `Date \| null`                 | `null`          |
-| `onChange`        | `(date: Date \| null) => void` | —               |
-| `label`           | `string`                       | `"Date"`        |
-| `placeholder`     | `string`                       | `"Select date"` |
-| `name`            | `string`                       | —               |
-| `autoHide`        | `boolean`                      | `true`          |
-| `showTodayButton` | `boolean`                      | `false`         |
-| `showClearButton` | `boolean`                      | `false`         |
-| `disabled`        | `boolean`                      | `false`         |
+| Prop           | Type                                                           | Default         |
+| -------------- | -------------------------------------------------------------- | --------------- |
+| `value`        | `Date \| null`                                                 | —               |
+| `defaultValue` | `Date \| null`                                                 | `null`          |
+| `onChange`     | `(date: Date \| null) => void`                                 | —               |
+| `label`        | `string`. Names the field and the calendar.                    | `"Date"`        |
+| `placeholder`  | `string`                                                       | `"Select date"` |
+| `name`         | `string`                                                       | —               |
+| `id`           | `string`. The field's id, for a `<Label htmlFor>`.             | —               |
+| `format`       | `string`                                                       | `"mm/dd/yyyy"`  |
+| `autoHide`     | `boolean`                                                      | `false`         |
+| `showButtons`  | `boolean`                                                      | `false`         |
+| `todayLabel`   | `string`                                                       | `"Today"`       |
+| `clearLabel`   | `string`                                                       | `"Clear"`       |
+| `orientation`  | `"bottom left" \| "bottom right" \| "top left" \| "top right"` | `"bottom left"` |
+| `disabled`     | `boolean`                                                      | `false`         |
+| `className`    | `string`. Classes for the field's wrapper, such as a width.    | —               |
 
 Also accepts the `Calendar` options `min`, `max`, `isDateDisabled`, `weekStartsOn`, `locale` and
 `title`.
 
+### DateRangePicker
+
+Accepts the same options as `Datepicker`, with a range instead of a day:
+
+| Prop                                  | Type                                       | Default                                     |
+| ------------------------------------- | ------------------------------------------ | ------------------------------------------- |
+| `value` / `defaultValue`              | `{ from: Date \| null; to: Date \| null }` | —                                           |
+| `onChange`                            | `(range) => void`                          | —                                           |
+| `startLabel` / `endLabel`             | `string`                                   | `"Start date"` / `"End date"`               |
+| `startPlaceholder` / `endPlaceholder` | `string`                                   | `"Select date start"` / `"Select date end"` |
+| `startName` / `endName`               | `string`                                   | —                                           |
+| `separator`                           | `string`                                   | `"to"`                                      |
+
 ### Calendar
 
-| Prop             | Type                                        | Default        |
-| ---------------- | ------------------------------------------- | -------------- |
-| `mode`           | `"single" \| "range"`                       | `"single"`     |
-| `value`          | `Date \| null` or `{ from, to }` for ranges | —              |
-| `defaultValue`   | Same as `value`                             | —              |
-| `onChange`       | `(date: Date) => void` or `(range) => void` | —              |
-| `min` / `max`    | `Date`                                      | —              |
-| `isDateDisabled` | `(date: Date) => boolean`                   | —              |
-| `weekStartsOn`   | `0 \| 1 \| 2 \| 3 \| 4 \| 5 \| 6`           | `0`            |
-| `locale`         | `string`                                    | Browser locale |
-| `defaultMonth`   | `Date`                                      | Today          |
-| `title`          | `ReactNode`                                 | —              |
+| Prop             | Type                                              | Default        |
+| ---------------- | ------------------------------------------------- | -------------- |
+| `mode`           | `"single" \| "range"`                             | `"single"`     |
+| `value`          | `Date \| null` or `{ from, to }` for ranges       | —              |
+| `defaultValue`   | Same as `value`                                   | —              |
+| `onChange`       | `(date: Date) => void` or `(range) => void`       | —              |
+| `rangeEdge`      | `"from" \| "to"`. Ranges: which end a click sets. | Alternates     |
+| `min` / `max`    | `Date`                                            | —              |
+| `isDateDisabled` | `(date: Date) => boolean`                         | —              |
+| `weekStartsOn`   | `0 \| 1 \| 2 \| 3 \| 4 \| 5 \| 6`                 | `0`            |
+| `locale`         | `string`                                          | Browser locale |
+| `defaultMonth`   | `Date`                                            | Today          |
+| `title`          | `ReactNode`                                       | —              |
+
+### formatDate and parseDate
+
+```tsx
+formatDate(date: Date, format = "mm/dd/yyyy", locale?: string): string
+parseDate(text: string, format = "mm/dd/yyyy", locale?: string): Date | null
+```
+
+The helpers the field uses to show and read dates, for your own date text.

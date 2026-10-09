@@ -18,8 +18,8 @@ export function MainNav({ className }: { className?: string }) {
           href={item.href}
           aria-current={active === item.href ? "page" : undefined}
           className={cn(
-            "hover:text-foreground focus-visible:ring-ring/50 rounded-md px-2.5 py-1.5 text-sm font-medium transition-colors focus-visible:ring-[3px] focus-visible:outline-none",
-            active === item.href ? "text-foreground" : "text-muted-foreground",
+            "hover:text-heading focus-visible:ring-ring/50 rounded-md px-2.5 py-1.5 text-sm font-medium transition-colors focus-visible:ring-[3px] focus-visible:outline-none",
+            active === item.href ? "text-heading" : "text-body",
           )}
         >
           {item.title}

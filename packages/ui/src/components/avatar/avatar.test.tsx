@@ -35,11 +35,31 @@ describe("Avatar", () => {
     expect(screen.getByText("In a meeting")).toBeInTheDocument();
   });
 
-  it("applies size and shape", () => {
-    render(<Avatar alt="Jese Leos" initials="JL" size="xl" shape="square" />);
+  it("is Flowbite's 40px circle by default, with initials on neutral-tertiary", () => {
+    render(<Avatar alt="Jese Leos" initials="JL" />);
     const frame = screen.getByRole("img", { name: "Jese Leos" }).parentElement;
-    expect(frame).toHaveClass("rounded-md", "text-5xl");
-    expect(frame?.parentElement).toHaveClass("size-36");
+    expect(frame).toHaveClass("rounded-full", "bg-neutral-tertiary", "text-body", "font-medium");
+    expect(frame?.parentElement).toHaveClass("size-10");
+  });
+
+  it("applies size and shape", () => {
+    const { rerender } = render(<Avatar alt="Jese Leos" initials="JL" size="2xl" shape="square" />);
+    let frame = screen.getByRole("img", { name: "Jese Leos" }).parentElement;
+    expect(frame).toHaveClass("rounded-base");
+    expect(frame?.parentElement).toHaveClass("size-16");
+    rerender(<Avatar alt="Jese Leos" initials="JL" size="xs" shape="square" />);
+    frame = screen.getByRole("img", { name: "Jese Leos" }).parentElement;
+    expect(frame).toHaveClass("rounded-sm");
+    expect(frame?.parentElement).toHaveClass("size-6");
+  });
+
+  it("draws Flowbite's bordered ring", () => {
+    render(<Avatar alt="Jese Leos" initials="JL" bordered />);
+    expect(screen.getByRole("img", { name: "Jese Leos" }).parentElement).toHaveClass(
+      "p-1",
+      "ring-2",
+      "ring-default",
+    );
   });
 
   it("renders a group with a counter link", () => {
@@ -52,6 +72,9 @@ describe("Avatar", () => {
       </AvatarGroup>,
     );
     expect(screen.getByRole("link", { name: "99 more people" })).toHaveAttribute("href", "/team");
-    expect(screen.getByRole("img", { name: "A" }).parentElement).toHaveClass("ring-background");
+    expect(screen.getByRole("img", { name: "A" }).parentElement).toHaveClass(
+      "border-2",
+      "border-buffer",
+    );
   });
 });

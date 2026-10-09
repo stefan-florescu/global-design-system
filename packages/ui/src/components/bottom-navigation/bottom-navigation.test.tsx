@@ -69,7 +69,45 @@ describe("BottomNavigation", () => {
         <BottomNavigationItem href="/">Home</BottomNavigationItem>
       </BottomNavigation>,
     );
-    expect(screen.getByRole("navigation")).toHaveClass("rounded-full", "inset-x-4");
+    expect(screen.getByRole("navigation")).toHaveClass("rounded-full", "bottom-4", "max-w-lg");
     expect(screen.getByRole("list")).toHaveClass("divide-x");
+  });
+
+  it("uses Flowbite's bar and item styles", () => {
+    render(
+      <BottomNavigation>
+        <BottomNavigationItem href="/">Home</BottomNavigationItem>
+      </BottomNavigation>,
+    );
+    expect(screen.getByRole("navigation")).toHaveClass(
+      "bg-neutral-primary-soft",
+      "border-t",
+      "border-default",
+    );
+    expect(screen.getByRole("list")).toHaveClass("h-16", "max-w-lg", "auto-cols-fr");
+    expect(screen.getByRole("link", { name: "Home" })).toHaveClass(
+      "text-body",
+      "hover:bg-neutral-secondary-medium",
+      "hover:text-fg-brand",
+    );
+  });
+
+  it("can stick to the bottom of a scrolling container", () => {
+    render(
+      <BottomNavigation position="sticky">
+        <BottomNavigationItem href="/">Home</BottomNavigationItem>
+      </BottomNavigation>,
+    );
+    expect(screen.getByRole("navigation")).toHaveClass("sticky", "bottom-0");
+  });
+
+  it("renders a header above the items", () => {
+    render(
+      <BottomNavigation header={<p>Filters</p>}>
+        <BottomNavigationItem href="/">Home</BottomNavigationItem>
+      </BottomNavigation>,
+    );
+    const nav = screen.getByRole("navigation");
+    expect(nav.firstElementChild).toHaveTextContent("Filters");
   });
 });

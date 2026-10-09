@@ -1,0 +1,138 @@
+export const metadata = {
+  title: "Checkbox",
+  description:
+    "Let users pick one or more options with a square box: plain, with helper text, bordered, in a list group or as a selectable card.",
+};
+
+<PageHeader {...metadata} section="Forms" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="checkbox-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Checkbox } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Checkbox name="terms" label="I agree with the terms and conditions" required />
+```
+
+## Examples
+
+### Checkbox example
+
+A checkbox in its unchecked and checked state.
+
+<ComponentPreview name="checkbox-demo" />
+
+### Disabled state
+
+Add `disabled` to stop the user from changing the checkbox. Its label turns `fg-disabled`.
+
+<ComponentPreview name="checkbox-disabled" />
+
+### Checkbox link
+
+The label can contain a link.
+
+<ComponentPreview name="checkbox-link" />
+
+### Helper text
+
+`description` adds secondary text under the label, read as the checkbox's description.
+
+<ComponentPreview name="checkbox-helper" />
+
+### Bordered
+
+`variant="bordered"` puts the checkbox in a card. The label fills the card, so the whole card is
+clickable.
+
+<ComponentPreview name="checkbox-bordered" />
+
+### Bordered with description
+
+With a `description`, the whole bordered card becomes the label.
+
+<ComponentPreview name="checkbox-bordered-description" />
+
+### Bordered with icon
+
+Add an `icon` to show it above the label; the checkbox moves to the top-end corner.
+
+<ComponentPreview name="checkbox-bordered-icon" />
+
+### Checkbox list group
+
+`variant="list"` makes the label fill a row of a list group. Name the group with a heading and
+`role="group"`.
+
+<ComponentPreview name="checkbox-list" />
+
+### Horizontal list group
+
+The same list group laid out in a row from the `sm` breakpoint.
+
+<ComponentPreview name="checkbox-list-horizontal" />
+
+### Inline layout
+
+Put checkboxes in a `flex` row to align them horizontally.
+
+<ComponentPreview name="checkbox-inline" />
+
+### Advanced layout
+
+`variant="card"` hides the box and styles the whole card instead: it turns `brand-softer` with a
+`brand` border when checked. Add an `icon` above the title.
+
+<ComponentPreview name="checkbox-advanced" />
+
+| Variant    | Look                                                                       | Use it for                                   |
+| ---------- | -------------------------------------------------------------------------- | -------------------------------------------- |
+| `default`  | Box and label                                                              | Most forms.                                  |
+| `bordered` | `neutral-primary-soft` card with a `default` border, `rounded-base`        | Options that need a larger click target.     |
+| `list`     | Row of a list group; the label fills the row                               | Several options inside one bordered list.    |
+| `card`     | Selectable card; `brand-softer` fill, `brand` border and `fg-brand-strong` | Rich options with an icon and a description. |
+
+## Accessibility
+
+- A native `<input type="checkbox">`, so <kbd>Space</kbd> toggles it, forms submit it and assistive
+  technology announces it as a checkbox. The label is linked to it, so clicking the label toggles it.
+- The box is drawn with Flowbite's styles, with one change: its border is the `input` colour
+  instead of Flowbite's `default-medium`, so the unchecked box reaches 3:1 against the page
+  (WCAG 1.4.11). Checked, it is `brand` with a `brand-foreground` check mark.
+- Focus shows Flowbite's soft `brand-soft` halo; keyboard focus also draws a solid 2px `ring`
+  outline, because the halo alone is under 3:1.
+- In forced-colors (high contrast) mode the browser draws the checkbox itself, so it stays visible.
+- In bordered cards with a description, and in `card`, the title names the checkbox and the
+  description is read as its description.
+- `card` keeps the checkbox focusable (Flowbite hides it with `display: none`, which removes it from
+  the keyboard order), and the selected card gets a `brand` border instead of Flowbite's
+  `brand-subtle`, so the checked state reaches 3:1.
+- The link in a label is underlined, not only coloured, so it does not rely on colour alone
+  (WCAG 1.4.1).
+- `invalid` sets `aria-invalid` and a `danger` border; explain the problem in text as well.
+- Not ported: Flowbite's _Checkbox dropdown_ (needs a dropdown component) and _Colors_ (uses palette
+  colours we have no tokens for; a red or green checkbox would also read as an error or success).
+
+## API Reference
+
+### Checkbox
+
+| Prop          | Type                                          | Default     |
+| ------------- | --------------------------------------------- | ----------- |
+| `label`       | `ReactNode`                                   | —           |
+| `description` | `ReactNode`                                   | —           |
+| `variant`     | `"default" \| "bordered" \| "list" \| "card"` | `"default"` |
+| `icon`        | `ReactNode` (for `bordered` and `card`)       | —           |
+| `endIcon`     | `ReactNode` (end of a `card`)                 | —           |
+| `invalid`     | `boolean`                                     | `false`     |
+
+All other `<input>` attributes are forwarded, such as `name`, `value`, `checked`, `defaultChecked`
+and `disabled`. `className` styles the outer element.

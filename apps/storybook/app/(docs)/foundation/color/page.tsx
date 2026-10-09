@@ -51,10 +51,10 @@ export default function ColorPage() {
 
       <H2 id="color-scales">Color scales</H2>
       <p>
-        Every hue runs from <strong>50</strong> (lightest) to <strong>900</strong> (darkest) in ten
-        steps. The steps are perceptually spaced so the same number means the same weight across
-        hues: <code>600</code> is always a solid fill that carries white text, <code>50</code> is
-        always a tint. Click any swatch to copy its hex.
+        Tailwind CSS v4&apos;s palette, the one Flowbite v4 is built on. Every hue runs from{" "}
+        <strong>50</strong> (lightest) to <strong>950</strong> (darkest) in eleven steps, written in
+        OKLCH so wide-gamut screens show the same colours as flowbite.com. Gray adds one step,{" "}
+        <code>450</code>, for field borders that must reach 3:1. Click any swatch to copy its value.
       </p>
       <ColorScales />
 
@@ -68,11 +68,11 @@ export default function ColorPage() {
         <div
           className="token-demo__item"
           style={{
-            background: "var(--sds-color-muted)",
-            color: "var(--sds-color-muted-foreground)",
+            background: "var(--sds-color-neutral-secondary-medium)",
+            color: "var(--sds-color-body)",
           }}
         >
-          Recessed surface<code>muted</code>
+          Field surface<code>neutral-secondary-medium</code>
         </div>
         <div
           className="token-demo__item"
@@ -86,20 +86,20 @@ export default function ColorPage() {
         <div
           className="token-demo__item"
           style={{
-            background: "var(--sds-color-success-subtle)",
-            color: "var(--sds-color-success-subtle-foreground)",
+            background: "var(--sds-color-success-soft)",
+            color: "var(--sds-color-fg-success-strong)",
           }}
         >
-          Success banner<code>success-subtle</code>
+          Success alert<code>success-soft</code>
         </div>
         <div
           className="token-demo__item"
           style={{
-            background: "var(--sds-color-destructive)",
-            color: "var(--sds-color-destructive-foreground)",
+            background: "var(--sds-color-danger)",
+            color: "var(--sds-color-danger-foreground)",
           }}
         >
-          Destructive<code>destructive</code>
+          Danger fill<code>danger</code>
         </div>
       </div>
       <p>
@@ -116,13 +116,13 @@ export default function ColorPage() {
           <TriangleAlert aria-hidden size={18} />
         </span>
         <div className="callout__body">
-          <p className="callout__title">Status fills keep their step in both themes</p>
+          <p className="callout__title">Where we differ from Flowbite</p>
           <p>
-            <code>--sds-color-success</code>, <code>--sds-color-destructive</code> and{" "}
-            <code>--sds-color-info</code> stay on <code>600</code> in dark mode rather than
-            lightening. A lighter fill would drop white text below 4.5:1 — and flipping to dark text
-            on a red button reads as disabled. Only surfaces, text and the <code>-subtle</code>{" "}
-            pairs change between themes.
+            The roles and values are Flowbite v4&apos;s, except where they miss WCAG 2.2 AA:{" "}
+            <code>input</code> (field borders, gray-450 instead of gray-200), <code>ring</code> (a
+            solid keyboard-focus outline around Flowbite&apos;s soft halo),{" "}
+            <code>warning-foreground</code> (dark text on orange instead of white) and{" "}
+            <code>success</code>, which stays on emerald-700 in dark mode so white text keeps 4.5:1.
           </p>
         </div>
       </div>
@@ -151,34 +151,34 @@ export default function ColorPage() {
         lang="css"
         code={`/* 1. Primitives — fixed, meaningless on their own */
 :root {
-  --sds-color-gray-50: #f9fafb;
-  --sds-color-gray-900: #111827;
-  --sds-color-blue-600: #1c64f2;
-  --sds-color-blue-700: #1a56db;
+  --sds-color-gray-50: oklch(98.5% 0.002 247.839);
+  --sds-color-gray-900: oklch(21% 0.034 264.665);
+  --sds-color-blue-600: oklch(54.6% 0.245 262.881);
+  --sds-color-blue-700: oklch(48.8% 0.243 264.376);
   /* …${PRIMITIVE_COUNT} primitives in total */
 }
 
 /* 2. Semantic layer — light theme is the default */
 :root,
 [data-theme="light"] {
-  --sds-color-background: var(--sds-color-white);
-  --sds-color-foreground: var(--sds-color-gray-900);
-  --sds-color-muted: var(--sds-color-gray-100);
-  --sds-color-muted-foreground: var(--sds-color-gray-600);
-  --sds-color-border: var(--sds-color-gray-200);
+  --sds-color-neutral-primary: var(--sds-color-white);
+  --sds-color-heading: var(--sds-color-gray-900);
+  --sds-color-neutral-secondary-medium: var(--sds-color-gray-50);
+  --sds-color-body: var(--sds-color-gray-600);
+  --sds-color-default: var(--sds-color-gray-200);
   --sds-color-brand: var(--sds-color-blue-700);
-  --sds-color-ring: var(--sds-color-blue-600);
+  --sds-color-brand-strong: var(--sds-color-blue-800);
 }
 
 /* 3. Theme override — same names, different primitives */
 [data-theme="dark"] {
-  --sds-color-background: var(--sds-color-gray-900);
-  --sds-color-foreground: var(--sds-color-gray-50);
-  --sds-color-muted: var(--sds-color-gray-800);
-  --sds-color-muted-foreground: var(--sds-color-gray-400);
-  --sds-color-border: var(--sds-color-gray-700);
+  --sds-color-neutral-primary: var(--sds-color-gray-950);
+  --sds-color-heading: var(--sds-color-white);
+  --sds-color-neutral-secondary-medium: var(--sds-color-gray-800);
+  --sds-color-body: var(--sds-color-gray-400);
+  --sds-color-default: var(--sds-color-gray-800);
   --sds-color-brand: var(--sds-color-blue-600);
-  --sds-color-ring: var(--sds-color-blue-500);
+  --sds-color-brand-strong: var(--sds-color-blue-700);
 }`}
       />
 
@@ -186,21 +186,21 @@ export default function ColorPage() {
       <p>
         Use <code>color-mix()</code> when you need a translucent version of a token — it keeps the
         theme switch working, which a hardcoded <code>rgba()</code> would not. With Tailwind, the
-        same tokens are utilities: <code>bg-card</code>, <code>text-card-foreground</code>,{" "}
-        <code>border-border</code>, <code>ring-ring</code>.
+        same tokens are utilities: <code>bg-neutral-primary-soft</code>, <code>text-heading</code>,{" "}
+        <code>border-default</code>, <code>ring-ring</code>.
       </p>
       <CodeBlock
         filename="card.css"
         lang="css"
         code={`.card {
-  background: var(--sds-color-card);
-  color: var(--sds-color-card-foreground);
-  border: 1px solid var(--sds-color-border);
+  background: var(--sds-color-neutral-primary-soft);
+  color: var(--sds-color-heading);
+  border: 1px solid var(--sds-color-default);
 }
 
 .card:hover {
   /* a token at 50% — still theme-aware */
-  background: color-mix(in srgb, var(--sds-color-accent) 50%, transparent);
+  background: color-mix(in srgb, var(--sds-color-neutral-tertiary) 50%, transparent);
 }
 
 .card:focus-visible {
@@ -244,19 +244,21 @@ export function Providers({ children }: { children: React.ReactNode }) {
         code={`/* brand.css — loaded after @stefan-florescu/ui/styles.css */
 :root {
   --sds-color-brand: var(--sds-color-purple-700);
-  --sds-color-brand-subtle: var(--sds-color-purple-50);
-  --sds-color-brand-subtle-foreground: var(--sds-color-purple-700);
-  --sds-color-ring: var(--sds-color-purple-600);
-
-  /* make primary carry the brand instead of neutral */
-  --sds-color-primary: var(--sds-color-brand);
-  --sds-color-primary-foreground: var(--sds-color-brand-foreground);
+  --sds-color-brand-strong: var(--sds-color-purple-800);
+  --sds-color-brand-medium: var(--sds-color-purple-200);
+  --sds-color-brand-softer: var(--sds-color-purple-50);
+  --sds-color-fg-brand: var(--sds-color-purple-700);
+  --sds-color-fg-brand-strong: var(--sds-color-purple-900);
+  --sds-color-ring: var(--sds-color-purple-700);
 }
 
 [data-theme="dark"] {
   --sds-color-brand: var(--sds-color-purple-600);
-  --sds-color-brand-subtle: var(--sds-color-purple-900);
-  --sds-color-brand-subtle-foreground: var(--sds-color-purple-300);
+  --sds-color-brand-strong: var(--sds-color-purple-700);
+  --sds-color-brand-medium: var(--sds-color-purple-900);
+  --sds-color-brand-softer: var(--sds-color-purple-950);
+  --sds-color-fg-brand: var(--sds-color-purple-400);
+  --sds-color-ring: var(--sds-color-purple-500);
 }`}
       />
 
@@ -265,38 +267,25 @@ export function Providers({ children }: { children: React.ReactNode }) {
         Every text token in the table above clears <strong>4.5:1</strong> against its own surface in
         both themes. <code>--sds-color-input</code> and <code>--sds-color-ring</code> clear{" "}
         <strong>3:1</strong>, which WCAG 2.2 requires of control boundaries and focus indicators.{" "}
-        <code>--sds-color-border</code> sits below that deliberately — it draws decorative hairlines
-        and is never the only cue for a control. These pairings are checked on every build of the
-        themes; a token change that breaks one fails the build.
+        <code>--sds-color-default</code> sits below that deliberately — it draws decorative
+        hairlines and is never the only cue for a control. These pairings are checked on every build
+        of the themes; a token change that breaks one fails the build.
       </p>
-      <p>Three rules hold across all eight scales:</p>
-      <ul>
-        <li>
-          Steps <strong>50</strong> and <strong>100</strong> take <code>&#123;hue&#125;-700</code>{" "}
-          or darker as text.
-        </li>
-        <li>
-          Steps <strong>200</strong> and <strong>300</strong> need <code>&#123;hue&#125;-800</code>{" "}
-          or darker — <code>700</code> is not enough on red, blue or pink.
-        </li>
-        <li>
-          Steps <strong>600</strong> to <strong>900</strong> take white text, in every hue.
-        </li>
-      </ul>
       <p>
-        Steps <strong>400</strong> and <strong>500</strong> are the awkward middle: neither white
-        nor dark text is reliably legible on them. Use them for fills, icons, borders and chart
-        series — not as a background for body copy. That is also why{" "}
-        <code>--sds-color-warning</code> stops at <code>yellow-400</code> and carries{" "}
-        <code>gray-900</code>.
+        Pair a tinted surface with its matching text role, never with a primitive picked by eye:{" "}
+        <code>brand-softer</code> with <code>fg-brand-strong</code>, <code>success-soft</code> with{" "}
+        <code>fg-success-strong</code>, <code>danger-soft</code> with <code>fg-danger-strong</code>{" "}
+        and <code>warning-soft</code> with <code>fg-warning</code>. Filled roles carry their{" "}
+        <code>-foreground</code> token: white on <code>brand</code>, <code>success</code>,{" "}
+        <code>danger</code> and <code>dark</code>, and dark text on <code>warning</code>.
       </p>
       <div className="guideline-grid">
         <div className="guideline guideline--do">
           <div
             className="guideline__figure"
             style={{
-              background: "var(--sds-color-destructive-subtle)",
-              color: "var(--sds-color-destructive-subtle-foreground)",
+              background: "var(--sds-color-danger-soft)",
+              color: "var(--sds-color-fg-danger-strong)",
             }}
           >
             <strong>Payment failed</strong>
@@ -304,8 +293,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
           <p className="guideline__caption">
             <CircleCheck aria-hidden size={16} />
             <span>
-              <strong>Do</strong> — pair a subtle background with its matching{" "}
-              <code>-subtle-foreground</code> token.
+              <strong>Do</strong> — pair a soft background with its matching{" "}
+              <code>fg-*-strong</code> text role.
             </span>
           </p>
         </div>
@@ -313,7 +302,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
           <div
             className="guideline__figure"
             style={{
-              background: "var(--sds-color-destructive-subtle)",
+              background: "var(--sds-color-danger-soft)",
               color: "var(--sds-color-red-400)",
             }}
           >
@@ -322,7 +311,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
           <p className="guideline__caption">
             <CircleX aria-hidden size={16} />
             <span>
-              <strong>Don&apos;t</strong> — pick a primitive by eye. This pair is 1.9:1.
+              <strong>Don&apos;t</strong> — pick a primitive by eye. This pair is 2.6:1.
             </span>
           </p>
         </div>
@@ -339,7 +328,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
         <Link className="doc-card" href="/foundation/border-and-radius">
           <span className="doc-card__title">Border &amp; radius</span>
           <span className="doc-card__text">
-            Where <code>--sds-color-border</code> and <code>--sds-color-input</code> get used.
+            Where <code>--sds-color-default</code> and <code>--sds-color-input</code> get used.
           </span>
         </Link>
         <Link className="doc-card" href="/foundation/spacing-and-layout">
@@ -351,9 +340,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <H2 id="changelog">Changelog</H2>
       <ul>
         <li>
-          <strong>Unreleased</strong> — {SCALES.length} primitive scales, semantic layer for light
-          and dark, <code>-subtle</code> status pairs and <code>--sds-color-overlay</code>; WCAG
-          contrast checked on every build.
+          <strong>Unreleased</strong> — Tailwind v4&apos;s palette ({SCALES.length} scales) and
+          Flowbite v4&apos;s semantic roles for light and dark; WCAG contrast checked on every
+          build.
         </li>
       </ul>
     </>

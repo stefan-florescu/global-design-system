@@ -1,39 +1,41 @@
-import { CircleCheck, CircleX } from "@stefan-florescu/icons";
+import { CircleCheck } from "@stefan-florescu/icons";
 import { Button, Card, CardTitle } from "@stefan-florescu/ui";
+
+const features = [
+  { name: "2 team members", included: true },
+  { name: "20GB Cloud storage", included: true },
+  { name: "Integration help", included: true },
+  { name: "Sketch Files", included: false },
+  { name: "API Access", included: false },
+  { name: "Complete documentation", included: false },
+  { name: "24×7 phone & email support", included: false },
+];
 
 export default function CardPricing() {
   return (
     <Card className="w-full max-w-sm">
-      <CardTitle className="text-muted-foreground text-xl font-medium">Standard plan</CardTitle>
-      <p className="m-0 flex items-baseline gap-1">
+      <CardTitle className="text-body mb-4 text-xl font-medium tracking-normal">
+        Standard plan
+      </CardTitle>
+      <div className="text-heading flex items-baseline">
         <span className="text-5xl font-extrabold tracking-tight">$49</span>
-        <span className="text-muted-foreground">/month</span>
-      </p>
-      <ul className="m-0 my-4 flex list-none flex-col gap-4 p-0">
-        <li className="flex items-center gap-3">
-          <CircleCheck aria-hidden className="text-success-subtle-foreground size-5 shrink-0" />2
-          team members
-        </li>
-        <li className="flex items-center gap-3">
-          <CircleCheck aria-hidden className="text-success-subtle-foreground size-5 shrink-0" />
-          20 GB cloud storage
-        </li>
-        <li className="flex items-center gap-3">
-          <CircleCheck aria-hidden className="text-success-subtle-foreground size-5 shrink-0" />
-          Integration help
-        </li>
-        <li className="text-muted-foreground flex items-center gap-3 line-through">
-          <CircleX aria-hidden className="size-5 shrink-0" />
-          <span className="sr-only">Not included: </span>Sketch files
-        </li>
-        <li className="text-muted-foreground flex items-center gap-3 line-through">
-          <CircleX aria-hidden className="size-5 shrink-0" />
-          <span className="sr-only">Not included: </span>API access
-        </li>
-        <li className="text-muted-foreground flex items-center gap-3 line-through">
-          <CircleX aria-hidden className="size-5 shrink-0" />
-          <span className="sr-only">Not included: </span>Complete documentation
-        </li>
+        <span className="text-body ms-2 font-medium">/month</span>
+      </div>
+      <ul className="my-6 space-y-4">
+        {features.map(({ name, included }) => (
+          <li
+            key={name}
+            className={
+              included ? "flex items-center" : "decoration-body flex items-center line-through"
+            }
+          >
+            <CircleCheck aria-hidden className="text-fg-brand me-1.5 size-5 shrink-0" />
+            <span className="text-body">
+              {included ? null : <span className="sr-only">Not included: </span>}
+              {name}
+            </span>
+          </li>
+        ))}
       </ul>
       <Button fullWidth>Choose plan</Button>
     </Card>

@@ -7,6 +7,7 @@ import {
   avatarFrameVariants,
   avatarGroupCounterClassName,
   avatarImageVariants,
+  avatarPlaceholderClassName,
   avatarStatusVariants,
   avatarVariants,
   type AvatarVariantProps,
@@ -59,7 +60,15 @@ export function Avatar({
 
   return (
     <span data-slot="avatar" className={cn(avatarVariants({ size }), className)} {...props}>
-      <span className={avatarFrameVariants({ shape, size, bordered, stacked })}>
+      <span
+        className={avatarFrameVariants({
+          shape,
+          size,
+          bordered,
+          stacked,
+          content: src ? "image" : initials ? "initials" : "placeholder",
+        })}
+      >
         {src ? (
           <img src={src} alt={alt ?? ""} className={avatarImageVariants({ shape })} />
         ) : initials ? (
@@ -75,14 +84,14 @@ export function Avatar({
             role={label ? "img" : undefined}
             aria-label={label}
             aria-hidden={label ? undefined : true}
-            className="flex size-full items-center justify-center [&_svg]:size-3/5"
+            className="size-full"
           >
-            <User aria-hidden />
+            <User aria-hidden className={avatarPlaceholderClassName} />
           </span>
         )}
       </span>
       {status ? (
-        <span className={avatarStatusVariants({ status, size, position: statusPosition })}>
+        <span className={avatarStatusVariants({ status, size, shape, position: statusPosition })}>
           <span className="sr-only">{statusLabel ?? STATUS_LABELS[status]}</span>
         </span>
       ) : null}
@@ -107,7 +116,7 @@ export function AvatarGroupCounter({
   children,
   ...props
 }: AvatarGroupCounterProps) {
-  const classes = cn(avatarGroupCounterClassName, href && "hover:brightness-110", className);
+  const classes = cn(avatarGroupCounterClassName, className);
   if (href) {
     return (
       <a

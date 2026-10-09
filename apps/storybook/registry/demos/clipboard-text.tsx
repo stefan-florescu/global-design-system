@@ -1,19 +1,30 @@
-import { Clipboard } from "@stefan-florescu/ui";
+import { useId } from "react";
+
+import { Clipboard, Input, Label } from "@stefan-florescu/ui";
 
 export default function ClipboardText() {
+  // Unique ids, so the example can appear more than once on a page.
+  const id = useId();
+
   return (
-    <div className="relative w-full max-w-md">
-      <span className="border-border bg-muted block truncate rounded-lg border py-3 ps-3 pe-28 font-mono text-sm">
-        https://design.example.com/invite/7f3k
-      </span>
-      <Clipboard
-        value="https://design.example.com/invite/7f3k"
-        variant="outline"
-        size="xs"
-        label="Copy link"
-        copiedLabel="Copied!"
-        className="absolute end-2 top-1/2 -translate-y-1/2"
-      />
+    <div className="w-full max-w-72">
+      <div className="relative">
+        <Label htmlFor={`${id}-npm-install`} className="sr-only">
+          Install command
+        </Label>
+        <Input
+          id={`${id}-npm-install`}
+          className="text-body"
+          readOnly
+          value="npm i @stefan-florescu/ui"
+        />
+        <Clipboard
+          value="npm i @stefan-florescu/ui"
+          variant="tertiary"
+          copiedLabel="Copied"
+          className="absolute end-1.5 top-1/2 -translate-y-1/2"
+        />
+      </div>
     </div>
   );
 }

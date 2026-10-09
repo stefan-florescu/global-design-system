@@ -1,27 +1,48 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
+import { focusOutlineInset } from "../../lib/focus";
+
 /*
- * Flowbite's accordion, mapped to semantic tokens: hairlines use `border`, closed titles
- * `muted-foreground`, hover `accent`, and the open title either `muted` + `foreground`
- * (neutral) or `brand-subtle` + `brand-subtle-foreground` (brand). Open state is read
- * from `data-state` on the trigger.
+ * Flowbite v4 accordions, class for class (https://flowbite.com/docs/components/accordion/), on
+ * our semantic tokens. Flowbite's script swaps "active" and "inactive" classes on the title; here
+ * they hang off `data-state` instead:
+ * - default (`neutral`): `neutral-primary` title, `neutral-secondary-medium` + `heading` when open
+ *   or hovered, in a `rounded-base` bordered box with `shadow-xs`;
+ * - `brand` ("Color options"): the hover turns `brand-softer` + `fg-brand`;
+ * - `separated` ("Separated cards"): every item is its own card, 1rem apart;
+ * - `flush`: no box, no side padding, a `default` hairline under every title and panel.
  */
-export const accordionVariants = cva("divide-y divide-border text-sm", {
+export const accordionVariants = cva("text-base", {
   variants: {
     flush: {
-      true: "border-b border-border",
-      false: "overflow-hidden rounded-lg border border-border",
+      true: "",
+      false: "",
+    },
+    separated: {
+      true: "flex flex-col gap-4",
+      false: "",
     },
   },
-  defaultVariants: { flush: false },
+  compoundVariants: [
+    {
+      flush: false,
+      separated: false,
+      className:
+        "divide-y divide-default overflow-hidden rounded-base border border-default shadow-xs",
+    },
+  ],
+  defaultVariants: { flush: false, separated: false },
 });
+
+/** The last item's panel has no divider above it, as in Flowbite. */
+export const accordionItemClassName = "[&:last-child>[data-slot=accordion-content]]:border-t-0";
 
 export const accordionTriggerVariants = cva(
   [
-    "group flex w-full cursor-pointer items-center justify-between gap-3 py-5 text-left font-medium text-muted-foreground",
+    "group flex w-full cursor-pointer items-center justify-between gap-3 text-start font-medium text-body",
     "transition-colors motion-reduce:transition-none",
-    "outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset",
-    "disabled:pointer-events-none disabled:opacity-50",
+    focusOutlineInset,
+    "disabled:pointer-events-none disabled:text-fg-disabled",
     "[&_svg]:size-5 [&_svg]:shrink-0",
   ],
   {
@@ -31,45 +52,46 @@ export const accordionTriggerVariants = cva(
         brand: "",
       },
       flush: {
-        true: "px-0 hover:text-foreground data-[state=open]:text-foreground",
-        false: "px-5 hover:bg-accent hover:text-accent-foreground",
+        true: "border-b border-default bg-neutral-primary py-5 data-[state=open]:text-heading",
+        false:
+          "bg-neutral-primary p-5 data-[state=open]:bg-neutral-secondary-medium data-[state=open]:text-heading",
+      },
+      separated: {
+        true: "rounded-base border border-default shadow-xs data-[state=open]:rounded-b-none data-[state=open]:shadow-none",
+        false: "",
       },
     },
     compoundVariants: [
       {
         flush: false,
         variant: "neutral",
-        className: "data-[state=open]:bg-muted data-[state=open]:text-foreground",
+        className: "hover:bg-neutral-secondary-medium hover:text-heading",
       },
-      {
-        flush: false,
-        variant: "brand",
-        className:
-          "data-[state=open]:bg-brand-subtle data-[state=open]:text-brand-subtle-foreground",
-      },
-      {
-        flush: true,
-        variant: "brand",
-        className: "data-[state=open]:text-brand-subtle-foreground",
-      },
+      { flush: false, variant: "brand", className: "hover:bg-brand-softer hover:text-fg-brand" },
+      { flush: true, variant: "brand", className: "hover:text-fg-brand" },
     ],
-    defaultVariants: { variant: "neutral", flush: false },
+    defaultVariants: { variant: "neutral", flush: false, separated: false },
   },
 );
 
 /** The chevron turns to point up while its item is open. */
 export const accordionIconClassName =
-  "ml-auto transition-transform motion-reduce:transition-none group-data-[state=open]:rotate-180";
+  "transition-transform motion-reduce:transition-none group-data-[state=open]:rotate-180";
 
-export const accordionContentVariants = cva("border-t border-border py-5 text-muted-foreground", {
+export const accordionContentVariants = cva("text-body", {
   variants: {
     flush: {
-      true: "px-0",
-      false: "px-5",
+      true: "border-b border-default py-5",
+      false: "border-t border-default p-4 md:p-5",
+    },
+    separated: {
+      true: "rounded-b-base border border-default shadow-xs",
+      false: "",
     },
   },
-  defaultVariants: { flush: false },
+  compoundVariants: [{ separated: true, className: "border-t-0" }],
+  defaultVariants: { flush: false, separated: false },
 });
 
 export type AccordionVariantProps = VariantProps<typeof accordionVariants> &
-  VariantProps<typeof accordionTriggerVariants>;
+  Pick<VariantProps<typeof accordionTriggerVariants>, "variant">;

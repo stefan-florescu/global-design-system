@@ -1,14 +1,15 @@
 import type { ComponentType } from "react";
 
+import AccordionArrow from "./demos/accordion-arrow";
 import AccordionBrand from "./demos/accordion-brand";
-import AccordionCollapsed from "./demos/accordion-collapsed";
 import AccordionDemo from "./demos/accordion-demo";
 import AccordionFlush from "./demos/accordion-flush";
-import AccordionIcon from "./demos/accordion-icon";
 import AccordionMultiple from "./demos/accordion-multiple";
 import AccordionNested from "./demos/accordion-nested";
+import AccordionSeparated from "./demos/accordion-separated";
 import AlertAccentBorder from "./demos/alert-accent-border";
 import AlertAdditionalContent from "./demos/alert-additional-content";
+import AlertAnnouncement from "./demos/alert-announcement";
 import AlertBordered from "./demos/alert-bordered";
 import AlertDemo from "./demos/alert-demo";
 import AlertDismissible from "./demos/alert-dismissible";
@@ -22,87 +23,223 @@ import AvatarSizes from "./demos/avatar-sizes";
 import AvatarStacked from "./demos/avatar-stacked";
 import AvatarStatus from "./demos/avatar-status";
 import AvatarText from "./demos/avatar-text";
+import BadgeAvatar from "./demos/badge-avatar";
 import BadgeBordered from "./demos/badge-bordered";
+import BadgeButton from "./demos/badge-button";
 import BadgeDemo from "./demos/badge-demo";
 import BadgeDismissible from "./demos/badge-dismissible";
+import BadgeDot from "./demos/badge-dot";
 import BadgeIcon from "./demos/badge-icon";
 import BadgeIconOnly from "./demos/badge-icon-only";
 import BadgeLarge from "./demos/badge-large";
+import BadgeLargeBordered from "./demos/badge-large-bordered";
+import BadgeLargeIcon from "./demos/badge-large-icon";
+import BadgeLargeIconOnly from "./demos/badge-large-icon-only";
 import BadgeLink from "./demos/badge-link";
+import BadgeLoader from "./demos/badge-loader";
 import BadgeNotification from "./demos/badge-notification";
 import BadgePill from "./demos/badge-pill";
+import BadgePillBordered from "./demos/badge-pill-bordered";
 import BannerBottom from "./demos/banner-bottom";
 import BannerCta from "./demos/banner-cta";
 import BannerDemo from "./demos/banner-demo";
 import BannerInformational from "./demos/banner-informational";
+import BannerNewsletter from "./demos/banner-newsletter";
 import BottomNavigationAppBar from "./demos/bottom-navigation-app-bar";
 import BottomNavigationBordered from "./demos/bottom-navigation-bordered";
+import BottomNavigationButtonGroup from "./demos/bottom-navigation-button-group";
+import BottomNavigationCard from "./demos/bottom-navigation-card";
 import BottomNavigationDemo from "./demos/bottom-navigation-demo";
+import BottomNavigationPagination from "./demos/bottom-navigation-pagination";
 import BreadcrumbDemo from "./demos/breadcrumb-demo";
+import BreadcrumbNavigation from "./demos/breadcrumb-navigation";
 import BreadcrumbSolid from "./demos/breadcrumb-solid";
 import ButtonAsLink from "./demos/button-as-link";
 import ButtonDemo from "./demos/button-demo";
 import ButtonDisabled from "./demos/button-disabled";
 import ButtonFullWidth from "./demos/button-full-width";
+import ButtonGroupColors from "./demos/button-group-colors";
 import ButtonGroupDemo from "./demos/button-group-demo";
+import ButtonGroupIconAction from "./demos/button-group-icon-action";
 import ButtonGroupIcons from "./demos/button-group-icons";
+import ButtonGroupInfo from "./demos/button-group-info";
 import ButtonGroupLinks from "./demos/button-group-links";
 import ButtonGroupOutline from "./demos/button-group-outline";
-import ButtonGroupOutlineIcons from "./demos/button-group-outline-icons";
+import ButtonGroupPagination from "./demos/button-group-pagination";
+import ButtonGroupQrCode from "./demos/button-group-qr-code";
+import ButtonGroupVertical from "./demos/button-group-vertical";
+import ButtonGroupWithIcons from "./demos/button-group-with-icons";
 import ButtonIcon from "./demos/button-icon";
 import ButtonLoading from "./demos/button-loading";
 import ButtonOutline from "./demos/button-outline";
+import ButtonOutlineSizes from "./demos/button-outline-sizes";
 import ButtonPill from "./demos/button-pill";
 import ButtonSizes from "./demos/button-sizes";
 import ButtonSizesWithIcon from "./demos/button-sizes-with-icon";
 import ButtonVariants from "./demos/button-variants";
 import ButtonWithIcon from "./demos/button-with-icon";
 import ButtonWithLabel from "./demos/button-with-label";
-import CardCta from "./demos/card-cta";
+import CardButton from "./demos/card-button";
 import CardDemo from "./demos/card-demo";
+import CardDescription from "./demos/card-description";
 import CardEcommerce from "./demos/card-ecommerce";
+import CardForm from "./demos/card-form";
 import CardHorizontal from "./demos/card-horizontal";
 import CardImage from "./demos/card-image";
+import CardLink from "./demos/card-link";
 import CardList from "./demos/card-list";
 import CardPricing from "./demos/card-pricing";
 import CardProfile from "./demos/card-profile";
+import CardTestimonial from "./demos/card-testimonial";
+import CarouselAnimation from "./demos/carousel-animation";
 import CarouselControls from "./demos/carousel-controls";
 import CarouselDemo from "./demos/carousel-demo";
 import CarouselIndicators from "./demos/carousel-indicators";
-import CarouselStatic from "./demos/carousel-static";
 import ChatBubbleClean from "./demos/chat-bubble-clean";
+import ChatBubbleCleanFile from "./demos/chat-bubble-clean-file";
+import ChatBubbleCleanGallery from "./demos/chat-bubble-clean-gallery";
+import ChatBubbleCleanImage from "./demos/chat-bubble-clean-image";
+import ChatBubbleCleanUrlPreview from "./demos/chat-bubble-clean-url-preview";
+import ChatBubbleCleanVoiceNote from "./demos/chat-bubble-clean-voice-note";
 import ChatBubbleConversation from "./demos/chat-bubble-conversation";
 import ChatBubbleDemo from "./demos/chat-bubble-demo";
 import ChatBubbleFile from "./demos/chat-bubble-file";
+import ChatBubbleGallery from "./demos/chat-bubble-gallery";
 import ChatBubbleImage from "./demos/chat-bubble-image";
 import ChatBubbleOutline from "./demos/chat-bubble-outline";
+import ChatBubbleOutlineFile from "./demos/chat-bubble-outline-file";
+import ChatBubbleOutlineGallery from "./demos/chat-bubble-outline-gallery";
+import ChatBubbleOutlineImage from "./demos/chat-bubble-outline-image";
+import ChatBubbleOutlineUrlPreview from "./demos/chat-bubble-outline-url-preview";
+import ChatBubbleOutlineVoiceNote from "./demos/chat-bubble-outline-voice-note";
+import ChatBubbleUrlPreview from "./demos/chat-bubble-url-preview";
+import ChatBubbleVoiceNote from "./demos/chat-bubble-voice-note";
+import CheckboxAdvanced from "./demos/checkbox-advanced";
+import CheckboxBordered from "./demos/checkbox-bordered";
+import CheckboxBorderedDescription from "./demos/checkbox-bordered-description";
+import CheckboxBorderedIcon from "./demos/checkbox-bordered-icon";
+import CheckboxDemo from "./demos/checkbox-demo";
+import CheckboxDisabled from "./demos/checkbox-disabled";
+import CheckboxHelper from "./demos/checkbox-helper";
+import CheckboxInline from "./demos/checkbox-inline";
+import CheckboxLink from "./demos/checkbox-link";
+import CheckboxList from "./demos/checkbox-list";
+import CheckboxListHorizontal from "./demos/checkbox-list-horizontal";
 import ClipboardCard from "./demos/clipboard-card";
+import ClipboardCode from "./demos/clipboard-code";
+import ClipboardContact from "./demos/clipboard-contact";
 import ClipboardDemo from "./demos/clipboard-demo";
-import ClipboardIcon from "./demos/clipboard-icon";
+import ClipboardInput from "./demos/clipboard-input";
+import ClipboardInputGroup from "./demos/clipboard-input-group";
 import ClipboardText from "./demos/clipboard-text";
+import ClipboardUrlShortener from "./demos/clipboard-url-shortener";
+import DatepickerAutohide from "./demos/datepicker-autohide";
 import DatepickerButtons from "./demos/datepicker-buttons";
 import DatepickerDemo from "./demos/datepicker-demo";
 import DatepickerDisabledDays from "./demos/datepicker-disabled-days";
+import DatepickerFormat from "./demos/datepicker-format";
 import DatepickerInline from "./demos/datepicker-inline";
 import DatepickerMinMax from "./demos/datepicker-min-max";
+import DatepickerOrientation from "./demos/datepicker-orientation";
 import DatepickerRange from "./demos/datepicker-range";
+import DatepickerTimepicker from "./demos/datepicker-timepicker";
 import DatepickerTitle from "./demos/datepicker-title";
 import DatepickerWeekStart from "./demos/datepicker-week-start";
+import FileInputDemo from "./demos/file-input-demo";
+import FileInputDropzone from "./demos/file-input-dropzone";
+import FileInputDropzoneButton from "./demos/file-input-dropzone-button";
+import FileInputHelper from "./demos/file-input-helper";
+import FileInputMultiple from "./demos/file-input-multiple";
+import FileInputSizes from "./demos/file-input-sizes";
+import InputFieldDemo from "./demos/input-field-demo";
+import InputFieldDisabled from "./demos/input-field-disabled";
+import InputFieldDropdown from "./demos/input-field-dropdown";
+import InputFieldGroup from "./demos/input-field-group";
+import InputFieldHelper from "./demos/input-field-helper";
+import InputFieldSearch from "./demos/input-field-search";
+import InputFieldSizes from "./demos/input-field-sizes";
+import InputFieldValidation from "./demos/input-field-validation";
+import NumberInputAdvanced from "./demos/number-input-advanced";
+import NumberInputConvert from "./demos/number-input-convert";
+import NumberInputCounter from "./demos/number-input-counter";
+import NumberInputCreditCard from "./demos/number-input-credit-card";
+import NumberInputCurrency from "./demos/number-input-currency";
+import NumberInputDemo from "./demos/number-input-demo";
+import NumberInputMinMax from "./demos/number-input-min-max";
+import NumberInputPhone from "./demos/number-input-phone";
+import NumberInputPin from "./demos/number-input-pin";
+import NumberInputSlider from "./demos/number-input-slider";
+import NumberInputStepper from "./demos/number-input-stepper";
+import NumberInputStepperIcon from "./demos/number-input-stepper-icon";
+import NumberInputZip from "./demos/number-input-zip";
+import PhoneInputAdvanced from "./demos/phone-input-advanced";
+import PhoneInputAuth from "./demos/phone-input-auth";
+import PhoneInputCountry from "./demos/phone-input-country";
+import PhoneInputDemo from "./demos/phone-input-demo";
+import PhoneInputSelect from "./demos/phone-input-select";
+import PhoneInputVerification from "./demos/phone-input-verification";
+import RadioAdvanced from "./demos/radio-advanced";
+import RadioAdvancedIcons from "./demos/radio-advanced-icons";
+import RadioBordered from "./demos/radio-bordered";
+import RadioDemo from "./demos/radio-demo";
+import RadioDisabled from "./demos/radio-disabled";
+import RadioHelper from "./demos/radio-helper";
+import RadioInline from "./demos/radio-inline";
+import RadioLink from "./demos/radio-link";
+import RadioList from "./demos/radio-list";
+import RadioListHorizontal from "./demos/radio-list-horizontal";
+import RangeDemo from "./demos/range-demo";
+import RangeDisabled from "./demos/range-disabled";
+import RangeLabels from "./demos/range-labels";
+import RangeMinMax from "./demos/range-min-max";
+import RangeSizes from "./demos/range-sizes";
+import RangeSteps from "./demos/range-steps";
+import SearchInputAdvanced from "./demos/search-input-advanced";
+import SearchInputCategory from "./demos/search-input-category";
+import SearchInputDemo from "./demos/search-input-demo";
+import SearchInputLocation from "./demos/search-input-location";
+import SearchInputSimple from "./demos/search-input-simple";
+import SearchInputVoice from "./demos/search-input-voice";
+import SelectDemo from "./demos/select-demo";
+import SelectDisabled from "./demos/select-disabled";
+import SelectMultiple from "./demos/select-multiple";
+import SelectSize from "./demos/select-size";
+import SelectSizes from "./demos/select-sizes";
+import SelectUnderline from "./demos/select-underline";
+import TextareaChat from "./demos/textarea-chat";
+import TextareaComment from "./demos/textarea-comment";
+import TextareaDemo from "./demos/textarea-demo";
+import TextareaWysiwyg from "./demos/textarea-wysiwyg";
+import TimepickerDemo from "./demos/timepicker-demo";
+import TimepickerIcon from "./demos/timepicker-icon";
+import TimepickerInline from "./demos/timepicker-inline";
+import TimepickerRange from "./demos/timepicker-range";
+import TimepickerSelect from "./demos/timepicker-select";
+import TimepickerToggle from "./demos/timepicker-toggle";
+import ToggleCard from "./demos/toggle-card";
+import ToggleCardIcon from "./demos/toggle-card-icon";
+import ToggleChecked from "./demos/toggle-checked";
+import ToggleDemo from "./demos/toggle-demo";
+import ToggleDisabled from "./demos/toggle-disabled";
+import ToggleDoubleLabels from "./demos/toggle-double-labels";
+import ToggleIcons from "./demos/toggle-icons";
+import ToggleSizes from "./demos/toggle-sizes";
 
 /**
  * Demo registry. Each key must match a file in registry/demos/<key>.tsx — the
  * file's source is what <ComponentPreview name="…" /> shows in its Code tab.
  */
 export const demos = {
+  "accordion-arrow": AccordionArrow,
   "accordion-brand": AccordionBrand,
-  "accordion-collapsed": AccordionCollapsed,
   "accordion-demo": AccordionDemo,
   "accordion-flush": AccordionFlush,
-  "accordion-icon": AccordionIcon,
   "accordion-multiple": AccordionMultiple,
   "accordion-nested": AccordionNested,
+  "accordion-separated": AccordionSeparated,
   "alert-accent-border": AlertAccentBorder,
   "alert-additional-content": AlertAdditionalContent,
+  "alert-announcement": AlertAnnouncement,
   "alert-bordered": AlertBordered,
   "alert-demo": AlertDemo,
   "alert-dismissible": AlertDismissible,
@@ -116,72 +253,207 @@ export const demos = {
   "avatar-stacked": AvatarStacked,
   "avatar-status": AvatarStatus,
   "avatar-text": AvatarText,
+  "badge-avatar": BadgeAvatar,
   "badge-bordered": BadgeBordered,
+  "badge-button": BadgeButton,
   "badge-demo": BadgeDemo,
   "badge-dismissible": BadgeDismissible,
+  "badge-dot": BadgeDot,
   "badge-icon": BadgeIcon,
   "badge-icon-only": BadgeIconOnly,
   "badge-large": BadgeLarge,
+  "badge-large-bordered": BadgeLargeBordered,
+  "badge-large-icon": BadgeLargeIcon,
+  "badge-large-icon-only": BadgeLargeIconOnly,
   "badge-link": BadgeLink,
+  "badge-loader": BadgeLoader,
   "badge-notification": BadgeNotification,
   "badge-pill": BadgePill,
+  "badge-pill-bordered": BadgePillBordered,
   "banner-bottom": BannerBottom,
   "banner-cta": BannerCta,
   "banner-demo": BannerDemo,
   "banner-informational": BannerInformational,
+  "banner-newsletter": BannerNewsletter,
   "bottom-navigation-app-bar": BottomNavigationAppBar,
   "bottom-navigation-bordered": BottomNavigationBordered,
+  "bottom-navigation-button-group": BottomNavigationButtonGroup,
+  "bottom-navigation-card": BottomNavigationCard,
   "bottom-navigation-demo": BottomNavigationDemo,
+  "bottom-navigation-pagination": BottomNavigationPagination,
   "breadcrumb-demo": BreadcrumbDemo,
+  "breadcrumb-navigation": BreadcrumbNavigation,
   "breadcrumb-solid": BreadcrumbSolid,
   "button-as-link": ButtonAsLink,
   "button-demo": ButtonDemo,
   "button-disabled": ButtonDisabled,
   "button-full-width": ButtonFullWidth,
+  "button-group-colors": ButtonGroupColors,
   "button-group-demo": ButtonGroupDemo,
+  "button-group-icon-action": ButtonGroupIconAction,
   "button-group-icons": ButtonGroupIcons,
+  "button-group-info": ButtonGroupInfo,
   "button-group-links": ButtonGroupLinks,
   "button-group-outline": ButtonGroupOutline,
-  "button-group-outline-icons": ButtonGroupOutlineIcons,
+  "button-group-pagination": ButtonGroupPagination,
+  "button-group-qr-code": ButtonGroupQrCode,
+  "button-group-vertical": ButtonGroupVertical,
+  "button-group-with-icons": ButtonGroupWithIcons,
   "button-icon": ButtonIcon,
   "button-loading": ButtonLoading,
   "button-outline": ButtonOutline,
+  "button-outline-sizes": ButtonOutlineSizes,
   "button-pill": ButtonPill,
   "button-sizes": ButtonSizes,
   "button-sizes-with-icon": ButtonSizesWithIcon,
   "button-variants": ButtonVariants,
   "button-with-icon": ButtonWithIcon,
   "button-with-label": ButtonWithLabel,
-  "card-cta": CardCta,
+  "card-button": CardButton,
   "card-demo": CardDemo,
+  "card-description": CardDescription,
   "card-ecommerce": CardEcommerce,
+  "card-form": CardForm,
   "card-horizontal": CardHorizontal,
   "card-image": CardImage,
+  "card-link": CardLink,
   "card-list": CardList,
   "card-pricing": CardPricing,
   "card-profile": CardProfile,
+  "card-testimonial": CardTestimonial,
+  "carousel-animation": CarouselAnimation,
   "carousel-controls": CarouselControls,
   "carousel-demo": CarouselDemo,
   "carousel-indicators": CarouselIndicators,
-  "carousel-static": CarouselStatic,
   "chat-bubble-clean": ChatBubbleClean,
+  "chat-bubble-clean-file": ChatBubbleCleanFile,
+  "chat-bubble-clean-gallery": ChatBubbleCleanGallery,
+  "chat-bubble-clean-image": ChatBubbleCleanImage,
+  "chat-bubble-clean-url-preview": ChatBubbleCleanUrlPreview,
+  "chat-bubble-clean-voice-note": ChatBubbleCleanVoiceNote,
   "chat-bubble-conversation": ChatBubbleConversation,
   "chat-bubble-demo": ChatBubbleDemo,
   "chat-bubble-file": ChatBubbleFile,
+  "chat-bubble-gallery": ChatBubbleGallery,
   "chat-bubble-image": ChatBubbleImage,
   "chat-bubble-outline": ChatBubbleOutline,
+  "chat-bubble-outline-file": ChatBubbleOutlineFile,
+  "chat-bubble-outline-gallery": ChatBubbleOutlineGallery,
+  "chat-bubble-outline-image": ChatBubbleOutlineImage,
+  "chat-bubble-outline-url-preview": ChatBubbleOutlineUrlPreview,
+  "chat-bubble-outline-voice-note": ChatBubbleOutlineVoiceNote,
+  "chat-bubble-url-preview": ChatBubbleUrlPreview,
+  "chat-bubble-voice-note": ChatBubbleVoiceNote,
+  "checkbox-advanced": CheckboxAdvanced,
+  "checkbox-bordered": CheckboxBordered,
+  "checkbox-bordered-description": CheckboxBorderedDescription,
+  "checkbox-bordered-icon": CheckboxBorderedIcon,
+  "checkbox-demo": CheckboxDemo,
+  "checkbox-disabled": CheckboxDisabled,
+  "checkbox-helper": CheckboxHelper,
+  "checkbox-inline": CheckboxInline,
+  "checkbox-link": CheckboxLink,
+  "checkbox-list": CheckboxList,
+  "checkbox-list-horizontal": CheckboxListHorizontal,
   "clipboard-card": ClipboardCard,
+  "clipboard-code": ClipboardCode,
+  "clipboard-contact": ClipboardContact,
   "clipboard-demo": ClipboardDemo,
-  "clipboard-icon": ClipboardIcon,
+  "clipboard-input": ClipboardInput,
+  "clipboard-input-group": ClipboardInputGroup,
   "clipboard-text": ClipboardText,
+  "clipboard-url-shortener": ClipboardUrlShortener,
+  "datepicker-autohide": DatepickerAutohide,
   "datepicker-buttons": DatepickerButtons,
   "datepicker-demo": DatepickerDemo,
   "datepicker-disabled-days": DatepickerDisabledDays,
+  "datepicker-format": DatepickerFormat,
   "datepicker-inline": DatepickerInline,
   "datepicker-min-max": DatepickerMinMax,
+  "datepicker-orientation": DatepickerOrientation,
   "datepicker-range": DatepickerRange,
+  "datepicker-timepicker": DatepickerTimepicker,
   "datepicker-title": DatepickerTitle,
   "datepicker-week-start": DatepickerWeekStart,
+  "file-input-demo": FileInputDemo,
+  "file-input-dropzone": FileInputDropzone,
+  "file-input-dropzone-button": FileInputDropzoneButton,
+  "file-input-helper": FileInputHelper,
+  "file-input-multiple": FileInputMultiple,
+  "file-input-sizes": FileInputSizes,
+  "input-field-demo": InputFieldDemo,
+  "input-field-disabled": InputFieldDisabled,
+  "input-field-dropdown": InputFieldDropdown,
+  "input-field-group": InputFieldGroup,
+  "input-field-helper": InputFieldHelper,
+  "input-field-search": InputFieldSearch,
+  "input-field-sizes": InputFieldSizes,
+  "input-field-validation": InputFieldValidation,
+  "number-input-advanced": NumberInputAdvanced,
+  "number-input-convert": NumberInputConvert,
+  "number-input-counter": NumberInputCounter,
+  "number-input-credit-card": NumberInputCreditCard,
+  "number-input-currency": NumberInputCurrency,
+  "number-input-demo": NumberInputDemo,
+  "number-input-min-max": NumberInputMinMax,
+  "number-input-phone": NumberInputPhone,
+  "number-input-pin": NumberInputPin,
+  "number-input-slider": NumberInputSlider,
+  "number-input-stepper": NumberInputStepper,
+  "number-input-stepper-icon": NumberInputStepperIcon,
+  "number-input-zip": NumberInputZip,
+  "phone-input-advanced": PhoneInputAdvanced,
+  "phone-input-auth": PhoneInputAuth,
+  "phone-input-country": PhoneInputCountry,
+  "phone-input-demo": PhoneInputDemo,
+  "phone-input-select": PhoneInputSelect,
+  "phone-input-verification": PhoneInputVerification,
+  "radio-advanced": RadioAdvanced,
+  "radio-advanced-icons": RadioAdvancedIcons,
+  "radio-bordered": RadioBordered,
+  "radio-demo": RadioDemo,
+  "radio-disabled": RadioDisabled,
+  "radio-helper": RadioHelper,
+  "radio-inline": RadioInline,
+  "radio-link": RadioLink,
+  "radio-list": RadioList,
+  "radio-list-horizontal": RadioListHorizontal,
+  "range-demo": RangeDemo,
+  "range-disabled": RangeDisabled,
+  "range-labels": RangeLabels,
+  "range-min-max": RangeMinMax,
+  "range-sizes": RangeSizes,
+  "range-steps": RangeSteps,
+  "search-input-advanced": SearchInputAdvanced,
+  "search-input-category": SearchInputCategory,
+  "search-input-demo": SearchInputDemo,
+  "search-input-location": SearchInputLocation,
+  "search-input-simple": SearchInputSimple,
+  "search-input-voice": SearchInputVoice,
+  "select-demo": SelectDemo,
+  "select-disabled": SelectDisabled,
+  "select-multiple": SelectMultiple,
+  "select-size": SelectSize,
+  "select-sizes": SelectSizes,
+  "select-underline": SelectUnderline,
+  "textarea-chat": TextareaChat,
+  "textarea-comment": TextareaComment,
+  "textarea-demo": TextareaDemo,
+  "textarea-wysiwyg": TextareaWysiwyg,
+  "timepicker-demo": TimepickerDemo,
+  "timepicker-icon": TimepickerIcon,
+  "timepicker-inline": TimepickerInline,
+  "timepicker-range": TimepickerRange,
+  "timepicker-select": TimepickerSelect,
+  "timepicker-toggle": TimepickerToggle,
+  "toggle-card": ToggleCard,
+  "toggle-card-icon": ToggleCardIcon,
+  "toggle-checked": ToggleChecked,
+  "toggle-demo": ToggleDemo,
+  "toggle-disabled": ToggleDisabled,
+  "toggle-double-labels": ToggleDoubleLabels,
+  "toggle-icons": ToggleIcons,
+  "toggle-sizes": ToggleSizes,
 } satisfies Record<string, ComponentType>;
 
 export type DemoName = keyof typeof demos;

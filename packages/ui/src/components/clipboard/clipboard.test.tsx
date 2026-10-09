@@ -26,13 +26,36 @@ describe("Clipboard", () => {
 
   it("uses the label as the name of an icon-only button", async () => {
     const user = userEvent.setup();
-    render(<Clipboard value="abc" iconOnly label="Copy API key" copiedLabel="API key copied" />);
+    render(
+      <Clipboard
+        value="abc"
+        variant="ghost"
+        iconOnly
+        label="Copy API key"
+        copiedLabel="API key copied"
+      />,
+    );
     await user.click(screen.getByRole("button", { name: "Copy API key" }));
     expect(screen.getByRole("button", { name: "API key copied" })).toBeInTheDocument();
   });
 
-  it("accepts Button styles", () => {
-    render(<Clipboard value="abc" variant="outline" size="xs" />);
-    expect(screen.getByRole("button", { name: "Copy" })).toHaveClass("border-border", "h-8");
+  it("is a brand button by default and supports Flowbite's other triggers", () => {
+    const { rerender } = render(<Clipboard value="abc" />);
+    const button = () => screen.getByRole("button");
+    expect(button()).toHaveClass("bg-brand", "text-brand-foreground", "px-4", "py-2.5");
+    rerender(<Clipboard value="abc" variant="secondary" />);
+    expect(button()).toHaveClass("bg-neutral-secondary-medium", "border-default-medium");
+    rerender(<Clipboard value="abc" variant="ghost" size="sm" iconOnly label="Copy" />);
+    expect(button()).toHaveClass("text-body", "hover:bg-neutral-quaternary", "p-1.5");
+    rerender(<Clipboard value="abc" variant="tertiary" />);
+    expect(button()).toHaveClass("bg-neutral-primary-strong", "border-default-strong", "text-xs");
+  });
+
+  it("does not copy when disabled", async () => {
+    const user = userEvent.setup();
+    const onCopy = vi.fn();
+    render(<Clipboard value="abc" disabled onCopy={onCopy} />);
+    await user.click(screen.getByRole("button", { name: "Copy" }));
+    expect(onCopy).not.toHaveBeenCalled();
   });
 });

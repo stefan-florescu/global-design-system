@@ -1,0 +1,143 @@
+export const metadata = {
+  title: "Radio",
+  description:
+    "Let users choose exactly one option with a round button: plain, with helper text, bordered, in a list group or as a selectable card.",
+};
+
+<PageHeader {...metadata} section="Forms" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="radio-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Fieldset, Radio } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Fieldset legend="Plan">
+  <Radio name="plan" value="free" label="Free" defaultChecked />
+  <Radio name="plan" value="pro" label="Pro" />
+</Fieldset>
+```
+
+## Examples
+
+### Radio example
+
+A radio in its unchecked and checked state. Give every radio in a group the same `name`.
+
+<ComponentPreview name="radio-demo" />
+
+### Disabled state
+
+Add `disabled` to stop the user from selecting the radio. Its label turns `fg-disabled`.
+
+<ComponentPreview name="radio-disabled" />
+
+### Radio link
+
+The label can contain a link.
+
+<ComponentPreview name="radio-link" />
+
+### Helper text
+
+`description` adds secondary text under the label, read as the radio's description.
+
+<ComponentPreview name="radio-helper" />
+
+### Bordered
+
+`variant="bordered"` puts the radio in a card. The label fills the card, so the whole card is
+clickable.
+
+<ComponentPreview name="radio-bordered" />
+
+### Radio list group
+
+`variant="list"` makes the label fill a row of a list group. Name the group with a heading and
+`role="radiogroup"`, or use a `Fieldset`.
+
+<ComponentPreview name="radio-list" />
+
+### Horizontal list group
+
+The same list group laid out in a row from the `sm` breakpoint.
+
+<ComponentPreview name="radio-list-horizontal" />
+
+### Inline layout
+
+Put radios in a `flex` row to align them horizontally.
+
+<ComponentPreview name="radio-inline" />
+
+### Advanced layout
+
+`variant="card"` hides the round button and styles the whole card instead: it turns
+`brand-softer` with a `brand` border when selected. `endIcon` adds a decorative icon at the end.
+
+<ComponentPreview name="radio-advanced" />
+
+### Advanced layout with icons
+
+Add an `icon` above the title of a card.
+
+<ComponentPreview name="radio-advanced-icons" />
+
+| Variant    | Look                                                                       | Use it for                                   |
+| ---------- | -------------------------------------------------------------------------- | -------------------------------------------- |
+| `default`  | Round button and label                                                     | Most forms.                                  |
+| `bordered` | `neutral-primary-soft` card with a `default` border, `rounded-base`        | Options that need a larger click target.     |
+| `list`     | Row of a list group; the label fills the row                               | Several options inside one bordered list.    |
+| `card`     | Selectable card; `brand-softer` fill, `brand` border and `fg-brand-strong` | Rich options with an icon and a description. |
+
+## Accessibility
+
+- Native radios: <kbd>Tab</kbd> moves into the group and the arrow keys move the selection, as in
+  the WAI-ARIA radio group pattern. Name the group with a `Fieldset` legend or a heading and
+  `role="radiogroup"`.
+- The button is drawn with Flowbite's styles, with one change: its border is the `input` colour
+  instead of Flowbite's `default-medium`, so the unselected button reaches 3:1 against the page
+  (WCAG 1.4.11). Selected, it is a `brand` disc with a `brand-foreground` centre dot.
+- Focus shows Flowbite's soft `brand-subtle` halo; keyboard focus also draws a solid 2px `ring`
+  outline, because the halo alone is under 3:1.
+- In forced-colors (high contrast) mode the browser draws the radio itself, so it stays visible.
+- `card` keeps the radio focusable (Flowbite hides it with `display: none`, which removes it from the
+  keyboard order); the title names it and the description describes it. The selected card gets a
+  `brand` border instead of Flowbite's `brand-subtle`, so the selected state reaches 3:1.
+- The link in a label is underlined, not only coloured, so it does not rely on colour alone
+  (WCAG 1.4.1).
+- Not ported: Flowbite's _Radio in dropdown_ (needs a dropdown component).
+
+## API Reference
+
+### Radio
+
+| Prop          | Type                                          | Default     |
+| ------------- | --------------------------------------------- | ----------- |
+| `label`       | `ReactNode`                                   | —           |
+| `description` | `ReactNode`                                   | —           |
+| `variant`     | `"default" \| "bordered" \| "list" \| "card"` | `"default"` |
+| `icon`        | `ReactNode` (for `bordered` and `card`)       | —           |
+| `endIcon`     | `ReactNode` (end of a `card`)                 | —           |
+| `invalid`     | `boolean`                                     | `false`     |
+
+All other `<input>` attributes are forwarded, such as `name`, `value`, `checked`, `defaultChecked`
+and `disabled`. `className` styles the outer element.
+
+### Fieldset
+
+| Prop          | Type                         | Default      |
+| ------------- | ---------------------------- | ------------ |
+| `legend`      | `ReactNode` (required)       | —            |
+| `hideLegend`  | `boolean`                    | `false`      |
+| `orientation` | `"vertical" \| "horizontal"` | `"vertical"` |
+
+`className` styles the `<fieldset>`; `contentClassName` styles the element that lays out the
+controls, for example a grid.

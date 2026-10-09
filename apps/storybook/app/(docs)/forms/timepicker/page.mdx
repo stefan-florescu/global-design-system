@@ -1,0 +1,96 @@
+export const metadata = {
+  title: "Timepicker",
+  description:
+    "Choose a time of day with the native time field, alone, attached to other controls or next to a calendar.",
+};
+
+<PageHeader {...metadata} section="Forms" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="timepicker-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Label, Timepicker } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Label htmlFor="time">Select time:</Label>
+<Timepicker id="time" min="09:00" max="18:00" defaultValue="00:00" required />
+```
+
+## Examples
+
+### Default timepicker
+
+A native `type="time"` field with a clock icon. The browser formats the time for the user's locale
+and supplies the picker; clicking the icon opens it.
+
+<ComponentPreview name="timepicker-demo" />
+
+### Timepicker with icon
+
+Pass `icon={null}` for the bare field and attach the icon as an addon at its end.
+
+<ComponentPreview name="timepicker-icon" />
+
+### Timepicker with select
+
+Attach a `Select` to the end of the field to choose an option such as the timezone.
+
+<ComponentPreview name="timepicker-select" />
+
+### Timepicker range selector
+
+Use two timepickers to choose a time interval, such as the duration of an event.
+
+<ComponentPreview name="timepicker-range" />
+
+### Timerange picker with toggle
+
+Show or hide the time range with a disclosure button. The button sets `aria-expanded` and
+`aria-controls`.
+
+<ComponentPreview name="timepicker-toggle" />
+
+### Inline timepicker buttons
+
+Show the details of an event, choose the day in an inline `Calendar`, and choose the time from a
+set of slots. The slots are radio buttons styled as buttons, so arrow keys move between them.
+
+<ComponentPreview name="timepicker-inline" />
+
+## Accessibility
+
+- A native `type="time"` field, so each part (hours, minutes, AM/PM) is reachable with the keyboard
+  and read correctly by screen readers. The clock icon is decorative (`aria-hidden`).
+- The submitted value is always 24-hour `HH:mm`, whatever the display format. `min`, `max` and
+  `step` (seconds) limit the choices; explain limits such as office hours in a `HelperText`.
+- Differences from Flowbite, for WCAG 2.2 AA: field borders are the `input` token instead of
+  `default-medium`, so their edges reach 3:1 (1.4.11). Flowbite's time slots hide their radio
+  inputs with `display: none`, which removes them from the keyboard and screen readers; here they
+  are visually hidden (`sr-only`), keep the arrow-key radio behaviour and draw the `ring` outline
+  around the slot on keyboard focus. Slot labels on the `brand` fill use `brand-foreground`.
+
+## API Reference
+
+| Prop          | Type                                           | Default     |
+| ------------- | ---------------------------------------------- | ----------- |
+| `icon`        | `ReactNode`. `null` renders the bare field.    | `<Clock />` |
+| `min` / `max` | `string` (`"HH:mm"`)                           | —           |
+| `step`        | `number` (seconds)                             | `60`        |
+| `invalid`     | `boolean`                                      | `false`     |
+| `valid`       | `boolean`                                      | `false`     |
+| `className`   | `string`. Merged with `cn()` on the `<input>`. | —           |
+
+All other `<input>` attributes are forwarded to the field, including `ref`.
+
+| Part  | Tokens                                                                                      |
+| ----- | ------------------------------------------------------------------------------------------- |
+| Field | `neutral-secondary-medium` · `input` border · `heading` text · `rounded-base` · `shadow-xs` |
+| Icon  | `body`                                                                                      |
+| Focus | `brand` border and ring                                                                     |

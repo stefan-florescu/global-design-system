@@ -8,17 +8,21 @@
   "client": false,
   "props": "generated",
   "parts": ["Card", "CardTitle", "CardDescription"],
-  "variants": { "horizontal": [true, false] },
-  "defaults": { "horizontal": false },
+  "variants": {
+    "horizontal": [true, false]
+  },
+  "defaults": {
+    "horizontal": false
+  },
   "tokens": [
-    "color.card",
-    "color.card-foreground",
-    "color.muted-foreground",
-    "color.border",
-    "color.accent",
+    "color.neutral-primary-soft",
+    "color.default",
+    "color.neutral-secondary-medium",
+    "color.heading",
+    "color.body",
     "color.ring",
-    "radius.lg",
-    "shadow.sm",
+    "radius.base",
+    "shadow.xs",
     "text.2xl"
   ],
   "useWhen": [
@@ -29,12 +33,16 @@
   "related": ["Avatar", "Badge", "Button"],
   "examples": [
     "apps/storybook/registry/demos/card-demo.tsx",
-    "apps/storybook/registry/demos/card-cta.tsx",
+    "apps/storybook/registry/demos/card-button.tsx",
+    "apps/storybook/registry/demos/card-link.tsx",
     "apps/storybook/registry/demos/card-image.tsx",
+    "apps/storybook/registry/demos/card-description.tsx",
     "apps/storybook/registry/demos/card-horizontal.tsx",
     "apps/storybook/registry/demos/card-profile.tsx",
+    "apps/storybook/registry/demos/card-form.tsx",
     "apps/storybook/registry/demos/card-ecommerce.tsx",
     "apps/storybook/registry/demos/card-list.tsx",
-    "apps/storybook/registry/demos/card-pricing.tsx"
+    "apps/storybook/registry/demos/card-pricing.tsx",
+    "apps/storybook/registry/demos/card-testimonial.tsx"
   ]
 }

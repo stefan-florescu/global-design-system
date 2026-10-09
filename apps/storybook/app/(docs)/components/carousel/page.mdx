@@ -19,8 +19,16 @@ import { Carousel } from "@stefan-florescu/ui";
 
 ```tsx
 <Carousel aria-label="Featured trips">
-  <img src="/trips/alps.jpg" alt="The Alps at sunrise" />
-  <img src="/trips/coast.jpg" alt="A rocky coastline" />
+  <img
+    src="/trips/alps.jpg"
+    alt="The Alps at sunrise"
+    className="absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2"
+  />
+  <img
+    src="/trips/coast.jpg"
+    alt="A rocky coastline"
+    className="absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2"
+  />
 </Carousel>
 ```
 
@@ -36,23 +44,26 @@ when keyboard focus enters it until the user starts it again.
 
 <ComponentPreview name="carousel-demo" />
 
-### Static slider
-
-Without `autoPlay`, slides change only when the user asks.
-
-<ComponentPreview name="carousel-static" />
-
 ### Controls
 
-Set `indicators={false}` to show only the previous and next buttons.
+Set `indicators={false}` to show only the previous and next buttons. `defaultIndex` picks the
+first slide shown.
 
 <ComponentPreview name="carousel-controls" />
 
 ### Indicators
 
-Set `controls={false}` to show only the slide indicators.
+Without `autoPlay`, slides change only when the user asks. Set `controls={false}` to show only
+the indicators.
 
 <ComponentPreview name="carousel-indicators" />
+
+### Animation
+
+Slides move in 700ms with `ease-in-out`. Set `transition="fast"` for Flowbite's 200ms linear
+slide. The transition is off for people who prefer reduced motion.
+
+<ComponentPreview name="carousel-animation" />
 
 <Callout title="Use carousels sparingly">
   Most people never get past the first slide. Put the most important content first, and don't hide
@@ -67,9 +78,13 @@ Set `controls={false}` to show only the slide indicators.
 - Hidden slides are `inert`, so their links and buttons can't receive focus.
 - Slide changes are announced politely, except while the carousel rotates on its own.
 - Automatic rotation always has a pause button, pauses on hover, stops on keyboard focus, and never
-  starts when the user prefers reduced motion. The slide transition is also turned off for them.
+  starts when the user prefers reduced motion. Flowbite has no pause button.
 - Previous, next and indicator buttons have names ("Next slide", "Go to slide 3"), and the current
-  indicator has `aria-current`. Each indicator is a 24px target.
+  indicator has `aria-current`. Indicators are 12px with 12px gaps, which meets the WCAG 2.5.8
+  spacing exception for small targets.
+- Flowbite draws white control icons on a 30% white square. On light images that falls under the
+  3:1 contrast WCAG asks for, so in the light theme the icons are `heading` (dark); in the dark
+  theme they are white, as in Flowbite. Keyboard focus adds a solid `ring` outline.
 - Give every image slide meaningful `alt` text.
 
 ## API Reference
@@ -82,6 +97,16 @@ Set `controls={false}` to show only the slide indicators.
 | `indicators`    | `boolean`                 | `true`       |
 | `defaultIndex`  | `number`                  | `0`          |
 | `onSlideChange` | `(index: number) => void` | —            |
+| `transition`    | `"default" \| "fast"`     | `"default"`  |
 | `aria-label`    | `string`                  | `"Carousel"` |
 
-All other `<section>` attributes are forwarded, including `ref` and `className`.
+All other `<section>` attributes are forwarded, including `ref` and `className`. Slides fill a
+`h-56 md:h-96` window; centre images in it with
+`absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2`, as the examples do.
+
+| Token                    | Use                                             |
+| ------------------------ | ----------------------------------------------- |
+| `neutral-primary-medium` | Control squares (30%, 50% on hover), indicators |
+| `heading`                | Control icons                                   |
+| `radius.base`            | Slide window, controls, indicators              |
+| `z.raised`               | Controls and indicators above the slides        |

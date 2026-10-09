@@ -1,25 +1,23 @@
-import { ArrowRight } from "@stefan-florescu/icons";
 import { Banner, Button } from "@stefan-florescu/ui";
 
 export default function BannerInformational() {
   return (
-    <div className="border-border bg-background relative h-60 w-full transform-gpu overflow-hidden rounded-lg border">
+    <div className="border-default bg-neutral-primary rounded-base relative h-60 w-full transform-gpu overflow-hidden border">
       {/* The frame stands in for the browser window, so the fixed banner stays inside it. */}
-      <Banner position="bottom" dismissible aria-label="Feature preview">
-        <div className="min-w-0 flex-1">
-          <p className="mb-1 text-base font-semibold">Try the new docs search</p>
-          <p className="text-muted-foreground">
-            Find any token, component or prop in seconds. Press Ctrl K to open it.
+      <Banner
+        dismissible
+        aria-label="Integrations"
+        className="bg-neutral-secondary-soft flex-col md:flex-row"
+      >
+        <div className="mb-2 md:me-2 md:mb-0">
+          <p className="text-heading mb-1 text-base font-semibold">Integration is the key</p>
+          <p className="flex items-center">
+            You can integrate Stefan Design System with many tools to make your work even more
+            efficient and lightning fast based on Tailwind.
           </p>
         </div>
-        <div className="flex gap-2">
-          <Button size="sm" variant="outline">
-            Learn more
-          </Button>
-          <Button size="sm">
-            Try it
-            <ArrowRight aria-hidden />
-          </Button>
+        <div className="flex shrink-0 items-center">
+          <Button size="xs">Sign Up</Button>
         </div>
       </Banner>
     </div>

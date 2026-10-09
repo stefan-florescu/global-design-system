@@ -9,9 +9,9 @@ describe("ButtonGroup", () => {
   it("is a named group of buttons", () => {
     render(
       <ButtonGroup aria-label="Text alignment">
-        <Button variant="outline">Left</Button>
-        <Button variant="outline">Center</Button>
-        <Button variant="outline">Right</Button>
+        <Button variant="tertiary">Left</Button>
+        <Button variant="tertiary">Center</Button>
+        <Button variant="tertiary">Right</Button>
       </ButtonGroup>,
     );
     const group = screen.getByRole("group", { name: "Text alignment" });
@@ -35,10 +35,32 @@ describe("ButtonGroup", () => {
   it("joins the buttons and raises the focused one", () => {
     render(<ButtonGroup aria-label="Actions" />);
     expect(screen.getByRole("group")).toHaveClass(
+      "rounded-base",
+      "shadow-xs",
+      "-space-x-px",
       "*:rounded-none",
-      "*:first:rounded-s-lg",
-      "*:last:rounded-e-lg",
+      "*:first:rounded-s-base",
+      "*:last:rounded-e-base",
       "*:focus-visible:z-raised",
+    );
+  });
+
+  it("stacks vertically", () => {
+    render(<ButtonGroup aria-label="Actions" orientation="vertical" />);
+    expect(screen.getByRole("group")).toHaveClass(
+      "flex-col",
+      "-space-y-px",
+      "*:first:rounded-t-base",
+      "*:last:rounded-b-base",
+    );
+  });
+
+  it("restyles the buttons as Flowbite's outline group", () => {
+    render(<ButtonGroup aria-label="Actions" outline />);
+    expect(screen.getByRole("group")).toHaveClass(
+      "*:border-dark-strong",
+      "*:hover:bg-dark",
+      "shadow-none",
     );
   });
 

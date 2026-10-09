@@ -123,6 +123,71 @@ export const sidebarNav: NavSection[] = [
       },
     ],
   },
+  {
+    title: "Forms",
+    items: [
+      {
+        title: "Input Field",
+        description: "Single-line text fields with icons, addons and validation.",
+        href: "/forms/input-field",
+      },
+      {
+        title: "File Input",
+        description: "File fields and a drag-and-drop dropzone.",
+        href: "/forms/file-input",
+      },
+      {
+        title: "Search Input",
+        description: "Search fields with an icon and a submit button.",
+        href: "/forms/search-input",
+      },
+      {
+        title: "Number Input",
+        description: "Number fields with optional stepper buttons.",
+        href: "/forms/number-input",
+      },
+      {
+        title: "Phone Input",
+        description: "A country code joined to a phone number field.",
+        href: "/forms/phone-input",
+      },
+      {
+        title: "Select",
+        description: "Native selects with list and underline styles.",
+        href: "/forms/select",
+      },
+      {
+        title: "Textarea",
+        description: "Multi-line fields for comments and messages.",
+        href: "/forms/textarea",
+      },
+      {
+        title: "Timepicker",
+        description: "Time fields with limits, ranges and time slots.",
+        href: "/forms/timepicker",
+      },
+      {
+        title: "Checkbox",
+        description: "Checkboxes with labels, descriptions and cards.",
+        href: "/forms/checkbox",
+      },
+      {
+        title: "Radio",
+        description: "Radio groups with labels, descriptions and cards.",
+        href: "/forms/radio",
+      },
+      {
+        title: "Toggle",
+        description: "On/off switches for settings that apply at once.",
+        href: "/forms/toggle",
+      },
+      {
+        title: "Range",
+        description: "Sliders for picking a value from a range.",
+        href: "/forms/range",
+      },
+    ],
+  },
 ];
 
 /** Flat, ordered list of every documentation page (used by search & pager). */
@@ -131,7 +196,7 @@ export const docsPages: NavItem[] = sidebarNav.flatMap((section) => section.item
 /** Which top-level menu item is active for a given path. */
 export function activeMainNav(pathname: string): string | undefined {
   if (pathname.startsWith("/changelog")) return "/changelog";
-  if (pathname.startsWith("/components") || pathname.startsWith("/foundation")) {
+  if (["/components", "/foundation", "/forms"].some((prefix) => pathname.startsWith(prefix))) {
     return "/components";
   }
   return undefined;

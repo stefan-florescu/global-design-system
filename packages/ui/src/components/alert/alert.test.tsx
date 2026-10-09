@@ -9,14 +9,14 @@ describe("Alert", () => {
     expect(screen.getByRole("status")).toHaveTextContent("Changes saved.");
   });
 
-  it.each(["destructive", "warning"] as const)("interrupts with role=alert for %s", (variant) => {
+  it.each(["danger", "warning"] as const)("interrupts with role=alert for %s", (variant) => {
     render(<Alert variant={variant}>Something went wrong.</Alert>);
     expect(screen.getByRole("alert")).toHaveTextContent("Something went wrong.");
   });
 
   it("lets the role be overridden", () => {
     render(
-      <Alert variant="destructive" role="note">
+      <Alert variant="danger" role="note">
         Read me
       </Alert>,
     );
@@ -62,9 +62,6 @@ describe("Alert", () => {
 
   it("uses the intent's subtle tokens", () => {
     render(<Alert variant="success">Done</Alert>);
-    expect(screen.getByRole("status")).toHaveClass(
-      "bg-success-subtle",
-      "text-success-subtle-foreground",
-    );
+    expect(screen.getByRole("status")).toHaveClass("bg-success-soft", "text-fg-success-strong");
   });
 });
