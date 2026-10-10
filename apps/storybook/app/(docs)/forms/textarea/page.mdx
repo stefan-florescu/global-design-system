@@ -60,7 +60,8 @@ A one-row `Textarea` between attachment buttons and a send button, for chat mess
   box the inner textarea has no border, so the outer box shows the `brand` focus border and ring
   (Flowbite shows no focus there).
 - Icon-only toolbar buttons are `Button`s with an `aria-label`, so they keep the keyboard focus
-  outline. Flowbite's "Show full screen" tooltip is a native `title` here.
+  outline. Flowbite's "Show full screen" tooltip is a [`Tooltip`](/components/tooltips) in label
+  mode: it names the button and also opens on keyboard focus (a native `title` doesn't).
 
 ## API Reference
 

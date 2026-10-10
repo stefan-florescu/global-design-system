@@ -12,6 +12,7 @@
     "layout": ["pagination", "navigation", "table", "single"],
     "size": ["sm", "md"],
     "showIcons": [true, false],
+    "showTooltips": [true, false],
     "showEllipsis": [true, false]
   },
   "defaults": {

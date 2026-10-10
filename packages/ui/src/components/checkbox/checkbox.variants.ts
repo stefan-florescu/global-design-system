@@ -16,8 +16,8 @@ import { focusOutline } from "../../lib/focus";
 export const choiceControlVariants = cva(
   [
     "peer m-0 block size-4 shrink-0 appearance-none border border-input bg-neutral-secondary-medium align-middle",
-    "checked:border-brand checked:bg-brand",
-    "aria-invalid:not-checked:border-danger",
+    "checked:border-brand checked:bg-brand indeterminate:border-brand indeterminate:bg-brand",
+    "aria-invalid:not-checked:not-indeterminate:border-danger",
     "focus:ring-2",
     "forced-colors:appearance-auto",
     focusOutline,
@@ -40,6 +40,10 @@ export const choiceControlVariants = cva(
   },
 );
 
+/* The dash of an indeterminate ("mixed") checkbox, such as a select-all with some rows selected. */
+export const choiceIndeterminateClassName =
+  "pointer-events-none absolute inset-0 m-auto hidden size-3.5 text-brand-foreground peer-indeterminate:block forced-colors:hidden";
+
 /* Wraps the input and its check mark / dot. Margins place it like Flowbite's input. */
 export const choiceControlWrapperVariants = cva("relative inline-flex shrink-0 items-center", {
   variants: {
@@ -57,7 +61,7 @@ export const choiceControlWrapperVariants = cva("relative inline-flex shrink-0 i
 
 /* The check mark (checkbox) or the white centre dot (radio), shown when checked. */
 export const choiceIndicatorVariants = cva(
-  "pointer-events-none absolute inset-0 m-auto hidden peer-checked:block forced-colors:hidden",
+  "pointer-events-none absolute inset-0 m-auto hidden peer-checked:block peer-indeterminate:hidden forced-colors:hidden",
   {
     variants: {
       type: {

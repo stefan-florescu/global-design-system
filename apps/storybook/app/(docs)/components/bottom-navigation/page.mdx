@@ -56,7 +56,9 @@ Add `bordered` to separate the items with dividers.
 ### Application bar example
 
 Add `floating` for a rounded bar inset from the bottom edge. Use `hideLabel` to show only icons
-(the label stays available to screen readers) and put a call to action in the middle.
+(the label stays available to screen readers) and put a call to action in the middle. Wrap
+icon-only items in a [`Tooltip`](/components/tooltips) with `mode="label"` to show their names on
+hover and focus.
 
 <ComponentPreview name="bottom-navigation-app-bar" />
 
@@ -80,8 +82,7 @@ Set `position="sticky"` to keep the bar at the bottom of a scrolling container, 
 <ComponentPreview name="bottom-navigation-card" />
 
 Flowbite's "Online meeting control bar" and "Video player bar" are media toolbars rather than
-navigation, and need tooltip, dropdown and progress components the design system doesn't have yet,
-so they are not shown.
+navigation, so they are not shown here.
 
 ## Accessibility
 
@@ -91,7 +92,9 @@ so they are not shown.
   `fg-brand` (Flowbite only colours items on hover). If colour is the only cue in your design, add
   another one, such as a filled icon.
 - `hideLabel` keeps the label as visually hidden text; every item always has a name. Flowbite's
-  tooltips on icon-only items are not included until a tooltip component exists.
+  tooltips on icon-only items are [`Tooltip`](/components/tooltips)s in label mode: they show the
+  same name on hover and keyboard focus and are read once. <Kbd>Escape</Kbd> hides them. The
+  app bar's add button is named by its tooltip, "Create new item".
 - Keyboard focus draws a solid `ring` outline inside the item; Flowbite has no focus style.
 - Each item fills its share of the 64px-high bar, well above the 24×24px minimum target size.
 - A fixed bar covers the bottom of the page. Add matching padding to your layout so no content is

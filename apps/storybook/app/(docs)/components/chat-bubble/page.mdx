@@ -164,7 +164,10 @@ readers announce new messages as they arrive.
   menu roles or arrow-key support.
 - Image download buttons also appear when they receive keyboard focus, not only on hover, and every
   icon-only button has a name, such as "Pause voice note" or "Download Flowbite Terms &
-  Conditions". Flowbite's tooltips are replaced by these names.
+  Conditions". Flowbite's "Download image" tooltips on the image download buttons are
+  [`Tooltip`](/components/tooltips)s that describe the button, so screen readers read the specific
+  name first ("Download Green hills at noon") and the tooltip after it. They open on hover and on
+  keyboard focus, and <Kbd>Escape</Kbd> hides them.
 - Text uses `heading` and `body` on `neutral-secondary-soft`, pairings that pass WCAG 2.2 AA in
   both themes. Flowbite's white labels on images use `dark-foreground`, and the hover overlay uses
   `dark-backdrop` instead of a raw gray.

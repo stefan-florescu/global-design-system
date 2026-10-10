@@ -1,0 +1,214 @@
+export const metadata = {
+  title: "Tabs",
+  description:
+    "Switch between related panels of content without leaving the page, or between sibling pages with tab-styled links.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="tabs-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+Then import the styles once in your global CSS, after Tailwind:
+
+```css
+@import "tailwindcss";
+@import "@stefan-florescu/ui/styles.css";
+```
+
+## Usage
+
+```tsx
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Tabs defaultValue="profile">
+  <TabsList aria-label="Account">
+    <TabsTrigger value="profile">Profile</TabsTrigger>
+    <TabsTrigger value="settings">Settings</TabsTrigger>
+  </TabsList>
+  <TabsContent value="profile">Profile panel</TabsContent>
+  <TabsContent value="settings">Settings panel</TabsContent>
+</Tabs>
+```
+
+Each `TabsTrigger` shows the `TabsContent` with the same `value`. The parts are separate
+components, like Radix and shadcn/ui, rather than flowbite-react's `Tabs` + `TabItem` with a
+`title` prop: the list and the panels can sit apart (in a card, beside each other, or with a
+`select` in between), and each part takes its own `className` and attributes. `Tabs` is a client
+component; you can render it from a Server Component.
+
+### Tabs or links?
+
+Flowbite's first examples are lists of links (`<a href>` with `aria-current="page"`): its script
+only turns lists marked with `data-tabs-toggle` into tabs. The two are different things for
+assistive technology, so the design system has a part for each, with the same styles:
+
+- **`Tabs`** switches panels on the same page. It is a WAI-ARIA `tablist`, moved through with the
+  arrow keys.
+- **`TabsNav`** with **`TabsLink`** links to other pages, such as the sections of an account
+  area. It is a `nav` landmark with a list of links, and the current page has
+  `aria-current="page"`. Don't use tab roles for links: screen readers would announce tabs that
+  then load a new page.
+
+The Default tabs example below shows `TabsNav`; the others show `Tabs`. Every style works with
+both.
+
+## Examples
+
+### Default tabs
+
+Use `TabsNav` to show a list of links to other pages. Mark the current page with `active`; a
+`disabled` link has no `href` and can't be followed. Pass `asChild` to render a router link.
+
+<ComponentPreview name="tabs-nav" />
+
+### Tabs with underline
+
+Set `variant="underline"` for a 2px `brand` line under the active tab, which also shows on hover.
+
+<ComponentPreview name="tabs-underline" />
+
+### Tabs with icons
+
+Put an icon before the label. Icons are 16px, 8px from the text, and take the tab's colour.
+
+<ComponentPreview name="tabs-icons" />
+
+### Pills tabs
+
+Set `variant="pills"` to fill the active tab with `brand`.
+
+<ComponentPreview name="tabs-pills" />
+
+### Vertical tabs
+
+Set `orientation="vertical"` to stack the tabs in a column beside the panels from the `md`
+breakpoint (above them on small screens). The up and down arrow keys move between the tabs.
+
+<ComponentPreview name="tabs-vertical" />
+
+### Full width tabs
+
+Set `variant="full-width"` to join the tabs into one bar that fills its container. Below the `sm`
+breakpoint this example swaps the tabs for a `Select`, as Flowbite does: control the value with
+`value` and `onValueChange` and set it from both.
+
+<ComponentPreview name="tabs-full-width" />
+
+### Full width tabs with icons
+
+Flowbite repeats the "Tabs with icons" heading for this example.
+
+<ComponentPreview name="tabs-full-width-icons" />
+
+### Interactive tabs
+
+Selecting a tab shows its panel and hides the others; there is nothing to initialise. Give every
+`TabsTrigger` a `value` and the `TabsContent` it controls the same `value`. The ids that tie each
+tab to its panel are generated, so several sets of tabs can share a page.
+
+<ComponentPreview name="tabs-interactive" />
+
+### Active tab style
+
+Each tab has `data-state="active"`, `"inactive"` or `"disabled"`. Restyle a state with
+`data-[state=…]:` classes, which win over the variant's own classes. This example uses
+`fg-purple` for the active tab and a `default` line under the others, as in Flowbite.
+
+<ComponentPreview name="tabs-active-style" />
+
+### Controlled tabs
+
+Use `value` and `onValueChange` to read or set the selected tab from outside, as the full-width
+examples do. Set `activationMode="manual"` when showing a panel is slow (it fetches data, for
+example): the arrow keys then only move focus, and <Kbd>Enter</Kbd> or <Kbd>Space</Kbd> selects.
+
+## Accessibility
+
+- `Tabs` follows the [WAI-ARIA Tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
+  `TabsList` is a `tablist` (with `aria-orientation`); name it with `aria-label` or
+  `aria-labelledby`. Each `TabsTrigger` is a `<button role="tab">` with `aria-selected` and
+  `aria-controls`; each `TabsContent` is a `tabpanel` labelled by its tab and `hidden` while
+  another tab is selected.
+- Only the selected tab is in the tab sequence (a roving `tabindex`), so <Kbd>Tab</Kbd> moves from
+  the tabs straight to the panel. The panel is a tab stop itself, so its content is reachable even
+  when it has no links or buttons.
+- By default a tab is selected as soon as it receives focus (automatic activation); with
+  `activationMode="manual"`, <Kbd>Enter</Kbd> or <Kbd>Space</Kbd> selects it. Disabled tabs are
+  skipped by the arrow keys. In a right-to-left page the left and right arrows swap.
+- `TabsNav` is a `nav` landmark with a list of links; the current page has `aria-current="page"`
+  and disabled links have `aria-disabled` and no `href`. Name it with `aria-label`.
+- Flowbite has no keyboard focus style on tabs (full-width tabs only have its soft
+  `neutral-secondary-strong` halo); every tab and link here also draws a solid 2px `ring` outline,
+  and a focused full-width tab rises above its neighbours so the outline isn't hidden.
+- Flowbite's HTML tabs have no arrow-key support, and flowbite-react's only move focus with
+  <Kbd>←</Kbd> / <Kbd>→</Kbd>, without <Kbd>Home</Kbd> / <Kbd>End</Kbd>, wrapping or skipping
+  disabled tabs.
+- The selected tab is shown by more than colour: a filled background (`default`, `pills`,
+  `full-width`) or a 2px line (`underline`). Text and fills pass WCAG 2.2 AA in both themes, as in
+  Flowbite. Icons are decorative (`aria-hidden`).
+- Flowbite labels the select that replaces the full-width tabs on small screens "Select your
+  country"; the examples label it "Select a tab".
+
+| Key                                 | Action                                                                  |
+| ----------------------------------- | ----------------------------------------------------------------------- |
+| <Kbd>Tab</Kbd>                      | Moves focus to the selected tab, then into its panel                    |
+| <Kbd>→</Kbd> / <Kbd>←</Kbd>         | Moves to the next / previous tab, wrapping, and selects it (horizontal) |
+| <Kbd>↓</Kbd> / <Kbd>↑</Kbd>         | Moves to the next / previous tab, wrapping, and selects it (vertical)   |
+| <Kbd>Home</Kbd> / <Kbd>End</Kbd>    | Moves to the first / last tab and selects it                            |
+| <Kbd>Enter</Kbd> / <Kbd>Space</Kbd> | Selects the focused tab (needed only with `activationMode="manual"`)    |
+
+## API Reference
+
+### Tabs
+
+| Prop             | Type                                                  | Default        |
+| ---------------- | ----------------------------------------------------- | -------------- |
+| `defaultValue`   | `string`                                              | First tab      |
+| `value`          | `string` (controlled)                                 | —              |
+| `onValueChange`  | `(value: string) => void`                             | —              |
+| `variant`        | `"default" \| "underline" \| "pills" \| "full-width"` | `"default"`    |
+| `orientation`    | `"horizontal" \| "vertical"`                          | `"horizontal"` |
+| `activationMode` | `"automatic" \| "manual"`                             | `"automatic"`  |
+
+Without `defaultValue` the first enabled tab is selected once the page is interactive; set it to
+render the right panel on the server.
+
+### TabsList
+
+Accepts all `<div>` attributes. Name it with `aria-label` or `aria-labelledby`.
+
+### TabsTrigger
+
+| Prop       | Type                | Default |
+| ---------- | ------------------- | ------- |
+| `value`    | `string` (required) | —       |
+| `disabled` | `boolean`           | `false` |
+
+### TabsContent
+
+| Prop    | Type                | Default |
+| ------- | ------------------- | ------- |
+| `value` | `string` (required) | —       |
+
+### TabsNav
+
+| Prop          | Type                                                  | Default        |
+| ------------- | ----------------------------------------------------- | -------------- |
+| `variant`     | `"default" \| "underline" \| "pills" \| "full-width"` | `"default"`    |
+| `orientation` | `"horizontal" \| "vertical"`                          | `"horizontal"` |
+
+### TabsLink
+
+| Prop       | Type      | Default |
+| ---------- | --------- | ------- |
+| `active`   | `boolean` | `false` |
+| `disabled` | `boolean` | `false` |
+| `asChild`  | `boolean` | `false` |
+
+All parts forward their remaining native attributes, including `ref` and `className`.

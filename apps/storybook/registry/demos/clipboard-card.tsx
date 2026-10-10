@@ -37,6 +37,7 @@ export default function ClipboardCard() {
               value={field.value}
               variant="ghost"
               iconOnly
+              showTooltip
               label={`Copy ${field.label.replace(":", "")}`}
               copiedLabel="Copied!"
               className="absolute end-1.5 top-1/2 -translate-y-1/2"

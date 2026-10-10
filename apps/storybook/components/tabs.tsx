@@ -1,71 +1,36 @@
-"use client";
-
-import { useId, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
+import { Tabs as TabsRoot, TabsContent, TabsList, TabsTrigger } from "@stefan-florescu/ui";
+import type { ReactNode } from "react";
 
 export type TabItem = { value: string; label: string; content: ReactNode };
 
-/** WAI-ARIA tabs with automatic activation and roving focus (←/→/Home/End). */
+/*
+ * The site's Preview / Code and package-manager switchers: the design system's `Tabs` (WAI-ARIA
+ * tabs, roving focus, ←/→/Home/End), restyled as the docs' compact segmented control.
+ */
+const listClassName =
+  "mb-3 inline-flex h-9 flex-nowrap items-center gap-0.5 rounded-md border-0 bg-neutral-secondary-medium p-0.75";
+
+const triggerClassName = [
+  "h-full rounded-xs px-3 py-0 text-[0.8125rem] transition-colors motion-reduce:transition-none",
+  "hover:bg-transparent",
+  "data-[state=active]:bg-neutral-primary data-[state=active]:text-heading data-[state=active]:shadow-sm",
+].join(" ");
+
 export function Tabs({ items, label }: { items: TabItem[]; label: string }) {
-  const id = useId();
-  const [active, setActive] = useState(items[0]?.value);
-  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
-
-  const onKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
-    const last = items.length - 1;
-    const next =
-      event.key === "ArrowRight"
-        ? (index + 1) % items.length
-        : event.key === "ArrowLeft"
-          ? (index - 1 + items.length) % items.length
-          : event.key === "Home"
-            ? 0
-            : event.key === "End"
-              ? last
-              : undefined;
-    if (next === undefined) return;
-    event.preventDefault();
-    setActive(items[next]?.value);
-    tabRefs.current[next]?.focus();
-  };
-
   return (
-    <div className="tabs">
-      <div className="tabs__list" role="tablist" aria-label={label}>
-        {items.map((item, index) => {
-          const selected = item.value === active;
-          return (
-            <button
-              key={item.value}
-              ref={(el) => {
-                tabRefs.current[index] = el;
-              }}
-              className="tabs__trigger"
-              type="button"
-              role="tab"
-              id={`${id}-tab-${item.value}`}
-              aria-selected={selected}
-              aria-controls={`${id}-panel-${item.value}`}
-              tabIndex={selected ? 0 : -1}
-              onClick={() => setActive(item.value)}
-              onKeyDown={(event) => onKeyDown(event, index)}
-            >
-              {item.label}
-            </button>
-          );
-        })}
-      </div>
+    <TabsRoot defaultValue={items[0]?.value} className="tabs">
+      <TabsList aria-label={label} className={listClassName}>
+        {items.map((item) => (
+          <TabsTrigger key={item.value} value={item.value} className={triggerClassName}>
+            {item.label}
+          </TabsTrigger>
+        ))}
+      </TabsList>
       {items.map((item) => (
-        <div
-          key={item.value}
-          className="tabs__panel"
-          role="tabpanel"
-          id={`${id}-panel-${item.value}`}
-          aria-labelledby={`${id}-tab-${item.value}`}
-          hidden={item.value !== active}
-        >
+        <TabsContent key={item.value} value={item.value}>
           {item.content}
-        </div>
+        </TabsContent>
       ))}
-    </div>
+    </TabsRoot>
   );
 }

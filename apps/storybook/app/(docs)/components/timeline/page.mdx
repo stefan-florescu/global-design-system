@@ -1,0 +1,132 @@
+export const metadata = {
+  title: "Timeline",
+  description:
+    "Show a series of events in date order, such as an activity feed, a changelog or the milestones of a project, along a vertical or horizontal line.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="timeline-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import {
+  Timeline,
+  TimelineBody,
+  TimelineContent,
+  TimelineItem,
+  TimelinePoint,
+  TimelineTime,
+  TimelineTitle,
+} from "@stefan-florescu/ui";
+```
+
+```tsx
+<Timeline>
+  <TimelineItem>
+    <TimelinePoint />
+    <TimelineContent>
+      <TimelineTime dateTime="2022-02">February 2022</TimelineTime>
+      <TimelineTitle>Application UI code in Tailwind CSS</TimelineTitle>
+      <TimelineBody>Over 20 pages, including a dashboard layout and a kanban board.</TimelineBody>
+    </TimelineContent>
+  </TimelineItem>
+</Timeline>
+```
+
+## Examples
+
+### Default timeline
+
+A vertical line with a dot for each event, and its date, title and description. Add a button or
+link, such as "Learn more", after the description. The titles here are `h4`s because they sit under
+this `h3`: set `headingLevel` to match your page.
+
+<ComponentPreview name="timeline-demo" />
+
+### Vertical timeline
+
+Pass an `icon` to `TimelinePoint` for a 24px brand circle, and put a [`Badge`](/components/badge)
+in `TimelineTime` or `TimelineTitle` for tags such as the date or "Latest".
+
+<ComponentPreview name="timeline-vertical" />
+
+### Stepper timeline
+
+Add `horizontal` to lay the events out in a row, joined by a line, from the `sm` breakpoint up.
+On small screens they stack.
+
+<ComponentPreview name="timeline-stepper" />
+
+### Activity log
+
+Show a person's activity with an [`Avatar`](/components/avatar) as the point (pass it as
+`TimelinePoint`'s children), the time as a badge, and links to the pages involved.
+
+<ComponentPreview name="timeline-activity-log" />
+
+### Grouped timeline
+
+Group the entries of each day in a panel with the date as its heading, and make each entry a link
+with an avatar, a description and a tag. Each group is a `section` named by its date heading, with
+the entries in an ordered list.
+
+<ComponentPreview name="timeline-grouped" />
+
+## Accessibility
+
+- `Timeline` is an ordered list (`<ol>`) of `<li>` events, so screen readers announce the number
+  of events and each one's position.
+- `TimelineTime` is a `<time>` element: pass a machine-readable `dateTime`, such as
+  `"2025-03-13"`.
+- `TimelineTitle` is an `h3` by default. Set `headingLevel` (2 to 6) so the titles sit one level
+  below the heading the timeline is under; on this page they are `h4`s. Flowbite always uses
+  `h3`.
+- Dots, icons and the connecting lines are decorative and hidden from assistive technology. Points
+  with your own content, such as an avatar, are not hidden: give the image a name with `alt`, or
+  leave it out when the name is already in the text, as in the activity log.
+- The "Read more" buttons in the stepper have an `aria-label` that names their event ("Read more
+  about Flowbite Library v1.0.0"), so they can be told apart out of context.
+- The grouped timeline puts each day's date in a heading and names its `section` with it, and its
+  links draw a solid `ring` outline on keyboard focus. Flowbite's date is a plain `<time>`.
+- Every colour pairing passes WCAG 2.2 AA in light and dark, as in Flowbite. Buttons use
+  [`Button`](/components/button), so the "Reply" label is the on-fill foreground token rather than
+  white.
+- Differences from Flowbite: avatars are our placeholder images, the comment in the activity log is
+  a `<blockquote>`, and the "Download ZIP" icon is Lucide's file archive.
+
+## API Reference
+
+### Timeline
+
+| Prop         | Type                                                  | Default |
+| ------------ | ----------------------------------------------------- | ------- |
+| `horizontal` | `boolean`. A row from `sm` up (the stepper timeline). | `false` |
+| `className`  | `string`. Merged with `cn()`; your classes win.       | —       |
+
+Renders an `<ol>` and forwards its attributes, including `ref`.
+
+### TimelinePoint
+
+| Prop        | Type                                                                          | Default |
+| ----------- | ----------------------------------------------------------------------------- | ------- |
+| `icon`      | `ReactNode`. Shown in a 24px brand circle. Decorative.                        | —       |
+| `children`  | `ReactNode`. Your own marker, such as an `Avatar`, in a 24px circle.          | —       |
+| `className` | `string`. Applied to the marker (the dot or circle), e.g. to change its ring. | —       |
+
+Without `icon` or `children`, the point is a 12px dot.
+
+### TimelineTitle
+
+| Prop           | Type                    | Default |
+| -------------- | ----------------------- | ------- |
+| `headingLevel` | `2 \| 3 \| 4 \| 5 \| 6` | `3`     |
+
+`TimelineItem` renders an `<li>`, `TimelineContent` and `TimelineBody` a `<div>`, and
+`TimelineTime` a `<time>`. All parts are server components and forward native attributes,
+including `ref` and `className`. `timelineVariants()` returns the class names of the list.

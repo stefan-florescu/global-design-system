@@ -1,0 +1,64 @@
+{
+  "name": "Tabs",
+  "status": "beta",
+  "description": "Layered sections of content, the panels, shown one at a time by selecting their tab. TabsNav renders the same styles as links to other pages.",
+  "category": "navigation",
+  "import": "import { Tabs, TabsContent, TabsLink, TabsList, TabsNav, TabsTrigger } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/tabs/",
+  "client": true,
+  "props": "generated",
+  "parts": ["Tabs", "TabsList", "TabsTrigger", "TabsContent", "TabsNav", "TabsLink"],
+  "variants": {
+    "variant": ["default", "underline", "pills", "full-width"],
+    "orientation": ["horizontal", "vertical"],
+    "activationMode": ["automatic", "manual"]
+  },
+  "defaults": {
+    "variant": "default",
+    "orientation": "horizontal",
+    "activationMode": "automatic"
+  },
+  "tokens": [
+    "color.body",
+    "color.heading",
+    "color.fg-brand",
+    "color.fg-disabled",
+    "color.brand",
+    "color.brand-foreground",
+    "color.default",
+    "color.neutral-primary-soft",
+    "color.neutral-secondary-soft",
+    "color.neutral-secondary-medium",
+    "color.neutral-secondary-strong",
+    "color.ring",
+    "radius.base",
+    "text.sm",
+    "font.medium",
+    "z.raised"
+  ],
+  "useWhen": [
+    "Switching between views of equal weight that share one place on the page",
+    "Splitting long settings or details into named sections people visit one at a time",
+    "Tab-styled links between sibling pages (TabsNav)"
+  ],
+  "avoidWhen": [
+    "Content people need to compare side by side: show it together",
+    "Steps that must be completed in order: use a stepper",
+    "Choosing a value in a form: use radios or a select"
+  ],
+  "related": ["Accordion", "ButtonGroup", "Navbar"],
+  "examples": [
+    "apps/storybook/registry/demos/tabs-demo.tsx",
+    "apps/storybook/registry/demos/tabs-nav.tsx",
+    "apps/storybook/registry/demos/tabs-underline.tsx",
+    "apps/storybook/registry/demos/tabs-icons.tsx",
+    "apps/storybook/registry/demos/tabs-pills.tsx",
+    "apps/storybook/registry/demos/tabs-vertical.tsx",
+    "apps/storybook/registry/demos/tabs-full-width.tsx",
+    "apps/storybook/registry/demos/tabs-full-width-icons.tsx",
+    "apps/storybook/registry/demos/tabs-interactive.tsx",
+    "apps/storybook/registry/demos/tabs-active-style.tsx",
+    "apps/storybook/registry/demos/card-tabs.tsx",
+    "apps/storybook/registry/demos/card-full-width-tabs.tsx"
+  ]
+}

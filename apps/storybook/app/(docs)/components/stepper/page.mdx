@@ -1,0 +1,140 @@
+export const metadata = {
+  title: "Stepper",
+  description:
+    "Use the stepper to show the numbered steps of a process, such as a multi-step form, and how far along it is, horizontally or vertically.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="stepper-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Stepper, StepperItem } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Stepper aria-label="Registration progress">
+  <StepperItem status="complete">Personal info</StepperItem>
+  <StepperItem status="current">Account info</StepperItem>
+  <StepperItem>Confirmation</StepperItem>
+</Stepper>
+```
+
+`Stepper` is an ordered list (`<ol>`) of `StepperItem`s. Give each step a `status`: `complete`,
+`current` or `upcoming` (the default). The children are the step's name; `variant` picks one of
+Flowbite's styles, and `Stepper` numbers the steps for you.
+
+| Variant      | Layout                                                           | Uses                  |
+| ------------ | ---------------------------------------------------------------- | --------------------- |
+| `default`    | Numbers and names in a row, joined by a line (a slash on phones) | —                     |
+| `progress`   | Icon markers joined by a thick line; names are visually hidden   | `icon`                |
+| `detailed`   | Icon markers with a name and a description; stacks on phones     | `icon`, `description` |
+| `vertical`   | A column of cards with a check or an arrow                       | —                     |
+| `breadcrumb` | Numbered names in a bordered bar, separated by double chevrons   | —                     |
+| `timeline`   | Icon markers on a vertical line, with a name and a description   | `icon`, `description` |
+
+Complete steps show a check in place of their icon. The current step is drawn in brand with an
+extra shape, so it isn't told apart by colour alone: a filled number, a brand border round the
+marker, or an outlined card.
+
+## Examples
+
+### Default stepper
+
+Show the steps of a form with a number and a name in a row. On small screens the line between
+steps becomes a slash; hide the end of long names there, as "Info" is here.
+
+<ComponentPreview name="stepper-demo" />
+
+### Progress stepper
+
+Show progress with icons alone, and a check once a step is finished. The names are still read by
+screen readers.
+
+<ComponentPreview name="stepper-progress" />
+
+### Detailed stepper
+
+Add a `description` under each step's name.
+
+<ComponentPreview name="stepper-detailed" />
+
+### Vertical stepper
+
+List the steps in a column of cards: complete steps in success, the current one in brand and the
+rest in neutral.
+
+<ComponentPreview name="stepper-vertical" />
+
+### Breadcrumb stepper
+
+Show the steps like a [breadcrumb](/components/breadcrumb), with double chevrons between them.
+
+<ComponentPreview name="stepper-breadcrumb" />
+
+### Timeline stepper
+
+Show the steps on a vertical line, with an icon, a name and a description. For a timeline of
+events rather than steps, use the [Timeline](/components/timeline).
+
+<ComponentPreview name="stepper-timeline" />
+
+### Stepper with form
+
+Put the stepper above a form and change the form as the user moves through the steps. This example
+uses [`Input`](/forms/input-field), [`Label`](/forms/input-field),
+[`Checkbox`](/forms/checkbox) and [`Button`](/components/button); submit it to move to the next
+step.
+
+<ComponentPreview name="stepper-form" />
+
+## Accessibility
+
+- The stepper is an ordered list, so screen readers announce how many steps there are and the
+  position of each. Name it with `aria-label`, such as "Registration progress".
+- The current step has `aria-current="step"`. Complete and upcoming steps end in visually hidden
+  text, ", completed" and ", not started", so their state doesn't rely on colour or icons. Pass
+  `statusLabel` to translate it.
+- Icons, lines, slashes and chevrons are `aria-hidden`. Flowbite's slashes and lines are CSS
+  `::after` content, which some screen readers read out; ours are hidden elements.
+- The `progress` stepper hides its names visually but keeps them for screen readers.
+- The current step is drawn in brand and also has a shape that sets it apart without colour
+  (WCAG 1.4.1). Flowbite shows no current step except in its vertical stepper.
+- Flowbite puts step names in `h3` elements, which would add every step to the page outline; ours
+  are text. Its vertical cards have `role="alert"` and repeat each name as hidden text, which made
+  screen readers announce every card when the page loads; ours don't.
+- When the step changes, as in the form example, move focus to the new step's heading so keyboard
+  and screen reader users know where they are.
+- A stepper only shows progress; it isn't a navigation. To let users jump between steps, put links
+  or buttons inside the names.
+
+## API Reference
+
+### Stepper
+
+| Prop        | Type                                                                                | Default     |
+| ----------- | ----------------------------------------------------------------------------------- | ----------- |
+| `variant`   | `"default" \| "progress" \| "detailed" \| "vertical" \| "breadcrumb" \| "timeline"` | `"default"` |
+| `className` | `string`. Merged with `cn()`; your classes win.                                     | —           |
+
+Other native `<ol>` attributes are forwarded, including `ref` and `aria-label`.
+
+### StepperItem
+
+| Prop          | Type                                                                                   | Default      |
+| ------------- | -------------------------------------------------------------------------------------- | ------------ |
+| `status`      | `"complete" \| "current" \| "upcoming"`                                                | `"upcoming"` |
+| `icon`        | `ReactNode`. The marker icon in `progress`, `detailed` and `timeline` (else a number). | —            |
+| `description` | `ReactNode`. Text under the name in `detailed` and `timeline`.                         | —            |
+| `statusLabel` | `string`. Hidden status text; `""` leaves it out.                                      | see above    |
+| `className`   | `string`. On the `<li>`.                                                               | —            |
+
+`Stepper` sets each item's `variant`, `index` and `last`; set them yourself only when an item isn't
+a direct child. Other native `<li>` attributes are forwarded. `stepperVariants()`,
+`stepperItemVariants()` and `stepperMarkerVariants()` return the class names for custom markup.

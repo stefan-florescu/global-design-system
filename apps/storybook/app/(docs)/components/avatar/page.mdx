@@ -48,6 +48,14 @@ Pass `initials` to show the person's initials on `neutral-tertiary` instead of a
 
 <ComponentPreview name="avatar-initials" />
 
+### Avatar tooltip
+
+Show the person's name in a [`Tooltip`](/components/tooltips) when the avatar is hovered or
+focused. Each avatar is a link to the person's profile, so keyboard users can reach the tooltip
+too; with `mode="label"` the tooltip is the link's name, so the image's `alt` is left empty.
+
+<ComponentPreview name="avatar-tooltip" />
+
 ### Dot indicator
 
 Set `status` to `online`, `away`, `busy` or `offline`, and `statusPosition` to `top-right` or
@@ -100,9 +108,6 @@ the default.
 | `xl`  | 56px   | `rounded-base` |
 | `2xl` | 64px   | `rounded-base` |
 
-Flowbite's "Avatar tooltip" example is not shown: it needs a Tooltip component, which the system
-doesn't have yet.
-
 ## Accessibility
 
 - With `src`, the avatar renders an `<img>` with your `alt`. Initials and the placeholder are
@@ -113,6 +118,9 @@ doesn't have yet.
   `neutral-secondary-medium`) pass WCAG 2.2 AA in light and dark, as in Flowbite.
 - The status dot includes visually hidden text ("Online", "Busy"…), which you can change with
   `statusLabel`.
+- In "Avatar tooltip" each avatar is wrapped in a link (Flowbite's tooltip hangs off the `<img>`
+  itself, which the keyboard cannot reach), so the name opens on keyboard focus too and names the
+  link. <Kbd>Escape</Kbd> hides it.
 - In the user dropdown, the avatar sits in a real `<button>` (Flowbite opens the menu from the
   `<img>` itself, which the keyboard cannot reach), named "User menu", with a solid focus outline.
   The menu follows the WAI-ARIA menu button pattern; see [Dropdown](/components/dropdown).

@@ -90,6 +90,7 @@ Put an inline indicator inside a `Badge`, before its label.
 
 Indicators can mark the steps of a stepper, holding an icon (sized like a count) or a dot. Each
 step's state is written as visually hidden text after its name, so it does not rely on colour.
+For a full progress stepper, use the [Stepper](/components/stepper) component.
 
 <ComponentPreview name="indicator-stepper" />
 
@@ -103,8 +104,8 @@ motion.
 
 ### Spinner indicator
 
-Use a spinner inside a card that hasn't loaded yet. It is the `LoaderCircle` icon in `brand`, as
-in `Button`'s `loading` state, with "Loading..." as visually hidden text.
+Use a [spinner](/components/spinner) inside a card that hasn't loaded yet. It is a
+`role="status"` region with "Loading..." as visually hidden text.
 
 <ComponentPreview name="indicator-spinner" />
 

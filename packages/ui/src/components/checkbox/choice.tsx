@@ -1,6 +1,6 @@
 import { useId, type ComponentProps, type ReactNode } from "react";
 
-import { Check } from "@stefan-florescu/icons";
+import { Check, Minus } from "@stefan-florescu/icons";
 
 import { cn } from "../../lib/cn";
 
@@ -14,6 +14,7 @@ import {
   choiceControlWrapperVariants,
   choiceDescriptionVariants,
   choiceIconClassName,
+  choiceIndeterminateClassName,
   choiceIndicatorVariants,
   choiceLabelVariants,
   choiceTextVariants,
@@ -34,6 +35,12 @@ export type ChoiceProps = Omit<ComponentProps<"input">, "type" | "size"> &
     endIcon?: ReactNode;
     /** Marks the control as wrong: red border and `aria-invalid`. */
     invalid?: boolean;
+    /**
+     * Checkbox only: the "mixed" state, such as a select-all with some rows selected. Shows a dash
+     * and is announced as mixed (sets the input's `indeterminate` property, so it needs a client
+     * component).
+     */
+    indeterminate?: boolean;
   };
 
 type Layout = "plain" | "helper" | "bordered" | "list" | "borderedDescription" | "borderedIcon";
@@ -47,9 +54,11 @@ export function Choice({
   icon,
   endIcon,
   invalid,
+  indeterminate,
   id,
   className,
   disabled,
+  ref,
   ...props
 }: ChoiceProps & { type: "checkbox" | "radio" }) {
   const fallbackId = useId();
@@ -74,6 +83,15 @@ export function Choice({
       data-slot={type}
       className={choiceControlVariants({ type, variant })}
       {...props}
+      ref={
+        indeterminate === undefined
+          ? ref
+          : (element: HTMLInputElement | null) => {
+              if (element) element.indeterminate = indeterminate;
+              if (typeof ref === "function") return ref(element);
+              if (ref) ref.current = element;
+            }
+      }
     />
   );
 
@@ -130,7 +148,10 @@ export function Choice({
     >
       {input}
       {type === "checkbox" ? (
-        <Check aria-hidden className={choiceIndicatorVariants({ type })} />
+        <>
+          <Check aria-hidden className={choiceIndicatorVariants({ type })} />
+          <Minus aria-hidden className={choiceIndeterminateClassName} />
+        </>
       ) : (
         <span aria-hidden className={choiceIndicatorVariants({ type })} />
       )}

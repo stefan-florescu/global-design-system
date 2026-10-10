@@ -10,7 +10,8 @@
   "variants": {
     "variant": ["brand", "secondary", "ghost", "tertiary"],
     "size": ["sm", "md"],
-    "iconOnly": [true, false]
+    "iconOnly": [true, false],
+    "showTooltip": [true, false]
   },
   "defaults": {
     "variant": "brand",
@@ -18,7 +19,8 @@
     "iconOnly": false,
     "label": "Copy",
     "copiedLabel": "Copied!",
-    "resetAfter": 2000
+    "resetAfter": 2000,
+    "showTooltip": false
   },
   "tokens": [
     "color.brand",

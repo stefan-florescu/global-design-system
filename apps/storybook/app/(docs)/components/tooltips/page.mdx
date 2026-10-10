@@ -1,0 +1,154 @@
+export const metadata = {
+  title: "Tooltip",
+  description:
+    "Show a short text that describes or names an element when it is hovered or focused, in multiple positions and styles.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="tooltip-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+Then import the styles once in your global CSS, after Tailwind:
+
+```css
+@import "tailwindcss";
+@import "@stefan-florescu/ui/styles.css";
+```
+
+## Usage
+
+```tsx
+import { Button, Tooltip } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Tooltip content="Tooltip content">
+  <Button>Default tooltip</Button>
+</Tooltip>
+```
+
+The only child of `Tooltip` is the trigger: a `Button`, a link or any focusable element. `content`
+is the short text the tooltip shows. The tooltip opens in the browser's top layer, so no
+`overflow: hidden` or stacking context can clip it, and it flips to the other side of the trigger
+when there is no room. It is rendered at the end of the page (or of the open dialog), so wrapping a
+button in a `ButtonGroup`, a list item or a table cell changes nothing around it. `className` and
+other `div` props go to the tooltip.
+
+Keep tooltips short and plain: text only, never links, buttons or form fields (use a
+[`Popover`](/components/popover) for those), and never the only place for information people need
+to finish a task, as touch screens have no hover.
+
+## Examples
+
+### Default tooltip
+
+Hover over the button or move keyboard focus to it to show the tooltip. It hides when the pointer
+or focus leaves, or when you press <Kbd>Escape</Kbd>.
+
+<ComponentPreview name="tooltip-demo" />
+
+### Tooltip styles
+
+Set `variant` to `dark` (the default) or `light` (Flowbite's `data-tooltip-style`).
+
+<ComponentPreview name="tooltip-styles" />
+
+### Placement
+
+Set `placement` to `top` (the default), `right`, `bottom` or `left`. Add `-start` or `-end` to
+align the tooltip with an edge of the trigger, or use `auto` to open it on the side with the most
+room. When there is no room on the chosen side, it flips to the other.
+
+<ComponentPreview name="tooltip-placement" />
+
+### Triggering
+
+Set `trigger` to `hover` (the default) or `click`. A hover tooltip also opens on keyboard focus. A
+click tooltip opens and closes with a click (or <Kbd>Enter</Kbd> / <Kbd>Space</Kbd> on a button),
+and closes when focus moves away or you press outside it.
+
+<ComponentPreview name="tooltip-triggering" />
+
+### Animation
+
+The tooltip fades in with Flowbite's `transition-opacity duration-300`. Set `animation` to another
+Tailwind `duration-*` class, as this example does with `duration-1000`, or to `false` to show it at
+once. The fade is switched off when the user prefers reduced motion.
+
+<ComponentPreview name="tooltip-animation" />
+
+### Disable arrow
+
+Set `arrow={false}` to hide the arrow.
+
+<ComponentPreview name="tooltip-no-arrow" />
+
+### Icon buttons
+
+A tooltip either **describes** an element that already has a name, or **names** an icon-only one.
+
+- By default (`mode="description"`) the trigger is described by the tooltip (`aria-describedby`):
+  screen readers read the trigger's own name, then the tooltip. The trigger still needs a name of
+  its own: its text, or an `aria-label` on an icon-only button.
+- With `mode="label"` the tooltip is the trigger's name (`aria-labelledby`), for icon-only buttons
+  and links whose tooltip says what they are, such as "Notifications". The name is then read once,
+  not twice. A text `content` is also set as the trigger's `aria-label`, so it has a name before the
+  page is interactive.
+
+<ComponentPreview name="tooltip-icon-button" />
+
+## Accessibility
+
+- Follows the WAI-ARIA [tooltip](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/) pattern: the
+  tooltip has `role="tooltip"` and describes its trigger (`aria-describedby`), or names it
+  (`aria-labelledby`) with `mode="label"`. The text is in the page from the start, so screen readers
+  read it when the trigger gets focus, whether or not the tooltip is visible.
+- Meets WCAG 1.4.13 (content on hover or focus). A hover tooltip opens on hover and on keyboard
+  focus; it stays open while the pointer moves from the trigger onto the tooltip (hoverable) and
+  until both the pointer and focus have left (persistent); <Kbd>Escape</Kbd> hides it without
+  moving focus or the pointer (dismissible). That press is not passed on, so a second
+  <Kbd>Escape</Kbd> closes a dialog or menu around it.
+- Focus never moves into a tooltip, so it can't hold interactive content. Focus that follows a
+  click or a tap does not open a hover tooltip, and touch hovers are ignored; set `delay` (in
+  milliseconds) to wait before a hover opens it.
+- The fade is dropped when the user prefers reduced motion. The arrow is decorative and hidden from
+  assistive technology.
+- The dark tooltip's `dark-foreground` text on `dark` and the light tooltip's `heading` text on
+  `neutral-primary-medium` pass WCAG 2.2 AA in both themes.
+- Differences from Flowbite: Flowbite's tooltip can't be dismissed with <Kbd>Escape</Kbd> unless
+  focused, hides as soon as the pointer leaves the trigger (so it can't be hovered), and opens on
+  any focus. Its click tooltip opens on focus too and doesn't close on a second click; here a click
+  tooltip toggles with the click. The "Animation" example uses `duration-1000` instead of Flowbite's
+  `duration-300` (the default here), so the fade can be seen.
+
+| Key                                 | Action                                                             |
+| ----------------------------------- | ------------------------------------------------------------------ |
+| <Kbd>Tab</Kbd>                      | Moving focus to the trigger shows a hover tooltip; away, hides it. |
+| <Kbd>Enter</Kbd> / <Kbd>Space</Kbd> | On a click trigger (a button), shows or hides the tooltip.         |
+| <Kbd>Escape</Kbd>                   | Hides the tooltip. Focus stays where it is.                        |
+
+## API Reference
+
+### Tooltip
+
+Also takes `div` props and `ref`, applied to the tooltip.
+
+| Prop           | Type                                                                                      | Default          |
+| -------------- | ----------------------------------------------------------------------------------------- | ---------------- |
+| `content`      | `ReactNode`. Short text the tooltip shows. Required.                                      | —                |
+| `children`     | `ReactElement`. The trigger: one focusable element. Its props and `ref` are kept.         | —                |
+| `variant`      | `"dark" \| "light"` (Flowbite's `style`)                                                  | `"dark"`         |
+| `placement`    | `"top" \| "right" \| "bottom" \| "left"`, optionally with `-start` or `-end`, or `"auto"` | `"top"`          |
+| `trigger`      | `"hover" \| "click"`                                                                      | `"hover"`        |
+| `mode`         | `"description" \| "label"`. Whether the tooltip describes or names the trigger.           | `"description"`  |
+| `arrow`        | `boolean`. Show the arrow.                                                                | `true`           |
+| `animation`    | `` `duration-${number}` `` \| `false`. The fade's duration, or no fade.                   | `"duration-300"` |
+| `offset`       | `number`. Gap between trigger and tooltip, in px.                                         | `8`              |
+| `delay`        | `number`. How long a hover waits before showing the tooltip, in ms.                       | `0`              |
+| `open`         | `boolean`. Controls whether the tooltip is shown.                                         | —                |
+| `defaultOpen`  | `boolean`                                                                                 | `false`          |
+| `onOpenChange` | `(open: boolean) => void`                                                                 | —                |

@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { getPaginationItems, Pagination } from "./pagination";
@@ -81,6 +81,36 @@ describe("Pagination", () => {
     expect(
       within(screen.getByRole("navigation", { name: "Search results" })).getByText("Extra"),
     ).toBeInTheDocument();
+  });
+});
+
+describe("Pagination tooltips", () => {
+  it("names icon-only previous and next with Flowbite's tooltips when showTooltips is set", () => {
+    const onPageChange = vi.fn();
+    render(
+      <Pagination
+        layout="single"
+        currentPage={2}
+        totalPages={99}
+        onPageChange={onPageChange}
+        showTooltips
+      />,
+    );
+    const previous = screen.getByRole("button", { name: "Previous" });
+    const tooltip = document.getElementById(previous.getAttribute("aria-labelledby")!);
+    expect(tooltip).toHaveAttribute("role", "tooltip");
+    expect(tooltip).toHaveTextContent("Previous");
+    expect(screen.getByRole("button", { name: "Next" })).toHaveAttribute("aria-labelledby");
+
+    fireEvent.click(previous);
+    expect(onPageChange).toHaveBeenCalledWith(1, expect.anything());
+  });
+
+  it("adds no tooltips to labelled controls or by default", () => {
+    render(<Pagination currentPage={2} totalPages={5} showTooltips />);
+    expect(screen.getByRole("button", { name: "Previous" })).not.toHaveAttribute("aria-labelledby");
+    render(<Pagination layout="single" currentPage={2} totalPages={5} aria-label="Other" />);
+    expect(document.querySelectorAll("[role=tooltip]")).toHaveLength(0);
   });
 });
 

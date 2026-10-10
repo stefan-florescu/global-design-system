@@ -30,7 +30,7 @@
     "Grouping a short block of content with its actions"
   ],
   "avoidWhen": ["Wrapping a whole page section: use layout spacing", "Nesting cards inside cards"],
-  "related": ["Avatar", "Badge", "Button"],
+  "related": ["Avatar", "Badge", "Button", "Tabs"],
   "examples": [
     "apps/storybook/registry/demos/card-demo.tsx",
     "apps/storybook/registry/demos/card-button.tsx",
@@ -43,6 +43,8 @@
     "apps/storybook/registry/demos/card-ecommerce.tsx",
     "apps/storybook/registry/demos/card-list.tsx",
     "apps/storybook/registry/demos/card-pricing.tsx",
-    "apps/storybook/registry/demos/card-testimonial.tsx"
+    "apps/storybook/registry/demos/card-testimonial.tsx",
+    "apps/storybook/registry/demos/card-tabs.tsx",
+    "apps/storybook/registry/demos/card-full-width-tabs.tsx"
   ]
 }

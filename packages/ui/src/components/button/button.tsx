@@ -1,5 +1,6 @@
-import { LoaderCircle } from "@stefan-florescu/icons";
 import type { ComponentProps } from "react";
+
+import { Spinner } from "../spinner";
 
 import {
   buttonVariants,
@@ -51,7 +52,10 @@ export function Button({
   children,
   ...props
 }: ButtonProps) {
-  const spinner = <LoaderCircle aria-hidden className="animate-spin motion-reduce:animate-none" />;
+  // Flowbite's loader button: the spinner in the label colour, or brand on neutral surfaces.
+  // The button's `[&_svg]:size-*` sizes it.
+  const neutral = variant === "secondary" || variant === "tertiary" || variant === "ghost";
+  const spinner = <Spinner decorative size={null} variant={neutral ? "brand" : "current"} />;
 
   return (
     <button

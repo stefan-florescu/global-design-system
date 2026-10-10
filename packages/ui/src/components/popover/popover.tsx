@@ -19,11 +19,7 @@ import {
 import { cn } from "../../lib/cn";
 import { focusPanel } from "../dropdown/dropdown-context";
 import { hidePopover, showPopover } from "../dropdown/dropdown-popover";
-import {
-  computeDropdownPosition,
-  type DropdownPlacement,
-  type DropdownSide,
-} from "../dropdown/dropdown-position";
+import type { DropdownSide } from "../dropdown/dropdown-position";
 import { mergeRefs, Slot } from "../dropdown/dropdown-slot";
 
 import {
@@ -33,9 +29,10 @@ import {
   popoverPanelClassName,
   popoverTitleClassName,
 } from "./popover.variants";
+import { placeAnchoredPanel, trackAnchoredPanel, type AnchoredPlacement } from "./popover-position";
 
 /** A side of the trigger, optionally aligned to its `start` or `end` edge, or `auto`. */
-export type PopoverPlacement = DropdownPlacement | "auto";
+export type PopoverPlacement = AnchoredPlacement;
 
 /** What opens the popover: a click (or Enter / Space), or hovering or focusing the trigger. */
 export type PopoverTrigger = "click" | "hover";
@@ -45,22 +42,6 @@ const HOVER_CLOSE_DELAY = 100;
 /** Half the arrow's size, and how far it stays from the panel's rounded corners, in px. */
 const ARROW_HALF = 4;
 const ARROW_PADDING = 12;
-
-type Size = { width: number; height: number };
-type Rect = Pick<DOMRect, "top" | "right" | "bottom" | "left" | "width" | "height">;
-
-/** `auto`: the side of the trigger with the most room left around the panel. */
-function autoSide(anchor: Rect, panel: Size, offset: number, viewport: Size): DropdownSide {
-  const room: Record<DropdownSide, number> = {
-    top: anchor.top - panel.height - offset,
-    bottom: viewport.height - anchor.bottom - panel.height - offset,
-    right: viewport.width - anchor.right - panel.width - offset,
-    left: anchor.left - panel.width - offset,
-  };
-  return (Object.keys(room) as DropdownSide[]).reduce((best, side) =>
-    room[side] > room[best] ? side : best,
-  );
-}
 
 type PopoverContextValue = {
   /** Called by `PopoverTitle`: the first title names the panel. Returns an unregister function. */
@@ -252,57 +233,22 @@ export function Popover({
     const update = () => {
       const anchor = triggerRef.current;
       if (!anchor) return;
-      const rect = anchor.getBoundingClientRect();
-      const size = { width: panel.offsetWidth, height: panel.offsetHeight };
-      const viewport = { width: document.documentElement.clientWidth, height: window.innerHeight };
-      const position = computeDropdownPosition(rect, size, {
-        placement: placement === "auto" ? autoSide(rect, size, offset, viewport) : placement,
-        offset,
-        skidding: 0,
-        rtl: getComputedStyle(anchor).direction === "rtl",
-        viewport,
-      });
-      panel.style.left = `${position.x}px`;
-      panel.style.top = `${position.y}px`;
-      setSide(position.side);
-
-      // Point the arrow at the middle of the trigger, clear of the rounded corners.
-      const arrowElement = arrowRef.current;
-      if (!arrowElement) return;
-      const vertical = position.side === "top" || position.side === "bottom";
-      const start = vertical
-        ? rect.left + rect.width / 2 - position.x - panel.clientLeft
-        : rect.top + rect.height / 2 - position.y - panel.clientTop;
-      const length = vertical ? panel.clientWidth : panel.clientHeight;
-      const at = Math.max(
-        Math.min(start - ARROW_HALF, length - ARROW_PADDING - ARROW_HALF * 2),
-        Math.min(ARROW_PADDING, length / 2 - ARROW_HALF),
+      setSide(
+        placeAnchoredPanel(panel, anchor, {
+          placement,
+          offset,
+          arrow: arrowRef.current,
+          arrowHalf: ARROW_HALF,
+          arrowPadding: ARROW_PADDING,
+        }),
       );
-      arrowElement.style.left = vertical ? `${at}px` : "";
-      arrowElement.style.top = vertical ? "" : `${at}px`;
     };
     update();
     if (focusOnOpenRef.current) {
       focusOnOpenRef.current = false;
       focusPanel(panel, "first");
     }
-
-    let frame = 0;
-    const schedule = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(update);
-    };
-    window.addEventListener("scroll", schedule, true);
-    window.addEventListener("resize", schedule);
-    const observer = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(schedule);
-    observer?.observe(panel);
-    if (triggerRef.current) observer?.observe(triggerRef.current);
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", schedule, true);
-      window.removeEventListener("resize", schedule);
-      observer?.disconnect();
-    };
+    return trackAnchoredPanel(panel, triggerRef.current, update);
   }, [open, placement, offset, arrow]);
 
   // The panel: Escape closes it (unless a control inside, such as a menu, handled it first), and

@@ -79,4 +79,12 @@ describe("Checkbox", () => {
     await user.keyboard(" ");
     expect(checkbox).toBeChecked();
   });
+
+  it("shows the mixed state with indeterminate", () => {
+    const { rerender } = render(<Checkbox aria-label="Select all" indeterminate />);
+    const box = screen.getByRole("checkbox", { name: "Select all" });
+    expect((box as HTMLInputElement).indeterminate).toBe(true);
+    rerender(<Checkbox aria-label="Select all" indeterminate={false} />);
+    expect((box as HTMLInputElement).indeterminate).toBe(false);
+  });
 });
