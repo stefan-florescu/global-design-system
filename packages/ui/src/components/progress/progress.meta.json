@@ -1,0 +1,58 @@
+{
+  "name": "Progress",
+  "status": "beta",
+  "description": "Use the progress bar to show how far a task or a quantity has got, with an optional label inside or outside the bar.",
+  "category": "feedback",
+  "import": "import { Progress } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/TR/wai-aria-1.2/#progressbar",
+  "client": false,
+  "props": "generated",
+  "variants": {
+    "variant": ["brand", "dark", "success", "danger", "warning"],
+    "size": ["sm", "md", "lg", "xl"],
+    "labelText": [true, false],
+    "textLabelPosition": ["inside", "outside"],
+    "labelProgress": [true, false],
+    "progressLabelPosition": ["inside", "outside"]
+  },
+  "defaults": {
+    "variant": "brand",
+    "size": "md",
+    "max": 100,
+    "textLabelPosition": "inside",
+    "progressLabelPosition": "inside"
+  },
+  "tokens": [
+    "color.neutral-quaternary",
+    "color.brand",
+    "color.brand-foreground",
+    "color.dark",
+    "color.dark-foreground",
+    "color.success",
+    "color.success-foreground",
+    "color.danger",
+    "color.danger-foreground",
+    "color.warning",
+    "color.warning-foreground",
+    "color.body",
+    "radius.full",
+    "text.xs",
+    "text.sm"
+  ],
+  "useWhen": [
+    "Showing the completion of a task, such as an upload",
+    "Showing how much of a quota is used"
+  ],
+  "avoidWhen": [
+    "Waiting with no known duration: use a spinner or Skeleton",
+    "A value the user sets: use Range"
+  ],
+  "related": ["Skeleton", "Range", "Modal"],
+  "examples": [
+    "apps/storybook/registry/demos/progress-demo.tsx",
+    "apps/storybook/registry/demos/progress-sizes.tsx",
+    "apps/storybook/registry/demos/progress-label-inside.tsx",
+    "apps/storybook/registry/demos/progress-label-outside.tsx",
+    "apps/storybook/registry/demos/progress-colors.tsx"
+  ]
+}

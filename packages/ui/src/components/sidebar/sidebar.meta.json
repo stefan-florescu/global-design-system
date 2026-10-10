@@ -1,0 +1,65 @@
+{
+  "name": "Sidebar",
+  "status": "beta",
+  "description": "Vertical navigation along the side of an app or dashboard, with icons, badges, multi-level groups, a logo and a call to action. Below a breakpoint it opens as a drawer.",
+  "category": "navigation",
+  "import": "import { Sidebar, SidebarCollapse, SidebarCTA, SidebarItem, SidebarItemGroup, SidebarItems, SidebarLogo, SidebarProvider, SidebarToggle, useSidebar } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/examples/disclosure-navigation/",
+  "client": true,
+  "props": "generated",
+  "parts": [
+    "Sidebar",
+    "SidebarProvider",
+    "SidebarToggle",
+    "SidebarLogo",
+    "SidebarItems",
+    "SidebarItemGroup",
+    "SidebarItem",
+    "SidebarCollapse",
+    "SidebarCTA"
+  ],
+  "variants": {
+    "position": ["fixed", "sticky", "static"],
+    "breakpoint": ["sm", "md", "lg", "none"]
+  },
+  "defaults": {
+    "position": "fixed",
+    "breakpoint": "sm"
+  },
+  "tokens": [
+    "color.neutral-primary-soft",
+    "color.neutral-tertiary",
+    "color.neutral-secondary-medium",
+    "color.default",
+    "color.body",
+    "color.heading",
+    "color.fg-brand",
+    "color.ring",
+    "radius.base",
+    "radius.sm",
+    "layer.sticky",
+    "text.lg",
+    "font.medium",
+    "font.semibold"
+  ],
+  "useWhen": [
+    "The main navigation of an app, dashboard or admin panel with many sections",
+    "Navigation with nested groups, counts or status tags next to the items"
+  ],
+  "avoidWhen": [
+    "A marketing site with a few top-level links: use a navbar",
+    "A temporary panel of actions or a form: use Drawer",
+    "Tabs between views of the same content: use tabs"
+  ],
+  "related": ["Drawer", "Badge", "Alert", "MegaMenu", "BottomNavigation"],
+  "examples": [
+    "apps/storybook/registry/demos/sidebar-demo.tsx",
+    "apps/storybook/registry/demos/sidebar-multi-level.tsx",
+    "apps/storybook/registry/demos/sidebar-separator.tsx",
+    "apps/storybook/registry/demos/sidebar-cta.tsx",
+    "apps/storybook/registry/demos/sidebar-logo.tsx",
+    "apps/storybook/registry/demos/sidebar-navbar.tsx",
+    "apps/storybook/registry/demos/sidebar-off-canvas.tsx",
+    "apps/storybook/registry/demos/sidebar-dashboard.tsx"
+  ]
+}

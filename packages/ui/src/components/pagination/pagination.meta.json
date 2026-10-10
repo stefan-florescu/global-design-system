@@ -1,0 +1,66 @@
+{
+  "name": "Pagination",
+  "status": "beta",
+  "description": "Moves between pages of results or table rows: numbered pages, previous and next, or a table summary.",
+  "category": "navigation",
+  "import": "import { Pagination } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/",
+  "client": false,
+  "props": "generated",
+  "parts": ["Pagination"],
+  "variants": {
+    "layout": ["pagination", "navigation", "table", "single"],
+    "size": ["sm", "md"],
+    "showIcons": [true, false],
+    "showEllipsis": [true, false]
+  },
+  "defaults": {
+    "layout": "pagination",
+    "size": "md",
+    "siblingCount": 2,
+    "previousLabel": "Previous",
+    "nextLabel": "Next",
+    "itemsPerPage": 10,
+    "aria-label": "Pagination"
+  },
+  "tokens": [
+    "color.body",
+    "color.heading",
+    "color.fg-brand",
+    "color.neutral-secondary-medium",
+    "color.neutral-tertiary-medium",
+    "color.neutral-tertiary",
+    "color.default-medium",
+    "color.disabled",
+    "color.fg-disabled",
+    "color.ring",
+    "radius.base",
+    "shadow.xs",
+    "z.raised"
+  ],
+  "useWhen": [
+    "Splitting a long list of results, posts or products into pages",
+    "Paging through table rows, with a 'Showing 1 to 10 of 100' summary"
+  ],
+  "avoidWhen": [
+    "Moving through the steps of a process: use a stepper",
+    "Moving between sibling docs pages: use previous / next links",
+    "Feeds where people expect to keep scrolling: load more instead"
+  ],
+  "related": ["Button", "ButtonGroup", "Select", "Input"],
+  "examples": [
+    "apps/storybook/registry/demos/pagination-demo.tsx",
+    "apps/storybook/registry/demos/pagination-icons.tsx",
+    "apps/storybook/registry/demos/pagination-navigation.tsx",
+    "apps/storybook/registry/demos/pagination-navigation-icons.tsx",
+    "apps/storybook/registry/demos/pagination-table.tsx",
+    "apps/storybook/registry/demos/pagination-table-icons.tsx",
+    "apps/storybook/registry/demos/pagination-dropdown.tsx",
+    "apps/storybook/registry/demos/pagination-input.tsx",
+    "apps/storybook/registry/demos/pagination-input-button.tsx",
+    "apps/storybook/registry/demos/pagination-select-buttons.tsx",
+    "apps/storybook/registry/demos/pagination-single.tsx",
+    "apps/storybook/registry/demos/pagination-ellipsis.tsx",
+    "apps/storybook/registry/demos/pagination-links.tsx"
+  ]
+}

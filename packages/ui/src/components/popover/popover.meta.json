@@ -1,0 +1,73 @@
+{
+  "name": "Popover",
+  "status": "beta",
+  "description": "Flowbite's popover: rich content (a title, text, links, images, buttons) in a box with an arrow next to a trigger, opened by a click or by hovering or focusing the trigger. A non-modal dialog in the top layer, placed on any side of the trigger and flipped when there is no room.",
+  "category": "overlay",
+  "import": "import { Popover, PopoverBody, PopoverHeader, PopoverTitle } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/",
+  "client": true,
+  "props": "generated",
+  "parts": ["Popover", "PopoverHeader", "PopoverTitle", "PopoverBody"],
+  "variants": {
+    "trigger": ["click", "hover"],
+    "placement": [
+      "auto",
+      "top",
+      "top-start",
+      "top-end",
+      "right",
+      "right-start",
+      "right-end",
+      "bottom",
+      "bottom-start",
+      "bottom-end",
+      "left",
+      "left-start",
+      "left-end"
+    ],
+    "arrow": [true, false]
+  },
+  "defaults": {
+    "trigger": "click",
+    "placement": "top",
+    "offset": 10,
+    "arrow": true,
+    "defaultOpen": false
+  },
+  "tokens": [
+    "color.neutral-primary-soft",
+    "color.neutral-tertiary",
+    "color.default",
+    "color.body",
+    "color.heading",
+    "radius.base",
+    "shadow.xs",
+    "z.popover"
+  ],
+  "useWhen": [
+    "Showing more about something on hover or click, such as a user or company profile",
+    "Explaining a term, a chart or a setting next to it, with links to read more",
+    "Showing live feedback next to a field, such as password strength"
+  ],
+  "avoidWhen": [
+    "A short text label for an icon button: use aria-label (or a tooltip)",
+    "A list of actions or options: use Dropdown",
+    "Content people must act on before continuing: use Modal",
+    "Information that must always be visible: put it on the page"
+  ],
+  "related": ["Dropdown", "Modal", "Button", "Avatar", "Progress"],
+  "examples": [
+    "apps/storybook/registry/demos/popover-demo.tsx",
+    "apps/storybook/registry/demos/popover-user-profile.tsx",
+    "apps/storybook/registry/demos/popover-company-profile.tsx",
+    "apps/storybook/registry/demos/popover-image.tsx",
+    "apps/storybook/registry/demos/popover-description.tsx",
+    "apps/storybook/registry/demos/popover-progress.tsx",
+    "apps/storybook/registry/demos/popover-password.tsx",
+    "apps/storybook/registry/demos/popover-placement.tsx",
+    "apps/storybook/registry/demos/popover-triggering.tsx",
+    "apps/storybook/registry/demos/popover-offset.tsx",
+    "apps/storybook/registry/demos/popover-animation.tsx",
+    "apps/storybook/registry/demos/popover-no-arrow.tsx"
+  ]
+}

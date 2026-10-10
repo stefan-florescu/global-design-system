@@ -1,0 +1,138 @@
+export const metadata = {
+  title: "Skeleton",
+  description:
+    "Use skeleton placeholders that mimic text, images, video and cards to show that their content is loading.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="skeleton-card" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import {
+  Skeleton,
+  SkeletonAvatar,
+  SkeletonBlock,
+  SkeletonImage,
+  SkeletonLine,
+  SkeletonVideo,
+} from "@stefan-florescu/ui";
+```
+
+```tsx
+<Skeleton className="max-w-sm">
+  <SkeletonLine className="mb-4 w-48" />
+  <SkeletonLine size="sm" className="mb-2.5" />
+  <SkeletonLine size="sm" className="max-w-[330px]" />
+</Skeleton>
+```
+
+`Skeleton` is the wrapper: a `role="status"` region that pulses and tells screen readers it is
+loading. Lay out the placeholders inside it, sized like the content they stand for:
+
+| Part             | Draws                                                                                          |
+| ---------------- | ---------------------------------------------------------------------------------------------- |
+| `SkeletonLine`   | A line of text. `size="md"` (10px, the default) for headings, `size="sm"` (8px) for body text. |
+| `SkeletonImage`  | A 192px block with an image icon.                                                              |
+| `SkeletonVideo`  | A 192px block with a video icon.                                                               |
+| `SkeletonAvatar` | A 32px user icon.                                                                              |
+| `SkeletonBlock`  | Any other shape, such as a chart bar. Size and round it with `className`.                      |
+
+## Examples
+
+### Default skeleton
+
+Use lines to show a placeholder while text loads. Lines are full width; limit them with `w-*` or
+`max-w-*`.
+
+<ComponentPreview name="skeleton-demo" />
+
+### Image placeholder
+
+Use `SkeletonImage` while an image and its text load.
+
+<ComponentPreview name="skeleton-image" />
+
+### Video placeholder
+
+Use `SkeletonVideo` while a video loads.
+
+<ComponentPreview name="skeleton-video" />
+
+### Text placeholder
+
+Put lines of different widths in a row to show longer paragraphs and headings.
+
+<ComponentPreview name="skeleton-text" />
+
+### Card placeholder
+
+Give the `Skeleton` a card's border and padding to show a card while it loads.
+
+<ComponentPreview name="skeleton-card" />
+
+### Widget placeholder
+
+Use `SkeletonBlock` for shapes that aren't text, such as the bars of a chart.
+
+<ComponentPreview name="skeleton-widget" />
+
+### List placeholder
+
+Repeat a row of lines to show a list. Add `subtle` for Flowbite's lighter fill, here on the values.
+
+<ComponentPreview name="skeleton-list" />
+
+### Testimonial placeholder
+
+Centre the lines with `mx-auto` to show a testimonial.
+
+<ComponentPreview name="skeleton-testimonial" />
+
+## Accessibility
+
+- As Flowbite recommends, the `Skeleton` wrapper is a `role="status"` region with visually hidden
+  text, "Loading…" by default. Use `label` to say what is loading, such as "Loading articles".
+- Every placeholder is `aria-hidden`, so screen readers skip the empty shapes.
+- The pulse stops when the user prefers reduced motion (`motion-reduce:animate-none`). Set
+  `animated={false}` to turn it off everywhere.
+- Flowbite's card example nests a second `role="status"` inside the first; ours has one region, so
+  "Loading" is announced once.
+- Placeholders are decorative and exempt from contrast minimums. When the content arrives, replace
+  the whole `Skeleton`; for a region that updates in place, set `aria-busy="true"` on it while it
+  loads.
+
+## API Reference
+
+### Skeleton
+
+| Prop        | Type                                            | Default      |
+| ----------- | ----------------------------------------------- | ------------ |
+| `label`     | `string`. Text for screen readers.              | `"Loading…"` |
+| `animated`  | `boolean`. Pulses (not with reduced motion).    | `true`       |
+| `className` | `string`. Merged with `cn()`; your classes win. | —            |
+
+### SkeletonLine
+
+| Prop        | Type                                             | Default |
+| ----------- | ------------------------------------------------ | ------- |
+| `size`      | `"sm" \| "md"`                                   | `"md"`  |
+| `subtle`    | `boolean`. Uses the `default` fill.              | `false` |
+| `className` | `string`. Set the width with `w-*` or `max-w-*`. | —       |
+
+### SkeletonBlock
+
+| Prop        | Type                                | Default |
+| ----------- | ----------------------------------- | ------- |
+| `subtle`    | `boolean`. Uses the `default` fill. | `false` |
+| `className` | `string`. Set the size and radius.  | —       |
+
+`SkeletonImage`, `SkeletonVideo` and `SkeletonAvatar` take `className` (for example `h-56` or
+`size-7`). All parts forward other native attributes. `skeletonVariants()`,
+`skeletonLineVariants()` and `skeletonBlockVariants()` return the class names for custom markup.

@@ -1,0 +1,249 @@
+export const metadata = {
+  title: "Navbar",
+  description:
+    "Show the brand, the main pages, dropdowns, a search field, a call to action or a user menu at the top of every page, collapsing behind a hamburger button on small screens.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="navbar-demo" flush />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import {
+  Navbar,
+  NavbarActions,
+  NavbarBrand,
+  NavbarCollapse,
+  NavbarLink,
+  NavbarToggle,
+} from "@stefan-florescu/ui";
+```
+
+```tsx
+<Navbar>
+  <NavbarBrand href="/" name="Stefan DS" logo={<Layers />} />
+  <NavbarActions>
+    <Button size="sm">Get started</Button>
+    <NavbarToggle />
+  </NavbarActions>
+  <NavbarCollapse>
+    <NavbarLink href="/" active>
+      Home
+    </NavbarLink>
+    <NavbarLink href="/about">About</NavbarLink>
+  </NavbarCollapse>
+</Navbar>
+```
+
+`Navbar` is the `<nav>` landmark and the centred row inside it. `NavbarBrand` links your logo and
+name to the home page. `NavbarCollapse` holds the links: a list of `NavbarLink`s, and `<li>`s with a
+`Dropdown` or a `MegaMenu`. Below `md` it is hidden until `NavbarToggle`, the hamburger button, shows
+it; from `md` up the links sit in a row and the hamburger hides. `NavbarActions` keeps buttons such
+as a call to action or a user menu at the end of the bar.
+
+## Examples
+
+### Default navbar
+
+Use this example of a navigation bar to enable users to navigate across the pages of your website.
+Mark the current page with `active`.
+
+<ComponentPreview name="navbar-demo" flush />
+
+### Navbar with dropdown
+
+This example can be used to show a secondary dropdown menu when clicking on one of the navigation
+links. Put a `Dropdown` in an `<li>` and use `NavbarDropdownTrigger` as its button: it looks like the
+other links and adds a chevron. A list of links is a `DropdownContent`, not a menu.
+
+<ComponentPreview name="navbar-dropdown" flush />
+
+### Multi-level dropdown
+
+Use this example to show multiple layers of dropdown menu by stacking them inside of each other.
+Sub-menus need the menu pattern, so this one is a `DropdownMenu` with a `DropdownSub`.
+
+<ComponentPreview name="navbar-multi-level" flush />
+
+### Sticky navbar
+
+Use `position="sticky"` to keep the navbar at the top of the page as you scroll down. Flowbite's
+example uses `position="fixed"`, which takes the navbar out of the page flow, so leave room for it
+at the top of your content. The example scrolls inside a frame that stands in for the browser
+window.
+
+<ComponentPreview name="navbar-sticky" flush />
+
+### Navbar with submenu
+
+Use this example to show another subnav below the main navbar element. `NavbarCollapse
+variant="inline"` is a row of small links that never collapses, and `size="sm"` makes the bar
+slimmer. Each bar is its own landmark, so give each one a name.
+
+<ComponentPreview name="navbar-submenu" flush />
+
+### Navbar with search
+
+Use this example of a navbar element to also show a search input element that you can integrate for
+a site-wide search. Below `md`, a second `NavbarToggle` with a search `icon` and `label` opens the
+same menu, which shows a search field (`header`) above the links.
+
+<ComponentPreview name="navbar-search" flush />
+
+### Navbar with CTA button
+
+Use the following navbar element to show a call to action button alongside the logo and page links.
+
+<ComponentPreview name="navbar-cta" flush />
+
+### Language dropdown
+
+Get started with this example to show a language dropdown selector in the navbar component. Set
+`lang` on each choice so screen readers pronounce it in its own language.
+
+<ComponentPreview name="navbar-language" flush />
+
+### User menu dropdown
+
+Use this example to create a navigation bar with a user profile or button to toggle a dropdown menu.
+
+<ComponentPreview name="navbar-user-menu" flush />
+
+### Mega menu navbar
+
+You can also use the [mega menu](/components/mega-menu) inside a navigation bar to add a second
+level of navigation hierarchy. `NavbarCollapse variant="flush"` drops the card around the collapsed
+links and divides them with lines, to match the mega menu's trigger.
+
+<ComponentPreview name="navbar-mega-menu" flush />
+
+### Solid background
+
+Use `variant="solid"` to show a solid `neutral-secondary-soft` background for the navbar component
+instead of the page colour.
+
+<ComponentPreview name="navbar-solid" flush />
+
+### Hamburger menu
+
+All of the navbar components from this page have a responsive hamburger menu included which by
+default appears when the screen goes below 768px in width (`md`). Set `expand="lg"` to keep the
+links behind it up to 1024px, for a bar with more links or actions, or `expand="never"` to show the
+hamburger icon and the menu on all screen sizes.
+
+<ComponentPreview name="navbar-hamburger" flush />
+
+## Accessibility
+
+- `Navbar` renders a `<nav>` landmark, named "Main" by default. Pass `aria-label` or
+  `aria-labelledby` to name it, and give every navbar on a page a different name. Flowbite's navbars
+  have no name.
+- The hamburger follows the WAI-ARIA
+  [disclosure navigation](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/examples/disclosure-navigation/)
+  pattern: a `<button>` with `aria-expanded` and `aria-controls` that shows and hides the links in
+  place, so <Kbd>Tab</Kbd> reaches them right after the button. Its name comes from `label`
+  (visually hidden; default "Open main menu"); the icon is hidden from assistive technology.
+- <Kbd>Escape</Kbd> in the open, collapsed menu hides it and returns focus to the hamburger. An open
+  dropdown or mega menu inside takes <Kbd>Escape</Kbd> first. Flowbite has no <Kbd>Escape</Kbd>
+  handling.
+- The links are a list. `active` sets `aria-current="page"`; the current page is filled with `brand`
+  in the collapsed menu and shown in `fg-brand` in the row. `disabled` removes the `href` and sets
+  `aria-disabled`.
+- Dropdowns of links are disclosures (`DropdownContent`): no `menu` role, <Kbd>Tab</Kbd> moves
+  through the links. The multi-level, language and user menus are ARIA menus (`DropdownMenu`), moved
+  through with the arrow keys, because they have sub-menus or act as one choice. See
+  [Dropdown](/components/dropdown).
+- Every link and button draws the solid `ring` outline on keyboard focus; Flowbite has none besides
+  the hamburger's ring.
+- Differences from Flowbite: links in a row are spaced with `gap` so right-to-left works without
+  `rtl:space-x-reverse`; the search example uses two different ids (Flowbite reuses one) inside
+  `role="search"` forms with labels; the language flags and the Flowbite logo are left out (we have
+  no tokens for their colours), and a globe icon marks the language button; Flowbite's sticky
+  example is `fixed`, ours is `sticky` inside a scrolling frame; the mega menu panel starts closed.
+
+| Key                                 | Action                                                                 |
+| ----------------------------------- | ---------------------------------------------------------------------- |
+| <Kbd>Tab</Kbd>                      | Moves through the brand, links, dropdown buttons and actions in order. |
+| <Kbd>Enter</Kbd> / <Kbd>Space</Kbd> | On the hamburger or a dropdown button, shows or hides its links.       |
+| <Kbd>Escape</Kbd>                   | Closes an open dropdown, else hides the collapsed menu.                |
+
+## API Reference
+
+### Navbar
+
+Forwards `nav` props; `className` goes on the `<nav>`.
+
+| Prop           | Type                                                                                                | Default     |
+| -------------- | --------------------------------------------------------------------------------------------------- | ----------- |
+| `variant`      | `"default" \| "solid"`. Page-coloured or `neutral-secondary-soft` bar.                              | `"default"` |
+| `border`       | `boolean`. A `default` line under the bar.                                                          | `true`      |
+| `position`     | `"static" \| "sticky" \| "fixed"`. Sticky and fixed bars sit at the top, on `z.sticky` / `z.fixed`. | `"static"`  |
+| `expand`       | `"md" \| "lg" \| "never"`. From this width the links show in a row and the hamburger hides.         | `"md"`      |
+| `size`         | `"sm" \| "md"`. Inner padding: `md` for a navbar, `sm` for a secondary bar.                         | `"md"`      |
+| `fluid`        | `boolean`. Span the full width instead of a centred `max-w-screen-xl` row.                          | `false`     |
+| `open`         | `boolean`. Whether the collapsed links show (controlled).                                           | —           |
+| `defaultOpen`  | `boolean`                                                                                           | `false`     |
+| `onOpenChange` | `(open: boolean) => void`                                                                           | —           |
+| `aria-label`   | `string`                                                                                            | `"Main"`    |
+
+### NavbarBrand
+
+| Prop   | Type                                                             | Default |
+| ------ | ---------------------------------------------------------------- | ------- |
+| `href` | `string`                                                         | —       |
+| `name` | `ReactNode`. Shown next to the logo; the link's accessible name. | —       |
+| `logo` | `ReactNode`. A mark such as an icon, 28px in `fg-brand`.         | —       |
+| `src`  | `string`. A logo image, as an alternative to `logo`.             | —       |
+| `alt`  | `string`                                                         | `""`    |
+
+### NavbarToggle
+
+Forwards `button` props.
+
+| Prop    | Type                                    | Default            |
+| ------- | --------------------------------------- | ------------------ |
+| `label` | `string`. The button's accessible name. | `"Open main menu"` |
+| `icon`  | `ReactNode`                             | `<Menu />`         |
+
+### NavbarCollapse
+
+Forwards `div` props; `className` goes on the collapsible region.
+
+| Prop            | Type                                                                                         | Default     |
+| --------------- | -------------------------------------------------------------------------------------------- | ----------- |
+| `variant`       | `"default" \| "flush" \| "inline"`. Card, lines between rows, or a row that never collapses. | `"default"` |
+| `header`        | `ReactNode`. Content above the links, such as a search field for small screens.              | —           |
+| `listClassName` | `string`. Class names for the list.                                                          | —           |
+
+### NavbarLink
+
+Renders an `li` with an `a`, and forwards `a` props.
+
+| Prop       | Type                                                       | Default |
+| ---------- | ---------------------------------------------------------- | ------- |
+| `active`   | `boolean`. The current page (`aria-current="page"`).       | `false` |
+| `disabled` | `boolean`                                                  | `false` |
+| `asChild`  | `boolean`. Render the only child, such as a router `Link`. | `false` |
+
+### NavbarDropdownTrigger and NavbarActions
+
+`NavbarDropdownTrigger` is a `Dropdown`'s button styled as a navbar link; it forwards `button` props
+and takes `chevron` (default `true`). `NavbarActions` is a `div` that keeps its buttons at the end
+of the bar from `expand` up.
+
+| Token                    | Use                                                 |
+| ------------------------ | --------------------------------------------------- |
+| `neutral-primary`        | Bar (default)                                       |
+| `neutral-secondary-soft` | Solid bar, collapsed menu card, toggle hover        |
+| `default`, `light`       | Bar border, menu card border, flush row lines       |
+| `heading`, `body`        | Brand name and links, hamburger icon                |
+| `brand`, `fg-brand`      | Current page (filled when collapsed, text in a row) |
+| `neutral-tertiary`       | Link hover in the collapsed menu, hamburger ring    |
+| `radius.base`            | Menu card and hamburger corners                     |
+| `z.sticky`, `z.fixed`    | Sticky and fixed bars                               |

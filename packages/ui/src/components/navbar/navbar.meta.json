@@ -1,0 +1,90 @@
+{
+  "name": "Navbar",
+  "status": "beta",
+  "description": "Flowbite's navbar: a navigation landmark at the top of the page with the brand, links, dropdowns, a search field, a call to action or a user menu. Below md the links collapse behind a hamburger disclosure button.",
+  "category": "navigation",
+  "import": "import { Navbar, NavbarActions, NavbarBrand, NavbarCollapse, NavbarDropdownTrigger, NavbarLink, NavbarToggle } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/examples/disclosure-navigation-hybrid/",
+  "client": true,
+  "props": "generated",
+  "parts": [
+    "Navbar",
+    "NavbarBrand",
+    "NavbarToggle",
+    "NavbarActions",
+    "NavbarCollapse",
+    "NavbarLink",
+    "NavbarDropdownTrigger"
+  ],
+  "variants": {
+    "variant": ["default", "solid"],
+    "border": [true, false],
+    "position": ["static", "sticky", "fixed"],
+    "expand": ["md", "lg", "never"],
+    "size": ["sm", "md"],
+    "fluid": [true, false],
+    "NavbarCollapse.variant": ["default", "flush", "inline"]
+  },
+  "defaults": {
+    "variant": "default",
+    "border": true,
+    "position": "static",
+    "expand": "md",
+    "size": "md",
+    "fluid": false,
+    "aria-label": "Main",
+    "NavbarCollapse.variant": "default",
+    "NavbarToggle.label": "Open main menu",
+    "NavbarDropdownTrigger.chevron": true
+  },
+  "tokens": [
+    "color.neutral-primary",
+    "color.neutral-secondary-soft",
+    "color.neutral-tertiary",
+    "color.default",
+    "color.light",
+    "color.heading",
+    "color.body",
+    "color.brand",
+    "color.brand-foreground",
+    "color.fg-brand",
+    "color.fg-disabled",
+    "color.ring",
+    "radius.base",
+    "radius.default",
+    "radius.xs",
+    "z.sticky",
+    "z.fixed",
+    "breakpoint.md",
+    "breakpoint.lg",
+    "text.xl",
+    "text.sm",
+    "font.medium",
+    "font.semibold"
+  ],
+  "useWhen": [
+    "The main navigation at the top of every page: brand, page links and account actions",
+    "A navigation bar that collapses behind a hamburger button on small screens",
+    "A navbar with dropdowns, a mega menu, a search field, a call to action or a user menu"
+  ],
+  "avoidWhen": [
+    "Navigation down the side of an app: use a sidebar or Drawer",
+    "Navigation fixed to the bottom of a mobile screen: use BottomNavigation",
+    "Showing where the page sits in the hierarchy: use Breadcrumb"
+  ],
+  "related": ["Dropdown", "MegaMenu", "SearchInput", "Avatar", "Button", "Footer", "Drawer"],
+  "examples": [
+    "apps/storybook/registry/demos/navbar-demo.tsx",
+    "apps/storybook/registry/demos/navbar-dropdown.tsx",
+    "apps/storybook/registry/demos/navbar-multi-level.tsx",
+    "apps/storybook/registry/demos/navbar-sticky.tsx",
+    "apps/storybook/registry/demos/navbar-submenu.tsx",
+    "apps/storybook/registry/demos/navbar-search.tsx",
+    "apps/storybook/registry/demos/navbar-cta.tsx",
+    "apps/storybook/registry/demos/navbar-language.tsx",
+    "apps/storybook/registry/demos/navbar-user-menu.tsx",
+    "apps/storybook/registry/demos/navbar-mega-menu.tsx",
+    "apps/storybook/registry/demos/navbar-solid.tsx",
+    "apps/storybook/registry/demos/navbar-hamburger.tsx"
+  ]
+}

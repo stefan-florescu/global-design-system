@@ -12,9 +12,8 @@ export default function DocsLayout({ children }: { children: ReactNode }) {
   return (
     <div className="page-container">
       <div className="layout">
-        <aside className="sidebar" aria-label="Documentation navigation">
-          <DocsSidebar />
-        </aside>
+        {/* An `<aside>` named "Site navigation"; below `lg` it opens as the header's drawer. */}
+        <DocsSidebar />
 
         <main className="main" id="main-content" tabIndex={-1}>
           <article className="content prose" data-docs-content>
