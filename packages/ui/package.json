@@ -1,6 +1,6 @@
 {
   "name": "@stefan-florescu/ui",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Accessible React 19 components styled with Tailwind CSS v4 + CVA, powered by @stefan-florescu/tokens.",
   "license": "MIT",
   "type": "module",

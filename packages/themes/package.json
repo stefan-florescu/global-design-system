@@ -1,6 +1,6 @@
 {
   "name": "@stefan-florescu/themes",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Theme layer (light, dark, brand, high-contrast) mapping semantic tokens per [data-theme].",
   "license": "MIT",
   "type": "module",
