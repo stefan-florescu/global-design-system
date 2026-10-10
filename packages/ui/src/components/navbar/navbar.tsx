@@ -43,7 +43,7 @@ import {
  * styles a dropdown's button as a navbar link.
  */
 
-type Expand = "md" | "never";
+type Expand = "md" | "lg" | "never";
 type ListVariant = NonNullable<NavbarCollapseVariantProps["variant"]>;
 
 type NavbarContextValue = {
@@ -70,7 +70,7 @@ function useNavbarContext(component: string) {
 /** The look of the links in the nearest `NavbarCollapse`. */
 const ListContext = createContext<ListVariant>("default");
 
-/** Whether an element is rendered (not `display: none`, as the hamburger is from `md` up). */
+/** Whether an element is rendered (not `display: none`, as the hamburger is from `expand` up). */
 function isShown(element: HTMLElement | null): element is HTMLElement {
   return Boolean(element && element.getClientRects().length > 0);
 }
@@ -82,8 +82,9 @@ function isShown(element: HTMLElement | null): element is HTMLElement {
 export type NavbarProps = ComponentProps<"nav"> &
   NavbarVariantProps & {
     /**
-     * The width from which the links show in a row and the hamburger hides. `never` keeps them
-     * behind the hamburger at every width (Flowbite's "Hamburger menu").
+     * The width from which the links show in a row and the hamburger hides: `md` (768px) or `lg`
+     * (1024px, for a bar with more links or actions). `never` keeps them behind the hamburger at
+     * every width (Flowbite's "Hamburger menu").
      */
     expand?: Expand;
     /** Let the row span the full width instead of a centred `max-w-screen-xl` container. */

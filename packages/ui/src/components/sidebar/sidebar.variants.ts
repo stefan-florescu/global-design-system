@@ -43,6 +43,12 @@ export const sidebarPanelClassName =
 /** The drawer the sidebar becomes below its breakpoint: the panel's width, no padding of its own. */
 export const sidebarDrawerClassName = "w-64 border-0 p-0";
 
+/** The panel inside the drawer: room at the top for the drawer's close button. */
+export const sidebarDrawerPanelClassName = "pt-14";
+
+/** The drawer's close button, above the panel. */
+export const sidebarDrawerCloseClassName = "z-raised";
+
 /**
  * Flowbite's hamburger button (`sm:hidden`), shown only below the breakpoint. The breakpoint
  * classes come from `sidebarToggleBreakpoint`.

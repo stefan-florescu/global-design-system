@@ -133,7 +133,8 @@ instead of the page colour.
 ### Hamburger menu
 
 All of the navbar components from this page have a responsive hamburger menu included which by
-default appears when the screen goes below 768px in width (`md`). Set `expand="never"` to show the
+default appears when the screen goes below 768px in width (`md`). Set `expand="lg"` to keep the
+links behind it up to 1024px, for a bar with more links or actions, or `expand="never"` to show the
 hamburger icon and the menu on all screen sizes.
 
 <ComponentPreview name="navbar-hamburger" flush />
@@ -183,7 +184,7 @@ Forwards `nav` props; `className` goes on the `<nav>`.
 | `variant`      | `"default" \| "solid"`. Page-coloured or `neutral-secondary-soft` bar.                              | `"default"` |
 | `border`       | `boolean`. A `default` line under the bar.                                                          | `true`      |
 | `position`     | `"static" \| "sticky" \| "fixed"`. Sticky and fixed bars sit at the top, on `z.sticky` / `z.fixed`. | `"static"`  |
-| `expand`       | `"md" \| "never"`. From this width the links show in a row and the hamburger hides.                 | `"md"`      |
+| `expand`       | `"md" \| "lg" \| "never"`. From this width the links show in a row and the hamburger hides.         | `"md"`      |
 | `size`         | `"sm" \| "md"`. Inner padding: `md` for a navbar, `sm` for a secondary bar.                         | `"md"`      |
 | `fluid`        | `boolean`. Span the full width instead of a centred `max-w-screen-xl` row.                          | `false`     |
 | `open`         | `boolean`. Whether the collapsed links show (controlled).                                           | —           |
@@ -234,7 +235,7 @@ Renders an `li` with an `a`, and forwards `a` props.
 
 `NavbarDropdownTrigger` is a `Dropdown`'s button styled as a navbar link; it forwards `button` props
 and takes `chevron` (default `true`). `NavbarActions` is a `div` that keeps its buttons at the end
-of the bar from `md` up.
+of the bar from `expand` up.
 
 | Token                    | Use                                                 |
 | ------------------------ | --------------------------------------------------- |

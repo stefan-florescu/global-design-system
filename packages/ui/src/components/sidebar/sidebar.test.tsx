@@ -196,6 +196,16 @@ describe("Sidebar", () => {
     expect(dialog).not.toHaveAttribute("open");
   });
 
+  it("closes the drawer from its close button and returns focus to the toggle", async () => {
+    render(<Example />);
+    const toggle = screen.getByRole("button", { name: "Open sidebar" });
+    await userEvent.click(toggle);
+    const dialog = screen.getByRole("dialog");
+    await userEvent.click(within(dialog).getByRole("button", { name: "Close menu" }));
+    expect(dialog).not.toHaveAttribute("open");
+    expect(toggle).toHaveFocus();
+  });
+
   it("keeps the drawer open when a collapse is toggled inside it", async () => {
     render(<Example defaultOpen />);
     const dialog = screen.getByRole("dialog", { hidden: true });

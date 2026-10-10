@@ -12,9 +12,10 @@ import { focusOutline } from "../../lib/focus";
  *   current page filled with `brand`; from `md` up they sit in a row, 32px apart, in `heading`
  *   text that turns `fg-brand` on hover, with the current page in `fg-brand`.
  *
- * `expand` is the width from which the links show in a row (`md`), or `never` for Flowbite's
- * "Hamburger menu" that collapses them at every width. Tailwind needs whole class names, so every
- * `md:` class is written out for the `md` case.
+ * `expand` is the width from which the links show in a row (`md`, or `lg` for a bar with more in
+ * it), or `never` for Flowbite's "Hamburger menu" that collapses them at every width. Tailwind
+ * needs whole class names, so every `md:` class is written out for the `md` case and again as
+ * `lg:` for the `lg` case.
  *
  * Accessibility additions (Flowbite shows none): links, buttons, the brand and the hamburger draw
  * the solid `ring` outline on keyboard focus (lib/focus); disabled links use `fg-disabled`.
@@ -78,6 +79,7 @@ export const navbarToggleVariants = cva(
     variants: {
       expand: {
         md: "md:hidden",
+        lg: "lg:hidden",
         never: "",
       },
       /* On the solid bar the hover fill is one step darker, as in Flowbite's "Hamburger menu". */
@@ -95,6 +97,7 @@ export const navbarActionsVariants = cva("flex items-center gap-3", {
   variants: {
     expand: {
       md: "md:order-2",
+      lg: "lg:order-2",
       never: "",
     },
   },
@@ -103,12 +106,13 @@ export const navbarActionsVariants = cva("flex items-center gap-3", {
 
 /**
  * The collapsible region: hidden until the hamburger opens it, then a full-width row under the
- * bar. From `md` up it always shows, between the brand and the actions.
+ * bar. From `expand` up it always shows, between the brand and the actions.
  */
 export const navbarCollapseVariants = cva("w-full items-center justify-between", {
   variants: {
     expand: {
       md: "md:order-1 md:flex md:w-auto",
+      lg: "lg:order-1 lg:flex lg:w-auto",
       never: "",
     },
     open: {
@@ -127,7 +131,7 @@ export const navbarCollapseVariants = cva("w-full items-center justify-between",
 
 export const navbarListVariants = cva("m-0 flex list-none font-medium", {
   variants: {
-    expand: { md: "", never: "" },
+    expand: { md: "", lg: "", never: "" },
     variant: { default: "", flush: "", inline: "" },
   },
   compoundVariants: [
@@ -137,6 +141,12 @@ export const navbarListVariants = cva("m-0 flex list-none font-medium", {
       className:
         "mt-4 flex-col rounded-base border border-default bg-neutral-secondary-soft p-4 md:mt-0 md:flex-row md:gap-8 md:border-0 md:bg-transparent md:p-0",
     },
+    {
+      variant: "default",
+      expand: "lg",
+      className:
+        "mt-4 flex-col rounded-base border border-default bg-neutral-secondary-soft p-4 lg:mt-0 lg:flex-row lg:gap-8 lg:border-0 lg:bg-transparent lg:p-0",
+    },
     /* Flowbite's "Hamburger menu": a ruled-off column with 8px between links. */
     {
       variant: "default",
@@ -145,6 +155,7 @@ export const navbarListVariants = cva("m-0 flex list-none font-medium", {
     },
     /* Flowbite's mega menu navbar: no card, the rows divided by `light` lines. */
     { variant: "flush", expand: "md", className: "mt-4 flex-col md:mt-0 md:flex-row md:gap-8" },
+    { variant: "flush", expand: "lg", className: "mt-4 flex-col lg:mt-0 lg:flex-row lg:gap-8" },
     { variant: "flush", expand: "never", className: "mt-4 flex-col" },
     { variant: "inline", className: "flex-row flex-wrap gap-x-8 gap-y-2 text-sm" },
   ],
@@ -156,12 +167,12 @@ const disabled =
 
 /**
  * A link in the navbar, or a button styled as one (`kind: "button"`, for a dropdown or mega menu
- * trigger: it fills the row below `md` and carries a chevron).
+ * trigger: it fills the row below `expand` and carries a chevron).
  */
 export const navbarItemVariants = cva(focusOutline, {
   variants: {
     variant: { default: "", flush: "", inline: "" },
-    expand: { md: "", never: "" },
+    expand: { md: "", lg: "", never: "" },
     kind: {
       link: ["block", disabled].join(" "),
       button: "flex w-full cursor-pointer items-center justify-between font-medium",
@@ -177,7 +188,13 @@ export const navbarItemVariants = cva(focusOutline, {
       expand: "md",
       className: "md:p-0 md:hover:bg-transparent md:hover:text-fg-brand",
     },
+    {
+      variant: "default",
+      expand: "lg",
+      className: "lg:p-0 lg:hover:bg-transparent lg:hover:text-fg-brand",
+    },
     { variant: "default", expand: "md", kind: "button", className: "md:w-auto" },
+    { variant: "default", expand: "lg", kind: "button", className: "lg:w-auto" },
     /* The current page: filled with `brand` in the collapsed card, `fg-brand` text in the row. */
     {
       variant: "default",
@@ -193,6 +210,13 @@ export const navbarItemVariants = cva(focusOutline, {
         "md:aria-[current=page]:bg-transparent md:aria-[current=page]:text-fg-brand md:aria-[current=page]:hover:bg-transparent",
     },
     {
+      variant: "default",
+      expand: "lg",
+      kind: "link",
+      className:
+        "lg:aria-[current=page]:bg-transparent lg:aria-[current=page]:text-fg-brand lg:aria-[current=page]:hover:bg-transparent",
+    },
+    {
       variant: "flush",
       className:
         "rounded-xs border-b border-light px-3 py-2 text-heading hover:bg-neutral-secondary-soft",
@@ -201,6 +225,11 @@ export const navbarItemVariants = cva(focusOutline, {
       variant: "flush",
       expand: "md",
       className: "md:w-auto md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-fg-brand",
+    },
+    {
+      variant: "flush",
+      expand: "lg",
+      className: "lg:w-auto lg:border-0 lg:p-0 lg:hover:bg-transparent lg:hover:text-fg-brand",
     },
     { variant: "flush", kind: "link", className: "aria-[current=page]:text-fg-brand" },
     { variant: "inline", className: "w-auto rounded-xs text-heading hover:underline" },

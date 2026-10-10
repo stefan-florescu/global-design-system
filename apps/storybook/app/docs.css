@@ -205,143 +205,9 @@
 
   /* ==========================================================================
    6. Left sidebar (navigation)
+   The column is the design system's `Sidebar` (components/docs-sidebar.tsx), which brings its
+   own styles, stickiness and the drawer it becomes below 1024px.
    ========================================================================== */
-
-  .sidebar {
-    position: sticky;
-    top: var(--header-height);
-    height: calc(100vh - var(--header-height));
-    padding: 2rem 0.5rem 4rem 0;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    scrollbar-width: thin;
-  }
-
-  .sidebar__section {
-    margin-bottom: 1.5rem;
-  }
-
-  .sidebar__heading {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    gap: 0.375rem;
-    padding: 0.25rem 0.5rem;
-    margin-bottom: 0.25rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    letter-spacing: -0.005em;
-    border-radius: var(--sds-radius-md);
-  }
-
-  button.sidebar__heading:hover {
-    background: var(--sds-color-neutral-tertiary);
-  }
-
-  .sidebar__heading-chevron {
-    margin-left: auto;
-    color: var(--sds-color-body);
-    transition: transform 0.2s ease;
-  }
-
-  .sidebar__heading[aria-expanded="false"] .sidebar__heading-chevron {
-    transform: rotate(-90deg);
-  }
-
-  .sidebar__heading[aria-expanded="false"] + .sidebar__list {
-    display: none;
-  }
-
-  .sidebar__list {
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    /* Guide rail, like shadcn's nested nav */
-    border-left: var(--sds-border-width-1) solid var(--sds-color-default);
-    margin-left: 0.5rem;
-    padding-left: 0.5rem;
-  }
-
-  .sidebar__link {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.3125rem 0.625rem;
-    font-size: 0.875rem;
-    color: var(--sds-color-body);
-    border-radius: var(--sds-radius-md);
-    transition:
-      color 0.15s ease,
-      background-color 0.15s ease;
-  }
-
-  .sidebar__link:hover {
-    color: var(--sds-color-heading);
-    background: color-mix(in srgb, var(--sds-color-neutral-tertiary) 70%, transparent);
-  }
-
-  .sidebar__link[aria-current="page"] {
-    color: var(--sds-color-heading);
-    font-weight: 500;
-    background: var(--sds-color-neutral-tertiary);
-  }
-
-  /* Active indicator on the guide rail */
-  .sidebar__link[aria-current="page"]::before {
-    content: "";
-    position: absolute;
-    left: calc(-0.5rem - 1px);
-    top: 0.375rem;
-    bottom: 0.375rem;
-    width: 2px;
-    border-radius: var(--sds-radius-full);
-    background: var(--sds-color-heading);
-  }
-
-  .sidebar__tag {
-    margin-left: auto;
-    padding-inline: 0.375rem;
-    font-size: 0.625rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    line-height: 1.4;
-    border-radius: var(--sds-radius-full);
-    border: var(--sds-border-width-1) solid var(--sds-color-default);
-    color: var(--sds-color-body);
-  }
-
-  .sidebar__tag--new {
-    color: var(--sds-color-brand);
-    border-color: color-mix(in srgb, var(--sds-color-brand) 40%, transparent);
-    background: color-mix(in srgb, var(--sds-color-brand) 10%, transparent);
-  }
-
-  .sidebar__tag--wip {
-    color: var(--sds-color-warning);
-    border-color: color-mix(in srgb, var(--sds-color-warning) 40%, transparent);
-    background: color-mix(in srgb, var(--sds-color-warning) 10%, transparent);
-  }
-
-  /* -- Mobile drawer state ----------------------------------------------- */
-
-  .sidebar__mobile-header {
-    display: none;
-  }
-
-  .backdrop {
-    position: fixed;
-    inset: 0;
-    z-index: var(--sds-z-overlay);
-    display: none;
-    background: var(--sds-color-overlay);
-  }
-
-  .backdrop[data-open="true"] {
-    display: block;
-    animation: fade-in 0.15s ease;
-  }
 
   /* ==========================================================================
    7. Right sidebar (table of contents)
@@ -1247,10 +1113,6 @@
       grid-template-columns: minmax(0, 1fr);
     }
 
-    .layout > .sidebar {
-      display: none;
-    }
-
     .main {
       padding-top: 1.5rem;
     }
@@ -1285,7 +1147,7 @@
   }
 
   @media print {
-    .sidebar,
+    [data-slot="sidebar"],
     .toc,
     .pager {
       display: none !important;

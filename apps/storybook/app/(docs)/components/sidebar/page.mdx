@@ -164,8 +164,8 @@ For more layouts, see Flowbite's [sidenav](https://flowbite.com/blocks/applicati
 - `label` and `count` are read with the item ("Kanban Pro", "Inbox 2"). Add hidden text to a count
   that needs context, such as `count={<>2<span className="sr-only"> unread messages</span></>}`.
 - Below the breakpoint the sidebar opens in a `Drawer`: a modal dialog named like the sidebar, with
-  focus moved inside and kept there, <Kbd>Esc</Kbd> and the backdrop closing it, and focus returned
-  to the hamburger. The hamburger is labelled "Open sidebar" (`SidebarToggle`'s `label`) and has
+  focus moved to its close button ("Close menu", set with `closeLabel`) and kept inside, the close
+  button, <Kbd>Esc</Kbd> and the backdrop closing it, and focus returned to the hamburger. The hamburger is labelled "Open sidebar" (`SidebarToggle`'s `label`) and has
   `aria-haspopup="dialog"`, `aria-expanded` and `aria-controls`. The drawer closes by itself when
   the window grows past the breakpoint.
 - Keyboard focus draws a solid `ring` outline inside items, collapse buttons and the logo.
@@ -191,14 +191,15 @@ For more layouts, see Flowbite's [sidenav](https://flowbite.com/blocks/applicati
 
 An `<aside>`. Takes every `<aside>` attribute; set the width with `className` (`w-64` by default).
 
-| Prop           | Type                                               | Default     |
-| -------------- | -------------------------------------------------- | ----------- |
-| `position`     | `"fixed" \| "sticky" \| "static"`                  | `"fixed"`   |
-| `breakpoint`   | `"sm" \| "md" \| "lg" \| "none"`. Drawer below it. | `"sm"`      |
-| `label`        | `string`. Names the aside and its drawer.          | `"Sidebar"` |
-| `open`         | `boolean`. The drawer, controlled.                 | —           |
-| `defaultOpen`  | `boolean`. The drawer, uncontrolled.               | `false`     |
-| `onOpenChange` | `(open: boolean) => void`                          | —           |
+| Prop           | Type                                               | Default        |
+| -------------- | -------------------------------------------------- | -------------- |
+| `position`     | `"fixed" \| "sticky" \| "static"`                  | `"fixed"`      |
+| `breakpoint`   | `"sm" \| "md" \| "lg" \| "none"`. Drawer below it. | `"sm"`         |
+| `label`        | `string`. Names the aside and its drawer.          | `"Sidebar"`    |
+| `closeLabel`   | `string`. Names the drawer's close button.         | `"Close menu"` |
+| `open`         | `boolean`. The drawer, controlled.                 | —              |
+| `defaultOpen`  | `boolean`. The drawer, uncontrolled.               | `false`        |
+| `onOpenChange` | `(open: boolean) => void`                          | —              |
 
 Inside a `SidebarProvider`, set `breakpoint`, `open`, `defaultOpen` and `onOpenChange` on the
 provider instead.

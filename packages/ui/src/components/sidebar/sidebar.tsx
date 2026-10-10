@@ -20,7 +20,7 @@ import { cn } from "../../lib/cn";
 import { Alert, type AlertProps } from "../alert";
 import { alertDismissVariants } from "../alert/alert.variants";
 import { Badge, type BadgeProps } from "../badge";
-import { Drawer, DrawerContent, DrawerTrigger, useDrawer } from "../drawer";
+import { Drawer, DrawerClose, DrawerContent, DrawerTrigger, useDrawer } from "../drawer";
 import { Slot } from "../dropdown/dropdown-slot";
 
 import {
@@ -31,6 +31,8 @@ import {
   sidebarCtaDismissClassName,
   sidebarCtaDismissibleClassName,
   sidebarDrawerClassName,
+  sidebarDrawerCloseClassName,
+  sidebarDrawerPanelClassName,
   sidebarItemCountClassName,
   sidebarItemGroupClassName,
   sidebarItemLabelClassName,
@@ -136,6 +138,8 @@ export type SidebarProps = Omit<ComponentProps<"aside">, "aria-label"> &
     position?: "fixed" | "sticky" | "static";
     /** Accessible name of the sidebar (the `<aside>`) and of its drawer. */
     label?: string;
+    /** Accessible name of the drawer's close button, shown below `breakpoint`. */
+    closeLabel?: string;
   };
 
 /**
@@ -169,6 +173,7 @@ function SidebarRoot({
   breakpoint,
   position = "fixed",
   label = "Sidebar",
+  closeLabel = "Close menu",
   className,
   children,
   ...props
@@ -209,8 +214,13 @@ function SidebarRoot({
       </aside>
       {breakpoint === "none" ? null : (
         <DrawerContent aria-label={label} className={sidebarDrawerClassName}>
+          {/* First in the drawer, so it takes focus on open, as in Flowbite's drawer navigation. */}
+          <DrawerClose label={closeLabel} className={sidebarDrawerCloseClassName} />
           <SidebarDrawerContext value={() => setOpen(false)}>
-            <div data-slot="sidebar-panel" className={sidebarPanelClassName}>
+            <div
+              data-slot="sidebar-panel"
+              className={cn(sidebarPanelClassName, sidebarDrawerPanelClassName)}
+            >
               {drawerUsed ? children : null}
             </div>
           </SidebarDrawerContext>

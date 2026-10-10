@@ -20,7 +20,7 @@
     "variant": ["default", "solid"],
     "border": [true, false],
     "position": ["static", "sticky", "fixed"],
-    "expand": ["md", "never"],
+    "expand": ["md", "lg", "never"],
     "size": ["sm", "md"],
     "fluid": [true, false],
     "NavbarCollapse.variant": ["default", "flush", "inline"]
@@ -56,6 +56,7 @@
     "z.sticky",
     "z.fixed",
     "breakpoint.md",
+    "breakpoint.lg",
     "text.xl",
     "text.sm",
     "font.medium",

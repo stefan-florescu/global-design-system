@@ -186,6 +186,26 @@ describe("Navbar", () => {
     expect(screen.getByTestId("icon").parentElement).toHaveAttribute("aria-hidden", "true");
   });
 
+  it("shows the links in a row from md by default, or from lg with expand='lg'", () => {
+    const { rerender } = render(<Example />);
+    expect(toggle()).toHaveClass("md:hidden");
+    expect(collapse()).toHaveClass("md:flex");
+    expect(screen.getByRole("link", { name: "About" })).toHaveClass("md:p-0");
+
+    rerender(<Example expand="lg" />);
+    expect(toggle()).toHaveClass("lg:hidden");
+    expect(toggle()).not.toHaveClass("md:hidden");
+    expect(collapse()).toHaveClass("lg:order-1", "lg:flex", "lg:w-auto");
+    expect(collapse()).not.toHaveClass("md:flex");
+    expect(screen.getByRole("list")).toHaveClass("lg:flex-row");
+    expect(screen.getByRole("link", { name: "About" })).toHaveClass("lg:p-0");
+    expect(screen.getByRole("link", { name: "Home" })).toHaveClass(
+      "lg:aria-[current=page]:text-fg-brand",
+    );
+    expect(screen.getByRole("button", { name: "Services" })).toHaveClass("lg:w-auto");
+    expect(document.querySelector("[data-slot=navbar-actions]")).toHaveClass("lg:order-2");
+  });
+
   it("never collapses an inline list", () => {
     render(
       <Navbar size="sm">
