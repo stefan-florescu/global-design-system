@@ -3,11 +3,11 @@
 "@stefan-florescu/icons": minor
 ---
 
-**Breaking:** every component now looks like Flowbite v4, class for class, on the new Flowbite-role tokens (ADR 0009). Where Flowbite misses WCAG 2.2 AA, the nearest passing token is used; each docs page lists these deviations. Keyboard focus adds a solid `ring` outline (`lib/focus.ts`) around Flowbite's focus halo.
+**Breaking:** every component is restyled on the new role-based tokens (ADR 0009). Where a colour would fail WCAG 2.2 AA, the nearest passing token is used; each docs page notes where this applies. Keyboard focus adds a solid `ring` outline (`lib/focus.ts`) around the soft focus halo.
 
 API changes:
 
-- **Button:** `variant` is `brand | secondary | tertiary | success | danger | warning | dark | ghost`. `outline` applies to brand, secondary, success, danger and warning. `primary`, `destructive`, `info`, `link` and the `outline` variant are removed. Sizes are padding-based (34–54px), and `disabled` uses Flowbite's grey disabled style.
+- **Button:** `variant` is `brand | secondary | tertiary | success | danger | warning | dark | ghost`. `outline` applies to brand, secondary, success, danger and warning. `primary`, `destructive`, `info`, `link` and the `outline` variant are removed. Sizes are padding-based (34–54px), and `disabled` uses a grey disabled style.
 - **Alert:** `variant` `info` → `brand` (the default), `destructive` → `danger`, `neutral` → `dark`.
 - **Badge:** `variant` `neutral` → `alternative` / `gray`, `info` → `brand`, `destructive` → `danger`. New `dot` prop.
 - **Avatar:** sizes are `2xs` 18, `xs` 24, `sm` 32, `md` 40, `lg` 44, `xl` 56 and `2xl` 64px.
@@ -33,7 +33,7 @@ API changes:
   - `autoHide` defaults to `false`.
   - New `format`, `orientation` and `id` props.
   - New `DateRangePicker`, `formatDate` and `parseDate`.
-- **Label:** includes Flowbite's `mb-2.5`; new `variant` (`default | success | danger`).
+- **Label:** includes `mb-2.5`; new `variant` (`default | success | danger`).
 - **HelperText:** includes `mt-2.5`; `variant="error"` → `variant="danger"`.
 - **Field styles:** `fieldVariants` sizes are `sm | md | lg | xl`, padding-based. New `fieldGroupClassName`, `fieldSelectAddonClassName` and `fieldGroupItemClassName`.
 - **Select:** adds the `xl` size.

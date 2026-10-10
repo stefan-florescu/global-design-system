@@ -3,6 +3,7 @@ import "@fontsource-variable/inter/wght-italic.css";
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
+import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { siteConfig } from "@/lib/site";
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </a>
           <SiteHeader />
           <div className="flex flex-1 flex-col">{children}</div>
+          <SiteFooter />
         </ThemeProvider>
       </body>
     </html>

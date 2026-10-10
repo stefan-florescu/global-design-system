@@ -23,7 +23,7 @@ export default function TimelineVertical() {
             </Badge>
           </TimelineTime>
           <TimelineTitle headingLevel={4} className="flex items-center">
-            Flowbite Application UI v2.0.0
+            Stefan DS Application UI v2.0.0
             <Badge bordered className="ms-2">
               Latest
             </Badge>
@@ -46,7 +46,7 @@ export default function TimelineVertical() {
               January 09th, 2025
             </Badge>
           </TimelineTime>
-          <TimelineTitle headingLevel={4}>Flowbite Figma v1.3.0</TimelineTitle>
+          <TimelineTitle headingLevel={4}>Stefan DS Figma v1.3.0</TimelineTitle>
           <TimelineBody>
             All of the pages and components are first designed in Figma and we keep a parity between
             the two versions even as we update the project.
@@ -61,7 +61,7 @@ export default function TimelineVertical() {
               October 14th, 2024
             </Badge>
           </TimelineTime>
-          <TimelineTitle headingLevel={4}>Flowbite Library v1.2.2</TimelineTitle>
+          <TimelineTitle headingLevel={4}>Stefan DS Library v1.2.2</TimelineTitle>
           <TimelineBody>
             Get started with dozens of web components and interactive elements built on top of
             Tailwind CSS.

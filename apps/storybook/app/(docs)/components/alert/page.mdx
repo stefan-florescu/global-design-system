@@ -30,7 +30,7 @@ import { Alert, AlertDescription, AlertTitle } from "@stefan-florescu/ui";
 ### Default alert
 
 Use alerts to give feedback on the current page or task. Choose the `variant` by meaning:
-Flowbite's "Info" alert is `brand` (the default), and its gray alert is `dark`.
+`brand` (the default) is for information, and `dark` is a neutral gray alert.
 
 <ComponentPreview name="alert-demo" />
 
@@ -96,12 +96,12 @@ Make a compact, pill-shaped announcement with a tag and a link by overriding the
 - Render an alert when its message becomes relevant. Content inside a live region that is already
   on the page when it loads may not be announced.
 - Icons are decorative and hidden from assistive technology; the text carries the meaning. Every
-  label and fill pairing passes WCAG 2.2 AA in light and dark, as in Flowbite.
+  label and fill pairing passes WCAG 2.2 AA in light and dark.
 - The close button is a native `<button>` named "Dismiss" (change it with `dismissLabel`). It
-  keeps Flowbite's soft focus ring and adds a solid 2px `ring` outline on keyboard focus, because
+  shows a soft focus ring and adds a solid 2px `ring` outline on keyboard focus, because
   the soft ring alone is under 3:1 against the alert.
-- The buttons in "Additional content" use `Button`, so their labels are on-fill foreground tokens
-  rather than Flowbite's white; the `dark` alert's button is the `dark` button.
+- The buttons in "Additional content" use `Button`, so their labels use on-fill foreground tokens
+  that pass contrast on each fill; the `dark` alert's button is the `dark` button.
 - Pattern: [WAI-ARIA Alert](https://www.w3.org/WAI/ARIA/apg/patterns/alert/).
 
 ## API Reference

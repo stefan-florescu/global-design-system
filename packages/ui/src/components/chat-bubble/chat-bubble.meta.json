@@ -1,7 +1,7 @@
 {
   "name": "ChatBubble",
   "status": "beta",
-  "description": "One message in a conversation: avatar, sender, time, content (text, voice note, file, images, link preview), status and an actions menu. Flowbite's default, outline and clean styles.",
+  "description": "One message in a conversation: avatar, sender, time, content (text, voice note, file, images, link preview), status and an actions menu. Default, outline and clean styles.",
   "category": "data-display",
   "import": "import { ChatBubble } from \"@stefan-florescu/ui\";",
   "ariaPattern": "https://www.w3.org/TR/wai-aria-1.2/#log",

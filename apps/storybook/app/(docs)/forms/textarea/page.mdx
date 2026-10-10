@@ -56,11 +56,10 @@ A one-row `Textarea` between attachment buttons and a send button, for chat mess
   editor, comment box and chat input, make it `sr-only`. Placeholders are hints, not labels.
 - Link helper and error text with `aria-describedby` so it is read with the field. `invalid` sets
   `aria-invalid="true"`; always say what is wrong in text too.
-- Difference from Flowbite: in the editor and comment
-  box the inner textarea has no border, so the outer box shows the `brand` focus border and ring
-  (Flowbite shows no focus there).
+- In the editor and comment box the inner textarea has no border, so the outer box shows the `brand`
+  focus border and ring.
 - Icon-only toolbar buttons are `Button`s with an `aria-label`, so they keep the keyboard focus
-  outline. Flowbite's "Show full screen" tooltip is a [`Tooltip`](/components/tooltips) in label
+  outline. The "Show full screen" tooltip is a [`Tooltip`](/components/tooltips) in label
   mode: it names the button and also opens on keyboard focus (a native `title` doesn't).
 
 ## API Reference

@@ -8,7 +8,9 @@ const activity = [
     what: (
       <>
         likes <strong className="text-heading font-medium">Bonnie Green&apos;s</strong> post in{" "}
-        <strong className="text-heading font-medium">How to start with Flowbite library</strong>
+        <strong className="text-heading font-medium">
+          How to start with the Stefan Design System
+        </strong>
       </>
     ),
     quote: true,
@@ -31,7 +33,9 @@ const activity = [
     what: (
       <>
         likes <strong className="text-heading font-medium">Bonnie Green&apos;s</strong> post in{" "}
-        <strong className="text-heading font-medium">How to start with Flowbite library</strong>
+        <strong className="text-heading font-medium">
+          How to start with the Stefan Design System
+        </strong>
       </>
     ),
     quote: true,

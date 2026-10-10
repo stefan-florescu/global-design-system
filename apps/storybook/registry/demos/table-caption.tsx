@@ -17,7 +17,7 @@ const products = [
 export default function TableCaptionDemo() {
   return (
     <Table>
-      <TableCaption description="Browse a list of Flowbite products designed to help you work and play, stay organized, get answers, keep in touch, grow your business, and more.">
+      <TableCaption description="Browse a list of Stefan DS products designed to help you work and play, stay organized, get answers, keep in touch, grow your business, and more.">
         Our products
       </TableCaption>
       <TableHead>

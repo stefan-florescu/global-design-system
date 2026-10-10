@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { Indicator } from "./indicator";
 
 describe("Indicator", () => {
-  it("is Flowbite's 12px brand dot, hidden from assistive technology, by default", () => {
+  it("is a 12px brand dot, hidden from assistive technology, by default", () => {
     const { container } = render(<Indicator />);
     const dot = container.querySelector('[data-slot="indicator"]');
     expect(dot).toHaveClass("size-3", "rounded-full", "bg-brand");
@@ -39,7 +39,7 @@ describe("Indicator", () => {
     expect(text.parentElement).not.toHaveAttribute("aria-hidden");
   });
 
-  it("shows a count as Flowbite's 24px bold circle", () => {
+  it("shows a count as a 24px bold circle", () => {
     render(<Indicator variant="danger" count={8} />);
     const count = screen.getByText("8");
     expect(count).toHaveClass(

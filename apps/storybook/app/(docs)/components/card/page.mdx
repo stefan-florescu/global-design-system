@@ -24,8 +24,8 @@ import { Card, CardDescription, CardTitle } from "@stefan-florescu/ui";
 </Card>
 ```
 
-Children sit in a `p-6` body. `CardTitle` is Flowbite's 24px semibold title with a 12px gap
-below; override its size or spacing with `className`, as the examples do.
+Children sit in a `p-6` body. `CardTitle` is a 24px semibold title with a 12px gap below;
+override its size or spacing with `className`, as the examples do.
 
 ## Examples
 
@@ -87,15 +87,15 @@ stars are hidden from assistive technology and the score is read once.
 ### Card with nav tabs
 
 Put [`Tabs`](/components/tabs) in a card to change its content. `*:p-0` on the `Card` removes the
-body's padding so the tabs sit flush with its edges; the tabs take Flowbite's
+body's padding so the tabs sit flush with its edges; the tabs take a
 `neutral-secondary-soft` bar with a `neutral-tertiary` hover.
 
 <ComponentPreview name="card-tabs" />
 
 ### Card full width tabs
 
-Tabs that share the card's width equally. Below the `sm` breakpoint a `Select` replaces them, as in
-Flowbite; it sets the same value, so the panels follow either control.
+Tabs that share the card's width equally. Below the `sm` breakpoint a `Select` replaces them; it
+sets the same value, so the panels follow either control.
 
 <ComponentPreview name="card-full-width-tabs" />
 
@@ -114,19 +114,17 @@ strikethrough.
 
 <ComponentPreview name="card-testimonial" />
 
-Flowbite's "Call to action card" and "Crypto card" use brand logos, so they are not shown.
-
 ## Accessibility
 
 - A card is a plain container. Give it a heading with `CardTitle` (an `<h3>` by default; set
   `headingLevel` to match your page outline) so screen-reader users can jump between cards.
 - With `href`, the whole card is one link whose name is all of its text. Keep link cards short,
-  and don't put buttons or other links inside them. Flowbite's horizontal card is a link that
-  contains a button, which is invalid HTML; here it is a plain card.
-- Link cards draw a solid `ring` outline on keyboard focus; Flowbite has no focus style.
+  and don't put buttons or other links inside them: a link that contains a button is invalid
+  HTML. The horizontal card is a plain card for this reason.
+- Link cards draw a solid `ring` outline on keyboard focus.
 - Images are decorative unless you pass `imgAlt`.
-- The profile card's menu button is named "Actions for Bonnie Green" (Flowbite's "Open dropdown"
-  doesn't say what it acts on), draws a solid focus outline, and opens a WAI-ARIA menu: see
+- The profile card's menu button is named "Actions for Bonnie Green", so it says what it acts on,
+  draws a solid focus outline, and opens a WAI-ARIA menu: see
   [Dropdown](/components/dropdown) for its keyboard support.
 - Card text uses `heading` and `body` on the `neutral-primary-soft` surface, which pass WCAG 2.2 AA
   in both themes.

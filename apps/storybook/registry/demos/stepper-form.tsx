@@ -53,7 +53,7 @@ export default function StepperForm() {
               id={`${id}-email`}
               type="email"
               autoComplete="email"
-              placeholder="name@flowbite.com"
+              placeholder="name@example.com"
               required
             />
           </div>

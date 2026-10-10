@@ -75,7 +75,7 @@ function names(locale: string | undefined, style: "long" | "short", kind: "month
 }
 
 /**
- * Formats a date with Flowbite's format tokens: `d`/`dd` day, `D`/`DD` short/long weekday,
+ * Formats a date with format tokens: `d`/`dd` day, `D`/`DD` short/long weekday,
  * `m`/`mm` month, `M`/`MM` short/long month name, `yy`/`yyyy` year. Default `mm/dd/yyyy`.
  */
 export function formatDate(date: Date, pattern = "mm/dd/yyyy", locale?: string) {

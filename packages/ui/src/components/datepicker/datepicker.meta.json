@@ -1,7 +1,7 @@
 {
   "name": "Datepicker",
   "status": "beta",
-  "description": "Flowbite's datepicker: a text field with a calendar icon that opens a calendar to pick a day (Datepicker) or a range (DateRangePicker); Calendar shows the calendar inline. Dates can also be typed in a format.",
+  "description": "A datepicker: a text field with a calendar icon that opens a calendar to pick a day (Datepicker) or a range (DateRangePicker); Calendar shows the calendar inline. Dates can also be typed in a format.",
   "category": "forms",
   "import": "import { Calendar, DateRangePicker, Datepicker } from \"@stefan-florescu/ui\";",
   "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-datepicker/",

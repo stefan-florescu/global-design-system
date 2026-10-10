@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 /*
- * Flowbite v4's helper text, class for class: `mt-2.5 text-sm text-body`, with the validation
+ * Helper text: `mt-2.5 text-sm text-body`, with the validation
  * colours `fg-success-strong` and `fg-danger-strong`. The themes build checks each against the
  * page background (WCAG 1.4.3).
  */

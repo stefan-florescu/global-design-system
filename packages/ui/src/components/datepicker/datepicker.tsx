@@ -15,9 +15,9 @@ export type SharedCalendarProps = Pick<
 >;
 
 export type DatepickerActionsProps = {
-  /** Close the calendar as soon as a day is picked (Flowbite's `datepicker-autohide`). */
+  /** Close the calendar as soon as a day is picked. */
   autoHide?: boolean;
-  /** Show Flowbite's "Today" and "Clear" buttons under the calendar. */
+  /** Show "Today" and "Clear" buttons under the calendar. */
   showButtons?: boolean;
   todayLabel?: string;
   clearLabel?: string;
@@ -69,7 +69,7 @@ export function renderDatepickerButtons(
 }
 
 /**
- * Flowbite's datepicker: a text field with a calendar icon. Type a date in `format`, or press the
+ * A datepicker: a text field with a calendar icon. Type a date in `format`, or press the
  * field (or Arrow Down) to pick one from the calendar. Escape or a click outside closes it.
  */
 export function Datepicker({

@@ -28,7 +28,7 @@ export default function ClipboardModal() {
         <Share2 aria-hidden className="-ms-0.5" />
         Share course
       </ModalTrigger>
-      {/* Flowbite's share modal: no padding on the box, a header without a divider. */}
+      {/* Share modal: no padding on the box, a header without a divider. */}
       <ModalContent className="p-0 shadow-xs md:p-0">
         <ModalHeader className="border-b-0 p-4 md:p-5">
           <ModalTitle>Share course</ModalTitle>

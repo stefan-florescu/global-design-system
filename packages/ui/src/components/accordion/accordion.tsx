@@ -62,11 +62,11 @@ export type AccordionProps = Omit<ComponentProps<"div">, "defaultValue"> & {
   value?: string[];
   /** Called with the values of the open items whenever an item opens or closes. */
   onValueChange?: (value: string[]) => void;
-  /** Hover colour of the titles: `neutral` (gray) or `brand` (Flowbite's "Color options"). */
+  /** Hover colour of the titles: `neutral` (gray) or `brand`. */
   variant?: "neutral" | "brand";
   /** Remove the outer box, background and side padding, leaving only dividers. */
   flush?: boolean;
-  /** Show every item as its own card, 1rem apart (Flowbite's "Separated cards"). */
+  /** Show every item as its own card, 1rem apart. */
   separated?: boolean;
 };
 

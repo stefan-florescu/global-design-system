@@ -42,11 +42,11 @@ import {
 </Table>
 ```
 
-`Table` renders a native `<table>` inside Flowbite's bordered card. Put the column headers directly
-in `TableHead` (they are wrapped in one row), and start each body row with a
-`TableHeadCell scope="row"` so screen readers announce it with every cell of the row. Give every
-table a `TableCaption`, visible or `visuallyHidden`. The parts are server components; only the
-horizontal scroller runs on the client.
+`Table` renders a native `<table>` inside a bordered card. Put the column headers directly in
+`TableHead` (they are wrapped in one row), and start each body row with a `TableHeadCell
+scope="row"` so screen readers announce it with every cell of the row. Give every table a
+`TableCaption`, visible or `visuallyHidden`. The parts are server components; only the horizontal
+scroller runs on the client.
 
 ## Examples
 
@@ -74,9 +74,8 @@ Accentuate rows, columns or data cells.
 
 ### Hover state
 
-`hoverable` fills the row under the pointer. Hoverable tables also take Flowbite's stronger head
-fill (`neutral-secondary-medium`) and card-coloured rows, as in all of Flowbite's interactive
-tables.
+`hoverable` fills the row under the pointer. Hoverable tables also take a stronger head fill
+(`neutral-secondary-medium`) and card-coloured rows.
 
 <ComponentPreview name="table-hover" />
 
@@ -93,8 +92,8 @@ Make a column sortable by putting a button in its header, and set `aria-sort` (`
 
 ### Table foot
 
-`TableFoot` renders a `<tfoot>` for totals: Flowbite's semibold `heading` row with a `text-base`
-label. Put the cells directly inside. This example has no border and a `rounded` head.
+`TableFoot` renders a `<tfoot>` for totals: a semibold `heading` row with a `text-base` label. Put
+the cells directly inside. This example has no border and a `rounded` head.
 
 <ComponentPreview name="table-foot" />
 
@@ -117,7 +116,7 @@ for screen readers only, as every other example on this page does.
 
 ### Table with shadow
 
-The bordered card carries Flowbite's `shadow-xs` by default; `shadow={false}` removes it.
+The bordered card carries `shadow-xs` by default; `shadow={false}` removes it.
 
 <ComponentPreview name="table-shadow" />
 
@@ -182,8 +181,7 @@ table; focus returns to the button that opened it.
 ## Table colors
 
 `variant="brand"` fills the head and rows with the brand colour. It combines with `striped` and
-`hoverable`. Flowbite's other colour tables only swap the Tailwind palette colour; there are no
-tokens for those, so only the brand table is offered.
+`hoverable`. Only the brand colour is offered; other palette colours have no tokens.
 
 <ComponentPreview name="table-colors" />
 
@@ -205,24 +203,21 @@ tokens for those, so only the brand table is offered.
   announce its size and move by row and column with their table commands. Pattern:
   [WAI-ARIA Table](https://www.w3.org/WAI/ARIA/apg/patterns/table/).
 - `TableHeadCell` is a `<th scope="col">` in the head; with `scope="row"` it heads a row, so each cell
-  is announced with its row and column headers. Flowbite's examples use the same scopes.
+  is announced with its row and column headers.
 - Give every table a caption. `TableCaption visuallyHidden` keeps it for screen readers only.
-  Flowbite captions only its "Table caption" example; every example here has one.
+  Every example here has one.
 - **Scrolling.** A table wider than its container scrolls sideways instead of making the page
   scroll (WCAG 1.4.10). While it overflows, the scroller has `tabindex="0"` and `role="region"`, named
   by the caption title (or the table's `aria-label`), so it can be scrolled with the arrow keys (WCAG
-  2.1.1) and shows the solid focus outline. Flowbite's scroller cannot take focus.
+  2.1.1) and shows the solid focus outline.
 - Sortable columns put a real button in the header and set `aria-sort` on the sorted column.
-  Flowbite's sort icons are links with no text.
 - Repeated actions ("Edit", "Remove", "Edit user") add the row's name as visually hidden text, so
   each link or button has a unique name out of context.
-- Row checkboxes are named after their row ("Select Magic Mouse 2"); Flowbite names them all "Table
-  checkbox". The select-all checkbox is indeterminate (announced as mixed) while only some rows are
-  selected.
+- Row checkboxes are named after their row ("Select Magic Mouse 2"), so each has a unique name. The
+  select-all checkbox is indeterminate (announced as mixed) while only some rows are selected.
 - Search and filter results are announced through a visually hidden status ("4 products").
-- Contrast passes WCAG 2.2 AA in both themes. One change from Flowbite: in dark mode the brand table's
-  body text is `brand-foreground` (white) instead of `fg-brand-subtle`, which is 3.7:1 on the dark
-  `brand` fill.
+- Contrast passes WCAG 2.2 AA in both themes. In dark mode the brand table's body text is
+  `brand-foreground` (white) instead of `fg-brand-subtle`, which is 3.7:1 on the dark `brand` fill.
 - Rows only change colour on hover; a row is never a click target of its own. Put the action in a cell
   as a link or button.
 

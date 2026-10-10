@@ -11,7 +11,7 @@ import { SiteNavItems } from "./site-nav";
 
 /**
  * Below `lg`, the header's hamburger opens the site navigation in a left-hand `Drawer`: the main
- * links above the docs sections, as `Sidebar` items (Flowbite's off-canvas sidebar).
+ * links above the docs sections, as `Sidebar` items in an off-canvas sidebar.
  */
 export function MobileNav({ className }: { className?: string }) {
   const [open, setOpen] = useState(false);

@@ -1,6 +1,6 @@
 import { Card, Clipboard } from "@stefan-florescu/ui";
 
-const contact = ["Bonnie Green", "name@flowbite.com", "+ 12 345 67890"];
+const contact = ["Bonnie Green", "name@example.com", "+ 12 345 67890"];
 
 export default function ClipboardContact() {
   return (

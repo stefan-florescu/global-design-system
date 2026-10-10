@@ -13,7 +13,7 @@ describe("Label", () => {
     expect(screen.getByRole("textbox", { name: "Email" })).toBeInTheDocument();
   });
 
-  it("uses Flowbite's label styles", () => {
+  it("uses the label styles", () => {
     render(<Label htmlFor="x">Name</Label>);
     expect(screen.getByText("Name")).toHaveClass(
       "block",

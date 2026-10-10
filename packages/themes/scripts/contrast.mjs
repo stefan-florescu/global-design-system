@@ -52,7 +52,7 @@ export const PAIRS = [
   ...["tag", "attr", "string", "keyword", "fn", "comment"].map((name) =>
     pair(`syntax-${name}`, "code-bg"),
   ),
-  // Focus indicators. The `input` border is Flowbite's gray-200 by request and is not checked.
+  // Focus indicators. The `input` border is a light gray-200 by design and is not checked.
   ...["neutral-primary", "neutral-primary-soft", "neutral-secondary-medium"].flatMap((surface) => [
     pair("ring", surface, NON_TEXT),
   ]),

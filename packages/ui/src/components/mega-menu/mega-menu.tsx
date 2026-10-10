@@ -64,8 +64,8 @@ export type MegaMenuProps = {
 };
 
 /**
- * A navbar item that opens a wide panel of grouped links (Flowbite's mega menu). Holds the open
- * state; renders no element of its own.
+ * A navbar item that opens a wide panel of grouped links. Holds the open state;
+ * renders no element of its own.
  */
 export function MegaMenu({ open, defaultOpen, onOpenChange, children }: MegaMenuProps) {
   return (
@@ -88,7 +88,7 @@ export type MegaMenuTriggerProps = Omit<ComponentProps<"button">, "type"> & {
 
 /**
  * The navbar button that shows and hides the panel (`aria-expanded`, `aria-controls`). Styled as
- * Flowbite's navbar item: a full-width row in the collapsed navbar, a plain link from `md` up.
+ * a navbar item: a full-width row in the collapsed navbar, a plain link from `md` up.
  */
 export function MegaMenuTrigger({
   asChild = false,
@@ -187,7 +187,7 @@ function useFloating(stackBelow: Breakpoint | "none") {
 export type MegaMenuContentProps = Omit<ComponentProps<"div">, "popover" | "role"> & {
   /**
    * Span the whole width of the navbar (the nearest `<nav>`), under it, with the columns centred
-   * in a `max-w-screen-xl` container (Flowbite's "Full width dropdown"). Otherwise the panel opens
+   * in a `max-w-screen-xl` container. Otherwise the panel opens
    * under the trigger.
    */
   fullWidth?: boolean;
@@ -332,7 +332,7 @@ export function MegaMenuGroup({ className, ...props }: MegaMenuGroupProps) {
 
 export type MegaMenuLinkProps = ComponentProps<"a"> & {
   /**
-   * A line of text under the title (Flowbite's full-width rows). The title stays the link's name
+   * A line of text under the title, as in the full-width layout. The title stays the link's name
    * and the description is read as its description.
    */
   description?: ReactNode;
@@ -341,8 +341,8 @@ export type MegaMenuLinkProps = ComponentProps<"a"> & {
 };
 
 /**
- * A link in a `MegaMenuGroup` (an `<li>` with an `<a>`). Put an icon before the label for
- * Flowbite's "Mega menu with icons". Following it closes the panel; call `preventDefault()` in
+ * A link in a `MegaMenuGroup` (an `<li>` with an `<a>`). Put an icon before the label to
+ * show icons in the menu. Following it closes the panel; call `preventDefault()` in
  * `onClick` to keep it open.
  */
 export function MegaMenuLink({

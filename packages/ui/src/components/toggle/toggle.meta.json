@@ -1,7 +1,7 @@
 {
   "name": "Toggle",
   "status": "beta",
-  "description": "Flowbite's toggle: an on/off switch (a native checkbox with role=\"switch\"), plain or as a card.",
+  "description": "A toggle: an on/off switch (a native checkbox with role=\"switch\"), plain or as a card.",
   "category": "forms",
   "import": "import { Toggle } from \"@stefan-florescu/ui\";",
   "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/switch/",

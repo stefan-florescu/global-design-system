@@ -1,7 +1,7 @@
 {
   "name": "Textarea",
   "status": "beta",
-  "description": "Flowbite's textarea: a multi-line text field that can be resized vertically.",
+  "description": "A textarea: a multi-line text field that can be resized vertically.",
   "category": "forms",
   "import": "import { Textarea } from \"@stefan-florescu/ui\";",
   "ariaPattern": null,

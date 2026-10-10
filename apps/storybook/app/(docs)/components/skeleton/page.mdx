@@ -85,7 +85,7 @@ Use `SkeletonBlock` for shapes that aren't text, such as the bars of a chart.
 
 ### List placeholder
 
-Repeat a row of lines to show a list. Add `subtle` for Flowbite's lighter fill, here on the values.
+Repeat a row of lines to show a list. Add `subtle` for a lighter fill, here on the values.
 
 <ComponentPreview name="skeleton-list" />
 
@@ -97,13 +97,13 @@ Centre the lines with `mx-auto` to show a testimonial.
 
 ## Accessibility
 
-- As Flowbite recommends, the `Skeleton` wrapper is a `role="status"` region with visually hidden
+- The `Skeleton` wrapper is a `role="status"` region with visually hidden
   text, "Loading…" by default. Use `label` to say what is loading, such as "Loading articles".
 - Every placeholder is `aria-hidden`, so screen readers skip the empty shapes.
 - The pulse stops when the user prefers reduced motion (`motion-reduce:animate-none`). Set
   `animated={false}` to turn it off everywhere.
-- Flowbite's card example nests a second `role="status"` inside the first; ours has one region, so
-  "Loading" is announced once.
+- Each `Skeleton` is a single status region, even in the card example, so "Loading" is announced
+  once.
 - Placeholders are decorative and exempt from contrast minimums. When the content arrives, replace
   the whole `Skeleton`; for a region that updates in place, set `aria-busy="true"` on it while it
   loads.

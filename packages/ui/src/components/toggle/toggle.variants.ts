@@ -1,12 +1,12 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 /*
- * Flowbite v4's toggle (https://flowbite.com/docs/forms/toggle/), class for class: a visually
- * hidden native checkbox (`peer`) followed by a track whose `after:` knob slides over when checked.
+ * Toggle: a visually hidden native checkbox (`peer`) followed by a track whose `after:` knob
+ * slides over when checked.
  *
- * The off track is `input` (gray-200, as Flowbite's `neutral-quaternary`), the on track `brand` and
- * the knob `brand-foreground`. Differences from Flowbite, for WCAG 2.2 AA:
- * - keyboard focus also draws the solid `ring` outline around Flowbite's `brand-soft` halo.
+ * The off track is `input` (gray-200), the on track `brand` and the knob `brand-foreground`.
+ * Accessibility, for WCAG 2.2 AA:
+ * - keyboard focus also draws the solid `ring` outline around the `brand-soft` halo.
  * - the knob animation stops when the user prefers reduced motion.
  */
 export const toggleTrackVariants = cva(
@@ -22,7 +22,7 @@ export const toggleTrackVariants = cva(
   ],
   {
     variants: {
-      /* Flowbite's "base" (`md`) and "large" toggles. */
+      /* The base (`md`) and large toggles. */
       size: {
         md: "h-5 w-9 after:size-4",
         lg: "h-6 w-11 after:size-5",
@@ -35,7 +35,7 @@ export const toggleTrackVariants = cva(
 /* The <label> around input, track and text: the whole thing is the click target. */
 export const toggleVariants = cva("inline-flex cursor-pointer has-[:disabled]:cursor-not-allowed", {
   variants: {
-    /* Flowbite's "Toggle card". */
+    /* The "Toggle card". */
     bordered: {
       true: "rounded-base border border-default bg-neutral-primary-soft p-4 shadow-xs",
       false: "",

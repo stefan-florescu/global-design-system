@@ -1,7 +1,7 @@
 {
   "name": "Navbar",
   "status": "beta",
-  "description": "Flowbite's navbar: a navigation landmark at the top of the page with the brand, links, dropdowns, a search field, a call to action or a user menu. Below md the links collapse behind a hamburger disclosure button.",
+  "description": "A navbar: a navigation landmark at the top of the page with the brand, links, dropdowns, a search field, a call to action or a user menu. Below md the links collapse behind a hamburger disclosure button.",
   "category": "navigation",
   "import": "import { Navbar, NavbarActions, NavbarBrand, NavbarCollapse, NavbarDropdownTrigger, NavbarLink, NavbarToggle } from \"@stefan-florescu/ui\";",
   "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/examples/disclosure-navigation-hybrid/",

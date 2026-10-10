@@ -116,7 +116,7 @@ describe("Datepicker", () => {
     await user.click(within(dialog).getByRole("button", { name: "Friday, October 23, 2026" }));
     expect(onChange).toHaveBeenCalledWith(new Date(2026, 9, 23));
     expect(field).toHaveValue("10/23/2026");
-    // Flowbite keeps the calendar open unless autoHide is set.
+    // The calendar stays open unless autoHide is set.
     expect(screen.getByRole("dialog")).toBeInTheDocument();
   });
 
@@ -219,7 +219,7 @@ describe("DateRangePicker", () => {
 });
 
 describe("formatDate and parseDate", () => {
-  it("use Flowbite's format tokens", () => {
+  it("use the format tokens", () => {
     expect(formatDate(OCT_8)).toBe("10/08/2026");
     expect(formatDate(OCT_8, "dd-mm-yy")).toBe("08-10-26");
     expect(formatDate(OCT_8, "MM d, yyyy", "en-US")).toBe("October 8, 2026");

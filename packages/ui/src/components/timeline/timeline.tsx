@@ -19,8 +19,8 @@ export type TimelineProps = ComponentProps<"ol"> & TimelineVariantProps;
 
 /**
  * Events in date order, as an ordered list (`<ol>`). Vertical by default, with the line on the
- * start side; `horizontal` lays the events out in a row from `sm` up (Flowbite's "Stepper
- * timeline"). Fill it with `TimelineItem`s.
+ * start side; `horizontal` lays the events out in a row from `sm` up (a stepper
+ * timeline). Fill it with `TimelineItem`s.
  */
 export function Timeline({ horizontal = false, className, ...props }: TimelineProps) {
   return (

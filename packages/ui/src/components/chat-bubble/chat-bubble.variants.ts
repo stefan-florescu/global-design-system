@@ -3,8 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { focusOutline } from "../../lib/focus";
 
 /*
- * Flowbite v4's chat bubble, class for class (https://flowbite.com/docs/components/chat-bubble/).
- * Flowbite's three styles:
+ * Chat bubble, in three styles:
  * - default: name, time and status sit inside the `neutral-secondary-soft` bubble;
  * - outline: name, time and status sit outside, above and below the bubble;
  * - clean: no bubble, the message is `heading` text on the page.
@@ -76,7 +75,7 @@ export const chatBubbleNameClassName = "text-sm font-semibold text-heading";
 
 export const chatBubbleMetaClassName = "text-sm text-body";
 
-/** Flowbite's "more" button next to the bubble. */
+/** The "more" button next to the bubble. */
 export const chatBubbleActionClassName = [
   "box-border inline-flex shrink-0 cursor-pointer items-center self-center rounded-base border border-transparent bg-neutral-primary p-1.5 text-body",
   "hover:bg-neutral-tertiary hover:text-heading focus:ring-4 focus:ring-neutral-tertiary",
@@ -85,8 +84,8 @@ export const chatBubbleActionClassName = [
 ].join(" ");
 
 /**
- * Flowbite's dots dropdown under the "more" button: the `Dropdown` panel and items, narrowed to
- * Flowbite's `w-40` with its `rounded-md` items.
+ * The dots dropdown under the "more" button: the `Dropdown` panel and items, narrowed to `w-40`
+ * with `rounded-md` items.
  */
 export const chatBubbleMenuClassName = "w-40";
 

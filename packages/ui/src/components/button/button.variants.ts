@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/cn";
 import { focusOutline } from "../../lib/focus";
 
-/** Intents that can also be drawn as an outline (Flowbite's "Outline buttons"). */
+/** Intents that can also be drawn as an outline. */
 export const buttonOutlineVariants = [
   "brand",
   "secondary",
@@ -13,9 +13,8 @@ export const buttonOutlineVariants = [
 ] as const;
 
 /*
- * Flowbite v4 buttons, class for class (https://flowbite.com/docs/components/buttons/), on our
- * semantic tokens, which carry Flowbite's role names. Accessibility deviations:
- * - keyboard focus adds the solid `ring` outline around Flowbite's soft halo (see lib/focus);
+ * Buttons on our semantic tokens. Accessibility:
+ * - keyboard focus adds the solid `ring` outline around the soft halo (see lib/focus);
  * - outline success / danger / warning labels use the `fg-*` text tokens, which keep 4.5:1 in
  *   dark mode, and the warning label is dark (`warning-foreground`) instead of white.
  */
@@ -25,7 +24,7 @@ const button = cva(
     "focus:ring-4",
     focusOutline,
     "[&_svg]:pointer-events-none [&_svg]:shrink-0",
-    // Flowbite's disabled button; a loading button keeps its colours.
+    // The disabled button; a loading button keeps its colours.
     "disabled:pointer-events-none disabled:not-aria-busy:border-default-medium disabled:not-aria-busy:bg-disabled disabled:not-aria-busy:text-fg-disabled",
   ],
   {
@@ -103,7 +102,7 @@ const button = cva(
         className:
           "border-warning text-fg-warning hover:bg-warning hover:text-warning-foreground focus:ring-neutral-tertiary",
       },
-      // Flowbite's icon buttons are square: 32, 36 and 40px, with a 20px icon.
+      // Icon buttons are square: 32, 36 and 40px, with a 20px icon.
       { iconOnly: true, size: "xs", className: "size-8 [&_svg]:size-4" },
       { iconOnly: true, size: "sm", className: "size-9" },
       { iconOnly: true, size: "md", className: "size-10" },

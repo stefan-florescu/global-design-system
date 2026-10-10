@@ -14,7 +14,7 @@ export default function InputFieldHelper() {
         id={`${id}-email`}
         type="email"
         startIcon={<Mail />}
-        placeholder="name@flowbite.com"
+        placeholder="name@example.com"
         aria-describedby={`${id}-email-help`}
       />
       <HelperText id={`${id}-email-help`}>

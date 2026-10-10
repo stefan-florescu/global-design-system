@@ -29,7 +29,7 @@ export type ClipboardProps = Omit<ComponentProps<"button">, "children" | "value"
     /** Called after the value was copied. */
     onCopy?: (value: string) => void;
     /**
-     * Show Flowbite's tooltip on an icon-only button: the label ("Copy to clipboard") on hover and
+     * Show a tooltip on an icon-only button: the label ("Copy to clipboard") on hover and
      * keyboard focus, then `copiedLabel` after copying. The tooltip is the button's name.
      */
     showTooltip?: boolean;
@@ -37,7 +37,7 @@ export type ClipboardProps = Omit<ComponentProps<"button">, "children" | "value"
 
 /**
  * A button that copies `value` to the clipboard, confirms it with a check icon and "Copied!",
- * and announces the result to screen readers. Flowbite's four trigger styles: `brand` and
+ * and announces the result to screen readers. Four trigger styles: `brand` and
  * `secondary` buttons, a `ghost` icon button and a small `tertiary` chip.
  */
 export function Clipboard({

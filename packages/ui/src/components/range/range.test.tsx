@@ -13,7 +13,7 @@ describe("Range", () => {
     expect(slider).toHaveValue("7");
   });
 
-  it("applies Flowbite's sizes", () => {
+  it("applies the sizes", () => {
     render(
       <>
         <Range aria-label="Small" size="sm" />

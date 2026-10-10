@@ -3,10 +3,9 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { focusOutline } from "../../lib/focus";
 
 /*
- * Flowbite v4 badges, class for class (https://flowbite.com/docs/components/badge/), on our
- * semantic tokens, which carry Flowbite's role names. Every variant sets its border and ring
- * colour; `bordered` turns them on (a border, or an inset ring on large badges, as Flowbite's
- * "Large bordered badges" do). All label and fill pairings pass WCAG 2.2 AA as in Flowbite.
+ * Badges on our semantic tokens. Every variant sets its border and ring colour; `bordered` turns
+ * them on (a border, or an inset ring on large badges). All label and fill pairings pass
+ * WCAG 2.2 AA.
  */
 export const badgeVariants = cva(
   "inline-flex w-fit shrink-0 items-center justify-center rounded font-medium whitespace-nowrap [&_svg]:shrink-0",
@@ -36,12 +35,12 @@ export const badgeVariants = cva(
         true: "rounded-full p-0",
         false: "",
       },
-      /** Set by `Badge` when it renders a link: Flowbite's hover fill. */
+      /** Set by `Badge` when it renders a link: a hover fill. */
       link: {
         true: "transition-colors motion-reduce:transition-none",
         false: "",
       },
-      /** Set by `Badge` when it has a remove button: Flowbite's chip padding. */
+      /** Set by `Badge` when it has a remove button: chip padding. */
       dismissible: {
         true: "pe-0.5",
         false: "",
@@ -49,7 +48,7 @@ export const badgeVariants = cva(
     },
     compoundVariants: [
       { bordered: true, size: "sm", className: "border" },
-      // Flowbite's large bordered badges draw an inset ring, so they keep the large height.
+      // Large bordered badges draw an inset ring, so they keep the large height.
       { bordered: true, size: "lg", className: "ring-1 ring-inset" },
       { iconOnly: true, size: "sm", className: "size-5" },
       { iconOnly: true, size: "lg", className: "size-6 text-xs" },
@@ -75,7 +74,7 @@ export const badgeVariants = cva(
 /** Focus for a badge rendered as a link. */
 export const badgeLinkClassName = focusOutline;
 
-/** The dot before the label (Flowbite's "Badges with dot"), in the label colour. */
+/** The dot before the label ("Badges with dot"), in the label colour. */
 export const badgeDotVariants = cva("size-1.5 shrink-0 rounded-full", {
   variants: {
     variant: {

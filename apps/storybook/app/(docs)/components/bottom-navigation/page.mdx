@@ -105,7 +105,7 @@ control the volume, navigate between videos, pause or start the video, and more.
 The play/pause button changes its name, tooltip and icon to the action it takes ("Pause video",
 "Play video"), "Captions" is a toggle button, and the playback position is a
 [`Progress`](/components/progress) bar named "Playback position" that announces "3:45 of 5:00".
-The three columns share the bar equally, as in Flowbite.
+The three columns share the bar equally.
 
 <ComponentPreview name="bottom-navigation-video-player" flush />
 
@@ -114,13 +114,13 @@ The three columns share the bar equally, as in Flowbite.
 - Renders a `<nav>` landmark named "Bottom navigation" (change it with `aria-label`) containing a
   list, so screen readers announce how many destinations there are.
 - The current page has `aria-current="page"`, which screen readers announce, and is coloured
-  `fg-brand` (Flowbite only colours items on hover). If colour is the only cue in your design, add
+  `fg-brand`. If colour is the only cue in your design, add
   another one, such as a filled icon.
-- `hideLabel` keeps the label as visually hidden text; every item always has a name. Flowbite's
-  tooltips on icon-only items are [`Tooltip`](/components/tooltips)s in label mode: they show the
+- `hideLabel` keeps the label as visually hidden text; every item always has a name. Tooltips
+  on icon-only items are [`Tooltip`](/components/tooltips)s in label mode: they show the
   same name on hover and keyboard focus and are read once. <Kbd>Escape</Kbd> hides them. The
   app bar's add button is named by its tooltip, "Create new item".
-- Keyboard focus draws a solid `ring` outline inside the item; Flowbite has no focus style.
+- Keyboard focus draws a solid `ring` outline inside the item.
 - Each item fills its share of the 64px-high bar, well above the 24×24px minimum target size.
 - A fixed bar covers the bottom of the page. Add matching padding to your layout so no content is
   hidden behind it.
@@ -133,23 +133,21 @@ In the online meeting control bar and the video player bar:
   through the buttons one by one. They are not `role="toolbar"`s: a toolbar promises a single tab
   stop with arrow-key movement, which these examples do not implement.
 - Every icon-only button is named by its [`Tooltip`](/components/tooltips) in label mode, which
-  shows on hover and keyboard focus. Flowbite's "Show options" button and its "Adjust volume"
-  buttons have no tooltip; ours do, and step aside while their menu or panel is open. Where
-  Flowbite's hidden name and tooltip differ, the tooltip's text is the name: "Full screen" (not
-  "Expand") and "Captions" (not "Toggle captions", which would repeat the toggle state).
+  shows on hover and keyboard focus. The "Show options" and "Adjust volume" tooltips step aside
+  while their menu or panel is open. The tooltip's text is the name, so it is read once: "Full
+  screen", and "Captions" rather than "Toggle captions", which would repeat the toggle state.
 - Mute, camera and captions are toggle buttons: their name stays the same and `aria-pressed` says
   whether they are on, as the WAI-ARIA button pattern recommends. Pressed buttons also change their
   icon (microphone off, camera off) or turn `fg-brand`, so the state is not shown by colour alone.
   Play/pause instead swaps its name and icon between "Pause video" and "Play video", the usual
-  pattern for media controls. Flowbite's buttons do not change.
+  pattern for media controls.
 - "Show options" opens a menu (arrow keys, <Kbd>Escape</Kbd> returns focus). "Adjust volume" opens
-  a dialog panel with a labelled slider that announces the volume as a percentage; Flowbite's
-  button does nothing.
+  a dialog panel with a labelled slider that announces the volume as a percentage.
 - The video's playback position is a `progressbar` named "Playback position" with the value text
   "3:45 of 5:00"; the times beside it are hidden from screen readers so they are not read twice.
   In a real player that lets people seek, use a [`Range`](/forms/range) slider instead.
-- The video thumbnail is decorative (`alt=""`): the title next to it names the video. Buttons keep
-  Flowbite's soft focus halo and add the solid `ring` outline on keyboard focus.
+- The video thumbnail is decorative (`alt=""`): the title next to it names the video. Buttons show
+  a soft focus halo and add the solid `ring` outline on keyboard focus.
 
 ## API Reference
 

@@ -12,7 +12,7 @@ export default function TabsFullWidth() {
 
   return (
     <Tabs variant="full-width" value={value} onValueChange={setValue} className="w-full">
-      {/* Below `sm` a select replaces the tabs, as in Flowbite. */}
+      {/* Below `sm` a select replaces the tabs. */}
       <div className="mb-4 sm:hidden">
         <Label htmlFor={`${id}-tab`} className="sr-only">
           Select a tab

@@ -1,11 +1,10 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 /*
- * Flowbite v4's tooltip (https://flowbite.com/docs/components/tooltips/), class for class: `px-3
- * py-2 text-sm font-medium` with `rounded-base` corners and `shadow-xs`, fading in with
- * `transition-opacity duration-300`. `dark` is Flowbite's default `bg-dark` fill (its `text-white`
- * is `dark-foreground` here); `light` is `neutral-primary-medium` with `heading` text and a
- * `default` border (`data-tooltip-style="light"`).
+ * Tooltip: `px-3 py-2 text-sm font-medium` with `rounded-base` corners and `shadow-xs`, fading
+ * in with `transition-opacity duration-300`. `dark` is the default `bg-dark` fill with
+ * `dark-foreground` text; `light` is `neutral-primary-medium` with `heading` text and a `default`
+ * border.
  *
  * The tooltip is a native popover (top layer), so the first group of classes resets the browser's
  * popover styles; `z-tooltip` layers it where the popover API is missing. The fade starts from
@@ -31,9 +30,9 @@ export const tooltipVariants = cva(
 export type TooltipVariantProps = VariantProps<typeof tooltipVariants>;
 
 /*
- * Flowbite's `.tooltip-arrow`: an 8px square in the tooltip's colour, turned 45° and 3px outside
- * the tooltip. The light tooltip's arrow has the `neutral-tertiary` border (Flowbite's arrow
- * border) on its two outer sides. The side comes from where the tooltip ended up, after any flip.
+ * The arrow: an 8px square in the tooltip's colour, turned 45° and 3px outside the tooltip. The
+ * light tooltip's arrow has a `neutral-tertiary` border on its two outer sides. The side comes from
+ * where the tooltip ended up, after any flip.
  */
 export const tooltipArrowVariants = cva(
   "pointer-events-none absolute size-2 rotate-45 border-neutral-tertiary bg-inherit",

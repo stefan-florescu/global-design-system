@@ -24,13 +24,13 @@ export type ChatBubbleMenuProps = DropdownMenuProps &
   Pick<DropdownProps, "open" | "defaultOpen" | "onOpenChange"> & {
     /** Accessible name of the "more" button. */
     label?: string;
-    /** Where the menu opens, as on `Dropdown`. Flowbite's chat bubbles use `bottom-start`. */
+    /** Where the menu opens, as on `Dropdown`. Defaults to `bottom-start`. */
     placement?: DropdownPlacement;
   };
 
 /**
- * The "more" button next to a chat bubble and the menu of actions it opens (Flowbite's dots
- * dropdown), built on `Dropdown`: a WAI-ARIA menu button with arrow keys, Home, End, typeahead,
+ * The "more" button next to a chat bubble and the menu of actions it opens, built
+ * on `Dropdown`: a WAI-ARIA menu button with arrow keys, Home, End, typeahead,
  * and Escape returning focus to the button. Pass it to `ChatBubble`'s `actions`.
  */
 export function ChatBubbleMenu({

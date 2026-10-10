@@ -24,7 +24,7 @@ describe("PhoneInput", () => {
     expect(screen.getByRole("textbox")).toHaveAttribute("aria-invalid", "true");
   });
 
-  it("styles the country select like Flowbite's dropdown button in one field group", () => {
+  it("styles the country select like a dropdown button in one field group", () => {
     const { container } = render(<PhoneInput aria-label="Phone number" />);
     expect(container.firstChild).toHaveClass("-space-x-px", "shadow-xs", "rounded-base");
     expect(screen.getByRole("combobox")).toHaveClass("font-medium", "text-body", "rounded-e-none");

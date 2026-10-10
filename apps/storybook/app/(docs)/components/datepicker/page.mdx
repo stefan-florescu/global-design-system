@@ -66,8 +66,8 @@ current day and "Clear" resets the selection.
 
 ### Date format
 
-Pass a `format` such as `mm-dd-yyyy` to change how the date is shown and typed. It uses
-Flowbite's tokens: `d`/`dd` day, `m`/`mm` month, `M`/`MM` month name, `D`/`DD` weekday name and
+Pass a `format` such as `mm-dd-yyyy` to change how the date is shown and typed. It understands
+these tokens: `d`/`dd` day, `m`/`mm` month, `M`/`MM` month name, `D`/`DD` weekday name and
 `yy`/`yyyy` year.
 
 <ComponentPreview name="datepicker-format" />
@@ -118,8 +118,7 @@ Use the [Timepicker](/forms/timepicker) to select a time alongside the datepicke
 - The calendar is a `grid` named by the month ("October 2026"), which is announced when it
   changes. Each day is a button named with the full date, today has `aria-current="date"`, and
   selected days have `aria-selected`.
-- Only one day is in the tab order, and it shows a solid `ring` outline when focused (Flowbite's
-  calendar has no visible focus). Keyboard:
+- Only one day is in the tab order, and it shows a solid `ring` outline when focused. Keyboard:
 
 | Key                                       | Action                                                 |
 | ----------------------------------------- | ------------------------------------------------------ |
@@ -132,10 +131,10 @@ Use the [Timepicker](/forms/timepicker) to select a time alongside the datepicke
 | <Kbd>Enter</Kbd> / <Kbd>Space</Kbd>       | Selects the focused day                                |
 | <Kbd>Esc</Kbd>                            | Closes the calendar and returns focus to the field     |
 
-- Days of the previous and next month use `body-subtle` instead of Flowbite's `fg-disabled`,
-  which is under 4.5:1 while those days can still be picked. Disabled days keep `fg-disabled`.
+- Days of the previous and next month use `body-subtle` rather than `fg-disabled`, which is
+  under 4.5:1, because those days can still be picked. Disabled days keep `fg-disabled`.
 - Disabled days stay focusable so keyboard users can move past them, but they can't be selected.
-- The field's border is the `input` token, Flowbite's gray-200, like every form control.
+- The field's border is the `input` token, like every form control.
 - For dates far in the past, such as a birth date, separate day, month and year fields are faster
   and easier than a calendar.
 

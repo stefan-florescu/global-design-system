@@ -15,7 +15,7 @@ describe("HelperText", () => {
     );
   });
 
-  it("uses Flowbite's helper text styles", () => {
+  it("uses the helper text styles", () => {
     render(<HelperText>Hint</HelperText>);
     expect(screen.getByText("Hint")).toHaveClass("mt-2.5", "text-sm", "text-body");
   });

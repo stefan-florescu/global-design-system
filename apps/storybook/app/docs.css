@@ -456,7 +456,7 @@
 
   .preview {
     position: relative;
-    /* Tailwind's default, as on flowbite.com; the article text uses 1.6. */
+    /* Tailwind's default, so demos render as they do in an app; the article text uses 1.6. */
     line-height: 1.5;
     display: flex;
     flex-wrap: wrap;

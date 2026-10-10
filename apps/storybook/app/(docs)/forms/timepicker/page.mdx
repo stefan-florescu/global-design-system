@@ -98,10 +98,10 @@ interval with its trash button, or add one back with "Add interval".
   and read correctly by screen readers. The clock icon is decorative (`aria-hidden`).
 - The submitted value is always 24-hour `HH:mm`, whatever the display format. `min`, `max` and
   `step` (seconds) limit the choices; explain limits such as office hours in a `HelperText`.
-- Differences from Flowbite, for WCAG 2.2 AA: Flowbite's time slots hide their radio
-  inputs with `display: none`, which removes them from the keyboard and screen readers; here they
-  are visually hidden (`sr-only`), keep the arrow-key radio behaviour and draw the `ring` outline
-  around the slot on keyboard focus. Slot labels on the `brand` fill use `brand-foreground`.
+- For WCAG 2.2 AA, the time slots' radio inputs are visually hidden (`sr-only`) rather than
+  `display: none`, which would remove them from the keyboard and screen readers. They keep the
+  arrow-key radio behaviour and draw the `ring` outline around the slot on keyboard focus. Slot
+  labels on the `brand` fill use `brand-foreground`.
 - The duration dropdown is a WAI-ARIA menu button; once a duration is chosen, the button reads
   "Duration: 1 hour". The time range dropdown is a non-modal dialog named "Time range": focus moves
   to the start time when it opens, and <Kbd>Escape</Kbd> or "Save time" closes it and returns focus
@@ -109,9 +109,8 @@ interval with its trash button, or add one back with "Add interval".
 - The schedule drawer is a modal dialog named by its title: focus stays inside it until it closes.
   Each day's checkbox and time fields are named with the full day ("Monday start time"), and the
   trash buttons say which interval they delete. Deleting a row moves focus to "Add interval", and
-  adding one moves focus to the new row. Flowbite pins "Close" and "Save all" over the bottom of the
-  drawer; here they sit at the bottom but in the flow, so they never cover a field on short
-  screens.
+  adding one moves focus to the new row. "Close" and "Save all" sit at the bottom of the drawer but
+  in the flow, so they never cover a field on short screens.
 - The appointment modal is a modal dialog named by its title. Its time slots are the same
   radio buttons as the inline example, grouped under "Pick your time".
 

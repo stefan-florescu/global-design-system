@@ -13,7 +13,7 @@ describe("Spinner", () => {
     expect(svg).toHaveClass("size-8", "animate-spin", "motion-reduce:animate-none");
   });
 
-  it("draws Flowbite's grey track and brand arc by default", () => {
+  it("draws a grey track and brand arc by default", () => {
     const { container } = render(<Spinner />);
     const [track, arc] = container.querySelectorAll("path");
     expect(track).toHaveClass("fill-neutral-tertiary");

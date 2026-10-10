@@ -15,21 +15,21 @@ export default function ChatBubbleCleanUrlPreview() {
       </p>
       <p className="py-2.5">
         <a
-          href="https://github.com/themesberg/flowbite"
+          href="https://example.com/stefan-ds"
           className="text-fg-brand font-medium break-all underline hover:no-underline"
         >
-          https://github.com/themesberg/flowbite
+          https://example.com/stefan-ds
         </a>
       </p>
       <a
-        href="https://github.com/themesberg/flowbite"
+        href="https://example.com/stefan-ds"
         className="rounded-base bg-neutral-tertiary hover:bg-neutral-quaternary block p-4"
       >
         <img src="/images/landscape-5.svg" alt="" className="rounded-base mb-2" />
         <span className="text-heading text-sm font-medium">
-          GitHub - themesberg/flowbite: The most popular and open source libra ...
+          Stefan Design System: Accessible React components built on design tok ...
         </span>
-        <span className="text-body mt-2 block text-xs font-normal">github.com</span>
+        <span className="text-body mt-2 block text-xs font-normal">example.com</span>
       </a>
     </ChatBubble>
   );

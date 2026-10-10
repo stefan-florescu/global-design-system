@@ -3,9 +3,9 @@ import { useId } from "react";
 import { Button, Card, Clipboard, Input, Label } from "@stefan-florescu/ui";
 
 const fields = [
-  { key: "account-id", label: "Flowbite account ID:", value: "756593826" },
+  { key: "account-id", label: "Stefan DS account ID:", value: "756593826" },
   { key: "api-key", label: "API key:", value: "f4h6sd3t-jsy63ind-hsgdt7rs-jdhf76st" },
-  { key: "role-arn", label: "Role ARN:", value: "123456789012:user/Flowbite" },
+  { key: "role-arn", label: "Role ARN:", value: "123456789012:user/StefanDS" },
 ];
 
 export default function ClipboardCard() {
@@ -18,7 +18,7 @@ export default function ClipboardCard() {
         Create a role with read only in-line policies
       </h2>
       <p className="text-body mb-6">
-        To give Flowbite read access, please create an IAM Role following{" "}
+        To give Stefan DS read access, please create an IAM Role following{" "}
         <a href="#trust" className="text-fg-brand font-medium underline hover:no-underline">
           trust relationship
         </a>{" "}

@@ -111,7 +111,7 @@ describe("Carousel", () => {
     expect(screen.queryByRole("button")).not.toBeInTheDocument();
   });
 
-  it("uses Flowbite's slide window and transition speeds", () => {
+  it("uses the slide window and transition speeds", () => {
     const { rerender } = render(<Slides />);
     const track = slide("1 of 3").parentElement;
     expect(track?.parentElement).toHaveClass("h-56", "md:h-96", "rounded-base", "overflow-hidden");

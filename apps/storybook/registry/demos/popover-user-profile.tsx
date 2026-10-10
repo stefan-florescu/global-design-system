@@ -24,8 +24,8 @@ export default function PopoverUserProfile() {
           </p>
           <p className="mb-4 text-sm">
             Open-source contributor &amp; CEO. Building{" "}
-            <a href="#flowbite" className="text-fg-brand hover:underline">
-              flowbite.com
+            <a href="#stefan-ds" className="text-fg-brand hover:underline">
+              example.com
             </a>
             .
           </p>

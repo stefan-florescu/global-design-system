@@ -71,7 +71,7 @@ Add an `icon`: the text moves before the switch and the icon sits above it.
 
 ### Sizes
 
-Two sizes: `md` (Flowbite's "base") is the default.
+Two sizes: `md` (the default) and `lg`.
 
 <ComponentPreview name="toggle-sizes" />
 
@@ -84,16 +84,14 @@ Two sizes: `md` (Flowbite's "base") is the default.
 
 - A native checkbox with `role="switch"`: screen readers announce "switch, on/off", <Kbd>Space</Kbd>
   toggles it, and it submits with forms like a checkbox.
-- The off track is Flowbite's gray-200 (`input`) and the on track is `brand`; the knob position
+- The off track is `input` (gray-200) and the on track is `brand`; the knob position
   shows the state without relying on colour.
-- Focus shows Flowbite's soft `brand-soft` halo; keyboard focus also draws a solid 2px `ring`
-  outline, because the halo alone is under 3:1.
+- Focus shows a soft `brand-soft` halo; keyboard focus also draws a solid 2px `ring` outline,
+  because the halo alone is under 3:1.
 - The knob stops animating when the user prefers reduced motion.
 - With a `description`, the title names the switch and the description is read as its description.
 - Use a toggle for settings that apply at once. For choices confirmed by a submit button, use a
   checkbox.
-- Not ported: Flowbite's _Colors_ example (uses palette colours we have no tokens for). The card
-  with icon shows a generic icon instead of Flowbite's brand logo.
 
 ## API Reference
 

@@ -26,7 +26,7 @@ import {
 } from "./stepper.variants";
 
 export type StepperProps = ComponentProps<"ol"> & {
-  /** Flowbite's stepper style. `vertical` and `timeline` run top to bottom. */
+  /** The stepper style. `vertical` and `timeline` run top to bottom. */
   variant?: StepperVariant;
 };
 

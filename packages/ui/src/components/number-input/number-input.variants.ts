@@ -3,10 +3,9 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { focusOutline } from "../../lib/focus";
 
 /*
- * Flowbite v4's number inputs (https://flowbite.com/docs/forms/number-input/), on the shared field
- * styles. `default` with `stepper` is Flowbite's "Control buttons": the field sits between two
- * secondary buttons that share its border (40px tall at the base size, like Flowbite's `h-10`).
- * `counter` is Flowbite's "Counter input": round 24px buttons around a borderless value. The
+ * Number inputs on the shared field styles. `default` with `stepper` gives "Control buttons": the
+ * field sits between two secondary buttons that share its border (40px tall, `h-10`, at the base
+ * size). `counter` is the "Counter input": round 24px buttons around a borderless value. The
  * browser's own spin buttons are hidden whenever our buttons are shown.
  */
 const hideSpinButtons =
@@ -26,7 +25,7 @@ export const numberInputFieldVariants = cva(hideSpinButtons, {
   variants: {
     variant: {
       default: "rounded-none border-x-0 text-center shadow-none",
-      // Flowbite drops the counter's focus ring; keyboard focus keeps our solid outline.
+      // The counter has no focus ring; keyboard focus draws the solid outline.
       counter: [
         "w-10 shrink-0 rounded-xs border-0 bg-transparent px-1 py-2 text-center shadow-none focus:ring-0",
         focusOutline,

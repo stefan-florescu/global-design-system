@@ -3,7 +3,7 @@ import { useId } from "react";
 import { Image, MapPin, Paperclip, Smile } from "@stefan-florescu/icons";
 import { Button, Label, Textarea } from "@stefan-florescu/ui";
 
-// Flowbite's toolbar buttons: 36px, `body` icon, `neutral-tertiary-medium` on hover.
+// Toolbar buttons: 36px, `body` icon, `neutral-tertiary-medium` on hover.
 const tool = "rounded-sm text-body hover:bg-neutral-tertiary-medium hover:text-heading";
 
 export default function TextareaComment() {

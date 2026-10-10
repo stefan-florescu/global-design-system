@@ -1,7 +1,7 @@
 {
   "name": "MegaMenu",
   "status": "beta",
-  "description": "Flowbite's mega menu: a navbar item that opens a wide panel of grouped links, under its trigger or across the full width of the navbar, following the WAI-ARIA disclosure navigation pattern. On small screens the panel stacks in the collapsed navbar.",
+  "description": "A mega menu: a navbar item that opens a wide panel of grouped links, under its trigger or across the full width of the navbar, following the WAI-ARIA disclosure navigation pattern. On small screens the panel stacks in the collapsed navbar.",
   "category": "navigation",
   "import": "import { MegaMenu, MegaMenuContent, MegaMenuGroup, MegaMenuLink, MegaMenuTrigger } from \"@stefan-florescu/ui\";",
   "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/examples/disclosure-navigation/",

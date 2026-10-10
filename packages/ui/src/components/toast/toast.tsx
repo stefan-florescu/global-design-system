@@ -97,7 +97,7 @@ export type ToastToggleProps = ComponentProps<"button"> & {
   asChild?: boolean;
 };
 
-/** Closes the toast. Flowbite's × button by default; with `asChild`, any button you pass. */
+/** Closes the toast. An × button by default; with `asChild`, any button you pass. */
 export function ToastToggle({
   label = "Close",
   asChild = false,

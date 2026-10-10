@@ -65,10 +65,9 @@ Sign people in with a phone number instead of an email address.
 <ComponentPreview name="phone-input-advanced" />
 
 <Callout title="Native selects instead of dropdown menus">
-  Flowbite opens a dropdown menu with country flags from a button. We use a native `<select>` styled
-  like that button, which works with the keyboard, screen readers and mobile pickers without extra
-  script. The country code ("US") stands in for the flag. Flowbite's "Floating label input" example
-  is left out: there is no floating-label field in the system yet.
+  The country picker is a native `<select>` styled like a dropdown button, which works with the
+  keyboard, screen readers and mobile pickers without extra script. The country code ("US") stands
+  in for a flag.
 </Callout>
 
 ## Accessibility
@@ -77,8 +76,7 @@ Sign people in with a phone number instead of an email address.
 - `autoComplete="tel-national"` and `inputMode="tel"` let browsers fill the number and show a phone
   keypad on mobile.
 - `invalid` marks both the select and the field with `aria-invalid`; explain the problem in text.
-- Differences from Flowbite, for WCAG 2.2 AA:
-  - Keyboard focus on the select draws the solid `ring` outline around Flowbite's soft halo.
+- For WCAG 2.2 AA, keyboard focus on the select draws the solid `ring` outline around its soft halo.
 
 ## API Reference
 

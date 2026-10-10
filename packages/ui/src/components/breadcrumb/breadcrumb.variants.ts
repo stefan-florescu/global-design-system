@@ -3,10 +3,9 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { focusOutline } from "../../lib/focus";
 
 /*
- * Flowbite v4 breadcrumb, class for class (https://flowbite.com/docs/components/breadcrumb/):
- * `text-body` links that turn `fg-brand` on hover, the current page in `body-subtle`, 14px
- * chevron separators. `solid` is Flowbite's "Solid background" trail. Accessibility addition:
- * links draw the solid keyboard outline from lib/focus (Flowbite has no focus style).
+ * Breadcrumb: `text-body` links that turn `fg-brand` on hover, the current page in
+ * `body-subtle`, 14px chevron separators. `solid` is a trail on a solid background.
+ * Accessibility: links draw the solid keyboard outline from lib/focus.
  */
 export const breadcrumbVariants = cva("flex", {
   variants: {

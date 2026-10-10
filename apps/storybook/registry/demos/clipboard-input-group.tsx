@@ -20,13 +20,13 @@ export default function ClipboardInputGroup() {
         <Input
           id={`${id}-website-url`}
           readOnly
-          value="https://flowbite.com"
+          value="https://example.com"
           addon="URL"
           aria-describedby={`${id}-website-url-help`}
           className={`${fieldGroupItemClassName} text-body rounded-e-none`}
         />
         <Clipboard
-          value="https://flowbite.com"
+          value="https://example.com"
           iconOnly
           showTooltip
           label="Copy link"

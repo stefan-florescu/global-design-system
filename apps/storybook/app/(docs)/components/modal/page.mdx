@@ -126,9 +126,9 @@ bar. The text under the title describes the dialog through `aria-describedby`.
 
 ## Sizes
 
-Set `size` to one of Flowbite's `max-w-*` widths, from `sm` to `7xl` (`2xl`, 672px, by default).
-Flowbite's small, default, large and extra large modals are `md`, `lg`, `4xl` and `7xl`. The modal
-is never wider than the screen, minus a 16px gap on each side.
+Set `size` to one of the `max-w-*` widths, from `sm` to `7xl` (`2xl`, 672px, by default). For
+small, medium, large and extra large modals, use `md`, `lg`, `4xl` and `7xl`. The modal is never
+wider than the screen, minus a 16px gap on each side.
 
 <ComponentPreview name="modal-sizes" />
 
@@ -152,18 +152,13 @@ the modal 16px from the edges of the screen. The default is `center`.
 - `ModalTrigger` has `aria-haspopup="dialog"`, `aria-expanded` and `aria-controls`.
 - The × button is labelled "Close" (pass `label` for something more specific). Keyboard focus
   draws a solid `ring` outline on it and on every button.
-- The page can't scroll while the modal is open, as in Flowbite. A modal taller than the screen
-  scrolls inside.
-- Differences from Flowbite:
-  - The modal is a `dialog` that traps focus and makes the page inert; Flowbite's is a `div` that
-    keeps the page in the tab order, and doesn't move focus.
-  - The title is an `h2`, not an `h3`, so it doesn't skip heading levels.
-  - The radio cards hide their inputs with `sr-only` instead of `display: none`, so the keyboard
-    and screen readers reach them, and they draw the `ring` outline on keyboard focus.
-  - The [`Progress`](/components/progress) bar has `role="progressbar"` with its value, and its
-    width matches the value (376,3 of 500 GB is 75%; Flowbite draws 85%).
-- Not ported: Flowbite's _Crypto wallet_ example, which is a list of wallet brand logos. In the
-  timeline, the Figma logo on "Duplicate in Figma" is a copy icon.
+- The page can't scroll while the modal is open. A modal taller than the screen scrolls inside.
+- The title is an `h2`, so it doesn't skip heading levels.
+- The radio cards hide their inputs with `sr-only` instead of `display: none`, so the keyboard and
+  screen readers reach them, and they draw the `ring` outline on keyboard focus.
+- The [`Progress`](/components/progress) bar has `role="progressbar"` with its value, and its width
+  matches the value (376,3 of 500 GB is 75%).
+- In the timeline, "Duplicate in Figma" shows a copy icon, as there are no brand logos.
 
 | Key                                                | Action                                  |
 | -------------------------------------------------- | --------------------------------------- |
@@ -193,7 +188,7 @@ renders its only child (your own button or link) instead.
 
 ### ModalContent
 
-The `<dialog>` box. Its padding, border and shadow are Flowbite's; change them with `className`
+The `<dialog>` box. It has padding, a border and a shadow; change them with `className`
 (`p-0` for a modal with its own padded sections). All other `<dialog>` attributes are forwarded,
 including `ref`, `role` and `aria-*`.
 

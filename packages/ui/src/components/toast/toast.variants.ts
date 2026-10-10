@@ -3,10 +3,8 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { focusOutline } from "../../lib/focus";
 
 /*
- * Flowbite v4 toasts, class for class (https://flowbite.com/docs/components/toast/), on our
- * semantic tokens. `default` is Flowbite's white toast; `danger` and `warning` are its "Toast
- * danger alert" and "Toast warning alert" surfaces, and `brand` and `success` follow the same
- * pattern (the Alert colours). Every label and fill pairing passes WCAG 2.2 AA, as in Flowbite.
+ * Toasts on our semantic tokens. `default` is the white toast; `danger`, `warning`, `brand` and
+ * `success` use the Alert colours. Every label and fill pairing passes WCAG 2.2 AA.
  */
 export const toastVariants = cva(
   "flex w-full max-w-xs items-center rounded-base border p-4 shadow-xs",
@@ -25,8 +23,8 @@ export const toastVariants = cva(
 );
 
 /**
- * The square behind a toast's icon (Flowbite's "Colors" toasts). `brand` is the brand icon on a
- * neutral square of its "Interactive toast".
+ * The square behind a toast's icon, in the toast's colour. `brand` is the brand icon on a neutral
+ * square, as in an interactive toast.
  */
 export const toastIconVariants = cva(
   "inline-flex shrink-0 items-center justify-center rounded [&_svg]:size-5 [&_svg]:shrink-0",
@@ -47,7 +45,7 @@ export const toastIconVariants = cva(
   },
 );
 
-/** Flowbite's 32px × button, pushed to the end of the toast. */
+/** The 32px × button, pushed to the end of the toast. */
 export const toastToggleClassName = [
   "ms-auto box-border flex size-8 shrink-0 cursor-pointer items-center justify-center rounded border border-transparent bg-transparent",
   "text-sm leading-5 font-medium text-body hover:bg-neutral-secondary-medium hover:text-heading",
@@ -56,8 +54,8 @@ export const toastToggleClassName = [
 ].join(" ");
 
 /**
- * The stack of toasts shown by `ToastProvider`, 20px from the edges like Flowbite's "Positioning"
- * examples. Below `sm` it spans the screen, minus a 16px gutter.
+ * The stack of toasts shown by `ToastProvider`, 20px from the edges.
+ * Below `sm` it spans the screen, minus a 16px gutter.
  */
 export const toastViewportVariants = cva(
   "pointer-events-none z-toast inset-x-4 flex flex-col gap-3 sm:inset-x-auto sm:w-full sm:max-w-xs",

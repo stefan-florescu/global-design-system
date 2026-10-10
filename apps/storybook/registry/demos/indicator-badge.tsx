@@ -15,7 +15,7 @@ export default function IndicatorBadge() {
               <Avatar src={avatar} alt="" size="sm" />
               <div className="min-w-0 flex-1">
                 <p className="text-heading truncate text-sm font-semibold">{name}</p>
-                <p className="text-body truncate text-sm">email@flowbite.com</p>
+                <p className="text-body truncate text-sm">email@example.com</p>
               </div>
               <Badge variant={available ? "success" : "danger"} bordered className="rounded-sm">
                 <Indicator variant={available ? "success" : "danger"} size="xs" />

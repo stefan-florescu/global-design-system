@@ -12,7 +12,7 @@ import {
   PopoverTitle,
 } from "@stefan-florescu/ui";
 
-/* Flowbite's light buttons in this example. */
+/* Light buttons: a white fill with a stronger border on hover. */
 const secondary =
   "bg-neutral-primary-medium hover:bg-neutral-secondary-strong hover:border-default-strong";
 
@@ -26,8 +26,8 @@ export default function PopoverCompanyProfile() {
           <div className="flex">
             <div className="me-3 shrink-0">
               <a
-                href="#flowbite"
-                aria-label="Flowbite"
+                href="#stefan-ds"
+                aria-label="Stefan DS"
                 className="bg-neutral-tertiary flex size-10 items-center justify-center rounded p-2"
               >
                 <Shapes aria-hidden className="text-fg-brand size-6" />
@@ -35,8 +35,8 @@ export default function PopoverCompanyProfile() {
             </div>
             <div>
               <PopoverTitle className="text-base font-semibold">
-                <a href="#flowbite" className="hover:underline">
-                  Flowbite
+                <a href="#stefan-ds" className="hover:underline">
+                  Stefan DS
                 </a>
               </PopoverTitle>
               <p className="mb-3 text-sm font-normal">Tech company</p>
@@ -47,7 +47,7 @@ export default function PopoverCompanyProfile() {
                 <li className="mb-2 flex items-center">
                   <Link aria-hidden className="text-body me-2 size-4 shrink-0" />
                   <a href="#website" className="text-fg-brand font-medium hover:underline">
-                    https://flowbite.com/
+                    https://example.com/
                   </a>
                 </li>
                 <li className="mb-2 flex items-start">

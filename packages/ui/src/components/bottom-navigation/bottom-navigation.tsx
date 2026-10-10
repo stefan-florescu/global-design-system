@@ -12,7 +12,7 @@ import {
 
 export type BottomNavigationProps = ComponentProps<"nav"> &
   BottomNavigationVariantProps & {
-    /** Content above the items, such as Flowbite's segmented "New / Popular / Following" bar. */
+    /** Content above the items, such as a segmented "New / Popular / Following" bar. */
     header?: ReactNode;
   };
 

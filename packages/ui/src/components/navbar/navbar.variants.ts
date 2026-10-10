@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { focusOutline } from "../../lib/focus";
 
 /*
- * Flowbite v4's navbar (https://flowbite.com/docs/components/navbar/), class for class:
+ * Navbar:
  * - the bar is `neutral-primary` (or `neutral-secondary-soft`, "Solid background") with a
  *   `default` bottom border, and a centred `max-w-screen-xl` row with `p-4`;
  * - the brand is a 28px logo and the name in `text-xl font-semibold heading`;
@@ -13,13 +13,13 @@ import { focusOutline } from "../../lib/focus";
  *   text that turns `fg-brand` on hover, with the current page in `fg-brand`.
  *
  * `expand` is the width from which the links show in a row (`md`, or `lg` for a bar with more in
- * it), or `never` for Flowbite's "Hamburger menu" that collapses them at every width. Tailwind
+ * it), or `never` for a hamburger menu that collapses them at every width. Tailwind
  * needs whole class names, so every `md:` class is written out for the `md` case and again as
  * `lg:` for the `lg` case.
  *
- * Accessibility additions (Flowbite shows none): links, buttons, the brand and the hamburger draw
+ * Accessibility: links, buttons, the brand and the hamburger draw
  * the solid `ring` outline on keyboard focus (lib/focus); disabled links use `fg-disabled`.
- * Spacing uses `gap` instead of Flowbite's `space-x-*` so it also works right to left.
+ * Spacing uses `gap`, so it also works right to left.
  */
 
 export const navbarVariants = cva("w-full", {
@@ -36,7 +36,7 @@ export const navbarVariants = cva("w-full", {
       static: "",
       /* Sticks to the top of its scrolling container (or the page) once scrolled to. */
       sticky: "sticky start-0 top-0 z-sticky",
-      /* Fixed to the top of the viewport, as in every Flowbite example (`z-20`). */
+      /* Fixed to the top of the viewport, on the fixed layer. */
       fixed: "fixed start-0 top-0 z-fixed",
     },
   },
@@ -50,7 +50,7 @@ export const navbarContainerVariants = cva("mx-auto flex flex-wrap items-center 
       true: "",
       false: "max-w-screen-xl",
     },
-    /* `md` is Flowbite's navbar (`p-4`); `sm` its secondary bar under a navbar (`px-4 py-3`). */
+    /* `md` is the navbar (`p-4`); `sm` a secondary bar under a navbar (`px-4 py-3`). */
     size: {
       sm: "px-4 py-3",
       md: "p-4",
@@ -68,7 +68,7 @@ export const navbarBrandMarkClassName = "flex shrink-0 text-fg-brand [&_svg]:siz
 export const navbarBrandNameClassName =
   "self-center text-xl font-semibold whitespace-nowrap text-heading";
 
-/** Flowbite's hamburger: a 40px icon button that hides once the links show in a row. */
+/** The hamburger: a 40px icon button that hides once the links show in a row. */
 export const navbarToggleVariants = cva(
   [
     "inline-flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-base p-2 text-sm text-body hover:text-heading",
@@ -82,7 +82,7 @@ export const navbarToggleVariants = cva(
         lg: "lg:hidden",
         never: "",
       },
-      /* On the solid bar the hover fill is one step darker, as in Flowbite's "Hamburger menu". */
+      /* On the solid bar the hover fill is one step darker. */
       variant: {
         default: "hover:bg-neutral-secondary-soft",
         solid: "hover:bg-neutral-tertiary",
@@ -122,7 +122,7 @@ export const navbarCollapseVariants = cva("w-full items-center justify-between",
     variant: {
       default: "",
       flush: "",
-      /* Never collapses: a row of small links, Flowbite's submenu bar. */
+      /* Never collapses: a row of small links for a submenu bar. */
       inline: "flex w-auto",
     },
   },
@@ -147,13 +147,13 @@ export const navbarListVariants = cva("m-0 flex list-none font-medium", {
       className:
         "mt-4 flex-col rounded-base border border-default bg-neutral-secondary-soft p-4 lg:mt-0 lg:flex-row lg:gap-8 lg:border-0 lg:bg-transparent lg:p-0",
     },
-    /* Flowbite's "Hamburger menu": a ruled-off column with 8px between links. */
+    /* The hamburger menu: a ruled-off column with 8px between links. */
     {
       variant: "default",
       expand: "never",
       className: "mt-4 flex-col gap-2 border-t border-default pt-4",
     },
-    /* Flowbite's mega menu navbar: no card, the rows divided by `light` lines. */
+    /* The mega menu navbar: no card, the rows divided by `light` lines. */
     { variant: "flush", expand: "md", className: "mt-4 flex-col md:mt-0 md:flex-row md:gap-8" },
     { variant: "flush", expand: "lg", className: "mt-4 flex-col lg:mt-0 lg:flex-row lg:gap-8" },
     { variant: "flush", expand: "never", className: "mt-4 flex-col" },
@@ -237,7 +237,7 @@ export const navbarItemVariants = cva(focusOutline, {
   defaultVariants: { variant: "default", expand: "md", kind: "link" },
 });
 
-/** Flowbite's `w-4 h-4 ms-1.5` chevron after a dropdown trigger's label. */
+/** The 16px chevron after a dropdown trigger's label, 6px from it. */
 export const navbarChevronClassName = "ms-1.5 size-4 shrink-0";
 
 export type NavbarVariantProps = VariantProps<typeof navbarVariants>;

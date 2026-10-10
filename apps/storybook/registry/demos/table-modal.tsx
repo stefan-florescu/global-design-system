@@ -45,7 +45,7 @@ const initialUsers: User[] = [
   {
     id: 1,
     name: "Neil Sims",
-    email: "neil.sims@flowbite.com",
+    email: "neil.sims@example.com",
     position: "React Developer",
     status: "online",
     avatar: "/avatars/1.svg",
@@ -54,7 +54,7 @@ const initialUsers: User[] = [
   {
     id: 2,
     name: "Bonnie Green",
-    email: "bonnie@flowbite.com",
+    email: "bonnie@example.com",
     position: "Designer",
     status: "online",
     avatar: "/avatars/3.svg",
@@ -63,7 +63,7 @@ const initialUsers: User[] = [
   {
     id: 3,
     name: "Jese Leos",
-    email: "jese@flowbite.com",
+    email: "jese@example.com",
     position: "Vue JS Developer",
     status: "online",
     avatar: "/avatars/2.svg",
@@ -72,7 +72,7 @@ const initialUsers: User[] = [
   {
     id: 4,
     name: "Thomas Lean",
-    email: "thomas@flowbite.com",
+    email: "thomas@example.com",
     position: "UI/UX Engineer",
     status: "online",
     avatar: "/avatars/5.svg",
@@ -81,7 +81,7 @@ const initialUsers: User[] = [
   {
     id: 5,
     name: "Leslie Livingston",
-    email: "leslie@flowbite.com",
+    email: "leslie@example.com",
     position: "SEO Specialist",
     status: "offline",
     avatar: "/avatars/4.svg",

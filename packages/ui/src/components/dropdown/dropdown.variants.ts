@@ -3,14 +3,13 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { focusOutlineInset } from "../../lib/focus";
 
 /*
- * Flowbite v4's dropdown (https://flowbite.com/docs/components/dropdowns/), class for class: a
- * `w-44` panel on `neutral-primary-medium` with a `default-medium` border, `rounded-base` corners
- * and `shadow-lg`, and `p-2` rows of `text-sm font-medium text-body` items that turn
- * `neutral-tertiary-medium` / `heading` on hover.
+ * Dropdown: a `w-44` panel on `neutral-primary-medium` with a `default-medium` border,
+ * `rounded-base` corners and `shadow-lg`, and `p-2` rows of `text-sm font-medium text-body` items
+ * that turn `neutral-tertiary-medium` / `heading` on hover.
  *
  * The panel uses the native popover (top layer), so the first group of classes resets the
  * browser's popover styles; `z-dropdown` layers it where the popover API is missing.
- * Accessibility additions (Flowbite shows none):
+ * Accessibility:
  * - items draw the solid `ring` outline and the hover fill on keyboard focus;
  * - disabled items use `fg-disabled` and keep no hover;
  * - checkbox, radio and switch items draw their state with the form controls' tokens
@@ -36,13 +35,13 @@ export const dropdownItemVariants = cva(
         danger:
           "text-fg-danger hover:bg-neutral-tertiary-medium focus-visible:bg-neutral-tertiary-medium",
       },
-      /* Space between an icon, the label and a control: Flowbite's `me-1.5`, `ms-2`, `ms-3`. */
+      /* Space between an icon, the label and a control: 6px, 8px or 12px. */
       gap: {
         icon: "gap-1.5",
         control: "gap-2",
         toggle: "gap-3",
       },
-      /* Rows with a description start at the top, like Flowbite's "Helper text" examples. */
+      /* Rows with a description start at the top. */
       align: {
         center: "",
         start: "items-start",
@@ -52,10 +51,10 @@ export const dropdownItemVariants = cva(
   },
 );
 
-/** Checkbox and radio rows label their option in `heading`, like Flowbite's `<label>`s. */
+/** Checkbox and radio rows label their option in `heading`. */
 export const dropdownChoiceLabelClassName = "text-heading";
 
-/** Flowbite's helper-text rows: the control sits in a 20px line next to the title. */
+/** Helper-text rows: the control sits in a 20px line next to the title. */
 export const dropdownControlLineClassName = "flex h-5 shrink-0 items-center";
 
 export const dropdownDescriptionVariants = cva("block text-sm", {
@@ -92,17 +91,17 @@ export const dropdownToggleIndicatorClassName = [
   "forced-colors:border forced-colors:after:border",
 ].join(" ");
 
-/** Pushes a control to the end of its row (Flowbite's `ms-auto` "Dark mode" switch). */
+/** Pushes a control to the end of its row (such as a "Dark mode" switch). */
 export const dropdownIndicatorEndClassName = "ms-auto";
 
-/** Flowbite's "Dropdown header": the user box above the items. */
+/** The dropdown header: the user box above the items. */
 export const dropdownHeaderClassName =
   "mb-2 flex items-center gap-1.5 rounded bg-neutral-secondary-strong px-2.5 py-2 text-sm";
 
-/** Flowbite's divider: a full-width `default-medium` line between groups. */
+/** The divider: a full-width `default-medium` line between groups. */
 export const dropdownDividerClassName = "-mx-2 my-2 border-t border-default-medium";
 
-/** The chevron that opens a sub-menu (Flowbite's multi-level dropdown). */
+/** The chevron that opens a sub-menu (a multi-level dropdown). */
 export const dropdownSubChevronClassName = "ms-auto rtl:rotate-180";
 
 /** The chevron of the default trigger, before the label for a `left` placement. */

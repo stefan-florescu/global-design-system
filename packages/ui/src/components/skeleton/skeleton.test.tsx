@@ -45,7 +45,7 @@ describe("Skeleton", () => {
     expect(screen.getByRole("status")).toHaveAccessibleName("");
   });
 
-  it("draws Flowbite's text lines", () => {
+  it("draws text lines", () => {
     const { container } = render(
       <>
         <SkeletonLine className="w-48" />

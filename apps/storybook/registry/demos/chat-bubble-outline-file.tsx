@@ -24,7 +24,7 @@ export default function ChatBubbleOutlineFile() {
         <div className="me-1.5">
           <span className="text-heading flex items-center gap-2 pb-2 text-sm font-medium">
             <FileText aria-hidden className="size-5 shrink-0" />
-            Flowbite Terms &amp; Conditions
+            Stefan DS Terms &amp; Conditions
           </span>
           <span className="text-heading flex gap-2 text-xs font-normal">
             12 Pages
@@ -37,7 +37,7 @@ export default function ChatBubbleOutlineFile() {
         <div className="inline-flex items-center self-center">
           <button
             type="button"
-            aria-label="Download Flowbite Terms &amp; Conditions"
+            aria-label="Download Stefan DS Terms &amp; Conditions"
             className="text-heading bg-neutral-tertiary hover:bg-neutral-quaternary focus:ring-neutral-quaternary rounded-base focus-visible:outline-ring box-border border border-transparent p-2 leading-5 font-medium outline-hidden focus:ring-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-solid"
           >
             <Download aria-hidden className="size-5" />

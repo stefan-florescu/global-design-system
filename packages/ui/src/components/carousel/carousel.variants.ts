@@ -3,13 +3,12 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { focusOutline } from "../../lib/focus";
 
 /*
- * Flowbite v4 carousel, class for class (https://flowbite.com/docs/components/carousel/): a
- * `h-56 md:h-96` slide window with `rounded-base` corners, 40px translucent control squares at
- * the sides and 12px indicators centred at the bottom. Flowbite's raw `white` / `gray-800`
- * surfaces map to `neutral-primary-medium`, and `z-30` to the `z.raised` layer.
- * Accessibility deviations:
- * - control icons are `heading` instead of white: a white icon on a 30% white square falls under
- *   3:1 on light images in the light theme (in dark it is white, as in Flowbite);
+ * Carousel: a `h-56 md:h-96` slide window with `rounded-base` corners, 40px translucent control
+ * squares at the sides and 12px indicators centred at the bottom. The control and indicator
+ * surfaces are `neutral-primary-medium`, on the `z.raised` layer.
+ * Accessibility:
+ * - control icons are `heading` rather than white: a white icon on a 30% white square falls
+ *   under 3:1 on light images in the light theme (in dark mode the icon is white);
  * - controls and indicators draw the solid keyboard outline from lib/focus.
  */
 export const carouselClassName = "relative w-full";
@@ -21,9 +20,9 @@ export const carouselTrackVariants = cva(
   {
     variants: {
       transition: {
-        /** Flowbite's default slide: 700ms, ease-in-out. */
+        /** The default slide: 700ms, ease-in-out. */
         default: "duration-700 ease-in-out",
-        /** Flowbite's "Animation" example: 200ms, linear. */
+        /** A faster slide: 200ms, linear. */
         fast: "duration-200 ease-linear",
       },
     },

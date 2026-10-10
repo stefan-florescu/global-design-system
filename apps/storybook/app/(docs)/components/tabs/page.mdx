@@ -36,17 +36,17 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@stefan-florescu/ui";
 </Tabs>
 ```
 
-Each `TabsTrigger` shows the `TabsContent` with the same `value`. The parts are separate
-components, like Radix and shadcn/ui, rather than flowbite-react's `Tabs` + `TabItem` with a
-`title` prop: the list and the panels can sit apart (in a card, beside each other, or with a
-`select` in between), and each part takes its own `className` and attributes. `Tabs` is a client
-component; you can render it from a Server Component.
+Each `TabsTrigger` shows the `TabsContent` with the same `value`. The parts are separate components,
+like Radix and shadcn/ui, rather than one `Tabs` with a `title` prop on each item: the list and the
+panels can sit apart (in a card, beside each other, or with a `select` in between), and each part
+takes its own `className` and attributes. `Tabs` is a client component; you can render it from a
+Server Component.
 
 ### Tabs or links?
 
-Flowbite's first examples are lists of links (`<a href>` with `aria-current="page"`): its script
-only turns lists marked with `data-tabs-toggle` into tabs. The two are different things for
-assistive technology, so the design system has a part for each, with the same styles:
+Navigation styled as tabs is often a list of links (`<a href>` with `aria-current="page"`), not
+tabs. The two are different things for assistive technology, so the design system has a part for
+each, with the same styles:
 
 - **`Tabs`** switches panels on the same page. It is a WAI-ARIA `tablist`, moved through with the
   arrow keys.
@@ -95,14 +95,14 @@ breakpoint (above them on small screens). The up and down arrow keys move betwee
 ### Full width tabs
 
 Set `variant="full-width"` to join the tabs into one bar that fills its container. Below the `sm`
-breakpoint this example swaps the tabs for a `Select`, as Flowbite does: control the value with
-`value` and `onValueChange` and set it from both.
+breakpoint this example swaps the tabs for a `Select`: control the value with `value` and
+`onValueChange` and set it from both.
 
 <ComponentPreview name="tabs-full-width" />
 
 ### Full width tabs with icons
 
-Flowbite repeats the "Tabs with icons" heading for this example.
+Full width tabs with an icon before each label.
 
 <ComponentPreview name="tabs-full-width-icons" />
 
@@ -118,7 +118,7 @@ tab to its panel are generated, so several sets of tabs can share a page.
 
 Each tab has `data-state="active"`, `"inactive"` or `"disabled"`. Restyle a state with
 `data-[state=…]:` classes, which win over the variant's own classes. This example uses
-`fg-purple` for the active tab and a `default` line under the others, as in Flowbite.
+`fg-purple` for the active tab and a `default` line under the others.
 
 <ComponentPreview name="tabs-active-style" />
 
@@ -143,17 +143,13 @@ example): the arrow keys then only move focus, and <Kbd>Enter</Kbd> or <Kbd>Spac
   skipped by the arrow keys. In a right-to-left page the left and right arrows swap.
 - `TabsNav` is a `nav` landmark with a list of links; the current page has `aria-current="page"`
   and disabled links have `aria-disabled` and no `href`. Name it with `aria-label`.
-- Flowbite has no keyboard focus style on tabs (full-width tabs only have its soft
-  `neutral-secondary-strong` halo); every tab and link here also draws a solid 2px `ring` outline,
-  and a focused full-width tab rises above its neighbours so the outline isn't hidden.
-- Flowbite's HTML tabs have no arrow-key support, and flowbite-react's only move focus with
-  <Kbd>←</Kbd> / <Kbd>→</Kbd>, without <Kbd>Home</Kbd> / <Kbd>End</Kbd>, wrapping or skipping
-  disabled tabs.
+- Every tab and link draws a solid 2px `ring` outline on keyboard focus (full-width tabs also show a
+  soft `neutral-secondary-strong` halo), and a focused full-width tab rises above its neighbours so
+  the outline isn't hidden.
 - The selected tab is shown by more than colour: a filled background (`default`, `pills`,
-  `full-width`) or a 2px line (`underline`). Text and fills pass WCAG 2.2 AA in both themes, as in
-  Flowbite. Icons are decorative (`aria-hidden`).
-- Flowbite labels the select that replaces the full-width tabs on small screens "Select your
-  country"; the examples label it "Select a tab".
+  `full-width`) or a 2px line (`underline`). Text and fills pass WCAG 2.2 AA in both themes. Icons
+  are decorative (`aria-hidden`).
+- The select that replaces the full-width tabs on small screens is labelled "Select a tab".
 
 | Key                                 | Action                                                                  |
 | ----------------------------------- | ----------------------------------------------------------------------- |

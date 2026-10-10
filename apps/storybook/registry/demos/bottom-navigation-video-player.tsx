@@ -26,7 +26,7 @@ import {
 } from "@stefan-florescu/ui";
 import { useId, useState } from "react";
 
-/* Flowbite's borderless icon buttons: `p-2` around a 20px icon. A pressed toggle is filled and brand. */
+/* Borderless icon buttons: `p-2` around a 20px icon. A pressed toggle is filled and brand. */
 const toolButton =
   "me-1 text-body hover:bg-neutral-tertiary-medium hover:text-heading aria-pressed:bg-neutral-tertiary-medium aria-pressed:text-fg-brand";
 
@@ -42,7 +42,7 @@ export default function BottomNavigationVideoPlayer() {
         <div className="grid h-24 grid-cols-1 px-8 @2xl:grid-cols-3">
           <div className="me-auto hidden items-center justify-center @2xl:flex">
             <img className="me-3 h-8 rounded-sm" src="/images/landscape-1.svg" alt="" />
-            <span className="text-body text-sm">Flowbite Crash Course</span>
+            <span className="text-body text-sm">Stefan DS Crash Course</span>
           </div>
           <div className="flex w-full items-center">
             <div className="w-full">

@@ -143,7 +143,7 @@ inside.
 ## Swipeable edge
 
 Add `edge` to keep the top of a bottom drawer on screen while it is closed. Put a `DrawerHandle`
-first in `DrawerContent`: it shows Flowbite's grip, names the drawer, and opens or closes it when
+first in `DrawerContent`: it shows a grip, names the drawer, and opens or closes it when
 pressed. The 60px strip it sits in stays fixed to the bottom of the screen; in this preview it is
 kept inside the example.
 
@@ -168,15 +168,12 @@ kept inside the example.
   `DrawerHandle` is a button with `aria-expanded`.
 - The close button is labelled "Close" (pass `label` for something more specific). Keyboard focus
   draws a solid `ring` outline on the close button, the handle and the trigger.
-- The slide follows Flowbite's 150ms timing and is turned off when the user prefers reduced
-  motion.
-- Differences from Flowbite:
-  - The drawer is a `dialog` that traps focus and makes the page inert; Flowbite's is a `div` that
-    keeps the page in the tab order. Without a backdrop it is a non-modal `dialog`.
-  - The title is an `h2`, not an `h5`, so it doesn't skip heading levels.
-  - In the swipeable edge, the closed drawer's strip shows only the handle; the rest of the drawer
-    is not rendered until it opens, so it is never reachable off screen.
-  - Navigation items, the disclosure and the widget tiles in the examples draw a focus outline.
+- The slide takes 150ms and is turned off when the user prefers reduced motion.
+- Without a backdrop the drawer is a non-modal `dialog`, and the page stays reachable.
+- The title is an `h2`, so it doesn't skip heading levels.
+- In the swipeable edge, the closed drawer's strip shows only the handle; the rest of the drawer is
+  not rendered until it opens, so it is never reachable off screen.
+- Navigation items, the disclosure and the widget tiles in the examples draw a focus outline.
 
 | Key                                                | Action                                                  |
 | -------------------------------------------------- | ------------------------------------------------------- |

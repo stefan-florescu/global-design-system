@@ -144,12 +144,12 @@ button's `aria-label`.
   write labels that make sense on their own.
 - Don't rely on colour alone: "Failed" in a danger badge is clear; a red badge without text is not.
   Icon-only badges need visually hidden text.
-- Every label and fill pairing passes WCAG 2.2 AA in light and dark, as in Flowbite.
+- Every label and fill pairing passes WCAG 2.2 AA in light and dark.
 - The remove button is a native `<button>` named "Remove". Use `dismissLabel` to say what is
   removed, such as "Remove React".
-- Links and remove buttons draw a solid 2px `ring` outline on keyboard focus; Flowbite has none.
-- Flowbite's notification and count badges use white text on `danger`; ours use
-  `danger-foreground`, which is checked against `danger` on every token build.
+- Links and remove buttons draw a solid 2px `ring` outline on keyboard focus.
+- Notification and count badges use `danger-foreground` text on `danger`, which is checked against
+  `danger` on every token build.
 - The loader and the dot are decorative and hidden from assistive technology. The spinner respects
   `prefers-reduced-motion`.
 

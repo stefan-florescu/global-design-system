@@ -27,8 +27,8 @@ import { Stepper, StepperItem } from "@stefan-florescu/ui";
 ```
 
 `Stepper` is an ordered list (`<ol>`) of `StepperItem`s. Give each step a `status`: `complete`,
-`current` or `upcoming` (the default). The children are the step's name; `variant` picks one of
-Flowbite's styles, and `Stepper` numbers the steps for you.
+`current` or `upcoming` (the default). The children are the step's name; `variant` picks one of the
+styles below, and `Stepper` numbers the steps for you.
 
 | Variant      | Layout                                                           | Uses                  |
 | ------------ | ---------------------------------------------------------------- | --------------------- |
@@ -101,14 +101,13 @@ step.
 - The current step has `aria-current="step"`. Complete and upcoming steps end in visually hidden
   text, ", completed" and ", not started", so their state doesn't rely on colour or icons. Pass
   `statusLabel` to translate it.
-- Icons, lines, slashes and chevrons are `aria-hidden`. Flowbite's slashes and lines are CSS
-  `::after` content, which some screen readers read out; ours are hidden elements.
+- Icons, lines, slashes and chevrons are `aria-hidden`. They are hidden elements rather than CSS
+  `::after` content, which some screen readers read out.
 - The `progress` stepper hides its names visually but keeps them for screen readers.
-- The current step is drawn in brand and also has a shape that sets it apart without colour
-  (WCAG 1.4.1). Flowbite shows no current step except in its vertical stepper.
-- Flowbite puts step names in `h3` elements, which would add every step to the page outline; ours
-  are text. Its vertical cards have `role="alert"` and repeat each name as hidden text, which made
-  screen readers announce every card when the page loads; ours don't.
+- The current step is drawn in brand and also has a shape that sets it apart without colour (WCAG
+  1.4.1).
+- Step names are text, not headings, so the steps don't fill the page outline. The vertical cards
+  are not live regions, so screen readers don't announce every card when the page loads.
 - When the step changes, as in the form example, move focus to the new step's heading so keyboard
   and screen reader users know where they are.
 - A stepper only shows progress; it isn't a navigation. To let users jump between steps, put links

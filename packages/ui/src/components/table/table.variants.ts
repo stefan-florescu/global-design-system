@@ -4,8 +4,7 @@ import { cn } from "../../lib/cn";
 import { focusOutlineInset } from "../../lib/focus";
 
 /*
- * Flowbite v4 tables, class for class (https://flowbite.com/docs/components/tables/), on our
- * semantic tokens.
+ * Tables on our semantic tokens.
  *
  * The table is server-safe, so its parts cannot read the table's options from React context.
  * Instead the `<table>` sets a few CSS variables (colours) and data attributes (striping, hover,
@@ -13,26 +12,26 @@ import { focusOutlineInset } from "../../lib/focus";
  * `even:bg-(--table-row-alt)`. A `className` on a part still wins, because `cn()` replaces the
  * variable-based utility with yours.
  *
- * Flowbite's looks, as table options:
+ * The looks, as table options:
  * - default: `bg-neutral-primary` rows with `border-default` dividers under a
  *   `bg-neutral-secondary-soft` head, in a `bg-neutral-primary-soft` container with a
  *   `border-default` border, `rounded-base` corners and `shadow-xs`;
  * - `hoverable`: `bg-neutral-primary-soft` rows that turn `bg-neutral-secondary-medium` on hover,
- *   under a `bg-neutral-secondary-medium` head with a `border-default-medium` line (Flowbite uses
+ *   under a `bg-neutral-secondary-medium` head with a `border-default-medium` line (use
  *   this head on every table with hover, selection or a toolbar);
  * - `striped="rows"`: `odd:bg-neutral-primary even:bg-neutral-secondary-soft`;
  * - `striped="columns"`: odd columns `bg-neutral-secondary-soft`, on a `bg-neutral-primary`
  *   container with no head fill;
  * - `bordered={false}`: no container, no dividers, a `text-heading` semibold head ("Without
- *   border"); add `rounded` for Flowbite's table-foot example, a `bg-neutral-secondary-medium`
+ *   border"); add `rounded` for a `bg-neutral-secondary-medium`
  *   head with `rounded-s-base` / `rounded-e-base` ends;
- * - `variant="brand"` (Flowbite's "Table colors"): `bg-brand` rows with `border-brand-light`
+ * - `variant="brand"`: `bg-brand` rows with `border-brand-light`
  *   dividers under a `bg-brand-strong` head (`bg-brand` when hoverable or striped by column);
  *   stripes and hover use `brand-strong`.
  *
- * Accessibility deviation: Flowbite's brand table sets body text in `fg-brand-subtle` (blue-200).
- * That passes on light `brand` (4.8:1) but not on dark `brand` (blue-600, 3.7:1), so dark mode
- * uses `brand-foreground` (white, 5.3:1) instead.
+ * Accessibility: the brand table sets body text in `fg-brand-subtle` (blue-200). That passes on
+ * light `brand` (4.8:1) but not on dark `brand` (blue-600, 3.7:1), so dark mode uses
+ * `brand-foreground` (white, 5.3:1) instead.
  */
 
 type TableLookOptions = {
@@ -55,7 +54,7 @@ export function getTableHeadLook({
 
 /*
  * The CSS variables that colour the head, rows, stripes and dividers, one value each, picked in
- * the order Flowbite's examples imply. Written out in full so Tailwind finds every class.
+ * a fixed order of precedence. Written out in full so Tailwind finds every class.
  */
 const headBg = {
   none: "[--table-head-bg:transparent]",
@@ -141,7 +140,7 @@ function tableVariables({
   ];
 }
 
-/** Class names for the `<table>`: Flowbite's `w-full text-sm text-left text-body`, plus the variables. */
+/** Class names for the `<table>`: `w-full text-sm text-left text-body`, plus the variables. */
 export function tableVariants(options: TableLookOptions = {}) {
   return cn(
     "group/table w-full text-left text-sm rtl:text-right",
@@ -150,7 +149,7 @@ export function tableVariants(options: TableLookOptions = {}) {
   );
 }
 
-/** The box around the table: Flowbite's bordered, rounded card with `shadow-xs`. */
+/** The box around the table: a bordered, rounded card with `shadow-xs`. */
 export const tableContainerVariants = cva("relative w-full", {
   variants: {
     bordered: {
@@ -174,10 +173,10 @@ export const tableContainerVariants = cva("relative w-full", {
  */
 export const tableScrollAreaClassName = cn("relative overflow-x-auto", focusOutlineInset);
 
-/** Controls above the table (search, filters, bulk actions): Flowbite's `p-4` bar. */
+/** Controls above the table (search, filters, bulk actions): a `p-4` bar. */
 export const tableToolbarClassName = "flex flex-wrap items-center justify-between gap-4 p-4";
 
-/** Content under the table, such as pagination: Flowbite's `p-4` bar. */
+/** Content under the table, such as pagination: a `p-4` bar. */
 export const tableFooterVariants = cva("flex flex-wrap items-center justify-between gap-4 p-4", {
   variants: {
     bordered: { true: "border-t border-default", false: "" },
@@ -185,7 +184,7 @@ export const tableFooterVariants = cva("flex flex-wrap items-center justify-betw
   defaultVariants: { bordered: true },
 });
 
-/** Flowbite's caption: an `text-lg` heading with an optional `text-sm` description. */
+/** The caption: a `text-lg` heading with an optional `text-sm` description. */
 export const tableCaptionVariants = cva("text-left text-heading rtl:text-right", {
   variants: {
     visuallyHidden: {
@@ -200,7 +199,7 @@ export const tableCaptionDescriptionClassName = "mt-1.5 text-sm font-normal text
 
 /**
  * The head: its fill, text and bottom line come from the table. Under a visible caption or a
- * toolbar the line is drawn on top too, as in Flowbite's caption, search and filter examples.
+ * toolbar the line is drawn on top too.
  */
 export const tableHeadClassName = [
   "bg-(--table-head-bg) text-(--table-head-fg)",
@@ -209,7 +208,7 @@ export const tableHeadClassName = [
   "[caption:not(.sr-only)+&]:border-t-(length:--table-head-line)",
 ].join(" ");
 
-/** Flowbite's `<tfoot>` row: semibold `text-heading`, `py-3` cells and a `text-base` label. */
+/** The `<tfoot>` row: semibold `text-heading`, `py-3` cells and a `text-base` label. */
 export const tableFootClassName =
   "font-semibold text-heading [&_td]:py-3 [&_th]:py-3 [&_th]:text-base [&_th]:font-semibold";
 

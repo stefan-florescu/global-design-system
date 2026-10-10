@@ -53,7 +53,7 @@ import {
 ```
 
 Put the `MegaMenu` in the navbar item it belongs to. `MegaMenuTrigger` is that item: a button
-styled as Flowbite's navbar link. `MegaMenuContent` is the panel; each `MegaMenuGroup` is a column
+styled as a navbar link. `MegaMenuContent` is the panel; each `MegaMenuGroup` is a column
 (a list) of `MegaMenuLink`s, and anything else, such as a call to action, can sit next to them.
 
 From `md` up the panel floats in the browser's top layer, under its trigger or, with `fullWidth`,
@@ -113,12 +113,9 @@ other menu items and links.
   read as its description. Mark the current page with `aria-current="page"`; it is shown in
   `fg-brand`.
 - The trigger, the links and the hamburger draw the solid `ring` outline on keyboard focus.
-- Differences from Flowbite: Flowbite's panel is a Popper dropdown (and its full-width panel a
-  collapse placed after the whole navbar, so it comes last in the Tab order) with no Escape
-  handling; here the panel always follows its trigger, closes with Escape and returns focus.
-  Flowbite's full-width examples load open; ours start closed. Flowbite's image card is a link with
-  a button inside it, which is not valid HTML; here only "Get started" is a link. The brand logos
-  are left out.
+- The panel always follows its trigger in the Tab order, including the full-width panel, and
+  every example starts closed.
+- In the image card only "Get started" is a link, so no button is nested inside a link.
 
 | Key                                 | Action                                                                            |
 | ----------------------------------- | --------------------------------------------------------------------------------- |

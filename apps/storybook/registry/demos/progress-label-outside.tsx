@@ -4,7 +4,7 @@ export default function ProgressLabelOutside() {
   return (
     <Progress
       value={45}
-      textLabel="Flowbite"
+      textLabel="Stefan DS"
       labelText
       textLabelPosition="outside"
       labelProgress

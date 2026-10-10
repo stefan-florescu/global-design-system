@@ -50,7 +50,7 @@ describe("Avatar", () => {
     expect(screen.getByText("In a meeting")).toBeInTheDocument();
   });
 
-  it("is Flowbite's 40px circle by default, with initials on neutral-tertiary", () => {
+  it("is a 40px circle by default, with initials on neutral-tertiary", () => {
     render(<Avatar alt="Jese Leos" initials="JL" />);
     const frame = screen.getByRole("img", { name: "Jese Leos" }).parentElement;
     expect(frame).toHaveClass("rounded-full", "bg-neutral-tertiary", "text-body", "font-medium");
@@ -68,7 +68,7 @@ describe("Avatar", () => {
     expect(frame?.parentElement).toHaveClass("size-6");
   });
 
-  it("draws Flowbite's bordered ring", () => {
+  it("draws the bordered ring", () => {
     render(<Avatar alt="Jese Leos" initials="JL" bordered />);
     expect(screen.getByRole("img", { name: "Jese Leos" }).parentElement).toHaveClass(
       "p-1",

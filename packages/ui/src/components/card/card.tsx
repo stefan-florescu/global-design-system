@@ -70,7 +70,7 @@ export type CardTitleProps = ComponentProps<"h3"> & {
   headingLevel?: 2 | 3 | 4 | 5 | 6;
 };
 
-/** The card's heading: Flowbite's 24px semibold title with a 12px gap below. */
+/** The card's heading: a 24px semibold title with a 12px gap below. */
 export function CardTitle({ headingLevel = 3, className, ...props }: CardTitleProps) {
   const Heading = `h${headingLevel}` as const;
   return (

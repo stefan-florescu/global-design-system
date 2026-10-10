@@ -1,7 +1,7 @@
 {
   "name": "Checkbox",
   "status": "beta",
-  "description": "Flowbite's checkbox: a native checkbox with label, helper text, bordered card, list-group row and selectable-card layouts.",
+  "description": "A checkbox: a native checkbox with label, helper text, bordered card, list-group row and selectable-card layouts.",
   "category": "forms",
   "import": "import { Checkbox } from \"@stefan-florescu/ui\";",
   "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/",

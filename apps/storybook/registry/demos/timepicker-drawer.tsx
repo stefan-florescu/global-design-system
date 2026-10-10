@@ -44,7 +44,7 @@ const week = [
   { value: "sunday", short: "Sun", name: "Sunday" },
 ];
 
-// Flowbite's delete button: a small icon button on the drawer background.
+// Delete button: a small icon button on the drawer background.
 const deleteButton =
   "inline-flex cursor-pointer items-center rounded-base p-1.5 text-body hover:bg-neutral-tertiary hover:text-heading focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-solid focus-visible:outline-ring outline-hidden";
 

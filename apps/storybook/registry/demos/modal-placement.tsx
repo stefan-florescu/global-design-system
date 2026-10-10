@@ -11,7 +11,7 @@ import {
   type ModalPlacement as Placement,
 } from "@stefan-florescu/ui";
 
-// Flowbite's four corner placements; `placement` also takes the centre of each edge.
+// The four corner placements; `placement` also takes the centre of each edge.
 const placements: { placement: Placement; label: string }[] = [
   { placement: "top-left", label: "Top left" },
   { placement: "top-right", label: "Top right" },

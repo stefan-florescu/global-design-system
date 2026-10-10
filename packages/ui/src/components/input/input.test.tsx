@@ -38,7 +38,7 @@ describe("Input", () => {
     expect(input.parentElement?.parentElement).toHaveClass("shadow-xs", "rounded-base");
   });
 
-  it("uses Flowbite's field styles and padding-based sizes", () => {
+  it("uses the field styles and padding-based sizes", () => {
     render(
       <>
         <Input aria-label="Base" />

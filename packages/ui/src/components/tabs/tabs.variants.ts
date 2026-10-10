@@ -3,24 +3,22 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { focusOutline } from "../../lib/focus";
 
 /*
- * Flowbite v4 tabs, class for class (https://flowbite.com/docs/components/tabs/), on our semantic
- * tokens. Flowbite's markup and its tabs script swap "active" and "inactive" classes; here the
- * component works out each tab's `state` (`active`, `inactive` or `disabled`) and the variant
- * picks the classes for it, so a consumer can still restyle a state with `data-[state=active]:…`
- * (an attribute selector, which outranks the variant's plain classes):
+ * Tabs on our semantic tokens. The component works out each tab's `state` (`active`, `inactive` or
+ * `disabled`) and the variant picks the classes for it, so a consumer can still restyle a state
+ * with `data-[state=active]:…` (an attribute selector, which outranks the variant's plain classes):
  * - `default`: `p-4` tabs with `rounded-t-base` corners over a `default` bottom border; the active
  *   tab is `fg-brand` on `neutral-secondary-soft`, others turn `heading` on it when hovered;
  * - `underline`: the same tabs with a 2px bottom border (the "Interactive tabs" style) that is
  *   `brand` under the active tab and on hover, overlapping the list's 1px `default` line;
  * - `pills`: `rounded-base` pills, the active one filled with `brand`;
- * - `full-width`: Flowbite's joined, equal-width tabs on `neutral-primary-soft`, with
+ * - `full-width`: joined, equal-width tabs on `neutral-primary-soft`, with
  *   `neutral-secondary-medium` for the active and hovered tab and the `neutral-secondary-strong`
  *   focus halo.
  * `vertical` stacks the tabs in a column beside the panels from `md` up ("Vertical tabs").
  *
- * Accessibility additions: every tab draws the solid `ring` outline on keyboard focus
+ * Accessibility: every tab draws the solid `ring` outline on keyboard focus
  * (lib/focus), and in `full-width` the focused tab rises to the `z.raised` layer so its outline
- * isn't hidden behind a neighbour. Spacing uses `gap` instead of Flowbite's `me-2`.
+ * isn't hidden behind a neighbour. Spacing uses `gap`, so it also works right to left.
  */
 
 export const tabsVariants = cva("", {

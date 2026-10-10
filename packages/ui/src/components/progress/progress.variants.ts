@@ -1,11 +1,9 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 /*
- * Flowbite v4 progress bars, class for class (https://flowbite.com/docs/components/progress/), on
- * our semantic tokens. Flowbite's sizes are `h-1.5` (small), `h-2` (default) and `h-2.5` (large);
- * `xl` is the 16px bar of its "With label inside" example. Colours are the fills we have roles for:
- * Flowbite's dark, brand, success, danger and warning. flowbite-react's purple, indigo, teal, cyan,
- * lime, pink and gray have no fill role and are left out.
+ * Progress bars on our semantic tokens. Sizes are `h-1.5` (small), `h-2` (default) and `h-2.5`
+ * (large); `xl` is the 16px bar that fits a label inside. Colours are the fills we have roles
+ * for: dark, brand, success, danger and warning.
  */
 export const progressTrackVariants = cva(
   "bg-neutral-quaternary w-full overflow-hidden rounded-full",

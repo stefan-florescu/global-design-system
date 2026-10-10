@@ -12,7 +12,7 @@ export type LabelProps = ComponentProps<"label"> &
 
 /**
  * The visible name of a form control. Point `htmlFor` at the control's `id`. It is a block with
- * Flowbite's 10px gap below, so place it directly above the control.
+ * a 10px gap below, so place it directly above the control.
  */
 export function Label({ variant, disabled, required, className, children, ...props }: LabelProps) {
   return (

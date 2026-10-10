@@ -3,18 +3,18 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { focusOutline } from "../../lib/focus";
 
 /*
- * Flowbite v4's mega menu (https://flowbite.com/docs/components/mega-menu/), class for class:
- * - the trigger is Flowbite's navbar item: a full-width row with a `light` bottom border in the
+ * Mega menu:
+ * - the trigger is a navbar item: a full-width row with a `light` bottom border in the
  *   collapsed (mobile) navbar, plain `heading` text that turns `fg-brand` on hover from `md` up;
  * - the anchored panel is a `grid` of columns on `neutral-primary-soft` with a `default` border,
- *   `rounded-base` corners and Flowbite's bare `shadow` (our `shadow-sm`, the same value);
+ *   `rounded-base` corners and `shadow-sm`;
  * - the full-width panel is a `border-y` bar with `shadow-xs` and a centred `max-w-screen-xl` grid.
  *
  * `data-mode` is set by the component: `floating` places the panel in the top layer next to the
  * trigger (or under the navbar), `inline` stacks it in the page flow under the trigger on small
  * screens. The floating classes reset the browser's popover styles; `z-dropdown` layers the
  * panel where the popover API is missing.
- * Accessibility additions (Flowbite shows none): the trigger and links draw the solid `ring`
+ * Accessibility: the trigger and links draw the solid `ring`
  * outline on keyboard focus, and the current page's link is `fg-brand`.
  */
 
@@ -24,7 +24,7 @@ export const megaMenuTriggerClassName = [
   focusOutline,
 ].join(" ");
 
-/** Flowbite's `w-4 h-4 ms-1.5` chevron after the label. */
+/** The 16px chevron after the label, 6px from it. */
 export const megaMenuChevronClassName = "ms-1.5 size-4 shrink-0";
 
 const floating =
@@ -37,7 +37,7 @@ export const megaMenuContentVariants = cva(["outline-hidden", floating], {
         "grid w-auto rounded-base border border-default bg-neutral-primary-soft text-sm shadow-sm data-[mode=inline]:mt-2",
       true: "border-y border-default bg-neutral-primary-soft font-normal shadow-xs data-[mode=inline]:mt-1",
     },
-    /* Columns from `md` up. Anchored panels show two below that, like Flowbite's. */
+    /* Columns from `md` up. Anchored panels show two below that. */
     columns: { 1: "", 2: "", 3: "", 4: "" },
   },
   compoundVariants: [
@@ -81,7 +81,7 @@ export const megaMenuGroupVariants = cva("", {
 export const megaMenuLinkVariants = cva([focusOutline, "aria-[current=page]:text-fg-brand"], {
   variants: {
     layout: { anchored: "", full: "" },
-    /* A link with a title and a description: Flowbite's full-width "block p-3" rows. */
+    /* A link with a title and a description: full-width `block p-3` rows. */
     description: {
       false:
         "inline-flex items-center rounded-xs text-body hover:text-fg-brand [&>svg]:me-1.5 [&>svg]:size-4 [&>svg]:shrink-0",

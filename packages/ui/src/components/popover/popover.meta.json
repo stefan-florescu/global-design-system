@@ -1,7 +1,7 @@
 {
   "name": "Popover",
   "status": "beta",
-  "description": "Flowbite's popover: rich content (a title, text, links, images, buttons) in a box with an arrow next to a trigger, opened by a click or by hovering or focusing the trigger. A non-modal dialog in the top layer, placed on any side of the trigger and flipped when there is no room.",
+  "description": "A popover: rich content (a title, text, links, images, buttons) in a box with an arrow next to a trigger, opened by a click or by hovering or focusing the trigger. A non-modal dialog in the top layer, placed on any side of the trigger and flipped when there is no room.",
   "category": "overlay",
   "import": "import { Popover, PopoverBody, PopoverHeader, PopoverTitle } from \"@stefan-florescu/ui\";",
   "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/",

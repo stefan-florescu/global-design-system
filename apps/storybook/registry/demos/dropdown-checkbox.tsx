@@ -1,6 +1,6 @@
 import { Dropdown, DropdownCheckboxItem, DropdownMenu, DropdownTrigger } from "@stefan-florescu/ui";
 
-// Flowbite's plain list: no padding or hover fill on the rows, 16px between them.
+// A plain list: no padding or hover fill on the rows, 16px between them.
 const plainItem = "p-0 hover:bg-transparent focus-visible:bg-transparent";
 
 export default function DropdownCheckbox() {

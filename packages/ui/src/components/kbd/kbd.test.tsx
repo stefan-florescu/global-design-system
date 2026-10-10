@@ -11,7 +11,7 @@ describe("Kbd", () => {
     expect(key).toHaveAttribute("data-slot", "kbd");
   });
 
-  it("uses Flowbite's key styles by default", () => {
+  it("uses the key styles by default", () => {
     render(<Kbd>Esc</Kbd>);
     expect(screen.getByText("Esc")).toHaveClass(
       "px-2",

@@ -84,7 +84,7 @@ export type NavbarProps = ComponentProps<"nav"> &
     /**
      * The width from which the links show in a row and the hamburger hides: `md` (768px) or `lg`
      * (1024px, for a bar with more links or actions). `never` keeps them behind the hamburger at
-     * every width (Flowbite's "Hamburger menu").
+     * every width.
      */
     expand?: Expand;
     /** Let the row span the full width instead of a centred `max-w-screen-xl` container. */
@@ -100,7 +100,7 @@ export type NavbarProps = ComponentProps<"nav"> &
   };
 
 /**
- * The navigation bar at the top of a page (Flowbite's navbar): a `<nav>` landmark, named "Main"
+ * The navigation bar at the top of a page: a `<nav>` landmark, named "Main"
  * unless you pass `aria-label` or `aria-labelledby`, holding a centred row for `NavbarBrand`,
  * `NavbarToggle`, `NavbarCollapse` and `NavbarActions`.
  */
@@ -313,7 +313,7 @@ export type NavbarCollapseProps = ComponentProps<"div"> &
 /**
  * The navbar's links (`NavbarLink`, or `<li>`s holding a `Dropdown` or `MegaMenu`), in a list.
  * Below `expand` the list is hidden until a `NavbarToggle` shows it; from `expand` up it is a row.
- * `variant="flush"` drops the card around the collapsed list (Flowbite's mega menu navbar);
+ * `variant="flush"` drops the card around the collapsed list (for a mega menu);
  * `variant="inline"` never collapses: a row of small links for a secondary bar.
  */
 export function NavbarCollapse({

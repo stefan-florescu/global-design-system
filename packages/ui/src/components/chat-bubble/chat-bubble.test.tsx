@@ -31,7 +31,7 @@ describe("ChatBubble", () => {
     expect(screen.getByRole("button", { name: "More" })).toBeInTheDocument();
   });
 
-  it("draws Flowbite's default, outline and clean styles", () => {
+  it("draws the default, outline and clean styles", () => {
     const { rerender } = render(
       <ChatBubble name="Bonnie Green" status="Delivered">
         Hi

@@ -10,11 +10,11 @@ export default function InputFieldGroup() {
   return (
     <div className="w-full space-y-6">
       <Label htmlFor={`${id}-email`}>Your Email</Label>
-      <Input id={`${id}-email`} type="email" startIcon={<Mail />} placeholder="name@flowbite.com" />
+      <Input id={`${id}-email`} type="email" startIcon={<Mail />} placeholder="name@example.com" />
       <Label htmlFor={`${id}-username`}>Username</Label>
       <Input id={`${id}-username`} addon={<CircleUser aria-hidden />} placeholder="elonmusk" />
       <Label htmlFor={`${id}-website`}>Website</Label>
-      <Input id={`${id}-website`} addon="https://" placeholder="flowbite.com" />
+      <Input id={`${id}-website`} addon="https://" placeholder="example.com" />
     </div>
   );
 }

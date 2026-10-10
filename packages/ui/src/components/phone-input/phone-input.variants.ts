@@ -1,7 +1,6 @@
 /*
- * Flowbite v4's phone input with country code (https://flowbite.com/docs/forms/phone-input/):
- * a country selector joined to the field in a field group (see input.variants.ts). Our selector
- * is a native `<select>` styled like Flowbite's dropdown button; Flowbite's is a dropdown menu.
+ * Phone input with country code: a country selector joined to the field in a field group (see
+ * input.variants.ts). The selector is a native `<select>` styled like a dropdown button.
  */
 export const phoneInputCountryClassName = "rounded-e-none";
 

@@ -67,9 +67,8 @@ Show the brand, multiple columns of links, a copyright notice and social media p
 each `FooterLinkGroup` a `title` and set `vertical` to stack its links. `FooterIcons` holds the
 icon links; each `FooterIcon` needs a `label`.
 
-Flowbite uses the Facebook, Discord, X (Twitter), GitHub and Dribbble logos. We don't ship brand
-logos, so these examples use generic icons: `Users`, `MessageSquareText`, `AtSign`, `GitBranch` and
-`Palette`.
+There are no brand logos in the icon set, so these examples use generic icons: `Users`,
+`MessageSquareText`, `AtSign`, `GitBranch` and `Palette`.
 
 <ComponentPreview name="footer-social" />
 
@@ -95,14 +94,14 @@ it doesn't cover it.
   landmark; inside an `<article>` or `<section>` it has no landmark role.
 - Each `FooterLinkGroup` is a `<nav>` landmark with a list of links. With a `title`, the heading
   (an `<h2>`) names the landmark; without one, name it with `aria-label` (it defaults to "Footer").
-  Give every group on a page a different name. Flowbite uses plain lists without landmarks.
+  Give every group on a page a different name.
 - `FooterBrand` is named by the brand name. A logo mark passed as `logo` is hidden from assistive
   technology, and an image passed as `src` has empty alternative text unless you set `alt`.
 - `FooterIcon` links show only an icon, so `label` is required: it names the link through visually
-  hidden text, as in Flowbite. Name the `FooterIcons` list with `aria-label` (such as "Social
+  hidden text. Name the `FooterIcons` list with `aria-label` (such as "Social
   media").
-- Links underline on hover and draw a solid `ring` outline on keyboard focus; Flowbite has no
-  focus style. The brand, copyright and icon links get the same outline.
+- Links underline on hover and draw a solid `ring` outline on keyboard focus. The brand, copyright
+  and icon links get the same outline.
 - `body` text and links pass WCAG 2.2 AA on `neutral-primary-soft`, `neutral-primary` and
   `neutral-secondary-soft` in both themes; icon links reach 3:1 or more.
 - Pattern: [WAI-ARIA landmarks](https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/).

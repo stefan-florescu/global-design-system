@@ -132,7 +132,7 @@ export function DropdownItem({
 
 type ChoiceItemProps = Omit<ComponentProps<"button">, "type" | "role"> &
   ItemBaseProps & {
-    /** Helper text under the label (Flowbite's "Helper text"), read as the item's description. */
+    /** Helper text under the label, read as the item's description. */
     description?: ReactNode;
     /** Where the control sits: before the label (default) or pushed to the end of the row. */
     indicatorPosition?: "start" | "end";
@@ -233,7 +233,7 @@ export type DropdownCheckboxItemProps = ChoiceItemProps & {
   defaultChecked?: boolean;
   /** Called with the new state when the item is chosen. */
   onCheckedChange?: (checked: boolean) => void;
-  /** Draw the state as a checkbox (default) or a switch (Flowbite's "toggle switch"). */
+  /** Draw the state as a checkbox (default) or a switch. */
   indicator?: "checkbox" | "toggle";
 };
 
@@ -419,7 +419,7 @@ export function DropdownRadioItem({
 export type DropdownHeaderProps = ComponentProps<"div">;
 
 /**
- * Information above the items, such as the signed-in user (Flowbite's "Dropdown header").
+ * Information above the items, such as the signed-in user.
  * It is not an item: keyboard focus skips it.
  */
 export function DropdownHeader({ className, ...props }: DropdownHeaderProps) {

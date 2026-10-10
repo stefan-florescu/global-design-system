@@ -1,7 +1,7 @@
 {
   "name": "NumberInput",
   "status": "beta",
-  "description": "Flowbite's number input: a number field with optional control buttons (stepper), a round-button counter and a caption.",
+  "description": "A number input: a number field with optional control buttons (stepper), a round-button counter and a caption.",
   "category": "forms",
   "import": "import { NumberInput } from \"@stefan-florescu/ui\";",
   "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/spinbutton/",

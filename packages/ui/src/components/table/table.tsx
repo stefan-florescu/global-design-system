@@ -26,20 +26,20 @@ import {
 } from "./table.variants";
 
 export type TableProps = Omit<ComponentProps<"table">, "color"> & {
-  /** Flowbite's "Table colors": `brand` fills the head and rows with the brand colour. */
+  /** `brand` fills the head and rows with the brand colour. */
   variant?: "default" | "brand";
   /** Alternate the fill of every second row (`true` or `"rows"`) or column (`"columns"`). */
   striped?: boolean | "rows" | "columns";
-  /** Fill a row when the pointer is over it. Also gives the head Flowbite's stronger fill. */
+  /** Fill a row when the pointer is over it. Also gives the head a stronger fill. */
   hoverable?: boolean;
   /**
-   * Flowbite's card around the table (border, rounded corners, fill) and the lines between rows.
+   * A card around the table (border, rounded corners, fill) and the lines between rows.
    * Turn it off for the "Without border" style.
    */
   bordered?: boolean;
   /** The `shadow-xs` under the bordered card. */
   shadow?: boolean;
-  /** Without a border: fill the head and round its ends (Flowbite's table-foot example). */
+  /** Without a border: fill the head and round its ends. */
   rounded?: boolean;
   /** Controls shown above the table, inside the card: search, filters, bulk actions. */
   toolbar?: ReactNode;
@@ -50,7 +50,7 @@ export type TableProps = Omit<ComponentProps<"table">, "color"> & {
 };
 
 /**
- * Rows and columns of data in a native `<table>` (Flowbite's table). Build it from `TableCaption`,
+ * Rows and columns of data in a native `<table>`. Build it from `TableCaption`,
  * `TableHead` with `TableHeadCell`s, `TableBody` with `TableRow`s of `TableHeadCell scope="row"`
  * and `TableCell`, and `TableFoot`. Server-safe; only the horizontal scroller runs on the client,
  * to become focusable when the table is wider than its container.

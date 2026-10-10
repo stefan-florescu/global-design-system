@@ -94,7 +94,7 @@ export type TooltipProps = Omit<
 
 /**
  * A short text that describes (or names) the element it wraps, shown on hover and keyboard focus
- * or on click (Flowbite's tooltip, WAI-ARIA tooltip pattern). It opens in the top layer, so no
+ * or on click (WAI-ARIA tooltip pattern). It opens in the top layer, so no
  * `overflow: hidden` clips it; Escape hides it without moving focus, and it stays open while the
  * pointer moves onto it. `className` and other `div` props go to the tooltip.
  */

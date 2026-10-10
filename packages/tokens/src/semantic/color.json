@@ -417,7 +417,7 @@
     },
     "success": {
       "$value": "{color.emerald.700}",
-      "$description": "Success fill. Stays on 700 in dark mode, where Flowbite's 600 is under 4.5:1 with white text.",
+      "$description": "Success fill. Stays on 700 in dark mode, where 600 is under 4.5:1 with white text.",
       "$extensions": {
         "sds": {
           "group": "Brand & status"
@@ -525,7 +525,7 @@
     },
     "warning-strong": {
       "$value": "{color.orange.600}",
-      "$description": "Hover fill for warning. One step from warning (Flowbite uses 700) so the dark label keeps 4.5:1.",
+      "$description": "Hover fill for warning. One step from warning so the dark label keeps 4.5:1.",
       "$extensions": {
         "sds": {
           "group": "Brand & status"
@@ -534,7 +534,7 @@
     },
     "warning-foreground": {
       "$value": "{color.gray.950}",
-      "$description": "Text on warning fills. Dark rather than Flowbite's white, which is under 3:1 on orange.",
+      "$description": "Text on warning fills. Dark rather than white, which is under 3:1 on orange.",
       "$extensions": {
         "sds": {
           "group": "Brand & status"
@@ -705,7 +705,7 @@
     },
     "input": {
       "$value": "{color.gray.200}",
-      "$description": "Field, checkbox and radio borders: Flowbite's gray-200 (gray-700 in dark). Below 3:1 against the page, by request; the field's fill and focus border carry the boundary.",
+      "$description": "Field, checkbox and radio borders: gray-200 (gray-700 in dark). Below 3:1 against the page, by design; the field's fill and focus border carry the boundary.",
       "$extensions": {
         "sds": {
           "group": "Borders & focus"
@@ -714,7 +714,7 @@
     },
     "ring": {
       "$value": "{color.blue.700}",
-      "$description": "Keyboard focus outline. Solid so it reaches 3:1 on every surface; Flowbite's soft halo stays around it.",
+      "$description": "Keyboard focus outline. Solid so it reaches 3:1 on every surface; the soft focus halo stays around it.",
       "$extensions": {
         "sds": {
           "group": "Borders & focus"

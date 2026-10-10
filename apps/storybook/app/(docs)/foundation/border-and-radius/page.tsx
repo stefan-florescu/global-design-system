@@ -342,7 +342,7 @@ export default function BorderAndRadiusPage() {
                 <code>4px</code>
               </td>
               <td className="cell-muted">
-                Checkboxes (Flowbite&apos;s <code>rounded-xs</code>) and small swatches.
+                Checkboxes (<code>rounded-xs</code>) and small swatches.
               </td>
             </tr>
             <tr>
@@ -378,7 +378,7 @@ export default function BorderAndRadiusPage() {
                 <code>6px</code>
               </td>
               <td className="cell-muted">
-                Kept from Tailwind&apos;s scale; Flowbite uses it for dropdown items.
+                Kept from Tailwind&apos;s scale; used for dropdown items.
               </td>
             </tr>
             <tr>
@@ -390,7 +390,7 @@ export default function BorderAndRadiusPage() {
                 <code>12px</code>
               </td>
               <td className="cell-muted">
-                Flowbite&apos;s default: buttons, fields, cards, alerts, dropdowns, popovers.
+                The default: buttons, fields, cards, alerts, dropdowns, popovers.
               </td>
             </tr>
             <tr>
@@ -450,11 +450,10 @@ export default function BorderAndRadiusPage() {
         </table>
       </div>
       <p>
-        This is Flowbite v4&apos;s radius scale. Most components use <code>rounded-base</code>{" "}
-        (12px): buttons, fields, cards, alerts and dropdowns. Note that Flowbite redefines{" "}
-        <code>rounded-lg</code> as 16px and <code>rounded-sm</code> as 6px, and the plain{" "}
-        <code>rounded</code> utility is 8px. <code>md</code>, <code>xl</code> and <code>2xl</code>{" "}
-        keep Tailwind&apos;s values.
+        Most components use <code>rounded-base</code> (12px): buttons, fields, cards, alerts and
+        dropdowns. Note that the scale redefines <code>rounded-lg</code> as 16px and{" "}
+        <code>rounded-sm</code> as 6px, and the plain <code>rounded</code> utility is 8px.{" "}
+        <code>md</code>, <code>xl</code> and <code>2xl</code> keep Tailwind&apos;s values.
       </p>
       <H3 id="choosing-a-radius">Choosing a radius</H3>
       <p>
@@ -484,7 +483,7 @@ export default function BorderAndRadiusPage() {
                 <code>--sds-radius-default</code>
               </td>
               <td className="cell-muted">
-                Flowbite&apos;s plain <code>rounded</code>: a soft corner on a small label.
+                The plain <code>rounded</code>: a soft corner on a small label.
               </td>
             </tr>
             <tr>
@@ -492,7 +491,7 @@ export default function BorderAndRadiusPage() {
               <td>
                 <code>--sds-radius-base</code>
               </td>
-              <td className="cell-muted">Flowbite&apos;s control default, at every size.</td>
+              <td className="cell-muted">The control default, at every size.</td>
             </tr>
             <tr>
               <td>Card, alert, dropdown, popover</td>

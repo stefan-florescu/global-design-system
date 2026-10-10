@@ -1,7 +1,7 @@
 {
   "name": "Label",
   "status": "beta",
-  "description": "The visible name of a form control: Flowbite's block label with a 10px gap below.",
+  "description": "The visible name of a form control: a block label with a 10px gap below.",
   "category": "forms",
   "import": "import { Label } from \"@stefan-florescu/ui\";",
   "ariaPattern": null,

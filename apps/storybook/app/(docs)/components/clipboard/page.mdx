@@ -102,20 +102,20 @@ opens from a "Share course" button and returns focus to it when it closes.
   copying. Icon-only buttons use the label as their `aria-label`.
 - The confirmation is also sent to a polite `role="status"` live region, so screen-reader users
   hear "Copied!" without moving focus.
-- `showTooltip` adds Flowbite's tooltip to an icon-only button: a [`Tooltip`](/components/tooltips)
+- `showTooltip` adds a tooltip to an icon-only button: a [`Tooltip`](/components/tooltips)
   in label mode that shows the button's `label` on hover and keyboard focus, then `copiedLabel`
-  after copying, and is the button's name. <Kbd>Escape</Kbd> hides it. Where Flowbite's tooltip
-  says "Copy to clipboard" next to several buttons ("Card with API keys", "Copy contact details",
-  "Copy button with modal"), it shows the specific label here ("Copy API key"), so each button has
-  a distinct name.
+  after copying, and is the button's name. <Kbd>Escape</Kbd> hides it. Where several buttons sit
+  together ("Card with API keys", "Copy contact details", "Copy button with modal"), each tooltip
+  shows a specific label ("Copy API key") rather than a generic "Copy to clipboard", so each button
+  has a distinct name.
 - Make the name specific when there are several copy buttons ("Copy API key").
 - The copied state never relies on colour alone: the icon and the text change too.
-- Keyboard focus draws a solid `ring` outline as well as Flowbite's halo.
-- Fields are `readOnly` rather than Flowbite's `disabled readonly`, so they stay focusable and
+- Keyboard focus draws a solid `ring` outline as well as a soft halo.
+- Fields are `readOnly` rather than `disabled`, so they stay focusable and
   their value can be selected and read.
-- In dark mode the `tertiary` button's label uses `heading` instead of Flowbite's `body`, and its
-  copied state uses `heading` text with an `fg-brand-strong` icon instead of `fg-brand`: Flowbite's
-  colours are under 4.5:1 on the `neutral-primary-strong` fill.
+- In dark mode the `tertiary` button's label uses `heading`, and its copied state uses `heading`
+  text with an `fg-brand-strong` icon: `body` and `fg-brand` would be under 4.5:1 on the
+  `neutral-primary-strong` fill.
 - Copying needs a secure context (HTTPS or localhost). If the browser refuses, the button stays in
   its normal state.
 

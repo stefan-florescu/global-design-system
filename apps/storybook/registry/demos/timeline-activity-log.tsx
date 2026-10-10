@@ -51,7 +51,7 @@ export default function TimelineActivityLog() {
             <div className="text-body">
               Thomas Lean commented on{" "}
               <a href="#activity-log" className={link}>
-                Flowbite Pro
+                Stefan DS Pro
               </a>
             </div>
           </div>

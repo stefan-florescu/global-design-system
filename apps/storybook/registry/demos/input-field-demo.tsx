@@ -19,7 +19,12 @@ export default function InputFieldDemo() {
         </div>
         <div>
           <Label htmlFor={`${id}-company`}>Company</Label>
-          <Input id={`${id}-company`} placeholder="Flowbite" autoComplete="organization" required />
+          <Input
+            id={`${id}-company`}
+            placeholder="Stefan DS"
+            autoComplete="organization"
+            required
+          />
         </div>
         <div>
           <Label htmlFor={`${id}-phone`}>Phone number</Label>
@@ -34,7 +39,7 @@ export default function InputFieldDemo() {
         </div>
         <div>
           <Label htmlFor={`${id}-website`}>Website URL</Label>
-          <Input id={`${id}-website`} type="url" placeholder="flowbite.com" required />
+          <Input id={`${id}-website`} type="url" placeholder="example.com" required />
         </div>
         <div>
           <Label htmlFor={`${id}-visitors`}>Unique visitors (per month)</Label>

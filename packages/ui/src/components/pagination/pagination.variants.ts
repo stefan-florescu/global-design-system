@@ -3,15 +3,14 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { focusOutline } from "../../lib/focus";
 
 /*
- * Flowbite v4 pagination, class for class (https://flowbite.com/docs/components/pagination/), on
- * our semantic tokens. Four layouts, after flowbite-react's `layout` and Flowbite's sections:
+ * Pagination on our semantic tokens. Four layouts:
  * - `pagination`: numbered pages joined edge to edge (`-space-x-px`), outer corners rounded;
- * - `navigation`: Flowbite's "Previous and next": two separate `shadow-xs` buttons;
+ * - `navigation`: "Previous and next": two separate `shadow-xs` buttons;
  * - `table`: "Table data pagination": "Showing 1 to 10 of 100 Entries" over joined buttons;
  * - `single`: "Single pagination": icon buttons around "1 of 99" in one `shadow-xs` group.
- * Two sizes: `sm` is Flowbite's 36px row (`h-9`, `px-3 py-2`), `md` its 40px row (`h-10`,
- * `px-4 py-2.5`). Accessibility additions: the solid keyboard outline from lib/focus on a raised
- * layer so neighbours never cover it, and Flowbite's disabled-button look for the ends.
+ * Two sizes: `sm` is a 36px row (`h-9`, `px-3 py-2`), `md` a 40px row (`h-10`,
+ * `px-4 py-2.5`). Accessibility: the solid keyboard outline from lib/focus on a raised
+ * layer so neighbours never cover it, and a disabled-button look for the ends.
  */
 export const paginationVariants = cva("flex", {
   variants: {
@@ -46,7 +45,7 @@ export const paginationItemVariants = cva(
     "hover:bg-neutral-tertiary-medium hover:text-heading focus-visible:z-raised",
     focusOutline,
     "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
-    // Flowbite's disabled button, for the ends of the range (`disabled` or `aria-disabled`).
+    // The disabled button, for the ends of the range (`disabled` or `aria-disabled`).
     "disabled:pointer-events-none disabled:bg-disabled disabled:text-fg-disabled",
     "aria-disabled:pointer-events-none aria-disabled:cursor-default aria-disabled:bg-disabled aria-disabled:text-fg-disabled",
   ],
@@ -55,7 +54,7 @@ export const paginationItemVariants = cva(
       /**
        * `page`: a square page number. `step`: previous / next with a text label. `icon`: an
        * icon-only previous / next. `button`: the separate (navigation) or joined (table)
-       * previous / next buttons, with Flowbite's `shadow-xs`.
+       * previous / next buttons, with `shadow-xs`.
        */
       shape: {
         page: "font-medium",
@@ -72,7 +71,7 @@ export const paginationItemVariants = cva(
         true: "bg-neutral-tertiary-medium text-fg-brand hover:text-fg-brand",
         false: "",
       },
-      /** Flowbite's "Single pagination" buttons add a 3px halo on focus. */
+      /** "Single pagination" buttons add a 3px halo on focus. */
       ring: {
         true: "focus:z-raised focus:ring-3 focus:ring-neutral-tertiary",
         false: "",
@@ -90,7 +89,7 @@ export const paginationItemVariants = cva(
   },
 );
 
-/** Arrow beside a text label (Flowbite's "with icons" buttons): 16px, pulled toward the edge. */
+/** Arrow beside a text label ("with icons" buttons): 16px, pulled toward the edge. */
 export const paginationPreviousIconClassName = "me-1.5 -ms-0.5";
 export const paginationNextIconClassName = "ms-1.5 -me-0.5";
 
@@ -103,7 +102,7 @@ export const paginationEllipsisVariants = cva(
   },
 );
 
-/** "1 of 99" between the single layout's buttons: Flowbite's middle segment, not a control. */
+/** "1 of 99" between the single layout's buttons: a middle segment, not a control. */
 export const paginationPageInfoVariants = cva(
   "box-border inline-flex shrink-0 items-center justify-center border border-default-medium bg-neutral-secondary-medium px-3 text-sm leading-5 text-body",
   {

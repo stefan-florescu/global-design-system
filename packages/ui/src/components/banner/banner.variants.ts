@@ -3,10 +3,9 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { focusOutline } from "../../lib/focus";
 
 /*
- * Flowbite v4 sticky banners, class for class (https://flowbite.com/docs/components/banner/), on
- * our semantic tokens. A full-width `neutral-primary-soft` bar with a `default` hairline, pinned
- * to the top or bottom of the viewport on the `z.fixed` layer; `floating` is Flowbite's marketing
- * CTA card, 1rem in from the edges and 1.5rem from the top or bottom.
+ * Sticky banners on our semantic tokens. A full-width `neutral-primary-soft` bar with a `default`
+ * hairline, pinned to the top or bottom of the viewport on the `z.fixed` layer; `floating` is a
+ * marketing CTA card, 1rem in from the edges and 1.5rem from the top or bottom.
  */
 export const bannerVariants = cva(
   "flex justify-between gap-2 border-default bg-neutral-primary-soft p-4 text-sm text-body",
@@ -36,7 +35,7 @@ export const bannerVariants = cva(
 /** Holds the close button at the end of the banner. */
 export const bannerDismissWrapperClassName = "flex items-center";
 
-/** Flowbite's 28px close button. */
+/** The 28px close button. */
 export const bannerDismissClassName = [
   "inline-flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-sm text-sm text-body",
   "transition-colors hover:bg-neutral-tertiary hover:text-heading motion-reduce:transition-none",

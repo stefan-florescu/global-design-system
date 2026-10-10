@@ -41,7 +41,7 @@ const decimals = (step: number) => (String(step).split(".")[1] ?? "").length;
 
 /**
  * A number field. Arrow keys change the value by `step`; `stepper` adds − and + buttons
- * (Flowbite's control buttons) and `variant="counter"` draws them as small round buttons.
+ * (control buttons) and `variant="counter"` draws them as small round buttons.
  */
 export function NumberInput({
   value,

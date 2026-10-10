@@ -39,7 +39,7 @@ Pass `value` from 0 to 100 and an accessible name. The bar fills the width of it
 
 ### Sizes
 
-Set `size` to `sm`, `md` (the default) or `lg` for Flowbite's 6px, 8px and 10px bars. `xl` is
+Set `size` to `sm`, `md` (the default) or `lg` for 6px, 8px and 10px bars. `xl` is
 16px, the height of a bar with a label inside. Here each bar is named by the heading above it
 with `aria-labelledby`.
 
@@ -73,23 +73,19 @@ Set `variant` to `dark`, `brand` (the default), `success`, `danger` or `warning`
 | `danger`  | `danger`  | `danger-foreground`  |
 | `warning` | `warning` | `warning-foreground` |
 
-flowbite-react also offers purple, indigo, teal, cyan, lime, pink and gray bars. We have no fill
-roles for those colours, so they are left out.
-
 ## Accessibility
 
 - The track is a `role="progressbar"` with `aria-valuenow`, `aria-valuemin` (0) and
   `aria-valuemax`, as the [WAI-ARIA progressbar role](https://www.w3.org/TR/wai-aria-1.2/#progressbar)
   requires. `aria-valuetext` is the visible value: `valueText`, or the rounded percentage.
-  Flowbite's markup has no role or values.
 - A progress bar must have a name. TypeScript requires `textLabel`, `aria-label` or
-  `aria-labelledby`; flowbite-react falls back to the word "progressbar".
+  `aria-labelledby`, so a bar is never announced as just "progressbar".
 - Labels drawn outside the bar repeat its name and value, so they are hidden from assistive
   technology and not read twice. Labels inside the bar are part of the progressbar, whose content
   is not read separately.
 - Screen readers don't announce every change. If the user is waiting for a task to finish, also
   announce the result, for example in a `role="status"` region.
-- Flowbite's fills are under 3:1 against the track in dark mode (and `warning` in light mode). When
+- The fills are under 3:1 against the track in dark mode (and `warning` in light mode). When
   the exact value matters, show it as text with `labelProgress` or `valueText`, so the bar is not
   the only way to read it.
 

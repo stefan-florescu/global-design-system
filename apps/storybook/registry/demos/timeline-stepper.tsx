@@ -12,9 +12,9 @@ import {
 } from "@stefan-florescu/ui";
 
 const releases = [
-  { date: "2025-01-09", label: "January 09th, 2025", title: "Flowbite Library v1.0.0" },
-  { date: "2025-03-14", label: "March 14th, 2025", title: "Flowbite Library v1.2.0" },
-  { date: "2025-09-26", label: "September 26th, 2025", title: "Flowbite Library v1.3.0" },
+  { date: "2025-01-09", label: "January 09th, 2025", title: "Stefan DS Library v1.0.0" },
+  { date: "2025-03-14", label: "March 14th, 2025", title: "Stefan DS Library v1.2.0" },
+  { date: "2025-09-26", label: "September 26th, 2025", title: "Stefan DS Library v1.3.0" },
 ];
 
 export default function TimelineStepper() {

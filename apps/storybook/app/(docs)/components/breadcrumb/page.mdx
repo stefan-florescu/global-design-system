@@ -24,7 +24,7 @@ import { Breadcrumb, BreadcrumbItem } from "@stefan-florescu/ui";
     Home
   </BreadcrumbItem>
   <BreadcrumbItem href="/projects">Projects</BreadcrumbItem>
-  <BreadcrumbItem>Flowbite</BreadcrumbItem>
+  <BreadcrumbItem>Stefan DS</BreadcrumbItem>
 </Breadcrumb>
 ```
 
@@ -77,13 +77,11 @@ Put a `ButtonGroup` of back and forward buttons next to the trail.
 - Dropdowns in or next to the trail are [`Dropdown`](/components/dropdown) menu buttons: the
   arrow keys move through their items and Escape closes them. In "Breadcrumb with dropdown" the
   current level's button carries `aria-current="page"` and the "/" separator is hidden from
-  assistive technology. Flowbite marks two items as the current page in "Header breadcrumb", puts
-  the "/" directly in the list, and keeps the branch button inside the breadcrumb landmark; here
-  only the last item is current, the separator sits in a list item, and the branch button follows
-  the landmark.
+  assistive technology. In "Header breadcrumb" only the last item is current, the separator sits in
+  a list item, and the branch button follows the breadcrumb landmark rather than sitting inside it.
 - Chevron separators and icons are decorative and hidden from assistive technology. Separators
   flip in right-to-left layouts.
-- Links draw a solid `ring` outline on keyboard focus; Flowbite has no focus style.
+- Links draw a solid `ring` outline on keyboard focus.
 - Links (`body`) and the current page (`body-subtle`) pass WCAG 2.2 AA on the page and on the solid
   surface in both themes.
 - Pattern: [WAI-ARIA Breadcrumb](https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/).
