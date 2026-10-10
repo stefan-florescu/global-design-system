@@ -81,8 +81,33 @@ Set `position="sticky"` to keep the bar at the bottom of a scrolling container, 
 
 <ComponentPreview name="bottom-navigation-card" />
 
-Flowbite's "Online meeting control bar" and "Video player bar" are media toolbars rather than
-navigation, so they are not shown here.
+### Online meeting control bar
+
+Use this component to show a list of options for online video meetings by showing a list of
+options such as muting the microphone, hiding the camera, adjusting the volume and more.
+
+These bars hold controls rather than destinations, so they are not a `<nav>`: the bar is a
+`<section>` named "Meeting controls" (a region landmark) styled with `bottomNavigationVariants()`,
+and the buttons are [`Button`](/components/button)s in labelled groups. "Mute microphone" and
+"Hide camera" are toggle buttons (`aria-pressed`) whose icons change while they are on; "Show
+options" opens a [`Dropdown`](/components/dropdown) menu, and "Adjust volume" opens a panel with a
+volume [`Range`](/forms/range). The clock and the side groups show once the bar is at least 672px
+wide: the bar is a query container (`@container`, `@2xl:`), so its layout follows its own width
+rather than the viewport's, and the centre column sizes to its buttons so they always fit.
+
+<ComponentPreview name="bottom-navigation-meeting" flush />
+
+### Video player bar
+
+Use this component to show control buttons for a video or audio that is playing in the browser to
+control the volume, navigate between videos, pause or start the video, and more.
+
+The play/pause button changes its name, tooltip and icon to the action it takes ("Pause video",
+"Play video"), "Captions" is a toggle button, and the playback position is a
+[`Progress`](/components/progress) bar named "Playback position" that announces "3:45 of 5:00".
+The three columns share the bar equally, as in Flowbite.
+
+<ComponentPreview name="bottom-navigation-video-player" flush />
 
 ## Accessibility
 
@@ -99,6 +124,32 @@ navigation, so they are not shown here.
 - Each item fills its share of the 64px-high bar, well above the 24×24px minimum target size.
 - A fixed bar covers the bottom of the page. Add matching padding to your layout so no content is
   hidden behind it.
+
+In the online meeting control bar and the video player bar:
+
+- The bars are `<section>` region landmarks ("Meeting controls", "Video player"), not `<nav>`,
+  because they hold controls rather than links to pages. Each cluster of buttons is a
+  `role="group"` with a name ("Call controls", "Playback controls"…), and <Kbd>Tab</Kbd> moves
+  through the buttons one by one. They are not `role="toolbar"`s: a toolbar promises a single tab
+  stop with arrow-key movement, which these examples do not implement.
+- Every icon-only button is named by its [`Tooltip`](/components/tooltips) in label mode, which
+  shows on hover and keyboard focus. Flowbite's "Show options" button and its "Adjust volume"
+  buttons have no tooltip; ours do, and step aside while their menu or panel is open. Where
+  Flowbite's hidden name and tooltip differ, the tooltip's text is the name: "Full screen" (not
+  "Expand") and "Captions" (not "Toggle captions", which would repeat the toggle state).
+- Mute, camera and captions are toggle buttons: their name stays the same and `aria-pressed` says
+  whether they are on, as the WAI-ARIA button pattern recommends. Pressed buttons also change their
+  icon (microphone off, camera off) or turn `fg-brand`, so the state is not shown by colour alone.
+  Play/pause instead swaps its name and icon between "Pause video" and "Play video", the usual
+  pattern for media controls. Flowbite's buttons do not change.
+- "Show options" opens a menu (arrow keys, <Kbd>Escape</Kbd> returns focus). "Adjust volume" opens
+  a dialog panel with a labelled slider that announces the volume as a percentage; Flowbite's
+  button does nothing.
+- The video's playback position is a `progressbar` named "Playback position" with the value text
+  "3:45 of 5:00"; the times beside it are hidden from screen readers so they are not read twice.
+  In a real player that lets people seek, use a [`Range`](/forms/range) slider instead.
+- The video thumbnail is decorative (`alt=""`): the title next to it names the video. Buttons keep
+  Flowbite's soft focus halo and add the solid `ring` outline on keyboard focus.
 
 ## API Reference
 

@@ -52,7 +52,9 @@ import BottomNavigationBordered from "./demos/bottom-navigation-bordered";
 import BottomNavigationButtonGroup from "./demos/bottom-navigation-button-group";
 import BottomNavigationCard from "./demos/bottom-navigation-card";
 import BottomNavigationDemo from "./demos/bottom-navigation-demo";
+import BottomNavigationMeeting from "./demos/bottom-navigation-meeting";
 import BottomNavigationPagination from "./demos/bottom-navigation-pagination";
+import BottomNavigationVideoPlayer from "./demos/bottom-navigation-video-player";
 import BreadcrumbButton from "./demos/breadcrumb-button";
 import BreadcrumbDemo from "./demos/breadcrumb-demo";
 import BreadcrumbDropdown from "./demos/breadcrumb-dropdown";
@@ -512,7 +514,9 @@ export const demos = {
   "bottom-navigation-button-group": BottomNavigationButtonGroup,
   "bottom-navigation-card": BottomNavigationCard,
   "bottom-navigation-demo": BottomNavigationDemo,
+  "bottom-navigation-meeting": BottomNavigationMeeting,
   "bottom-navigation-pagination": BottomNavigationPagination,
+  "bottom-navigation-video-player": BottomNavigationVideoPlayer,
   "breadcrumb-button": BreadcrumbButton,
   "breadcrumb-demo": BreadcrumbDemo,
   "breadcrumb-dropdown": BreadcrumbDropdown,
