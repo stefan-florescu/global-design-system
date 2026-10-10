@@ -1,6 +1,6 @@
 {
   "name": "@stefan-florescu/tokens",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Design tokens (primitive \u2192 semantic \u2192 component) built with Style Dictionary.",
   "license": "MIT",
   "type": "module",

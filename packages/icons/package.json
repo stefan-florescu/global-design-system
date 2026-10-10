@@ -1,6 +1,6 @@
 {
   "name": "@stefan-florescu/icons",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Icon layer over lucide.dev with design-system defaults (size, stroke, a11y).",
   "license": "MIT",
   "type": "module",
