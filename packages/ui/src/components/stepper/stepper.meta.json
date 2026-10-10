@@ -1,0 +1,59 @@
+{
+  "name": "Stepper",
+  "status": "beta",
+  "description": "Shows the numbered steps of a process, such as a multi-step form, and which are complete, current and upcoming.",
+  "category": "navigation",
+  "import": "import { Stepper, StepperItem } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/TR/wai-aria-1.2/#aria-current",
+  "client": false,
+  "props": "generated",
+  "parts": ["Stepper", "StepperItem"],
+  "variants": {
+    "variant": ["default", "progress", "detailed", "vertical", "breadcrumb", "timeline"],
+    "StepperItem.status": ["complete", "current", "upcoming"]
+  },
+  "defaults": {
+    "variant": "default",
+    "StepperItem.status": "upcoming"
+  },
+  "tokens": [
+    "color.body",
+    "color.fg-brand",
+    "color.fg-brand-strong",
+    "color.fg-disabled",
+    "color.brand",
+    "color.brand-softer",
+    "color.brand-subtle",
+    "color.brand-foreground",
+    "color.success-soft",
+    "color.success-subtle",
+    "color.fg-success-strong",
+    "color.neutral-primary-soft",
+    "color.neutral-secondary-soft",
+    "color.neutral-tertiary",
+    "color.default",
+    "color.buffer",
+    "radius.base",
+    "radius.full",
+    "shadow.xs"
+  ],
+  "useWhen": [
+    "Showing progress through a multi-step form or checkout",
+    "Telling users how many steps are left and which one they are on"
+  ],
+  "avoidWhen": [
+    "Showing a history of events with dates: use Timeline",
+    "Showing where a page sits in the site hierarchy: use Breadcrumb",
+    "Progress with a percentage: use Progress"
+  ],
+  "related": ["Progress", "Breadcrumb", "Timeline", "Indicator", "Spinner"],
+  "examples": [
+    "apps/storybook/registry/demos/stepper-demo.tsx",
+    "apps/storybook/registry/demos/stepper-progress.tsx",
+    "apps/storybook/registry/demos/stepper-detailed.tsx",
+    "apps/storybook/registry/demos/stepper-vertical.tsx",
+    "apps/storybook/registry/demos/stepper-breadcrumb.tsx",
+    "apps/storybook/registry/demos/stepper-timeline.tsx",
+    "apps/storybook/registry/demos/stepper-form.tsx"
+  ]
+}

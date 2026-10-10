@@ -3,7 +3,7 @@
 import { ChevronLeft, ChevronRight } from "@stefan-florescu/icons";
 import { useId, useState } from "react";
 
-import { Button, ButtonGroup, Input, Label, Select } from "@stefan-florescu/ui";
+import { Button, ButtonGroup, Input, Label, Select, Tooltip } from "@stefan-florescu/ui";
 
 const totalPages = 99;
 const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
@@ -41,26 +41,28 @@ export default function PaginationSelectButtons() {
           className="disabled:bg-disabled w-28"
         />
         <ButtonGroup aria-label="Previous and next page">
-          <Button
-            variant="secondary"
-            size="sm"
-            iconOnly
-            aria-label="Previous"
-            disabled={page <= 1}
-            onClick={() => setPage(page - 1)}
-          >
-            <ChevronLeft aria-hidden className="rtl:rotate-180" />
-          </Button>
-          <Button
-            variant="secondary"
-            size="sm"
-            iconOnly
-            aria-label="Next"
-            disabled={page >= totalPages}
-            onClick={() => setPage(page + 1)}
-          >
-            <ChevronRight aria-hidden className="rtl:rotate-180" />
-          </Button>
+          <Tooltip content="Previous" mode="label" className="leading-4">
+            <Button
+              variant="secondary"
+              size="sm"
+              iconOnly
+              disabled={page <= 1}
+              onClick={() => setPage(page - 1)}
+            >
+              <ChevronLeft aria-hidden className="rtl:rotate-180" />
+            </Button>
+          </Tooltip>
+          <Tooltip content="Next" mode="label" className="leading-4">
+            <Button
+              variant="secondary"
+              size="sm"
+              iconOnly
+              disabled={page >= totalPages}
+              onClick={() => setPage(page + 1)}
+            >
+              <ChevronRight aria-hidden className="rtl:rotate-180" />
+            </Button>
+          </Tooltip>
         </ButtonGroup>
       </form>
     </nav>

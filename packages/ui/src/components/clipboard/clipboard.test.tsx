@@ -58,4 +58,19 @@ describe("Clipboard", () => {
     await user.click(screen.getByRole("button", { name: "Copy" }));
     expect(onCopy).not.toHaveBeenCalled();
   });
+
+  it("shows the label, then the copied label, in a tooltip that names an icon-only button", async () => {
+    const user = userEvent.setup();
+    render(
+      <Clipboard value="abc" variant="ghost" iconOnly label="Copy to clipboard" showTooltip />,
+    );
+    const button = screen.getByRole("button", { name: "Copy to clipboard" });
+    expect(button).toHaveAttribute("aria-labelledby");
+    await user.hover(button);
+    expect(screen.getByRole("tooltip")).toHaveTextContent("Copy to clipboard");
+    await user.click(button);
+    expect(screen.getByRole("tooltip")).toHaveTextContent("Copied!");
+    expect(screen.getByRole("button", { name: "Copied!" })).toBeInTheDocument();
+    expect(screen.getByRole("status")).toHaveTextContent("Copied!");
+  });
 });

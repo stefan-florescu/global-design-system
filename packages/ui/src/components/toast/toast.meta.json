@@ -1,0 +1,83 @@
+{
+  "name": "Toast",
+  "status": "beta",
+  "description": "Short messages about an action, shown over the page, with optional actions.",
+  "category": "feedback",
+  "import": "import { Toast, ToastIcon, ToastProvider, ToastToggle, useToast } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/alert/",
+  "client": true,
+  "props": "generated",
+  "parts": ["Toast", "ToastIcon", "ToastToggle", "ToastProvider", "useToast"],
+  "variants": {
+    "variant": ["default", "brand", "success", "danger", "warning"],
+    "ToastIcon.variant": ["brand", "success", "danger", "warning"],
+    "ToastIcon.size": ["sm", "md"],
+    "ToastProvider.position": [
+      "top-start",
+      "top-center",
+      "top-end",
+      "bottom-start",
+      "bottom-center",
+      "bottom-end"
+    ]
+  },
+  "defaults": {
+    "variant": "default",
+    "ToastIcon.variant": "brand",
+    "ToastIcon.size": "sm",
+    "ToastProvider.position": "bottom-end"
+  },
+  "tokens": [
+    "color.neutral-primary-soft",
+    "color.neutral-primary-medium",
+    "color.neutral-secondary-medium",
+    "color.neutral-tertiary",
+    "color.default",
+    "color.body",
+    "color.heading",
+    "color.fg-brand",
+    "color.brand-softer",
+    "color.brand-subtle",
+    "color.fg-brand-strong",
+    "color.success-soft",
+    "color.success-subtle",
+    "color.fg-success",
+    "color.fg-success-strong",
+    "color.danger-soft",
+    "color.danger-subtle",
+    "color.fg-danger",
+    "color.fg-danger-strong",
+    "color.warning-soft",
+    "color.warning-subtle",
+    "color.fg-warning",
+    "color.ring",
+    "radius.base",
+    "radius.default",
+    "shadow.xs",
+    "z.toast"
+  ],
+  "useWhen": [
+    "Confirming an action that happened, such as a saved or archived item, with an optional undo",
+    "Notifying about something that happened elsewhere, such as a new comment"
+  ],
+  "avoidWhen": [
+    "Errors the user must fix before going on: use Alert next to the problem",
+    "Messages that need a decision before going on: use Modal"
+  ],
+  "related": ["Alert", "Avatar", "Button", "Progress"],
+  "examples": [
+    "apps/storybook/registry/demos/toast-demo.tsx",
+    "apps/storybook/registry/demos/toast-colors.tsx",
+    "apps/storybook/registry/demos/toast-simple.tsx",
+    "apps/storybook/registry/demos/toast-undo.tsx",
+    "apps/storybook/registry/demos/toast-message.tsx",
+    "apps/storybook/registry/demos/toast-notification.tsx",
+    "apps/storybook/registry/demos/toast-interactive.tsx",
+    "apps/storybook/registry/demos/toast-illustration.tsx",
+    "apps/storybook/registry/demos/toast-progress.tsx",
+    "apps/storybook/registry/demos/toast-danger.tsx",
+    "apps/storybook/registry/demos/toast-warning.tsx",
+    "apps/storybook/registry/demos/toast-positioning.tsx",
+    "apps/storybook/registry/demos/toast-provider.tsx"
+  ]
+}

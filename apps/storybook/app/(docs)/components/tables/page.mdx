@@ -1,0 +1,271 @@
+export const metadata = {
+  title: "Tables",
+  description:
+    "Show text, images, links and other elements inside a structured set of data made up of rows and columns of table cells.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="table-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeadCell,
+  TableRow,
+} from "@stefan-florescu/ui";
+```
+
+```tsx
+<Table>
+  <TableCaption>Products</TableCaption>
+  <TableHead>
+    <TableHeadCell>Product name</TableHeadCell>
+    <TableHeadCell>Price</TableHeadCell>
+  </TableHead>
+  <TableBody>
+    <TableRow>
+      <TableHeadCell scope="row">Magic Mouse 2</TableHeadCell>
+      <TableCell>$99</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+
+`Table` renders a native `<table>` inside Flowbite's bordered card. Put the column headers directly
+in `TableHead` (they are wrapped in one row), and start each body row with a
+`TableHeadCell scope="row"` so screen readers announce it with every cell of the row. Give every
+table a `TableCaption`, visible or `visuallyHidden`. The parts are server components; only the
+horizontal scroller runs on the client.
+
+## Examples
+
+### Default table
+
+A responsive table of text data: column headers, a row header per row and dividers between rows.
+
+<ComponentPreview name="table-demo" />
+
+## Highlight
+
+Accentuate rows, columns or data cells.
+
+### Striped rows
+
+`striped` alternates the fill of every second row, which helps the eye follow long rows.
+
+<ComponentPreview name="table-striped-rows" />
+
+### Striped columns
+
+`striped="columns"` alternates the fill of every second column instead.
+
+<ComponentPreview name="table-striped-columns" />
+
+### Hover state
+
+`hoverable` fills the row under the pointer. Hoverable tables also take Flowbite's stronger head
+fill (`neutral-secondary-medium`) and card-coloured rows, as in all of Flowbite's interactive
+tables.
+
+<ComponentPreview name="table-hover" />
+
+## Table layout
+
+Show the head, foot or caption of the table.
+
+### Table head (sortable)
+
+Make a column sortable by putting a button in its header, and set `aria-sort` (`ascending` or
+`descending`) on the header of the column that orders the rows. The icon shows the direction.
+
+<ComponentPreview name="table-sortable" />
+
+### Table foot
+
+`TableFoot` renders a `<tfoot>` for totals: Flowbite's semibold `heading` row with a `text-base`
+label. Put the cells directly inside. This example has no border and a `rounded` head.
+
+<ComponentPreview name="table-foot" />
+
+### Table caption
+
+`TableCaption` titles the table. It is read when screen-reader users reach the table, and names the
+table's scroller. Add a `description` for supporting text, or `visuallyHidden` to keep the caption
+for screen readers only, as every other example on this page does.
+
+<ComponentPreview name="table-caption" />
+
+## Table styles
+
+### Without border
+
+`bordered={false}` drops the card and the lines between rows, and sets the head in semibold
+`heading` text.
+
+<ComponentPreview name="table-without-border" />
+
+### Table with shadow
+
+The bordered card carries Flowbite's `shadow-xs` by default; `shadow={false}` removes it.
+
+<ComponentPreview name="table-shadow" />
+
+## Overflow scrolling
+
+A table wider than its container scrolls sideways (WCAG 1.4.10 Reflow). When it overflows, the
+scroller joins the tab order and becomes a region named by the caption, so keyboard users can scroll
+it with the arrow keys. Try it with <Kbd>Tab</Kbd>.
+
+<ComponentPreview name="table-overflow" />
+
+## Table search
+
+`toolbar` places controls above the table, inside the card. Here a `SearchInput` filters the rows as
+you type, and a visually hidden status announces how many rows match.
+
+<ComponentPreview name="table-search" />
+
+## Table filter
+
+A [`Dropdown`](/components/dropdown) with radio items filters the rows by category, next to the
+search field.
+
+<ComponentPreview name="table-filter" />
+
+## Table pagination
+
+`footer` places content under the table, inside the card, such as a summary and
+[`Pagination`](/components/pagination) (named "Table navigation" here).
+
+<ComponentPreview name="table-pagination" />
+
+## Checkbox selection
+
+A [`Checkbox`](/forms/checkbox) in every row selects it for a bulk action. The one in the head
+selects every row; it is checked when all rows are, and mixed (indeterminate) when only some are.
+
+<ComponentPreview name="table-checkbox" />
+
+## Table with users
+
+Rows of people: an [`Avatar`](/components/avatar), name and email as the row header, and an
+[`Indicator`](/components/indicators) dot next to the status text. The "Action" dropdown and search
+sit in the toolbar.
+
+<ComponentPreview name="table-users" />
+
+## Table with products
+
+A shopping-cart table: a product image, a counter [`NumberInput`](/forms/number-input) for the
+quantity and a remove button. The images are decorative, because the name is in the next cell.
+
+<ComponentPreview name="table-products" />
+
+## Table with modal
+
+"Edit user" opens a [`Modal`](/components/modal) with a form to edit that row. Saving updates the
+table; focus returns to the button that opened it.
+
+<ComponentPreview name="table-modal" />
+
+## Table colors
+
+`variant="brand"` fills the head and rows with the brand colour. It combines with `striped` and
+`hoverable`. Flowbite's other colour tables only swap the Tailwind palette colour; there are no
+tokens for those, so only the brand table is offered.
+
+<ComponentPreview name="table-colors" />
+
+### Striped rows color
+
+<ComponentPreview name="table-colors-striped-rows" />
+
+### Striped columns color
+
+<ComponentPreview name="table-colors-striped-columns" />
+
+### Hover state color
+
+<ComponentPreview name="table-colors-hover" />
+
+## Accessibility
+
+- Renders a native `<table>` with `<caption>`, `<thead>`, `<tbody>` and `<tfoot>`: screen readers
+  announce its size and move by row and column with their table commands. Pattern:
+  [WAI-ARIA Table](https://www.w3.org/WAI/ARIA/apg/patterns/table/).
+- `TableHeadCell` is a `<th scope="col">` in the head; with `scope="row"` it heads a row, so each cell
+  is announced with its row and column headers. Flowbite's examples use the same scopes.
+- Give every table a caption. `TableCaption visuallyHidden` keeps it for screen readers only.
+  Flowbite captions only its "Table caption" example; every example here has one.
+- **Scrolling.** A table wider than its container scrolls sideways instead of making the page
+  scroll (WCAG 1.4.10). While it overflows, the scroller has `tabindex="0"` and `role="region"`, named
+  by the caption title (or the table's `aria-label`), so it can be scrolled with the arrow keys (WCAG
+  2.1.1) and shows the solid focus outline. Flowbite's scroller cannot take focus.
+- Sortable columns put a real button in the header and set `aria-sort` on the sorted column.
+  Flowbite's sort icons are links with no text.
+- Repeated actions ("Edit", "Remove", "Edit user") add the row's name as visually hidden text, so
+  each link or button has a unique name out of context.
+- Row checkboxes are named after their row ("Select Magic Mouse 2"); Flowbite names them all "Table
+  checkbox". The select-all checkbox is indeterminate (announced as mixed) while only some rows are
+  selected.
+- Search and filter results are announced through a visually hidden status ("4 products").
+- Contrast passes WCAG 2.2 AA in both themes. One change from Flowbite: in dark mode the brand table's
+  body text is `brand-foreground` (white) instead of `fg-brand-subtle`, which is 3.7:1 on the dark
+  `brand` fill.
+- Rows only change colour on hover; a row is never a click target of its own. Put the action in a cell
+  as a link or button.
+
+| Key                       | Action                                                       |
+| ------------------------- | ------------------------------------------------------------ |
+| <Kbd>Tab</Kbd>            | Moves to the next link, button or field in the table         |
+| <Kbd>Tab</Kbd>            | Moves to the scroller when the table is wider than its space |
+| <Kbd>←</Kbd> <Kbd>→</Kbd> | Scroll the focused scroller sideways                         |
+
+## API Reference
+
+### Table
+
+| Prop                 | Type                                | Default     |
+| -------------------- | ----------------------------------- | ----------- |
+| `variant`            | `"default" \| "brand"`              | `"default"` |
+| `striped`            | `boolean \| "rows" \| "columns"`    | `false`     |
+| `hoverable`          | `boolean`                           | `false`     |
+| `bordered`           | `boolean`                           | `true`      |
+| `shadow`             | `boolean`. Only with `bordered`.    | `true`      |
+| `rounded`            | `boolean`. Only without `bordered`. | `false`     |
+| `toolbar`            | `ReactNode`, shown above the table  | —           |
+| `footer`             | `ReactNode`, shown under the table  | —           |
+| `containerClassName` | `string`, for the card              | —           |
+| `className`          | `string`, for the `<table>`         | —           |
+
+All other `<table>` attributes are forwarded to the `<table>`, including `ref` and `aria-label`.
+
+### TableCaption
+
+| Prop             | Type                         | Default |
+| ---------------- | ---------------------------- | ------- |
+| `description`    | `ReactNode`, under the title | —       |
+| `visuallyHidden` | `boolean`                    | `false` |
+
+### TableHeadCell
+
+| Prop    | Type                                         | Default |
+| ------- | -------------------------------------------- | ------- |
+| `scope` | `"col" \| "row" \| "colgroup" \| "rowgroup"` | `"col"` |
+
+### TableHead, TableBody, TableRow, TableCell, TableFoot
+
+Render `<thead>`, `<tbody>`, `<tr>`, `<td>` and `<tfoot>`, and forward their native attributes.
+`TableHead` and `TableFoot` wrap cells in a row; pass `<tr>` elements for several rows. Row fills,
+stripes and hover come from the `Table`; a `className` on a part overrides them.

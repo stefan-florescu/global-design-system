@@ -12,7 +12,7 @@ import {
   Settings,
   Smile,
 } from "@stefan-florescu/icons";
-import { Button, Label, Textarea } from "@stefan-florescu/ui";
+import { Button, Label, Textarea, Tooltip } from "@stefan-florescu/ui";
 
 // Flowbite's toolbar buttons: 36px, `body` icon, `neutral-tertiary-medium` on hover.
 const tool = "rounded-sm text-body hover:bg-neutral-tertiary-medium hover:text-heading";
@@ -63,16 +63,11 @@ export default function TextareaWysiwyg() {
               </Button>
             </div>
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            iconOnly
-            aria-label="Full screen"
-            title="Show full screen"
-            className={`${tool} sm:ms-auto`}
-          >
-            <Maximize aria-hidden />
-          </Button>
+          <Tooltip content="Show full screen" mode="label">
+            <Button variant="ghost" size="sm" iconOnly className={`${tool} sm:ms-auto`}>
+              <Maximize aria-hidden />
+            </Button>
+          </Tooltip>
         </div>
         <div className="bg-neutral-secondary-medium rounded-b-base px-4 py-2">
           <Label htmlFor={`${id}-editor`} className="sr-only">

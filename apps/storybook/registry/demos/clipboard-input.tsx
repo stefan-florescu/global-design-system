@@ -23,6 +23,7 @@ export default function ClipboardInput() {
           variant="ghost"
           size="sm"
           iconOnly
+          showTooltip
           label="Copy to clipboard"
           className="absolute end-2 top-1/2 -translate-y-1/2"
         />

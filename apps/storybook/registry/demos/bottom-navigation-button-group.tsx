@@ -1,7 +1,7 @@
 "use client";
 
 import { Bookmark, House, Plus, Search, SlidersVertical } from "@stefan-florescu/icons";
-import { BottomNavigation, BottomNavigationItem } from "@stefan-florescu/ui";
+import { BottomNavigation, BottomNavigationItem, Tooltip } from "@stefan-florescu/ui";
 import { useState } from "react";
 
 const feeds = ["New", "Popular", "Following"];
@@ -40,26 +40,36 @@ export default function BottomNavigationButtonGroup() {
           </div>
         }
       >
-        <BottomNavigationItem href="/" icon={<House aria-hidden />} hideLabel className="p-4">
-          Home
-        </BottomNavigationItem>
-        <BottomNavigationItem icon={<Bookmark aria-hidden />} hideLabel className="p-4">
-          Bookmark
-        </BottomNavigationItem>
-        <BottomNavigationItem icon={<Plus aria-hidden />} hideLabel className="p-4">
-          New post
-        </BottomNavigationItem>
-        <BottomNavigationItem icon={<Search aria-hidden />} hideLabel className="p-4">
-          Search
-        </BottomNavigationItem>
-        <BottomNavigationItem
-          href="/components/button"
-          icon={<SlidersVertical aria-hidden />}
-          hideLabel
-          className="p-4"
-        >
-          Settings
-        </BottomNavigationItem>
+        <Tooltip content="Home" mode="label">
+          <BottomNavigationItem href="/" icon={<House aria-hidden />} hideLabel className="p-4">
+            Home
+          </BottomNavigationItem>
+        </Tooltip>
+        <Tooltip content="Bookmark" mode="label">
+          <BottomNavigationItem icon={<Bookmark aria-hidden />} hideLabel className="p-4">
+            Bookmark
+          </BottomNavigationItem>
+        </Tooltip>
+        <Tooltip content="New post" mode="label">
+          <BottomNavigationItem icon={<Plus aria-hidden />} hideLabel className="p-4">
+            New post
+          </BottomNavigationItem>
+        </Tooltip>
+        <Tooltip content="Search" mode="label">
+          <BottomNavigationItem icon={<Search aria-hidden />} hideLabel className="p-4">
+            Search
+          </BottomNavigationItem>
+        </Tooltip>
+        <Tooltip content="Settings" mode="label">
+          <BottomNavigationItem
+            href="/components/button"
+            icon={<SlidersVertical aria-hidden />}
+            hideLabel
+            className="p-4"
+          >
+            Settings
+          </BottomNavigationItem>
+        </Tooltip>
       </BottomNavigation>
     </div>
   );

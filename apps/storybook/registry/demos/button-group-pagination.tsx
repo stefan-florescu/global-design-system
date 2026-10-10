@@ -1,5 +1,5 @@
 import { ChevronLeft, ChevronRight } from "@stefan-florescu/icons";
-import { Button, ButtonGroup, buttonVariants, cn } from "@stefan-florescu/ui";
+import { Button, ButtonGroup, buttonVariants, cn, Tooltip } from "@stefan-florescu/ui";
 
 const pages = [1, 2, 3, 4, 5];
 
@@ -32,12 +32,16 @@ export default function ButtonGroupPagination() {
         </Button>
       </ButtonGroup>
       <ButtonGroup aria-label="Previous and next">
-        <Button variant="tertiary" size="sm" iconOnly aria-label="Previous">
-          <ChevronLeft aria-hidden className="rtl:rotate-180" />
-        </Button>
-        <Button variant="tertiary" size="sm" iconOnly aria-label="Next">
-          <ChevronRight aria-hidden className="rtl:rotate-180" />
-        </Button>
+        <Tooltip content="Previous" mode="label" className="leading-4">
+          <Button variant="tertiary" size="sm" iconOnly>
+            <ChevronLeft aria-hidden className="rtl:rotate-180" />
+          </Button>
+        </Tooltip>
+        <Tooltip content="Next" mode="label" className="leading-4">
+          <Button variant="tertiary" size="sm" iconOnly>
+            <ChevronRight aria-hidden className="rtl:rotate-180" />
+          </Button>
+        </Tooltip>
       </ButtonGroup>
     </div>
   );

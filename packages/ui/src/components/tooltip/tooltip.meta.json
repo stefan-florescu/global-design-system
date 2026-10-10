@@ -1,0 +1,75 @@
+{
+  "name": "Tooltip",
+  "status": "beta",
+  "description": "Flowbite's tooltip: a short text in a small dark or light box with an arrow, shown next to an element on hover and keyboard focus or on click. It describes the element (aria-describedby) or, for icon-only controls, names it (aria-labelledby). Opens in the top layer, flips when there is no room, hides with Escape and stays open while hovered.",
+  "category": "overlay",
+  "import": "import { Tooltip } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/",
+  "client": true,
+  "props": "generated",
+  "parts": ["Tooltip"],
+  "variants": {
+    "variant": ["dark", "light"],
+    "trigger": ["hover", "click"],
+    "mode": ["description", "label"],
+    "placement": [
+      "auto",
+      "top",
+      "top-start",
+      "top-end",
+      "right",
+      "right-start",
+      "right-end",
+      "bottom",
+      "bottom-start",
+      "bottom-end",
+      "left",
+      "left-start",
+      "left-end"
+    ],
+    "arrow": [true, false]
+  },
+  "defaults": {
+    "variant": "dark",
+    "trigger": "hover",
+    "mode": "description",
+    "placement": "top",
+    "offset": 8,
+    "delay": 0,
+    "arrow": true,
+    "animation": "duration-300",
+    "defaultOpen": false
+  },
+  "tokens": [
+    "color.dark",
+    "color.dark-foreground",
+    "color.neutral-primary-medium",
+    "color.neutral-tertiary",
+    "color.default",
+    "color.heading",
+    "radius.base",
+    "shadow.xs",
+    "z.tooltip"
+  ],
+  "useWhen": [
+    "Naming an icon-only button or link for sighted users (mode=\"label\")",
+    "Adding a short hint to a control, such as a keyboard shortcut or what a disabled-looking state means",
+    "Confirming a quick action in place, such as \"Copied!\" after copying"
+  ],
+  "avoidWhen": [
+    "Content with links, buttons or other controls: use Popover",
+    "Information people need to complete a task: put it on the page or in HelperText",
+    "Touch-first interfaces, where hover doesn't exist: show the text instead",
+    "Long or rich content: use Popover"
+  ],
+  "related": ["Popover", "Button", "ButtonGroup", "Clipboard", "Avatar"],
+  "examples": [
+    "apps/storybook/registry/demos/tooltip-demo.tsx",
+    "apps/storybook/registry/demos/tooltip-styles.tsx",
+    "apps/storybook/registry/demos/tooltip-placement.tsx",
+    "apps/storybook/registry/demos/tooltip-triggering.tsx",
+    "apps/storybook/registry/demos/tooltip-animation.tsx",
+    "apps/storybook/registry/demos/tooltip-no-arrow.tsx",
+    "apps/storybook/registry/demos/tooltip-icon-button.tsx"
+  ]
+}

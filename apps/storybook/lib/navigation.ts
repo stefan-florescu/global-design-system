@@ -192,6 +192,41 @@ export const sidebarNav: NavSection[] = [
         description: "Pulsing placeholders shown while content loads.",
         href: "/components/skeleton",
       },
+      {
+        title: "Spinner",
+        description: "An animated loader that shows something is in progress.",
+        href: "/components/spinner",
+      },
+      {
+        title: "Stepper",
+        description: "Numbered steps that show progress through a multi-step process.",
+        href: "/components/stepper",
+      },
+      {
+        title: "Tables",
+        description: "Rows and columns of data, with headers, styles, selection and actions.",
+        href: "/components/tables",
+      },
+      {
+        title: "Tabs",
+        description: "Switch between related panels of content without leaving the page.",
+        href: "/components/tabs",
+      },
+      {
+        title: "Timeline",
+        description: "Events in date order along a vertical or horizontal line.",
+        href: "/components/timeline",
+      },
+      {
+        title: "Toast",
+        description: "Short, temporary messages about an action, shown over the page.",
+        href: "/components/toast",
+      },
+      {
+        title: "Tooltips",
+        description: "A short label that appears on hover or focus to describe an element.",
+        href: "/components/tooltips",
+      },
     ],
   },
   {

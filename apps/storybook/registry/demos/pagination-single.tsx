@@ -14,6 +14,7 @@ export default function PaginationSingle() {
       currentPage={page}
       totalPages={99}
       onPageChange={setPage}
+      showTooltips
     />
   );
 }

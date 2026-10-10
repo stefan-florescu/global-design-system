@@ -1,0 +1,91 @@
+{
+  "name": "Table",
+  "status": "beta",
+  "description": "Rows and columns of data in a native table: caption, column and row headers, striped, hoverable, bordered or brand styles, with room for a toolbar and pagination.",
+  "category": "data-display",
+  "import": "import { Table, TableBody, TableCaption, TableCell, TableFoot, TableHead, TableHeadCell, TableRow } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/table/",
+  "client": false,
+  "props": "generated",
+  "parts": [
+    "Table",
+    "TableCaption",
+    "TableHead",
+    "TableHeadCell",
+    "TableBody",
+    "TableRow",
+    "TableCell",
+    "TableFoot"
+  ],
+  "variants": {
+    "variant": ["default", "brand"],
+    "striped": [false, true, "rows", "columns"],
+    "hoverable": [true, false],
+    "bordered": [true, false],
+    "shadow": [true, false],
+    "rounded": [true, false]
+  },
+  "defaults": {
+    "variant": "default",
+    "striped": false,
+    "hoverable": false,
+    "bordered": true,
+    "shadow": true,
+    "rounded": false,
+    "TableHeadCell.scope": "col",
+    "TableCaption.visuallyHidden": false
+  },
+  "tokens": [
+    "color.body",
+    "color.heading",
+    "color.neutral-primary",
+    "color.neutral-primary-soft",
+    "color.neutral-secondary-soft",
+    "color.neutral-secondary-medium",
+    "color.default",
+    "color.default-medium",
+    "color.brand",
+    "color.brand-strong",
+    "color.brand-light",
+    "color.brand-foreground",
+    "color.fg-brand-subtle",
+    "color.ring",
+    "radius.base",
+    "shadow.xs"
+  ],
+  "useWhen": [
+    "Comparing items across several attributes, such as products, orders or users",
+    "Data people scan by row and column, sort, filter or select in bulk",
+    "Reference data such as keyboard shortcuts or API options"
+  ],
+  "avoidWhen": [
+    "Laying out a page or a form: use grid or flex",
+    "A single list of items with one or two attributes: use a list",
+    "A spreadsheet-like editor where each cell is edited with the arrow keys: build an ARIA grid"
+  ],
+  "related": ["Pagination", "Checkbox", "SearchInput", "Dropdown", "Modal", "Badge", "Avatar"],
+  "examples": [
+    "apps/storybook/registry/demos/table-demo.tsx",
+    "apps/storybook/registry/demos/table-striped-rows.tsx",
+    "apps/storybook/registry/demos/table-striped-columns.tsx",
+    "apps/storybook/registry/demos/table-hover.tsx",
+    "apps/storybook/registry/demos/table-sortable.tsx",
+    "apps/storybook/registry/demos/table-foot.tsx",
+    "apps/storybook/registry/demos/table-caption.tsx",
+    "apps/storybook/registry/demos/table-without-border.tsx",
+    "apps/storybook/registry/demos/table-shadow.tsx",
+    "apps/storybook/registry/demos/table-overflow.tsx",
+    "apps/storybook/registry/demos/table-search.tsx",
+    "apps/storybook/registry/demos/table-filter.tsx",
+    "apps/storybook/registry/demos/table-pagination.tsx",
+    "apps/storybook/registry/demos/table-checkbox.tsx",
+    "apps/storybook/registry/demos/table-users.tsx",
+    "apps/storybook/registry/demos/table-products.tsx",
+    "apps/storybook/registry/demos/table-modal.tsx",
+    "apps/storybook/registry/demos/table-colors.tsx",
+    "apps/storybook/registry/demos/table-colors-striped-rows.tsx",
+    "apps/storybook/registry/demos/table-colors-striped-columns.tsx",
+    "apps/storybook/registry/demos/table-colors-hover.tsx",
+    "apps/storybook/registry/demos/kbd-table.tsx"
+  ]
+}

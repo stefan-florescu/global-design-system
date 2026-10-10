@@ -8,6 +8,12 @@ import {
   ModalHeader,
   ModalTitle,
   ModalTrigger,
+  Timeline,
+  TimelineBody,
+  TimelineContent,
+  TimelineItem,
+  TimelinePoint,
+  TimelineTitle,
 } from "@stefan-florescu/ui";
 
 const releases = [
@@ -34,27 +40,26 @@ export default function ModalTimeline() {
           <ModalClose label="Close modal" />
         </ModalHeader>
         <ModalBody>
-          <ol className="border-default relative ms-3.5 mb-4 border-s md:mb-5">
-            {releases.map(({ title, text, action }, index) => (
-              <li key={title} className={index < releases.length - 1 ? "ms-6 mb-11" : "ms-6"}>
-                <span className="bg-brand-softer text-fg-brand ring-buffer-medium absolute -start-3 flex size-6 items-center justify-center rounded-full ring-8">
-                  <Calendar aria-hidden className="size-3" />
-                </span>
-                <h3 className="text-heading my-2 flex items-start text-lg font-semibold">
-                  {title}
-                </h3>
-                <p className="text-body mb-5">{text}</p>
-                <Button variant="secondary" size="sm">
-                  {action === "Download" ? (
-                    <Download aria-hidden className="-ms-0.5" />
-                  ) : (
-                    <Copy aria-hidden className="-ms-0.5" />
-                  )}
-                  {action}
-                </Button>
-              </li>
+          <Timeline className="ms-3.5 mb-4 md:mb-5">
+            {releases.map(({ title, text, action }) => (
+              <TimelineItem key={title} className="mb-11">
+                {/* The modal is a raised surface, so the ring matches it (buffer-medium). */}
+                <TimelinePoint icon={<Calendar />} className="text-fg-brand ring-buffer-medium" />
+                <TimelineContent>
+                  <TimelineTitle className="flex items-start">{title}</TimelineTitle>
+                  <TimelineBody className="not-last:mb-5">{text}</TimelineBody>
+                  <Button variant="secondary" size="sm">
+                    {action === "Download" ? (
+                      <Download aria-hidden className="-ms-0.5" />
+                    ) : (
+                      <Copy aria-hidden className="-ms-0.5" />
+                    )}
+                    {action}
+                  </Button>
+                </TimelineContent>
+              </TimelineItem>
             ))}
-          </ol>
+          </Timeline>
         </ModalBody>
         <Button fullWidth>My Downloads</Button>
       </ModalContent>

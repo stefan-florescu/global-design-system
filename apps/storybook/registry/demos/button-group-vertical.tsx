@@ -4,7 +4,7 @@ import {
   TextAlignJustify,
   TextAlignStart,
 } from "@stefan-florescu/icons";
-import { Button, ButtonGroup } from "@stefan-florescu/ui";
+import { Button, ButtonGroup, Tooltip } from "@stefan-florescu/ui";
 
 export default function ButtonGroupVertical() {
   return (
@@ -21,18 +21,26 @@ export default function ButtonGroupVertical() {
         </Button>
       </ButtonGroup>
       <ButtonGroup orientation="vertical" aria-label="Text alignment">
-        <Button variant="tertiary" size="sm" iconOnly aria-label="Align left">
-          <TextAlignStart aria-hidden />
-        </Button>
-        <Button variant="tertiary" size="sm" iconOnly aria-label="Align center">
-          <TextAlignCenter aria-hidden />
-        </Button>
-        <Button variant="tertiary" size="sm" iconOnly aria-label="Align justify">
-          <TextAlignJustify aria-hidden />
-        </Button>
-        <Button variant="tertiary" size="sm" iconOnly aria-label="Align right">
-          <TextAlignEnd aria-hidden />
-        </Button>
+        <Tooltip content="Align left" mode="label" className="leading-4">
+          <Button variant="tertiary" size="sm" iconOnly>
+            <TextAlignStart aria-hidden />
+          </Button>
+        </Tooltip>
+        <Tooltip content="Align center" mode="label" className="leading-4">
+          <Button variant="tertiary" size="sm" iconOnly>
+            <TextAlignCenter aria-hidden />
+          </Button>
+        </Tooltip>
+        <Tooltip content="Align justify" mode="label" className="leading-4">
+          <Button variant="tertiary" size="sm" iconOnly>
+            <TextAlignJustify aria-hidden />
+          </Button>
+        </Tooltip>
+        <Tooltip content="Align right" mode="label" className="leading-4">
+          <Button variant="tertiary" size="sm" iconOnly>
+            <TextAlignEnd aria-hidden />
+          </Button>
+        </Tooltip>
       </ButtonGroup>
     </div>
   );

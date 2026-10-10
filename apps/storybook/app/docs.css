@@ -452,45 +452,6 @@
     margin-top: 1.5rem;
   }
 
-  .tabs__list {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.125rem;
-    height: 2.25rem;
-    padding: 0.1875rem;
-    margin-bottom: 0.75rem;
-    background: var(--sds-color-neutral-secondary-medium);
-    border-radius: var(--sds-radius-md);
-  }
-
-  .tabs__trigger {
-    display: inline-flex;
-    align-items: center;
-    height: 100%;
-    padding-inline: 0.75rem;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: var(--sds-color-body);
-    border-radius: var(--sds-radius-xs);
-    transition:
-      background-color 0.15s ease,
-      color 0.15s ease;
-  }
-
-  .tabs__trigger:hover {
-    color: var(--sds-color-heading);
-  }
-
-  .tabs__trigger[aria-selected="true"] {
-    color: var(--sds-color-heading);
-    background: var(--sds-color-neutral-primary);
-    box-shadow: var(--sds-shadow-sm);
-  }
-
-  .tabs__panel[hidden] {
-    display: none;
-  }
-
   /* -- Component preview surface ----------------------------------------- */
 
   .preview {
@@ -650,6 +611,7 @@
   }
 
   /* -- API reference table ----------------------------------------------- */
+  /* Not inside previews: demo tables are styled by their component alone. */
 
   .table-wrap {
     width: 100%;
@@ -659,7 +621,7 @@
     border-radius: var(--sds-radius-xl);
   }
 
-  table {
+  table:where(:not(.preview *)) {
     width: 100%;
     /* Below this the flexible last column gets squeezed to a few characters and
      rows grow absurdly tall; scrolling the wrapper is the better trade. */
@@ -668,29 +630,29 @@
     font-size: 0.875rem;
   }
 
-  thead {
+  thead:where(:not(.preview *)) {
     background: color-mix(in srgb, var(--sds-color-neutral-secondary-medium) 50%, transparent);
   }
 
-  th {
+  th:where(:not(.preview *)) {
     padding: 0.75rem 1rem;
     text-align: left;
     font-weight: 600;
     white-space: nowrap;
   }
 
-  td {
+  td:where(:not(.preview *)) {
     padding: 0.75rem 1rem;
     vertical-align: top;
     border-top: var(--sds-border-width-1) solid var(--sds-color-default);
   }
 
-  td code {
+  td:where(:not(.preview *)) code {
     font-size: 0.8125rem;
   }
 
   /* Keyboard tables: keep a row's keys (<Kbd>Enter</Kbd> / <Kbd>Space</Kbd>) on one line. */
-  td:first-child:has(> kbd) {
+  td:where(:not(.preview *)):first-child:has(> kbd) {
     white-space: nowrap;
   }
 

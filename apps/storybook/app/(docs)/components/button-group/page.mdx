@@ -51,7 +51,8 @@ Pair a button with a count. The count is text, not an action, so it is a `<span>
 
 ### Button group icons
 
-Icon-only buttons are 36px squares with a 16px icon. Each needs an `aria-label`.
+Icon-only buttons are 36px squares with a 16px icon. Each needs a name: here a
+[`Tooltip`](/components/tooltips) with `mode="label"` names it and shows the name on hover and focus.
 
 <ComponentPreview name="button-group-icons" />
 
@@ -127,8 +128,10 @@ hover.
   button has no visible text, so it is named "More options".
 - Keyboard focus adds the solid `ring` outline to Flowbite's `ring-3` halo, and the focused button
   moves to the `z.raised` layer so the outline is never hidden behind a neighbour.
-- Flowbite's tooltips on icon buttons are replaced by `aria-label`s until a tooltip component
-  exists.
+- Flowbite's tooltips on icon buttons ("Button group icons", "Pagination button group", "Vertical
+  button groups") are [`Tooltip`](/components/tooltips)s in label mode: the tooltip is the button's
+  name, so screen readers read it once. They open on hover and on keyboard focus, and
+  <Kbd>Escape</Kbd> hides them.
 - A button group is for actions. To choose one option from a set, use a radio group or tabs,
   which announce the selected state.
 

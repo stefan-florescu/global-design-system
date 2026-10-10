@@ -23,6 +23,7 @@ import AvatarSizes from "./demos/avatar-sizes";
 import AvatarStacked from "./demos/avatar-stacked";
 import AvatarStatus from "./demos/avatar-status";
 import AvatarText from "./demos/avatar-text";
+import AvatarTooltip from "./demos/avatar-tooltip";
 import AvatarUserDropdown from "./demos/avatar-user-dropdown";
 import BadgeAvatar from "./demos/badge-avatar";
 import BadgeBordered from "./demos/badge-bordered";
@@ -51,7 +52,9 @@ import BottomNavigationBordered from "./demos/bottom-navigation-bordered";
 import BottomNavigationButtonGroup from "./demos/bottom-navigation-button-group";
 import BottomNavigationCard from "./demos/bottom-navigation-card";
 import BottomNavigationDemo from "./demos/bottom-navigation-demo";
+import BottomNavigationMeeting from "./demos/bottom-navigation-meeting";
 import BottomNavigationPagination from "./demos/bottom-navigation-pagination";
+import BottomNavigationVideoPlayer from "./demos/bottom-navigation-video-player";
 import BreadcrumbButton from "./demos/breadcrumb-button";
 import BreadcrumbDemo from "./demos/breadcrumb-demo";
 import BreadcrumbDropdown from "./demos/breadcrumb-dropdown";
@@ -90,12 +93,14 @@ import CardDemo from "./demos/card-demo";
 import CardDescription from "./demos/card-description";
 import CardEcommerce from "./demos/card-ecommerce";
 import CardForm from "./demos/card-form";
+import CardFullWidthTabs from "./demos/card-full-width-tabs";
 import CardHorizontal from "./demos/card-horizontal";
 import CardImage from "./demos/card-image";
 import CardLink from "./demos/card-link";
 import CardList from "./demos/card-list";
 import CardPricing from "./demos/card-pricing";
 import CardProfile from "./demos/card-profile";
+import CardTabs from "./demos/card-tabs";
 import CardTestimonial from "./demos/card-testimonial";
 import CarouselAnimation from "./demos/carousel-animation";
 import CarouselControls from "./demos/carousel-controls";
@@ -359,10 +364,60 @@ import SkeletonTestimonial from "./demos/skeleton-testimonial";
 import SkeletonText from "./demos/skeleton-text";
 import SkeletonVideo from "./demos/skeleton-video";
 import SkeletonWidget from "./demos/skeleton-widget";
+import SpinnerAlignment from "./demos/spinner-alignment";
+import SpinnerButtons from "./demos/spinner-buttons";
+import SpinnerCard from "./demos/spinner-card";
+import SpinnerColors from "./demos/spinner-colors";
+import SpinnerDemo from "./demos/spinner-demo";
+import SpinnerProgress from "./demos/spinner-progress";
+import SpinnerSizes from "./demos/spinner-sizes";
+import StepperBreadcrumb from "./demos/stepper-breadcrumb";
+import StepperDemo from "./demos/stepper-demo";
+import StepperDetailed from "./demos/stepper-detailed";
+import StepperForm from "./demos/stepper-form";
+import StepperProgress from "./demos/stepper-progress";
+import StepperTimeline from "./demos/stepper-timeline";
+import StepperVertical from "./demos/stepper-vertical";
+import TableCaption from "./demos/table-caption";
+import TableCheckbox from "./demos/table-checkbox";
+import TableColors from "./demos/table-colors";
+import TableColorsHover from "./demos/table-colors-hover";
+import TableColorsStripedColumns from "./demos/table-colors-striped-columns";
+import TableColorsStripedRows from "./demos/table-colors-striped-rows";
+import TableDemo from "./demos/table-demo";
+import TableFilter from "./demos/table-filter";
+import TableFoot from "./demos/table-foot";
+import TableHover from "./demos/table-hover";
+import TableModal from "./demos/table-modal";
+import TableOverflow from "./demos/table-overflow";
+import TablePagination from "./demos/table-pagination";
+import TableProducts from "./demos/table-products";
+import TableSearch from "./demos/table-search";
+import TableShadow from "./demos/table-shadow";
+import TableSortable from "./demos/table-sortable";
+import TableStripedColumns from "./demos/table-striped-columns";
+import TableStripedRows from "./demos/table-striped-rows";
+import TableUsers from "./demos/table-users";
+import TableWithoutBorder from "./demos/table-without-border";
+import TabsActiveStyle from "./demos/tabs-active-style";
+import TabsDemo from "./demos/tabs-demo";
+import TabsFullWidth from "./demos/tabs-full-width";
+import TabsFullWidthIcons from "./demos/tabs-full-width-icons";
+import TabsIcons from "./demos/tabs-icons";
+import TabsInteractive from "./demos/tabs-interactive";
+import TabsNav from "./demos/tabs-nav";
+import TabsPills from "./demos/tabs-pills";
+import TabsUnderline from "./demos/tabs-underline";
+import TabsVertical from "./demos/tabs-vertical";
 import TextareaChat from "./demos/textarea-chat";
 import TextareaComment from "./demos/textarea-comment";
 import TextareaDemo from "./demos/textarea-demo";
 import TextareaWysiwyg from "./demos/textarea-wysiwyg";
+import TimelineActivityLog from "./demos/timeline-activity-log";
+import TimelineDemo from "./demos/timeline-demo";
+import TimelineGrouped from "./demos/timeline-grouped";
+import TimelineStepper from "./demos/timeline-stepper";
+import TimelineVertical from "./demos/timeline-vertical";
 import TimepickerDemo from "./demos/timepicker-demo";
 import TimepickerDrawer from "./demos/timepicker-drawer";
 import TimepickerDropdown from "./demos/timepicker-dropdown";
@@ -373,6 +428,19 @@ import TimepickerRange from "./demos/timepicker-range";
 import TimepickerRangeDropdown from "./demos/timepicker-range-dropdown";
 import TimepickerSelect from "./demos/timepicker-select";
 import TimepickerToggle from "./demos/timepicker-toggle";
+import ToastColors from "./demos/toast-colors";
+import ToastDanger from "./demos/toast-danger";
+import ToastDemo from "./demos/toast-demo";
+import ToastIllustration from "./demos/toast-illustration";
+import ToastInteractive from "./demos/toast-interactive";
+import ToastMessage from "./demos/toast-message";
+import ToastNotification from "./demos/toast-notification";
+import ToastPositioning from "./demos/toast-positioning";
+import ToastProgress from "./demos/toast-progress";
+import ToastProvider from "./demos/toast-provider";
+import ToastSimple from "./demos/toast-simple";
+import ToastUndo from "./demos/toast-undo";
+import ToastWarning from "./demos/toast-warning";
 import ToggleCard from "./demos/toggle-card";
 import ToggleCardIcon from "./demos/toggle-card-icon";
 import ToggleChecked from "./demos/toggle-checked";
@@ -381,6 +449,13 @@ import ToggleDisabled from "./demos/toggle-disabled";
 import ToggleDoubleLabels from "./demos/toggle-double-labels";
 import ToggleIcons from "./demos/toggle-icons";
 import ToggleSizes from "./demos/toggle-sizes";
+import TooltipAnimation from "./demos/tooltip-animation";
+import TooltipDemo from "./demos/tooltip-demo";
+import TooltipIconButton from "./demos/tooltip-icon-button";
+import TooltipNoArrow from "./demos/tooltip-no-arrow";
+import TooltipPlacement from "./demos/tooltip-placement";
+import TooltipStyles from "./demos/tooltip-styles";
+import TooltipTriggering from "./demos/tooltip-triggering";
 
 /**
  * Demo registry. Each key must match a file in registry/demos/<key>.tsx — the
@@ -410,6 +485,7 @@ export const demos = {
   "avatar-stacked": AvatarStacked,
   "avatar-status": AvatarStatus,
   "avatar-text": AvatarText,
+  "avatar-tooltip": AvatarTooltip,
   "avatar-user-dropdown": AvatarUserDropdown,
   "badge-avatar": BadgeAvatar,
   "badge-bordered": BadgeBordered,
@@ -438,7 +514,9 @@ export const demos = {
   "bottom-navigation-button-group": BottomNavigationButtonGroup,
   "bottom-navigation-card": BottomNavigationCard,
   "bottom-navigation-demo": BottomNavigationDemo,
+  "bottom-navigation-meeting": BottomNavigationMeeting,
   "bottom-navigation-pagination": BottomNavigationPagination,
+  "bottom-navigation-video-player": BottomNavigationVideoPlayer,
   "breadcrumb-button": BreadcrumbButton,
   "breadcrumb-demo": BreadcrumbDemo,
   "breadcrumb-dropdown": BreadcrumbDropdown,
@@ -477,12 +555,14 @@ export const demos = {
   "card-description": CardDescription,
   "card-ecommerce": CardEcommerce,
   "card-form": CardForm,
+  "card-full-width-tabs": CardFullWidthTabs,
   "card-horizontal": CardHorizontal,
   "card-image": CardImage,
   "card-link": CardLink,
   "card-list": CardList,
   "card-pricing": CardPricing,
   "card-profile": CardProfile,
+  "card-tabs": CardTabs,
   "card-testimonial": CardTestimonial,
   "carousel-animation": CarouselAnimation,
   "carousel-controls": CarouselControls,
@@ -746,10 +826,60 @@ export const demos = {
   "skeleton-text": SkeletonText,
   "skeleton-video": SkeletonVideo,
   "skeleton-widget": SkeletonWidget,
+  "spinner-alignment": SpinnerAlignment,
+  "spinner-buttons": SpinnerButtons,
+  "spinner-card": SpinnerCard,
+  "spinner-colors": SpinnerColors,
+  "spinner-demo": SpinnerDemo,
+  "spinner-progress": SpinnerProgress,
+  "spinner-sizes": SpinnerSizes,
+  "stepper-breadcrumb": StepperBreadcrumb,
+  "stepper-demo": StepperDemo,
+  "stepper-detailed": StepperDetailed,
+  "stepper-form": StepperForm,
+  "stepper-progress": StepperProgress,
+  "stepper-timeline": StepperTimeline,
+  "stepper-vertical": StepperVertical,
+  "table-caption": TableCaption,
+  "table-checkbox": TableCheckbox,
+  "table-colors": TableColors,
+  "table-colors-hover": TableColorsHover,
+  "table-colors-striped-columns": TableColorsStripedColumns,
+  "table-colors-striped-rows": TableColorsStripedRows,
+  "table-demo": TableDemo,
+  "table-filter": TableFilter,
+  "table-foot": TableFoot,
+  "table-hover": TableHover,
+  "table-modal": TableModal,
+  "table-overflow": TableOverflow,
+  "table-pagination": TablePagination,
+  "table-products": TableProducts,
+  "table-search": TableSearch,
+  "table-shadow": TableShadow,
+  "table-sortable": TableSortable,
+  "table-striped-columns": TableStripedColumns,
+  "table-striped-rows": TableStripedRows,
+  "table-users": TableUsers,
+  "table-without-border": TableWithoutBorder,
+  "tabs-active-style": TabsActiveStyle,
+  "tabs-demo": TabsDemo,
+  "tabs-full-width": TabsFullWidth,
+  "tabs-full-width-icons": TabsFullWidthIcons,
+  "tabs-icons": TabsIcons,
+  "tabs-interactive": TabsInteractive,
+  "tabs-nav": TabsNav,
+  "tabs-pills": TabsPills,
+  "tabs-underline": TabsUnderline,
+  "tabs-vertical": TabsVertical,
   "textarea-chat": TextareaChat,
   "textarea-comment": TextareaComment,
   "textarea-demo": TextareaDemo,
   "textarea-wysiwyg": TextareaWysiwyg,
+  "timeline-activity-log": TimelineActivityLog,
+  "timeline-demo": TimelineDemo,
+  "timeline-grouped": TimelineGrouped,
+  "timeline-stepper": TimelineStepper,
+  "timeline-vertical": TimelineVertical,
   "timepicker-demo": TimepickerDemo,
   "timepicker-drawer": TimepickerDrawer,
   "timepicker-dropdown": TimepickerDropdown,
@@ -760,6 +890,19 @@ export const demos = {
   "timepicker-range-dropdown": TimepickerRangeDropdown,
   "timepicker-select": TimepickerSelect,
   "timepicker-toggle": TimepickerToggle,
+  "toast-colors": ToastColors,
+  "toast-danger": ToastDanger,
+  "toast-demo": ToastDemo,
+  "toast-illustration": ToastIllustration,
+  "toast-interactive": ToastInteractive,
+  "toast-message": ToastMessage,
+  "toast-notification": ToastNotification,
+  "toast-positioning": ToastPositioning,
+  "toast-progress": ToastProgress,
+  "toast-provider": ToastProvider,
+  "toast-simple": ToastSimple,
+  "toast-undo": ToastUndo,
+  "toast-warning": ToastWarning,
   "toggle-card": ToggleCard,
   "toggle-card-icon": ToggleCardIcon,
   "toggle-checked": ToggleChecked,
@@ -768,6 +911,13 @@ export const demos = {
   "toggle-double-labels": ToggleDoubleLabels,
   "toggle-icons": ToggleIcons,
   "toggle-sizes": ToggleSizes,
+  "tooltip-animation": TooltipAnimation,
+  "tooltip-demo": TooltipDemo,
+  "tooltip-icon-button": TooltipIconButton,
+  "tooltip-no-arrow": TooltipNoArrow,
+  "tooltip-placement": TooltipPlacement,
+  "tooltip-styles": TooltipStyles,
+  "tooltip-triggering": TooltipTriggering,
 } satisfies Record<string, ComponentType>;
 
 export type DemoName = keyof typeof demos;

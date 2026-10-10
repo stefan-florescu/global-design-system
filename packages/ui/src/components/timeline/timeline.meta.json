@@ -1,0 +1,56 @@
+{
+  "name": "Timeline",
+  "status": "beta",
+  "description": "Events in date order along a vertical or horizontal line.",
+  "category": "data-display",
+  "import": "import { Timeline, TimelineBody, TimelineContent, TimelineItem, TimelinePoint, TimelineTime, TimelineTitle } from \"@stefan-florescu/ui\";",
+  "ariaPattern": null,
+  "client": false,
+  "props": "generated",
+  "parts": [
+    "Timeline",
+    "TimelineItem",
+    "TimelinePoint",
+    "TimelineContent",
+    "TimelineTime",
+    "TimelineTitle",
+    "TimelineBody"
+  ],
+  "variants": {
+    "horizontal": [true, false],
+    "TimelinePoint": ["dot", "icon", "custom"],
+    "headingLevel": [2, 3, 4, 5, 6]
+  },
+  "defaults": {
+    "horizontal": false,
+    "headingLevel": 3
+  },
+  "tokens": [
+    "color.default",
+    "color.neutral-quaternary",
+    "color.buffer",
+    "color.brand-softer",
+    "color.fg-brand-strong",
+    "color.heading",
+    "color.body",
+    "text.sm",
+    "text.base",
+    "text.lg"
+  ],
+  "useWhen": [
+    "Showing a changelog, release history or activity feed in date order",
+    "Showing the milestones of a project or process"
+  ],
+  "avoidWhen": [
+    "Guiding someone through the steps of a task: use Stepper",
+    "Comparing rows of data: use Table"
+  ],
+  "related": ["Avatar", "Badge", "Button", "Stepper"],
+  "examples": [
+    "apps/storybook/registry/demos/timeline-demo.tsx",
+    "apps/storybook/registry/demos/timeline-vertical.tsx",
+    "apps/storybook/registry/demos/timeline-stepper.tsx",
+    "apps/storybook/registry/demos/timeline-activity-log.tsx",
+    "apps/storybook/registry/demos/timeline-grouped.tsx"
+  ]
+}

@@ -22,6 +22,7 @@ export default function ClipboardUrlShortener() {
           value="https://bit.ly/3U2SXcF"
           variant="secondary"
           iconOnly
+          showTooltip
           label="Copy link"
           className="border-input rounded-s-none border-s-0 shadow-none"
         />

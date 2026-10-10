@@ -1,0 +1,50 @@
+{
+  "name": "Spinner",
+  "status": "beta",
+  "description": "An animated SVG loading indicator in several colours and sizes, announced to screen readers as a status.",
+  "category": "feedback",
+  "import": "import { Spinner } from \"@stefan-florescu/ui\";",
+  "ariaPattern": "https://www.w3.org/TR/wai-aria-1.2/#status",
+  "client": false,
+  "props": "generated",
+  "variants": {
+    "variant": ["brand", "dark", "success", "danger", "warning", "pink", "purple", "current"],
+    "size": ["xs", "sm", "md", "lg", "xl"],
+    "decorative": [true, false]
+  },
+  "defaults": {
+    "variant": "brand",
+    "size": "md",
+    "label": "Loading…",
+    "decorative": false
+  },
+  "tokens": [
+    "color.neutral-tertiary",
+    "color.fg-brand",
+    "color.dark",
+    "color.body",
+    "color.fg-success",
+    "color.fg-danger",
+    "color.fg-warning-subtle",
+    "color.fg-pink",
+    "color.fg-purple"
+  ],
+  "useWhen": [
+    "Showing that data is loading when its layout is unknown or the wait is short",
+    "Marking a button, badge or list step as busy"
+  ],
+  "avoidWhen": [
+    "Loading content whose layout is known: use Skeleton",
+    "Progress with a known value: use Progress"
+  ],
+  "related": ["Skeleton", "Progress", "Button", "Stepper"],
+  "examples": [
+    "apps/storybook/registry/demos/spinner-demo.tsx",
+    "apps/storybook/registry/demos/spinner-colors.tsx",
+    "apps/storybook/registry/demos/spinner-sizes.tsx",
+    "apps/storybook/registry/demos/spinner-alignment.tsx",
+    "apps/storybook/registry/demos/spinner-card.tsx",
+    "apps/storybook/registry/demos/spinner-progress.tsx",
+    "apps/storybook/registry/demos/spinner-buttons.tsx"
+  ]
+}

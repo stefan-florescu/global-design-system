@@ -4,6 +4,7 @@ import { Check, Clipboard as ClipboardIcon, ClipboardCheck } from "@stefan-flore
 import { useEffect, useState, type ComponentProps } from "react";
 
 import { cn } from "../../lib/cn";
+import { Tooltip } from "../tooltip/tooltip";
 
 import {
   clipboardCheckClassName,
@@ -27,6 +28,11 @@ export type ClipboardProps = Omit<ComponentProps<"button">, "children" | "value"
     resetAfter?: number;
     /** Called after the value was copied. */
     onCopy?: (value: string) => void;
+    /**
+     * Show Flowbite's tooltip on an icon-only button: the label ("Copy to clipboard") on hover and
+     * keyboard focus, then `copiedLabel` after copying. The tooltip is the button's name.
+     */
+    showTooltip?: boolean;
   };
 
 /**
@@ -40,6 +46,7 @@ export function Clipboard({
   copiedLabel = "Copied!",
   resetAfter = 2000,
   onCopy,
+  showTooltip = false,
   variant,
   size,
   iconOnly,
@@ -92,29 +99,39 @@ export function Clipboard({
     );
   }
 
+  const button = (
+    <button
+      type={type}
+      aria-label={iconOnly ? text : undefined}
+      data-slot="clipboard"
+      data-copied={copied || undefined}
+      className={cn(clipboardVariants({ variant, size, iconOnly }), className)}
+      onClick={async (event) => {
+        onClick?.(event);
+        if (event.defaultPrevented) return;
+        try {
+          await navigator.clipboard.writeText(value);
+          setCopied(true);
+          onCopy?.(value);
+        } catch {
+          setCopied(false);
+        }
+      }}
+      {...props}
+    >
+      {content}
+    </button>
+  );
+
   return (
     <>
-      <button
-        type={type}
-        aria-label={iconOnly ? text : undefined}
-        data-slot="clipboard"
-        data-copied={copied || undefined}
-        className={cn(clipboardVariants({ variant, size, iconOnly }), className)}
-        onClick={async (event) => {
-          onClick?.(event);
-          if (event.defaultPrevented) return;
-          try {
-            await navigator.clipboard.writeText(value);
-            setCopied(true);
-            onCopy?.(value);
-          } catch {
-            setCopied(false);
-          }
-        }}
-        {...props}
-      >
-        {content}
-      </button>
+      {showTooltip && iconOnly ? (
+        <Tooltip content={text} mode="label">
+          {button}
+        </Tooltip>
+      ) : (
+        button
+      )}
       <span role="status" className="sr-only">
         {copied ? copiedLabel : ""}
       </span>

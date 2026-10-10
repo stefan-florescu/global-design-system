@@ -24,6 +24,7 @@ export default function ClipboardContact() {
           value={contact.join("\n")}
           variant="ghost"
           iconOnly
+          showTooltip
           label="Copy contact details"
           className="rounded-base absolute end-2 top-2"
         />

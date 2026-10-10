@@ -136,14 +136,15 @@ Put checkboxes in a `flex` row to align them horizontally.
 
 ### Checkbox
 
-| Prop          | Type                                          | Default     |
-| ------------- | --------------------------------------------- | ----------- |
-| `label`       | `ReactNode`                                   | —           |
-| `description` | `ReactNode`                                   | —           |
-| `variant`     | `"default" \| "bordered" \| "list" \| "card"` | `"default"` |
-| `icon`        | `ReactNode` (for `bordered` and `card`)       | —           |
-| `endIcon`     | `ReactNode` (end of a `card`)                 | —           |
-| `invalid`     | `boolean`                                     | `false`     |
+| Prop            | Type                                                                                                      | Default     |
+| --------------- | --------------------------------------------------------------------------------------------------------- | ----------- |
+| `label`         | `ReactNode`                                                                                               | —           |
+| `description`   | `ReactNode`                                                                                               | —           |
+| `variant`       | `"default" \| "bordered" \| "list" \| "card"`                                                             | `"default"` |
+| `icon`          | `ReactNode` (for `bordered` and `card`)                                                                   | —           |
+| `endIcon`       | `ReactNode` (end of a `card`)                                                                             | —           |
+| `invalid`       | `boolean`                                                                                                 | `false`     |
+| `indeterminate` | `boolean`. The mixed state (a dash), e.g. a select-all with some rows selected; needs a client component. | `false`     |
 
 All other `<input>` attributes are forwarded, such as `name`, `value`, `checked`, `defaultChecked`
 and `disabled`. `className` styles the outer element.

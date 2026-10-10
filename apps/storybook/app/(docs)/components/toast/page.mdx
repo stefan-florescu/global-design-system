@@ -1,0 +1,235 @@
+export const metadata = {
+  title: "Toast",
+  description:
+    "Show short messages about an action, such as a saved item or a new comment, with an icon, actions and a close button, and show them from code with a toaster.",
+};
+
+<PageHeader {...metadata} section="Components" badges={[{ label: "Beta", variant: "secondary" }]} />
+
+<ComponentPreview name="toast-demo" />
+
+## Installation
+
+<InstallCommand packages="@stefan-florescu/ui @stefan-florescu/tokens @stefan-florescu/themes" />
+
+## Usage
+
+```tsx
+import { Toast, ToastIcon, ToastProvider, ToastToggle, useToast } from "@stefan-florescu/ui";
+```
+
+```tsx
+<Toast>
+  <ToastIcon variant="success">
+    <Check />
+  </ToastIcon>
+  <div className="ms-3 text-sm">Item moved successfully.</div>
+  <ToastToggle />
+</Toast>
+```
+
+## Examples
+
+### Default toast
+
+A toast with an icon, a message and a close button. `ToastToggle` is Flowbite's × button: it
+closes the toast, and `onDismiss` on the `Toast` lets you react.
+
+<ComponentPreview name="toast-demo" />
+
+### Colors
+
+Put the icon in a `ToastIcon` to show it on a coloured square: `success`, `danger` or `warning`
+(and `brand`, used in the interactive toast). Colour alone doesn't carry the meaning: the message
+says what happened, and `label` adds visually hidden text such as "Success:".
+
+<ComponentPreview name="toast-colors" />
+
+| `ToastIcon` variant | Tokens                                 |
+| ------------------- | -------------------------------------- |
+| `brand`             | `fg-brand` on `neutral-primary-medium` |
+| `success`           | `fg-success` on `success-soft`         |
+| `danger`            | `fg-danger` on `danger-soft`           |
+| `warning`           | `fg-warning` on `warning-soft`         |
+
+### Simple toast
+
+A short message with an icon, separated by a line.
+
+<ComponentPreview name="toast-simple" />
+
+### Undo button
+
+Add an "Undo" link or button next to the close button to reverse the action.
+
+<ComponentPreview name="toast-undo" />
+
+### Toast message
+
+Show a chat message or comment with an [`Avatar`](/components/avatar) and a reply button.
+
+<ComponentPreview name="toast-message" />
+
+### Push notification
+
+Show a notification about another person's action, with a header, an avatar and two actions. Wrap
+your own button in `ToastToggle asChild` to make it close the toast ("Close" here).
+
+<ComponentPreview name="toast-notification" />
+
+### Interactive toast
+
+Ask people to act, such as updating to a new version, with an icon, a message and two buttons.
+"Not now" closes the toast.
+
+<ComponentPreview name="toast-interactive" />
+
+### Toast illustration
+
+Show an illustration next to the message. Flowbite's smartphone illustration is not part of our
+assets, so this example draws a wallet icon on a `brand-softer` panel; use your own image with
+`alt=""` when it is decorative.
+
+<ComponentPreview name="toast-illustration" />
+
+### Toast progress bar
+
+Show the progress of a task, such as an upload, with a [`Progress`](/components/progress) bar.
+
+<ComponentPreview name="toast-progress" />
+
+### Toast danger alert
+
+Set `variant="danger"` for an error with a description and actions. It is the only variant with
+`role="alert"`, which interrupts screen readers.
+
+<ComponentPreview name="toast-danger" />
+
+### Toast warning alert
+
+Set `variant="warning"` to warn people before they act. The close button takes the warning
+colours through `className`.
+
+<ComponentPreview name="toast-warning" />
+
+## Positioning
+
+Place a toast in a corner with `fixed` and Flowbite's 20px offsets: `top-5 start-5` (top left),
+`top-5 end-5` (top right), `bottom-5 start-5` (bottom left) or `bottom-5 end-5` (bottom right).
+This example uses `absolute` in a frame that stands in for the screen. Use `start` and `end`
+rather than `left` and `right`, so the toasts follow right-to-left layouts.
+
+<ComponentPreview name="toast-positioning" />
+
+## Showing toasts from code
+
+Wrap your app (or part of it) in `ToastProvider` and call `toast()` from `useToast()` with the toast
+to show. The provider stacks the toasts in a corner or edge (`position`, `bottom-end` by default)
+on the `z-toast` layer, and returns an id you can pass to `dismiss()`. Toasts stay until they are
+closed. For messages that can be missed, pass `duration` (at least 5000ms): the timer pauses while
+the pointer is over the toast or focus is in it. This example sets `contained` to keep the stack in
+its frame.
+
+<ComponentPreview name="toast-provider" />
+
+```tsx
+function SaveButton() {
+  const { toast } = useToast();
+  return (
+    <Button
+      onClick={() =>
+        toast(
+          <Toast>
+            <div className="text-sm">Settings saved.</div>
+            <ToastToggle />
+          </Toast>,
+        )
+      }
+    >
+      Save
+    </Button>
+  );
+}
+
+<ToastProvider position="top-end">
+  <SaveButton />
+</ToastProvider>;
+```
+
+## Accessibility
+
+- A `Toast` on its own is a polite live region (`role="status"`), so screen readers read it when
+  it appears, without moving focus. Only `variant="danger"` uses `role="alert"`, which interrupts;
+  pass `role` to change either. Flowbite gives every toast `role="alert"`.
+- Live regions are only announced reliably when they are already on the page. `ToastProvider`
+  renders its "Notifications" region (a landmark, named with `label`) with a polite live list from
+  the start, so every toast shown with `toast()` is announced. Toasts inside it don't add their own
+  role, so nothing is read twice; errors are read politely there too, so show an error that must
+  interrupt as a `Toast variant="danger"` or an [`Alert`](/components/alert) on the page.
+- Toasts never close on their own unless you pass `duration` (WCAG 2.2.1 Timing adjustable). The
+  timer pauses on hover and focus. Flowbite's toasts don't close on their own either, and its
+  "progress bar" is the progress of an upload, not a timer.
+- The × button is a native `<button>` named "Close" (change it with `label`); Flowbite also adds
+  `sr-only` text, which we leave out so the name isn't doubled. It keeps Flowbite's soft focus ring
+  and adds a solid 2px `ring` outline on keyboard focus.
+- Toasts don't take focus. Reach their buttons with <Kbd>Tab</Kbd> in reading order: put the
+  `ToastProvider` where its stack makes sense in the tab order, such as at the end of the page.
+  When a toast with focus closes, focus returns to the page.
+- Icons are decorative and hidden from assistive technology. Flowbite's `sr-only` "Check icon" text
+  is replaced by `ToastIcon`'s optional `label`, such as "Success:".
+- Buttons use [`Button`](/components/button), so labels on brand and danger fills are the on-fill
+  foreground tokens, the "Upload invoice" label is dark on the warning fill, and the outline
+  "Remind me later" label is `fg-warning` (Flowbite's `fg-warning-subtle` is under 4.5:1). Every
+  pairing passes WCAG 2.2 AA in light and dark.
+- The progress bar is a [`Progress`](/components/progress) with `role="progressbar"`, a name and
+  its value; the visible "75%" is hidden from assistive technology so it isn't read twice.
+- The danger and warning titles are `h4`s to fit this page's outline (Flowbite uses `h3`).
+
+| Key                                 | Action                       |
+| ----------------------------------- | ---------------------------- |
+| <Kbd>Tab</Kbd>                      | Moves to the toast's buttons |
+| <Kbd>Enter</Kbd> / <Kbd>Space</Kbd> | Presses the focused button   |
+
+## API Reference
+
+### Toast
+
+| Prop        | Type                                                         | Default     |
+| ----------- | ------------------------------------------------------------ | ----------- |
+| `variant`   | `"default" \| "brand" \| "success" \| "danger" \| "warning"` | `"default"` |
+| `onDismiss` | `() => void`. Called when a `ToastToggle` closes the toast.  | —           |
+| `role`      | `string`. Defaults to `"status"`, or `"alert"` for `danger`. | —           |
+| `className` | `string`. Merged with `cn()`; your classes win.              | —           |
+
+### ToastIcon
+
+| Prop      | Type                                                    | Default   |
+| --------- | ------------------------------------------------------- | --------- |
+| `variant` | `"brand" \| "success" \| "danger" \| "warning"`         | `"brand"` |
+| `size`    | `"sm" \| "md"`. 28px or 36px.                           | `"sm"`    |
+| `label`   | `string`. Visually hidden text read before the message. | —         |
+
+### ToastToggle
+
+| Prop      | Type                                                 | Default   |
+| --------- | ---------------------------------------------------- | --------- |
+| `label`   | `string`. Accessible name of the × button.           | `"Close"` |
+| `asChild` | `boolean`. Close the toast with the button you pass. | `false`   |
+
+### ToastProvider
+
+| Prop        | Type                                                                                            | Default           |
+| ----------- | ----------------------------------------------------------------------------------------------- | ----------------- |
+| `position`  | `"top-start" \| "top-center" \| "top-end" \| "bottom-start" \| "bottom-center" \| "bottom-end"` | `"bottom-end"`    |
+| `contained` | `boolean`. Stack in the nearest positioned ancestor instead of the screen.                      | `false`           |
+| `label`     | `string`. Accessible name of the region.                                                        | `"Notifications"` |
+| `className` | `string`. Classes for the region.                                                               | —                 |
+
+### useToast
+
+Returns `{ toast(content, options?), dismiss(id) }`. `toast` shows `content` (usually a `<Toast>`)
+and returns its id; `options.duration` closes it after that many milliseconds. Call it inside a
+`ToastProvider`.
+
+All parts forward native attributes, including `ref` and `className`. `toastVariants()` and
+`toastIconVariants()` return their class names.

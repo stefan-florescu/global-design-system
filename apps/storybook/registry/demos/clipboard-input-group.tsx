@@ -28,6 +28,7 @@ export default function ClipboardInputGroup() {
         <Clipboard
           value="https://flowbite.com"
           iconOnly
+          showTooltip
           label="Copy link"
           className="border-brand focus:z-raised rounded-s-none shadow-none"
         />

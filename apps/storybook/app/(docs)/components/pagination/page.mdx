@@ -56,7 +56,8 @@ hidden text, so the controls keep their names.
 ### Table data pagination
 
 `layout="table"` summarises the rows on the current page above joined previous and next buttons.
-Pass `itemsPerPage` and `totalItems`; `totalPages` is worked out from them.
+Pass `itemsPerPage` and `totalItems`; `totalPages` is worked out from them. To page through a
+[`Table`](/components/tables#table-pagination), put it in the table's `footer`.
 
 <ComponentPreview name="pagination-table" />
 
@@ -93,6 +94,7 @@ of icon buttons.
 ### Single pagination
 
 `layout="single"` shows the position ("1 of 99") between icon-only previous and next buttons.
+`showTooltips` adds Flowbite's "Previous" and "Next" tooltips to them.
 
 <ComponentPreview name="pagination-single" />
 
@@ -127,8 +129,11 @@ call `preventDefault()` and push the URL itself.
 - Every control draws the solid `ring` outline on keyboard focus and moves to the `z.raised` layer,
   so joined neighbours never cover it. Flowbite removes the outline (`focus:outline-none`).
 - In "Single pagination" Flowbite's middle "1 of 99" is a button that does nothing; here it is
-  text. Flowbite's tooltips on the icon buttons ("Single pagination", "Select input and buttons")
-  are left out until a tooltip component exists; the buttons are named "Previous" and "Next".
+  text.
+- Flowbite's "Previous" and "Next" tooltips on the icon buttons ("Single pagination", "Select input
+  and buttons") are [`Tooltip`](/components/tooltips)s in label mode: they name the buttons, so
+  screen readers say "Previous" once. Set `showTooltips` to add them to icon-only previous and next
+  controls. They open on hover and on keyboard focus, and <Kbd>Escape</Kbd> hides them.
 - In "Select input and buttons" Flowbite shows the page count as the placeholder of a disabled
   field; here it is the field's value, named "Total pages".
 - The ellipsis is hidden from assistive technology; the page names around it say where the range
@@ -147,6 +152,7 @@ call `preventDefault()` and push the URL itself.
 | `layout`        | `"pagination" \| "navigation" \| "table" \| "single"` | `"pagination"`    |
 | `size`          | `"sm" \| "md"`                                        | `"md"`            |
 | `showIcons`     | `boolean`                                             | `false`           |
+| `showTooltips`  | `boolean`. Tooltips on icon-only previous and next    | `false`           |
 | `siblingCount`  | `number`                                              | `2`               |
 | `showEllipsis`  | `boolean`                                             | `false`           |
 | `previousLabel` | `string`                                              | `"Previous"`      |

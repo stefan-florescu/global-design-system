@@ -1,7 +1,8 @@
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from "@stefan-florescu/icons";
-import type { ComponentProps, MouseEvent, ReactNode } from "react";
+import type { ComponentProps, MouseEvent, ReactElement, ReactNode } from "react";
 
 import { cn } from "../../lib/cn";
+import { Tooltip } from "../tooltip/tooltip";
 
 import {
   paginationEllipsisVariants,
@@ -56,6 +57,11 @@ export type PaginationProps = Omit<ComponentProps<"nav">, "children"> & {
    * The `single` layout always shows icons.
    */
   showIcons?: boolean;
+  /**
+   * Show Flowbite's "Previous" / "Next" tooltips on icon-only previous and next controls (the
+   * `single` layout, or `pagination` with `showIcons`). The tooltip is the control's name.
+   */
+  showTooltips?: boolean;
   /** Pages shown on each side of the current one in the `pagination` layout. */
   siblingCount?: number;
   /** Always show the first and last page, with an ellipsis over any gap. */
@@ -120,7 +126,7 @@ export function getPaginationItems(
   return [1, "start-ellipsis", ...range(left, right), "end-ellipsis", total];
 }
 
-type ControlProps = {
+type ControlProps = Omit<ComponentProps<"button">, "children" | "className"> & {
   page: number;
   disabled?: boolean;
   current?: boolean;
@@ -143,6 +149,7 @@ function PaginationControl({
   getPageHref,
   onPageChange,
   activePage,
+  ...rest
 }: ControlProps) {
   const ariaCurrent = current ? ("page" as const) : undefined;
   const onClick =
@@ -151,23 +158,40 @@ function PaginationControl({
           if (page !== activePage) onPageChange(page, event);
         }
       : undefined;
+  // A wrapping tooltip passes its own handlers; keep both. Without either, no handler is set, so
+  // link pagination stays server-safe.
+  const ownClick = rest.onClick as ((event: MouseEvent<HTMLElement>) => void) | undefined;
+  const handleClick =
+    ownClick && onClick
+      ? (event: MouseEvent<HTMLElement>) => {
+          ownClick(event);
+          onClick(event);
+        }
+      : (ownClick ?? onClick);
 
   if (getPageHref) {
     if (disabled) {
       // A link to nowhere: no href, so it leaves the tab order, but it still reads as a link.
       return (
-        <span role="link" aria-disabled="true" aria-label={label} className={className}>
+        <span
+          {...(rest as ComponentProps<"span">)}
+          role="link"
+          aria-disabled="true"
+          aria-label={label ?? rest["aria-label"]}
+          className={className}
+        >
           {children}
         </span>
       );
     }
     return (
       <a
+        {...(rest as ComponentProps<"a">)}
         href={getPageHref(page)}
         aria-current={ariaCurrent}
-        aria-label={label}
+        aria-label={label ?? rest["aria-label"]}
         className={className}
-        onClick={onClick}
+        onClick={handleClick}
       >
         {children}
       </a>
@@ -176,12 +200,13 @@ function PaginationControl({
 
   return (
     <button
+      {...rest}
       type="button"
       disabled={disabled}
       aria-current={ariaCurrent}
-      aria-label={label}
+      aria-label={label ?? rest["aria-label"]}
       className={className}
-      onClick={onClick}
+      onClick={handleClick}
     >
       {children}
     </button>
@@ -202,6 +227,7 @@ export function Pagination({
   layout = "pagination",
   size = "md",
   showIcons = false,
+  showTooltips = false,
   siblingCount = 2,
   showEllipsis = false,
   previousLabel = "Previous",
@@ -247,6 +273,15 @@ export function Pagination({
   );
   const iconOnly = stepShape === "icon";
   const arrows = layout === "navigation" || layout === "table";
+  /** Flowbite's tooltip on an icon-only previous / next control, naming it. */
+  const withTooltip = (label: string, control: ReactElement) =>
+    showTooltips && iconOnly ? (
+      <Tooltip content={label} mode="label" className="leading-4">
+        {control}
+      </Tooltip>
+    ) : (
+      control
+    );
 
   const previous = iconOnly ? (
     <>
@@ -301,14 +336,17 @@ export function Pagination({
       ) : null}
       <ul className={paginationListVariants({ layout })}>
         <li>
-          <PaginationControl
-            {...shared}
-            page={current - 1}
-            disabled={atStart}
-            className={stepClassName}
-          >
-            {previous}
-          </PaginationControl>
+          {withTooltip(
+            previousLabel,
+            <PaginationControl
+              {...shared}
+              page={current - 1}
+              disabled={atStart}
+              className={stepClassName}
+            >
+              {previous}
+            </PaginationControl>,
+          )}
         </li>
         {pages.map((item) =>
           typeof item === "number" ? (
@@ -341,14 +379,17 @@ export function Pagination({
           </li>
         ) : null}
         <li>
-          <PaginationControl
-            {...shared}
-            page={current + 1}
-            disabled={atEnd}
-            className={stepClassName}
-          >
-            {next}
-          </PaginationControl>
+          {withTooltip(
+            nextLabel,
+            <PaginationControl
+              {...shared}
+              page={current + 1}
+              disabled={atEnd}
+              className={stepClassName}
+            >
+              {next}
+            </PaginationControl>,
+          )}
         </li>
       </ul>
       {children}
