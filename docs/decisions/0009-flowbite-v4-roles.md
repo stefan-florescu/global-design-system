@@ -47,6 +47,12 @@ defined in `flowbite/src/themes/default.css`, in light and dark. The docs markup
   3:1. By request it is now Flowbite's own gray-200 (gray-700 in dark), below 3:1 and no longer
   checked; the field's fill and its brand focus border mark the control. `gray.450` is removed.
 
+  **Amended (October 2026):** on the same basis, Rating stars keep Flowbite's `fg-yellow`
+  (yellow-400, about 1.5:1 on white; empty stars `fg-disabled`, about 2.5:1) and Progress bars
+  keep Flowbite's fills on the `neutral-quaternary` track (under 3:1 in dark mode). Neither is
+  checked. Both components expose their value to assistive technology, and their docs pages ask
+  for the score or value to be shown as text where it matters.
+
 ## Consequences
 
 - New components can copy Flowbite v4 markup almost verbatim, and each docs page mirrors
