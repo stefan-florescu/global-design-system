@@ -21,7 +21,7 @@ import {
 } from "@stefan-florescu/ui";
 import type { ReactNode } from "react";
 
-// Flowbite's notification rows: full-width, no rounding, a lighter hover fill.
+// Notification rows: full-width, no rounding, a lighter hover fill.
 const rowClassName =
   "items-start gap-0 rounded-none px-4 py-3 hover:bg-neutral-secondary-medium hover:text-body focus-visible:bg-neutral-secondary-medium focus-visible:text-body";
 

@@ -83,20 +83,18 @@ A review laid out in columns: the reviewer and their stay, then the review with 
   buttons instead.
 - When visible text next to the stars already states the score ("4.95 out of 5"), pass
   `aria-hidden` so it is not read twice, as in "Rating with text" and "Advanced rating".
-- Stars are Flowbite's `fg-yellow` (yellow-400) when filled and `fg-disabled` when empty. In the
+- Stars are `fg-yellow` (yellow-400) when filled and `fg-disabled` when empty. In the
   light theme neither reaches the 3:1 non-text contrast of WCAG 1.4.11 against the page (about
   1.5:1 and 2.5:1), and no role token in the yellow family does without changing the look. Show
   the score as visible text next to the stars wherever the exact value matters; the text, not the
   colour, then carries the information.
 - In "Advanced rating" and "Score rating" each bar is a [`Progress`](/components/progress) named by
   its row label ("5 star", "Staff") and valued with the visible figure, which is hidden from
-  assistive technology so it is not read twice. Flowbite's bars are plain `<div>`s with no
-  semantics.
-- The rating comment's title stays an `<h3>` and the review's an `<h4>`, as in Flowbite; adjust the
-  levels to fit the page they are placed in.
+  assistive technology so it is not read twice.
+- The rating comment's title is an `<h3>` and the review's an `<h4>`; adjust the levels to fit the
+  page they are placed in.
 - The score badges ("8.7") read as "Score: 8.7" in "Review content". Links draw the solid `ring`
-  outline on keyboard focus; Flowbite has no focus style.
-- Flowbite's flag before "United States" in "Review content" is left out: there are no flag icons.
+  outline on keyboard focus.
 
 ## API Reference
 

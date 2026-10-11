@@ -1,10 +1,10 @@
 /*
  * Keyboard focus, shared by every interactive component.
  *
- * Components keep Flowbite's own focus styles (the soft `focus:ring-4 focus:ring-brand-medium`
+ * Components keep their own focus styles (the soft `focus:ring-4 focus:ring-brand-medium`
  * halo on buttons, the brand border on fields). Those halos are under 3:1 against the page, so
  * keyboard focus also draws a solid outline in the `ring` token, which reaches 3:1 on every
- * surface (WCAG 2.4.7, 1.4.11). Pointer clicks show only Flowbite's halo.
+ * surface (WCAG 2.4.7, 1.4.11). Pointer clicks show only the halo.
  *
  * `outline-solid` is required: `outline-hidden` sets Tailwind's outline style to `none`, and
  * `outline-2` alone would inherit it and draw nothing.

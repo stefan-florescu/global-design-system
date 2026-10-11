@@ -92,7 +92,7 @@ export function Progress({
         aria-valuenow={now}
         aria-valuetext={valueLabel}
         data-slot="progress-track"
-        // A label inside the bar needs Flowbite's 16px "With label inside" height.
+        // A label inside the bar needs the 16px height.
         className={progressTrackVariants({ size: labelledInside ? "xl" : size })}
       >
         <div

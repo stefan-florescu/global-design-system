@@ -38,7 +38,7 @@ describe("NumberInput", () => {
     expect(screen.getByRole("spinbutton")).toHaveValue(0.2);
   });
 
-  it("joins Flowbite's control buttons to a 40px field", () => {
+  it("joins the control buttons to a 40px field", () => {
     render(<NumberInput aria-label="Quantity" stepper />);
     expect(screen.getByRole("spinbutton")).toHaveClass("h-10", "border-x-0", "text-center");
     expect(screen.getByRole("button", { name: "Decrease" })).toHaveClass("rounded-e-none");

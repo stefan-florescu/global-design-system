@@ -1,15 +1,14 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 /*
- * Flowbite v4 indicators, class for class (https://flowbite.com/docs/components/indicators/), on
- * our semantic tokens. A dot is Flowbite's `flex w-3 h-3 rounded-full`; a count is its
- * `w-6 h-6 text-xs font-bold rounded-full`, and `bordered` adds its `border-2 border-buffer` ring
- * that separates the indicator from what it overlaps. Flowbite's single-colour purple, indigo
- * and teal fills have no role here, so the colours are our status and neutral roles.
+ * Indicators on our semantic tokens. A dot is `flex w-3 h-3 rounded-full`; a count is
+ * `w-6 h-6 text-xs font-bold rounded-full`, and `bordered` adds a `border-2 border-buffer` ring
+ * that separates the indicator from what it overlaps. The colours are our status and neutral
+ * roles.
  */
 
 /**
- * Absolute positions from Flowbite's "Indicator position" example: the indicator's centre sits on
+ * Absolute positions: the indicator's centre sits on
  * the parent's edge or corner. The parent must be positioned (`relative`). Logical sides, so
  * `start` and `end` flip in right-to-left layouts.
  */
@@ -60,13 +59,13 @@ export const indicatorVariants = cva(
       },
     },
     compoundVariants: [
-      // Dots: 8, 10, 12 (Flowbite's default), 14 (its status dot) and 16px.
+      // Dots: 8, 10, 12 (the default), 14 (a status dot) and 16px.
       { content: "dot", size: "xs", className: "size-2" },
       { content: "dot", size: "sm", className: "size-2.5" },
       { content: "dot", size: "md", className: "size-3" },
       { content: "dot", size: "lg", className: "size-3.5" },
       { content: "dot", size: "xl", className: "size-4" },
-      // Counts and icons: 16 to 32px tall; `md` is Flowbite's 24px count. Long counts grow wider.
+      // Counts and icons: 16 to 32px tall; `md` is a 24px count. Long counts grow wider.
       { content: ["count", "icon"], size: "xs", className: "h-4 min-w-4 text-xs [&_svg]:size-2.5" },
       { content: ["count", "icon"], size: "sm", className: "h-5 min-w-5 text-xs [&_svg]:size-3" },
       { content: ["count", "icon"], size: "md", className: "h-6 min-w-6 text-xs [&_svg]:size-4" },

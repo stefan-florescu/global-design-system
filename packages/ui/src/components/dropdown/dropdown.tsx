@@ -57,9 +57,9 @@ type DropdownStateProps = {
    * edge. It flips to the other side when there is no room.
    */
   placement?: DropdownPlacement;
-  /** Distance between trigger and panel, in px (Flowbite's offset distance). */
+  /** Distance between trigger and panel, in px. */
   offset?: number;
-  /** Shift along the trigger, in px (Flowbite's offset skidding). */
+  /** Shift along the trigger, in px. */
   skidding?: number;
 };
 
@@ -283,18 +283,18 @@ function useDropdownState(
 
 export type DropdownProps = DropdownStateProps & {
   /**
-   * Also open when the pointer rests on the trigger, and close when it leaves (Flowbite's
-   * "Dropdown hover"). A click, a tap or the keyboard still open it, and a click keeps it open.
+   * Also open when the pointer rests on the trigger, and close when it leaves.
+   * A click, a tap or the keyboard still open it, and a click keeps it open.
    */
   openOnHover?: boolean;
-  /** Delay before opening or closing on hover, in ms (Flowbite's `data-dropdown-delay`). */
+  /** Delay before opening or closing on hover, in ms. */
   hoverDelay?: number;
   /** A `DropdownTrigger` followed by a `DropdownMenu` or `DropdownContent`. */
   children?: ReactNode;
 };
 
 /**
- * Shows a menu of actions, or a panel of content, next to a trigger (Flowbite's dropdown).
+ * Shows a menu of actions, or a panel of content, next to a trigger.
  * Holds the open state and the placement; renders no element of its own.
  */
 export function Dropdown({ children, ...props }: DropdownProps) {
@@ -639,7 +639,7 @@ export type DropdownSubProps = DropdownStateProps & {
 };
 
 /**
- * A nested menu (Flowbite's "Multi-level dropdown"). Opens to the right of its trigger item by
+ * A nested menu (a multi-level dropdown). Opens to the right of its trigger item by
  * default, or to the left in right-to-left layouts.
  */
 export function DropdownSub({ placement = "right-start", children, ...props }: DropdownSubProps) {

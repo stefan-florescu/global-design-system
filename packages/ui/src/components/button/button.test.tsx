@@ -99,7 +99,7 @@ describe("Button", () => {
     expect(button).not.toHaveClass("rounded-base");
   });
 
-  it("uses Flowbite's semantic tokens for fills and outlines", () => {
+  it("uses the semantic tokens for fills and outlines", () => {
     render(
       <>
         <Button>Brand</Button>

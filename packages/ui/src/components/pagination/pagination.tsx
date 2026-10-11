@@ -49,7 +49,7 @@ export type PaginationProps = Omit<ComponentProps<"nav">, "children"> & {
    * around "1 of 99".
    */
   layout?: PaginationLayout;
-  /** `sm` is Flowbite's 36px row, `md` its 40px row. */
+  /** `sm` is a 36px row, `md` a 40px row. */
   size?: PaginationSize;
   /**
    * Show arrows. In `pagination` the previous / next controls become icon-only (their label
@@ -58,7 +58,7 @@ export type PaginationProps = Omit<ComponentProps<"nav">, "children"> & {
    */
   showIcons?: boolean;
   /**
-   * Show Flowbite's "Previous" / "Next" tooltips on icon-only previous and next controls (the
+   * Show "Previous" / "Next" tooltips on icon-only previous and next controls (the
    * `single` layout, or `pagination` with `showIcons`). The tooltip is the control's name.
    */
   showTooltips?: boolean;
@@ -273,7 +273,7 @@ export function Pagination({
   );
   const iconOnly = stepShape === "icon";
   const arrows = layout === "navigation" || layout === "table";
-  /** Flowbite's tooltip on an icon-only previous / next control, naming it. */
+  /** A tooltip on an icon-only previous / next control, naming it. */
   const withTooltip = (label: string, control: ReactElement) =>
     showTooltips && iconOnly ? (
       <Tooltip content={label} mode="label" className="leading-4">

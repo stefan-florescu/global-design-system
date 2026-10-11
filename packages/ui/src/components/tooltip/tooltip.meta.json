@@ -1,7 +1,7 @@
 {
   "name": "Tooltip",
   "status": "beta",
-  "description": "Flowbite's tooltip: a short text in a small dark or light box with an arrow, shown next to an element on hover and keyboard focus or on click. It describes the element (aria-describedby) or, for icon-only controls, names it (aria-labelledby). Opens in the top layer, flips when there is no room, hides with Escape and stays open while hovered.",
+  "description": "A tooltip: a short text in a small dark or light box with an arrow, shown next to an element on hover and keyboard focus or on click. It describes the element (aria-describedby) or, for icon-only controls, names it (aria-labelledby). Opens in the top layer, flips when there is no room, hides with Escape and stays open while hovered.",
   "category": "overlay",
   "import": "import { Tooltip } from \"@stefan-florescu/ui\";",
   "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/",

@@ -1,13 +1,12 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 /*
- * Flowbite v4 file input (https://flowbite.com/docs/forms/file-input/): the shared field styles
- * (see input.variants.ts) with the browser's "Choose file" button as a `neutral-quaternary`
- * segment with `body` text. The segment sits inside the field, 4px from its border, with its
- * start corners rounded to 8px: the field's 12px radius minus the gap, so the curves stay
- * parallel. The segment's padding sets the field height: 38, 42 and 50px, like the other fields.
- * Deviation: in dark mode the label is `heading`, because `body` on `neutral-quaternary` is under
- * 4.5:1 there.
+ * File input: the shared field styles (see input.variants.ts) with the browser's "Choose file"
+ * button as a `neutral-quaternary` segment with `body` text. The segment sits inside the field, 4px
+ * from its border, with its start corners rounded to 8px: the field's 12px radius minus the gap, so
+ * the curves stay parallel. The segment's padding sets the field height: 38, 42 and 50px, like the
+ * other fields. Accessibility: in dark mode the label is `heading`, because `body` on
+ * `neutral-quaternary` is under 4.5:1 there.
  */
 export const fileInputVariants = cva(
   [
@@ -30,9 +29,10 @@ export const fileInputVariants = cva(
 export type FileInputVariantProps = VariantProps<typeof fileInputVariants>;
 
 /*
- * Flowbite's dropzone: a 256px dashed area on `neutral-secondary-medium` that darkens on hover.
- * The dashed border is the `input` token (gray-200, as Flowbite's `default-strong`). The native input is stretched over it, invisible, so clicking,
- * keyboard focus and drag-and-drop all work without script; keyboard focus outlines the area.
+ * The dropzone: a 256px dashed area on `neutral-secondary-medium` that darkens on hover. The
+ * dashed border is the `input` token (gray-200). The native input is stretched over it,
+ * invisible, so clicking, keyboard focus and drag-and-drop all work without script; keyboard
+ * focus outlines the area.
  */
 export const fileDropzoneClassName = [
   "relative flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-base",

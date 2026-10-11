@@ -3,9 +3,8 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { focusOutlineInset } from "../../lib/focus";
 
 /*
- * Flowbite v4 accordions, class for class (https://flowbite.com/docs/components/accordion/), on
- * our semantic tokens. Flowbite's script swaps "active" and "inactive" classes on the title; here
- * they hang off `data-state` instead:
+ * Accordions on our semantic tokens. The open and closed styles of the title hang off
+ * `data-state`:
  * - default (`neutral`): `neutral-primary` title, `neutral-secondary-medium` + `heading` when open
  *   or hovered, in a `rounded-base` bordered box with `shadow-xs`;
  * - `brand` ("Color options"): the hover turns `brand-softer` + `fg-brand`;
@@ -34,7 +33,7 @@ export const accordionVariants = cva("text-base", {
   defaultVariants: { flush: false, separated: false },
 });
 
-/** The last item's panel has no divider above it, as in Flowbite. */
+/** The last item's panel has no divider above it. */
 export const accordionItemClassName = "[&:last-child>[data-slot=accordion-content]]:border-t-0";
 
 export const accordionTriggerVariants = cva(

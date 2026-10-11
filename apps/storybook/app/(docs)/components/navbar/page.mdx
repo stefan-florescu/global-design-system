@@ -73,9 +73,9 @@ Sub-menus need the menu pattern, so this one is a `DropdownMenu` with a `Dropdow
 
 ### Sticky navbar
 
-Use `position="sticky"` to keep the navbar at the top of the page as you scroll down. Flowbite's
-example uses `position="fixed"`, which takes the navbar out of the page flow, so leave room for it
-at the top of your content. The example scrolls inside a frame that stands in for the browser
+Use `position="sticky"` to keep the navbar at the top of the page as you scroll down. With
+`position="fixed"` the navbar leaves the page flow instead, so leave room for it at the top of your
+content. The example scrolls inside a frame that stands in for the browser
 window.
 
 <ComponentPreview name="navbar-sticky" flush />
@@ -142,16 +142,14 @@ hamburger icon and the menu on all screen sizes.
 ## Accessibility
 
 - `Navbar` renders a `<nav>` landmark, named "Main" by default. Pass `aria-label` or
-  `aria-labelledby` to name it, and give every navbar on a page a different name. Flowbite's navbars
-  have no name.
+  `aria-labelledby` to name it, and give every navbar on a page a different name.
 - The hamburger follows the WAI-ARIA
   [disclosure navigation](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/examples/disclosure-navigation/)
   pattern: a `<button>` with `aria-expanded` and `aria-controls` that shows and hides the links in
   place, so <Kbd>Tab</Kbd> reaches them right after the button. Its name comes from `label`
   (visually hidden; default "Open main menu"); the icon is hidden from assistive technology.
 - <Kbd>Escape</Kbd> in the open, collapsed menu hides it and returns focus to the hamburger. An open
-  dropdown or mega menu inside takes <Kbd>Escape</Kbd> first. Flowbite has no <Kbd>Escape</Kbd>
-  handling.
+  dropdown or mega menu inside takes <Kbd>Escape</Kbd> first.
 - The links are a list. `active` sets `aria-current="page"`; the current page is filled with `brand`
   in the collapsed menu and shown in `fg-brand` in the row. `disabled` removes the `href` and sets
   `aria-disabled`.
@@ -159,13 +157,10 @@ hamburger icon and the menu on all screen sizes.
   through the links. The multi-level, language and user menus are ARIA menus (`DropdownMenu`), moved
   through with the arrow keys, because they have sub-menus or act as one choice. See
   [Dropdown](/components/dropdown).
-- Every link and button draws the solid `ring` outline on keyboard focus; Flowbite has none besides
-  the hamburger's ring.
-- Differences from Flowbite: links in a row are spaced with `gap` so right-to-left works without
-  `rtl:space-x-reverse`; the search example uses two different ids (Flowbite reuses one) inside
-  `role="search"` forms with labels; the language flags and the Flowbite logo are left out (we have
-  no tokens for their colours), and a globe icon marks the language button; Flowbite's sticky
-  example is `fixed`, ours is `sticky` inside a scrolling frame; the mega menu panel starts closed.
+- Every link and button draws the solid `ring` outline on keyboard focus.
+- Links in a row are spaced with `gap`, so right-to-left layouts need no `rtl:space-x-reverse`.
+- The search example uses `role="search"` forms with labels, and each field has its own id.
+- A globe icon marks the language button, and the mega menu panel starts closed.
 
 | Key                                 | Action                                                                 |
 | ----------------------------------- | ---------------------------------------------------------------------- |

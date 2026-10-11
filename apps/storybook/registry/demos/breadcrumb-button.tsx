@@ -26,13 +26,13 @@ export default function BreadcrumbButton() {
           className="ms-2.5 [&_svg]:size-3.5"
         >
           <Database aria-hidden />
-          Flowbite
+          Stefan DS
           <ChevronDown aria-hidden />
         </DropdownTrigger>
         <DropdownMenu className="w-32">
-          <DropdownItem className="rounded-md">Themesberg</DropdownItem>
-          <DropdownItem className="rounded-md">Flowbite AI</DropdownItem>
-          <DropdownItem className="rounded-md">Flowbite</DropdownItem>
+          <DropdownItem className="rounded-md">Acme Studio</DropdownItem>
+          <DropdownItem className="rounded-md">Stefan DS AI</DropdownItem>
+          <DropdownItem className="rounded-md">Stefan DS</DropdownItem>
         </DropdownMenu>
       </Dropdown>
     </div>

@@ -54,10 +54,10 @@ import {
 ```
 
 `Sidebar` is an `<aside>` fixed to the start edge of the window, 256px wide and full height, with
-Flowbite's scrolling panel. Leave room for it in your layout (`sm:ms-64`). `SidebarItems` is the
+a scrolling panel. Leave room for it in your layout (`sm:ms-64`). `SidebarItems` is the
 `<nav>` inside it; each `SidebarItemGroup` is a list of `SidebarItem`s and `SidebarCollapse`s.
 
-**Small screens.** Below the `breakpoint` (`sm` by default) the sidebar hides and Flowbite's
+**Small screens.** Below the `breakpoint` (`sm` by default) the sidebar hides and a
 hamburger button, rendered just before it, opens the same content in a [Drawer](/components/drawer).
 Following an item closes the drawer. To put the hamburger somewhere else, such as in a navbar, wrap
 the layout in a `SidebarProvider` and place a `SidebarToggle` where you want it (see
@@ -77,8 +77,7 @@ stays inside it.
 
 <Callout title="Layering">
   The fixed sidebar sits on the `z.sticky` layer (`z-sticky`), under a fixed navbar (`z.fixed`) and
-  every overlay, as Flowbite's `z-40` sidebar sits under its `z-50` navbar. See [Spacing &
-  layout](/foundation/spacing-and-layout#layering).
+  every overlay. See [Spacing & layout](/foundation/spacing-and-layout#layering).
 </Callout>
 
 ## Examples
@@ -124,7 +123,7 @@ Show the logo of your brand and link back to the homepage from the top of the si
 
 Use this example to show a [Navbar](/components/navbar) together with a sidebar layout for your web
 application. `SidebarProvider` shares the drawer between the `Sidebar` and the `SidebarToggle` in
-the navbar, and the sidebar doesn't render its own hamburger. As in Flowbite, the fixed navbar
+the navbar, and the sidebar doesn't render its own hamburger. The fixed navbar
 covers the top of the sidebar; `pt-12` starts the items under it.
 
 <ComponentPreview name="sidebar-navbar" flush />
@@ -139,15 +138,11 @@ drawer a name with `aria-label` (or a `DrawerTitle`).
 
 ## Dashboard layout
 
-Combine a fixed navbar, the sidebar and your page into an application shell, as in Flowbite's
-[admin dashboard](https://github.com/themesberg/flowbite-admin-dashboard). This one switches to the
-drawer below `md`, marks the current page with `active` (inside an open `SidebarCollapse`) and
+Combine a fixed navbar, the sidebar and your page into an application shell. This one switches to
+the drawer below `md`, marks the current page with `active` (inside an open `SidebarCollapse`) and
 separates secondary links into a second group.
 
 <ComponentPreview name="sidebar-dashboard" flush />
-
-For more layouts, see Flowbite's [sidenav](https://flowbite.com/blocks/application/sidenav/) and
-[application shell](https://flowbite.com/blocks/application/shells/) blocks.
 
 ## Accessibility
 
@@ -155,7 +150,7 @@ For more layouts, see Flowbite's [sidenav](https://flowbite.com/blocks/applicati
   `SidebarItems` is a `<nav>` landmark named "Sidebar"; change it with `aria-label` (for example
   "Main" when the sidebar is the app's main navigation). Items are list items, so screen readers
   announce how many there are.
-- The current page has `aria-current="page"` and Flowbite's hover colours (`neutral-tertiary`,
+- The current page has `aria-current="page"` and the hover colours (`neutral-tertiary`,
   `fg-brand`), so it is not shown by colour alone.
 - `SidebarCollapse` follows the WAI-ARIA
   [disclosure navigation](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/examples/disclosure-navigation/)
@@ -169,13 +164,10 @@ For more layouts, see Flowbite's [sidenav](https://flowbite.com/blocks/applicati
   `aria-haspopup="dialog"`, `aria-expanded` and `aria-controls`. The drawer closes by itself when
   the window grows past the breakpoint.
 - Keyboard focus draws a solid `ring` outline inside items, collapse buttons and the logo.
-- Differences from Flowbite:
-  - Flowbite's sidebar slides off screen below `sm` but stays in the tab order; here it is hidden
-    and its content opens in a modal drawer.
-  - Flowbite's multi-level button has no `aria-expanded`, and its CTA card is a `role="alert"`
-    live region; here the button is a disclosure and the CTA has no live-region role.
-  - The current page is styled; Flowbite's examples have no current page.
-  - Brand logos are replaced by our logo mark.
+- Below the breakpoint the sidebar is hidden, not just moved off screen, so it leaves the tab
+  order.
+- The CTA card has no live-region role, so it is not announced on load.
+- Brand logos are replaced by our logo mark.
 
 | Key                                              | Action                                                 |
 | ------------------------------------------------ | ------------------------------------------------------ |
@@ -212,7 +204,7 @@ Takes `breakpoint`, `open`, `defaultOpen` and `onOpenChange`, as above. `useSide
 
 ### SidebarToggle
 
-Flowbite's hamburger: a ghost icon `Button` shown only below the breakpoint.
+The hamburger: a ghost icon `Button` shown only below the breakpoint.
 
 | Prop    | Type     | Default          |
 | ------- | -------- | ---------------- |

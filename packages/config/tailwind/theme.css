@@ -7,9 +7,8 @@
  *   3. this file                → exposes SEMANTIC tokens as utilities via @theme inline
  *
  * Colour primitives (e.g. --sds-color-blue-700) are intentionally not exposed: components
- * use semantic utilities only. The names are Flowbite v4's roles (bg-brand, hover:bg-brand-strong,
- * text-heading, text-body, border-default-medium, bg-neutral-secondary-medium…), so Flowbite markup
- * maps class for class. `inline` keeps the var() live, so theme switching needs no rebuild.
+ * use semantic utilities only. The names are roles (bg-brand, hover:bg-brand-strong, text-heading,
+ * text-body, border-default-medium, bg-neutral-secondary-medium…). `inline` keeps the var() live, so theme switching needs no rebuild.
  * Leading needs no mapping: Tailwind's leading-6 is already 6 × 4px, like --sds-leading-6.
  */
 
@@ -17,7 +16,7 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @theme inline {
-  /* Semantic colours (Flowbite v4 roles) → bg-brand, text-heading, border-default-medium… */
+  /* Semantic colours (roles) → bg-brand, text-heading, border-default-medium… */
   --color-heading: var(--sds-color-heading);
   --color-body: var(--sds-color-body);
   --color-body-subtle: var(--sds-color-body-subtle);
@@ -136,7 +135,7 @@
   /* Spacing — Tailwind multiplies this 4px base (p-6 = 24px = --sds-space-6) */
   --spacing: var(--sds-space-1);
 
-  /* Radius & elevation — Flowbite's scale: rounded 8px, rounded-base 12px, rounded-lg 16px */
+  /* Radius & elevation — rounded 8px, rounded-base 12px, rounded-lg 16px */
   --radius: var(--sds-radius-default);
   --radius-xs: var(--sds-radius-xs);
   --radius-sm: var(--sds-radius-sm);

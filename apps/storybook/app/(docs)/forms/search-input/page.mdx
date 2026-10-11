@@ -32,7 +32,7 @@ import { Label, SearchInput } from "@stefan-florescu/ui";
 ### Search bar example
 
 A search field with an icon and a submit button inside it. With `submitLabel`, the field grows one
-padding step (Flowbite's `p-3`) so the small button keeps a 6px inset.
+padding step (`p-3`) so the small button keeps a 6px inset.
 
 <ComponentPreview name="search-input-demo" />
 
@@ -69,18 +69,17 @@ Several selects around one field.
 <ComponentPreview name="search-input-advanced" />
 
 <Callout title="Native selects instead of dropdown menus">
-  Flowbite opens dropdown menus, with flags and icons, from buttons in these groups. We use native
-  `<select>` elements styled like Flowbite's dropdown button: they work with the keyboard, screen
-  readers and mobile pickers without extra script. The options show text only.
+  These groups use native `<select>` elements styled like a dropdown button: they work with the
+  keyboard, screen readers and mobile pickers without extra script. The options show text only.
 </Callout>
 
 ## Accessibility
 
 - Put the field in a `<form role="search">` so it is announced as a search landmark.
-- Every field and select needs a label; these layouts use `sr-only` labels, as Flowbite does.
+- Every field and select needs a label; these layouts use `sr-only` labels.
 - The search icon is decorative and hidden from assistive technology. The voice search and icon-only
   submit buttons have an `aria-label`.
-- Keyboard focus draws the solid `ring` outline on buttons and selects, around Flowbite's soft halo.
+- Keyboard focus draws the solid `ring` outline on buttons and selects, around their soft halo.
 
 ## API Reference
 

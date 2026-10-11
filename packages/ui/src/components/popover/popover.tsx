@@ -69,7 +69,7 @@ export type PopoverProps = Omit<ComponentProps<"div">, "content" | "role" | "pop
    * flips to the other side when there is no room. `auto` picks the side with the most room.
    */
   placement?: PopoverPlacement;
-  /** Distance between trigger and panel, in px (Flowbite's `data-popover-offset`). */
+  /** Distance between trigger and panel, in px. */
   offset?: number;
   /** Show the arrow pointing at the trigger. */
   arrow?: boolean;
@@ -82,7 +82,7 @@ export type PopoverProps = Omit<ComponentProps<"div">, "content" | "role" | "pop
 };
 
 /**
- * Shows rich content in a box next to a trigger, on click or on hover (Flowbite's popover): a
+ * Shows rich content in a box next to a trigger, on click or on hover: a
  * non-modal dialog in the top layer, named by its `PopoverTitle`. It renders right after the
  * trigger, so Tab moves from the trigger into its content. Escape, a click outside or moving focus
  * away closes it. `className` and other `div` props go to the panel.
@@ -422,7 +422,7 @@ export function Popover({
 
 export type PopoverHeaderProps = ComponentProps<"div">;
 
-/** Flowbite's grey title bar at the top of the popover. Put a `PopoverTitle` inside. */
+/** The grey title bar at the top of the popover. Put a `PopoverTitle` inside. */
 export function PopoverHeader({ className, ...props }: PopoverHeaderProps) {
   return (
     <div data-slot="popover-header" className={cn(popoverHeaderClassName, className)} {...props} />

@@ -3,12 +3,10 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { focusOutlineInset } from "../../lib/focus";
 
 /*
- * Flowbite v4 bottom navigation, class for class
- * (https://flowbite.com/docs/components/bottom-navigation/): a 64px `neutral-primary-soft` bar
- * with a `default` top border, items centred in a `max-w-lg` grid, `body` icons and labels that
- * turn `fg-brand` on a `neutral-secondary-medium` hover. Flowbite's `z-50` is our `z.fixed`
- * layer. Accessibility additions: the current page is `fg-brand` (`aria-current`), and items draw
- * the solid keyboard outline from lib/focus (Flowbite has no focus style).
+ * Bottom navigation: a 64px `neutral-primary-soft` bar with a `default` top border, items centred
+ * in a `max-w-lg` grid, `body` icons and labels that turn `fg-brand` on a
+ * `neutral-secondary-medium` hover. It sits on the `z.fixed` layer. Accessibility: the current
+ * page is `fg-brand` (`aria-current`), and items draw the solid keyboard outline from lib/focus.
  */
 export const bottomNavigationVariants = cva("z-fixed border-default bg-neutral-primary-soft", {
   variants: {
@@ -17,7 +15,7 @@ export const bottomNavigationVariants = cva("z-fixed border-default bg-neutral-p
       sticky: "sticky bottom-0 left-0 w-full",
       static: "relative w-full",
     },
-    /** Flowbite's "Application bar": a rounded bar inset from the bottom edge. */
+    /** "Application bar": a rounded bar inset from the bottom edge. */
     floating: {
       true: "max-w-lg rounded-full border",
       false: "border-t",

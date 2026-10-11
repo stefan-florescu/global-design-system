@@ -39,7 +39,7 @@ describe("Clipboard", () => {
     expect(screen.getByRole("button", { name: "API key copied" })).toBeInTheDocument();
   });
 
-  it("is a brand button by default and supports Flowbite's other triggers", () => {
+  it("is a brand button by default and supports the other triggers", () => {
     const { rerender } = render(<Clipboard value="abc" />);
     const button = () => screen.getByRole("button");
     expect(button()).toHaveClass("bg-brand", "text-brand-foreground", "px-4", "py-2.5");

@@ -48,13 +48,13 @@ export default function AccordionArrow() {
             for WCAG 2.2 AA contrast in light and dark themes.
           </p>
           <p className="mb-2">
-            It follows Flowbite&apos;s anatomy and examples, so the two work well side by side.
+            Components are plain React 19 with no runtime styling, so they fit into any React app.
           </p>
           <p className="mb-2">Learn more about these technologies:</p>
           <ul className="list-disc ps-5">
             <li>
-              <a href="https://flowbite.com/" className="text-fg-brand hover:underline">
-                Flowbite
+              <a href="https://react.dev/" className="text-fg-brand hover:underline">
+                React
               </a>
             </li>
             <li>

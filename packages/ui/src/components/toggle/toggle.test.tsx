@@ -30,7 +30,7 @@ describe("Toggle", () => {
     expect(screen.getByText("Wi-Fi")).toHaveClass("text-fg-disabled");
   });
 
-  it("applies Flowbite's sizes to the track", () => {
+  it("applies the sizes to the track", () => {
     const { container } = render(
       <>
         <Toggle aria-label="Base" />

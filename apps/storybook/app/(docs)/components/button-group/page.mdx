@@ -29,8 +29,8 @@ import { Button, ButtonGroup } from "@stefan-florescu/ui";
 ```
 
 `ButtonGroup` joins whatever `Button`s you put inside it: only the outer corners stay rounded,
-neighbouring borders overlap into one line, and the group draws the shadow. Flowbite's grouped
-buttons are `variant="tertiary"` at `size="sm"`.
+neighbouring borders overlap into one line, and the group draws the shadow. Most examples
+use `variant="tertiary"` at `size="sm"`.
 
 ## Examples
 
@@ -91,7 +91,7 @@ it.
 ### Button group with colors
 
 Any button variant works. Neighbouring filled buttons of the same colour are split by a line in
-their `*-strong` colour, as in Flowbite.
+their `*-strong` colour.
 
 <ComponentPreview name="button-group-colors" />
 
@@ -108,7 +108,7 @@ page, and mark the current one with `aria-current="page"`.
 
 ### Button group outline
 
-Add `outline` for Flowbite's dark outline style: `dark-strong` borders that fill with `dark` on
+Add `outline` for a dark outline style: `dark-strong` borders that fill with `dark` on
 hover.
 
 <ComponentPreview name="button-group-outline" />
@@ -118,17 +118,16 @@ hover.
 - Renders `role="group"`. Give it an `aria-label` that names the set, such as "Account" or "Text
   alignment", so screen readers announce it when focus enters.
 - Every button stays a separate tab stop with its own name and keyboard behaviour.
-- Flowbite marks counts and labels inside a group (`456k`, "Save book", the QR mark) as disabled
-  buttons. Here they are `<span>`s hidden from assistive technology, and the meaning moves into the
-  neighbouring button's name, so screen readers don't announce an unusable button: the badge
-  group's menu button is named "Messages, 2 unread". Flowbite's "My files" button in the dropdown
-  group is disabled for no reason, so here it is an ordinary button.
+- Counts and labels inside a group (`456k`, "Save book", the QR mark) are `<span>`s hidden from
+  assistive technology, not disabled buttons. Their meaning moves into the neighbouring button's
+  name, so screen readers don't announce an unusable button: the badge group's menu button is named
+  "Messages, 2 unread".
 - Dropdown buttons in a group are [`Dropdown`](/components/dropdown) menu buttons: the arrow keys
   move through the items and Escape closes the menu and returns focus to the button. The "more"
   button has no visible text, so it is named "More options".
-- Keyboard focus adds the solid `ring` outline to Flowbite's `ring-3` halo, and the focused button
+- Keyboard focus adds the solid `ring` outline to the `ring-3` halo, and the focused button
   moves to the `z.raised` layer so the outline is never hidden behind a neighbour.
-- Flowbite's tooltips on icon buttons ("Button group icons", "Pagination button group", "Vertical
+- Tooltips on icon buttons ("Button group icons", "Pagination button group", "Vertical
   button groups") are [`Tooltip`](/components/tooltips)s in label mode: the tooltip is the button's
   name, so screen readers read it once. They open on hover and on keyboard focus, and
   <Kbd>Escape</Kbd> hides them.
@@ -145,4 +144,4 @@ hover.
 | `aria-label`  | `string`                     | —              |
 
 All other `<div>` attributes are forwarded, including `ref` and `className`. Size and colour come
-from the buttons inside; `outline` restyles them as Flowbite's outline group.
+from the buttons inside; `outline` restyles them as a dark outline group.

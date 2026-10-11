@@ -1,7 +1,7 @@
 {
   "name": "Select",
   "status": "beta",
-  "description": "Flowbite's select: a native select styled as a field, with sizes, list and underline styles.",
+  "description": "A select: a native select styled as a field, with sizes, list and underline styles.",
   "category": "forms",
   "import": "import { Select } from \"@stefan-florescu/ui\";",
   "ariaPattern": null,

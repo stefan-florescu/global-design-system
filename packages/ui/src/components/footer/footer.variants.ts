@@ -3,16 +3,16 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { focusOutline } from "../../lib/focus";
 
 /*
- * Flowbite v4 footer, class for class (https://flowbite.com/docs/components/footer/).
+ * Footer.
  *
  * - `default`: the `neutral-primary-soft` band of "Social media icons".
  * - `card`: the "Default footer" card: border, `rounded-base` corners and `shadow-xs`.
  * - `sticky`: fixed to the bottom of the viewport with a top border and `shadow-sm`, as in
- *   "Sticky footer". It sits on the `z.fixed` layer (Flowbite uses `z-20`), like Banner.
+ *   "Sticky footer". It sits on the `z.fixed` layer, like Banner.
  *
- * Layout (the max-width container, grids, the flex row) stays in your markup, as in Flowbite, so
- * every arrangement is possible. Accessibility additions: links and icons draw the solid keyboard
- * outline from lib/focus (Flowbite has no focus style).
+ * Layout (the max-width container, grids, the flex row) stays in your markup, so every
+ * arrangement is possible. Accessibility: links and icons draw the solid keyboard outline from
+ * lib/focus.
  */
 export const footerVariants = cva("bg-neutral-primary-soft", {
   variants: {

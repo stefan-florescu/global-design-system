@@ -1,7 +1,7 @@
 {
   "name": "SearchInput",
   "status": "beta",
-  "description": "Flowbite's search input: a search field with an icon and an optional submit button inside it.",
+  "description": "A search input: a search field with an icon and an optional submit button inside it.",
   "category": "forms",
   "import": "import { SearchInput } from \"@stefan-florescu/ui\";",
   "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/search.html",

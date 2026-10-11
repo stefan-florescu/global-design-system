@@ -80,7 +80,7 @@ export type DrawerProps = {
    * backdrop closes the drawer. Without it the drawer is a non-modal dialog: the page stays usable.
    */
   backdrop?: boolean;
-  /** Stop the page from scrolling while the drawer is open (Flowbite's body scrolling disabled). */
+  /** Stop the page from scrolling while the drawer is open. */
   scrollLock?: boolean;
   /**
    * Swipeable edge (bottom drawers): keep a strip with a `DrawerHandle` on screen while closed;
@@ -220,7 +220,7 @@ export function DrawerContent({ className, children, ref, ...props }: DrawerCont
 
 export type DrawerHeaderProps = ComponentProps<"div">;
 
-/** Flowbite's heading row: a `DrawerTitle` and a `DrawerClose`, over a divider. */
+/** The heading row: a `DrawerTitle` and a `DrawerClose`, over a divider. */
 export function DrawerHeader({ className, ...props }: DrawerHeaderProps) {
   return (
     <div data-slot="drawer-header" className={cn(drawerHeaderClassName, className)} {...props} />
@@ -272,7 +272,7 @@ export type DrawerCloseProps = Omit<ComponentProps<"button">, "children"> & {
   label?: string;
 };
 
-/** Flowbite's close button: an × in the drawer's top-end corner. */
+/** The close button: an × in the drawer's top-end corner. */
 export function DrawerClose({
   label = "Close",
   className,

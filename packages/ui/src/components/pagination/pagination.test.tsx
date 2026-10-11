@@ -85,7 +85,7 @@ describe("Pagination", () => {
 });
 
 describe("Pagination tooltips", () => {
-  it("names icon-only previous and next with Flowbite's tooltips when showTooltips is set", () => {
+  it("names icon-only previous and next with tooltips when showTooltips is set", () => {
     const onPageChange = vi.fn();
     render(
       <Pagination

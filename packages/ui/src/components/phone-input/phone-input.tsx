@@ -53,7 +53,7 @@ export type PhoneInputProps = Omit<InputProps, "type" | "addon" | "startIcon"> &
   endAddon?: ReactNode;
 };
 
-/** A country-code select joined to a phone number field (Flowbite's phone input). */
+/** A country-code select joined to a phone number field. */
 export function PhoneInput({
   countries = defaultPhoneCountries,
   defaultCountry = countries[0]?.code,

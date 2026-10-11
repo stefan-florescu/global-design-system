@@ -7,7 +7,7 @@ export const metadata = {
 
 ## October 2026 — Spinner, Stepper, Tables, Tabs, Timeline, Toast and Tooltips
 
-- New `Spinner`: Flowbite's loader in seven colours and five sizes. Button's loading state, the
+- New `Spinner`: a loader in seven colours and five sizes. Button's loading state, the
   Badge loader and the Indicators spinner example now use it.
 - New `Stepper`: default, progress, detailed, vertical, breadcrumb and timeline steppers, with the
   current step marked for screen readers.
@@ -21,7 +21,7 @@ export const metadata = {
 - New `Tooltip`: dark and light tooltips on hover and focus. The tooltip examples skipped earlier
   are now on the Avatar, Pagination, Button Group, Bottom Navigation, Chat Bubble, Textarea and
   Clipboard pages.
-- Bottom Navigation gains Flowbite's online meeting control bar and video player bar, built from
+- Bottom Navigation gains an online meeting control bar and video player bar, built from
   Button, Tooltip, Dropdown, Range and Progress.
 
 ## October 2026 — Navbar, Pagination, Popover, Progress, Rating, Sidebar and Skeleton
@@ -57,7 +57,7 @@ export const metadata = {
   focus trap, backdrop, scroll lock and a swipeable-edge variant. The docs site's mobile menu uses it.
 - New `Dropdown`: action menus with full keyboard support, plus checkbox, radio and toggle items,
   sub-menus, search and form panels, placement and hover opening.
-- Flowbite examples that waited for these components are now on their pages: Avatar, Breadcrumb,
+- Examples that waited for these components are now on their pages: Avatar, Breadcrumb,
   Button Group, Card, Checkbox, Radio, Select and Timepicker. Chat Bubble's message menu now uses
   `Dropdown`.
 
@@ -65,18 +65,18 @@ export const metadata = {
 
 - The Color page shows each scale on two rows of six, with larger swatches and the hex code of
   every shade; clicking a swatch copies the hex.
-- Field, checkbox, radio and toggle borders now use Flowbite's gray-200 (gray-700 in dark), and the
+- Field, checkbox, radio and toggle borders now use gray-200 (gray-700 in dark), and the
   File Input's "Choose file" button sits inside the field with rounded start corners.
 
-## October 2026 — Flowbite v4 look
+## October 2026 — New visual foundation
 
-- Every component now looks like the matching one on flowbite.com (Flowbite v4), class for class.
-  Each docs page mirrors Flowbite's examples, in Flowbite's order.
-- New foundation: Tailwind v4's palette in OKLCH and Flowbite v4's semantic colour roles
-  (`bg-brand`, `hover:bg-brand-strong`, `text-heading`, `text-body`, `border-default`…), Flowbite's
+- Every component has a refreshed look built on the new foundation, and each docs page gains a
+  fuller set of examples.
+- New foundation: Tailwind v4's palette in OKLCH, semantic colour roles named by purpose
+  (`bg-brand`, `hover:bg-brand-strong`, `text-heading`, `text-body`, `border-default`…), a new
   radius scale (`rounded-base` 12px) and shadows.
-- Where Flowbite misses WCAG 2.2 AA, we use the nearest passing value, and each page lists these
-  differences. Examples: darker field borders (`input`), a solid keyboard-focus outline (`ring`),
+- Where a colour would miss WCAG 2.2 AA, the nearest passing value is used, and each page lists
+  these choices. Examples: darker field borders (`input`), a solid keyboard-focus outline (`ring`),
   dark text on warning fills.
 - Breaking API changes, such as Button `danger` replacing `destructive`, are listed in the release
   notes.
@@ -92,7 +92,7 @@ export const metadata = {
 
 ## October 2026 — Button Group, Card, Carousel, Chat Bubble, Clipboard, Datepicker
 
-- Six new components in `@stefan-florescu/ui`, modelled on Flowbite: `ButtonGroup`, `Card`,
+- Six new components in `@stefan-florescu/ui`: `ButtonGroup`, `Card`,
   `Carousel`, `ChatBubble`, `Clipboard`, and `Datepicker` with an inline `Calendar` that also
   picks date ranges.
 - Carousel and Datepicker follow the WAI-ARIA carousel and date picker patterns, with full keyboard
@@ -101,8 +101,8 @@ export const metadata = {
 
 ## October 2026 — Alert, Avatar, Badge, Banner, Bottom Navigation, Breadcrumb
 
-- Six new components in `@stefan-florescu/ui`, modelled on Flowbite and built on the semantic
-  tokens: `Alert`, `Avatar`, `Badge`, `Banner`, `BottomNavigation` and `Breadcrumb`.
+- Six new components in `@stefan-florescu/ui`, built on the semantic tokens: `Alert`,
+  `Avatar`, `Badge`, `Banner`, `BottomNavigation` and `Breadcrumb`.
 - Each has a docs page with live examples, accessibility notes and an API reference.
 - New icons: Clock, House, Megaphone, Settings, User and Wallet.
 - New layer tokens (`--sds-z-*`, `z-*` utilities) give fixed bars, overlays, dialogs and toasts one

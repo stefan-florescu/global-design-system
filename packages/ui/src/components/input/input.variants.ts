@@ -3,10 +3,9 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { focusOutline } from "../../lib/focus";
 
 /*
- * Shared look of every text-like field (Input, Select, Textarea, NumberInput…): Flowbite v4's
- * input field, class for class (https://flowbite.com/docs/forms/input-field/). The border is the
- * `input` token, Flowbite's gray-200 (gray-700 in dark). Invalid and valid states use Flowbite's
- * danger / success fields with a solid `danger` / `success` border, so the state reaches 3:1.
+ * Shared look of every text-like field (Input, Select, Textarea, NumberInput…). The border is the
+ * `input` token, gray-200 (gray-700 in dark). Invalid and valid states use danger / success
+ * fields with a solid `danger` / `success` border, so the state reaches 3:1.
  */
 export const fieldVariants = cva(
   [
@@ -30,25 +29,25 @@ export const fieldVariants = cva(
   },
 );
 
-/** Icon inside a field (Flowbite's input group with icon): 16px, `body` colour. */
+/** Icon inside a field (an input group with icon): 16px, `body` colour. */
 export const fieldIconClassName =
   "pointer-events-none absolute inset-y-0 z-raised flex items-center text-body [&_svg]:size-4";
 
-/** Text or icon attached to a field's edge (Flowbite's input group addon), with a 16px icon. */
+/** Text or icon attached to a field's edge (an input group addon), with a 16px icon. */
 export const fieldAddonClassName =
   "inline-flex shrink-0 items-center border border-input bg-neutral-tertiary px-3 text-sm text-body [&_svg]:size-4";
 
 /*
- * Field groups (Flowbite's "dropdown input", currency and phone inputs): controls joined edge to
+ * Field groups (dropdown inputs, currency and phone inputs): controls joined edge to
  * edge with overlapping 1px borders and one shared shadow. Square the inner corners of each part
  * (`rounded-e-none`, `rounded-none`, `rounded-s-none`) and drop their own shadows.
  */
 export const fieldGroupClassName = "flex w-full -space-x-px rounded-base shadow-xs";
 
 /**
- * A `Select` joined to a field, styled like Flowbite's dropdown button: `font-medium text-body`,
- * `px-4`, as wide as the chosen option (`field-sizing-content`, like Flowbite's button), gray
- * hover and the soft focus halo plus our solid keyboard outline. It keeps the field's `input`
+ * A `Select` joined to a field, styled like a dropdown button: `font-medium text-body`, `px-4`,
+ * as wide as the chosen option (`field-sizing-content`), gray hover and the soft focus halo plus
+ * the solid keyboard outline. It keeps the field's `input`
  * border, so the group reads as one field at 3:1.
  */
 export const fieldSelectAddonClassName = [

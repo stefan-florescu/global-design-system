@@ -3,15 +3,14 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { focusOutline } from "../../lib/focus";
 
 /*
- * Flowbite v4's copy-to-clipboard triggers, class for class
- * (https://flowbite.com/docs/components/clipboard/):
+ * Copy-to-clipboard triggers:
  * - brand: the blue "Copy" button next to a field, or the icon button closing an input group;
  * - secondary: the gray icon button closing an input group (URL shortener);
  * - ghost: the icon button inside a field, a card or an address block;
  * - tertiary: the small bordered "Copy" chip inside a field or a code block.
- * Accessibility deviations: keyboard focus adds the solid `ring` outline; in dark mode the
- * tertiary chip's label is `heading` (Flowbite's `body` and `fg-brand` on `neutral-primary-strong`
- * are under 4.5:1) and its copied icon is `fg-brand-strong`.
+ * Accessibility: keyboard focus adds the solid `ring` outline; in dark mode the tertiary chip's
+ * label is `heading` and its copied icon `fg-brand-strong` (`body` and `fg-brand` on
+ * `neutral-primary-strong` are under 4.5:1).
  */
 export const clipboardVariants = cva(
   [
@@ -58,7 +57,7 @@ export const clipboardChipIconClassName = "me-1.5 size-4";
 
 export const clipboardChipLabelClassName = "text-xs font-semibold";
 
-/** Flowbite colours the copied state's icon (and the chip's label) with `fg-brand`. */
+/** The copied state's icon (and the chip's label) is `fg-brand`. */
 export const clipboardCopiedIconClassName = "text-fg-brand dark:text-fg-brand-strong";
 
 export const clipboardCopiedLabelClassName = "text-fg-brand dark:text-heading";

@@ -26,7 +26,7 @@ import { Avatar, AvatarGroup, AvatarGroupCounter } from "@stefan-florescu/ui";
 
 ### Default avatar
 
-Avatars are 40px circles by default. Set `shape="square"` for Flowbite's rounded square.
+Avatars are 40px circles by default. Set `shape="square"` for a rounded square.
 
 <ComponentPreview name="avatar-demo" />
 
@@ -93,8 +93,7 @@ Open a menu from the user's avatar with [`Dropdown`](/components/dropdown): wrap
 
 ### Sizes
 
-Flowbite's sizes, from `2xs` (18px) to `2xl` (64px). `md` (40px), Flowbite's default avatar, is
-the default.
+Seven sizes, from `2xs` (18px) to `2xl` (64px). `md` (40px) is the default.
 
 <ComponentPreview name="avatar-sizes" />
 
@@ -115,18 +114,18 @@ the default.
 - Leave `alt` out (or empty) when the person's name is already shown next to the avatar; the
   avatar is then decorative and hidden from assistive technology.
 - Initials (`body` on `neutral-tertiary`) and the placeholder silhouette (`body-subtle` on
-  `neutral-secondary-medium`) pass WCAG 2.2 AA in light and dark, as in Flowbite.
+  `neutral-secondary-medium`) pass WCAG 2.2 AA in light and dark.
 - The status dot includes visually hidden text ("Online", "Busy"…), which you can change with
   `statusLabel`.
-- In "Avatar tooltip" each avatar is wrapped in a link (Flowbite's tooltip hangs off the `<img>`
-  itself, which the keyboard cannot reach), so the name opens on keyboard focus too and names the
-  link. <Kbd>Escape</Kbd> hides it.
-- In the user dropdown, the avatar sits in a real `<button>` (Flowbite opens the menu from the
-  `<img>` itself, which the keyboard cannot reach), named "User menu", with a solid focus outline.
+- In "Avatar tooltip" each avatar is wrapped in a link, because a tooltip on the `<img>` itself
+  couldn't be reached by keyboard. The name opens on keyboard focus too and names the link.
+  <Kbd>Escape</Kbd> hides it.
+- In the user dropdown, the avatar sits in a real `<button>` named "User menu", so the keyboard can
+  reach it; it draws a solid focus outline.
   The menu follows the WAI-ARIA menu button pattern; see [Dropdown](/components/dropdown).
 - `AvatarGroupCounter` becomes a link when you pass `href`, with a solid focus outline. Give it an
-  `aria-label` such as "99 more people". Its label uses `dark-foreground` instead of Flowbite's
-  white.
+  `aria-label` such as "99 more people". Its label uses `dark-foreground`, which passes contrast on
+  its `dark-strong` fill.
 
 ## API Reference
 

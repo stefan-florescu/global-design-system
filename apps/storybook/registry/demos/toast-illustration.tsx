@@ -5,7 +5,7 @@ export default function ToastIllustration() {
   return (
     <Toast className="block max-w-sm p-3">
       <div className="flex items-start">
-        {/* A token-coloured stand-in for Flowbite's smartphone illustration. */}
+        {/* A token-coloured stand-in for a smartphone illustration. */}
         <div
           aria-hidden
           className="rounded-base bg-brand-softer text-fg-brand flex aspect-[4/5] w-24 shrink-0 items-center justify-center [&_svg]:size-10"

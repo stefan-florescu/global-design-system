@@ -3,10 +3,9 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { focusOutline } from "../../lib/focus";
 
 /*
- * Flowbite v4 card, class for class (https://flowbite.com/docs/components/card/): a
- * `neutral-primary-soft` surface with a `default` border, `rounded-base` corners and `shadow-xs`,
- * padded `p-6`. Link cards take Flowbite's `neutral-secondary-medium` hover. Accessibility
- * addition: link cards draw the solid keyboard outline from lib/focus.
+ * Card: a `neutral-primary-soft` surface with a `default` border, `rounded-base` corners and
+ * `shadow-xs`, padded `p-6`. Link cards take a `neutral-secondary-medium` hover. Accessibility:
+ * link cards draw the solid keyboard outline from lib/focus.
  */
 export const cardVariants = cva(
   "flex flex-col rounded-base border border-default bg-neutral-primary-soft shadow-xs",

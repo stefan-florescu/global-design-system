@@ -91,7 +91,7 @@ export default function TimepickerModal() {
         <Clock aria-hidden className="-ms-0.5" />
         Schedule appointment
       </ModalTrigger>
-      {/* Flowbite's 368px box, without a border or shadow, split into padded sections. */}
+      {/* A 368px box, without a border or shadow, split into padded sections. */}
       <ModalContent className="max-w-[23rem] border-0 p-0 shadow-none md:p-0">
         <ModalHeader className="p-4 md:p-4">
           <ModalTitle className="text-base">Schedule an appointment</ModalTitle>

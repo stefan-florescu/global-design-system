@@ -77,7 +77,7 @@ Show function keys.
 ### Compact keys
 
 Set `size="sm"` for a smaller key in shortcut hints inside buttons and fields, such as the search
-button in the header of these docs. This size is our addition; Flowbite has one size.
+button in the header of these docs.
 
 <ComponentPreview name="kbd-hint" />
 
@@ -85,8 +85,8 @@ button in the header of these docs. This size is our addition; Flowbite has one 
 
 - Renders the native `<Kbd>` element, which marks keyboard input. It has no ARIA role and is not
   interactive, so it needs no keyboard support or focus style.
-- Screen readers read the key's text. Icon-only keys (arrow keys) need visually hidden text, as in
-  Flowbite; the icon is decorative and hidden from assistive technology.
+- Screen readers read the key's text. Icon-only keys (arrow keys) need visually hidden text; the
+  icon is decorative and hidden from assistive technology.
 - Spell out keys the way people say them (`Ctrl`, `Shift`, `Esc`). Symbols such as `⌘` or `↑` may
   be read inconsistently, so pair them with text or a hidden name.
 - When an element has a shortcut, also declare it with `aria-keyshortcuts` on that element; a

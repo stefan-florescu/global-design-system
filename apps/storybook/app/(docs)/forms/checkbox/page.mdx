@@ -112,25 +112,22 @@ Put checkboxes in a `flex` row to align them horizontally.
 
 - A native `<input type="checkbox">`, so <Kbd>Space</Kbd> toggles it, forms submit it and assistive
   technology announces it as a checkbox. The label is linked to it, so clicking the label toggles it.
-- The box is drawn with Flowbite's styles, with one change: its border is the `input` colour
-  instead of Flowbite's `default-medium`, so the unchecked box reaches 3:1 against the page
-  (WCAG 1.4.11). Checked, it is `brand` with a `brand-foreground` check mark.
-- Focus shows Flowbite's soft `brand-soft` halo; keyboard focus also draws a solid 2px `ring`
-  outline, because the halo alone is under 3:1.
+- The box's border is the `input` colour, so the unchecked box reaches 3:1 against the page (WCAG
+  1.4.11). Checked, it is `brand` with a `brand-foreground` check mark.
+- Focus shows a soft `brand-soft` halo; keyboard focus also draws a solid 2px `ring` outline,
+  because the halo alone is under 3:1.
 - In forced-colors (high contrast) mode the browser draws the checkbox itself, so it stays visible.
 - In bordered cards with a description, and in `card`, the title names the checkbox and the
   description is read as its description.
-- `card` keeps the checkbox focusable (Flowbite hides it with `display: none`, which removes it from
-  the keyboard order), and the selected card gets a `brand` border instead of Flowbite's
-  `brand-subtle`, so the checked state reaches 3:1.
+- `card` keeps the checkbox focusable (it is not hidden with `display: none`, which would remove it
+  from the keyboard order), and the selected card gets a `brand` border, so the checked state
+  reaches 3:1.
 - The link in a label is underlined, not only coloured, so it does not rely on colour alone
   (WCAG 1.4.1).
 - `invalid` sets `aria-invalid` and a `danger` border; explain the problem in text as well.
 - In the checkbox dropdown, the panel is a non-modal dialog named "Users"; <Kbd>Escape</Kbd> or a
-  click outside closes it and returns focus to the trigger. Flowbite's search field has no label;
-  here it is labelled "Search user", and choices are kept while the search hides them.
-- Not ported: Flowbite's _Colors_ (uses palette colours we have no tokens for; a red or green
-  checkbox would also read as an error or success).
+  click outside closes it and returns focus to the trigger. The search field is labelled "Search
+  user", and choices are kept while the search hides them.
 
 ## API Reference
 

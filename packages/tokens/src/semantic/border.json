@@ -19,7 +19,7 @@
   },
   "radius": {
     "$type": "dimension",
-    "$description": "Flowbite's radius scale. rounded-base (12px) is the default for buttons, fields and cards.",
+    "$description": "Radius scale. rounded-base (12px) is the default for buttons, fields and cards.",
     "none": {
       "$value": "0"
     },

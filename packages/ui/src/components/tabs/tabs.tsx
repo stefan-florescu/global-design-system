@@ -56,7 +56,7 @@ export type TabsProps = Omit<ComponentProps<"div">, "defaultValue"> & {
   value?: string;
   /** Called with the new value whenever another tab is selected. */
   onValueChange?: (value: string) => void;
-  /** Flowbite's tab styles. */
+  /** The tab style. */
   variant?: TabsVariant;
   /** `vertical` stacks the tabs beside the panels from `md` up, and uses ↑ / ↓ to move. */
   orientation?: TabsOrientation;
@@ -272,7 +272,7 @@ type TabsNavContextValue = { variant: TabsVariant; orientation: TabsOrientation 
 const TabsNavContext = createContext<TabsNavContextValue | null>(null);
 
 export type TabsNavProps = ComponentProps<"nav"> & {
-  /** Flowbite's tab styles, as on `Tabs`. */
+  /** The tab style, as on `Tabs`. */
   variant?: TabsVariant;
   /** `vertical` stacks the links in a column. */
   orientation?: TabsOrientation;

@@ -22,7 +22,7 @@ import { Spinner } from "@stefan-florescu/ui";
 <Spinner />
 ```
 
-`Spinner` is Flowbite's animated SVG: a grey track under a coloured arc that spins. It renders a
+`Spinner` is an animated SVG: a grey track under a coloured arc that spins. It renders a
 `role="status"` region with visually hidden text, "Loading…" by default, so screen readers hear
 that something is loading. `className` styles that region, for example to position it.
 
@@ -38,7 +38,7 @@ The default spinner is 32px, with a `brand` arc over a `neutral-tertiary` track.
 
 Set `variant` to `brand`, `dark`, `success`, `danger`, `warning`, `pink` or `purple`. The arc keeps
 3:1 contrast against the track and the page in light and dark mode, so some colours use a stronger
-role than Flowbite's (see [Accessibility](#accessibility)).
+role (see [Accessibility](#accessibility)).
 
 <ComponentPreview name="spinner-colors" />
 
@@ -89,7 +89,7 @@ colour, as in the [badge loader](/components/badge#badges-with-loader).
 
 ## Accessibility
 
-- As Flowbite recommends, the spinner is a `role="status"` region with visually hidden text, and
+- The spinner is a `role="status"` region with visually hidden text, and
   the SVG is `aria-hidden`. Use `label` to say what is loading, such as "Loading orders".
 - A status region is announced when its text changes, not always when it first appears. Render the
   `Spinner` before the work starts and remove it when it ends, or put it inside a region that is
@@ -100,11 +100,10 @@ colour, as in the [badge loader](/components/badge#badges-with-loader).
   the status text still say it is loading. A loading indicator counts as essential motion under
   WCAG 2.2.2, so this goes beyond the minimum, as `Button` and `Skeleton` do.
 - The arc is a meaningful graphic, so it keeps 3:1 against the track and the page (WCAG 1.4.11).
-  Flowbite's fills fail that in places, so ours use the nearest passing role: `fg-brand`,
-  `fg-success` and `fg-danger` (the same colours as Flowbite's in light mode, lighter in dark
-  mode), `body` for the dark spinner in dark mode instead of `quaternary`, and `fg-warning-subtle`
-  for warning (Flowbite's `warning` is 2.6:1 in light mode). Pink and purple use the `fg-pink` and
-  `fg-purple` roles.
+  Where a plain fill would fail that, the nearest passing role is used: `fg-brand`, `fg-success` and
+  `fg-danger` (lighter in dark mode), `body` for the dark spinner in dark mode instead of
+  `quaternary`, and `fg-warning-subtle` for warning (the plain `warning` fill is 2.6:1 in light
+  mode). Pink and purple use the `fg-pink` and `fg-purple` roles.
 - In the card example, the dimmed content is `aria-busy` while the spinner shows. In the progress
   example, finished steps say ", completed" as visually hidden text, since their check icons are
   hidden.

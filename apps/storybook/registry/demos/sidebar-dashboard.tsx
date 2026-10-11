@@ -119,7 +119,7 @@ export default function SidebarDashboard() {
   );
 }
 
-/** Flowbite's dashed page area with empty cards. */
+/** A dashed page area with empty cards. */
 function PagePlaceholder() {
   const card = (height: "h-24" | "h-48", key?: number) => (
     <div

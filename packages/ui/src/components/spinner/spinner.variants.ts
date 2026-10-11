@@ -1,21 +1,21 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 /*
- * Flowbite v4 spinner, class for class (https://flowbite.com/docs/components/spinner/), on our
- * semantic tokens: a grey track (`fill-neutral-tertiary`) under a coloured arc that spins.
+ * Spinner on our semantic tokens: a grey track (`fill-neutral-tertiary`) under a coloured arc that
+ * spins.
  *
- * Sizes are Flowbite's four (`w-4`, `w-6`, `w-8` default, `w-10`) as `xs`–`lg`, plus a 48px `xl`.
- * Colours are Flowbite's brand, dark, success, danger, warning, pink and purple. The arc is a
- * graphic that tells sighted users something is loading, so it keeps 3:1 against the track and
- * the page (WCAG 1.4.11) in both modes; Flowbite's fills fail that in places, so each colour uses
- * the nearest passing role:
- * - brand, success, danger: the `fg-*` roles (the same colour as Flowbite's in light mode, a
- *   lighter one in dark mode, where `bg-brand` & co. are 2.4–2.8:1 against the dark track);
- * - dark: `dark`, with `body` in dark mode instead of Flowbite's `quaternary` (1.4:1);
+ * Sizes are `xs`–`lg` (`w-4`, `w-6`, `w-8` default, `w-10`), plus a 48px `xl`.
+ * Colours are brand, dark, success, danger, warning, pink and purple. The arc is a graphic that
+ * tells sighted users something is loading, so it keeps 3:1 against the track and the page
+ * (WCAG 1.4.11) in both modes; the fill roles fail that in places, so each colour uses the
+ * nearest passing role:
+ * - brand, success, danger: the `fg-*` roles (the fill colour in light mode, a lighter one in
+ *   dark mode, where `bg-brand` & co. are 2.4–2.8:1 against the dark track);
+ * - dark: `dark`, with `body` in dark mode instead of `quaternary` (1.4:1);
  * - warning: `fg-warning-subtle` (orange 600 / 500) instead of `warning` (2.6:1 in light mode);
  * - pink and purple: the `fg-pink` and `fg-purple` roles.
  * `current` draws the arc in the text colour over a 25% track of the same colour, for spinners
- * inside buttons and badges (Flowbite's loader button and badge loader).
+ * inside buttons and badges (loader buttons and badges).
  *
  * The spin stops when the user prefers reduced motion; the status text still says it is loading.
  */

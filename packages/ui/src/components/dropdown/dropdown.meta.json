@@ -1,7 +1,7 @@
 {
   "name": "Dropdown",
   "status": "beta",
-  "description": "Flowbite's dropdown: a button that opens a menu of actions and options (WAI-ARIA menu button, with checkbox, radio and switch items and sub-menus) or a panel of other content (a non-modal dialog or a disclosure), placed on any side of the trigger in the top layer.",
+  "description": "A dropdown: a button that opens a menu of actions and options (WAI-ARIA menu button, with checkbox, radio and switch items and sub-menus) or a panel of other content (a non-modal dialog or a disclosure), placed on any side of the trigger in the top layer.",
   "category": "navigation",
   "import": "import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from \"@stefan-florescu/ui\";",
   "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/",

@@ -1,8 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 /*
- * Flowbite v4 steppers, class for class (https://flowbite.com/docs/components/stepper/), on our
- * semantic tokens. Each `variant` is one of Flowbite's examples:
+ * Steppers on our semantic tokens. Each `variant` is one layout:
  * - `default`: numbers and names in a row, joined by a line (a slash on small screens);
  * - `progress`: icon markers joined by a thick line, with the names visually hidden;
  * - `detailed`: icon markers with a name and a description, stacked on small screens;
@@ -10,15 +9,14 @@ import { cva, type VariantProps } from "class-variance-authority";
  * - `breadcrumb`: numbered names in a bordered bar, separated by double chevrons;
  * - `timeline`: icon markers on a vertical line, with a name and a description.
  *
- * Steps are `complete`, `current` or `upcoming`. Flowbite draws complete steps in brand (success
- * in the vertical and timeline steppers) and upcoming ones in neutral, and has no current state
- * except in the vertical stepper (brand). Ours draws the current step in brand and, so that it is
- * not told apart by colour alone (WCAG 1.4.1), adds a shape: a filled number in the `default` and
- * `breadcrumb` steppers, a brand border round the marker in `progress`, `detailed` and `timeline`,
- * and a 2px brand outline on the `vertical` card.
+ * Steps are `complete`, `current` or `upcoming`. Complete steps are brand (success in the vertical
+ * and timeline steppers) and upcoming ones neutral. The current step is brand and, so that it is
+ * not told apart by colour alone (WCAG 1.4.1), also has a shape: a filled number in the `default`
+ * and `breadcrumb` steppers, a brand border round the marker in `progress`, `detailed` and
+ * `timeline`, and a 2px brand outline on the `vertical` card.
  *
- * Flowbite's separators are `::after` content; ours are `aria-hidden` elements, so screen readers
- * don't read the slash. `space-x-*` gaps are `gap-*`, so they also work right to left.
+ * Separators are `aria-hidden` elements, so screen readers don't read the slash. Spacing uses
+ * `gap-*`, so it also works right to left.
  */
 export const stepperVariants = cva("m-0 list-none p-0", {
   variants: {
@@ -180,7 +178,7 @@ export const stepperCardVariants = cva(
 /** The name of a step in the `detailed`, `vertical` and `timeline` steppers. */
 export const stepperTitleClassName = "block font-medium leading-tight";
 
-/** The vertical card's title has Flowbite's default line height. */
+/** The vertical card's title keeps the default line height. */
 export const stepperCardTitleClassName = "font-medium";
 
 /** The text under a step's name. */

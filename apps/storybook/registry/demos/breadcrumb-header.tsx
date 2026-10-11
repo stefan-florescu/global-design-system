@@ -13,7 +13,7 @@ export default function BreadcrumbHeader() {
   return (
     <div className="justify-between md:flex">
       <Breadcrumb className="mb-3 sm:mb-0">
-        <BreadcrumbItem href="/">flowbite.com</BreadcrumbItem>
+        <BreadcrumbItem href="/">example.com</BreadcrumbItem>
         <BreadcrumbItem href="/components" className="space-x-2.5">
           develop
         </BreadcrumbItem>

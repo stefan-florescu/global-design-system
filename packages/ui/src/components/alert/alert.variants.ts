@@ -3,9 +3,8 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { focusOutline } from "../../lib/focus";
 
 /*
- * Flowbite v4 alerts, class for class (https://flowbite.com/docs/components/alerts/), on our
- * semantic tokens, which carry Flowbite's role names. Flowbite's "Info" alert is `brand` and its
- * gray "Dark" alert is `dark`. All label and fill pairings pass WCAG 2.2 AA as in Flowbite.
+ * Alerts on our semantic tokens. The "Info" alert is `brand` and the gray "Dark" alert is
+ * `dark`. All label and fill pairings pass WCAG 2.2 AA.
  */
 export const alertVariants = cva("flex items-start gap-2 rounded-base p-4 text-sm", {
   variants: {
@@ -20,7 +19,7 @@ export const alertVariants = cva("flex items-start gap-2 rounded-base p-4 text-s
       true: "border",
       false: "",
     },
-    /** Flowbite's "Border accent": a 4px top border and square corners. */
+    /** "Border accent": a 4px top border and square corners. */
     accentBorder: {
       true: "rounded-none border-t-4",
       false: "",
@@ -32,7 +31,7 @@ export const alertVariants = cva("flex items-start gap-2 rounded-base p-4 text-s
 /** The 16px icon before the content, centred on the first line. */
 export const alertIconClassName = "mt-0.5 shrink-0 [&_svg]:size-4";
 
-/** Flowbite's 32px close button, pulled into the padding so it lines up with the text. */
+/** The 32px close button, pulled into the padding so it lines up with the text. */
 export const alertDismissVariants = cva(
   [
     "-mx-1.5 -my-1.5 ms-auto inline-flex size-8 shrink-0 cursor-pointer items-center justify-center rounded p-1.5",

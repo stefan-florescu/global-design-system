@@ -1,7 +1,7 @@
 {
   "name": "PhoneInput",
   "status": "beta",
-  "description": "Flowbite's phone input: a country-code select styled like a dropdown button, joined to a tel field.",
+  "description": "A phone input: a country-code select styled like a dropdown button, joined to a tel field.",
   "category": "forms",
   "import": "import { PhoneInput } from \"@stefan-florescu/ui\";",
   "ariaPattern": null,

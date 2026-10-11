@@ -85,7 +85,7 @@ export function FooterTitle({ className, children, ...props }: FooterTitleProps)
 
 export type FooterLinkGroupProps = ComponentProps<"nav"> & {
   /**
-   * A heading shown over the links (Flowbite's column titles). It also names the navigation
+   * A heading shown over the links (a column title). It also names the navigation
    * landmark. Without it, name the group with `aria-label` (default "Footer").
    */
   title?: ReactNode;

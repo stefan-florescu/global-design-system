@@ -25,7 +25,7 @@ export default function PopoverPassword() {
     <form className="w-full" onSubmit={(event) => event.preventDefault()}>
       <div className="mb-6">
         <Label htmlFor={`${id}-email`}>Your email</Label>
-        <Input type="email" id={`${id}-email`} placeholder="name@flowbite.com" required />
+        <Input type="email" id={`${id}-email`} placeholder="name@example.com" required />
       </div>
       <div className="mb-6">
         <Label htmlFor={`${id}-password`}>Your password</Label>

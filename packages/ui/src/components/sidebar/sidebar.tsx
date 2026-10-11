@@ -88,7 +88,7 @@ export type SidebarProviderProps = {
 
 /**
  * Shares the sidebar's drawer state with a `SidebarToggle` placed elsewhere, such as in a navbar.
- * Without a provider, `Sidebar` renders Flowbite's hamburger button just before itself.
+ * Without a provider, `Sidebar` renders a hamburger button just before itself.
  */
 export function SidebarProvider({
   breakpoint = "sm",
@@ -112,7 +112,7 @@ export type SidebarToggleProps = Omit<ComponentProps<"button">, "children" | "ty
 };
 
 /**
- * Flowbite's hamburger button. It opens the sidebar as a drawer and is shown only below the
+ * A hamburger button. It opens the sidebar as a drawer and is shown only below the
  * sidebar's breakpoint. Use it inside a `SidebarProvider`.
  */
 export function SidebarToggle({ label = "Open sidebar", className, ...props }: SidebarToggleProps) {
@@ -134,7 +134,7 @@ export function SidebarToggle({ label = "Open sidebar", className, ...props }: S
 
 export type SidebarProps = Omit<ComponentProps<"aside">, "aria-label"> &
   Omit<SidebarProviderProps, "children"> & {
-    /** Where the sidebar sits: fixed to the viewport (Flowbite's), sticky, or in the flow. */
+    /** Where the sidebar sits: fixed to the viewport (the default), sticky, or in the flow. */
     position?: "fixed" | "sticky" | "static";
     /** Accessible name of the sidebar (the `<aside>`) and of its drawer. */
     label?: string;
@@ -143,12 +143,12 @@ export type SidebarProps = Omit<ComponentProps<"aside">, "aria-label"> &
   };
 
 /**
- * Vertical navigation along the side of an app: an `<aside>` with Flowbite's scrolling panel.
+ * Vertical navigation along the side of an app: an `<aside>` with a scrolling panel.
  * Put a `SidebarLogo`, `SidebarItems` and a `SidebarCTA` in it.
  *
  * Below `breakpoint` (`sm` by default) it is hidden and the same content opens in a `Drawer`
  * (a modal dialog) from a `SidebarToggle`. Without a `SidebarProvider` around it, the sidebar
- * renders that toggle just before itself, as Flowbite does; `breakpoint`, `open`, `defaultOpen`
+ * renders that toggle just before itself; `breakpoint`, `open`, `defaultOpen`
  * and `onOpenChange` then apply here. Inside a provider, set them on the provider.
  */
 export function Sidebar({ breakpoint, open, defaultOpen, onOpenChange, ...props }: SidebarProps) {
@@ -214,7 +214,7 @@ function SidebarRoot({
       </aside>
       {breakpoint === "none" ? null : (
         <DrawerContent aria-label={label} className={sidebarDrawerClassName}>
-          {/* First in the drawer, so it takes focus on open, as in Flowbite's drawer navigation. */}
+          {/* First in the drawer, so it takes focus on open. */}
           <DrawerClose label={closeLabel} className={sidebarDrawerCloseClassName} />
           <SidebarDrawerContext value={() => setOpen(false)}>
             <div
@@ -241,7 +241,7 @@ export type SidebarLogoProps = Omit<ComponentProps<"a">, "children"> & {
   alt?: string;
 };
 
-/** Flowbite's "Logo branding": the brand's logo and name, linking to the home page. */
+/** The brand's logo and name, linking to the home page. */
 export function SidebarLogo({ name, logo, src, alt = "", className, ...props }: SidebarLogoProps) {
   return (
     <a data-slot="sidebar-logo" className={cn(sidebarLogoClassName, className)} {...props}>
@@ -420,7 +420,7 @@ export type SidebarCollapseProps = Omit<ComponentProps<"button">, "children" | "
 };
 
 /**
- * Flowbite's "Multi-level menu": a disclosure button (`aria-expanded`, `aria-controls`) that shows
+ * A multi-level menu: a disclosure button (`aria-expanded`, `aria-controls`) that shows
  * and hides a nested list of `SidebarItem`s.
  */
 export function SidebarCollapse({
@@ -468,9 +468,9 @@ export function SidebarCollapse({
 export type SidebarCTAProps = AlertProps;
 
 /**
- * Flowbite's CTA card under the items: a bordered brand `Alert` (with `AlertTitle`,
+ * A CTA card under the items: a bordered brand `Alert` (with `AlertTitle`,
  * `AlertDescription` and a button inside) that is not a live region. Add `dismissible` for
- * Flowbite's close button in the top-end corner, next to the title.
+ * a close button in the top-end corner, next to the title.
  */
 export function SidebarCTA({
   variant = "brand",

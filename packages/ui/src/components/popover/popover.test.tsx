@@ -160,7 +160,7 @@ describe("Popover (click)", () => {
     expect(screen.getByRole("dialog")).toHaveAttribute("aria-labelledby", "mine");
   });
 
-  it("styles the panel like Flowbite and merges className", () => {
+  it("styles the panel and merges className", () => {
     render(<Example defaultOpen className="w-80 p-3" />);
     const dialog = screen.getByRole("dialog");
     expect(dialog).toHaveClass(

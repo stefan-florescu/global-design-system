@@ -1,7 +1,7 @@
 {
   "name": "Timepicker",
   "status": "beta",
-  "description": "Flowbite's timepicker: a native time field with a clock icon, min, max and step.",
+  "description": "A timepicker: a native time field with a clock icon, min, max and step.",
   "category": "forms",
   "import": "import { Timepicker } from \"@stefan-florescu/ui\";",
   "ariaPattern": null,

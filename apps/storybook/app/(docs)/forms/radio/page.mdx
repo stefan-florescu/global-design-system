@@ -109,21 +109,20 @@ Add an `icon` above the title of a card.
 - Native radios: <Kbd>Tab</Kbd> moves into the group and the arrow keys move the selection, as in
   the WAI-ARIA radio group pattern. Name the group with a `Fieldset` legend or a heading and
   `role="radiogroup"`.
-- The button is drawn with Flowbite's styles, with one change: its border is the `input` colour
-  instead of Flowbite's `default-medium`, so the unselected button reaches 3:1 against the page
+- The button's border is the `input` colour, so the unselected button reaches 3:1 against the page
   (WCAG 1.4.11). Selected, it is a `brand` disc with a `brand-foreground` centre dot.
-- Focus shows Flowbite's soft `brand-subtle` halo; keyboard focus also draws a solid 2px `ring`
-  outline, because the halo alone is under 3:1.
+- Focus shows a soft `brand-subtle` halo; keyboard focus also draws a solid 2px `ring` outline,
+  because the halo alone is under 3:1.
 - In forced-colors (high contrast) mode the browser draws the radio itself, so it stays visible.
-- `card` keeps the radio focusable (Flowbite hides it with `display: none`, which removes it from the
-  keyboard order); the title names it and the description describes it. The selected card gets a
-  `brand` border instead of Flowbite's `brand-subtle`, so the selected state reaches 3:1.
+- `card` keeps the radio focusable (it is not hidden with `display: none`, which would remove it from
+  the keyboard order); the title names it and the description describes it. The selected card gets a
+  `brand` border, so the selected state reaches 3:1.
 - The link in a label is underlined, not only coloured, so it does not rely on colour alone
   (WCAG 1.4.1).
-- In the dropdown, Flowbite uses form radios inside a list. Here the options are WAI-ARIA menu
-  radio items (`menuitemradio` with `aria-checked`): the arrow keys move between them, and
-  pressing <Kbd>Enter</Kbd> or <Kbd>Space</Kbd> chooses one. The helper text is read as the
-  item's description, and <Kbd>Escape</Kbd> closes the menu and returns focus to the trigger.
+- In the dropdown, the options are WAI-ARIA menu radio items (`menuitemradio` with `aria-checked`):
+  the arrow keys move between them, and pressing <Kbd>Enter</Kbd> or <Kbd>Space</Kbd> chooses one.
+  The helper text is read as the item's description, and <Kbd>Escape</Kbd> closes the menu and
+  returns focus to the trigger.
 
 ## API Reference
 

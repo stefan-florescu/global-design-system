@@ -1,7 +1,7 @@
 {
   "name": "FileInput",
   "status": "beta",
-  "description": "Flowbite's file input: a native file field and a drag-and-drop dropzone.",
+  "description": "A file input: a native file field and a drag-and-drop dropzone.",
   "category": "forms",
   "import": "import { FileDropzone, FileInput } from \"@stefan-florescu/ui\";",
   "ariaPattern": null,

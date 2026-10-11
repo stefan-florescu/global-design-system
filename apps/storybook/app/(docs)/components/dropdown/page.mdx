@@ -104,7 +104,7 @@ be changed in a row.
 
 ### Background hover
 
-By default each option is a row with Flowbite's hover background.
+By default each option is a row that fills with a background on hover.
 
 <ComponentPreview name="dropdown-checkbox-hover" />
 
@@ -254,11 +254,8 @@ Set the distance and the skidding of the menu relative to the trigger.
   switch items draw their state with the same tokens as `Checkbox`, `Radio` and `Toggle`, so the
   `input` border reaches 3:1.
 - The switch's knob does not animate when the user prefers reduced motion.
-- Differences from Flowbite: Flowbite's dropdown is a list of links with no menu roles and no arrow
-  key support, its checkbox and radio lists are form inputs, and its hover dropdown only opens with
-  the pointer. Here those lists are menu items, hover dropdowns also open with a click, a tap and
-  the keyboard, and the "Dropdown datepicker" needs no `ignore-click-outside` option. The
-  notification badge on purple is `warning` here, as we have no purple fill.
+- Checkbox and radio lists are menu items rather than form inputs. Hover dropdowns also open with
+  a click, a tap and the keyboard, so they don't depend on a pointer.
 
 | Key                                 | Action                                                                                 |
 | ----------------------------------- | -------------------------------------------------------------------------------------- |

@@ -40,8 +40,8 @@ attributes such as `type`, `pattern`, `autoComplete` and `required` work as usua
 
 ### Input sizes
 
-Four sizes that grow by padding, like Flowbite: `sm`, `md` (Flowbite's "base", the default), `lg`
-and `xl`. The two larger sizes also use 16px text.
+Four sizes that grow by padding: `sm`, `md` (the default), `lg` and `xl`. The two larger sizes also
+use 16px text.
 
 <ComponentPreview name="input-field-sizes" />
 
@@ -89,14 +89,14 @@ Add a `HelperText` below the field and reference its `id` from the field's `aria
 ### Dropdown input
 
 Join a `Select`, a field and a `Button` in one group. `fieldGroupClassName` overlaps their borders
-and shares one shadow, `fieldSelectAddonClassName` styles the select like Flowbite's dropdown
-button, and `fieldGroupItemClassName` lifts the focused field above its neighbours. Square the
-inner corners of each part.
+and shares one shadow, `fieldSelectAddonClassName` styles the select like a dropdown button, and
+`fieldGroupItemClassName` lifts the focused field above its neighbours. Square the inner corners of
+each part.
 
 <ComponentPreview name="input-field-dropdown" />
 
-Flowbite opens a dropdown menu with an icon before "All categories"; we use a native `<select>`,
-which works with the keyboard, screen readers and mobile pickers without extra script.
+The category picker is a native `<select>`, which works with the keyboard, screen readers and mobile
+pickers without extra script.
 
 ## Accessibility
 
@@ -104,12 +104,12 @@ which works with the keyboard, screen readers and mobile pickers without extra s
   in compact layouts such as search. Placeholders are hints, not labels.
 - Link helper and error text with `aria-describedby` so it is read with the field.
 - `invalid` sets `aria-invalid="true"`; always say what is wrong in text too, not only in colour.
-- The field border is Flowbite's gray-200 (`input`), which is under 3:1 against the page; the field's fill and its focus border mark it.
-- Differences from Flowbite, for WCAG 2.2 AA:
-  - Valid and invalid fields use the solid `success` and `danger` borders instead of Flowbite's
+- The field border is `input` (gray-200), which is under 3:1 against the page; the field's fill and its focus border mark it.
+- For WCAG 2.2 AA:
+  - Valid and invalid fields use the solid `success` and `danger` borders rather than
     `success-subtle` and `danger-subtle`.
-  - Focus keeps Flowbite's brand border and 1px ring. The dropdown-button select in a group also
-    draws the solid `ring` outline on keyboard focus.
+  - Focus shows a brand border and 1px ring. The dropdown-button select in a group also draws the
+    solid `ring` outline on keyboard focus.
 - Icons inside the field are decorative and hidden from assistive technology.
 
 ## API Reference
@@ -142,12 +142,12 @@ which works with the keyboard, screen readers and mobile pickers without extra s
 
 ### Field group helpers
 
-| Export                      | Use                                                            |
-| --------------------------- | -------------------------------------------------------------- |
-| `fieldGroupClassName`       | Wrapper that joins controls edge to edge with one shadow.      |
-| `fieldSelectAddonClassName` | A `Select` in a group, styled like Flowbite's dropdown button. |
-| `fieldGroupItemClassName`   | A field in a group: no own shadow, raised while focused.       |
-| `fieldVariants`             | The field styles, for elements that are not an `Input`.        |
+| Export                      | Use                                                       |
+| --------------------------- | --------------------------------------------------------- |
+| `fieldGroupClassName`       | Wrapper that joins controls edge to edge with one shadow. |
+| `fieldSelectAddonClassName` | A `Select` in a group, styled like a dropdown button.     |
+| `fieldGroupItemClassName`   | A field in a group: no own shadow, raised while focused.  |
+| `fieldVariants`             | The field styles, for elements that are not an `Input`.   |
 
 ### Tokens
 

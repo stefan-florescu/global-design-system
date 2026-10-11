@@ -1,5 +1,5 @@
 /*
- * Places a dropdown panel next to its trigger (Flowbite's Popper placements), in viewport
+ * Places a dropdown panel next to its trigger, in viewport
  * coordinates for a `position: fixed` / top-layer panel.
  */
 
@@ -12,9 +12,9 @@ type Rect = Pick<DOMRect, "top" | "right" | "bottom" | "left" | "width" | "heigh
 
 export type DropdownPositionOptions = {
   placement: DropdownPlacement;
-  /** Gap between trigger and panel, in px (Flowbite's offset distance). */
+  /** Gap between trigger and panel, in px. */
   offset: number;
-  /** Shift along the trigger, in px (Flowbite's offset skidding): right or down when positive. */
+  /** Shift along the trigger, in px: right or down when positive. */
   skidding: number;
   /** Right-to-left: `start` / `end` follow the reading direction. */
   rtl: boolean;

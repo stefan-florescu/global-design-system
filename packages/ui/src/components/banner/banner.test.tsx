@@ -23,7 +23,7 @@ describe("Banner", () => {
     expect(screen.getByRole("region")).toHaveClass("fixed", "bottom-0", "border-t");
   });
 
-  it("uses Flowbite's soft neutral bar", () => {
+  it("uses a soft neutral bar", () => {
     render(<Banner>Top</Banner>);
     expect(screen.getByRole("region")).toHaveClass(
       "bg-neutral-primary-soft",

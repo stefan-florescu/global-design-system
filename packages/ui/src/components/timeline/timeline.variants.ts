@@ -1,9 +1,8 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 /*
- * Flowbite v4 timelines, class for class (https://flowbite.com/docs/components/timeline/), on our
- * semantic tokens. The vertical timeline is the default; `horizontal` is Flowbite's "Stepper
- * timeline", which stacks vertically below `sm`.
+ * Timelines on our semantic tokens. The vertical timeline is the default; `horizontal` is a
+ * stepper timeline, which stacks vertically below `sm`.
  *
  * The parts are server components, so they can't read the orientation from React context.
  * `Timeline` marks itself `data-horizontal`, and its items, points and content restyle themselves
@@ -22,7 +21,7 @@ export const timelineVariants = cva("", {
 });
 
 /**
- * An event. Vertical items sit 24px from the line, or 16px next to a plain dot (Flowbite's
+ * An event. Vertical items sit 24px from the line, or 16px next to a plain dot (the
  * default timeline); the last item has no bottom margin.
  */
 export const timelineItemClassName = [
@@ -52,9 +51,9 @@ export const timelinePointVariants = cva(
   {
     variants: {
       marker: {
-        /** Flowbite's 12px grey dot on the line. */
+        /** A 12px grey dot on the line. */
         dot: "-start-1.5 mt-1.5 size-3 border border-buffer bg-neutral-quaternary [[data-horizontal]>*>*>&]:mt-0 [[data-horizontal]>*>*>&]:ring-buffer",
-        /** Flowbite's 24px brand circle with a 12px icon. */
+        /** A 24px brand circle with a 12px icon. */
         icon: "-start-3 flex size-6 items-center justify-center bg-brand-softer text-fg-brand-strong ring-8 ring-buffer [&_svg]:size-3 [&_svg]:shrink-0",
         /** A 24px circle for your own content, such as an `Avatar`. */
         custom: "-start-3 flex size-6 items-center justify-center ring-8 ring-buffer",

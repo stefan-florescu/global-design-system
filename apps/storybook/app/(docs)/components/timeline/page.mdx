@@ -85,20 +85,18 @@ the entries in an ordered list.
 - `TimelineTime` is a `<time>` element: pass a machine-readable `dateTime`, such as
   `"2025-03-13"`.
 - `TimelineTitle` is an `h3` by default. Set `headingLevel` (2 to 6) so the titles sit one level
-  below the heading the timeline is under; on this page they are `h4`s. Flowbite always uses
-  `h3`.
+  below the heading the timeline is under; on this page they are `h4`s.
 - Dots, icons and the connecting lines are decorative and hidden from assistive technology. Points
   with your own content, such as an avatar, are not hidden: give the image a name with `alt`, or
   leave it out when the name is already in the text, as in the activity log.
 - The "Read more" buttons in the stepper have an `aria-label` that names their event ("Read more
-  about Flowbite Library v1.0.0"), so they can be told apart out of context.
+  about" and the event's title), so they can be told apart out of context.
 - The grouped timeline puts each day's date in a heading and names its `section` with it, and its
-  links draw a solid `ring` outline on keyboard focus. Flowbite's date is a plain `<time>`.
-- Every colour pairing passes WCAG 2.2 AA in light and dark, as in Flowbite. Buttons use
+  links draw a solid `ring` outline on keyboard focus.
+- Every colour pairing passes WCAG 2.2 AA in light and dark. Buttons use
   [`Button`](/components/button), so the "Reply" label is the on-fill foreground token rather than
   white.
-- Differences from Flowbite: avatars are our placeholder images, the comment in the activity log is
-  a `<blockquote>`, and the "Download ZIP" icon is Lucide's file archive.
+- The comment in the activity log is a `<blockquote>`.
 
 ## API Reference
 

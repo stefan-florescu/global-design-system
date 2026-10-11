@@ -9,7 +9,7 @@ export default function ToastMessage() {
         <div className="ms-3 text-sm font-normal">
           <span className="text-heading text-base font-semibold">Jese Leos</span>
           <div className="mt-1 mb-3">
-            Hi Neil, thanks for sharing your thoughts regarding Flowbite.
+            Hi Neil, thanks for sharing your thoughts regarding Stefan DS.
           </div>
           <Button size="xs">
             <Reply aria-hidden className="-ms-0.5" />

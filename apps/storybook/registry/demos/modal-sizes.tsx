@@ -11,7 +11,7 @@ import {
   type ModalSize,
 } from "@stefan-florescu/ui";
 
-// Flowbite's four sizes: small, default, large and extra large.
+// Four sizes: small, default, large and extra large.
 const sizes: { size: ModalSize; label: string }[] = [
   { size: "md", label: "Small modal" },
   { size: "lg", label: "Default modal" },

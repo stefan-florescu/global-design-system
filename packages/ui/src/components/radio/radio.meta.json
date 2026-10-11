@@ -1,7 +1,7 @@
 {
   "name": "Radio",
   "status": "beta",
-  "description": "Flowbite's radio: a native radio with label, helper text, bordered card, list-group row and selectable-card layouts.",
+  "description": "A radio: a native radio with label, helper text, bordered card, list-group row and selectable-card layouts.",
   "category": "forms",
   "import": "import { Fieldset, Radio } from \"@stefan-florescu/ui\";",
   "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/radio/",

@@ -217,7 +217,7 @@ describe("Tooltip", () => {
     expect(screen.getByRole("tooltip").parentElement).toBe(document.body);
   });
 
-  it("styles the tooltip like Flowbite and merges className", () => {
+  it("styles the tooltip and merges className", () => {
     render(<Example defaultOpen className="max-w-xs" />);
     expect(screen.getByRole("tooltip")).toHaveClass(
       "bg-dark",

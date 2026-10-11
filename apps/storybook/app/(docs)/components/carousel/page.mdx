@@ -60,8 +60,8 @@ the indicators.
 
 ### Animation
 
-Slides move in 700ms with `ease-in-out`. Set `transition="fast"` for Flowbite's 200ms linear
-slide. The transition is off for people who prefer reduced motion.
+Slides move in 700ms with `ease-in-out`. Set `transition="fast"` for a 200ms linear slide.
+The transition is off for people who prefer reduced motion.
 
 <ComponentPreview name="carousel-animation" />
 
@@ -78,13 +78,13 @@ slide. The transition is off for people who prefer reduced motion.
 - Hidden slides are `inert`, so their links and buttons can't receive focus.
 - Slide changes are announced politely, except while the carousel rotates on its own.
 - Automatic rotation always has a pause button, pauses on hover, stops on keyboard focus, and never
-  starts when the user prefers reduced motion. Flowbite has no pause button.
+  starts when the user prefers reduced motion.
 - Previous, next and indicator buttons have names ("Next slide", "Go to slide 3"), and the current
   indicator has `aria-current`. Indicators are 12px with 12px gaps, which meets the WCAG 2.5.8
   spacing exception for small targets.
-- Flowbite draws white control icons on a 30% white square. On light images that falls under the
-  3:1 contrast WCAG asks for, so in the light theme the icons are `heading` (dark); in the dark
-  theme they are white, as in Flowbite. Keyboard focus adds a solid `ring` outline.
+- Control icons sit on a 30% `neutral-primary-medium` square. White icons there would fall under
+  the 3:1 contrast WCAG asks for on light images, so in the light theme the icons are `heading`
+  (dark); in the dark theme they are white. Keyboard focus adds a solid `ring` outline.
 - Give every image slide meaningful `alt` text.
 
 ## API Reference

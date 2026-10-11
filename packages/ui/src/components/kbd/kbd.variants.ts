@@ -1,13 +1,12 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 /*
- * Flowbite v4 KBD, class for class (https://flowbite.com/docs/components/kbd/): a `text-xs`
- * semibold key in `heading` on the `neutral-tertiary` surface, with a `default-medium` border and
- * `rounded-base` corners. The monospace face comes from the `<kbd>` element (Tailwind's preflight
- * maps it to the `font-mono` token). Keys holding an icon (arrow keys) become `inline-flex` and the
- * icon is 10px, as in Flowbite's arrow-key example.
+ * KBD: a `text-xs` semibold key in `heading` on the `neutral-tertiary` surface, with a
+ * `default-medium` border and `rounded-base` corners. The monospace face comes from the `<kbd>`
+ * element (Tailwind's preflight maps it to the `font-mono` token). Keys holding an icon (arrow
+ * keys) become `inline-flex` and the icon is 10px.
  *
- * `size="sm"` is our addition: a compact key for hints inside buttons and fields (such as a search
+ * `size="sm"` is a compact key for hints inside buttons and fields (such as a search
  * shortcut), where the default key is too tall.
  */
 export const kbdVariants = cva(

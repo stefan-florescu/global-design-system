@@ -3,9 +3,8 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { focusOutline } from "../../lib/focus";
 
 /*
- * Flowbite v4 avatars, class for class (https://flowbite.com/docs/components/avatar/), on our
- * semantic tokens. `md` (40px) is Flowbite's default avatar; the other sizes are its "Sizes"
- * example: 18, 24, 32, 44, 56 and 64px.
+ * Avatars on our semantic tokens. `md` (40px) is the default avatar; the other sizes are 18, 24,
+ * 32, 44, 56 and 64px.
  */
 export const avatarVariants = cva("relative inline-flex shrink-0", {
   variants: {
@@ -55,7 +54,7 @@ export const avatarFrameVariants = cva(
       },
     },
     compoundVariants: [
-      // Flowbite's smallest square avatars use the 6px radius.
+      // The smallest square avatars use the 6px radius.
       { shape: "square", size: ["2xs", "xs"], className: "rounded-sm" },
     ],
     defaultVariants: {
@@ -78,11 +77,11 @@ export const avatarImageVariants = cva("size-full object-cover", {
   defaultVariants: { shape: "circle" },
 });
 
-/** Flowbite's placeholder: a person silhouette, larger than the frame and cropped by it. */
+/** The placeholder: a person silhouette, larger than the frame and cropped by it. */
 export const avatarPlaceholderClassName = "absolute -start-1/10 top-0 size-6/5 fill-current";
 
 /**
- * Flowbite's dot indicator: an `Indicator` (14px on the default avatar, with the 2px `buffer`
+ * The dot indicator: an `Indicator` (14px on the default avatar, with the 2px `buffer`
  * ring that separates it from the image). This sets its corner and its size for each avatar size.
  */
 export const avatarStatusVariants = cva("absolute", {
@@ -97,7 +96,7 @@ export const avatarStatusVariants = cva("absolute", {
     },
   },
   compoundVariants: [
-    // On squares the dot sits on the corner, as in Flowbite.
+    // On squares the dot sits on the corner.
     { shape: "square", position: "top-right", className: "-translate-y-1/2" },
     { shape: "square", position: "bottom-right", className: "translate-y-1/4" },
   ],

@@ -3,9 +3,8 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { focusOutline } from "../../lib/focus";
 
 /*
- * Flowbite v4's range slider (https://flowbite.com/docs/forms/range/), class for class:
- * `w-full h-2 bg-neutral-quaternary rounded-full appearance-none cursor-pointer`, with the thumb
- * styles of Flowbite's plugin rebuilt as utilities — a round `brand` thumb (20px; 16px `sm`,
+ * Range slider: `w-full h-2 bg-neutral-quaternary rounded-full appearance-none cursor-pointer`,
+ * with the thumb styled by utilities — a round `brand` thumb (20px; 16px `sm`,
  * 24px `lg`), `body` when disabled, a `brand-medium` halo on focus and a `brand` progress fill
  * in Firefox. The thumb is `brand`, 3:1 against the page. Keyboard focus also draws the solid
  * `ring` outline. The native control is kept, so keyboard, touch and assistive technology work

@@ -32,8 +32,8 @@ import { Toast, ToastIcon, ToastProvider, ToastToggle, useToast } from "@stefan-
 
 ### Default toast
 
-A toast with an icon, a message and a close button. `ToastToggle` is Flowbite's × button: it
-closes the toast, and `onDismiss` on the `Toast` lets you react.
+A toast with an icon, a message and a close button. `ToastToggle` is the × button: it closes the
+toast, and `onDismiss` on the `Toast` lets you react.
 
 <ComponentPreview name="toast-demo" />
 
@@ -86,9 +86,8 @@ Ask people to act, such as updating to a new version, with an icon, a message an
 
 ### Toast illustration
 
-Show an illustration next to the message. Flowbite's smartphone illustration is not part of our
-assets, so this example draws a wallet icon on a `brand-softer` panel; use your own image with
-`alt=""` when it is decorative.
+Show an illustration next to the message. This example draws a wallet icon on a `brand-softer`
+panel; use your own image with `alt=""` when it is decorative.
 
 <ComponentPreview name="toast-illustration" />
 
@@ -114,10 +113,10 @@ colours through `className`.
 
 ## Positioning
 
-Place a toast in a corner with `fixed` and Flowbite's 20px offsets: `top-5 start-5` (top left),
-`top-5 end-5` (top right), `bottom-5 start-5` (bottom left) or `bottom-5 end-5` (bottom right).
-This example uses `absolute` in a frame that stands in for the screen. Use `start` and `end`
-rather than `left` and `right`, so the toasts follow right-to-left layouts.
+Place a toast in a corner with `fixed` and 20px offsets: `top-5 start-5` (top left), `top-5 end-5`
+(top right), `bottom-5 start-5` (bottom left) or `bottom-5 end-5` (bottom right). This example uses
+`absolute` in a frame that stands in for the screen. Use `start` and `end` rather than `left` and
+`right`, so the toasts follow right-to-left layouts.
 
 <ComponentPreview name="toast-positioning" />
 
@@ -160,30 +159,29 @@ function SaveButton() {
 
 - A `Toast` on its own is a polite live region (`role="status"`), so screen readers read it when
   it appears, without moving focus. Only `variant="danger"` uses `role="alert"`, which interrupts;
-  pass `role` to change either. Flowbite gives every toast `role="alert"`.
+  pass `role` to change either.
 - Live regions are only announced reliably when they are already on the page. `ToastProvider`
   renders its "Notifications" region (a landmark, named with `label`) with a polite live list from
   the start, so every toast shown with `toast()` is announced. Toasts inside it don't add their own
   role, so nothing is read twice; errors are read politely there too, so show an error that must
   interrupt as a `Toast variant="danger"` or an [`Alert`](/components/alert) on the page.
 - Toasts never close on their own unless you pass `duration` (WCAG 2.2.1 Timing adjustable). The
-  timer pauses on hover and focus. Flowbite's toasts don't close on their own either, and its
-  "progress bar" is the progress of an upload, not a timer.
-- The × button is a native `<button>` named "Close" (change it with `label`); Flowbite also adds
-  `sr-only` text, which we leave out so the name isn't doubled. It keeps Flowbite's soft focus ring
-  and adds a solid 2px `ring` outline on keyboard focus.
+  timer pauses on hover and focus. The progress bar in the examples shows an upload, not a timer.
+- The × button is a native `<button>` named "Close" (change it with `label`), with no extra
+  `sr-only` text, so the name isn't doubled. It has a soft focus ring and adds a solid 2px `ring`
+  outline on keyboard focus.
 - Toasts don't take focus. Reach their buttons with <Kbd>Tab</Kbd> in reading order: put the
   `ToastProvider` where its stack makes sense in the tab order, such as at the end of the page.
   When a toast with focus closes, focus returns to the page.
-- Icons are decorative and hidden from assistive technology. Flowbite's `sr-only` "Check icon" text
-  is replaced by `ToastIcon`'s optional `label`, such as "Success:".
+- Icons are decorative and hidden from assistive technology. To announce what an icon means, give
+  `ToastIcon` a `label`, such as "Success:".
 - Buttons use [`Button`](/components/button), so labels on brand and danger fills are the on-fill
   foreground tokens, the "Upload invoice" label is dark on the warning fill, and the outline
-  "Remind me later" label is `fg-warning` (Flowbite's `fg-warning-subtle` is under 4.5:1). Every
+  "Remind me later" label is `fg-warning` (`fg-warning-subtle` would be under 4.5:1). Every
   pairing passes WCAG 2.2 AA in light and dark.
 - The progress bar is a [`Progress`](/components/progress) with `role="progressbar"`, a name and
   its value; the visible "75%" is hidden from assistive technology so it isn't read twice.
-- The danger and warning titles are `h4`s to fit this page's outline (Flowbite uses `h3`).
+- The danger and warning titles are `h4`s to fit this page's outline.
 
 | Key                                 | Action                       |
 | ----------------------------------- | ---------------------------- |

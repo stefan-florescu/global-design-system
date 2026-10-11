@@ -32,7 +32,7 @@ import { Button } from "@stefan-florescu/ui";
 
 ### Default
 
-Flowbite's button set. Choose the variant by the intent of the action: `brand` is the main call to
+Choose the variant by the intent of the action: `brand` is the main call to
 action, `secondary` and `tertiary` support it, and `success`, `danger` and `warning` carry status.
 
 <ComponentPreview name="button-variants" />
@@ -63,7 +63,7 @@ Add `outline` to show the colour only on the border and label; the button fills 
 
 ### Sizes
 
-Five sizes, from `xs` to `xl`. `md` (Flowbite's "base") is the default.
+Five sizes, from `xs` to `xl`. `md` is the default.
 
 <ComponentPreview name="button-sizes" />
 
@@ -108,7 +108,7 @@ no visible text, so it **must** have an `aria-label`.
 
 `loading` shows a [spinner](/components/spinner), disables the button and sets `aria-busy`, while
 keeping its colours. The spinner is drawn in the label colour, or in `brand` on the secondary,
-tertiary and ghost buttons, as in Flowbite's loader buttons.
+tertiary and ghost buttons.
 Keep the label so screen readers still announce what is happening. The spinner stops when the user
 prefers reduced motion.
 
@@ -140,11 +140,11 @@ Use a link for navigation and a button for actions. If a link must look like a b
 
 - Renders a native `<button>`. The default `type="button"` means it never submits a form by accident.
 - Reachable with <Kbd>Tab</Kbd>; activates with <Kbd>Enter</Kbd> and <Kbd>Space</Kbd>.
-- Focus shows Flowbite's soft halo. Keyboard focus (`:focus-visible`) also draws a solid 2px `ring`
+- Focus shows a soft halo. Keyboard focus (`:focus-visible`) also draws a solid 2px `ring`
   outline, because the halo alone is under 3:1 against the page.
 - Every label and fill pairing is checked against WCAG 2.2 AA in light and dark on each token
-  build. Two differ from Flowbite to pass: the `warning` label is dark instead of white, and outline
-  labels use the `fg-success`, `fg-danger` and `fg-warning` text colours.
+  build. The `warning` label is dark rather than white so it passes, and outline labels use the
+  `fg-success`, `fg-danger` and `fg-warning` text colours.
 - Icon-only buttons **must** have an `aria-label`. Decorative icons are `aria-hidden`.
 - While loading, the button is disabled and `aria-busy="true"`; the spinner is hidden from
   assistive technology.

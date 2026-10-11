@@ -54,13 +54,10 @@ Use `variant` to pick the colour and `className` to space the dots.
 | `danger`  | `danger`             | `danger-foreground`  |
 | `warning` | `warning`            | `warning-foreground` |
 
-Flowbite also shows purple, indigo and teal dots. Those single-colour fills have no role in our
-tokens, so they are left out.
-
 ### Legend indicator
 
 Use an inline indicator as a legend for charts, with the text next to it. Here `size="sm"` gives
-Flowbite's 10px legend dot. The text names the series, so the dot stays decorative.
+a 10px legend dot. The text names the series, so the dot stays decorative.
 
 <ComponentPreview name="indicator-legend" />
 
@@ -129,14 +126,13 @@ For a custom offset, leave `placement` out and position it yourself, for example
   number is then hidden and the label is read in its place.
 - Don't rely on colour alone (WCAG 1.4.1): pair a dot with visible text (a legend, a badge
   label) or with a `label`. An icon inside an indicator is decorative; mark it `aria-hidden`.
-- Flowbite's counts use white text on `danger`; ours use each variant's `*-foreground` token,
-  which is checked against its fill on every token build.
+- Counts use each variant's `*-foreground` token, which is checked against its fill on every
+  token build.
 - The loading and spinner examples use `role="status"`, and their animations stop when the user
   prefers reduced motion.
 - `placement` uses logical sides, so `start` and `end` flip in right-to-left layouts.
-- Flowbite's stepper example puts the step names in `h3` elements and draws its connecting line
-  in `bg-base`, a colour Flowbite v4 doesn't define, so the line is invisible on flowbite.com.
-  Ours uses paragraphs (so the page outline stays intact) and draws the line in `default`.
+- The stepper example puts the step names in paragraphs, so the page outline stays intact, and
+  draws its connecting line in `default`.
 
 ## API Reference
 

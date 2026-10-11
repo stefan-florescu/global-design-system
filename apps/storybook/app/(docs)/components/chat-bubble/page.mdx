@@ -160,17 +160,16 @@ readers announce new messages as they arrive.
   <Kbd>Arrow Down</Kbd> open it on the first action (<Kbd>Arrow Up</Kbd> on the last), the arrow
   keys, <Kbd>Home</Kbd>, <Kbd>End</Kbd> and typing move between actions, and choosing one or
   pressing <Kbd>Esc</Kbd> closes it and returns focus to the button. Keyboard focus shows a solid
-  `ring` outline as well as Flowbite's halo. Flowbite's dots dropdown is a list of links with no
-  menu roles or arrow-key support.
+  `ring` outline as well as a soft halo.
 - Image download buttons also appear when they receive keyboard focus, not only on hover, and every
-  icon-only button has a name, such as "Pause voice note" or "Download Flowbite Terms &
-  Conditions". Flowbite's "Download image" tooltips on the image download buttons are
+  icon-only button has a name, such as "Pause voice note" or "Download Stefan DS Terms &
+  Conditions". The "Download image" tooltips on the image download buttons are
   [`Tooltip`](/components/tooltips)s that describe the button, so screen readers read the specific
   name first ("Download Green hills at noon") and the tooltip after it. They open on hover and on
   keyboard focus, and <Kbd>Escape</Kbd> hides them.
 - Text uses `heading` and `body` on `neutral-secondary-soft`, pairings that pass WCAG 2.2 AA in
-  both themes. Flowbite's white labels on images use `dark-foreground`, and the hover overlay uses
-  `dark-backdrop` instead of a raw gray.
+  both themes. Labels on images use `dark-foreground`, and the hover overlay uses the
+  `dark-backdrop` token.
 
 ## API Reference
 
@@ -200,7 +199,7 @@ All other `<div>` attributes are forwarded, including `ref` and `className`.
 | `onOpenChange` | `(open: boolean) => void`                               | —                   |
 | `children`     | `ChatBubbleMenuItem` elements                           | —                   |
 
-Other attributes go to the menu (`DropdownMenu`, `w-40` like Flowbite's). `ChatBubbleMenuItem` is
+Other attributes go to the menu (`DropdownMenu`, `w-40` wide). `ChatBubbleMenuItem` is
 a `DropdownItem`: a `menuitem` button, or a link with `href`, that closes the menu when chosen. It
 takes every `DropdownItem` prop, such as `onClick`, `variant="danger"` or `disabled`. Other
 `Dropdown` parts, such as `DropdownDivider`, can go between the items.

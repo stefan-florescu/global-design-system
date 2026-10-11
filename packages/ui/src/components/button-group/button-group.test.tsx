@@ -55,7 +55,7 @@ describe("ButtonGroup", () => {
     );
   });
 
-  it("restyles the buttons as Flowbite's outline group", () => {
+  it("restyles the buttons as an outline group", () => {
     render(<ButtonGroup aria-label="Actions" outline />);
     expect(screen.getByRole("group")).toHaveClass(
       "*:border-dark-strong",

@@ -23,7 +23,7 @@ import {
 } from "./datepicker.variants";
 
 export type DatepickerFieldOptions = DatepickerPopoverVariantProps & {
-  /** Display and typing format, with Flowbite's tokens (`mm/dd/yyyy`, `dd-mm-yyyy`, `MM d, yyyy`…). */
+  /** Display and typing format, with format tokens (`mm/dd/yyyy`, `dd-mm-yyyy`, `MM d, yyyy`…). */
   format?: string;
   /** BCP 47 locale for month and weekday names. Defaults to the browser's. */
   locale?: string;
@@ -47,7 +47,7 @@ type DatepickerFieldProps = DatepickerFieldOptions &
   };
 
 /**
- * Flowbite's datepicker input: a text field with a calendar icon that opens a calendar dialog.
+ * The datepicker input: a text field with a calendar icon that opens a calendar dialog.
  * Internal: used by Datepicker and DateRangePicker. Follows the WAI-ARIA date picker combobox:
  * type a date, or press the field or Arrow Down to open the calendar; Escape closes it.
  */

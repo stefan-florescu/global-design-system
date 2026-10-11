@@ -1,7 +1,7 @@
 {
   "name": "Input",
   "status": "beta",
-  "description": "Flowbite's input field: a single-line text field with sizes, icons, addons, field groups and validation states.",
+  "description": "An input field: a single-line text field with sizes, icons, addons, field groups and validation states.",
   "category": "forms",
   "import": "import { HelperText, Input, Label } from \"@stefan-florescu/ui\";",
   "ariaPattern": null,

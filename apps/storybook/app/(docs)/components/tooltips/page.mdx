@@ -53,7 +53,7 @@ or focus leaves, or when you press <Kbd>Escape</Kbd>.
 
 ### Tooltip styles
 
-Set `variant` to `dark` (the default) or `light` (Flowbite's `data-tooltip-style`).
+Set `variant` to `dark` (the default) or `light`.
 
 <ComponentPreview name="tooltip-styles" />
 
@@ -75,9 +75,9 @@ and closes when focus moves away or you press outside it.
 
 ### Animation
 
-The tooltip fades in with Flowbite's `transition-opacity duration-300`. Set `animation` to another
-Tailwind `duration-*` class, as this example does with `duration-1000`, or to `false` to show it at
-once. The fade is switched off when the user prefers reduced motion.
+The tooltip fades in with `transition-opacity duration-300`. Set `animation` to another Tailwind
+`duration-*` class, as this example does with `duration-1000`, or to `false` to show it at once. The
+fade is switched off when the user prefers reduced motion.
 
 <ComponentPreview name="tooltip-animation" />
 
@@ -119,11 +119,8 @@ A tooltip either **describes** an element that already has a name, or **names** 
   assistive technology.
 - The dark tooltip's `dark-foreground` text on `dark` and the light tooltip's `heading` text on
   `neutral-primary-medium` pass WCAG 2.2 AA in both themes.
-- Differences from Flowbite: Flowbite's tooltip can't be dismissed with <Kbd>Escape</Kbd> unless
-  focused, hides as soon as the pointer leaves the trigger (so it can't be hovered), and opens on
-  any focus. Its click tooltip opens on focus too and doesn't close on a second click; here a click
-  tooltip toggles with the click. The "Animation" example uses `duration-1000` instead of Flowbite's
-  `duration-300` (the default here), so the fade can be seen.
+- A click tooltip doesn't open on focus; it opens and closes with the click. The "Animation" example
+  uses `duration-1000` instead of the default `duration-300`, so the fade can be seen.
 
 | Key                                 | Action                                                             |
 | ----------------------------------- | ------------------------------------------------------------------ |
@@ -141,7 +138,7 @@ Also takes `div` props and `ref`, applied to the tooltip.
 | -------------- | ----------------------------------------------------------------------------------------- | ---------------- |
 | `content`      | `ReactNode`. Short text the tooltip shows. Required.                                      | —                |
 | `children`     | `ReactElement`. The trigger: one focusable element. Its props and `ref` are kept.         | —                |
-| `variant`      | `"dark" \| "light"` (Flowbite's `style`)                                                  | `"dark"`         |
+| `variant`      | `"dark" \| "light"`                                                                       | `"dark"`         |
 | `placement`    | `"top" \| "right" \| "bottom" \| "left"`, optionally with `-start` or `-end`, or `"auto"` | `"top"`          |
 | `trigger`      | `"hover" \| "click"`                                                                      | `"hover"`        |
 | `mode`         | `"description" \| "label"`. Whether the tooltip describes or names the trigger.           | `"description"`  |

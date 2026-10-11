@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import { Badge } from "./badge";
 
 describe("Badge", () => {
-  it("renders its label with Flowbite's brand badge by default", () => {
+  it("renders its label as a brand badge by default", () => {
     render(<Badge>New</Badge>);
     expect(screen.getByText("New")).toHaveClass(
       "bg-brand-softer",
@@ -39,7 +39,7 @@ describe("Badge", () => {
     expect(screen.getByText("Label")).not.toHaveClass("border");
   });
 
-  it("renders a link with Flowbite's hover fill when given href", () => {
+  it("renders a link with a hover fill when given href", () => {
     render(
       <Badge href="/changelog" variant="success">
         Changelog

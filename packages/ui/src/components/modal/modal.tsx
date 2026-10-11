@@ -74,12 +74,12 @@ export type ModalProps = {
   defaultOpen?: boolean;
   /** Called when the modal asks to open or close: trigger, close buttons, Escape, backdrop. */
   onOpenChange?: (open: boolean) => void;
-  /** The maximum width, as Flowbite's `max-w-*` sizes. */
+  /** The maximum width, as `max-w-*` sizes. */
   size?: ModalSize;
   /** Where the modal sits on the screen. */
   placement?: ModalPlacement;
   /**
-   * Close when the backdrop is clicked. Set it to `false` for Flowbite's static modal, which
+   * Close when the backdrop is clicked. Set it to `false` for a static modal, which
    * only closes from its own buttons or Escape.
    */
   dismissible?: boolean;
@@ -193,7 +193,7 @@ export function ModalContent({ className, children, ref, ...props }: ModalConten
 
 export type ModalHeaderProps = ComponentProps<"div">;
 
-/** Flowbite's heading row: a `ModalTitle` and a `ModalClose`, over a divider. */
+/** The heading row: a `ModalTitle` and a `ModalClose`, over a divider. */
 export function ModalHeader({ className, ...props }: ModalHeaderProps) {
   return (
     <div data-slot="modal-header" className={cn(modalHeaderClassName, className)} {...props} />
@@ -248,7 +248,7 @@ export type ModalCloseProps = ComponentProps<"button"> & {
 };
 
 /**
- * Closes the modal. By default Flowbite's × button in the header; with `asChild`, any button you
+ * Closes the modal. By default the × button in the header; with `asChild`, any button you
  * pass, such as "Decline" or "Cancel" in the footer.
  */
 export function ModalClose({

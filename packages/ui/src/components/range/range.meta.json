@@ -1,7 +1,7 @@
 {
   "name": "Range",
   "status": "beta",
-  "description": "Flowbite's range slider: a native slider with a brand thumb, in three sizes.",
+  "description": "A range slider: a native slider with a brand thumb, in three sizes.",
   "category": "forms",
   "import": "import { Range } from \"@stefan-florescu/ui\";",
   "ariaPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/slider/",

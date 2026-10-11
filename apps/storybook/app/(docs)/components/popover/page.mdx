@@ -53,7 +53,7 @@ as the "Image popover" example does.
 ## Default popover
 
 Press the button to show the popover; press it again, press <Kbd>Escape</Kbd> or click outside to
-hide it. `PopoverHeader` is Flowbite's grey title bar and `PopoverBody` the padded content under
+hide it. `PopoverHeader` is a grey title bar and `PopoverBody` the padded content under
 it. The first `PopoverTitle` names the popover for screen readers.
 
 <ComponentPreview name="popover-demo" />
@@ -70,7 +70,7 @@ button has keyboard focus.
 
 This example shows more information about a company profile. The ⋯ button opens a
 [`Dropdown`](/components/dropdown) from inside the popover, and the friends use `AvatarGroup`.
-Flowbite's logo is replaced by an icon, as we don't ship brand logos.
+The company logo is an icon, as there are no brand logos in the icon set.
 
 <ComponentPreview name="popover-company-profile" />
 
@@ -130,7 +130,7 @@ example uses 30.
 
 ## Animation
 
-The popover fades in with Flowbite's `transition-opacity duration-300`. Change it with Tailwind
+The popover fades in with `transition-opacity duration-300`. Change it with Tailwind
 utilities in `className`: this example also grows from 95% with `starting:open:scale-95` over
 500ms. Animations are switched off when the user prefers reduced motion.
 
@@ -160,14 +160,10 @@ Set `arrow={false}` to hide the arrow.
   a tap opens them too, for touch screens.
 - The fade (and the scale of the "Animation" example) is dropped when the user prefers reduced
   motion. The arrow is decorative and hidden from assistive technology.
-- Differences from Flowbite: Flowbite's popover is a `role="tooltip"` that only opens with the
-  pointer or focus and can't be closed with <Kbd>Escape</Kbd>; its interactive content can't be
-  reached by keyboard. Here it is a dialog with the behaviour above. Our default trigger is `click`
-  (flowbite-react's default) rather than Flowbite's `hover`. The "Progress popover" bar shows the
-  80% that its text describes (30 of 150 GB left) instead of 85%, the "Password strength" bars and
-  rules follow what is typed, the "Image popover" uses an illustration instead of a map of Italy, and
-  the "Company profile" shows an icon instead of the Flowbite logo. The popover fades in but closes
-  at once.
+- The popover is a dialog, not a tooltip, so its links and buttons can be reached by keyboard. The
+  default trigger is `click`. The "Progress popover" bar shows the 80% that its text describes (30
+  of 150 GB left), and the "Password strength" bars and rules follow what is typed. The popover
+  fades in but closes at once.
 
 | Key                                 | Action                                                                                  |
 | ----------------------------------- | --------------------------------------------------------------------------------------- |
@@ -195,6 +191,6 @@ Also takes `div` props and `ref`, applied to the popover box.
 
 ### PopoverHeader, PopoverTitle and PopoverBody
 
-`PopoverHeader` is Flowbite's title bar and forwards `div` props. `PopoverTitle` is an `h3` that
+`PopoverHeader` is the grey title bar and forwards `div` props. `PopoverTitle` is an `h3` that
 names the popover (the first one does) and forwards `h3` props. `PopoverBody` is the padded content
 under the header and forwards `div` props. Change their spacing or weight with `className`.

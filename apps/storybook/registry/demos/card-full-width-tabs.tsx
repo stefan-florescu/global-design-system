@@ -48,7 +48,7 @@ export default function CardFullWidthTabs() {
   return (
     <Card className="bg-neutral-primary w-full *:p-0">
       <Tabs value={value} onValueChange={setValue}>
-        {/* Below `sm` a select replaces the tabs, as in Flowbite. */}
+        {/* Below `sm` a select replaces the tabs. */}
         <div className="sm:hidden">
           <Label htmlFor={`${id}-tab`} className="sr-only">
             Select tab
@@ -128,12 +128,12 @@ export default function CardFullWidthTabs() {
                 </p>
               </AccordionContent>
             </AccordionItem>
-            <AccordionItem value="flowbite">
-              <AccordionTrigger>How does it relate to Flowbite?</AccordionTrigger>
+            <AccordionItem value="accessibility">
+              <AccordionTrigger>Is it accessible?</AccordionTrigger>
               <AccordionContent>
                 <p>
-                  It follows Flowbite&apos;s anatomy and examples, on semantic tokens that pass WCAG
-                  2.2 AA in both themes.
+                  Yes. Every component follows the WAI-ARIA patterns, on semantic tokens that pass
+                  WCAG 2.2 AA in both themes.
                 </p>
               </AccordionContent>
             </AccordionItem>

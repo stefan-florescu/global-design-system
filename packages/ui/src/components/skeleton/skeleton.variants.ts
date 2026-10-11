@@ -1,10 +1,9 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 /*
- * Flowbite v4 skeletons, class for class (https://flowbite.com/docs/components/skeleton/), on our
- * semantic tokens. `Skeleton` is the `role="status"` wrapper that pulses; the placeholders inside
- * are decorative blocks in `neutral-quaternary` (or `default`, Flowbite's subtler fill in its list
- * and testimonial examples). The pulse stops when the user prefers reduced motion.
+ * Skeletons on our semantic tokens. `Skeleton` is the `role="status"` wrapper that pulses; the
+ * placeholders inside are decorative blocks in `neutral-quaternary` (or `default`, a subtler fill
+ * for the list and testimonial layouts). The pulse stops when the user prefers reduced motion.
  */
 export const skeletonVariants = cva("", {
   variants: {

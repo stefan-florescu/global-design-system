@@ -1,10 +1,9 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 /*
- * Flowbite v4's search bar (https://flowbite.com/docs/forms/search-input/): the shared field with
- * a 16px search icon and, optionally, a small brand button inside the field's end. With a button
- * the field grows one padding step (Flowbite's `p-3` at the base size) so the button keeps a
- * 6px inset, and reserves room at the end so text never runs under it.
+ * Search bar: the shared field with a 16px search icon and, optionally, a small brand button inside
+ * the field's end. With a button the field grows one padding step (`p-3` at the base size) so the
+ * button keeps a 6px inset, and reserves room at the end so text never runs under it.
  */
 export const searchInputFieldVariants = cva("", {
   variants: {
@@ -18,7 +17,7 @@ export const searchInputFieldVariants = cva("", {
   defaultVariants: { size: "md" },
 });
 
-/** Flowbite's inline submit button: `absolute end-1.5 bottom-1.5 … rounded text-xs px-3 py-1.5`. */
+/** The inline submit button: `absolute end-1.5 bottom-1.5 … rounded text-xs px-3 py-1.5`. */
 export const searchInputButtonVariants = cva("absolute top-1/2 -translate-y-1/2 rounded", {
   variants: {
     size: {

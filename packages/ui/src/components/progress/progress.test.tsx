@@ -82,7 +82,7 @@ describe("Progress", () => {
     const { container } = render(
       <Progress
         value={45}
-        textLabel="Flowbite"
+        textLabel="Stefan DS"
         labelText
         textLabelPosition="outside"
         labelProgress
@@ -91,9 +91,9 @@ describe("Progress", () => {
     );
     const row = container.querySelector("[data-slot=progress-label]");
     expect(row).toHaveAttribute("aria-hidden", "true");
-    expect(row).toHaveTextContent("Flowbite45%");
+    expect(row).toHaveTextContent("Stefan DS45%");
     expect(row).toHaveClass("text-sm", "font-medium", "text-body", "justify-between");
-    const bar = screen.getByRole("progressbar", { name: "Flowbite" });
+    const bar = screen.getByRole("progressbar", { name: "Stefan DS" });
     expect(bar).toHaveClass("h-2");
     expect(bar).not.toHaveTextContent("45%");
   });

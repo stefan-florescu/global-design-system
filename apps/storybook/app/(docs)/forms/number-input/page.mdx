@@ -47,8 +47,8 @@ A `PhoneInput` with a country-code select. See [Phone Input](/forms/phone-input)
 
 ### Control buttons
 
-`stepper` adds − and + buttons that share the field's border: our secondary `Button`, 40px tall like
-Flowbite's. They respect `min`, `max` and `step`, and turn disabled at the limits.
+`stepper` adds − and + buttons that share the field's border: our secondary `Button`, 40px tall.
+They respect `min`, `max` and `step`, and turn disabled at the limits.
 
 <ComponentPreview name="number-input-stepper" />
 
@@ -74,8 +74,7 @@ An amount field joined to a currency `Select` with the field group helpers from
 
 ### Credit card input
 
-Card number, expiry date and security code. Flowbite shows the Visa logo; we use a generic card icon
-and leave brand logos out.
+Card number, expiry date and security code, with a generic card icon rather than a brand logo.
 
 <ComponentPreview name="number-input-credit-card" />
 
@@ -111,9 +110,8 @@ Several steppers with captions, for booking forms.
 <ComponentPreview name="number-input-min-max" />
 
 <Callout title="Native selects instead of dropdown menus">
-  Flowbite opens dropdown menus with flags and coin logos from buttons. We use native `<select>`
-  elements styled like Flowbite's dropdown button; they work with the keyboard, screen readers and
-  mobile pickers without extra script, and show text only.
+  These examples use native `<select>` elements styled like a dropdown button; they work with the
+  keyboard, screen readers and mobile pickers without extra script, and show text only.
 </Callout>
 
 ## Accessibility
@@ -122,11 +120,11 @@ Several steppers with captions, for booking forms.
   <Kbd>↓</Kbd> change the value by `step`.
 - The − and + buttons are named by `decrementLabel` and `incrementLabel` ("Decrease", "Increase"),
   point at the field with `aria-controls`, and are disabled at `min` and `max`.
-- Differences from Flowbite, for WCAG 2.2 AA:
-  - Flowbite removes the counter field's focus ring; ours keeps the solid `ring` outline for
-    keyboard focus. Every button also draws it around Flowbite's soft halo.
-  - Flowbite's control-button field falls back to black 16px text; ours uses the `heading` colour
-    and the field's 14px text, so it stays readable in dark mode.
+- For WCAG 2.2 AA:
+  - The counter field keeps the solid `ring` outline for keyboard focus. Every button also draws
+    it around its soft halo.
+  - The control-button field uses the `heading` colour and the field's 14px text, so it stays
+    readable in dark mode.
 - Counter buttons are 24×24px, the WCAG 2.5.8 minimum target size.
 
 ## API Reference

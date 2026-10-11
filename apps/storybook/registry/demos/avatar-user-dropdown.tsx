@@ -15,7 +15,7 @@ export default function AvatarUserDropdown() {
       <DropdownMenu className="p-0">
         <div className="border-default-medium text-heading border-b px-4 py-3 text-sm font-normal">
           <div className="font-medium">Bonnie Green</div>
-          <div className="truncate">name@flowbite.com</div>
+          <div className="truncate">name@example.com</div>
         </div>
         <div className="p-2">
           <DropdownItem className="rounded-md">Dashboard</DropdownItem>

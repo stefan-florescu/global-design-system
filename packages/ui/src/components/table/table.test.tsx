@@ -81,7 +81,7 @@ describe("Table", () => {
     expect(container.querySelector("thead tr tr")).toBeNull();
   });
 
-  it("draws Flowbite's bordered card by default", () => {
+  it("draws the bordered card by default", () => {
     render(<Products />);
     const card = screen.getByRole("table").closest("[data-slot='table-container']");
     expect(card).toHaveClass(
@@ -128,7 +128,7 @@ describe("Table", () => {
     expect(table).toHaveAttribute("data-head", "bar");
   });
 
-  it("uses Flowbite's brand colours with variant='brand'", () => {
+  it("uses the brand colours with variant='brand'", () => {
     render(<Products variant="brand" />);
     const table = screen.getByRole("table");
     expect(table).toHaveClass(

@@ -28,10 +28,10 @@ import {
 } from "@stefan-florescu/ui";
 import { useId, useState } from "react";
 
-/* Flowbite's round call buttons: `p-2.5` around a 16px icon. Pressed toggles keep the hover fill. */
+/* Round call buttons: `p-2.5` around a 16px icon. Pressed toggles keep the hover fill. */
 const callButton =
   "size-auto p-2.5 [&_svg]:size-4 aria-pressed:bg-neutral-secondary-medium aria-pressed:text-heading";
-/* Flowbite's borderless icon buttons on the right of the bar. */
+/* Borderless icon buttons on the right of the bar. */
 const toolButton = "me-1 text-body hover:bg-neutral-tertiary-medium hover:text-heading";
 
 export default function BottomNavigationMeeting() {

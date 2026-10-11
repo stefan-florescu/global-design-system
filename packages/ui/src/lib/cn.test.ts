@@ -10,7 +10,7 @@ describe("cn", () => {
     expect(cn("px-2", "px-4")).toBe("px-4");
   });
 
-  it("knows Flowbite's rounded-base radius", () => {
+  it("knows the rounded-base radius", () => {
     expect(cn("rounded-base", "rounded-full")).toBe("rounded-full");
   });
 });

@@ -94,20 +94,20 @@ of icon buttons.
 ### Single pagination
 
 `layout="single"` shows the position ("1 of 99") between icon-only previous and next buttons.
-`showTooltips` adds Flowbite's "Previous" and "Next" tooltips to them.
+`showTooltips` adds "Previous" and "Next" tooltips to them.
 
 <ComponentPreview name="pagination-single" />
 
 ### With ellipsis
 
-Not in Flowbite. For long ranges, `showEllipsis` always lists the first and last page and replaces
+For long ranges, `showEllipsis` always lists the first and last page and replaces
 the gaps with an ellipsis. `siblingCount` sets how many pages surround the current one.
 
 <ComponentPreview name="pagination-ellipsis" />
 
 ### As links
 
-Not in Flowbite. `getPageHref` renders every control as a link, so pages can be opened in a new
+`getPageHref` renders every control as a link, so pages can be opened in a new
 tab and crawled. `onPageChange` still runs on click, with the event, so a client-side router can
 call `preventDefault()` and push the URL itself.
 
@@ -118,27 +118,26 @@ call `preventDefault()` and push the URL itself.
 - Renders a `<nav>` landmark named "Pagination" (change it with `aria-label`, for example "Search
   results", when a page has more than one) holding a list of controls.
 - The current page has `aria-current="page"`. Page controls are named "Page 3" and so on (change
-  it with `getPageLabel`); Flowbite announces only the number.
+  it with `getPageLabel`), not just the number.
 - Previous and next are real disabled states at the ends of the range: disabled `<button>`s, or,
   for links, an element with `role="link"` and `aria-disabled="true"` and no `href`, so it leaves
-  the tab order. Flowbite never disables them.
+  the tab order.
 - Icon-only previous and next keep their label as visually hidden text; the chevrons and arrows are
   hidden from assistive technology and flip in right-to-left layouts.
 - The table summary ("Showing 11 to 20 of 100 Entries") and the single layout's "1 of 99" are
   polite live regions, so the new position is announced after previous or next is pressed.
 - Every control draws the solid `ring` outline on keyboard focus and moves to the `z.raised` layer,
-  so joined neighbours never cover it. Flowbite removes the outline (`focus:outline-none`).
-- In "Single pagination" Flowbite's middle "1 of 99" is a button that does nothing; here it is
-  text.
-- Flowbite's "Previous" and "Next" tooltips on the icon buttons ("Single pagination", "Select input
-  and buttons") are [`Tooltip`](/components/tooltips)s in label mode: they name the buttons, so
+  so joined neighbours never cover it.
+- In "Single pagination" the middle "1 of 99" is text, not a button.
+- The "Previous" and "Next" tooltips on the icon buttons ("Single pagination", "Select input and
+  buttons") are [`Tooltip`](/components/tooltips)s in label mode: they name the buttons, so
   screen readers say "Previous" once. Set `showTooltips` to add them to icon-only previous and next
   controls. They open on hover and on keyboard focus, and <Kbd>Escape</Kbd> hides them.
-- In "Select input and buttons" Flowbite shows the page count as the placeholder of a disabled
-  field; here it is the field's value, named "Total pages".
+- In "Select input and buttons" the page count is the value of a field named "Total pages", not a
+  placeholder.
 - The ellipsis is hidden from assistive technology; the page names around it say where the range
   jumps.
-- Disabled ends use Flowbite's disabled-button colours (`disabled`, `fg-disabled`), which are
+- Disabled ends use the disabled-button colours (`disabled`, `fg-disabled`), which are
   exempt from contrast minimums. Every other label passes WCAG 2.2 AA in both themes.
 
 ## API Reference

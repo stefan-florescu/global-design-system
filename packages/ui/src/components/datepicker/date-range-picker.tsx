@@ -39,7 +39,7 @@ export type DateRangePickerProps = DatepickerFieldOptions &
 const EMPTY: DateRange = { from: null, to: null };
 
 /**
- * Flowbite's date range picker: a start and an end field joined by "to". Each opens the same
+ * A date range picker: a start and an end field joined by "to". Each opens the same
  * range calendar and sets its own end of the range; the days between are highlighted.
  */
 export function DateRangePicker({

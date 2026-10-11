@@ -73,7 +73,7 @@ describe("BottomNavigation", () => {
     expect(screen.getByRole("list")).toHaveClass("divide-x");
   });
 
-  it("uses Flowbite's bar and item styles", () => {
+  it("uses the bar and item styles", () => {
     render(
       <BottomNavigation>
         <BottomNavigationItem href="/">Home</BottomNavigationItem>

@@ -8,7 +8,7 @@ export default function BreadcrumbSolid() {
         Home
       </BreadcrumbItem>
       <BreadcrumbItem href="/components">Projects</BreadcrumbItem>
-      <BreadcrumbItem>Flowbite</BreadcrumbItem>
+      <BreadcrumbItem>Stefan DS</BreadcrumbItem>
     </Breadcrumb>
   );
 }

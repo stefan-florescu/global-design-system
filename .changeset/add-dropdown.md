@@ -3,7 +3,7 @@
 "@stefan-florescu/icons": minor
 ---
 
-Add `Dropdown`, modelled on Flowbite's dropdowns and following the WAI-ARIA menu button pattern. It comes with:
+Add `Dropdown`, following the WAI-ARIA menu button pattern. It comes with:
 
 - `DropdownTrigger`, `DropdownMenu` and `DropdownContent` (a non-menu panel for forms, search and navigation);
 - `DropdownItem`, `DropdownCheckboxItem`, `DropdownRadioGroup` and `DropdownRadioItem`;

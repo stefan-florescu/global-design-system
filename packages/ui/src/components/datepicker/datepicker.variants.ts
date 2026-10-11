@@ -3,14 +3,13 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { focusOutline, focusOutlineInset } from "../../lib/focus";
 
 /*
- * Flowbite v4's datepicker (https://flowbite.com/docs/components/datepicker/), class for class
- * from the flowbite-datepicker templates: a `neutral-primary-medium` panel with a `default-medium`
- * border, arrow buttons and the month in the header, a 256px day grid of `body` days with a
- * `neutral-tertiary-medium` hover, and the selected day filled with `brand`.
- * Accessibility deviations:
+ * Datepicker: a `neutral-primary-medium` panel with a `default-medium` border, arrow buttons and
+ * the month in the header, a 256px day grid of `body` days with a `neutral-tertiary-medium`
+ * hover, and the selected day filled with `brand`.
+ * Accessibility:
  * - days outside the month use `body-subtle` instead of `fg-disabled`, which is under 4.5:1 while
  *   those days can still be picked (`fg-disabled` stays for days that can't);
- * - days are buttons with a solid `ring` outline for keyboard focus (Flowbite shows none);
+ * - days are buttons with a solid `ring` outline for keyboard focus;
  * - the "today" and "clear" buttons also draw the solid outline.
  */
 export const calendarClassName =
@@ -29,7 +28,7 @@ export const calendarNavButtonClassName = [
   "[&_svg]:size-4 [&_svg]:rtl:rotate-180",
 ].join(" ");
 
-/** Flowbite's month switch; here a label (the month and year). */
+/** The month and year, as a label. */
 export const calendarMonthLabelClassName =
   "rounded-base bg-neutral-primary-medium px-5 py-2.5 text-sm font-medium text-heading";
 
@@ -66,10 +65,10 @@ export const calendarDayVariants = cva(
 
 export const calendarFooterClassName = "mt-2 flex gap-2";
 
-/** Today and Clear: Flowbite's half-width `px-5 py-2` buttons. */
+/** Today and Clear: half-width `px-5 py-2` buttons. */
 export const calendarFooterButtonClassName = "w-1/2 px-5 shadow-none";
 
-/** The datepicker field: Flowbite's input with the calendar icon at the start. */
+/** The datepicker field: an input with the calendar icon at the start. */
 export const datepickerFieldClassName = "relative";
 
 export const datepickerIconClassName =

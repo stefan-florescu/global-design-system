@@ -14,11 +14,11 @@ export default function BreadcrumbDropdown() {
         <Dropdown>
           <DropdownTrigger variant="ghost" size="sm" chevron={false} className="[&_svg]:size-3.5">
             <GitBranch aria-hidden />
-            flowbite.com
+            example.com
             <ChevronDown aria-hidden />
           </DropdownTrigger>
           <DropdownMenu>
-            <DropdownItem className="rounded-md">themesberg.com</DropdownItem>
+            <DropdownItem className="rounded-md">example.com</DropdownItem>
             <DropdownItem className="rounded-md">ui.glass</DropdownItem>
             <DropdownItem className="rounded-md">iconscale</DropdownItem>
           </DropdownMenu>
@@ -43,7 +43,7 @@ export default function BreadcrumbDropdown() {
           <DropdownMenu>
             <DropdownItem className="rounded-md">databaseProd</DropdownItem>
             <DropdownItem className="rounded-md">databaseStaging</DropdownItem>
-            <DropdownItem className="rounded-md">flowbiteProd</DropdownItem>
+            <DropdownItem className="rounded-md">databaseTest</DropdownItem>
           </DropdownMenu>
         </Dropdown>
       </li>
