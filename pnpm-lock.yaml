@@ -78,6 +78,9 @@ importers:
       '@stefan-florescu/tailwind-config':
         specifier: workspace:*
         version: link:../../packages/config/tailwind
+      '@stefan-florescu/task-board':
+        specifier: workspace:*
+        version: link:../task-board
       '@stefan-florescu/typescript-config':
         specifier: workspace:*
         version: link:../../packages/config/typescript
