@@ -1,5 +1,6 @@
 "use client";
 
+import { LayoutGrid } from "@stefan-florescu/icons";
 import { SidebarCollapse, SidebarItem, SidebarItemGroup, SidebarItems } from "@stefan-florescu/ui";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -33,6 +34,10 @@ export function SiteNavItems({
                 </Link>
               </SidebarItem>
             ))}
+            {/* Back to the launcher, at the site root outside the base path (a plain <a>). */}
+            <SidebarItem href="/" icon={<LayoutGrid aria-hidden />}>
+              All apps
+            </SidebarItem>
           </SidebarItemGroup>
         </SidebarItems>
       ) : null}

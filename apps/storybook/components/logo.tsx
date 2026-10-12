@@ -1,6 +1,7 @@
 import { SwatchBook } from "@stefan-florescu/icons";
 import { Badge, NavbarBrand } from "@stefan-florescu/ui";
 
+import { basePath } from "@/lib/base-path";
 import { siteConfig } from "@/lib/site";
 
 /**
@@ -10,7 +11,8 @@ import { siteConfig } from "@/lib/site";
 export function Logo() {
   return (
     <div className="flex items-center gap-3">
-      <NavbarBrand href="/" name={siteConfig.shortName} logo={<SwatchBook aria-hidden />} />
+      {/* A plain <a>, so the base path is written out (see lib/base-path.ts). */}
+      <NavbarBrand href={basePath} name={siteConfig.shortName} logo={<SwatchBook aria-hidden />} />
       <Badge variant="brand" bordered>
         v{siteConfig.version}
       </Badge>

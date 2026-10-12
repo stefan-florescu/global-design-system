@@ -1,6 +1,13 @@
 "use client";
 
-import { Navbar, NavbarActions, NavbarCollapse, NavbarLink } from "@stefan-florescu/ui";
+import { LayoutGrid } from "@stefan-florescu/icons";
+import {
+  buttonVariants,
+  Navbar,
+  NavbarActions,
+  NavbarCollapse,
+  NavbarLink,
+} from "@stefan-florescu/ui";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -40,6 +47,13 @@ export function SiteHeader() {
           ))}
         </NavbarCollapse>
         <NavbarActions className="gap-1 md:gap-2">
+          {/* The launcher lives at the site root, outside this app's base path, so next/link (which
+              adds the base path) can't link to it. */}
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+          <a href="/" className={buttonVariants({ variant: "ghost", size: "sm" })}>
+            <LayoutGrid aria-hidden />
+            <span className="max-md:sr-only">All apps</span>
+          </a>
           <SearchCommand />
           <ThemeToggle />
         </NavbarActions>
