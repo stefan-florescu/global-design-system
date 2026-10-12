@@ -31,6 +31,9 @@ global-design-system/                 # "stefan-design-system"
 │       ├── components/               # Site chrome: header, search, theme toggle, TOC
 │       ├── registry/demos/           # Live examples rendered by <ComponentPreview>
 │       └── vercel.json
+│   └── launcher/                     # Home page linking to every app (Next.js 15)
+│       ├── lib/apps.ts               # App registry: one entry per launcher card
+│       └── components/               # Navbar, theme toggle, app card
 │
 ├── packages/
 │   ├── tokens/                       # @stefan-florescu/tokens   (published)

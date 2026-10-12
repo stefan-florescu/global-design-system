@@ -23,6 +23,7 @@ jobs:
             config
             docs
             storybook
+            launcher
             ci
             repo
             deps
