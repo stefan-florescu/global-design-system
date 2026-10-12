@@ -122,6 +122,8 @@ strikethrough.
   and don't put buttons or other links inside them: a link that contains a button is invalid
   HTML. The horizontal card is a plain card for this reason.
 - Link cards draw a solid `ring` outline on keyboard focus.
+- A link card that opens a new tab (`target="_blank"`) should say so, for example with visually
+  hidden text such as "(opens in a new tab)", so the change of context is not a surprise.
 - Images are decorative unless you pass `imgAlt`.
 - The profile card's menu button is named "Actions for Bonnie Green", so it says what it acts on,
   draws a solid focus outline, and opens a WAI-ARIA menu: see
@@ -136,6 +138,8 @@ strikethrough.
 | Prop         | Type      | Default |
 | ------------ | --------- | ------- |
 | `href`       | `string`  | —       |
+| `target`     | `string`  | —       |
+| `rel`        | `string`  | —       |
 | `horizontal` | `boolean` | `false` |
 | `imgSrc`     | `string`  | —       |
 | `imgAlt`     | `string`  | `""`    |

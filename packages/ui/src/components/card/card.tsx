@@ -15,6 +15,10 @@ export type CardProps = Omit<ComponentProps<"div">, "children"> &
   CardVariantProps & {
     /** Make the whole card a link. Keep its content short: everything inside is the link text. */
     href?: string;
+    /** Where the link opens, such as `_blank` for a new tab. Only used with `href`. */
+    target?: ComponentProps<"a">["target"];
+    /** The link's relationship to its target, such as `noopener noreferrer`. Only used with `href`. */
+    rel?: string;
     /** Image shown flush at the top, or on the left with `horizontal`. */
     imgSrc?: string;
     /** Alternative text for the image. Leave empty when the image is decorative. */
@@ -28,6 +32,8 @@ export type CardProps = Omit<ComponentProps<"div">, "children"> &
  */
 export function Card({
   href,
+  target,
+  rel,
   horizontal,
   imgSrc,
   imgAlt = "",
@@ -49,6 +55,8 @@ export function Card({
     return (
       <a
         href={href}
+        target={target}
+        rel={rel}
         data-slot="card"
         className={classes}
         {...(props as Omit<ComponentProps<"a">, "children">)}
