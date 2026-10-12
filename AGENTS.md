@@ -16,6 +16,7 @@ A token-driven, accessible, multi-theme React design system in a pnpm + Turborep
 | `packages/icons`    | `@stefan-florescu/icons`               | Governed wrapper over `lucide-react`                |
 | `packages/config/*` | `@stefan-florescu/*-config`            | Shared TS / ESLint / Tailwind presets               |
 | `apps/storybook`    | `@stefan-florescu/storybook` (private) | Docs website (Next.js 15, MDX, shadcn-style)        |
+| `apps/launcher`     | `@stefan-florescu/launcher` (private)  | Home page linking to every app (Next.js 15)         |
 
 Dependency direction is strictly **tokens → themes → ui → apps**. Never import "upward".
 
@@ -28,6 +29,8 @@ Dependency direction is strictly **tokens → themes → ui → apps**. Never im
   design-system components or design values.
 - `apps/storybook` (the docs website) keeps only website-specific code: header, navigation,
   table of contents, pager, search, page layouts, docs pages and live demos.
+- `apps/launcher` is the home page that links to every app. Register each app in
+  `apps/launcher/lib/apps.ts` so it shows up as a card.
 
 ### Creating a component
 
@@ -69,8 +72,9 @@ significant trade-offs as an ADR. Run the "Applying the principles" checklist be
 
 ```bash
 pnpm install            # Node >= 22, pnpm 10
-pnpm dev                # docs site + package watchers
+pnpm dev                # every app + package watchers
 pnpm dev:storybook      # docs site only, http://localhost:3000
+pnpm dev:launcher       # launcher only, http://localhost:3001
 pnpm build | lint | typecheck | test | format
 pnpm --filter @stefan-florescu/ui test
 pnpm changeset          # required for any change to a published package
