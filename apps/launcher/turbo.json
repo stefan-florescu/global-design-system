@@ -1,0 +1,12 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "env": ["DESIGN_SYSTEM_ORIGIN"]
+    },
+    "dev": {
+      "env": ["DESIGN_SYSTEM_ORIGIN"]
+    }
+  }
+}

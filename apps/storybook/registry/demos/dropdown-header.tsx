@@ -26,7 +26,7 @@ export default function DropdownHeaderDemo() {
       <DropdownTrigger>Dropdown button</DropdownTrigger>
       <DropdownMenu className="w-72">
         <DropdownHeader>
-          <Avatar src="/avatars/5.svg" alt="" size="sm" />
+          <Avatar src="/design-system/avatars/5.svg" alt="" size="sm" />
           <div>
             <div className="text-heading font-medium">Bonnie Green</div>
             <div className="text-body truncate">name@company.com</div>

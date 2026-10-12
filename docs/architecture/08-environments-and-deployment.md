@@ -80,7 +80,11 @@ One Vercel project, linked to this GitHub repo:
 
 Every PR gets a preview URL from the Vercel bot; `main` deploys to production.
 
-The launcher (`apps/launcher`) is a second Vercel project, linked to the same repo:
+The launcher (`apps/launcher`) is a second Vercel project, linked to the same repo. It is the
+public entry point: the docs site is served under its domain at `/design-system` (Next.js
+multi-zones). The docs site has `basePath: "/design-system"`, and the launcher rewrites
+`/design-system/*` to the docs project's production domain, so visitors only see
+`stefan-flo.vercel.app/design-system`.
 
 | Setting            | Value                                             |
 | ------------------ | ------------------------------------------------- |
@@ -89,6 +93,11 @@ The launcher (`apps/launcher`) is a second Vercel project, linked to the same re
 | Framework & build  | from `apps/launcher/vercel.json` (output `.next`) |
 | Ignored build step | `npx turbo-ignore` (in `vercel.json`)             |
 | Production branch  | `main`                                            |
+
+The launcher project needs one environment variable, for Production and Preview:
+`DESIGN_SYSTEM_ORIGIN`, the docs project's production domain (for example
+`https://sds-storybook.vercel.app`). Its Vercel build fails without it; locally it defaults to
+`http://localhost:3000`.
 
 Enable **Vercel Remote Cache** (Team → Settings → Remote Caching) and reuse it in CI via `TURBO_TOKEN`.
 

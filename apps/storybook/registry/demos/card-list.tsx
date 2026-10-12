@@ -1,11 +1,11 @@
 import { Avatar, Card, CardTitle } from "@stefan-florescu/ui";
 
 const customers = [
-  { name: "Neil Sims", avatar: "/avatars/1.svg", amount: "$320" },
-  { name: "Bonnie Green", avatar: "/avatars/3.svg", amount: "$3467" },
-  { name: "Michael Gough", avatar: "/avatars/2.svg", amount: "$67" },
-  { name: "Lana Byrd", avatar: "/avatars/4.svg", amount: "$367" },
-  { name: "Thomas Lean", avatar: "/avatars/5.svg", amount: "$2367" },
+  { name: "Neil Sims", avatar: "/design-system/avatars/1.svg", amount: "$320" },
+  { name: "Bonnie Green", avatar: "/design-system/avatars/3.svg", amount: "$3467" },
+  { name: "Michael Gough", avatar: "/design-system/avatars/2.svg", amount: "$67" },
+  { name: "Lana Byrd", avatar: "/design-system/avatars/4.svg", amount: "$367" },
+  { name: "Thomas Lean", avatar: "/design-system/avatars/5.svg", amount: "$2367" },
 ];
 
 export default function CardList() {

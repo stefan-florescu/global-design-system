@@ -3,7 +3,7 @@ import { Badge, buttonVariants, Card, CardTitle } from "@stefan-florescu/ui";
 
 export default function CardImage() {
   return (
-    <Card imgSrc="/images/landscape-1.svg" className="max-w-sm text-center">
+    <Card imgSrc="/design-system/images/landscape-1.svg" className="max-w-sm text-center">
       <Badge bordered>
         <Flame aria-hidden />
         Trending

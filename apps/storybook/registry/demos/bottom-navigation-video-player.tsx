@@ -41,7 +41,11 @@ export default function BottomNavigationVideoPlayer() {
         {/* The bar is the query container, so the layout follows its width. */}
         <div className="grid h-24 grid-cols-1 px-8 @2xl:grid-cols-3">
           <div className="me-auto hidden items-center justify-center @2xl:flex">
-            <img className="me-3 h-8 rounded-sm" src="/images/landscape-1.svg" alt="" />
+            <img
+              className="me-3 h-8 rounded-sm"
+              src="/design-system/images/landscape-1.svg"
+              alt=""
+            />
             <span className="text-body text-sm">Stefan DS Crash Course</span>
           </div>
           <div className="flex w-full items-center">

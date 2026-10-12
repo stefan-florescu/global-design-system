@@ -8,7 +8,7 @@ export default function ChatBubbleConversation() {
       className="flex w-full max-w-md flex-col gap-4"
     >
       <ChatBubble
-        avatar={<Avatar src="/avatars/1.svg" alt="" size="sm" />}
+        avatar={<Avatar src="/design-system/avatars/1.svg" alt="" size="sm" />}
         name="Ana Popescu"
         time="11:46"
         dateTime="2026-10-08T11:46"
@@ -17,7 +17,7 @@ export default function ChatBubbleConversation() {
       </ChatBubble>
       <ChatBubble
         align="end"
-        avatar={<Avatar src="/avatars/2.svg" alt="" size="sm" />}
+        avatar={<Avatar src="/design-system/avatars/2.svg" alt="" size="sm" />}
         name="Mihai Ionescu"
         time="11:48"
         dateTime="2026-10-08T11:48"

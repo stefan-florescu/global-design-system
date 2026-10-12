@@ -40,7 +40,7 @@ export default function MegaMenuImage() {
                 </MegaMenuGroup>
                 <div
                   className="bg-dark rounded-lg bg-cover bg-local bg-center bg-no-repeat p-8 bg-blend-multiply"
-                  style={{ backgroundImage: "url(/images/landscape-2.svg)" }}
+                  style={{ backgroundImage: "url(/design-system/images/landscape-2.svg)" }}
                 >
                   <p className="text-dark-foreground mb-5 max-w-xl leading-tight font-medium tracking-tight">
                     Preview the new Stefan dashboard navigation.

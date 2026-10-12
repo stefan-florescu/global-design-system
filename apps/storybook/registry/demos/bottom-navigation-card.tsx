@@ -3,7 +3,7 @@ import { BottomNavigation, BottomNavigationItem } from "@stefan-florescu/ui";
 
 const notifications = [
   {
-    avatar: "/avatars/1.svg",
+    avatar: "/design-system/avatars/1.svg",
     time: "a few moments ago",
     text: (
       <>
@@ -13,7 +13,7 @@ const notifications = [
     ),
   },
   {
-    avatar: "/avatars/2.svg",
+    avatar: "/design-system/avatars/2.svg",
     time: "10 minutes ago",
     text: (
       <>
@@ -23,7 +23,7 @@ const notifications = [
     ),
   },
   {
-    avatar: "/avatars/3.svg",
+    avatar: "/design-system/avatars/3.svg",
     time: "23 minutes ago",
     text: (
       <>
@@ -34,7 +34,7 @@ const notifications = [
     ),
   },
   {
-    avatar: "/avatars/4.svg",
+    avatar: "/design-system/avatars/4.svg",
     time: "23 minutes ago",
     text: (
       <>
@@ -44,7 +44,7 @@ const notifications = [
     ),
   },
   {
-    avatar: "/avatars/5.svg",
+    avatar: "/design-system/avatars/5.svg",
     time: "23 minutes ago",
     text: (
       <>

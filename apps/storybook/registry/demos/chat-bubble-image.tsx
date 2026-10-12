@@ -10,7 +10,7 @@ import {
 export default function ChatBubbleImage() {
   return (
     <ChatBubble
-      avatar={<Avatar src="/avatars/1.svg" alt="" size="sm" />}
+      avatar={<Avatar src="/design-system/avatars/1.svg" alt="" size="sm" />}
       name="Bonnie Green"
       time="11:46"
       dateTime="2026-10-08T11:46"
@@ -38,7 +38,11 @@ export default function ChatBubbleImage() {
             </button>
           </Tooltip>
         </div>
-        <img src="/images/landscape-2.svg" alt="Green hills at noon" className="rounded-base" />
+        <img
+          src="/design-system/images/landscape-2.svg"
+          alt="Green hills at noon"
+          className="rounded-base"
+        />
       </div>
     </ChatBubble>
   );

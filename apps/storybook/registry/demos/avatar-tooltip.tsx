@@ -1,9 +1,9 @@
 import { Avatar, Tooltip } from "@stefan-florescu/ui";
 
 const people = [
-  { name: "Jese Leos", src: "/avatars/1.svg" },
-  { name: "Roberta Casas", src: "/avatars/2.svg" },
-  { name: "Bonnie Green", src: "/avatars/3.svg" },
+  { name: "Jese Leos", src: "/design-system/avatars/1.svg" },
+  { name: "Roberta Casas", src: "/design-system/avatars/2.svg" },
+  { name: "Bonnie Green", src: "/design-system/avatars/3.svg" },
 ];
 
 const link =

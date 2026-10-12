@@ -6,7 +6,7 @@ const testimonials = [
     quote: "If you care for your time, I hands down would go with this.",
     name: "Bonnie Green",
     role: "Developer at Open AI",
-    avatar: "/avatars/3.svg",
+    avatar: "/design-system/avatars/3.svg",
     className: "border-b rounded-t-base md:rounded-t-none md:rounded-ss-base md:border-e",
   },
   {
@@ -15,7 +15,7 @@ const testimonials = [
       "Designing with Figma components that can be easily translated to the utility classes of Tailwind CSS is a huge timesaver!",
     name: "Roberta Casas",
     role: "Lead designer at Dropbox",
-    avatar: "/avatars/4.svg",
+    avatar: "/design-system/avatars/4.svg",
     className: "border-b md:rounded-se-base",
   },
   {
@@ -24,7 +24,7 @@ const testimonials = [
       "Aesthetically, the well designed components are beautiful and will undoubtedly level up your app.",
     name: "Jese Leos",
     role: "Software Engineer at Facebook",
-    avatar: "/avatars/1.svg",
+    avatar: "/design-system/avatars/1.svg",
     className: "border-b md:rounded-es-base md:border-b-0 md:border-e",
   },
   {
@@ -32,7 +32,7 @@ const testimonials = [
     quote: "You have many examples that can be used to create a fast prototype for your team.",
     name: "Joseph McFall",
     role: "CTO at Google",
-    avatar: "/avatars/2.svg",
+    avatar: "/design-system/avatars/2.svg",
     className: "rounded-b-base md:rounded-se-base",
   },
 ];

@@ -26,7 +26,7 @@ export default function BadgeAvatar() {
           onDismiss={() => setBadges((current) => current.filter((b) => b.variant !== variant))}
           dismissLabel={`Remove ${label}`}
         >
-          <img src="/avatars/1.svg" alt="" className="me-1 size-3.5 rounded-full" />
+          <img src="/design-system/avatars/1.svg" alt="" className="me-1 size-3.5 rounded-full" />
           {label}
         </Badge>
       ))}

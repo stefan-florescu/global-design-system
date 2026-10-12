@@ -29,8 +29,13 @@ Dependency direction is strictly **tokens → themes → ui → apps**. Never im
   design-system components or design values.
 - `apps/storybook` (the docs website) keeps only website-specific code: header, navigation,
   table of contents, pager, search, page layouts, docs pages and live demos.
-- `apps/launcher` is the home page that links to every app. Register each app in
-  `apps/launcher/lib/apps.ts` so it shows up as a card.
+- `apps/launcher` is a directory of websites: each card opens its site in a new tab. Register
+  each app in `apps/launcher/lib/apps.ts` so it shows up as a card.
+- Apps in this repo are served under a path on the launcher's domain (Next.js multi-zones): the
+  docs site has `basePath: "/design-system"` (`apps/storybook/lib/base-path.ts`) and the
+  launcher forwards `/design-system/*` to `DESIGN_SYSTEM_ORIGIN`. Links in the docs site use
+  `next/link`, which adds the base path; a plain `<a href>` or a public file path needs it
+  written out.
 
 ### Creating a component
 
@@ -73,7 +78,7 @@ significant trade-offs as an ADR. Run the "Applying the principles" checklist be
 ```bash
 pnpm install            # Node >= 22, pnpm 10
 pnpm dev                # every app + package watchers
-pnpm dev:storybook      # docs site only, http://localhost:3000
+pnpm dev:storybook      # docs site only, http://localhost:3000/design-system
 pnpm dev:launcher       # launcher only, http://localhost:3001
 pnpm build | lint | typecheck | test | format
 pnpm --filter @stefan-florescu/ui test

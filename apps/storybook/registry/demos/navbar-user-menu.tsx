@@ -27,7 +27,7 @@ export default function NavbarUserMenu() {
                 className="bg-neutral-primary focus:ring-neutral-tertiary focus-visible:outline-ring flex cursor-pointer rounded-full text-sm outline-hidden focus:ring-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-solid"
               >
                 <span className="sr-only">Open user menu</span>
-                <Avatar src="/avatars/5.svg" alt="" size="sm" />
+                <Avatar src="/design-system/avatars/5.svg" alt="" size="sm" />
               </button>
             </DropdownTrigger>
             <DropdownMenu className="p-0">
