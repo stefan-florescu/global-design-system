@@ -1,0 +1,18 @@
+@import "tailwindcss";
+@import "@stefan-florescu/ui/styles.css";
+
+/*
+ * Every colour, size and font in this app comes from @stefan-florescu/tokens via
+ * @stefan-florescu/ui/styles.css. Use the semantic Tailwind utilities (bg-brand, text-heading,
+ * text-body…) and never hard-code design values here.
+ */
+
+@layer base {
+  * {
+    @apply border-default;
+  }
+
+  body {
+    @apply bg-neutral-primary text-body font-sans antialiased;
+  }
+}

@@ -191,6 +191,70 @@ importers:
         specifier: ~5.9.3
         version: 5.9.3
 
+  apps/task-board:
+    dependencies:
+      '@fontsource-variable/inter':
+        specifier: ^5.3.0
+        version: 5.3.0
+      '@stefan-florescu/icons':
+        specifier: workspace:*
+        version: link:../../packages/icons
+      '@stefan-florescu/themes':
+        specifier: workspace:*
+        version: link:../../packages/themes
+      '@stefan-florescu/tokens':
+        specifier: workspace:*
+        version: link:../../packages/tokens
+      '@stefan-florescu/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      next:
+        specifier: ^15.5.27
+        version: 15.5.27(@types/node@22.20.5)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      next-themes:
+        specifier: ^0.4.6
+        version: 0.4.6(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      react:
+        specifier: ^19.2.0
+        version: 19.3.0
+      react-dom:
+        specifier: ^19.2.0
+        version: 19.3.0(react@19.3.0)
+    devDependencies:
+      '@stefan-florescu/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/config/eslint
+      '@stefan-florescu/tailwind-config':
+        specifier: workspace:*
+        version: link:../../packages/config/tailwind
+      '@stefan-florescu/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/config/typescript
+      '@tailwindcss/postcss':
+        specifier: ^4.3.3
+        version: 4.3.3
+      '@types/node':
+        specifier: ^22.18.0
+        version: 22.20.5
+      '@types/react':
+        specifier: ^19.2.0
+        version: 19.3.0
+      '@types/react-dom':
+        specifier: ^19.2.0
+        version: 19.3.0(@types/react@19.3.0)
+      eslint:
+        specifier: ^9.39.0
+        version: 9.39.5(jiti@2.7.0)
+      tailwindcss:
+        specifier: ^4.3.3
+        version: 4.3.3
+      typescript:
+        specifier: ~5.9.3
+        version: 5.9.3
+      vitest:
+        specifier: ^5.0.3
+        version: 5.0.3(@types/node@22.20.5)(jsdom@27.4.0)(vite@8.3.3(@types/node@22.20.5)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
+
   packages/config/eslint:
     dependencies:
       '@eslint/js':
