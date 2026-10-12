@@ -1,3 +1,4 @@
+import { SwatchBook } from "@stefan-florescu/icons";
 import {
   Footer,
   FooterBrand,
@@ -11,8 +12,6 @@ import { basePath } from "@/lib/base-path";
 import { mainNav } from "@/lib/navigation";
 import { siteConfig } from "@/lib/site";
 
-import { LogoMark } from "./logo-mark";
-
 /** The site's footer: the logo, the main links and the copyright line. */
 export function SiteFooter() {
   return (
@@ -22,7 +21,7 @@ export function SiteFooter() {
           <FooterBrand
             href={basePath}
             name={siteConfig.shortName}
-            logo={<LogoMark />}
+            logo={<SwatchBook aria-hidden />}
             className="mb-4 sm:mb-0"
           />
           <FooterLinkGroup aria-label="Footer">

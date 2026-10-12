@@ -1,6 +1,13 @@
 "use client";
 
-import { Navbar, NavbarActions, NavbarCollapse, NavbarLink } from "@stefan-florescu/ui";
+import { LayoutGrid } from "@stefan-florescu/icons";
+import {
+  buttonVariants,
+  Navbar,
+  NavbarActions,
+  NavbarCollapse,
+  NavbarLink,
+} from "@stefan-florescu/ui";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -12,9 +19,9 @@ import { SearchCommand } from "./search-command";
 import { ThemeToggle } from "./theme-toggle";
 
 /**
- * The site's banner: a sticky, translucent `Navbar` (the "Main" navigation landmark). From `lg`
- * the main links show in a row; below it they move into the menu drawer that the hamburger
- * (`MobileNav`) opens.
+ * The site's banner: a sticky `Navbar` (the "Main" navigation landmark) with the app's brand, in
+ * the same style as the other apps' headers. From `lg` the main links show in a row; below it they
+ * move into the menu drawer that the hamburger (`MobileNav`) opens.
  */
 export function SiteHeader() {
   const active = activeMainNav(usePathname());
@@ -25,15 +32,14 @@ export function SiteHeader() {
       <Navbar
         expand="lg"
         fluid
-        // The bar keeps the site's translucent, blurred look; its row (`*:`) matches the
-        // page container's width and gutters and the header height.
-        className="bg-neutral-primary/85 supports-[backdrop-filter]:bg-neutral-primary/70 backdrop-blur *:h-14 *:max-w-(--container-max) *:flex-nowrap *:gap-2 *:px-(--gutter) *:py-0 md:*:gap-4"
+        // The row (`*:`) lines up with the page container's width and gutters.
+        className="*:max-w-(--container-max) *:flex-nowrap *:gap-2 *:px-(--gutter) md:*:gap-4"
       >
         <div className="flex items-center gap-2">
           <MobileNav className="lg:hidden" />
           <Logo />
         </div>
-        <NavbarCollapse className="lg:ms-4 lg:me-auto" listClassName="text-sm lg:gap-6">
+        <NavbarCollapse className="lg:ms-8 lg:me-auto">
           {mainNav.map((item) => (
             <NavbarLink key={item.href} asChild active={active === item.href}>
               <Link href={item.href}>{item.title}</Link>
@@ -41,6 +47,13 @@ export function SiteHeader() {
           ))}
         </NavbarCollapse>
         <NavbarActions className="gap-1 md:gap-2">
+          {/* The launcher lives at the site root, outside this app's base path, so next/link (which
+              adds the base path) can't link to it. */}
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+          <a href="/" className={buttonVariants({ variant: "ghost", size: "sm" })}>
+            <LayoutGrid aria-hidden />
+            <span className="max-md:sr-only">All apps</span>
+          </a>
           <SearchCommand />
           <ThemeToggle />
         </NavbarActions>
