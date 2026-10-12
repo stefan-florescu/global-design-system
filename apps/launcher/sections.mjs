@@ -11,4 +11,9 @@ export const sections = [
     outDir: "../storybook/out",
     devOrigin: "http://localhost:3000",
   },
+  {
+    path: "task-board",
+    outDir: "../task-board/out",
+    devOrigin: "http://localhost:3002",
+  },
 ];

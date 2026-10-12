@@ -7,7 +7,7 @@
     "dev": "next dev --turbopack --port 3001",
     "build": "node scripts/copy-sections.mjs && next build",
     "start": "next start --port 3001",
-    "clean": "rm -rf .next .turbo public/design-system",
+    "clean": "rm -rf .next .turbo public/design-system public/task-board",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit"
   },
@@ -25,6 +25,7 @@
   "devDependencies": {
     "@stefan-florescu/eslint-config": "workspace:*",
     "@stefan-florescu/storybook": "workspace:*",
+    "@stefan-florescu/task-board": "workspace:*",
     "@stefan-florescu/tailwind-config": "workspace:*",
     "@stefan-florescu/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "^4.3.3",

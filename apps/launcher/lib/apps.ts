@@ -1,4 +1,4 @@
-import { SwatchBook, type LucideIcon } from "@stefan-florescu/icons";
+import { Columns3, SwatchBook, type LucideIcon } from "@stefan-florescu/icons";
 
 export type LauncherApp = {
   /** Unique, kebab-case. */
@@ -25,5 +25,12 @@ export const apps: LauncherApp[] = [
     description: "Tokens, themes and React components that every app is built with.",
     href: "/design-system",
     icon: SwatchBook,
+  },
+  {
+    id: "task-board",
+    name: "Task Board",
+    description: "Add tasks and move them from column to column.",
+    href: "/task-board",
+    icon: Columns3,
   },
 ];
