@@ -1,21 +1,16 @@
-import { Badge } from "@stefan-florescu/ui";
-import Link from "next/link";
+import { SwatchBook } from "@stefan-florescu/icons";
+import { Badge, NavbarBrand } from "@stefan-florescu/ui";
 
 import { siteConfig } from "@/lib/site";
 
-import { LogoMark } from "./logo-mark";
-
-/** The site's brand: the mark and short name, linked home, with the current version. */
+/**
+ * The site's brand, in the style of the other apps' headers: the design-system mark in `fg-brand`
+ * and the app name (`NavbarBrand`), linked home, followed by the current version.
+ */
 export function Logo() {
   return (
-    <div className="flex items-center gap-2">
-      <Link
-        href="/"
-        className="focus-visible:ring-ring/50 flex items-center gap-2 rounded-md focus-visible:ring-[3px] focus-visible:outline-none"
-      >
-        <LogoMark />
-        <span className="font-semibold tracking-tight">{siteConfig.shortName}</span>
-      </Link>
+    <div className="flex items-center gap-3">
+      <NavbarBrand href="/" name={siteConfig.shortName} logo={<SwatchBook aria-hidden />} />
       <Badge variant="brand" bordered>
         v{siteConfig.version}
       </Badge>

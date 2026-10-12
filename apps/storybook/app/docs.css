@@ -9,7 +9,7 @@
 
 /* Documentation shell — layout variables (archive tokens.css §8, §11) */
 :root {
-  --header-height: 3.5rem;
+  --header-height: 4.25rem;
   --sidebar-width: 15.5rem;
   --toc-width: 15rem;
   --container-max: var(--sds-container-2xl);
