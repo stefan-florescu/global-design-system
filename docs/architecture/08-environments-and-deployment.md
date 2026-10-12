@@ -80,17 +80,15 @@ One Vercel project, linked to this GitHub repo:
 
 Every PR gets a preview URL from the Vercel bot; `main` deploys to production.
 
-The launcher (`apps/launcher`) is a second Vercel project, linked to the same repo and set up
-the same way:
+The launcher (`apps/launcher`) is a second Vercel project, linked to the same repo:
 
-| Setting            | Value                                                                                                  |
-| ------------------ | ------------------------------------------------------------------------------------------------------ |
-| Project name       | `sds-launcher`                                                                                         |
-| Root Directory     | `apps/launcher`                                                                                        |
-| Framework & build  | from `apps/launcher/vercel.json` (output `.next`)                                                      |
-| Node.js version    | 22.x                                                                                                   |
-| Ignored build step | `npx turbo-ignore` (in `vercel.json`) — skips deploys when the launcher and its packages are unchanged |
-| Production branch  | `main`                                                                                                 |
+| Setting            | Value                                             |
+| ------------------ | ------------------------------------------------- |
+| Production URL     | https://stefan-flo.vercel.app                     |
+| Root Directory     | `apps/launcher`                                   |
+| Framework & build  | from `apps/launcher/vercel.json` (output `.next`) |
+| Ignored build step | `npx turbo-ignore` (in `vercel.json`)             |
+| Production branch  | `main`                                            |
 
 Enable **Vercel Remote Cache** (Team → Settings → Remote Caching) and reuse it in CI via `TURBO_TOKEN`.
 
