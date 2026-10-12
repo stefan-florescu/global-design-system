@@ -30,14 +30,14 @@ export default function DropdownAvatarName() {
           className="text-heading hover:text-fg-brand focus:ring-neutral-tertiary focus-visible:outline-ring flex cursor-pointer items-center rounded-full pe-1 text-sm font-medium outline-hidden focus:ring-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-solid"
         >
           <span className="sr-only">Open user menu</span>
-          <Avatar src="/avatars/5.svg" alt="" size="sm" className="me-2" />
+          <Avatar src="/design-system/avatars/5.svg" alt="" size="sm" className="me-2" />
           Joseph McFall
           <ChevronDown aria-hidden className="mx-1.5 size-4" />
         </button>
       </DropdownTrigger>
       <DropdownMenu className="w-72">
         <DropdownHeader>
-          <Avatar src="/avatars/5.svg" alt="" size="sm" />
+          <Avatar src="/design-system/avatars/5.svg" alt="" size="sm" />
           <div>
             <div className="text-heading font-medium">Joseph McFall</div>
             <div className="text-body truncate">name@company.com</div>

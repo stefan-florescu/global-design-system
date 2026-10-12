@@ -4,7 +4,7 @@ import { buttonVariants, Card, CardDescription, CardTitle } from "@stefan-flores
 export default function CardWithDescription() {
   return (
     <Card className="max-w-sm">
-      <img className="rounded-base w-full" src="/images/landscape-2.svg" alt="" />
+      <img className="rounded-base w-full" src="/design-system/images/landscape-2.svg" alt="" />
       <CardTitle className="mt-6 mb-2">
         <a href="/components/card">Streamlining your design process today.</a>
       </CardTitle>

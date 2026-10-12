@@ -33,7 +33,7 @@ const notifications: {
   text: ReactNode;
 }[] = [
   {
-    avatar: "/avatars/1.svg",
+    avatar: "/design-system/avatars/1.svg",
     icon: Inbox,
     variant: "brand",
     time: "a few moments ago",
@@ -45,7 +45,7 @@ const notifications: {
     ),
   },
   {
-    avatar: "/avatars/2.svg",
+    avatar: "/design-system/avatars/2.svg",
     icon: UserPlus,
     variant: "dark",
     time: "10 minutes ago",
@@ -57,7 +57,7 @@ const notifications: {
     ),
   },
   {
-    avatar: "/avatars/3.svg",
+    avatar: "/design-system/avatars/3.svg",
     icon: Heart,
     variant: "danger",
     time: "44 minutes ago",
@@ -70,7 +70,7 @@ const notifications: {
     ),
   },
   {
-    avatar: "/avatars/4.svg",
+    avatar: "/design-system/avatars/4.svg",
     icon: MessageSquareText,
     variant: "success",
     time: "1 hour ago",
@@ -82,7 +82,7 @@ const notifications: {
     ),
   },
   {
-    avatar: "/avatars/5.svg",
+    avatar: "/design-system/avatars/5.svg",
     icon: Video,
     variant: "warning",
     time: "3 hours ago",

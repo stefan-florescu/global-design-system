@@ -7,7 +7,7 @@ export default function RatingComment() {
   return (
     <article>
       <div className="mb-4 flex items-center">
-        <Avatar src="/avatars/5.svg" alt="" className="me-3" />
+        <Avatar src="/design-system/avatars/5.svg" alt="" className="me-3" />
         <div className="text-heading font-medium">
           <p>
             Jese Leos{" "}

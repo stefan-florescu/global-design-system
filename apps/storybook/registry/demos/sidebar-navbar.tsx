@@ -56,7 +56,7 @@ export default function SidebarNavbar() {
                     aria-label="User menu"
                     className="focus-visible:outline-ring flex cursor-pointer rounded-full outline-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-solid"
                   >
-                    <Avatar src="/avatars/5.svg" alt="" size="sm" />
+                    <Avatar src="/design-system/avatars/5.svg" alt="" size="sm" />
                   </button>
                 </DropdownTrigger>
                 <DropdownMenu className="w-44 p-0">

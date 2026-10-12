@@ -3,7 +3,7 @@ import { Avatar, ChatBubble, ChatBubbleMenu, ChatBubbleMenuItem } from "@stefan-
 export default function ChatBubbleUrlPreview() {
   return (
     <ChatBubble
-      avatar={<Avatar src="/avatars/1.svg" alt="" size="sm" />}
+      avatar={<Avatar src="/design-system/avatars/1.svg" alt="" size="sm" />}
       name="Bonnie Green"
       time="11:46"
       dateTime="2026-10-08T11:46"
@@ -31,7 +31,7 @@ export default function ChatBubbleUrlPreview() {
         href="https://example.com/stefan-ds"
         className="rounded-base bg-neutral-tertiary hover:bg-neutral-quaternary block p-4"
       >
-        <img src="/images/landscape-5.svg" alt="" className="rounded-base mb-2" />
+        <img src="/design-system/images/landscape-5.svg" alt="" className="rounded-base mb-2" />
         <span className="text-heading text-sm font-medium">
           Stefan Design System: Accessible React components built on design tok ...
         </span>

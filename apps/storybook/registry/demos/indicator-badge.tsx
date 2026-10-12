@@ -1,8 +1,8 @@
 import { Avatar, Badge, Indicator } from "@stefan-florescu/ui";
 
 const PEOPLE = [
-  { name: "Neil Sims", avatar: "/avatars/5.svg", available: true },
-  { name: "Bonnie Green", avatar: "/avatars/4.svg", available: false },
+  { name: "Neil Sims", avatar: "/design-system/avatars/5.svg", available: true },
+  { name: "Bonnie Green", avatar: "/design-system/avatars/4.svg", available: false },
 ] as const;
 
 export default function IndicatorBadge() {

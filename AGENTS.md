@@ -8,14 +8,16 @@ OpenAI Codex/Agents, Cursor, and others). Tool-specific files (`CLAUDE.md`,
 
 A token-driven, accessible, multi-theme React design system in a pnpm + Turborepo monorepo.
 
-| Path                | Package                                | Purpose                                             |
-| ------------------- | -------------------------------------- | --------------------------------------------------- |
-| `packages/tokens`   | `@stefan-florescu/tokens`              | DTCG JSON → CSS vars / JS / JSON (Style Dictionary) |
-| `packages/themes`   | `@stefan-florescu/themes`              | Per-theme semantic overrides via `[data-theme]`     |
-| `packages/ui`       | `@stefan-florescu/ui`                  | React 19 components (Tailwind v4 + CVA)             |
-| `packages/icons`    | `@stefan-florescu/icons`               | Governed wrapper over `lucide-react`                |
-| `packages/config/*` | `@stefan-florescu/*-config`            | Shared TS / ESLint / Tailwind presets               |
-| `apps/storybook`    | `@stefan-florescu/storybook` (private) | Docs website (Next.js 15, MDX, shadcn-style)        |
+| Path                | Package                                 | Purpose                                             |
+| ------------------- | --------------------------------------- | --------------------------------------------------- |
+| `packages/tokens`   | `@stefan-florescu/tokens`               | DTCG JSON → CSS vars / JS / JSON (Style Dictionary) |
+| `packages/themes`   | `@stefan-florescu/themes`               | Per-theme semantic overrides via `[data-theme]`     |
+| `packages/ui`       | `@stefan-florescu/ui`                   | React 19 components (Tailwind v4 + CVA)             |
+| `packages/icons`    | `@stefan-florescu/icons`                | Governed wrapper over `lucide-react`                |
+| `packages/config/*` | `@stefan-florescu/*-config`             | Shared TS / ESLint / Tailwind presets               |
+| `apps/storybook`    | `@stefan-florescu/storybook` (private)  | Docs website (Next.js 15, MDX, shadcn-style)        |
+| `apps/launcher`     | `@stefan-florescu/launcher` (private)   | Home page linking to every app (Next.js 15)         |
+| `apps/task-board`   | `@stefan-florescu/task-board` (private) | Task board: add tasks, move them between columns    |
 
 Dependency direction is strictly **tokens → themes → ui → apps**. Never import "upward".
 
@@ -28,6 +30,13 @@ Dependency direction is strictly **tokens → themes → ui → apps**. Never im
   design-system components or design values.
 - `apps/storybook` (the docs website) keeps only website-specific code: header, navigation,
   table of contents, pager, search, page layouts, docs pages and live demos.
+- `apps/launcher` is a directory of websites: each card opens its site in a new tab. Register
+  each app in `apps/launcher/lib/apps.ts` so it shows up as a card.
+- Apps are sections of the launcher's website (ADR 0010): each is a static Next.js export with a
+  `basePath` (the docs site's is `/design-system`, in `apps/storybook/lib/base-path.ts`), and the
+  launcher's build copies it into `public/<section>` (`apps/launcher/sections.mjs`). Keep section
+  apps static (no route handlers, middleware or server actions). Links use `next/link`, which adds
+  the base path; a plain `<a href>` or a public file path needs it written out.
 
 ### Creating a component
 
@@ -69,8 +78,10 @@ significant trade-offs as an ADR. Run the "Applying the principles" checklist be
 
 ```bash
 pnpm install            # Node >= 22, pnpm 10
-pnpm dev                # docs site + package watchers
-pnpm dev:storybook      # docs site only, http://localhost:3000
+pnpm dev                # every app + package watchers
+pnpm dev:storybook      # docs site only, http://localhost:3000/design-system
+pnpm dev:launcher       # launcher only, http://localhost:3001
+pnpm dev:task-board     # task board only, http://localhost:3002/task-board
 pnpm build | lint | typecheck | test | format
 pnpm --filter @stefan-florescu/ui test
 pnpm changeset          # required for any change to a published package

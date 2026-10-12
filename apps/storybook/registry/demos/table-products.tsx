@@ -14,9 +14,9 @@ import {
 } from "@stefan-florescu/ui";
 
 const initialProducts = [
-  { name: "Apple Watch", price: "$599", image: "/images/landscape-1.svg" },
-  { name: 'iMac 27"', price: "$2499", image: "/images/landscape-2.svg" },
-  { name: "IPhone 12", price: "$999", image: "/images/landscape-3.svg" },
+  { name: "Apple Watch", price: "$599", image: "/design-system/images/landscape-1.svg" },
+  { name: 'iMac 27"', price: "$2499", image: "/design-system/images/landscape-2.svg" },
+  { name: "IPhone 12", price: "$999", image: "/design-system/images/landscape-3.svg" },
 ];
 
 export default function TableProducts() {

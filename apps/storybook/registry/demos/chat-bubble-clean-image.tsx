@@ -4,7 +4,7 @@ import { Avatar, ChatBubble, Tooltip } from "@stefan-florescu/ui";
 export default function ChatBubbleCleanImage() {
   return (
     <ChatBubble
-      avatar={<Avatar src="/avatars/1.svg" alt="" size="sm" />}
+      avatar={<Avatar src="/design-system/avatars/1.svg" alt="" size="sm" />}
       name="Bonnie Green"
       time="11:46"
       dateTime="2026-10-08T11:46"
@@ -24,7 +24,11 @@ export default function ChatBubbleCleanImage() {
             </button>
           </Tooltip>
         </div>
-        <img src="/images/landscape-2.svg" alt="Green hills at noon" className="rounded-base" />
+        <img
+          src="/design-system/images/landscape-2.svg"
+          alt="Green hills at noon"
+          className="rounded-base"
+        />
       </div>
     </ChatBubble>
   );

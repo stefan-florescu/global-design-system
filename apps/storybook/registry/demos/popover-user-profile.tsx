@@ -8,7 +8,7 @@ export default function PopoverUserProfile() {
         <div className="p-3">
           <div className="mb-2 flex items-center justify-between">
             <a href="#jese-leos" className="rounded-full">
-              <Avatar src="/avatars/1.svg" alt="Jese Leos" size="sm" />
+              <Avatar src="/design-system/avatars/1.svg" alt="Jese Leos" size="sm" />
             </a>
             <Button size="xs" className="rounded">
               Follow

@@ -4,7 +4,7 @@ The design-system website (folder and package keep the name "storybook") (Next.j
 ui.shadcn.com.
 
 ```bash
-pnpm dev:storybook   # http://localhost:3000
+pnpm dev:storybook   # http://localhost:3000/design-system
 ```
 
 ## Structure

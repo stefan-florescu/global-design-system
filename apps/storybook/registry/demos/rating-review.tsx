@@ -9,7 +9,7 @@ export default function RatingReview() {
     <article className="md:grid md:grid-cols-3 md:gap-8">
       <div>
         <div className="mb-6 flex items-center">
-          <Avatar src="/avatars/5.svg" alt="" />
+          <Avatar src="/design-system/avatars/5.svg" alt="" />
           <div className="text-heading ms-3 font-medium">
             <p>Jese Leos</p>
             <p className="text-body text-sm">United States</p>

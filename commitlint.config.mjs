@@ -13,6 +13,8 @@ export default {
         "config",
         "docs",
         "storybook",
+        "launcher",
+        "task-board",
         "ci",
         "repo",
         "deps",

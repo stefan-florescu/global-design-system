@@ -5,7 +5,7 @@ export default function ToastMessage() {
   return (
     <Toast className="relative">
       <div className="flex">
-        <Avatar src="/avatars/1.svg" size="sm" />
+        <Avatar src="/design-system/avatars/1.svg" size="sm" />
         <div className="ms-3 text-sm font-normal">
           <span className="text-heading text-base font-semibold">Jese Leos</span>
           <div className="mt-1 mb-3">

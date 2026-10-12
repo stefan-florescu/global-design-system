@@ -11,6 +11,8 @@
   "scripts": {
     "dev": "turbo run dev",
     "dev:storybook": "turbo run dev --filter=@stefan-florescu/storybook...",
+    "dev:launcher": "turbo run dev --filter=@stefan-florescu/launcher...",
+    "dev:task-board": "turbo run dev --filter=@stefan-florescu/task-board...",
     "build": "turbo run build",
     "build:packages": "turbo run build --filter=./packages/*",
     "lint": "turbo run lint",

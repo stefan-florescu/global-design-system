@@ -48,7 +48,7 @@ const initialUsers: User[] = [
     email: "neil.sims@example.com",
     position: "React Developer",
     status: "online",
-    avatar: "/avatars/1.svg",
+    avatar: "/design-system/avatars/1.svg",
     biography: "",
   },
   {
@@ -57,7 +57,7 @@ const initialUsers: User[] = [
     email: "bonnie@example.com",
     position: "Designer",
     status: "online",
-    avatar: "/avatars/3.svg",
+    avatar: "/design-system/avatars/3.svg",
     biography: "",
   },
   {
@@ -66,7 +66,7 @@ const initialUsers: User[] = [
     email: "jese@example.com",
     position: "Vue JS Developer",
     status: "online",
-    avatar: "/avatars/2.svg",
+    avatar: "/design-system/avatars/2.svg",
     biography: "",
   },
   {
@@ -75,7 +75,7 @@ const initialUsers: User[] = [
     email: "thomas@example.com",
     position: "UI/UX Engineer",
     status: "online",
-    avatar: "/avatars/5.svg",
+    avatar: "/design-system/avatars/5.svg",
     biography: "",
   },
   {
@@ -84,7 +84,7 @@ const initialUsers: User[] = [
     email: "leslie@example.com",
     position: "SEO Specialist",
     status: "offline",
-    avatar: "/avatars/4.svg",
+    avatar: "/design-system/avatars/4.svg",
     biography: "",
   },
 ];

@@ -63,10 +63,10 @@ export default function DrawerForm() {
             </div>
           </div>
           <AvatarGroup>
-            <Avatar src="/avatars/1.svg" alt="Jese Leos" size="sm" stacked />
-            <Avatar src="/avatars/2.svg" alt="Roberta Casas" size="sm" stacked />
-            <Avatar src="/avatars/3.svg" alt="Bonnie Green" size="sm" stacked />
-            <Avatar src="/avatars/4.svg" alt="Michael Gough" size="sm" stacked />
+            <Avatar src="/design-system/avatars/1.svg" alt="Jese Leos" size="sm" stacked />
+            <Avatar src="/design-system/avatars/2.svg" alt="Roberta Casas" size="sm" stacked />
+            <Avatar src="/design-system/avatars/3.svg" alt="Bonnie Green" size="sm" stacked />
+            <Avatar src="/design-system/avatars/4.svg" alt="Michael Gough" size="sm" stacked />
           </AvatarGroup>
           <Button type="submit" fullWidth>
             <CalendarPlus aria-hidden />

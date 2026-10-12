@@ -42,9 +42,9 @@ export default function TimepickerInline() {
         <div>
           <div className="text-body mb-2 text-base font-normal">Participants</div>
           <AvatarGroup className="-space-x-2">
-            <Avatar src="/avatars/1.svg" alt="Ana Popescu" size="sm" stacked />
-            <Avatar src="/avatars/2.svg" alt="Mihai Ionescu" size="sm" stacked />
-            <Avatar src="/avatars/3.svg" alt="Elena Dumitru" size="sm" stacked />
+            <Avatar src="/design-system/avatars/1.svg" alt="Ana Popescu" size="sm" stacked />
+            <Avatar src="/design-system/avatars/2.svg" alt="Mihai Ionescu" size="sm" stacked />
+            <Avatar src="/design-system/avatars/3.svg" alt="Elena Dumitru" size="sm" stacked />
             <AvatarGroupCounter
               href="/components/avatar"
               aria-label="99 more participants"

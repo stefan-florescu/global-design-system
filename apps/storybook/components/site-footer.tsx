@@ -8,6 +8,7 @@ import {
   FooterLinkGroup,
 } from "@stefan-florescu/ui";
 
+import { basePath } from "@/lib/base-path";
 import { mainNav } from "@/lib/navigation";
 import { siteConfig } from "@/lib/site";
 
@@ -18,14 +19,14 @@ export function SiteFooter() {
       <div className="page-container py-6 md:py-8">
         <div className="sm:flex sm:items-center sm:justify-between">
           <FooterBrand
-            href="/"
+            href={basePath}
             name={siteConfig.shortName}
             logo={<SwatchBook aria-hidden />}
             className="mb-4 sm:mb-0"
           />
           <FooterLinkGroup aria-label="Footer">
             {mainNav.map((item) => (
-              <FooterLink key={item.href} href={item.href}>
+              <FooterLink key={item.href} href={`${basePath}${item.href}`}>
                 {item.title}
               </FooterLink>
             ))}

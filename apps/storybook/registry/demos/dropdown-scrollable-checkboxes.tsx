@@ -12,14 +12,14 @@ import {
 import { useId } from "react";
 
 const users = [
-  { name: "Jese Leos", avatar: "/avatars/1.svg" },
-  { name: "Robert Gough", avatar: "/avatars/2.svg" },
-  { name: "Bonnie Green", avatar: "/avatars/3.svg" },
-  { name: "Leslie Livingston", avatar: "/avatars/4.svg" },
-  { name: "Michael Gough", avatar: "/avatars/5.svg" },
-  { name: "Joseph Mcfall", avatar: "/avatars/2.svg" },
-  { name: "Roberta Casas", avatar: "/avatars/3.svg" },
-  { name: "Neil Sims", avatar: "/avatars/1.svg" },
+  { name: "Jese Leos", avatar: "/design-system/avatars/1.svg" },
+  { name: "Robert Gough", avatar: "/design-system/avatars/2.svg" },
+  { name: "Bonnie Green", avatar: "/design-system/avatars/3.svg" },
+  { name: "Leslie Livingston", avatar: "/design-system/avatars/4.svg" },
+  { name: "Michael Gough", avatar: "/design-system/avatars/5.svg" },
+  { name: "Joseph Mcfall", avatar: "/design-system/avatars/2.svg" },
+  { name: "Roberta Casas", avatar: "/design-system/avatars/3.svg" },
+  { name: "Neil Sims", avatar: "/design-system/avatars/1.svg" },
 ];
 
 export default function DropdownScrollableCheckboxes() {

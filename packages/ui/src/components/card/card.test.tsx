@@ -31,6 +31,17 @@ describe("Card", () => {
     expect(link).toHaveClass("hover:bg-neutral-secondary-medium");
   });
 
+  it("passes target and rel to the link", () => {
+    render(
+      <Card href="https://example.com" target="_blank" rel="noopener noreferrer">
+        <CardTitle>Example</CardTitle>
+      </Card>,
+    );
+    const link = screen.getByRole("link", { name: "Example" });
+    expect(link).toHaveAttribute("target", "_blank");
+    expect(link).toHaveAttribute("rel", "noopener noreferrer");
+  });
+
   it("shows an image with alt text, decorative by default", () => {
     const { rerender } = render(<Card imgSrc="/a.svg" imgAlt="Mountains at dawn" />);
     expect(screen.getByRole("img", { name: "Mountains at dawn" })).toHaveAttribute("src", "/a.svg");

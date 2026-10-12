@@ -29,12 +29,12 @@ export default function DropdownAvatar() {
           aria-label="Open user menu"
           className="bg-dark focus:ring-neutral-quaternary focus-visible:outline-ring flex cursor-pointer rounded-full text-sm outline-hidden focus:ring-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-solid"
         >
-          <Avatar src="/avatars/5.svg" alt="" size="sm" />
+          <Avatar src="/design-system/avatars/5.svg" alt="" size="sm" />
         </button>
       </DropdownTrigger>
       <DropdownMenu className="w-72">
         <DropdownHeader>
-          <Avatar src="/avatars/5.svg" alt="" size="sm" />
+          <Avatar src="/design-system/avatars/5.svg" alt="" size="sm" />
           <div>
             <div className="text-heading font-medium">Joseph McFall</div>
             <div className="text-body truncate">name@company.com</div>

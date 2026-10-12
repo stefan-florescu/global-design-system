@@ -4,7 +4,11 @@ import { Badge, Button, Card, CardTitle, Rating } from "@stefan-florescu/ui";
 export default function CardEcommerce() {
   return (
     <Card className="w-full max-w-sm">
-      <img className="rounded-base mb-6 w-full" src="/images/landscape-3.svg" alt="" />
+      <img
+        className="rounded-base mb-6 w-full"
+        src="/design-system/images/landscape-3.svg"
+        alt=""
+      />
       <div className="mb-6 flex items-center space-x-3 rtl:space-x-reverse">
         {/* The badge states the score, so the stars are hidden to avoid reading it twice. */}
         <Rating value={5} aria-hidden />
