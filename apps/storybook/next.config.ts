@@ -6,19 +6,12 @@ import { basePath } from "./lib/base-path";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   pageExtensions: ["ts", "tsx", "md", "mdx"],
-  // Served under the launcher's domain at /design-system (Next.js multi-zones, see
-  // apps/launcher/next.config.ts), so every route and asset lives under that path. Demos load
-  // their sample images from it too (`/design-system/avatars/…`).
+  // A static site that the launcher serves as one of its sections: `next build` writes it to
+  // out/, which the launcher's build copies into its public/design-system. Every route and asset
+  // lives under the base path; demos load their sample images from it too (`/design-system/avatars/…`).
+  output: "export",
   basePath,
   transpilePackages: ["@stefan-florescu/ui", "@stefan-florescu/icons"],
-  async redirects() {
-    return [
-      // "Components" is the landing page.
-      { source: "/", destination: "/components", permanent: false },
-      // The bare domain goes there too.
-      { source: "/", destination: `${basePath}/components`, basePath: false, permanent: false },
-    ];
-  },
   experimental: {
     optimizePackageImports: ["@stefan-florescu/icons", "lucide-react"],
   },

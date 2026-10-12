@@ -1,32 +1,24 @@
 import type { NextConfig } from "next";
 
-/*
- * Apps in this repo are served under a path on the launcher's domain (Next.js multi-zones): each
- * one is its own Vercel project with a matching `basePath`, and the launcher forwards that path
- * to the app's production domain, set in an environment variable.
- */
-const designSystemOrigin =
-  process.env.DESIGN_SYSTEM_ORIGIN ??
-  (process.env.NODE_ENV === "development" ? "http://localhost:3000" : undefined);
+import { sections } from "./sections.mjs";
 
-if (!designSystemOrigin && process.env.VERCEL_ENV) {
-  throw new Error(
-    "Set DESIGN_SYSTEM_ORIGIN to the docs site's production URL (for example https://docs.example.com) in the launcher's Vercel project.",
-  );
-}
+const isDev = process.env.NODE_ENV === "development";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   transpilePackages: ["@stefan-florescu/ui", "@stefan-florescu/icons"],
   async rewrites() {
-    if (!designSystemOrigin) return [];
-    return [
-      { source: "/design-system", destination: `${designSystemOrigin}/design-system` },
-      {
-        source: "/design-system/:path*",
-        destination: `${designSystemOrigin}/design-system/:path*`,
-      },
-    ];
+    return sections.flatMap(({ path, devOrigin }) =>
+      isDev
+        ? // Development: the app's own dev server, so its pages reload as you edit them.
+          [{ source: `/${path}/:slug*`, destination: `${devOrigin}/${path}/:slug*` }]
+        : // Built: the static pages copied into public/<path> (/design-system/components →
+          // components.html). Real files, such as scripts and images, are served first.
+          [
+            { source: `/${path}`, destination: `/${path}/index.html` },
+            { source: `/${path}/:slug+`, destination: `/${path}/:slug+.html` },
+          ],
+    );
   },
   experimental: {
     optimizePackageImports: ["@stefan-florescu/icons", "lucide-react"],

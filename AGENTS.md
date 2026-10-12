@@ -31,11 +31,11 @@ Dependency direction is strictly **tokens → themes → ui → apps**. Never im
   table of contents, pager, search, page layouts, docs pages and live demos.
 - `apps/launcher` is a directory of websites: each card opens its site in a new tab. Register
   each app in `apps/launcher/lib/apps.ts` so it shows up as a card.
-- Apps in this repo are served under a path on the launcher's domain (Next.js multi-zones): the
-  docs site has `basePath: "/design-system"` (`apps/storybook/lib/base-path.ts`) and the
-  launcher forwards `/design-system/*` to `DESIGN_SYSTEM_ORIGIN`. Links in the docs site use
-  `next/link`, which adds the base path; a plain `<a href>` or a public file path needs it
-  written out.
+- Apps are sections of the launcher's website (ADR 0010): each is a static Next.js export with a
+  `basePath` (the docs site's is `/design-system`, in `apps/storybook/lib/base-path.ts`), and the
+  launcher's build copies it into `public/<section>` (`apps/launcher/sections.mjs`). Keep section
+  apps static (no route handlers, middleware or server actions). Links use `next/link`, which adds
+  the base path; a plain `<a href>` or a public file path needs it written out.
 
 ### Creating a component
 
