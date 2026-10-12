@@ -32,7 +32,7 @@ export default function CardProfile() {
         </DropdownMenu>
       </Dropdown>
       <div className="flex flex-col items-center">
-        <Avatar src="/avatars/3.svg" alt="" className="mb-6 size-24" />
+        <Avatar src="/design-system/avatars/3.svg" alt="" className="mb-6 size-24" />
         <CardTitle className="mb-0.5 text-xl">Bonnie Green</CardTitle>
         <span className="text-body text-sm">Visual Designer</span>
         <div className="mt-4 flex gap-4 md:mt-6">

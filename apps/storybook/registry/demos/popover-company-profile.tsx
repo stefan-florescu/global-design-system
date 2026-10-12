@@ -58,9 +58,9 @@ export default function PopoverCompanyProfile() {
                 </li>
               </ul>
               <AvatarGroup className="mb-4 -space-x-3">
-                <Avatar src="/avatars/5.svg" alt="" size="sm" stacked />
-                <Avatar src="/avatars/2.svg" alt="" size="sm" stacked />
-                <Avatar src="/avatars/3.svg" alt="" size="sm" stacked />
+                <Avatar src="/design-system/avatars/5.svg" alt="" size="sm" stacked />
+                <Avatar src="/design-system/avatars/2.svg" alt="" size="sm" stacked />
+                <Avatar src="/design-system/avatars/3.svg" alt="" size="sm" stacked />
                 <AvatarGroupCounter
                   href="#friends"
                   aria-label="3 more friends"

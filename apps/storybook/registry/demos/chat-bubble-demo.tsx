@@ -3,7 +3,7 @@ import { Avatar, ChatBubble, ChatBubbleMenu, ChatBubbleMenuItem } from "@stefan-
 export default function ChatBubbleDemo() {
   return (
     <ChatBubble
-      avatar={<Avatar src="/avatars/1.svg" alt="" size="sm" />}
+      avatar={<Avatar src="/design-system/avatars/1.svg" alt="" size="sm" />}
       name="Bonnie Green"
       time="11:46"
       dateTime="2026-10-08T11:46"

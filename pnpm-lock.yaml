@@ -72,6 +72,9 @@ importers:
       '@stefan-florescu/eslint-config':
         specifier: workspace:*
         version: link:../../packages/config/eslint
+      '@stefan-florescu/storybook':
+        specifier: workspace:*
+        version: link:../storybook
       '@stefan-florescu/tailwind-config':
         specifier: workspace:*
         version: link:../../packages/config/tailwind

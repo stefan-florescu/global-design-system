@@ -1,6 +1,8 @@
 node_modules
 dist
 .next
+out
+apps/launcher/public/design-system
 .turbo
 coverage
 pnpm-lock.yaml

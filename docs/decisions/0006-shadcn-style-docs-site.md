@@ -21,7 +21,8 @@ folder keeps that name, but it does not use the Storybook tool.
 - Live examples live in `registry/demos/*.tsx`; `<ComponentPreview>` renders them and shows
   their real source, highlighted with Shiki at build time.
 - Theme uses `next-themes` with `data-theme`, matching `@stefan-florescu/themes`.
-- All pages are statically generated; one Vercel project (`sds-storybook`).
+- All pages are statically generated; one Vercel project (`sds-storybook`). Since
+  [0010](0010-apps-as-launcher-sections.md) the site is a static section of the launcher.
 
 ## Consequences
 

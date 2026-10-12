@@ -63,22 +63,27 @@ Consumers of GitHub Packages add to their `.npmrc`:
 //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
 ```
 
-## 8.5 Vercel — docs site project
+## 8.5 Vercel — the launcher project
 
-One Vercel project, linked to this GitHub repo:
+One Vercel project, linked to this GitHub repo, serves the whole website: the launcher at `/` and
+every app as a section of it, such as the docs site at `/design-system`
+([ADR 0010](../decisions/0010-apps-as-launcher-sections.md)).
 
 | Setting                              | Value                                                                                    |
 | ------------------------------------ | ---------------------------------------------------------------------------------------- |
-| Project name                         | `sds-storybook`                                                                          |
-| Root Directory                       | `apps/storybook`                                                                         |
-| Framework                            | Next.js (set by `apps/storybook/vercel.json`, overrides the dashboard preset)            |
-| Build                                | from `apps/storybook/vercel.json` (output `.next`)                                       |
+| Production URL                       | https://stefan-flo.vercel.app                                                            |
+| Root Directory                       | `apps/launcher`                                                                          |
+| Framework & build                    | from `apps/launcher/vercel.json` (output `.next`)                                        |
 | Node.js version                      | 22.x                                                                                     |
 | Include files outside root directory | ✅ enabled (default for monorepos)                                                       |
 | Ignored build step                   | `npx turbo-ignore` (in `vercel.json`) — skips deploys when nothing it depends on changed |
 | Production branch                    | `main`                                                                                   |
 
-Every PR gets a preview URL from the Vercel bot; `main` deploys to production.
+The build (`turbo run build --filter=@stefan-florescu/launcher`) builds the section apps first,
+as static exports; the launcher copies each into `public/<section>` (`apps/launcher/sections.mjs`)
+and serves its pages from there. Every PR gets a preview URL from the Vercel bot; `main` deploys
+to production.
+
 Enable **Vercel Remote Cache** (Team → Settings → Remote Caching) and reuse it in CI via `TURBO_TOKEN`.
 
 ## 8.6 Release flow

@@ -18,7 +18,7 @@ export default function TimelineActivityLog() {
     <Timeline>
       <TimelineItem>
         <TimelinePoint>
-          <Avatar src="/avatars/3.svg" size="xs" className="shadow-lg" />
+          <Avatar src="/design-system/avatars/3.svg" size="xs" className="shadow-lg" />
         </TimelinePoint>
         <TimelineContent className={`${card} items-center justify-between sm:flex`}>
           <TimelineTime dateTime="2025-01-15T14:00" className="mb-1 block sm:order-last sm:mb-0">
@@ -41,7 +41,7 @@ export default function TimelineActivityLog() {
       </TimelineItem>
       <TimelineItem>
         <TimelinePoint>
-          <Avatar src="/avatars/5.svg" size="xs" className="shadow-lg" />
+          <Avatar src="/design-system/avatars/5.svg" size="xs" className="shadow-lg" />
         </TimelinePoint>
         <TimelineContent className={card}>
           <div className="mb-3 items-center justify-between sm:flex">
@@ -73,7 +73,7 @@ export default function TimelineActivityLog() {
       </TimelineItem>
       <TimelineItem>
         <TimelinePoint>
-          <Avatar src="/avatars/1.svg" size="xs" className="shadow-lg" />
+          <Avatar src="/design-system/avatars/1.svg" size="xs" className="shadow-lg" />
         </TimelinePoint>
         <TimelineContent className={`${card} items-center justify-between sm:flex`}>
           <TimelineTime dateTime="2025-01-15T11:00" className="mb-1 block sm:order-last sm:mb-0">

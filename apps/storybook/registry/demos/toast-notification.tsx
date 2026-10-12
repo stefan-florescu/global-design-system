@@ -8,7 +8,7 @@ export default function ToastNotification() {
         <span className="text-heading text-sm font-medium">New notification</span>
       </div>
       <div className="flex">
-        <Avatar src="/avatars/3.svg" size="sm" />
+        <Avatar src="/design-system/avatars/3.svg" size="sm" />
         <div className="text-body ms-3 text-sm font-normal">
           <div className="text-heading text-base font-medium">Bonnie Green</div>
           <div>commented on your photo</div>

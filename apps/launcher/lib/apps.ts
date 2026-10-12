@@ -6,6 +6,10 @@ export type LauncherApp = {
   name: string;
   /** One sentence on what the app does. */
   description: string;
+  /**
+   * Where the app lives. Apps served under the launcher's domain use their path (see
+   * `next.config.ts`); other websites use their full URL.
+   */
   href: string;
   /** From @stefan-florescu/icons. */
   icon: LucideIcon;
@@ -13,13 +17,13 @@ export type LauncherApp = {
   status?: "beta";
 };
 
-/** Every app the launcher opens, in display order. Add new apps here. */
+/** Every website the launcher lists, in display order. Add new apps here. */
 export const apps: LauncherApp[] = [
   {
     id: "design-system",
     name: "Design System",
     description: "Tokens, themes and React components that every app is built with.",
-    href: "https://github.com/stefan-florescu/global-design-system",
+    href: "/design-system",
     icon: SwatchBook,
   },
 ];

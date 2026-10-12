@@ -9,7 +9,7 @@ export default function AvatarUserDropdown() {
           aria-label="User menu"
           className="focus-visible:outline-ring flex cursor-pointer rounded-full outline-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-solid"
         >
-          <Avatar src="/avatars/5.svg" alt="" />
+          <Avatar src="/design-system/avatars/5.svg" alt="" />
         </button>
       </DropdownTrigger>
       <DropdownMenu className="p-0">

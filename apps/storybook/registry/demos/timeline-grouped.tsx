@@ -3,7 +3,7 @@ import { Avatar, Badge, TimelineTime } from "@stefan-florescu/ui";
 
 const activity = [
   {
-    avatar: "/avatars/4.svg",
+    avatar: "/design-system/avatars/4.svg",
     who: "Laura Romeros",
     what: (
       <>
@@ -17,7 +17,7 @@ const activity = [
     isPrivate: true,
   },
   {
-    avatar: "/avatars/2.svg",
+    avatar: "/design-system/avatars/2.svg",
     who: "Mike Willi",
     what: (
       <>
@@ -28,7 +28,7 @@ const activity = [
     isPrivate: false,
   },
   {
-    avatar: "/avatars/5.svg",
+    avatar: "/design-system/avatars/5.svg",
     who: "Jese Leos",
     what: (
       <>
@@ -42,7 +42,7 @@ const activity = [
     isPrivate: false,
   },
   {
-    avatar: "/avatars/3.svg",
+    avatar: "/design-system/avatars/3.svg",
     who: "Bonnie Green",
     what: (
       <>

@@ -28,7 +28,7 @@ export default function PopoverImage() {
               </div>
             </div>
             <img
-              src="/images/landscape-3.svg"
+              src="/design-system/images/landscape-3.svg"
               className="col-span-2 h-full rounded object-cover"
               alt=""
             />

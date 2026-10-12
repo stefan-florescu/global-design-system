@@ -10,7 +10,7 @@ import {
 export default function ChatBubbleGallery() {
   return (
     <ChatBubble
-      avatar={<Avatar src="/avatars/1.svg" alt="" size="sm" />}
+      avatar={<Avatar src="/design-system/avatars/1.svg" alt="" size="sm" />}
       name="Bonnie Green"
       time="11:46"
       dateTime="2026-10-08T11:46"
@@ -51,7 +51,7 @@ export default function ChatBubbleGallery() {
             </Tooltip>
           </div>
           <img
-            src="/images/landscape-1.svg"
+            src="/design-system/images/landscape-1.svg"
             alt="Blue hills under a pale sun"
             className="rounded-base"
           />
@@ -68,7 +68,11 @@ export default function ChatBubbleGallery() {
               </button>
             </Tooltip>
           </div>
-          <img src="/images/landscape-2.svg" alt="Green hills at noon" className="rounded-base" />
+          <img
+            src="/design-system/images/landscape-2.svg"
+            alt="Green hills at noon"
+            className="rounded-base"
+          />
         </div>
         <div className="group relative">
           <div className="rounded-base bg-dark-backdrop/50 absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-focus-within:opacity-100 group-hover:opacity-100 motion-reduce:transition-none">
@@ -83,7 +87,7 @@ export default function ChatBubbleGallery() {
             </Tooltip>
           </div>
           <img
-            src="/images/landscape-3.svg"
+            src="/design-system/images/landscape-3.svg"
             alt="Rolling hills and a lake"
             className="rounded-base"
           />
@@ -96,7 +100,7 @@ export default function ChatBubbleGallery() {
           >
             <span className="text-brand-foreground text-xl font-medium">+7</span>
           </button>
-          <img src="/images/landscape-4.svg" alt="" className="rounded-base" />
+          <img src="/design-system/images/landscape-4.svg" alt="" className="rounded-base" />
         </div>
       </div>
     </ChatBubble>
