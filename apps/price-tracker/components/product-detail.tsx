@@ -126,9 +126,12 @@ export function ProductDetail() {
   const runCheck = async () => {
     setChecking(true);
     setCheckMessage("Checking prices…");
-    await checkProduct(product.id);
+    try {
+      setCheckMessage(await checkProduct(product.id));
+    } catch (error) {
+      setCheckMessage(error instanceof Error ? error.message : "The check failed. Try again.");
+    }
     setChecking(false);
-    setCheckMessage("Prices checked.");
   };
 
   return (
@@ -196,9 +199,9 @@ export function ProductDetail() {
           </Button>
         </div>
       </div>
-      <div role="status" aria-live="polite" className="sr-only">
+      <p role="status" aria-live="polite" className="text-body text-sm empty:hidden">
         {checkMessage}
-      </div>
+      </p>
 
       {failedRecently.length > 0 ? (
         <Alert variant="warning" icon={<CircleAlert />}>

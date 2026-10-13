@@ -116,7 +116,10 @@ export function normalizeTitle(raw: string): NormalizedTitle {
 
   let model: string | undefined;
   if (brand) {
-    const after = title.slice(title.toLowerCase().indexOf(brand.toLowerCase()) + brand.length);
+    // "128 GB" is one variant word.
+    const after = title
+      .slice(title.toLowerCase().indexOf(brand.toLowerCase()) + brand.length)
+      .replace(/(\d)\s+(gb|tb)\b/gi, "$1$2");
     const words: string[] = [];
     for (const word of after.split(/[\s,]+/).filter(Boolean)) {
       const lower = word.toLowerCase();
@@ -167,7 +170,7 @@ export function titleFromPath(pathname: string): string | undefined {
   return words
     .map((w) => {
       const lower = w.toLowerCase();
-      if (/^\d+(gb|tb|g)$/.test(lower)) return lower.toUpperCase();
+      if (/^\d+(gb|tb|g)$/.test(lower) || /^(gb|tb|mb)$/.test(lower)) return lower.toUpperCase();
       // Model codes such as "1000xm5" or "qe55q60c" are written in capitals.
       if (/\d/.test(lower) && /[a-z]/.test(lower)) return lower.toUpperCase();
       return wordCasing.get(lower) ?? capitalise(lower);

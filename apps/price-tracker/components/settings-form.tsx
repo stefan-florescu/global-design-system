@@ -24,6 +24,8 @@ import { useId, useState, type FormEvent } from "react";
 import { countries, countryCodes } from "@/lib/countries";
 import { storeOptions } from "@/lib/store-choice";
 import { emptyState, serialize } from "@/lib/tracker";
+import { signOut, useSession } from "@/lib/session";
+import { callFunction } from "@/lib/supabase";
 import { dispatch, useTracker } from "@/lib/use-tracker";
 
 import { PageHeading } from "./page-shell";
@@ -33,6 +35,10 @@ const dedupeOptions = [6, 12, 24, 48];
 /** Notification settings and the user's data (plan T4.4, T7.5). */
 export function SettingsForm() {
   const { state } = useTracker();
+  const session = useSession();
+  const account = session.mode === "account";
+  const [deleteError, setDeleteError] = useState<string | null>(null);
+  const [deletingBusy, setDeletingBusy] = useState(false);
   const emailId = useId();
   const emailHelpId = useId();
   const dedupeId = useId();
@@ -206,8 +212,9 @@ export function SettingsForm() {
       <Card className="*:flex *:flex-col *:gap-5 *:p-6">
         <h2 className="text-heading text-xl font-semibold">Your data</h2>
         <p className="text-body">
-          Your watchlist, price history and alerts are stored in this browser only. Nothing is sent
-          to a server.
+          {account
+            ? `Signed in as ${session.user.email}. Your watchlist, alerts and settings belong to your account; store prices are shared by everyone who tracks the same product.`
+            : "In the demo, your watchlist, price history and alerts are stored in this browser only. Nothing is sent to a server."}
         </p>
         <div className="flex flex-wrap gap-3">
           <Button variant="secondary" onClick={exportData}>
@@ -216,8 +223,13 @@ export function SettingsForm() {
           </Button>
           <Button variant="danger" onClick={() => setDeleting(true)}>
             <Trash2 aria-hidden />
-            Delete everything
+            {account ? "Delete my account" : "Delete everything"}
           </Button>
+          {account ? (
+            <Button variant="ghost" onClick={() => void signOut()}>
+              Sign out
+            </Button>
+          ) : null}
         </div>
       </Card>
 
@@ -228,26 +240,46 @@ export function SettingsForm() {
       <Modal open={deleting} onOpenChange={setDeleting} size="md">
         <ModalContent role="alertdialog">
           <ModalHeader>
-            <ModalTitle>Delete everything?</ModalTitle>
+            <ModalTitle>{account ? "Delete your account?" : "Delete everything?"}</ModalTitle>
             <ModalClose label="Close" />
           </ModalHeader>
           <ModalBody>
             <p className="text-body">
-              Every tracked product, its price history, your alerts and settings will be deleted
-              from this browser. This can&apos;t be undone.
+              {account
+                ? "Your account, watchlist, alerts and settings will be deleted and you'll be signed out. This can't be undone."
+                : "Every tracked product, its price history, your alerts and settings will be deleted from this browser. This can't be undone."}
             </p>
+            {deleteError ? (
+              <p className="text-fg-danger mt-2 text-sm" role="alert">
+                {deleteError}
+              </p>
+            ) : null}
           </ModalBody>
           <ModalFooter>
             <Button
               variant="danger"
-              onClick={() => {
+              loading={deletingBusy}
+              onClick={async () => {
+                if (account) {
+                  setDeletingBusy(true);
+                  try {
+                    await callFunction("delete-account");
+                    await signOut();
+                  } catch (error) {
+                    setDeleteError(
+                      error instanceof Error ? error.message : "Your account couldn't be deleted.",
+                    );
+                  }
+                  setDeletingBusy(false);
+                  return;
+                }
                 dispatch({ type: "replace", state: emptyState });
                 setDeleting(false);
                 setEmail(null);
                 setSaved("Everything was deleted.");
               }}
             >
-              Delete everything
+              {account ? "Delete my account" : "Delete everything"}
             </Button>
             <ModalClose asChild>
               <Button variant="secondary" data-autofocus>

@@ -1,0 +1,2 @@
+# Built by `pnpm build:function` from server/edge.ts
+/supabase/functions/price-tracker/index.ts

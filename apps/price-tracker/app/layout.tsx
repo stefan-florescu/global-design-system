@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 import { Scheduler } from "@/components/scheduler";
+import { SessionGate } from "@/components/session-gate";
 import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
 
@@ -26,7 +27,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </a>
           <SiteHeader />
           <Scheduler />
-          {children}
+          <SessionGate>{children}</SessionGate>
         </ThemeProvider>
       </body>
     </html>

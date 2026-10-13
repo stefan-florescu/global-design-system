@@ -6,15 +6,20 @@ import { hash } from "./hash";
 import { normalizeGtin } from "./match";
 import type { Offer, PricePoint, Product, ProductIdentity, Store } from "./model";
 import { hour, nextCheckDelay } from "./schedule";
-import { priceSource, type IdentifyResult } from "./source";
+import { getSession } from "./session";
+import { demoSource, type IdentifyResult } from "./source";
+import { callFunction } from "./supabase";
 import { maxWatchedProducts, type TrackerState } from "./tracker";
 import { canonicalUrl } from "./url";
-import { dispatch, getState } from "./use-tracker";
+import { dispatch, getState, refresh } from "./use-tracker";
 
 /*
- * The app's asynchronous flows: adding a product and checking prices. They call the price
- * source, then record the outcome with one reducer action.
+ * The app's asynchronous flows: adding a product and checking prices. Signed in, the
+ * price-tracker Edge Function does the work and the tracker reloads from Supabase; in the demo
+ * they call the demo source and record the outcome with one reducer action.
  */
+
+const signedIn = () => getSession().mode === "account";
 
 const historyDays = 90;
 
@@ -34,7 +39,13 @@ export function productIdFor(identity: ProductIdentity, url: URL) {
 export function findTracked(state: TrackerState, identity: ProductIdentity, url: URL) {
   const id = productIdFor(identity, url);
   const sourceUrl = canonicalUrl(url);
-  return state.products.find((p) => p.id === id || p.sourceUrl === sourceUrl);
+  const gtin = normalizeGtin(identity.gtin);
+  return state.products.find(
+    (p) =>
+      p.id === id ||
+      p.sourceUrl === sourceUrl ||
+      (gtin !== undefined && normalizeGtin(p.gtin) === gtin),
+  );
 }
 
 export function canAddMore(state: TrackerState) {
@@ -42,11 +53,32 @@ export function canAddMore(state: TrackerState) {
 }
 
 function pastPrices(offer: Pick<Offer, "url" | "domain" | "title">, now: number): PricePoint[] {
-  return priceSource.history?.(offer, now - historyDays * 24 * hour, now) ?? [];
+  return demoSource.history?.(offer, now - historyDays * 24 * hour, now) ?? [];
 }
 
 /** Saves a confirmed product with its offers and starts watching it. Returns its id. */
-export function addProduct({
+export async function addProduct(input: {
+  url: URL;
+  identified: IdentifyResult;
+  identity: ProductIdentity;
+  country: CountryCode;
+  candidates: RankedCandidate[];
+}): Promise<string> {
+  if (!signedIn()) return addDemoProduct(input);
+  const { productId } = await callFunction<{ productId: string }>("track", {
+    input: {
+      url: input.url.href,
+      identity: { ...input.identity, country: input.country },
+      country: input.country,
+      snapshot: input.identified.snapshot,
+      candidates: input.candidates,
+    },
+  });
+  await refresh();
+  return productId;
+}
+
+function addDemoProduct({
   url,
   identified,
   identity,
@@ -185,6 +217,15 @@ function makeOffer({
  * Returns an error message when the page can't be read.
  */
 export async function addManualOffer(product: Product, url: URL): Promise<string | undefined> {
+  if (signedIn()) {
+    try {
+      await callFunction("add-offer", { productId: product.id, url: url.href });
+      await refresh();
+      return undefined;
+    } catch (error) {
+      return error instanceof Error ? error.message : "That store couldn't be added.";
+    }
+  }
   const store = storeFor(url.hostname.replace(/^www\./, ""), product.country);
   const listed = getState().offers.find(
     (o) => o.productId === product.id && o.domain === store.domain && o.status === "accepted",
@@ -205,7 +246,7 @@ export async function addManualOffer(product: Product, url: URL): Promise<string
     now,
     manual: true,
   });
-  const result = await priceSource.check(offer, now);
+  const result = await demoSource.check(offer, now);
   if (!result.ok)
     return `${store.name}: ${result.error.toLowerCase()}. Try again in a few minutes.`;
   offer.currentPrice = result.snapshot.price;
@@ -220,21 +261,34 @@ export async function addManualOffer(product: Product, url: URL): Promise<string
 
 const checking = new Set<string>();
 
-/** Checks every offer of a product that isn't rejected, then records the results. */
-export async function checkProduct(productId: string) {
-  if (checking.has(productId)) return;
+/**
+ * Checks every offer of a product that isn't rejected, then records the results. Returns a
+ * message for the screen.
+ */
+export async function checkProduct(productId: string): Promise<string> {
+  if (checking.has(productId)) return "Already checking.";
   checking.add(productId);
   try {
+    if (signedIn()) {
+      const result = await callFunction<{ checked: number; failed: number; skipped?: string }>(
+        "check",
+        { productId },
+      );
+      await refresh();
+      if (result.skipped) return "Prices were checked less than 10 minutes ago.";
+      return result.failed > 0
+        ? `Prices checked. ${result.failed} of ${result.checked} stores couldn't be read.`
+        : "Prices checked.";
+    }
     const state = getState();
     const offers = state.offers.filter((o) => o.productId === productId && o.status !== "rejected");
     const now = Date.now();
     const results = [];
     for (const offer of offers) {
-      const result = await priceSource.check(offer, now);
+      const result = await demoSource.check(offer, now);
       const last = state.history[offer.id]?.at(-1)?.checkedAt ?? now;
       // Days missed while nobody had the app open.
-      const backfill =
-        now - last > 24 * hour ? (priceSource.history?.(offer, last, now) ?? []) : [];
+      const backfill = now - last > 24 * hour ? (demoSource.history?.(offer, last, now) ?? []) : [];
       results.push({ offerId: offer.id, result, backfill });
     }
     const failures = results.filter((r) => !r.result.ok).length;
@@ -261,6 +315,7 @@ export async function checkProduct(productId: string) {
           random: Math.random(),
         }),
     });
+    return "Prices checked.";
   } finally {
     checking.delete(productId);
   }
@@ -272,8 +327,12 @@ export function isChecking(productId: string) {
 
 let dueRun: Promise<void> | null = null;
 
-/** Re-checks every product whose next check is due (the scheduler, while the app is open). */
+/**
+ * The demo's scheduler: re-checks products whose next check is due while the app is open.
+ * Signed-in products are checked on the server.
+ */
 export function checkDueProducts() {
+  if (signedIn()) return Promise.resolve();
   dueRun ??= (async () => {
     const state = getState();
     const now = Date.now();

@@ -6,8 +6,8 @@ import type { StoreChoice } from "../store-choice";
 
 /*
  * Where the app gets product pages and prices from. The screens only talk to this interface:
- * today it is backed by `demoSource` (simulated prices, no server), and the scraper worker's API
- * (plan T6.1: POST /products, GET /products/:id/offers…) will implement it next.
+ * signed in, it is the price-tracker Edge Function (real store pages, ADR 0011); in the demo,
+ * `createDemoSource` (simulated prices).
  */
 
 export type IdentifyResult = {
@@ -19,7 +19,17 @@ export type IdentifyResult = {
   snapshot: Snapshot;
   /** Variants the page sells, such as storage sizes, for the user to pick from. */
   variants: { label: string; identity: ProductIdentity }[];
+  /** Whether the pasted page could be read, or only its link (the store blocked us). */
+  pageStatus?: "read" | "blocked" | "not_found" | "timeout" | "unsafe" | "error";
 };
+
+/** How searching one store went. */
+export type StoreSearch = {
+  domain: string;
+  status: "found" | "not_found" | "blocked" | "unreachable" | "error";
+};
+
+export type DiscoverResult = { candidates: RankedCandidate[]; stores?: StoreSearch[] };
 
 /** The page to check. `title` is the product as the user confirmed it. */
 export type OfferRef = { url: string; domain: string; title: string };
@@ -35,7 +45,7 @@ export interface PriceSource {
   discover(
     identity: ProductIdentity & { price: number | null },
     search: { country: CountryCode; stores: StoreChoice[]; excludeDomain: string },
-  ): Promise<RankedCandidate[]>;
+  ): Promise<DiscoverResult>;
   /** Reads one offer's current price and stock (plan T3.8). */
   check(offer: OfferRef, now: number): Promise<CheckResult>;
   /** Past prices, where the provider has them, so a new product starts with a chart. */

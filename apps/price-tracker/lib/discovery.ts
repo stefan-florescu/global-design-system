@@ -1,6 +1,6 @@
 import { hostMatches, isDomainInCountry, type CountryCode } from "./countries";
 import { matchProducts, type MatchInput, type MatchResult } from "./match";
-import type { ProductIdentity } from "./model";
+import type { Availability, ProductIdentity } from "./model";
 
 /*
  * Cross-store discovery (plan T3.5): the searches to run for a product, and which of the links
@@ -25,6 +25,8 @@ export type Candidate = MatchInput & {
   url: string;
   /** The store's domain, such as `altex.ro`. */
   domain: string;
+  /** Stock on the store's page, when it was read. */
+  availability?: Availability;
 };
 
 export type RankedCandidate = Candidate & { match: MatchResult };

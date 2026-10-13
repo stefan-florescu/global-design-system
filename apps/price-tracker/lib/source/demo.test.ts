@@ -34,7 +34,7 @@ describe("demo source", () => {
   it("searches only the websites the user chose, with accepted and possible matches", async () => {
     const { identity, store } = await source.identify(url);
     const stores = countries.RO.stores.filter((s) => s.domain !== "carrefour.ro");
-    const found = await source.discover(
+    const { candidates: found } = await source.discover(
       { ...identity, price: null },
       { country: "RO", stores, excludeDomain: store.domain },
     );
@@ -48,7 +48,7 @@ describe("demo source", () => {
 
   it("searches websites the user added", async () => {
     const { identity, store } = await source.identify(url);
-    const found = await source.discover(
+    const { candidates: found } = await source.discover(
       { ...identity, price: null },
       {
         country: "RO",

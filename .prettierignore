@@ -11,3 +11,5 @@ pnpm-lock.yaml
 packages/tokens/build
 packages/themes/build
 CHANGELOG.md
+apps/price-tracker/supabase/functions
+**/__fixtures__

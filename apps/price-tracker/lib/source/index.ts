@@ -1,7 +1,16 @@
+import { getSession } from "../session";
+
 import { createDemoSource } from "./demo";
+import { supabaseSource } from "./supabase";
 import type { PriceSource } from "./types";
 
 export * from "./types";
 
-/** The source the app uses. Swap for the API client once the scraper worker is live. */
-export const priceSource: PriceSource = createDemoSource();
+const demoSource = createDemoSource();
+
+/** Live store pages when signed in, simulated prices in the demo. */
+export function getPriceSource(): PriceSource {
+  return getSession().mode === "account" ? supabaseSource : demoSource;
+}
+
+export { demoSource };

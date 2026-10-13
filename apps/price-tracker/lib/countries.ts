@@ -17,7 +17,10 @@ export type Country = {
   locale: string;
   /** Domain endings that belong to the country, most specific first. */
   tlds: string[];
-  stores: Omit<Store, "id" | "country">[];
+  stores: (Omit<Store, "id" | "country"> & {
+    /** The store's search page, with `{q}` for the encoded query. */
+    search?: string;
+  })[];
 };
 
 export const launchCountry: CountryCode = "RO";
@@ -30,16 +33,66 @@ export const countries: Record<CountryCode, Country> = {
     locale: "ro-RO",
     tlds: [".ro"],
     stores: [
-      { name: "eMAG", domain: "emag.ro", scraperType: "custom" },
-      { name: "Altex", domain: "altex.ro", scraperType: "custom" },
-      { name: "Flanco", domain: "flanco.ro", scraperType: "jsonld" },
-      { name: "Media Galaxy", domain: "mediagalaxy.ro", scraperType: "custom" },
-      { name: "CEL.ro", domain: "cel.ro", scraperType: "jsonld" },
-      { name: "PC Garage", domain: "pcgarage.ro", scraperType: "jsonld" },
-      { name: "evoMAG", domain: "evomag.ro", scraperType: "jsonld" },
-      { name: "Vexio", domain: "vexio.ro", scraperType: "jsonld" },
-      { name: "Carrefour", domain: "carrefour.ro", scraperType: "search" },
-      { name: "Elefant", domain: "elefant.ro", scraperType: "search" },
+      {
+        name: "eMAG",
+        domain: "emag.ro",
+        scraperType: "custom",
+        search: "https://www.emag.ro/search/{q}",
+      },
+      {
+        name: "Altex",
+        domain: "altex.ro",
+        scraperType: "custom",
+        search: "https://altex.ro/cauta/?q={q}",
+      },
+      {
+        name: "Flanco",
+        domain: "flanco.ro",
+        scraperType: "jsonld",
+        search: "https://www.flanco.ro/catalogsearch/result/?q={q}",
+      },
+      {
+        name: "Media Galaxy",
+        domain: "mediagalaxy.ro",
+        scraperType: "custom",
+        search: "https://mediagalaxy.ro/cauta/?q={q}",
+      },
+      {
+        name: "CEL.ro",
+        domain: "cel.ro",
+        scraperType: "jsonld",
+        search: "https://www.cel.ro/cauta/{q}/",
+      },
+      {
+        name: "PC Garage",
+        domain: "pcgarage.ro",
+        scraperType: "jsonld",
+        search: "https://www.pcgarage.ro/cauta/{q}/",
+      },
+      {
+        name: "evoMAG",
+        domain: "evomag.ro",
+        scraperType: "jsonld",
+        search: "https://www.evomag.ro/?sn.q={q}",
+      },
+      {
+        name: "Vexio",
+        domain: "vexio.ro",
+        scraperType: "jsonld",
+        search: "https://www.vexio.ro/cauta/?q={q}",
+      },
+      {
+        name: "Carrefour",
+        domain: "carrefour.ro",
+        scraperType: "search",
+        search: "https://carrefour.ro/catalogsearch/result/?q={q}",
+      },
+      {
+        name: "Elefant",
+        domain: "elefant.ro",
+        scraperType: "search",
+        search: "https://www.elefant.ro/search?SearchTerm={q}",
+      },
     ],
   },
   DE: {

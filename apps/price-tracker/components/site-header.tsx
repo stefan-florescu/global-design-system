@@ -16,8 +16,10 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 import { basePath } from "@/lib/base-path";
+import { useSession } from "@/lib/session";
 import { useTracker } from "@/lib/use-tracker";
 
+import { AccountMenu } from "./account-menu";
 import { ThemeToggle } from "./theme-toggle";
 
 const links = [
@@ -36,6 +38,8 @@ function isActive(pathname: string, href: string) {
 export function SiteHeader() {
   const pathname = usePathname();
   const { state } = useTracker();
+  const session = useSession();
+  const inApp = session.mode === "account" || session.mode === "demo";
   const [open, setOpen] = useState(false);
   const unread = state?.notifications.filter((n) => !n.read).length ?? 0;
 
@@ -53,27 +57,30 @@ export function SiteHeader() {
             <span className="max-md:sr-only">All apps</span>
           </a>
           <ThemeToggle />
-          <NavbarToggle label="Open main menu" />
+          <AccountMenu />
+          {inApp ? <NavbarToggle label="Open main menu" /> : null}
         </NavbarActions>
-        <NavbarCollapse className="md:order-1">
-          {links.map((link) => (
-            <NavbarLink key={link.href} asChild active={isActive(pathname, link.href)}>
-              <Link href={link.href} onClick={() => setOpen(false)}>
-                <span className="inline-flex items-center gap-1.5">
-                  {link.title}
-                  {link.href === "/notifications" && unread > 0 ? (
-                    <Indicator
-                      variant="danger"
-                      count={unread}
-                      max={99}
-                      label={`${unread} unread`}
-                    />
-                  ) : null}
-                </span>
-              </Link>
-            </NavbarLink>
-          ))}
-        </NavbarCollapse>
+        {inApp ? (
+          <NavbarCollapse className="md:order-1">
+            {links.map((link) => (
+              <NavbarLink key={link.href} asChild active={isActive(pathname, link.href)}>
+                <Link href={link.href} onClick={() => setOpen(false)}>
+                  <span className="inline-flex items-center gap-1.5">
+                    {link.title}
+                    {link.href === "/notifications" && unread > 0 ? (
+                      <Indicator
+                        variant="danger"
+                        count={unread}
+                        max={99}
+                        label={`${unread} unread`}
+                      />
+                    ) : null}
+                  </span>
+                </Link>
+              </NavbarLink>
+            ))}
+          </NavbarCollapse>
+        ) : null}
       </Navbar>
     </header>
   );

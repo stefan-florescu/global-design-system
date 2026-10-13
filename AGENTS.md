@@ -38,6 +38,9 @@ Dependency direction is strictly **tokens → themes → ui → apps**. Never im
   launcher's build copies it into `public/<section>` (`apps/launcher/sections.mjs`). Keep section
   apps static (no route handlers, middleware or server actions). Links use `next/link`, which adds
   the base path; a plain `<a href>` or a public file path needs it written out.
+- An app that needs a backend keeps it outside the static export. The price tracker's is Supabase
+  (ADR 0011): migrations in `apps/price-tracker/supabase/migrations`, the Edge Function's code in
+  `apps/price-tracker/server` (bundled by `pnpm --filter @stefan-florescu/price-tracker build:function`).
 
 ### Creating a component
 

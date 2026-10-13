@@ -84,6 +84,8 @@ export type Offer = {
   manual?: boolean;
   /** The last check looked wrong (plan T3.10): the price shown is the last good one. */
   stale?: boolean;
+  /** Why the last check failed: "blocked" (the store refuses automated checks), "timeout"… */
+  lastError?: string;
 };
 
 /** One price check of an offer. History is append-only. */

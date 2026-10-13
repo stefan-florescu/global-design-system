@@ -36,7 +36,7 @@ import {
 import type { RankedCandidate } from "@/lib/discovery";
 import type { ProductIdentity } from "@/lib/model";
 import { formatPrice } from "@/lib/price";
-import { priceSource, type IdentifyResult } from "@/lib/source";
+import { getPriceSource, type IdentifyResult, type StoreSearch } from "@/lib/source";
 import { storeOptions, suggestedStores, type StoreChoice } from "@/lib/store-choice";
 import { maxWatchedProducts } from "@/lib/tracker";
 import { checkProductUrl } from "@/lib/url";
@@ -66,7 +66,12 @@ type Phase =
   | { step: "form" }
   | { step: "identifying"; url: URL }
   | ({ step: "choose" } & Choice)
-  | ({ step: "searching" | "confirm"; candidates: RankedCandidate[] } & Choice);
+  | ({
+      step: "searching" | "confirm";
+      candidates: RankedCandidate[];
+      /** How each store's search went, when the source reports it. */
+      stores?: StoreSearch[];
+    } & Choice);
 
 const countrySources = {
   store: "from the store",
@@ -126,15 +131,24 @@ export function AddProduct() {
     setStatus(
       `Searching ${stores.length} ${stores.length === 1 ? "website" : "websites"} in ${countries[country].name}…`,
     );
-    const candidates =
-      stores.length === 0
-        ? []
-        : await priceSource.discover(
-            { ...choice.identity, price: choice.identified.snapshot.price },
-            { country, stores, excludeDomain: choice.identified.store.domain },
-          );
+    let result: Awaited<ReturnType<ReturnType<typeof getPriceSource>["discover"]>>;
+    try {
+      result =
+        stores.length === 0
+          ? { candidates: [] }
+          : await getPriceSource().discover(
+              { ...choice.identity, price: choice.identified.snapshot.price },
+              { country, stores, excludeDomain: choice.identified.store.domain },
+            );
+    } catch (caught) {
+      if (id !== run.current) return;
+      setPhase({ ...choice, step: "choose" });
+      setStatus(caught instanceof Error ? caught.message : "The search failed. Try again.");
+      return;
+    }
     if (id !== run.current) return;
-    setPhase({ ...choice, step: "confirm", candidates });
+    const { candidates } = result;
+    setPhase({ ...choice, step: "confirm", candidates, stores: result.stores });
     const accepted = candidates.filter((c) => c.match.decision === "accept").length;
     const possible = candidates.length - accepted;
     setStatus(
@@ -154,7 +168,7 @@ export function AddProduct() {
     setPhase({ step: "identifying", url: check.url });
     setStatus("Identifying product…");
     try {
-      const identified = await priceSource.identify(check.url);
+      const identified = await getPriceSource().identify(check.url);
       if (id !== run.current) return;
       setPhase(
         choose(
@@ -283,19 +297,25 @@ export function AddProduct() {
               onCountry={(country) => setPhase(choose(phase, country))}
               onSearch={() => void search(phase)}
               onCancel={reset}
-              onConfirm={() => {
+              onConfirm={async () => {
                 if (phase.step !== "confirm") return;
                 const tracked = findTracked(getState(), phase.identity, phase.url);
-                const id = tracked
-                  ? tracked.id
-                  : addProduct({
-                      url: phase.url,
-                      identified: phase.identified,
-                      identity: phase.identity,
-                      country: phase.country,
-                      candidates: phase.candidates,
-                    });
-                router.push(`/product?id=${encodeURIComponent(id)}`);
+                try {
+                  const id = tracked
+                    ? tracked.id
+                    : await addProduct({
+                        url: phase.url,
+                        identified: phase.identified,
+                        identity: phase.identity,
+                        country: phase.country,
+                        candidates: phase.candidates,
+                      });
+                  router.push(`/product?id=${encodeURIComponent(id)}`);
+                } catch (caught) {
+                  setStatus(
+                    caught instanceof Error ? caught.message : "The product couldn't be saved.",
+                  );
+                }
               }}
             />
           )}
@@ -332,9 +352,10 @@ function ConfirmMatch({
   onCountry: (country: CountryCode) => void;
   onSearch: () => void;
   onCancel: () => void;
-  onConfirm: () => void;
+  onConfirm: () => Promise<void>;
 }) {
   const { identified, identity, country } = phase;
+  const [saving, setSaving] = useState(false);
   const { state } = useTracker();
   const variantId = useId();
   const countryId = useId();
@@ -388,6 +409,12 @@ function ConfirmMatch({
               <AvailabilityBadge availability={identified.snapshot.availability} />
             </dd>
           </dl>
+          {identified.pageStatus && identified.pageStatus !== "read" ? (
+            <HelperText>
+              {identified.store.name} doesn&apos;t let us read its page yet, so the name comes from
+              the link and its price is unknown. Other stores are still searched and checked.
+            </HelperText>
+          ) : null}
         </div>
       </div>
 
@@ -487,16 +514,11 @@ function ConfirmMatch({
               ))}
             </ul>
           )}
-          {phase.selected.length > candidates.length ? (
-            <p className="text-body-subtle text-sm">
-              Not found on:{" "}
-              {phase.selected
-                .filter((domain) => !candidates.some((c) => c.domain === domain))
-                .map(nameOf)
-                .join(", ")}
-              .
+          {searchSummary(phase, candidates, nameOf).map((line) => (
+            <p key={line} className="text-body-subtle text-sm">
+              {line}
             </p>
-          ) : null}
+          ))}
         </div>
       )}
 
@@ -523,7 +545,12 @@ function ConfirmMatch({
         ) : (
           <>
             <Button
-              onClick={onConfirm}
+              onClick={async () => {
+                setSaving(true);
+                await onConfirm();
+                setSaving(false);
+              }}
+              loading={saving}
               disabled={searching || (!tracked && state !== null && !canAddMore(state))}
             >
               <Check aria-hidden />
@@ -549,4 +576,29 @@ function ConfirmMatch({
       </div>
     </div>
   );
+}
+
+const storeStatusText = {
+  not_found: "Not found on",
+  blocked: "Blocks automated searches",
+  unreachable: "Didn't answer",
+  error: "Couldn't search",
+} as const;
+
+/** The chosen stores without a match, grouped by why. */
+function searchSummary(
+  phase: Exclude<Phase, { step: "form" } | { step: "identifying" }>,
+  candidates: RankedCandidate[],
+  nameOf: (domain: string) => string,
+) {
+  const missing = phase.selected.filter((domain) => !candidates.some((c) => c.domain === domain));
+  if (missing.length === 0) return [];
+  const statusOf = (domain: string) =>
+    (phase.step === "choose" ? undefined : phase.stores)?.find((s) => s.domain === domain)?.status;
+  return (Object.keys(storeStatusText) as (keyof typeof storeStatusText)[]).flatMap((status) => {
+    const stores = missing.filter((domain) => (statusOf(domain) ?? "not_found") === status);
+    return stores.length > 0
+      ? [`${storeStatusText[status]}: ${stores.map(nameOf).join(", ")}.`]
+      : [];
+  });
 }

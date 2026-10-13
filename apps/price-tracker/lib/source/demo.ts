@@ -259,11 +259,13 @@ export function createDemoSource({ delayMs = 700 }: { delayMs?: number } = {}): 
         { url: "", domain: excludeDomain, title: identity.title },
         now,
       ).price;
-      return rankCandidates({ ...identity, price: identity.price ?? sourcePrice }, candidates, {
-        country,
-        stores: stores.map((s) => s.domain),
-        excludeDomain,
-      });
+      return {
+        candidates: rankCandidates(
+          { ...identity, price: identity.price ?? sourcePrice },
+          candidates,
+          { country, stores: stores.map((s) => s.domain), excludeDomain },
+        ),
+      };
     },
 
     async check(offer, now) {

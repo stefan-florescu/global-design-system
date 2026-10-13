@@ -38,6 +38,26 @@ export function TrendBadge({ trend }: { trend: Trend }) {
   );
 }
 
+/** Why the last check of a store failed, when the store refused or didn't answer. */
+export function CheckErrorBadge({ error }: { error?: string }) {
+  if (!error || error === "anomaly") return null;
+  const text =
+    error === "blocked"
+      ? "Blocks price checks"
+      : error === "not_found"
+        ? "Page gone"
+        : "Not reachable";
+  return (
+    <Badge
+      variant="warning"
+      title="The last price check of this store failed; the price shown is the last one we read."
+    >
+      <Clock aria-hidden />
+      {text}
+    </Badge>
+  );
+}
+
 export function StaleBadge() {
   return (
     <Badge variant="warning">

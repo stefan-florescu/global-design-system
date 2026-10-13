@@ -48,7 +48,7 @@ import { useNow } from "@/lib/use-now";
 import { dispatch } from "@/lib/use-tracker";
 import { formatPercent, money, timeAgo } from "@/lib/view";
 
-import { AvailabilityBadge, StaleBadge } from "./badges";
+import { AvailabilityBadge, CheckErrorBadge, StaleBadge } from "./badges";
 
 type SortKey = "price" | "availability" | "name";
 type Sort = { key: SortKey; direction: "ascending" | "descending" };
@@ -196,7 +196,7 @@ export function OffersTable({ product, offers }: { product: Product; offers: Off
                     {offer.storeName}
                     {offer.id === best?.id ? <Badge variant="success">Best price</Badge> : null}
                     {offer.manual ? <Badge variant="gray">Added by you</Badge> : null}
-                    {offer.stale ? <StaleBadge /> : null}
+                    {offer.stale ? <StaleBadge /> : <CheckErrorBadge error={offer.lastError} />}
                   </div>
                 </TableHeadCell>
                 <TableCell className="whitespace-nowrap">
