@@ -2,6 +2,7 @@ import type { CountryGuess, CountryCode } from "../countries";
 import type { ProductIdentity, PricePoint, Store } from "../model";
 import type { RankedCandidate } from "../discovery";
 import type { Snapshot } from "../changes";
+import type { StoreChoice } from "../store-choice";
 
 /*
  * Where the app gets product pages and prices from. The screens only talk to this interface:
@@ -30,11 +31,10 @@ export interface PriceSource {
   label: string;
   /** Reads the pasted page (plan T3.1–T3.4). */
   identify(url: URL): Promise<IdentifyResult>;
-  /** Finds the product on other stores in `country` (plan T3.5–T3.6). */
+  /** Finds the product on the stores the user chose, in `country` (plan T3.5–T3.6, D1). */
   discover(
     identity: ProductIdentity & { price: number | null },
-    country: CountryCode,
-    excludeDomain: string,
+    search: { country: CountryCode; stores: StoreChoice[]; excludeDomain: string },
   ): Promise<RankedCandidate[]>;
   /** Reads one offer's current price and stock (plan T3.8). */
   check(offer: OfferRef, now: number): Promise<CheckResult>;

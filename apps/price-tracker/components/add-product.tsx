@@ -1,6 +1,13 @@
 "use client";
 
-import { Check, CircleAlert, Link as LinkIcon, Search, Store } from "@stefan-florescu/icons";
+import {
+  ArrowLeft,
+  Check,
+  CircleAlert,
+  Link as LinkIcon,
+  Search,
+  Store,
+} from "@stefan-florescu/icons";
 import {
   Alert,
   Badge,
@@ -19,31 +26,47 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 
 import { addProduct, canAddMore, findTracked } from "@/lib/actions";
-import { countries, countryCodes, isCountryCode, type CountryCode } from "@/lib/countries";
+import {
+  countries,
+  countryCodes,
+  hostMatches,
+  isCountryCode,
+  type CountryCode,
+} from "@/lib/countries";
 import type { RankedCandidate } from "@/lib/discovery";
 import type { ProductIdentity } from "@/lib/model";
 import { formatPrice } from "@/lib/price";
 import { priceSource, type IdentifyResult } from "@/lib/source";
+import { storeOptions, suggestedStores, type StoreChoice } from "@/lib/store-choice";
 import { maxWatchedProducts } from "@/lib/tracker";
 import { checkProductUrl } from "@/lib/url";
-import { getState, useTracker } from "@/lib/use-tracker";
+import { dispatch, getState, useTracker } from "@/lib/use-tracker";
 
 import { AvailabilityBadge } from "./badges";
 import { DemoNotice } from "./demo-notice";
 import { PageHeading } from "./page-shell";
 import { ProductImage } from "./product-image";
+import { StorePicker } from "./store-picker";
+
+/** The product as identified, and where to look for it. */
+type Choice = {
+  url: URL;
+  identified: IdentifyResult;
+  identity: ProductIdentity;
+  country: CountryCode;
+  /** Domains of the stores to search. */
+  selected: string[];
+  /** Websites typed in during this search, saved when it runs. */
+  added: StoreChoice[];
+  /** Whether `selected` came from the user's last product. */
+  remembered: boolean;
+};
 
 type Phase =
   | { step: "form" }
   | { step: "identifying"; url: URL }
-  | {
-      step: "searching" | "confirm";
-      url: URL;
-      identified: IdentifyResult;
-      identity: ProductIdentity;
-      country: CountryCode;
-      candidates: RankedCandidate[];
-    };
+  | ({ step: "choose" } & Choice)
+  | ({ step: "searching" | "confirm"; candidates: RankedCandidate[] } & Choice);
 
 const countrySources = {
   store: "from the store",
@@ -68,27 +91,54 @@ export function AddProduct() {
   const run = useRef(0);
   const headingRef = useRef<HTMLHeadingElement>(null);
 
-  const search = async (
-    url: URL,
-    identified: IdentifyResult,
-    identity: ProductIdentity,
+  /** The choose step for a country, with the stores suggested from the user's last choice. */
+  const choose = (
+    base: Pick<Choice, "url" | "identified" | "identity">,
     country: CountryCode,
-  ) => {
-    const id = ++run.current;
-    setPhase({ step: "searching", url, identified, identity, country, candidates: [] });
-    setStatus(
-      `Searching ${countries[country].stores.length} stores in ${countries[country].name}…`,
-    );
-    const candidates = await priceSource.discover(
-      { ...identity, price: identified.snapshot.price },
+  ): Phase => {
+    const settings = getState().settings;
+    return {
+      step: "choose",
+      ...base,
+      identity: { ...base.identity, country },
       country,
-      identified.store.domain,
-    );
-    if (id !== run.current) return;
-    setPhase({ step: "confirm", url, identified, identity, country, candidates });
-    const accepted = candidates.filter((c) => c.match.decision === "accept").length;
+      selected: suggestedStores(settings, country, base.identified.store.domain),
+      added: [],
+      remembered: settings.storeLists[country] !== undefined,
+    };
+  };
+
+  const search = async (choice: Choice) => {
+    const id = ++run.current;
+    const { country, selected, added } = choice;
+    const options = [...storeOptions(getState().settings, country), ...added];
+    const stores = options.filter((store) => selected.includes(store.domain));
+    // The link's own store counts as chosen too, so it is ticked for the next product.
+    const source = choice.identified.store;
+    const sourceKnown = options.some((store) => hostMatches(source.domain, store.domain));
+    dispatch({
+      type: "rememberStores",
+      country,
+      domains: [...selected, source.domain],
+      added: sourceKnown ? added : [...added, { name: source.name, domain: source.domain }],
+    });
+    setPhase({ ...choice, step: "searching", candidates: [] });
     setStatus(
-      `Found ${accepted + 1} offers${candidates.length > accepted ? ` and ${candidates.length - accepted} possible ${candidates.length - accepted === 1 ? "match" : "matches"}` : ""}.`,
+      `Searching ${stores.length} ${stores.length === 1 ? "website" : "websites"} in ${countries[country].name}…`,
+    );
+    const candidates =
+      stores.length === 0
+        ? []
+        : await priceSource.discover(
+            { ...choice.identity, price: choice.identified.snapshot.price },
+            { country, stores, excludeDomain: choice.identified.store.domain },
+          );
+    if (id !== run.current) return;
+    setPhase({ ...choice, step: "confirm", candidates });
+    const accepted = candidates.filter((c) => c.match.decision === "accept").length;
+    const possible = candidates.length - accepted;
+    setStatus(
+      `Found ${accepted + 1} ${accepted === 0 ? "offer" : "offers"}${possible > 0 ? ` and ${possible} possible ${possible === 1 ? "match" : "matches"}` : ""}.`,
     );
     requestAnimationFrame(() => headingRef.current?.focus());
   };
@@ -106,7 +156,14 @@ export function AddProduct() {
     try {
       const identified = await priceSource.identify(check.url);
       if (id !== run.current) return;
-      await search(check.url, identified, identified.identity, identified.identity.country);
+      setPhase(
+        choose(
+          { url: check.url, identified, identity: identified.identity },
+          identified.identity.country,
+        ),
+      );
+      setStatus("Product found. Choose the websites to search.");
+      requestAnimationFrame(() => headingRef.current?.focus());
     } catch (caught) {
       if (id !== run.current) return;
       setPhase({ step: "form" });
@@ -199,40 +256,35 @@ export function AddProduct() {
       {phase.step !== "form" ? (
         <Card className="*:flex *:flex-col *:gap-6">
           <Stepper aria-label="Progress">
-            <StepperItem status={phase.step === "identifying" ? "current" : "complete"}>
-              Identify product
-            </StepperItem>
-            <StepperItem
-              status={
-                phase.step === "identifying"
-                  ? "upcoming"
-                  : phase.step === "searching"
-                    ? "current"
-                    : "complete"
-              }
-            >
-              Search stores
-            </StepperItem>
-            <StepperItem status={phase.step === "confirm" ? "current" : "upcoming"}>
-              Confirm
-            </StepperItem>
+            {steps.map((step, index) => (
+              <StepperItem
+                key={step.id}
+                status={
+                  index < stepIndex(phase.step)
+                    ? "complete"
+                    : index === stepIndex(phase.step)
+                      ? "current"
+                      : "upcoming"
+                }
+              >
+                {step.label}
+              </StepperItem>
+            ))}
           </Stepper>
           <p className="text-heading font-medium" aria-hidden>
             {status}
           </p>
 
-          {phase.step === "searching" || phase.step === "confirm" ? (
+          {phase.step === "identifying" ? null : (
             <ConfirmMatch
               phase={phase}
               headingRef={headingRef}
-              onVariant={(identity) =>
-                void search(phase.url, phase.identified, identity, phase.country)
-              }
-              onCountry={(country) =>
-                void search(phase.url, phase.identified, { ...phase.identity, country }, country)
-              }
+              onChoice={(patch) => setPhase({ ...phase, ...patch, step: "choose" })}
+              onCountry={(country) => setPhase(choose(phase, country))}
+              onSearch={() => void search(phase)}
               onCancel={reset}
               onConfirm={() => {
+                if (phase.step !== "confirm") return;
                 const tracked = findTracked(getState(), phase.identity, phase.url);
                 const id = tracked
                   ? tracked.id
@@ -246,38 +298,57 @@ export function AddProduct() {
                 router.push(`/product?id=${encodeURIComponent(id)}`);
               }}
             />
-          ) : null}
+          )}
         </Card>
       ) : null}
     </>
   );
 }
 
+const steps = [
+  { id: "identify", label: "Identify product" },
+  { id: "choose", label: "Choose stores" },
+  { id: "search", label: "Search" },
+  { id: "confirm", label: "Confirm" },
+] as const;
+
+function stepIndex(step: Phase["step"]) {
+  return { form: -1, identifying: 0, choose: 1, searching: 2, confirm: 3 }[step];
+}
+
 function ConfirmMatch({
   phase,
   headingRef,
-  onVariant,
+  onChoice,
   onCountry,
+  onSearch,
   onCancel,
   onConfirm,
 }: {
-  phase: Extract<Phase, { step: "searching" | "confirm" }>;
+  phase: Exclude<Phase, { step: "form" } | { step: "identifying" }>;
   headingRef: React.RefObject<HTMLHeadingElement | null>;
-  onVariant: (identity: ProductIdentity) => void;
+  /** Changes the variant or the stores, going back to the choose step. */
+  onChoice: (patch: Partial<Choice>) => void;
   onCountry: (country: CountryCode) => void;
+  onSearch: () => void;
   onCancel: () => void;
   onConfirm: () => void;
 }) {
-  const { identified, identity, country, candidates } = phase;
+  const { identified, identity, country } = phase;
   const { state } = useTracker();
   const variantId = useId();
   const countryId = useId();
   const tracked = state ? findTracked(state, identity, phase.url) : undefined;
+  const choosing = phase.step === "choose";
   const searching = phase.step === "searching";
   const currency = countries[country].currency;
   const locale = countries[country].locale;
+  const candidates = phase.step === "choose" ? [] : phase.candidates;
   const accepted = candidates.filter((c) => c.match.decision === "accept");
   const possible = candidates.filter((c) => c.match.decision === "possible");
+  const options = state ? [...storeOptions(state.settings, country), ...phase.added] : [];
+  const nameOf = (domain: string) =>
+    options.find((store) => store.domain === domain)?.name ?? domain;
 
   return (
     <div className="flex flex-col gap-6">
@@ -289,7 +360,7 @@ function ConfirmMatch({
             tabIndex={-1}
             className="text-heading text-xl font-semibold focus:outline-none"
           >
-            Is this your product?
+            {choosing ? "Is this your product?" : "Track this product?"}
           </h2>
           <p className="text-heading text-lg break-words">{identity.title}</p>
           <dl className="text-body grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
@@ -321,7 +392,7 @@ function ConfirmMatch({
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        {phase.identified.variants.length > 1 ? (
+        {identified.variants.length > 1 ? (
           <div className="flex flex-col gap-2">
             <Label htmlFor={variantId}>Variant</Label>
             <Select
@@ -329,11 +400,11 @@ function ConfirmMatch({
               value={identity.variant.storage ?? ""}
               disabled={searching}
               onChange={(event) => {
-                const next = phase.identified.variants.find((v) => v.label === event.target.value);
-                if (next) onVariant({ ...next.identity, country });
+                const next = identified.variants.find((v) => v.label === event.target.value);
+                if (next) onChoice({ identity: { ...next.identity, country } });
               }}
             >
-              {phase.identified.variants.map((v) => (
+              {identified.variants.map((v) => (
                 <option key={v.label} value={v.label}>
                   {v.label}
                 </option>
@@ -342,7 +413,7 @@ function ConfirmMatch({
           </div>
         ) : null}
         <div className="flex flex-col gap-2">
-          <Label htmlFor={countryId}>Compare prices in</Label>
+          <Label htmlFor={countryId}>Country</Label>
           <Select
             id={countryId}
             value={country}
@@ -360,23 +431,38 @@ function ConfirmMatch({
           </Select>
           <HelperText id={`${countryId}-help`}>
             {country === identified.countryGuess.country
-              ? `Detected ${countrySources[identified.countryGuess.source]}.`
-              : "Changed by you."}
+              ? `Detected ${countrySources[identified.countryGuess.source]}. Prices are compared in this country's stores.`
+              : "Chosen by you. Prices are compared in this country's stores."}
           </HelperText>
         </div>
       </div>
 
-      {searching ? null : (
+      {choosing ? (
+        <StorePicker
+          country={country}
+          options={options}
+          selected={phase.selected}
+          source={{ name: identified.store.name, domain: identified.store.domain }}
+          remembered={phase.remembered}
+          onChange={(selected) => onChoice({ selected })}
+          onAdd={(store) =>
+            onChoice({
+              added: [...phase.added, store],
+              selected: [...phase.selected, store.domain],
+            })
+          }
+        />
+      ) : searching ? null : (
         <div className="flex flex-col gap-3">
           <h3 className="text-heading font-semibold">
-            {accepted.length + 1} {accepted.length === 0 ? "store" : "stores"} sell it
+            {accepted.length + 1} {accepted.length === 0 ? "store sells" : "stores sell"} it
             {possible.length > 0 ? `, ${possible.length} more to check` : ""}
           </h3>
           {candidates.length === 0 ? (
             <p className="text-body text-sm">
-              No other stores in {countries[country].name} were found. We&apos;ll keep tracking{" "}
-              {identified.store.name}, and you can add other stores&apos; links from the product
-              page.
+              {phase.selected.length === 0
+                ? `No other websites were searched. We'll track ${identified.store.name}; you can add other stores' links from the product page.`
+                : `None of the websites you chose sells it. We'll track ${identified.store.name}; you can add other stores' links from the product page.`}
             </p>
           ) : (
             <ul className="flex flex-wrap gap-2">
@@ -394,13 +480,23 @@ function ConfirmMatch({
                     bordered
                   >
                     <Store aria-hidden />
-                    {storeName(c.domain, country)}
+                    {nameOf(c.domain)}
                     {c.match.decision === "possible" ? <span> · possible match</span> : null}
                   </Badge>
                 </li>
               ))}
             </ul>
           )}
+          {phase.selected.length > candidates.length ? (
+            <p className="text-body-subtle text-sm">
+              Not found on:{" "}
+              {phase.selected
+                .filter((domain) => !candidates.some((c) => c.domain === domain))
+                .map(nameOf)
+                .join(", ")}
+              .
+            </p>
+          ) : null}
         </div>
       )}
 
@@ -417,24 +513,40 @@ function ConfirmMatch({
       ) : null}
 
       <div className="flex flex-wrap gap-3">
-        <Button
-          onClick={onConfirm}
-          disabled={searching || (!tracked && state !== null && !canAddMore(state))}
-        >
-          <Check aria-hidden />
-          {tracked ? "Open product" : "Yes, track it"}
-        </Button>
-        <Button variant="secondary" onClick={onCancel}>
+        {choosing ? (
+          <Button onClick={onSearch} disabled={Boolean(tracked)}>
+            <Search aria-hidden />
+            {phase.selected.length === 0
+              ? "Continue without searching"
+              : `Search ${phase.selected.length} ${phase.selected.length === 1 ? "website" : "websites"}`}
+          </Button>
+        ) : (
+          <>
+            <Button
+              onClick={onConfirm}
+              disabled={searching || (!tracked && state !== null && !canAddMore(state))}
+            >
+              <Check aria-hidden />
+              {tracked ? "Open product" : "Yes, track it"}
+            </Button>
+            <Button variant="secondary" onClick={() => onChoice({})} disabled={searching}>
+              <ArrowLeft aria-hidden />
+              Change stores
+            </Button>
+          </>
+        )}
+        {tracked && choosing ? (
+          <Link
+            href={`/product?id=${encodeURIComponent(tracked.id)}`}
+            className={buttonVariants({ variant: "secondary" })}
+          >
+            Open product
+          </Link>
+        ) : null}
+        <Button variant="ghost" onClick={onCancel}>
           No, try another link
         </Button>
-        <Link href="/" className={buttonVariants({ variant: "ghost" })}>
-          Cancel
-        </Link>
       </div>
     </div>
   );
-}
-
-function storeName(domain: string, country: CountryCode) {
-  return countries[country].stores.find((s) => s.domain === domain)?.name ?? domain;
 }

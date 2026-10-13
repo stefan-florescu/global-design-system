@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 
+import { countries } from "../countries";
 import { createDemoSource, demoSnapshot, ean13 } from "./demo";
 
 const source = createDemoSource({ delayMs: 0 });
@@ -30,14 +31,32 @@ describe("demo source", () => {
     );
   });
 
-  it("finds other stores in the country, with accepted and possible matches", async () => {
+  it("searches only the websites the user chose, with accepted and possible matches", async () => {
     const { identity, store } = await source.identify(url);
-    const found = await source.discover({ ...identity, price: null }, "RO", store.domain);
+    const stores = countries.RO.stores.filter((s) => s.domain !== "carrefour.ro");
+    const found = await source.discover(
+      { ...identity, price: null },
+      { country: "RO", stores, excludeDomain: store.domain },
+    );
     expect(found.length).toBeGreaterThanOrEqual(4);
-    expect(found.every((c) => c.domain.endsWith(".ro") && c.domain !== "emag.ro")).toBe(true);
+    expect(found.every((c) => stores.some((s) => s.domain === c.domain))).toBe(true);
+    expect(found.some((c) => c.domain === "emag.ro" || c.domain === "carrefour.ro")).toBe(false);
     expect(found.some((c) => c.match.decision === "accept")).toBe(true);
     expect(found.some((c) => c.match.decision === "possible")).toBe(true);
     expect(found.some((c) => /husa/i.test(c.title))).toBe(false);
+  });
+
+  it("searches websites the user added", async () => {
+    const { identity, store } = await source.identify(url);
+    const found = await source.discover(
+      { ...identity, price: null },
+      {
+        country: "RO",
+        stores: [{ name: "magazin-mic.ro", domain: "magazin-mic.ro" }],
+        excludeDomain: store.domain,
+      },
+    );
+    expect(found.every((c) => c.domain === "magazin-mic.ro")).toBe(true);
   });
 
   it("prices are stable for a moment and history matches checks", async () => {

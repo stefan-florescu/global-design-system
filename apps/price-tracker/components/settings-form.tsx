@@ -21,6 +21,8 @@ import {
 } from "@stefan-florescu/ui";
 import { useId, useState, type FormEvent } from "react";
 
+import { countries, countryCodes } from "@/lib/countries";
+import { storeOptions } from "@/lib/store-choice";
 import { emptyState, serialize } from "@/lib/tracker";
 import { dispatch, useTracker } from "@/lib/use-tracker";
 
@@ -44,6 +46,9 @@ export function SettingsForm() {
   }
 
   const { settings } = state;
+  const rememberedCountries = countryCodes.filter(
+    (country) => settings.storeLists[country] !== undefined,
+  );
   const emailValue = email ?? settings.email;
 
   const saveEmail = (event: FormEvent) => {
@@ -141,6 +146,61 @@ export function SettingsForm() {
             ))}
           </Select>
         </div>
+      </Card>
+
+      <Card className="*:flex *:flex-col *:gap-5 *:p-6">
+        <div className="flex flex-col gap-1">
+          <h2 className="text-heading text-xl font-semibold">Websites to search</h2>
+          <p className="text-body">
+            When you add a product you choose the websites to search. Your last choice in each
+            country is suggested for the next product.
+          </p>
+        </div>
+        {rememberedCountries.length === 0 ? (
+          <p className="text-body-subtle text-sm">
+            Nothing remembered yet. Every listed store is suggested until you choose.
+          </p>
+        ) : (
+          <ul className="flex flex-col gap-4">
+            {rememberedCountries.map((country) => {
+              const domains = settings.storeLists[country] ?? [];
+              const names = storeOptions(settings, country)
+                .filter((store) => domains.includes(store.domain))
+                .map((store) => store.name);
+              const added = settings.customStores[country] ?? [];
+              return (
+                <li
+                  key={country}
+                  className="rounded-base border-default flex flex-col gap-3 border p-4 sm:flex-row sm:items-start"
+                >
+                  <div className="flex min-w-0 flex-1 flex-col gap-1">
+                    <p className="text-heading font-medium">{countries[country].name}</p>
+                    <p className="text-body text-sm">
+                      {names.length > 0
+                        ? names.join(", ")
+                        : "No websites: only the link's own store."}
+                    </p>
+                    {added.length > 0 ? (
+                      <p className="text-body-subtle text-xs">
+                        Added by you: {added.map((store) => store.domain).join(", ")}
+                      </p>
+                    ) : null}
+                  </div>
+                  <Button
+                    variant="secondary"
+                    size="xs"
+                    onClick={() => {
+                      dispatch({ type: "forgetStores", country });
+                      setSaved(`Store choice for ${countries[country].name} reset.`);
+                    }}
+                  >
+                    Reset
+                  </Button>
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </Card>
 
       <Card className="*:flex *:flex-col *:gap-5 *:p-6">

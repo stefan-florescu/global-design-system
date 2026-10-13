@@ -41,8 +41,8 @@ export const priceTrackerPlan: Plan = {
     [
       "Key decisions",
       [
-        ["D1", "Decide the discovery strategy", "todo", "high", "Shopping search API, web search, affiliate feeds or curated stores — drives cost and accuracy most. The app's PriceSource interface works with any of them."],
-        ["D2", "Choose the launch country and its top stores", "in-progress", "high", "The app defaults to Romania with 10 curated stores (eMAG, Altex, Flanco…). Confirm, or name another country."],
+        ["D1", "Decide the discovery strategy", "done", "high", "Decided: the user picks the websites to search when adding a product; the choice is remembered per country and suggested next time, and they can add any website."],
+        ["D2", "Choose the launch country and its top stores", "done", "high", "Decided: Romania, with 10 curated stores (eMAG, Altex, Flanco…). The user can pick another country when adding a product."],
         ["D3", "Legal and ToS review", "todo", "high", "Respect robots.txt, rate-limit, prefer official APIs and affiliate feeds, store only the page data needed."],
       ],
     ],
@@ -50,9 +50,9 @@ export const priceTrackerPlan: Plan = {
       "Phase 1 — Foundation",
       [
         ["T1.1", "Set up the monorepo (web, worker, db, scrapers) with lint, format and CI", "in-progress", "medium", "Done: apps/price-tracker in this monorepo with lint, format, tests and CI. To do: apps/worker, packages/db, packages/scrapers."],
-        ["T1.2", "Provision Postgres and Redis; set up env management", "todo", "medium", "Neon/Supabase + Upstash. Needs accounts and keys."],
+        ["T1.2", "Provision Postgres and Redis; set up env management", "todo", "medium", "Decided: Supabase (Postgres, Auth, Edge Functions, cron). To do: connect the project and add its keys to the environment."],
         ["T1.3", "Define the data model and run the first migration", "in-progress", "medium", "Done: lib/model.ts mirrors User/Product/Store/Offer/PricePoint/Watch/Notification. To do: the migration (after T1.2)."],
-        ["T1.4", "Deploy pipeline (preview and production) and worker deployment", "in-progress", "medium", "Done: the web app deploys with the launcher on Vercel at /price-tracker. To do: the worker host (Railway/Fly/VPS)."],
+        ["T1.4", "Deploy pipeline (preview and production) and worker deployment", "in-progress", "medium", "Done: the web app deploys with the launcher on Vercel at /price-tracker. To do: deploy the price-checking functions to Supabase."],
       ],
     ],
     [
@@ -73,7 +73,7 @@ export const priceTrackerPlan: Plan = {
         ["T3.2", "Parse JSON-LD, then microdata and OpenGraph, then store selectors", "done", "high", "lib/parse-product.ts with a StoreAdapter hook; tested on saved HTML fixtures."],
         ["T3.3", "Infer the country (domain, currency, language) with a manual override", "done", "high", "lib/countries.ts; the confirm screen lets the user change it."],
         ["T3.4", "Normalize the title: brand, model, variant", "done", "high", "lib/normalize.ts: strips marketing words, finds brand, model, storage, colour and size."],
-        ["T3.5", "Discovery pipeline: queries, candidates, country filter", "in-progress", "high", "Done: queries (GTIN first, then brand + model) and country filtering in lib/discovery.ts. To do: a real search provider (D1)."],
+        ["T3.5", "Discovery pipeline: queries, candidates, country filter", "in-progress", "high", "Done: queries (GTIN first, then brand + model) and the user's chosen websites in lib/discovery.ts. To do: search each chosen website for real (needs T3.1)."],
         ["T3.6", "Matching engine with auto-accept and “possible matches”", "done", "high", "lib/match.ts: GTIN/MPN, fuzzy title + brand + variant, price sanity, accessory filter."],
         ["T3.7", "“Not the same product” and “Add a store link manually”", "done", "medium", "On the product page, with hidden stores that can be restored."],
         ["T3.8", "Scraper framework: JSON-LD extractor plus per-store adapters", "in-progress", "medium", "Done: PriceSource and StoreAdapter interfaces, demo source. To do: real fetching (T3.1)."],

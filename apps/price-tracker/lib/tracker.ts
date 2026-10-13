@@ -7,7 +7,7 @@ import {
   targetEvent,
   type ChangeEvent,
 } from "./changes";
-import { isCountryCode } from "./countries";
+import { isCountryCode, type CountryCode } from "./countries";
 import {
   availabilities,
   notificationTypes,
@@ -21,6 +21,7 @@ import {
   type Watch,
 } from "./model";
 import type { CheckResult } from "./source/types";
+import type { StoreChoice } from "./store-choice";
 
 /*
  * Everything the tracker stores, and every change to it as a pure reducer, so the rules (what a
@@ -50,6 +51,8 @@ export const defaultSettings: Settings = {
   dailyDigest: false,
   notifyOnIncrease: false,
   dedupeHours: 12,
+  storeLists: {},
+  customStores: {},
 };
 
 export const emptyState: TrackerState = {
@@ -85,6 +88,10 @@ export type TrackerAction =
   | { type: "markRead"; ids?: string[] }
   | { type: "clearNotifications" }
   | { type: "updateSettings"; patch: Partial<Settings> }
+  /** Remembers the websites chosen for a product, to suggest them next time. */
+  | { type: "rememberStores"; country: CountryCode; domains: string[]; added: StoreChoice[] }
+  /** Forgets a country's remembered choice and added websites. */
+  | { type: "forgetStores"; country: CountryCode }
   | { type: "replace"; state: TrackerState };
 
 function recordChecks(
@@ -268,6 +275,29 @@ export function trackerReducer(state: TrackerState, action: TrackerAction): Trac
       return { ...state, notifications: [] };
     case "updateSettings":
       return { ...state, settings: { ...state.settings, ...action.patch } };
+    case "rememberStores": {
+      const known = state.settings.customStores[action.country] ?? [];
+      const added = action.added.filter(
+        (store, i, all) =>
+          !known.some((k) => k.domain === store.domain) &&
+          all.findIndex((s) => s.domain === store.domain) === i,
+      );
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          storeLists: { ...state.settings.storeLists, [action.country]: [...action.domains] },
+          customStores: { ...state.settings.customStores, [action.country]: [...known, ...added] },
+        },
+      };
+    }
+    case "forgetStores": {
+      const storeLists = { ...state.settings.storeLists };
+      const customStores = { ...state.settings.customStores };
+      delete storeLists[action.country];
+      delete customStores[action.country];
+      return { ...state, settings: { ...state.settings, storeLists, customStores } };
+    }
     case "replace":
       return action.state;
   }
@@ -350,6 +380,40 @@ function isNotification(value: unknown): value is Notification {
   );
 }
 
+function parseSettings(value: unknown): Settings {
+  if (!isRecord(value)) return defaultSettings;
+  const storeLists: Settings["storeLists"] = {};
+  const customStores: Settings["customStores"] = {};
+  if (isRecord(value.storeLists)) {
+    for (const [country, domains] of Object.entries(value.storeLists)) {
+      if (isCountryCode(country) && Array.isArray(domains)) {
+        storeLists[country] = domains.filter(isString);
+      }
+    }
+  }
+  if (isRecord(value.customStores)) {
+    for (const [country, stores] of Object.entries(value.customStores)) {
+      if (isCountryCode(country) && Array.isArray(stores)) {
+        customStores[country] = stores.filter(
+          (s): s is StoreChoice => isRecord(s) && isString(s.name) && isString(s.domain),
+        );
+      }
+    }
+  }
+  return {
+    email: isString(value.email) ? value.email : defaultSettings.email,
+    dailyDigest:
+      typeof value.dailyDigest === "boolean" ? value.dailyDigest : defaultSettings.dailyDigest,
+    notifyOnIncrease:
+      typeof value.notifyOnIncrease === "boolean"
+        ? value.notifyOnIncrease
+        : defaultSettings.notifyOnIncrease,
+    dedupeHours: isNumber(value.dedupeHours) ? value.dedupeHours : defaultSettings.dedupeHours,
+    storeLists,
+    customStores,
+  };
+}
+
 /** Reads a saved tracker, dropping anything malformed. `null` when there is nothing usable. */
 export function parseState(json: string | null): TrackerState | null {
   if (!json) return null;
@@ -383,9 +447,7 @@ export function parseState(json: string | null): TrackerState | null {
         }));
     }
   }
-  const settings = isRecord(value.settings)
-    ? { ...defaultSettings, ...value.settings }
-    : defaultSettings;
+  const settings = parseSettings(value.settings);
   const nextCheckAt = isRecord(value.nextCheckAt)
     ? Object.fromEntries(
         Object.entries(value.nextCheckAt).filter(([id, at]) => productIds.has(id) && isNumber(at)),

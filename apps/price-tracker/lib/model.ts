@@ -140,4 +140,8 @@ export type Settings = {
   notifyOnIncrease: boolean;
   /** No repeat alert for the same change within this many hours (plan T4.4). */
   dedupeHours: number;
+  /** The websites last chosen to search in each country, suggested for the next product. */
+  storeLists: Partial<Record<CountryCode, string[]>>;
+  /** Websites the user added to a country's list of stores. */
+  customStores: Partial<Record<CountryCode, { name: string; domain: string }[]>>;
 };

@@ -203,31 +203,32 @@ export function createDemoSource({ delayMs = 700 }: { delayMs?: number } = {}): 
       } satisfies IdentifyResult;
     },
 
-    async discover(identity, country, excludeDomain) {
+    async discover(identity, { country, stores: chosen, excludeDomain }) {
       await wait(delayMs * 1.5);
       const key = familyKey(identity.title);
       const seed = hash(`${key}|${country}`);
-      const stores = countries[country].stores
-        .filter((s) => s.domain !== excludeDomain)
-        .map((s, i) => ({ store: s, order: random(seed, i) }))
-        .sort((a, b) => a.order - b.order)
-        .map((s) => s.store);
-      const count = Math.min(stores.length, 4 + Math.floor(random(seed, 99) * 4));
-      const chosen = stores.slice(0, count);
+      const stores = chosen.filter((s) => s.domain !== excludeDomain);
+      // Most stores sell the product; the rest return an accessory, which the matcher filters out.
+      const sellers = stores.filter((s) => random(seed, hash(s.domain)) < 0.8);
+      const others = stores.filter((s) => !sellers.includes(s));
       const now = Date.now();
+      const storage = identity.variant.storage;
+      const nextStorage = storage
+        ? storageSteps[Math.min(storageSteps.indexOf(storage) + 1, storageSteps.length - 1)]
+        : undefined;
 
-      const candidates: Candidate[] = chosen.map((store, i) => {
-        const storage = identity.variant.storage;
-        // The last store only sells another storage size: a "possible match" to confirm.
-        const otherVariant = i === count - 1 && storage && storageSteps.includes(storage);
-        const title = otherVariant
-          ? withStorage(
-              storeTitle(identity, i),
-              storage,
-              storageSteps[Math.min(storageSteps.indexOf(storage) + 1, storageSteps.length - 1)] ??
-                storage,
-            )
-          : storeTitle(identity, i);
+      const candidates: Candidate[] = sellers.map((store, i) => {
+        // With 4+ stores, the last one only sells another storage size: a "possible match".
+        const otherVariant =
+          sellers.length >= 4 &&
+          i === sellers.length - 1 &&
+          storage !== undefined &&
+          storageSteps.includes(storage) &&
+          nextStorage !== storage;
+        const title =
+          otherVariant && storage && nextStorage
+            ? withStorage(storeTitle(identity, i), storage, nextStorage)
+            : storeTitle(identity, i);
         const normalized = normalizeTitle(title);
         const listsGtin = !otherVariant && random(seed, i + 500) < 0.7;
         return {
@@ -242,16 +243,16 @@ export function createDemoSource({ delayMs = 700 }: { delayMs?: number } = {}): 
         };
       });
 
-      // Searches also return accessories; the matcher filters them out.
-      const accessoryStore = stores[count];
-      if (accessoryStore && identity.brand && identity.model) {
-        const title = `Husa protectie pentru ${identity.brand} ${identity.model}`;
-        candidates.push({
-          url: offerUrl(accessoryStore.domain, title),
-          domain: accessoryStore.domain,
-          title,
-          price: 49.99,
-        });
+      if (identity.brand && identity.model) {
+        for (const store of others) {
+          const title = `Husa protectie pentru ${identity.brand} ${identity.model}`;
+          candidates.push({
+            url: offerUrl(store.domain, title),
+            domain: store.domain,
+            title,
+            price: 49.99,
+          });
+        }
       }
 
       const sourcePrice = demoSnapshot(
@@ -260,6 +261,7 @@ export function createDemoSource({ delayMs = 700 }: { delayMs?: number } = {}): 
       ).price;
       return rankCandidates({ ...identity, price: identity.price ?? sourcePrice }, candidates, {
         country,
+        stores: stores.map((s) => s.domain),
         excludeDomain,
       });
     },

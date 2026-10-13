@@ -1,4 +1,4 @@
-import { isDomainInCountry, type CountryCode } from "./countries";
+import { hostMatches, isDomainInCountry, type CountryCode } from "./countries";
 import { matchProducts, type MatchInput, type MatchResult } from "./match";
 import type { ProductIdentity } from "./model";
 
@@ -30,18 +30,22 @@ export type Candidate = MatchInput & {
 export type RankedCandidate = Candidate & { match: MatchResult };
 
 /**
- * Keeps candidates from stores in the product's country, scores each against the product, drops
- * the ones that don't match and keeps the best listing per store.
+ * Keeps candidates from the stores the user chose to search (or, without a choice, any store in
+ * the product's country), scores each against the product, drops the ones that don't match and
+ * keeps the best listing per store.
  */
 export function rankCandidates(
   identity: ProductIdentity & { price?: number | null },
   candidates: Candidate[],
-  options: { country: CountryCode; excludeDomain?: string },
+  options: { country: CountryCode; stores?: string[]; excludeDomain?: string },
 ): RankedCandidate[] {
   const best = new Map<string, RankedCandidate>();
   for (const candidate of candidates) {
     if (candidate.domain === options.excludeDomain) continue;
-    if (!isDomainInCountry(candidate.domain, options.country)) continue;
+    const allowed = options.stores
+      ? options.stores.some((domain) => hostMatches(candidate.domain, domain))
+      : isDomainInCountry(candidate.domain, options.country);
+    if (!allowed) continue;
     const match = matchProducts(identity, candidate);
     if (match.decision === "reject") continue;
     const current = best.get(candidate.domain);

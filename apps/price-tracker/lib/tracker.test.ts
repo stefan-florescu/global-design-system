@@ -218,6 +218,21 @@ describe("saving", () => {
     expect(parseState(serialize(state))).toEqual(state);
   });
 
+  it("keeps remembered stores and drops malformed ones", () => {
+    const state = trackerReducer(withProduct(), {
+      type: "rememberStores",
+      country: "RO",
+      domains: ["altex.ro"],
+      added: [{ name: "a.ro", domain: "a.ro" }],
+    });
+    const saved = JSON.parse(serialize(state)) as { settings: Record<string, unknown> };
+    saved.settings.storeLists = { RO: ["altex.ro", 5], XX: ["x"] };
+    expect(parseState(JSON.stringify(saved))?.settings).toMatchObject({
+      storeLists: { RO: ["altex.ro"] },
+      customStores: { RO: [{ name: "a.ro", domain: "a.ro" }] },
+    });
+  });
+
   it("drops malformed records", () => {
     const saved = JSON.parse(serialize(withProduct())) as Record<string, unknown[]>;
     saved.offers?.push({ id: "broken" });
