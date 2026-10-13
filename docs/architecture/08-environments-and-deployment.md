@@ -66,8 +66,8 @@ Consumers of GitHub Packages add to their `.npmrc`:
 ## 8.5 Vercel — the launcher project
 
 One Vercel project, linked to this GitHub repo, serves the whole website: the launcher at `/` and
-every app as a section of it, such as the docs site at `/design-system` and the task board at
-`/task-board`
+every app as a section of it, such as the docs site at `/design-system`, the task board at
+`/task-board` and the price tracker at `/price-tracker`
 ([ADR 0010](../decisions/0010-apps-as-launcher-sections.md)).
 
 | Setting                              | Value                                                                                    |

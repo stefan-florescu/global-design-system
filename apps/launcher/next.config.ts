@@ -16,6 +16,8 @@ const nextConfig: NextConfig = {
           // components.html). Real files, such as scripts and images, are served first.
           [
             { source: `/${path}`, destination: `/${path}/index.html` },
+            // The router prefetches the section's home page as /<path>.txt (its RSC payload).
+            { source: `/${path}.txt`, destination: `/${path}/index.txt` },
             { source: `/${path}/:slug+`, destination: `/${path}/:slug+.html` },
           ],
     );

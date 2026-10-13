@@ -9,11 +9,12 @@ Token-driven · component-based · accessible by default · multi-theme · AI-fr
 | `@stefan-florescu/ui`     | React 19 components — Tailwind CSS v4 + CVA       |
 | `@stefan-florescu/icons`  | Governed lucide.dev icon layer                    |
 
-| App               | Stack                                       | Local                               |
-| ----------------- | ------------------------------------------- | ----------------------------------- |
-| `apps/storybook`  | Next.js 15 · MDX docs site (shadcn-style)   | http://localhost:3000/design-system |
-| `apps/launcher`   | Next.js 15 · home page linking to every app | http://localhost:3001               |
-| `apps/task-board` | Next.js 15 · task board with columns        | http://localhost:3002/task-board    |
+| App                  | Stack                                       | Local                               |
+| -------------------- | ------------------------------------------- | ----------------------------------- |
+| `apps/storybook`     | Next.js 15 · MDX docs site (shadcn-style)   | http://localhost:3000/design-system |
+| `apps/launcher`      | Next.js 15 · home page linking to every app | http://localhost:3001               |
+| `apps/task-board`    | Next.js 15 · task board with columns        | http://localhost:3002/task-board    |
+| `apps/price-tracker` | Next.js 15 · price tracker across stores    | http://localhost:3003/price-tracker |
 
 ## Quick start
 
@@ -23,15 +24,15 @@ pnpm install
 pnpm dev
 ```
 
-| Command          | Does                                            |
-| ---------------- | ----------------------------------------------- |
-| `pnpm dev`       | Run every app (docs site, launcher, task board) |
-| `pnpm build`     | Build every package and app (Turborepo)         |
-| `pnpm lint`      | ESLint (incl. jsx-a11y strict)                  |
-| `pnpm typecheck` | TypeScript strict                               |
-| `pnpm test`      | Vitest                                          |
-| `pnpm format`    | Prettier                                        |
-| `pnpm changeset` | Record a release note for published packages    |
+| Command          | Does                                                           |
+| ---------------- | -------------------------------------------------------------- |
+| `pnpm dev`       | Run every app (docs site, launcher, task board, price tracker) |
+| `pnpm build`     | Build every package and app (Turborepo)                        |
+| `pnpm lint`      | ESLint (incl. jsx-a11y strict)                                 |
+| `pnpm typecheck` | TypeScript strict                                              |
+| `pnpm test`      | Vitest                                                         |
+| `pnpm format`    | Prettier                                                       |
+| `pnpm changeset` | Record a release note for published packages                   |
 
 ## Documentation
 
