@@ -15,6 +15,7 @@ export default {
         "storybook",
         "launcher",
         "task-board",
+        "price-tracker",
         "ci",
         "repo",
         "deps",

@@ -83,3 +83,18 @@ describe("parseTasks", () => {
     expect(ids(parseTasks(saved) ?? [])).toEqual(["a"]);
   });
 });
+
+describe("import", () => {
+  it("adds only the tasks that aren't on the board, keeping the board's changes", () => {
+    const board = [task("a", "done")];
+    const next = boardReducer(board, {
+      type: "import",
+      tasks: [task("a", "todo"), task("b", "todo")],
+    });
+    expect(next.map((t) => [t.id, t.column])).toEqual([
+      ["a", "done"],
+      ["b", "todo"],
+    ]);
+    expect(boardReducer(next, { type: "import", tasks: [task("b", "todo")] })).toBe(next);
+  });
+});

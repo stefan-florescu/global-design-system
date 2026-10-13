@@ -32,6 +32,8 @@ export type BoardAction =
   | { type: "add"; id: string; draft: TaskDraft }
   | { type: "update"; id: string; draft: TaskDraft }
   | { type: "delete"; id: string }
+  /** Adds tasks (such as a plan's) whose ids aren't on the board yet; existing ones are kept. */
+  | { type: "import"; tasks: Task[] }
   /** Moves a task to a column: before the task `beforeId`, or to the end of the column. */
   | { type: "move"; id: string; column: ColumnId; beforeId?: string };
 
@@ -56,6 +58,11 @@ export function boardReducer(tasks: Task[], action: BoardAction): Task[] {
     }
     case "delete": {
       return tasks.filter((t) => t.id !== action.id);
+    }
+    case "import": {
+      const ids = new Set(tasks.map((t) => t.id));
+      const added = action.tasks.filter((t) => !ids.has(t.id));
+      return added.length > 0 ? [...tasks, ...added] : tasks;
     }
     case "move": {
       const task = tasks.find((t) => t.id === action.id);

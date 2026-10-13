@@ -1,6 +1,6 @@
 "use client";
 
-import { Plus } from "@stefan-florescu/icons";
+import { ClipboardList, Plus } from "@stefan-florescu/icons";
 import {
   Button,
   Modal,
@@ -25,6 +25,7 @@ import {
 import { useBoard } from "@/lib/use-board";
 
 import { BoardColumn } from "./board-column";
+import { ImportPlanModal } from "./import-plan-modal";
 import { TaskCard } from "./task-card";
 import { TaskFormModal } from "./task-form-modal";
 
@@ -51,6 +52,7 @@ export function Board() {
   const [formOpen, setFormOpen] = useState(false);
   const [deleting, setDeleting] = useState<Task | null>(null);
   const [draggingId, setDraggingId] = useState<string | null>(null);
+  const [importOpen, setImportOpen] = useState(false);
   // Read out by screen readers after each change.
   const [announcement, setAnnouncement] = useState("");
 
@@ -102,10 +104,16 @@ export function Board() {
             Add tasks and drag them between columns, or use a card&apos;s menu to move it.
           </p>
         </div>
-        <Button onClick={() => openForm({ mode: "add", initial: emptyDraft })}>
-          <Plus aria-hidden />
-          Add task
-        </Button>
+        <div className="flex flex-wrap gap-2">
+          <Button variant="secondary" onClick={() => setImportOpen(true)} disabled={tasks === null}>
+            <ClipboardList aria-hidden />
+            Import plan
+          </Button>
+          <Button onClick={() => openForm({ mode: "add", initial: emptyDraft })}>
+            <Plus aria-hidden />
+            Add task
+          </Button>
+        </div>
       </div>
 
       {tasks === null ? (
@@ -183,6 +191,16 @@ export function Board() {
           onSubmit={submitForm}
         />
       ) : null}
+
+      <ImportPlanModal
+        open={importOpen}
+        onOpenChange={setImportOpen}
+        tasks={tasks ?? []}
+        onImport={(plan, added) => {
+          dispatch({ type: "import", tasks: added });
+          setAnnouncement(`Imported ${added.length} tasks from the ${plan.name} plan.`);
+        }}
+      />
 
       <Modal
         open={deleting !== null}

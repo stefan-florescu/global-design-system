@@ -8,16 +8,17 @@ OpenAI Codex/Agents, Cursor, and others). Tool-specific files (`CLAUDE.md`,
 
 A token-driven, accessible, multi-theme React design system in a pnpm + Turborepo monorepo.
 
-| Path                | Package                                 | Purpose                                             |
-| ------------------- | --------------------------------------- | --------------------------------------------------- |
-| `packages/tokens`   | `@stefan-florescu/tokens`               | DTCG JSON → CSS vars / JS / JSON (Style Dictionary) |
-| `packages/themes`   | `@stefan-florescu/themes`               | Per-theme semantic overrides via `[data-theme]`     |
-| `packages/ui`       | `@stefan-florescu/ui`                   | React 19 components (Tailwind v4 + CVA)             |
-| `packages/icons`    | `@stefan-florescu/icons`                | Governed wrapper over `lucide-react`                |
-| `packages/config/*` | `@stefan-florescu/*-config`             | Shared TS / ESLint / Tailwind presets               |
-| `apps/storybook`    | `@stefan-florescu/storybook` (private)  | Docs website (Next.js 15, MDX, shadcn-style)        |
-| `apps/launcher`     | `@stefan-florescu/launcher` (private)   | Home page linking to every app (Next.js 15)         |
-| `apps/task-board`   | `@stefan-florescu/task-board` (private) | Task board: add tasks, move them between columns    |
+| Path                 | Package                                    | Purpose                                             |
+| -------------------- | ------------------------------------------ | --------------------------------------------------- |
+| `packages/tokens`    | `@stefan-florescu/tokens`                  | DTCG JSON → CSS vars / JS / JSON (Style Dictionary) |
+| `packages/themes`    | `@stefan-florescu/themes`                  | Per-theme semantic overrides via `[data-theme]`     |
+| `packages/ui`        | `@stefan-florescu/ui`                      | React 19 components (Tailwind v4 + CVA)             |
+| `packages/icons`     | `@stefan-florescu/icons`                   | Governed wrapper over `lucide-react`                |
+| `packages/config/*`  | `@stefan-florescu/*-config`                | Shared TS / ESLint / Tailwind presets               |
+| `apps/storybook`     | `@stefan-florescu/storybook` (private)     | Docs website (Next.js 15, MDX, shadcn-style)        |
+| `apps/launcher`      | `@stefan-florescu/launcher` (private)      | Home page linking to every app (Next.js 15)         |
+| `apps/task-board`    | `@stefan-florescu/task-board` (private)    | Task board: add tasks, move them between columns    |
+| `apps/price-tracker` | `@stefan-florescu/price-tracker` (private) | Price tracker: watch prices across stores           |
 
 Dependency direction is strictly **tokens → themes → ui → apps**. Never import "upward".
 
@@ -37,6 +38,9 @@ Dependency direction is strictly **tokens → themes → ui → apps**. Never im
   launcher's build copies it into `public/<section>` (`apps/launcher/sections.mjs`). Keep section
   apps static (no route handlers, middleware or server actions). Links use `next/link`, which adds
   the base path; a plain `<a href>` or a public file path needs it written out.
+- An app that needs a backend keeps it outside the static export. The price tracker's is Supabase
+  (ADR 0011): migrations in `apps/price-tracker/supabase/migrations`, the Edge Function's code in
+  `apps/price-tracker/server` (bundled by `pnpm --filter @stefan-florescu/price-tracker build:function`).
 
 ### Creating a component
 
@@ -82,6 +86,7 @@ pnpm dev                # every app + package watchers
 pnpm dev:storybook      # docs site only, http://localhost:3000/design-system
 pnpm dev:launcher       # launcher only, http://localhost:3001
 pnpm dev:task-board     # task board only, http://localhost:3002/task-board
+pnpm dev:price-tracker  # price tracker only, http://localhost:3003/price-tracker
 pnpm build | lint | typecheck | test | format
 pnpm --filter @stefan-florescu/ui test
 pnpm changeset          # required for any change to a published package

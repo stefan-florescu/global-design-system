@@ -1,4 +1,4 @@
-import { Columns3, SwatchBook, type LucideIcon } from "@stefan-florescu/icons";
+import { Columns3, SwatchBook, Tag, type LucideIcon } from "@stefan-florescu/icons";
 
 export type LauncherApp = {
   /** Unique, kebab-case. */
@@ -32,5 +32,13 @@ export const apps: LauncherApp[] = [
     description: "Add tasks and move them from column to column.",
     href: "/task-board",
     icon: Columns3,
+  },
+  {
+    id: "price-tracker",
+    name: "Price Tracker",
+    description: "Track a product's price across stores and get alerted when it drops.",
+    href: "/price-tracker",
+    icon: Tag,
+    status: "beta",
   },
 ];

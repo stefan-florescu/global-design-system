@@ -66,8 +66,8 @@ Consumers of GitHub Packages add to their `.npmrc`:
 ## 8.5 Vercel — the launcher project
 
 One Vercel project, linked to this GitHub repo, serves the whole website: the launcher at `/` and
-every app as a section of it, such as the docs site at `/design-system` and the task board at
-`/task-board`
+every app as a section of it, such as the docs site at `/design-system`, the task board at
+`/task-board` and the price tracker at `/price-tracker`
 ([ADR 0010](../decisions/0010-apps-as-launcher-sections.md)).
 
 | Setting                              | Value                                                                                    |
@@ -84,6 +84,20 @@ The build (`turbo run build --filter=@stefan-florescu/launcher`) builds the sect
 as static exports; the launcher copies each into `public/<section>` (`apps/launcher/sections.mjs`)
 and serves its pages from there. Every PR gets a preview URL from the Vercel bot; `main` deploys
 to production.
+
+### The price tracker's backend — Supabase
+
+The price tracker's pages are static like every section; accounts, data and price checks live in
+a Supabase project ([ADR 0011](../decisions/0011-price-tracker-backend-on-supabase.md)).
+
+| Piece                         | Where                                                                                                                                                          |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Project URL and key           | `apps/price-tracker/lib/supabase-config.ts` (publishable key; overridable with `NEXT_PUBLIC_SUPABASE_*`)                                                       |
+| Database                      | `apps/price-tracker/supabase/migrations` — `pt_` tables with row-level security                                                                                |
+| Edge Function `price-tracker` | code in `apps/price-tracker/server`; bundle with `pnpm --filter @stefan-florescu/price-tracker build:function`, then deploy `supabase/functions/price-tracker` |
+| Scheduled checks              | pg_cron job `price-tracker-check-due`, every 15 minutes                                                                                                        |
+| Function secrets              | `SCRAPER_URL_TEMPLATE` (optional): a scraping service for stores that block plain requests                                                                     |
+| Auth URLs                     | Site URL `https://stefan-flo.vercel.app/price-tracker/`; redirect URLs for it, previews and `http://localhost:3003/price-tracker/**`                           |
 
 Enable **Vercel Remote Cache** (Team → Settings → Remote Caching) and reuse it in CI via `TURBO_TOKEN`.
 

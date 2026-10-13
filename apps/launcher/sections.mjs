@@ -16,4 +16,9 @@ export const sections = [
     outDir: "../task-board/out",
     devOrigin: "http://localhost:3002",
   },
+  {
+    path: "price-tracker",
+    outDir: "../price-tracker/out",
+    devOrigin: "http://localhost:3003",
+  },
 ];

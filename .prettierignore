@@ -4,9 +4,12 @@ dist
 out
 apps/launcher/public/design-system
 apps/launcher/public/task-board
+apps/launcher/public/price-tracker
 .turbo
 coverage
 pnpm-lock.yaml
 packages/tokens/build
 packages/themes/build
 CHANGELOG.md
+apps/price-tracker/supabase/functions
+**/__fixtures__
