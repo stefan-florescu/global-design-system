@@ -38,7 +38,7 @@
     "@stefan-florescu/typescript-config": "workspace:*",
     "@types/node": "^22.18.0",
     "eslint": "^9.39.0",
-    "style-dictionary": "^5.6.0",
+    "style-dictionary": "^5.6.1",
     "typescript": "~5.9.3"
   },
   "publishConfig": {
