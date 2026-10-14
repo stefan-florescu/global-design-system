@@ -36,7 +36,7 @@
   "devDependencies": {
     "@stefan-florescu/eslint-config": "workspace:*",
     "@stefan-florescu/typescript-config": "workspace:*",
-    "@types/node": "^22.18.0",
+    "@types/node": "^26.6.5",
     "eslint": "^9.39.0",
     "style-dictionary": "^5.6.0",
     "typescript": "~5.9.3"

@@ -35,7 +35,7 @@
     "@stefan-florescu/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/mdx": "^2.0.14",
-    "@types/node": "^22.18.0",
+    "@types/node": "^26.6.5",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "eslint": "^9.39.0",
