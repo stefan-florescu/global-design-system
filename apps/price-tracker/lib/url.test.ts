@@ -41,4 +41,11 @@ describe("canonicalUrl", () => {
     const url = new URL("https://WWW.Emag.ro/p/1?utm_source=x&color=black&fbclid=1#reviews");
     expect(canonicalUrl(url)).toBe("https://www.emag.ro/p/1?color=black");
   });
+
+  it("drops Google Ads parameters", () => {
+    const url = new URL(
+      "https://www.emag.ro/joc-ps5/pd/DVZ4HM2BM/?cmpid=147828&gad_source=1&gad_campaignid=97&gbraid=0AAA",
+    );
+    expect(canonicalUrl(url)).toBe("https://www.emag.ro/joc-ps5/pd/DVZ4HM2BM/");
+  });
 });

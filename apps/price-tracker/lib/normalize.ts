@@ -42,7 +42,32 @@ const marketingPatterns = [
 
 /** Category words that come before the brand in many store titles. */
 const categoryPrefix =
-  /^(telefon mobil|smartphone|telefon|laptop|notebook|tableta|tabletă|tablet|televizor|tv|casti|căști|headphones|kopfhörer|consola|consolă|console|monitor|aspirator|espressor|ceas inteligent|smartwatch|boxa|boxă|frigider|masina de spalat|mașină de spălat)\s+/i;
+  /^(joc video|joc|game|spiel|jeu|telefon mobil|smartphone|telefon|laptop|notebook|tableta|tabletă|tablet|televizor|tv|casti|căști|headphones|kopfhörer|consola|consolă|console|monitor|aspirator|espressor|ceas inteligent|smartwatch|boxa|boxă|frigider|masina de spalat|mașină de spălat)\s+/i;
+
+/**
+ * Where a title starts saying what the product is for: "Joc Silent Hill pentru PlayStation 5" is
+ * a game, not a PlayStation, and "Husa pentru iPhone 15" is a case, not an iPhone.
+ */
+const compatibility = /\s(?:pentru|for|compatibil[aă]? cu|compatible with|f[üu]r|pour)\s/i;
+
+/** The part of a title that names the product, before what it is for. */
+export function titleSubject(title: string) {
+  return title.split(compatibility)[0] ?? title;
+}
+
+/**
+ * A title as words to type into a store's search box: "Silent Hill Townfall pentru PlayStation 5"
+ * → "Silent Hill Townfall PlayStation 5".
+ */
+export function searchText(title: string, maxWords = 8) {
+  return title
+    .replace(new RegExp(compatibility.source, "gi"), " ")
+    .replace(/[,;:()[\]"“”]+/g, " ")
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, maxWords)
+    .join(" ");
+}
 
 export type NormalizedTitle = {
   /** The title without marketing words or category prefix. */
@@ -111,7 +136,7 @@ export function normalizeTitle(raw: string): NormalizedTitle {
   title = clean(title.replace(/\((?:[^)]*\b(?:nou|new|promo|oferta|sale)\b[^)]*)\)/gi, " "));
   title = clean(title.replace(categoryPrefix, ""));
 
-  const brand = findBrand(title);
+  const brand = findBrand(titleSubject(title));
   const variant = extractVariant(title);
 
   let model: string | undefined;
@@ -139,13 +164,17 @@ export function normalizeTitle(raw: string): NormalizedTitle {
 
 /** Lowercase words with "128 GB" joined into "128gb", for comparing titles. */
 export function titleTokens(title: string): string[] {
-  return title
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[̀-ͯ]/g, "")
-    .replace(/(\d)\s+(gb|tb|mb|mah|w|hz|mm|cm|kg|l)\b/g, "$1$2")
-    .split(/[^a-z0-9]+/)
-    .filter((word) => word.length > 1 || /\d/.test(word));
+  return (
+    title
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[̀-ͯ]/g, "")
+      .replace(/(\d)\s+(gb|tb|mb|mah|w|hz|mm|cm|kg|l)\b/g, "$1$2")
+      // Stores write consoles both ways: "PlayStation 5" and "PS5".
+      .replace(/\bplaystation\s?([3-5])\b/g, "ps$1")
+      .split(/[^a-z0-9]+/)
+      .filter((word) => word.length > 1 || /\d/.test(word))
+  );
 }
 
 /**

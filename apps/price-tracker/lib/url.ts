@@ -97,7 +97,11 @@ export function canonicalUrl(url: URL) {
   const clean = new URL(url.href);
   clean.hash = "";
   for (const key of [...clean.searchParams.keys()]) {
-    if (/^(utm_|fbclid|gclid|ref|ref_|tag|aff|affiliate|mc_)/i.test(key)) {
+    if (
+      /^(utm_|fbclid|gclid|gad_|gbraid|wbraid|msclkid|dclid|srsltid|cmpid|ref|ref_|tag|aff|affiliate|mc_)/i.test(
+        key,
+      )
+    ) {
       clean.searchParams.delete(key);
     }
   }

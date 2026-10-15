@@ -3,7 +3,7 @@ import { join } from "node:path";
 
 import { describe, expect, it } from "vitest";
 
-import { parseProductPage } from "../lib/parse-product";
+import { parseProductPage, type ParsedProduct } from "../lib/parse-product";
 
 import { queryScore, readListings, searchUrls } from "./search";
 import { identityFromPage, searchQuery } from "./service";
@@ -74,5 +74,17 @@ describe("identityFromPage", () => {
     });
     expect(parsed).toMatchObject({ price: 3639.99, currency: "RON", availability: "in_stock" });
     expect(identity && searchQuery(identity)).toBe("Apple iPhone 15 128GB");
+  });
+
+  it("searches for the product's name when it has no known brand", () => {
+    const url = new URL("https://www.emag.ro/joc-silent-hill-townfall-pentru-playstation-5/pd/X/");
+    const identity = identityFromPage(
+      { title: "Joc Silent Hill Townfall pentru PlayStation 5" } as ParsedProduct,
+      url,
+      "RO",
+    );
+    const query = identity && searchQuery(identity);
+    expect(query).toBe("Silent Hill Townfall PlayStation 5");
+    expect(queryScore(query ?? "", "Joc Silent Hill Townfall PS5")).toBe(1);
   });
 });

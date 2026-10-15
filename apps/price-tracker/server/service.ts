@@ -18,12 +18,7 @@ import {
   isCountryCode,
   type CountryCode,
 } from "../lib/countries";
-import {
-  buildQueries,
-  rankCandidates,
-  type Candidate,
-  type RankedCandidate,
-} from "../lib/discovery";
+import { rankCandidates, type Candidate, type RankedCandidate } from "../lib/discovery";
 import type {
   Availability,
   MatchStatus,
@@ -34,7 +29,7 @@ import type {
   Settings,
   Watch,
 } from "../lib/model";
-import { normalizeTitle, titleFromPath } from "../lib/normalize";
+import { normalizeTitle, searchText, titleFromPath } from "../lib/normalize";
 import { parseProductPage, type ParsedProduct } from "../lib/parse-product";
 import { nextCheckDelay } from "../lib/schedule";
 import { defaultSettings, maxWatchedProducts } from "../lib/tracker";
@@ -145,7 +140,8 @@ export function searchQuery(identity: ProductIdentity) {
   if (identity.brand && identity.model) {
     return [identity.brand, identity.model, identity.variant.storage].filter(Boolean).join(" ");
   }
-  return buildQueries(identity).at(-1) ?? identity.title;
+  // No known brand (games, books, small makers): search for the product's name.
+  return searchText(identity.title);
 }
 
 async function searchStore(

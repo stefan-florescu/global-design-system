@@ -1,6 +1,12 @@
 import { describe, expect, it } from "vitest";
 
-import { extractVariant, normalizeTitle, titleFromPath, titleTokens } from "./normalize";
+import {
+  extractVariant,
+  normalizeTitle,
+  searchText,
+  titleFromPath,
+  titleTokens,
+} from "./normalize";
 
 describe("normalizeTitle", () => {
   it("strips marketing text and the category, and finds brand, model and variant", () => {
@@ -25,6 +31,27 @@ describe("normalizeTitle", () => {
 
   it("copes without a known brand", () => {
     expect(normalizeTitle("Generic USB hub").brand).toBeUndefined();
+  });
+
+  it("doesn't take what a product is for as its brand", () => {
+    expect(normalizeTitle("Joc Silent Hill Townfall pentru PlayStation 5")).toMatchObject({
+      title: "Silent Hill Townfall pentru PlayStation 5",
+      brand: undefined,
+      model: undefined,
+    });
+    expect(normalizeTitle("Husa pentru Apple iPhone 15, neagra").brand).toBeUndefined();
+    expect(normalizeTitle("Incarcator Apple 20W pentru iPhone").brand).toBe("Apple");
+  });
+});
+
+describe("searchText", () => {
+  it("drops punctuation and the words that say what a product is for", () => {
+    expect(searchText("Silent Hill Townfall pentru PlayStation 5")).toBe(
+      "Silent Hill Townfall PlayStation 5",
+    );
+    expect(searchText("Cartus (original), compatibil cu HP 305, negru")).toBe(
+      "Cartus original HP 305 negru",
+    );
   });
 });
 
@@ -56,5 +83,9 @@ describe("titleFromPath", () => {
 describe("titleTokens", () => {
   it("joins numbers with their units and drops accents", () => {
     expect(titleTokens("Căști Sony 128 GB, roșu")).toEqual(["casti", "sony", "128gb", "rosu"]);
+  });
+
+  it("writes PlayStation consoles the short way", () => {
+    expect(titleTokens("Joc FC 26 PlayStation 5")).toEqual(titleTokens("Joc FC 26 PS5"));
   });
 });

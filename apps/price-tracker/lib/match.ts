@@ -39,9 +39,12 @@ const accessoryWords = new Set([
 
 // prettier-ignore
 const stopWords = new Set([
-  "telefon", "mobil", "smartphone", "the", "and", "with", "cu", "si", "pentru", "for", "de",
+  "telefon", "mobil", "smartphone", "joc", "game", "the", "and", "with", "cu", "si", "pentru", "for", "de",
   "la", "mit", "und", "pour", "et", "dual", "sim", "5g", "4g", "lte", "nfc", "wifi",
 ]);
+
+/** Consoles a game or accessory is made for: one for PS4 is not the same product as one for PS5. */
+const platforms = new Set(["ps3", "ps4", "ps5", "xbox", "switch", "pc"]);
 
 /** GTINs can be written as 8, 12, 13 or 14 digits: pad them to compare. */
 export function normalizeGtin(gtin: string | undefined) {
@@ -116,6 +119,9 @@ export function matchProducts(source: MatchInput, candidate: MatchInput): MatchR
   if (differs(a.storage, b.storage)) score *= 0.6;
   if (differs(a.size, b.size)) score *= 0.6;
   if (differs(a.color, b.color)) score *= 0.85;
+  const platformA = wordsA.filter((w) => platforms.has(w)).join(" ");
+  const platformB = wordsB.filter((w) => platforms.has(w)).join(" ");
+  if (differs(platformA, platformB)) score *= 0.6;
 
   // An accessory "for iPhone 15" shares most of the title.
   const accessory = (words: string[]) => words.some((w) => accessoryWords.has(w));

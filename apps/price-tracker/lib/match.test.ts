@@ -60,6 +60,16 @@ describe("matchProducts", () => {
   });
 });
 
+describe("matchProducts without a brand", () => {
+  it("offers the same game as a possible match, however the console is written", () => {
+    const game = { title: "Silent Hill Townfall pentru PlayStation 5" };
+    expect(matchProducts(game, { title: "Joc Silent Hill Townfall PS5" }).decision).toBe(
+      "possible",
+    );
+    expect(matchProducts(game, { title: "Joc Silent Hill Townfall PS4" }).decision).toBe("reject");
+  });
+});
+
 describe("buildQueries", () => {
   it("searches the barcode first, then brand + model + variant, then the title", () => {
     expect(buildQueries(iphone)).toEqual(["0195949036118", "Apple iPhone 15 128GB Black"]);
