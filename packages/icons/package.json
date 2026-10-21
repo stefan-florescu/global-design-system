@@ -36,9 +36,9 @@
     "@stefan-florescu/eslint-config": "workspace:*",
     "@stefan-florescu/typescript-config": "workspace:*",
     "@types/react": "^19.2.0",
-    "eslint": "^9.39.0",
+    "eslint": "^10.13.0",
     "react": "^19.2.0",
-    "tsup": "^8.5.1",
+    "tsup": "^9.0.0",
     "typescript": "~5.9.3"
   },
   "publishConfig": {
